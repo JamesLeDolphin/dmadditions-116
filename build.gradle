@@ -15,8 +15,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
 version = '1.0'
-group = 'com.yourname.modid'
-archivesBaseName = 'modid'
+group = 'com.jdolphin.dmadditions'
+archivesBaseName = 'dmadditions'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
@@ -31,7 +31,7 @@ minecraft {
             arg "-mixin.config=dmadditions.mixin.json"
 
             mods {
-                examplemod {
+                dmadditions {
                     source sourceSets.main
                 }
             }
@@ -43,7 +43,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                dmadditions {
                     source sourceSets.main
                 }
             }
@@ -55,10 +55,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'dmadditions', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                dmadditions {
                     source sourceSets.main
                 }
             }
@@ -78,12 +78,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "examplemod",
-            "Specification-Vendor": "examplemodsareus",
+            "Specification-Title": "dmadditions",
+            "Specification-Vendor": "dmadditionssareus",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"examplemodsareus",
+            "Implementation-Vendor" :"dmadditionssareus",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
             "TweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
             "TweakOrder": 0,
