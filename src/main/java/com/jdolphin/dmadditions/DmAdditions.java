@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions;
 
-import com.jdolphin.dmadditions.items.ItemInit;
+import com.jdolphin.dmadditions.init.DMAdditionsProjectiles;
+import com.jdolphin.dmadditions.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,6 +43,7 @@ public class DmAdditions
         eventBus.addListener(this::doClientStuff);
 
         new ItemInit();
+        DMAdditionsProjectiles.init();
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
