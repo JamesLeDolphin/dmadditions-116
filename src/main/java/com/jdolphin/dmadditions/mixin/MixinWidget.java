@@ -34,15 +34,15 @@ public abstract class MixinWidget extends AbstractGui {
 
         //Removing the button background so just the button label gets rendered:
 
-//        minecraft.getTextureManager().bindTexture(Widget.WIDGETS_LOCATION);
-//        RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
-//        int i = this.getYImage(w.isHovered());
-//        RenderSystem.enableBlend();
-//        RenderSystem.defaultBlendFunc();
-//        RenderSystem.enableDepthTest();
-//        this.blit(matrixStack, w.x, w.y, 0, 46 + i * 20, w.getWidth() / 2, w.getHeight());
-//        this.blit(matrixStack, w.x + w.getWidth() / 2, w.y, 200 - w.getWidth() / 2, 46 + i * 20, w.getWidth() / 2,w.getHeight());
-//        this.renderBg(matrixStack, minecraft, mouseX, mouseY);
+        minecraft.getTextureManager().bind(Widget.WIDGETS_LOCATION);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
+        int i = this.getYImage(w.isHovered());
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.enableDepthTest();
+        this.blit(matrixStack, w.x, w.y, 0, 46 + i * 20, w.getWidth() / 2, w.getHeight());
+        this.blit(matrixStack, w.x + w.getWidth() / 2, w.y, 200 - w.getWidth() / 2, 46 + i * 20, w.getWidth() / 2,w.getHeight());
+        this.renderBg(matrixStack, minecraft, mouseX, mouseY);
 
         int j = w.getFGColor();
         drawCenteredString(matrixStack, fontrenderer, w.getMessage(), w.x + w.getWidth() / 2, w.y + (w.getHeight() - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
