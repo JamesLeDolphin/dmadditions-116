@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "com/swdteam/mixins/ModelBakeryMixin": {
+      "Lnet/minecraft/client/renderer/model/ModelBakery;processLoading(Lnet/minecraft/profiler/IProfiler;I)V": "Lnet/minecraft/client/renderer/model/ModelBakery;processLoading(Lnet/minecraft/profiler/IProfiler;I)V"
+    }
+  },
+  "data": {
+    "searge": {
+      "com/swdteam/mixins/ModelBakeryMixin": {
+        "Lnet/minecraft/client/renderer/model/ModelBakery;processLoading(Lnet/minecraft/profiler/IProfiler;I)V": "Lnet/minecraft/client/renderer/model/ModelBakery;processLoading(Lnet/minecraft/profiler/IProfiler;I)V"
+      }
+    }
+  }
+}

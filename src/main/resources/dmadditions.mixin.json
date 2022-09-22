@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.jdolphin.dmadditions.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "MixinWidget"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "dmadditions.mixin-refmap.json"
+}
