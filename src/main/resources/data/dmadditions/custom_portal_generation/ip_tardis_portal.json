@@ -1,0 +1,9 @@
+{
+  "schema_version": "imm_ptl:v1",
+  "from": ["imm_ptl:any_dimension"],"to": "dalekmod:tardis",
+  "form": {
+    "from_frame_block": "dalekmod:tardis",
+    "to_frame_block": "dalekmod:tardis_door_hitbox", "generate_frame_if_not_found": false
+  },
+  "trigger": {"type": "imm_ptl:conventional_dimension_change"}
+}
