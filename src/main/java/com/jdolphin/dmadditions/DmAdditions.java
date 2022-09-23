@@ -1,6 +1,8 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.init.DMAdditionsProjectiles;
+import com.jdolphin.dmadditions.init.DMAdditionsSoundEvents;
+import com.jdolphin.dmadditions.init.DMAdditionsSoundTypes;
 import com.jdolphin.dmadditions.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -42,6 +44,8 @@ public class DmAdditions
         // Register the doClientStuff method for modloading
         eventBus.addListener(this::doClientStuff);
 
+        new DMAdditionsSoundTypes();
+        new DMAdditionsSoundEvents();
         new ItemInit();
         DMAdditionsProjectiles.init();
 
