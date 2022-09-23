@@ -7,11 +7,13 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 public class DMAdditionsProjectiles extends DMProjectiles {
-    public static DMProjectiles.Laser PURPLE_LASER;
     public static List<Laser> LASERS;
+    public static DMProjectiles.Laser PURPLE_LASER;
+    public static DMProjectiles.Laser PINK_LASER;
 
     public static void init() {
-        PURPLE_LASER = addLaser(217,130,181);
+        PURPLE_LASER = addLaser(48,25,52);
+        PINK_LASER = addLaser(255,0,255);
     }
 
     private static DMProjectiles.Laser addLaser(int r, int g, int b){

@@ -1,0 +1,9 @@
+{
+    "item.pistol.shoot":{
+        "catergory":"player",
+        "subtitle":"subtitles.item.pistol.shoot",
+        "sounds":[
+            "dalekmod:item/pistol/shoot"
+        ]
+    }
+}
