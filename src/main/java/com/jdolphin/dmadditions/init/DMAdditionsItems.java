@@ -10,7 +10,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 
 
-public class ItemInit {
+public class DMAdditionsItems {
 
 
     public static RegistryObject<Item> PISTOL = RegistryHandler.ITEMS.register("pistol", ()
