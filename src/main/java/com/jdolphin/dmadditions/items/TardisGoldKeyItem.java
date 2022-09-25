@@ -43,10 +43,10 @@ public class TardisGoldKeyItem extends TardisKeyItem {
         World world = context.getLevel();
         BlockState blockState = world.getBlockState(pos);
 //        ChatUtil.sendCompletedMsg(context.getPlayer(), String.valueOf(blockState.getBlock().is(DMBlocks.TARDIS.get())) , ChatUtil.MessageType.CHAT);
-        if (blockState.getBlock().is(DMBlocks.TARDIS.get()))
-            return super.useOn(context);
 
         if (context.getItemInHand().hasTag() && context.getItemInHand().getTag().contains(DMNBTKeys.LINKED_ID)) {
+            if(super.useOn(context).equals(ActionResultType.CONSUME)) return ActionResultType.CONSUME;
+
             BlockPos posUp = context.getClickedPos().above();
             boolean canContinue = false;
             if (WorldUtils.canPlace(world, pos, false)) {
