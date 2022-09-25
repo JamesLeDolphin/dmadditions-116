@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "dalekmod:tardis",
+    "dalekmod:tardis_door_hitbox",
+    "minecraft:air"
+  ]
+}

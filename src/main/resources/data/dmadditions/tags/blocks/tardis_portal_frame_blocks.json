@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#dalekmod:plastic",
+    "#dalekmod:smooth_plastic",
+    "minecraft:air",
+    "minecraft:glowstone"
+  ]
+}

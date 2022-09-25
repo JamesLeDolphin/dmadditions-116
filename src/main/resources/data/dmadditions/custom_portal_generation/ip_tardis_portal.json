@@ -1,9 +1,17 @@
 {
   "schema_version": "imm_ptl:v1",
-  "from": ["imm_ptl:any_dimension"],"to": "dalekmod:tardis",
+  "from": [
+    "dalekmod:tardis"
+  ],
+  "to": "minecraft:overworld",
   "form": {
-    "from_frame_block": "dalekmod:tardis",
-    "to_frame_block": "dalekmod:tardis_door_hitbox", "generate_frame_if_not_found": false
+    "type": "imm_ptl:heterogeneous",
+    "frame_block": "dmadditions:tardis_portal_frame_blocks",
+    "area_block": "dmadditions:tardis_portal_blocks",
+    "generate_frame_if_not_found": false
   },
-  "trigger": {"type": "imm_ptl:conventional_dimension_change"}
+  "trigger": {
+    "type": "imm_ptl:use_item",
+    "item": "dalekmod:3d_glasses"
+  }
 }
