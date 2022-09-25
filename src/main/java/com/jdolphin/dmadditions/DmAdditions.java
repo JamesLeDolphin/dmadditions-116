@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions;
 
-import com.jdolphin.dmadditions.init.DMAdditionsProjectiles;
-import com.jdolphin.dmadditions.init.DMAdditionsSoundEvents;
-import com.jdolphin.dmadditions.init.DMAdditionsSoundTypes;
-import com.jdolphin.dmadditions.init.ItemInit;
+import com.jdolphin.dmadditions.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +42,8 @@ public class DmAdditions
         eventBus.addListener(this::doClientStuff);
 
         new DMAdditionsSoundTypes();
+
+        new DMAdditionsFoods();
         new DMAdditionsSoundEvents();
         new ItemInit();
         DMAdditionsProjectiles.init();
