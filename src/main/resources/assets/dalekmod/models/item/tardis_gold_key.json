@@ -2,8 +2,8 @@
 	"credit": "Created in Blockbench by dhi_holo (@holo_modeller on Twitter)",
 	"parent": "minecraft:item/generated",
 	"textures": {
-		"particle": "dalekmod:items/tardis_gold_key",
-		"layer0": "dalekmod:items/tardis_gold_key"
+		"particle": "dalekmod:item/tardis_gold_key",
+		"layer0": "dalekmod:item/tardis_gold_key"
 	},
 	"display": {
 		"thirdperson_righthand": {
