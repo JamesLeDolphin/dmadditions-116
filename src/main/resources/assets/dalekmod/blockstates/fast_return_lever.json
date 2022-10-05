@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "facing=north,pulled=false": { "model": "dalekmod:block/fast_return_lever", "y": 0},
+    "facing=south,pulled=false": { "model": "dalekmod:block/fast_return_lever", "y": 180 },
+    "facing=west,pulled=false":  { "model": "dalekmod:block/fast_return_lever", "y": 270 },
+    "facing=east,pulled=false":  { "model": "dalekmod:block/fast_return_lever", "y": 90 },
+    "facing=north,pulled=true": { "model": "dalekmod:block/fast_return_lever_pulled", "y": 0},
+    "facing=south,pulled=true": { "model": "dalekmod:block/fast_return_lever_pulled", "y": 180 },
+    "facing=west,pulled=true":  { "model": "dalekmod:block/fast_return_lever_pulled", "y": 270 },
+    "facing=east,pulled=true":  { "model": "dalekmod:block/fast_return_lever_pulled", "y": 90 },
+
+    "facing=north,ceiling=true,pulled=false": { "model": "dalekmod:block/fast_return_lever", "y": 0, "x": 180},
+    "facing=south,ceiling=true,pulled=false": { "model": "dalekmod:block/fast_return_lever", "y": 180, "x": 180 },
+    "facing=west,ceiling=true,pulled=false":  { "model": "dalekmod:block/fast_return_lever", "y": 270, "x": 180 },
+    "facing=east,ceiling=true,pulled=false":  { "model": "dalekmod:block/fast_return_lever", "y": 90, "x": 180 },
+    "facing=north,ceiling=true,pulled=true": { "model": "dalekmod:block/fast_return_lever_pulled", "y": 0, "x": 180},
+    "facing=south,ceiling=true,pulled=true": { "model": "dalekmod:block/fast_return_lever_pulled", "y": 180, "x": 180 },
+    "facing=west,ceiling=true,pulled=true":  { "model": "dalekmod:block/fast_return_lever_pulled", "y": 270, "x": 180 },
+    "facing=east,ceiling=true,pulled=true":  { "model": "dalekmod:block/fast_return_lever_pulled", "y": 90, "x": 180 }
+  }
+}

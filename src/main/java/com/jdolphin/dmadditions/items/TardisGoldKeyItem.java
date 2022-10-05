@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.items;
 
 import com.swdteam.common.init.*;
 import com.swdteam.common.item.TardisKeyItem;
+import com.swdteam.common.block.tardis.CoordPanelBlock;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisDoor;
 import com.swdteam.common.tardis.TardisState;
