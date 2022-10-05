@@ -11,6 +11,7 @@ import com.swdteam.util.ChatUtil;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
@@ -74,6 +75,11 @@ public class FastReturn extends HorizontalFaceBlock {
                 }
         }
     }
+
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> FACING) {
+        super.createBlockStateDefinition(FACING);
+    }
+
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
         if (handIn == Hand.MAIN_HAND) {
             worldIn.setBlockAndUpdate(pos, (BlockState)state.setValue(PULLED, !(Boolean)state.getValue(PULLED)));
