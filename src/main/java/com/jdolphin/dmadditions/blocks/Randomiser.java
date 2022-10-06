@@ -37,16 +37,17 @@ public class Randomiser {
             double minZ = border.getMinZ();
 
 
-        switch (axis) {
-            case X:
-                this.xPos = Math.floor(Math.random()*(maxX-minX+1)+minX);
-                break;
-            case Y:
-                this.yPos = amt;
-                break;
-            case Z:
-                this.zPos = Math.floor(Math.random()*(maxZ-minZ+1)+minZ);
+            switch (axis) {
+                case X:
+                    this.xPos = Math.floor(Math.random() * (maxX - minX + 1) + minX);
+                    break;
+                case Y:
+                    this.yPos = amt;
+                    break;
+                case Z:
+                    this.zPos = Math.floor(Math.random() * (maxZ - minZ + 1) + minZ);
+            }
         }
-    }
+        return ActionResultType.SUCCESS;
     }
 }
