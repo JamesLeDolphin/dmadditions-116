@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.blocks;
 
-import com.swdteam.common.block.tardis.FastReturnLeverBlock;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -8,7 +7,10 @@ import com.swdteam.common.init.DMTranslationKeys;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.util.ChatUtil;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -23,8 +25,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import static com.swdteam.common.block.AbstractLeverBlock.PULLED;
-import static net.minecraft.block.HorizontalBlock.FACING;
-import static net.minecraft.block.HorizontalFaceBlock.FACE;
 
 public class FastReturn extends HorizontalFaceBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
