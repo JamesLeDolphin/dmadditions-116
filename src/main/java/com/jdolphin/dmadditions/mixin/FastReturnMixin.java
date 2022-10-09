@@ -1,7 +1,6 @@
 
 package com.jdolphin.dmadditions.mixin;
 
-import com.swdteam.common.block.AbstractLeverBlock;
 import com.swdteam.common.block.tardis.FastReturnLeverBlock;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
@@ -11,6 +10,7 @@ import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeverBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -24,12 +24,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.minecraft.block.AbstractButtonBlock.POWERED;
-
 @Mixin(FastReturnLeverBlock.class)
-public abstract class FastReturnMixn extends AbstractLeverBlock {
+public abstract class FastReturnMixin extends LeverBlock {
 
-    public FastReturnMixn(Properties properties) {
+    public FastReturnMixin(Properties properties) {
         super(properties);
     }
 
