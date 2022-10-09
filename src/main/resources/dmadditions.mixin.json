@@ -3,7 +3,7 @@
   "package": "com.jdolphin.dmadditions.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "MixinWidget"
+    "FastReturnMixn"
   ],
   "injectors": {
     "defaultRequire": 1
