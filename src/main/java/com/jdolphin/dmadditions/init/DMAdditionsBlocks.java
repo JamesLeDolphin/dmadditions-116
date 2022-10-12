@@ -1,13 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.blocks.FastReturn;
-import com.jdolphin.dmadditions.blocks.Randomiser;
-import com.swdteam.common.init.DMTabs;
+import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +19,7 @@ public class DMAdditionsBlocks {
 		MIXIN_BLOCKS = new HashMap<>();
 
 		MIXIN_BLOCKS.put("fast_return_lever",
-				() -> new FastReturn(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
+				() -> new BetterFastReturnLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
 
 	}
 

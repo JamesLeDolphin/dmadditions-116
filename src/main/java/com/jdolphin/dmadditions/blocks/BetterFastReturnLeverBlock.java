@@ -18,8 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
-public class FastReturn extends LeverBlock {
-    public FastReturn(Properties properties) {
+public class BetterFastReturnLeverBlock extends LeverBlock {
+    public BetterFastReturnLeverBlock(Properties properties) {
         super(properties);
     }
 
