@@ -3,10 +3,13 @@
   "package": "com.jdolphin.dmadditions.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "FastReturnMixn"
+    "FastReturnMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
-  "refmap": "dmadditions.mixin-refmap.json"
+  "refmap": "dmadditions.mixin-refmap.json",
+  "mixins": [
+    "FastReturnMixin"
+  ]
 }

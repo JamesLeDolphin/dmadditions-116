@@ -42,7 +42,8 @@ public class Randomiser extends Block {
 
             if (ServerLifecycleHooks.getCurrentServer() != null) {
                 WorldBorder border = ServerLifecycleHooks.getCurrentServer().getLevel(this.dimensionWorldKey()).getWorldBorder();
-
+                
+                
                 double maxX = border.getMaxX();
                 double minX = border.getMinX();
 
