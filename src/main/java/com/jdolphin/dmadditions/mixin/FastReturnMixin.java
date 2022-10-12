@@ -28,14 +28,20 @@ public abstract class FastReturnMixin extends LeverBlock{
 	}
 
 	@Inject(
-            at = @At(value = "RETURN", ordinal = 239),
-            method = {"Lcom/swdteam/common/init/DMBlocks;FAST_RETURN_LEVER:Lnet/minecraftforge/fml/RegistryObject;"}
+            at = @At(value = "HEAD"/*, ordinal = 239*/),
+            method = {"registerBlock(Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/item/ItemGroup;)Lnet/minecraftforge/fml/RegistryObject;"}
     )
     private static void onSomething(CallbackInfoReturnable<Object> cir) {
-        cir.setReturnValue(
-        FAST_RETURN_LEVER = registerBlock(() -> {
+		cir.cancel();
+
+        if (cir.equals("FAST_RETURN_LEVER"))
+            cir.;
+
+       // cir.setReturnValue(
+        /*FAST_RETURN_LEVER = registerBlock(() -> {
             return new FastReturn(Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE));
-        }, "fast_return_lever", DMTabs.DM_TARDIS));
+        }, "fast_return_lever", DMTabs.DM_TARDIS);*/
+       
     }
 
 
