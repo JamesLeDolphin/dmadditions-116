@@ -2,11 +2,11 @@
   "required": true,
   "package": "com.jdolphin.dmadditions.mixin",
   "compatibilityLevel": "JAVA_8",
+  "client": [
+    "FastReturnMixn"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
-  "refmap": "dmadditions.mixin-refmap.json",
-  "mixins": [
-    "FastReturnMixin"
-  ]
+  "refmap": "dmadditions.mixin-refmap.json"
 }

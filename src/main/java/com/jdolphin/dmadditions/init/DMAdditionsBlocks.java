@@ -12,12 +12,12 @@ import net.minecraftforge.fml.RegistryObject;
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 
 public class DMAdditionsBlocks {
-//	public static final RegistryObject<Block> FAST_RETURN = registerBlock(
-//			() -> new FastReturn(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-//			"fast_return", DMTabs.DM_TARDIS);
+	public static final RegistryObject<Block> FAST_RETURN = registerBlock(
+			() -> new FastReturn(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+			"fast_return", DMTabs.DM_TARDIS);
 
-//	public static final RegistryObject<Block> RANDOMISER = registerBlock(
-//			() -> new Randomiser(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-//			"randomizer", DMTabs.DM_TARDIS);
+	public static final RegistryObject<Block> RANDOMISER = registerBlock(
+			() -> new Randomiser(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+			"randomizer", DMTabs.DM_TARDIS);
 
 }
