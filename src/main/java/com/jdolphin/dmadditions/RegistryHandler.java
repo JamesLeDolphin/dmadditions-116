@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions;
 
+import com.jdolphin.dmadditions.init.DMAdditionsBlocks;
 import com.jdolphin.dmadditions.init.DMAdditionsItems;
 import com.jdolphin.dmadditions.init.DMAdditionsProjectiles;
 import com.jdolphin.dmadditions.init.DMAdditionsSoundEvents;
@@ -14,6 +15,7 @@ public class RegistryHandler {
 	//	public static DMAdditionsCraftingTypes dmAdditionsCraftingTypes;
 	public static DMAdditionsItems dmaItems;
 	public static DMAdditionsSoundEvents dmaSounds;
+	public static DMAdditionsBlocks dmaBlocks;
 
 	public static void init() {
 
@@ -21,5 +23,6 @@ public class RegistryHandler {
 
 		dmaSounds = new DMAdditionsSoundEvents();
 		dmaItems = new DMAdditionsItems();
+		dmaBlocks = new DMAdditionsBlocks();
 	}
 }
