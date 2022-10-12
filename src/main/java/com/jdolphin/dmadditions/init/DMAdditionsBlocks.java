@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
+import com.jdolphin.dmadditions.blocks.BetterFlightLeverBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -20,6 +21,9 @@ public class DMAdditionsBlocks {
 
 		MIXIN_BLOCKS.put("fast_return_lever",
 				() -> new BetterFastReturnLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
+
+		MIXIN_BLOCKS.put("flight_lever",
+				() -> new BetterFlightLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
 
 	}
 
