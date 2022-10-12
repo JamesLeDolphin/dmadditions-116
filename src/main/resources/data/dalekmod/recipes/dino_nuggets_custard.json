@@ -1,22 +1,18 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "# ",
-        "DM"
-    ],
-    "key": {
-        "#": {
-            "item": "minecraft:sugar"
-        },
-        "D": {
-            "item": "dalekmod:dino_nuggets"
-        },
-        "M": {
-            "item": "minecraft:milk_bucket"
-        }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
     },
-    "result": {
-        "item": "dalekmod:dino_nuggets_custard",
-        "count": 1
+    {
+      "item": "dalekmod:dino_nuggets"
+    },
+    {
+      "item": "minecraft:milk_bucket"
     }
+  ],
+  "result": {
+    "item": "dalekmod:dino_nuggets_custard",
+    "count": 1
+  }
 }

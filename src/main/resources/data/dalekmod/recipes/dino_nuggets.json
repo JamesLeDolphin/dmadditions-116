@@ -1,22 +1,18 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "# ",
-        "CM"
-    ],
-    "key": {
-        "#": {
-            "item": "minecraft:bread"
-        },
-        "C": {
-            "item": "minecraft:cooked_chicken"
-        },
-        "M": {
-            "item": "minecraft:milk_bucket"
-        }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
     },
-    "result": {
-        "item": "dalekmod:dino_nuggets",
-        "count": 4
+    {
+      "item": "minecraft:cooked_chicken"
+    },
+    {
+      "item": "minecraft:milk_bucket"
     }
+  ],
+  "result": {
+    "item": "dalekmod:dino_nuggets",
+    "count": 4
+  }
 }
