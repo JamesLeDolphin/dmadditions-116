@@ -20,7 +20,7 @@ public class DMAdditionsItems {
 
 	static {
 		PISTOL = RegistryHandler.ITEMS.register("pistol",
-				() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAdditionsProjectiles.PURPLE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
+				() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAdditionsProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
 						DMAdditionsSoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
