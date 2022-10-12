@@ -14,6 +14,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class DMAdditionsItems {
 
 	public static RegistryObject<Item> DINO_NUGGETS;
+	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 
 	public static RegistryObject<Item> PISTOL = RegistryHandler.ITEMS.register("pistol", ()
 			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAdditionsProjectiles.PURPLE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
@@ -26,6 +27,9 @@ public class DMAdditionsItems {
 	static {
 		DINO_NUGGETS = RegistryHandler.ITEMS.register("dino_nuggets", () -> {
 			return new FoodItem((new Item.Properties()).food(DMAdditionsFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD));
+		});
+		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard", () -> {
+			return new FoodItem((new Item.Properties()).food(DMAdditionsFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD));
 		});
 	}
 }
