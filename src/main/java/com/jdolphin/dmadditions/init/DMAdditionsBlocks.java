@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static com.swdteam.common.init.DMBlocks.registerBlock;
-
 public class DMAdditionsBlocks {
 	public static final Map<String, Supplier<Block>> MIXIN_BLOCKS;
 

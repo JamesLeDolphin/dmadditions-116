@@ -72,40 +72,40 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:3987010")
 }
-    mixin {
-        add sourceSets.main, "dmadditions.mixin-refmap.json"
-    }
+mixin {
+    add sourceSets.main, "dmadditions.mixin-refmap.json"
+}
 
-    jar {
-        manifest {
-            attributes([
-                    "Specification-Title"     : "dmadditions",
-                    "Specification-Vendor"    : "dmadditionssareus",
-                    "Specification-Version"   : "1", // We are version 1 of ourselves
-                    "Implementation-Title"    : project.name,
-                    "Implementation-Version"  : "${version}",
-                    "Implementation-Vendor"   : "dmadditionssareus",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                    "TweakClass"              : 'org.spongepowered.asm.launch.MixinTweaker',
-                    "TweakOrder"              : 0,
-                    "MixinConfigs"            : "dmadditions.mixin.json"
-            ])
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "dmadditions",
+                "Specification-Vendor"    : "dmadditionssareus",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "dmadditionssareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "TweakClass"              : 'org.spongepowered.asm.launch.MixinTweaker',
+                "TweakOrder"              : 0,
+                "MixinConfigs"            : "dmadditions.mixin.json"
+        ])
+    }
+}
+jar.finalizedBy('reobfJar')
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
         }
     }
-    jar.finalizedBy('reobfJar')
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                artifact jar
-            }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
         }
-        repositories {
-            maven {
-                url "file:///${project.projectDir}/mcmodsrepo"
-            }
 
-        }
     }
+}
 repositories {
     maven {
         url "https://cursemaven.com"

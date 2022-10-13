@@ -1,1 +1,6 @@
-{"parent":"item/generated","textures":{"layer0":"dalekmod:item/fast_return_lever"}}
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "dalekmod:item/fast_return_lever"
+	}
+}

@@ -1,5 +1,8 @@
 {
-  "dimension": "dalekmod:tardis",
-  "icon": "dalekmod:textures/item/tardis.png",
-  "coordinate": [0, 0]
+	"dimension": "dalekmod:tardis",
+	"icon": "dalekmod:textures/item/tardis.png",
+	"coordinate": [
+		0,
+		0
+	]
 }
