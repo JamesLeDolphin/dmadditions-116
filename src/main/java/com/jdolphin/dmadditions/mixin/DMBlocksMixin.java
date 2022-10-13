@@ -18,7 +18,9 @@ import static com.jdolphin.dmadditions.init.DMAdditionsBlocks.MIXIN_BLOCKS;
 @Mixin({DMBlocks.class})
 public abstract class DMBlocksMixin {
 
-	@Inject(method = "registerBlock(Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/item/Item$Properties;Z)Lnet/minecraftforge/fml/RegistryObject;", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "registerBlock(Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/item/Item$Properties;Z)Lnet/minecraftforge/fml/RegistryObject;",
+			at = @At("HEAD"),
+			cancellable = true)
 	private static <B extends Block> void registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem, CallbackInfoReturnable<RegistryObject<Block>> cir) {
 //		System.out.printf("Block is being registered: %s!%n", name);
 		if (MIXIN_BLOCKS.containsKey(name)) {
