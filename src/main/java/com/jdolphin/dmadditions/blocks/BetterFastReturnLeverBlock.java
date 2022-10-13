@@ -24,8 +24,8 @@ public class BetterFastReturnLeverBlock extends LeverBlock {
 
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
         if (handIn == Hand.MAIN_HAND) {
-            worldIn.setBlockAndUpdate(pos, (BlockState)state.setValue(POWERED, !(Boolean)state.getValue(POWERED)));
-            worldIn.playSound((PlayerEntity)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (SoundEvent) DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+            worldIn.setBlockAndUpdate(pos, state.setValue(POWERED, !(Boolean) state.getValue(POWERED)));
+            worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
             if (worldIn.dimension().equals(DMDimensions.TARDIS) && !worldIn.isClientSide) {
                 TardisData data = DMTardis.getTardisFromInteriorPos(pos);
                 if (data != null && data.getPreviousLocation() != null) {
@@ -36,6 +36,13 @@ public class BetterFastReturnLeverBlock extends LeverBlock {
             }
         }
 
+	    this.updateNeighbours(state, worldIn, pos);
+
         return ActionResultType.CONSUME;
+    }
+
+    private void updateNeighbours(BlockState state, World world, BlockPos pos) {
+        world.updateNeighborsAt(pos, this);
+        world.updateNeighborsAt(pos.relative(getConnectedDirection(state).getOpposite()), this);
     }
 }

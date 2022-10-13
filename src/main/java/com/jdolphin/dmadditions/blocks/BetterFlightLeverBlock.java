@@ -56,5 +56,11 @@ public class BetterFlightLeverBlock extends LeverBlock {
 	public void switchLever(BlockState state, World worldIn, BlockPos pos) {
 		worldIn.setBlockAndUpdate(pos, state.setValue(POWERED, !(Boolean) state.getValue(POWERED)));
 		worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+		this.updateNeighbours(state, worldIn, pos);
+	}
+
+	private void updateNeighbours(BlockState state, World world, BlockPos pos) {
+		world.updateNeighborsAt(pos, this);
+		world.updateNeighborsAt(pos.relative(getConnectedDirection(state).getOpposite()), this);
 	}
 }
