@@ -1,5 +1,8 @@
 {
-  "dimension": "dalekmod:skaro",
-  "icon": "dalekmod:textures/planets/skaro.png",
-  "coordinate": [0, 0]
+	"dimension": "dalekmod:skaro",
+	"icon": "dalekmod:textures/planets/skaro.png",
+	"coordinate": [
+		0,
+		0
+	]
 }
