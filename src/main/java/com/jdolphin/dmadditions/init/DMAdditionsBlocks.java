@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import static com.swdteam.common.init.DMBlocks.registerBlock;
+
 public class DMAdditionsBlocks {
 	public static final Map<String, Supplier<Block>> MIXIN_BLOCKS;
 
@@ -31,6 +33,10 @@ public class DMAdditionsBlocks {
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
 			() -> new CoralFlightLever(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"coral_flight_lever", DMTabs.DM_TARDIS);
+
+	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlock(
+		() -> new CoralFlightLever(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+		"copper_flight_lever", DMTabs.DM_TARDIS);
 
 //	public static final RegistryObject<Block> RANDOMISER = registerBlock(
 //			() -> new Randomiser(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
