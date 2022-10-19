@@ -10,6 +10,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.fml.RegistryObject;
+import com.swdteam.common.block.tardis.CoordPanelBlock;
+import com.swdteam.client.render.tileentity.RenderCoordPanel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +40,11 @@ public class DMAdditionsBlocks {
 		() -> new CoralFlightLever(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 
-//	public static final RegistryObject<Block> RANDOMISER = registerBlock(
+	public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
+		() -> new CoralFlightLever(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+		"timekeeper_console", DMTabs.DM_TARDIS);
+
+//	public static final RegistryObject<Block> RANDOMIZER = registerBlock(
 //			() -> new Randomiser(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 //			"randomizer", DMTabs.DM_TARDIS);
 

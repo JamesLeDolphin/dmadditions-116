@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import com.swdteam.common.tardis.TardisFlightData;
 
 import static net.minecraft.block.AbstractButtonBlock.POWERED;
 
