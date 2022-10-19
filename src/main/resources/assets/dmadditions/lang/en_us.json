@@ -4,5 +4,6 @@
 	"item.dalekmod.dino_nuggets_custard": "Dino Nuggets and Custard",
 	"item.dalekmod.dino_nuggets": "Dino Nuggets",
 	"item.dalekmod.pistol": "Pistol",
-	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key"
+	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key",
+	"notice.dalekmod.tardis.randomiser_set": "Randomizer location has been set to %1$s %2$s!"
 }

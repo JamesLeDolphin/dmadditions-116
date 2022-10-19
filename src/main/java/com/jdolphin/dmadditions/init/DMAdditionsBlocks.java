@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
 import com.jdolphin.dmadditions.blocks.BetterFlightLeverBlock;
+import com.jdolphin.dmadditions.blocks.RandomizerBlock;
 import com.swdteam.common.init.DMTabs;
 
 import net.minecraft.block.AbstractBlock;
@@ -23,23 +24,28 @@ public class DMAdditionsBlocks {
 		MIXIN_BLOCKS = new HashMap<>();
 
 		MIXIN_BLOCKS.put("fast_return_lever",
-				() -> new BetterFastReturnLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
+				() -> new BetterFastReturnLeverBlock(
+						AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
 
 		MIXIN_BLOCKS.put("flight_lever",
-				() -> new BetterFlightLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
+				() -> new BetterFlightLeverBlock(
+						AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
 
 	}
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
-			() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+			() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
+					.instabreak().noOcclusion().sound(SoundType.STONE)),
 			"coral_flight_lever", DMTabs.DM_TARDIS);
 
 	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlock(
-		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"copper_flight_lever", DMTabs.DM_TARDIS);
+			() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
+					.instabreak().noOcclusion().sound(SoundType.STONE)),
+			"copper_flight_lever", DMTabs.DM_TARDIS);
 
-//	public static final RegistryObject<Block> RANDOMISER = registerBlock(
-//			() -> new Randomiser(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-//			"randomizer", DMTabs.DM_TARDIS);
+	public static final RegistryObject<Block> RANDOMISER = registerBlock(
+			() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
+					.noOcclusion().sound(SoundType.STONE)),
+			"randomizer", DMTabs.DM_TARDIS);
 
 }
