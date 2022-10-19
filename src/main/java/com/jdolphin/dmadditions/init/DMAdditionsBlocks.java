@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
 import com.jdolphin.dmadditions.blocks.BetterFlightLeverBlock;
 import com.jdolphin.dmadditions.blocks.RandomizerBlock;
+import com.swdteam.common.block.tardis.FlightLeverBlock;
 import com.swdteam.common.init.DMTabs;
 
 import net.minecraft.block.AbstractBlock;
@@ -47,5 +48,9 @@ public class DMAdditionsBlocks {
 			() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
 					.noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
+
+	public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
+		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+		"timekeeper_console", DMTabs.DM_TARDIS);
 
 }
