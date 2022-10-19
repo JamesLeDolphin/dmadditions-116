@@ -1,6 +1,8 @@
 {
-	"item.dalekmod.pistol": "Pistol",
-	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key",
+	"block.dalekmod.copper_flight_lever": "Copper Flight Lever",
+	"block.dalekmod.coral_flight_lever": "Coral Flight Lever",
+	"item.dalekmod.dino_nuggets_custard": "Dino Nuggets and Custard",
 	"item.dalekmod.dino_nuggets": "Dino Nuggets",
-	"item.dalekmod.dino_nuggets_custard": "Dino Nuggets and Custard"
+	"item.dalekmod.pistol": "Pistol",
+	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key"
 }

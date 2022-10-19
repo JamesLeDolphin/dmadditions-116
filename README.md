@@ -2,6 +2,9 @@
 
 Epic mod 
 
-What we got so far:
-Fast return and flight levers can now be placed anywhere 
-Corl flight lever
+
+# What we got so far:
+
++ **Fast return and flight levers can now be placed anywhere** 
+
++ **New flight levers:** Coral, Copper

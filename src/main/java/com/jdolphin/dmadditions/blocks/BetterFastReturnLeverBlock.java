@@ -7,22 +7,19 @@ import com.swdteam.common.init.DMTranslationKeys;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.util.ChatUtil;
+
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeverBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
-public class BetterFastReturnLeverBlock extends LeverBlock {
+public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 	public BetterFastReturnLeverBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.FALSE).setValue(FACE, AttachFace.FLOOR));
 	}
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
@@ -41,10 +38,5 @@ public class BetterFastReturnLeverBlock extends LeverBlock {
 
 		this.updateNeighbours(state, worldIn, pos);
 		return ActionResultType.CONSUME;
-	}
-
-	private void updateNeighbours(BlockState state, World world, BlockPos pos) {
-		world.updateNeighborsAt(pos, this);
-		world.updateNeighborsAt(pos.relative(getConnectedDirection(state).getOpposite()), this);
 	}
 }
