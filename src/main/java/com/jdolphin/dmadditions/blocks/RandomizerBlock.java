@@ -38,7 +38,6 @@ public class RandomizerBlock extends Block {
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
 			BlockRayTraceResult rayTraceResult) {
-		System.out.println("Randomizer Clicked!");
 		if (worldIn.isClientSide)
 			return ActionResultType.PASS;
 
@@ -76,7 +75,7 @@ public class RandomizerBlock extends Block {
 			TardisFlightPool.updateFlight(tardis, new Location(newPos, flight.dimensionWorldKey()));
 
 			ChatUtil.sendCompletedMsg(player,
-					new TranslationTextComponent("notice.dalekmod.tardis.randomiser_set", newPos.getX(), newPos.getZ()),
+					new TranslationTextComponent("notice.dalekmod.tardis.randomizer_set", newPos.getX(), newPos.getZ()),
 					MessageType.STATUS_BAR);
 		}
 		return ActionResultType.SUCCESS;

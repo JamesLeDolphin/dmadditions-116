@@ -14,5 +14,5 @@ public class TimeKeeperConsole extends RotatableTileEntityBase.WaterLoggable {
 	}
 
 
-	//This console is just a placeholder and for testing purpose only
+	//We have permission to use this in the update
 }
