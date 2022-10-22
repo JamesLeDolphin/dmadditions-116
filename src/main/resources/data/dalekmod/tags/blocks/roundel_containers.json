@@ -1,6 +1,22 @@
 {
 	"replace": false,
 	"values": [
-		"dalekmod:cyan_plastic_roundel_container"
+		"dalekmod:white_plastic_roundel_container",
+		"dalekmod:clay_roundel_container",
+		"dalekmod:orange_plastic_roundel_container",
+		"dalekmod:magenta_plastic_roundel_container",
+		"dalekmod:light_blue_plastic_roundel_container",
+		"dalekmod:yellow_plastic_roundel_container",
+		"dalekmod:lime_plastic_roundel_container",
+		"dalekmod:pink_plastic_roundel_container",
+		"dalekmod:gray_plastic_roundel_container",
+		"dalekmod:light_gray_plastic_roundel_container",
+		"dalekmod:cyan_plastic_roundel_container",
+		"dalekmod:purple_plastic_roundel_container",
+		"dalekmod:blue_plastic_roundel_container",
+		"dalekmod:brown_plastic_roundel_container",
+		"dalekmod:green_plastic_roundel_container",
+		"dalekmod:red_plastic_roundel_container",
+		"dalekmod:black_plastic_roundel_container"
 	]
 }

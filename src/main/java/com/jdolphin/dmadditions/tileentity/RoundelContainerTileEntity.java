@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.tileentity;
 
-import com.jdolphin.dmadditions.init.DMAdditionsBlocks;
 import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,18 +21,19 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import static com.jdolphin.dmadditions.init.DMAdditionsBlockEntities.TILE_ROUNDEL_CONTAINER;
+import static com.jdolphin.dmadditions.init.DMAdditionsTags.Blocks.ROUNDEL_CONTAINERS;
 
 public class RoundelContainerTileEntity extends LockableLootTileEntity {
 	private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
 	private int openCount;
 
-	public RoundelContainerTileEntity(){
+	public RoundelContainerTileEntity() {
 		this(TILE_ROUNDEL_CONTAINER.get());
 	}
+
 	private RoundelContainerTileEntity(TileEntityType<?> p_i48284_1_) {
 		super(p_i48284_1_);
 	}
-
 
 	public CompoundNBT save(CompoundNBT p_189515_1_) {
 		super.save(p_189515_1_);
@@ -105,7 +105,7 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 			this.scheduleRecheck();
 		} else {
 			BlockState blockstate = this.getBlockState();
-			if (!blockstate.is(DMAdditionsBlocks.CYAN_PLASTIC_ROUNDEL_CONTAINER.get())) {
+			if (!blockstate.is(ROUNDEL_CONTAINERS)) {
 				this.setRemoved();
 				return;
 			}
@@ -132,9 +132,9 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 
 	private void playSound(BlockState p_213965_1_, SoundEvent p_213965_2_) {
 		Vector3i vector3i = p_213965_1_.getValue(BarrelBlock.FACING).getNormal();
-		double d0 = (double)this.worldPosition.getX() + 0.5D + (double)vector3i.getX() / 2.0D;
-		double d1 = (double)this.worldPosition.getY() + 0.5D + (double)vector3i.getY() / 2.0D;
-		double d2 = (double)this.worldPosition.getZ() + 0.5D + (double)vector3i.getZ() / 2.0D;
-		this.level.playSound((PlayerEntity)null, d0, d1, d2, p_213965_2_, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+		double d0 = (double) this.worldPosition.getX() + 0.5D + (double) vector3i.getX() / 2.0D;
+		double d1 = (double) this.worldPosition.getY() + 0.5D + (double) vector3i.getY() / 2.0D;
+		double d2 = (double) this.worldPosition.getZ() + 0.5D + (double) vector3i.getZ() / 2.0D;
+		this.level.playSound((PlayerEntity) null, d0, d1, d2, p_213965_2_, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
 	}
 }
