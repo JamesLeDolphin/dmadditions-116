@@ -1,22 +1,21 @@
 package com.jdolphin.dmadditions.init;
 
-import static com.swdteam.common.init.DMBlocks.registerBlock;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
 import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
 import com.jdolphin.dmadditions.blocks.BetterFlightLeverBlock;
 import com.jdolphin.dmadditions.blocks.RandomizerBlock;
 import com.jdolphin.dmadditions.blocks.RoundelContainerBlock;
 import com.swdteam.common.init.DMTabs;
-
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import static com.swdteam.common.init.DMBlocks.registerBlock;
 
 public class DMAdditionsBlocks {
 	public static final Map<String, Supplier<Block>> MIXIN_BLOCKS;
@@ -44,10 +43,10 @@ public class DMAdditionsBlocks {
 					.instabreak().noOcclusion().sound(SoundType.STONE)),
 			"copper_flight_lever", DMTabs.DM_TARDIS);
 
-	public static final RegistryObject<Block> RANDOMISER = registerBlock(
-			() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
-					.noOcclusion().sound(SoundType.STONE)),
-			"randomizer", DMTabs.DM_TARDIS);
+	public static final RegistryObject<Block> RANDOMIZER = registerBlock(
+		() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
+			.noOcclusion().sound(SoundType.STONE)),
+		"randomizer", DMTabs.DM_TARDIS);
 
 	public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
 		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
