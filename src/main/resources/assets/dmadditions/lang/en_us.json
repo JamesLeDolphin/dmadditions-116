@@ -6,5 +6,8 @@
 	"item.dalekmod.pistol": "Pistol",
 	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key",
 	"notice.dalekmod.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
-	"block.dalekmod.randomizer": "Randomizer"
+	"block.dalekmod.randomizer": "Randomizer",
+
+	"container.dalekmod.roundel_storage": "Roundel Storage",
+	"block.dalekmod.cyan_plastic_roundel_container": "Cyan Plastic Roundel Container"
 }

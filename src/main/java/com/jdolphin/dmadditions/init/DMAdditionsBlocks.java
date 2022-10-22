@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
 import com.jdolphin.dmadditions.blocks.BetterFlightLeverBlock;
 import com.jdolphin.dmadditions.blocks.RandomizerBlock;
-import com.swdteam.common.block.tardis.FlightLeverBlock;
+import com.jdolphin.dmadditions.blocks.RoundelContainerBlock;
 import com.swdteam.common.init.DMTabs;
 
 import net.minecraft.block.AbstractBlock;
@@ -53,4 +53,7 @@ public class DMAdditionsBlocks {
 		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 		"timekeeper_console", DMTabs.DM_TARDIS);
 
+	public static final RegistryObject<Block> CYAN_PLASTIC_ROUNDEL_CONTAINER = registerBlock(
+		() -> new RoundelContainerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+		"cyan_plastic_roundel_container", DMTabs.DM_TARDIS);
 }
