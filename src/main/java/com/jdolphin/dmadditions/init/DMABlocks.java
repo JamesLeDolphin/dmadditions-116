@@ -65,7 +65,21 @@ public class DMABlocks {
 		BROWN_PLASTIC_ROUNDEL_CONTAINER,
 		GREEN_PLASTIC_ROUNDEL_CONTAINER,
 		RED_PLASTIC_ROUNDEL_CONTAINER,
-		BLACK_PLASTIC_ROUNDEL_CONTAINER;
+		BLACK_PLASTIC_ROUNDEL_CONTAINER,
+
+		BLACK_QUARTZ_ROUNDEL_CONTAINER,
+		YELLOW_QUARTZ_ROUNDEL_CONTAINER,
+		WHITE_QUARTZ_ROUNDEL_CONTAINER,
+
+		SCORCHED_BLACK_QUARTZ_ROUNDEL_CONTAINER,
+		SCORCHED_YELLOW_QUARTZ_ROUNDEL_CONTAINER,
+		SCORCHED_WHITE_QUARTZ_ROUNDEL_CONTAINER;
+
+
+
+
+
+
 
 	static {
 
@@ -86,6 +100,15 @@ public class DMABlocks {
 		GREEN_PLASTIC_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "green_plastic_roundel_container", DMTabs.DM_TARDIS);
 		RED_PLASTIC_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "red_plastic_roundel_container", DMTabs.DM_TARDIS);
 		BLACK_PLASTIC_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "black_plastic_roundel_container", DMTabs.DM_TARDIS);
+
+		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "black_quartz_roundel_container", DMTabs.DM_TARDIS);
+		YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "yellow_quartz_roundel_container", DMTabs.DM_TARDIS);
+		WHITE_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "white_quartz_roundel_container", DMTabs.DM_TARDIS);
+
+		SCORCHED_BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "scorched_black_quartz_roundel_container", DMTabs.DM_TARDIS);
+		SCORCHED_YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "scorched_yellow_quartz_roundel_container", DMTabs.DM_TARDIS);
+		SCORCHED_WHITE_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "scorched_white_quartz_roundel_container", DMTabs.DM_TARDIS);
+
 	}
 }
 
