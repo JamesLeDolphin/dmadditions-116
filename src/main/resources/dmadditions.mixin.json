@@ -7,6 +7,7 @@
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
-		"DMBlocksMixin"
+		"DMBlocksMixin",
+		"ItemPropertiesMixin"
 	]
 }
