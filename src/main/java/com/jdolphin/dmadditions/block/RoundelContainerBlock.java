@@ -15,8 +15,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 
 public class RoundelContainerBlock extends BarrelBlock {
@@ -46,7 +48,15 @@ public class RoundelContainerBlock extends BarrelBlock {
 	}
 
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		double rot = context.getHorizontalDirection().getOpposite().toYRot() + (float)(context.getPlayer().isShiftKeyDown() ? 90 : 0);
+		double rot = context.getHorizontalDirection().getOpposite().toYRot() + (float) (context.getPlayer().isShiftKeyDown() ? 90 : 0);
 		return this.defaultBlockState().setValue(FACING, Direction.fromYRot(rot));
+	}
+
+	public void tick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+		TileEntity tileentity = serverWorld.getBlockEntity(blockPos);
+
+		if (tileentity instanceof RoundelContainerTileEntity) {
+			((RoundelContainerTileEntity) tileentity).recheckOpen();
+		}
 	}
 }
