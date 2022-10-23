@@ -1,37 +1,35 @@
 package com.jdolphin.dmadditions.item;
 
-import com.swdteam.common.block.tardis.PoliceBoxDoorBlock;
-import com.swdteam.common.block.tardis.RoundelDoorBlock;
-import com.swdteam.common.init.DMBlocks;
-import com.swdteam.common.init.DMNBTKeys;
-import com.swdteam.common.init.DMSoundEvents;
-import com.swdteam.common.init.DMTardis;
-import com.swdteam.common.item.StattenheimRemoteItem;
+import com.swdteam.common.init.*;
+import com.swdteam.common.item.TardisKeyItem;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisDoor;
+import com.swdteam.common.tardis.TardisState;
+import com.swdteam.common.tardis.actions.TardisActionList;
+import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.common.tileentity.TardisTileEntity;
-import com.swdteam.common.tileentity.tardis.DoubleDoorsTileEntity;
-import com.swdteam.common.tileentity.tardis.RoundelDoorTileEntity;
 import com.swdteam.util.ChatUtil;
+import com.swdteam.util.WorldUtils;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.item.DirectionalPlaceContext;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 
-public class TardisRemoteKeyItem extends StattenheimRemoteItem {
-	String tardisLocation;
-
+public class TardisRemoteKeyItem extends TardisKeyItem {
 	public TardisRemoteKeyItem(Properties properties, String tardisLocation) {
-		super(properties);
-		this.tardisLocation = tardisLocation;
+		super(properties, tardisLocation);
 	}
 
 	@Override
@@ -40,139 +38,85 @@ public class TardisRemoteKeyItem extends StattenheimRemoteItem {
 		if (context.getLevel().isClientSide)
 			return super.useOn(context);
 
-		World world = context.getLevel();
 		BlockPos pos = context.getClickedPos();
+		World world = context.getLevel();
 		BlockState blockState = world.getBlockState(pos);
-		TileEntity te;
-		TardisData data;
-		PlayerEntity player = context.getPlayer();
-		ItemStack handItem = context.getItemInHand();
-		if (player == null) return ActionResultType.FAIL;
+//        ChatUtil.sendCompletedMsg(context.getPlayer(), String.valueOf(blockState.getBlock().is(DMBlocks.TARDIS.get())) , ChatUtil.MessageType.CHAT);
 
-		// linking stuff
-		if (!(handItem.hasTag() && handItem.getTag().contains(DMNBTKeys.LINKED_ID))) {
+		if (context.getItemInHand().hasTag() && context.getItemInHand().getTag().contains(DMNBTKeys.LINKED_ID)) {
+			if (super.useOn(context).equals(ActionResultType.CONSUME)) return ActionResultType.CONSUME;
 
-			if (player.isShiftKeyDown() && blockState.getBlock() == DMBlocks.TARDIS.get()) {
-				te = world.getBlockEntity(pos);
+			BlockPos posUp = context.getClickedPos().above();
+			boolean canContinue = false;
+			if (WorldUtils.canPlace(world, pos, false)) {
+				posUp = pos;
+				canContinue = true;
+			} else if (world.isEmptyBlock(posUp)) {
+				canContinue = true;
+			}
+
+			if (!world.getBlockState(posUp).canBeReplaced(new DirectionalPlaceContext(world, posUp, Direction.NORTH, context.getItemInHand(), Direction.NORTH))) {
+				return ActionResultType.CONSUME;
+			}
+
+			int tardisID = context.getItemInHand().getTag().getInt(DMNBTKeys.LINKED_ID);
+			TardisData data = DMTardis.getTardis(tardisID);
+			MinecraftServer server = context.getPlayer().getServer();
+			ServerWorld tardisDim = server.getLevel(DMDimensions.TARDIS);
+			context.getPlayer().getCooldowns().addCooldown(this, 400);
+			context.getItemInHand().hurtAndBreak(1, context.getPlayer(), (player) -> {
+				player.broadcastBreakEvent(context.getHand());
+			});
+			if (tardisDim.isLoaded(data.getInteriorSpawnPosition().toBlockPos())) {
+				tardisDim.playSound(null, data.getInteriorSpawnPosition().x(), data.getInteriorSpawnPosition().y(), data.getInteriorSpawnPosition().z(), DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+			}
+
+			if (!data.isInFlight()) {
+				world.playSound(null, pos, DMSoundEvents.ENTITY_STATTENHEIM_REMOTE_SUMMON.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+				BlockPos currentPos = data.getCurrentLocation().getBlockPosition();
+				ServerWorld serverWorld = server.getLevel(data.getCurrentLocation().dimensionWorldKey());
+				TileEntity te = serverWorld.getBlockEntity(currentPos);
 				if (te instanceof TardisTileEntity) {
-					data = DMTardis.getTardis(((TardisTileEntity) te).globalID);
-					if (data.hasPermission(context.getPlayer(), TardisData.PermissionType.DEFAULT)) {
-						CompoundNBT tag = new CompoundNBT();
-						tag.putInt(DMNBTKeys.LINKED_ID, data.getGlobalID());
-						context.getItemInHand().setTag(tag);
-						ChatUtil.sendCompletedMsg(player, "Linked key to TARDIS " + data.getGlobalID(), ChatUtil.MessageType.CHAT);
+					if (TardisActionList.doAnimation(serverWorld, currentPos)) {
+						((TardisTileEntity) te).setState(TardisState.DEMAT);
+					} else {
+						serverWorld.setBlockAndUpdate(currentPos, Blocks.AIR.defaultBlockState());
 					}
 				}
 			}
 
-			return ActionResultType.CONSUME;
-		}
-
-		// key stuff
-
-		if (blockState.getBlock() == DMBlocks.TARDIS.get() || blockState.getBlock() instanceof PoliceBoxDoorBlock || blockState.getBlock() instanceof RoundelDoorBlock) {
-			te = world.getBlockEntity(pos);
-			if (blockState.getBlock() instanceof PoliceBoxDoorBlock && blockState.getValue(PoliceBoxDoorBlock.HALF) == DoubleBlockHalf.UPPER) {
-				te = world.getBlockEntity(pos.below());
-			}
-
+			TardisFlightPool.completeFlight(context.getPlayer().getServer(), data);
+			world.setBlockAndUpdate(posUp, DMBlocks.TARDIS.get().defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, world.getBlockState(posUp).getBlock() instanceof FlowingFluidBlock));
+			data.setPreviousLocation(data.getCurrentLocation());
+			data.setCurrentLocation(posUp, world.dimension());
+			TileEntity te = world.getBlockEntity(posUp);
 			if (te instanceof TardisTileEntity) {
-				data = DMTardis.getTardis(((TardisTileEntity) te).globalID);
-				if (data.getGlobalID() == context.getItemInHand().getTag().getInt(DMNBTKeys.LINKED_ID)) {
-					data.setLocked(!data.isLocked());
-					data.save();
-					if (data.isLocked()) {
-						((TardisTileEntity) te).closeDoor(TardisDoor.BOTH, TardisTileEntity.DoorSource.TARDIS);
-					}
-
-					world.playSound(null, pos, DMSoundEvents.TARDIS_LOCK.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-					ChatUtil.sendCompletedMsg(player, "You have " + (data.isLocked() ? "locked" : "unlocked") + " your TARDIS!", ChatUtil.MessageType.STATUS_BAR);
-
-					return ActionResultType.CONSUME;
-				} else {
-					ChatUtil.sendError(player, "This isn't the key for your TARDIS!", ChatUtil.MessageType.STATUS_BAR);
-					return ActionResultType.FAIL;
-				}
+				TardisTileEntity tardis = (TardisTileEntity) te;
+				tardis.globalID = tardisID;
+				tardis.closeDoor(TardisDoor.BOTH, TardisTileEntity.DoorSource.TARDIS);
+				tardis.rotation = context.getPlayer().getYHeadRot();
+				tardis.setState(TardisState.REMAT);
+				data.getCurrentLocation().setFacing(tardis.rotation);
 			}
 
-			if (te instanceof DoubleDoorsTileEntity || te instanceof RoundelDoorTileEntity) {
-				data = DMTardis.getTardisFromInteriorPos(pos);
-
-				if (data == null) return ActionResultType.FAIL;
-				if (data.getGlobalID() == handItem.getTag().getInt(DMNBTKeys.LINKED_ID)) {
-					if (te instanceof RoundelDoorTileEntity) {
-						((RoundelDoorTileEntity) te).setMain(true);
-					}
-
-					if (te instanceof DoubleDoorsTileEntity) {
-						((DoubleDoorsTileEntity) te).setMain(true);
-					}
-
-					data.setLocked(!data.isLocked());
-					data.save();
-					if (data.isLocked()) {
-						if (te instanceof DoubleDoorsTileEntity) {
-							((DoubleDoorsTileEntity) te).setOpen(TardisDoor.BOTH, false);
-						}
-
-						if (te instanceof RoundelDoorTileEntity) {
-							RoundelDoorTileEntity door = (RoundelDoorTileEntity) te;
-							door.setOpen(false);
-							int doorPart = blockState.getValue(RoundelDoorBlock.DOOR_PART);
-							RoundelDoorTileEntity otherDoor1;
-							RoundelDoorTileEntity otherDoor2;
-							switch (doorPart) {
-								case 0:
-								default:
-									otherDoor1 = (RoundelDoorTileEntity) world.getBlockEntity(pos.above());
-									otherDoor2 = (RoundelDoorTileEntity) world.getBlockEntity(pos.above().above());
-									if (otherDoor1 != null) {
-										otherDoor1.setOpen(false);
-									}
-
-									if (otherDoor2 != null) {
-										otherDoor2.setOpen(false);
-									}
-									break;
-								case 1:
-									otherDoor1 = (RoundelDoorTileEntity) world.getBlockEntity(pos.above());
-									otherDoor2 = (RoundelDoorTileEntity) world.getBlockEntity(pos.below());
-									if (otherDoor1 != null) {
-										otherDoor1.setOpen(false);
-									}
-
-									if (otherDoor2 != null) {
-										otherDoor2.setOpen(false);
-									}
-									break;
-								case 2:
-									otherDoor1 = (RoundelDoorTileEntity) world.getBlockEntity(pos.below());
-									otherDoor2 = (RoundelDoorTileEntity) world.getBlockEntity(pos.below().below());
-									if (otherDoor1 != null) {
-										otherDoor1.setOpen(false);
-									}
-
-									if (otherDoor2 != null) {
-										otherDoor2.setOpen(false);
-									}
-							}
-						}
-					}
-
-					world.playSound(null, pos, DMSoundEvents.TARDIS_LOCK.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-					ChatUtil.sendCompletedMsg(player, "You have " + (data.isLocked() ? "locked" : "unlocked") + " your TARDIS!", ChatUtil.MessageType.STATUS_BAR);
-					return ActionResultType.CONSUME;
+			data.save();
+		} else if (blockState.getBlock() == DMBlocks.TARDIS.get() && context.getPlayer() != null) {
+			TileEntity te = world.getBlockEntity(pos);
+			if (te instanceof TardisTileEntity) {
+				TardisData data = DMTardis.getTardis(((TardisTileEntity) te).globalID);
+				if (data.hasPermission(context.getPlayer(), TardisData.PermissionType.DEFAULT)) {
+					world.playSound(null, pos, DMSoundEvents.ENTITY_STATTENHEIM_REMOTE_SYNC.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+					CompoundNBT tag = new CompoundNBT();
+					tag.putInt(DMNBTKeys.LINKED_ID, data.getGlobalID());
+					context.getItemInHand().setTag(tag);
+					ChatUtil.sendCompletedMsg(context.getPlayer(), "Remote synced with TARDIS: " + data.getGlobalID(), ChatUtil.MessageType.CHAT);
 				} else {
-					ChatUtil.sendError(player, "This isn't the key for your TARDIS!", ChatUtil.MessageType.STATUS_BAR);
-					return ActionResultType.FAIL;
+					data.noPermission(context.getPlayer());
 				}
 			}
-
-			return ActionResultType.FAIL;
 		}
-
-		// remote stuff
 		return super.useOn(context);
 	}
+
 
 }

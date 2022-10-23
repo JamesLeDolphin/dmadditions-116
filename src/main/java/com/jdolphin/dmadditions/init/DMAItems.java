@@ -25,8 +25,9 @@ public class DMAItems {
 				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
-			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(24).tab(DMTabs.DM_TARDIS), ""));
+			() -> new TardisRemoteKeyItem((new Item.Properties()).tab(DMTabs.DM_TARDIS), ""));
 
+//.durability(32)
 		DINO_NUGGETS = RegistryHandler.ITEMS.register("dino_nuggets",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));
 
