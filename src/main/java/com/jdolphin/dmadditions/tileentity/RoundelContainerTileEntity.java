@@ -20,8 +20,8 @@ import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import static com.jdolphin.dmadditions.init.DMAdditionsBlockEntities.TILE_ROUNDEL_CONTAINER;
-import static com.jdolphin.dmadditions.init.DMAdditionsTags.Blocks.ROUNDEL_CONTAINERS;
+import static com.jdolphin.dmadditions.init.DMABlockEntities.TILE_ROUNDEL_CONTAINER;
+import static com.jdolphin.dmadditions.init.DMATags.Blocks.ROUNDEL_CONTAINERS;
 
 public class RoundelContainerTileEntity extends LockableLootTileEntity {
 	private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);

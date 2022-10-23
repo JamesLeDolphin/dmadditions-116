@@ -6,7 +6,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 import static com.swdteam.common.init.DMSoundEvents.buildSound;
 
-public class DMAdditionsSoundEvents {
+public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> PISTOL_SHOOT;
 
 	static {

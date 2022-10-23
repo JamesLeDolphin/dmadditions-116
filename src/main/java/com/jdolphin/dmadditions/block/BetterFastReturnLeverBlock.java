@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.blocks;
+package com.jdolphin.dmadditions.block;
 
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
@@ -7,7 +7,6 @@ import com.swdteam.common.init.DMTranslationKeys;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.util.ChatUtil;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;

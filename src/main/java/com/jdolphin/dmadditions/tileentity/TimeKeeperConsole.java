@@ -1,10 +1,7 @@
-package com.jdolphin.dmadditions.blockentities;
+package com.jdolphin.dmadditions.tileentity;
 
 import com.swdteam.common.block.RotatableTileEntityBase;
 import net.minecraft.tileentity.TileEntity;
-import com.swdteam.common.block.tardis.CoordPanelBlock;
-import com.swdteam.client.render.tileentity.RenderCoordPanel;
-
 
 import java.util.function.Supplier;
 

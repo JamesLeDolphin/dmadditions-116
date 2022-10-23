@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.blocks;
+package com.jdolphin.dmadditions.block;
 
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
 import net.minecraft.block.BarrelBlock;
@@ -7,7 +7,6 @@ import net.minecraft.entity.monster.piglin.PiglinTasks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.BarrelTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;

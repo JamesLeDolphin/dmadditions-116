@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.blocks;
+package com.jdolphin.dmadditions.block;
 
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;

@@ -1,9 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.blocks.BetterFastReturnLeverBlock;
-import com.jdolphin.dmadditions.blocks.BetterFlightLeverBlock;
-import com.jdolphin.dmadditions.blocks.RandomizerBlock;
-import com.jdolphin.dmadditions.blocks.RoundelContainerBlock;
+import com.jdolphin.dmadditions.block.BetterFastReturnLeverBlock;
+import com.jdolphin.dmadditions.block.BetterFlightLeverBlock;
+import com.jdolphin.dmadditions.block.RandomizerBlock;
+import com.jdolphin.dmadditions.block.RoundelContainerBlock;
 import com.swdteam.common.init.DMTabs;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 
-public class DMAdditionsBlocks {
+public class DMABlocks {
 	public static final Map<String, Supplier<Block>> MIXIN_BLOCKS;
 
 	static {

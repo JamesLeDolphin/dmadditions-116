@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Supplier;
 
-import static com.jdolphin.dmadditions.init.DMAdditionsBlocks.MIXIN_BLOCKS;
+import static com.jdolphin.dmadditions.init.DMABlocks.MIXIN_BLOCKS;
 
 @Mixin({DMBlocks.class})
 public abstract class DMBlocksMixin {

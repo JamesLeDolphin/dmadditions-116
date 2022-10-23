@@ -7,21 +7,21 @@ public class RegistryHandler {
 	//	public static DMAdditionsParticleTypes dmParticles;
 	//	public static DMAdditionsBiomes dmBiomes;
 	//	public static DMAdditionsEntities dmEntities;
-	public static DMAdditionsBlockEntities dmaTiles;
+	public static DMABlockEntities dmaTiles;
 	//	public static DMAdditionsWorldCarvers dmCarvers;
 	//	public static DMAdditionsCraftingTypes dmAdditionsCraftingTypes;
-	public static DMAdditionsItems dmaItems;
-	public static DMAdditionsSoundEvents dmaSounds;
-	public static DMAdditionsBlocks dmaBlocks;
+	public static DMAItems dmaItems;
+	public static DMASoundEvents dmaSounds;
+	public static DMABlocks dmaBlocks;
 
 	public static void init() {
 
-		DMAdditionsProjectiles.init();
+		DMAProjectiles.init();
 
 
-		dmaSounds = new DMAdditionsSoundEvents();
-		dmaItems = new DMAdditionsItems();
-		dmaBlocks = new DMAdditionsBlocks();
-		dmaTiles = new DMAdditionsBlockEntities();
+		dmaSounds = new DMASoundEvents();
+		dmaItems = new DMAItems();
+		dmaBlocks = new DMABlocks();
+		dmaTiles = new DMABlockEntities();
 	}
 }

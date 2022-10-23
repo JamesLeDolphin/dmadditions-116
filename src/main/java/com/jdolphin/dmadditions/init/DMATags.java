@@ -6,7 +6,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
-public class DMAdditionsTags {
+public class DMATags {
 	public static class Blocks {
 
 		public static final Tags.IOptionalNamedTag<Block> ROUNDEL_CONTAINERS = createTag("roundel_containers");

@@ -1,4 +1,4 @@
 package com.jdolphin.dmadditions.init;
 
-public class DMAdditionsSoundTypes {
+public class DMASoundTypes {
 }
