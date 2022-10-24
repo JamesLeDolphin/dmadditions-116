@@ -5,6 +5,7 @@
 	"item.dalekmod.dino_nuggets": "Dino Nuggets",
 	"item.dalekmod.pistol": "Pistol",
 	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key",
+	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 	"notice.dalekmod.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"block.dalekmod.randomizer": "Randomizer",
 	"container.dalekmod.roundel_storage": "Roundel Storage",

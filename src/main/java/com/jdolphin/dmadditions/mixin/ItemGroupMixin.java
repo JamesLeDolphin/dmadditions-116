@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.jdolphin.dmadditions.init.DMATabs.MIXIN_ICONS;
+import static com.jdolphin.dmadditions.init.DMATabs.*;
 
 @Mixin({ItemGroup.class})
 public abstract class ItemGroupMixin {
@@ -17,7 +17,9 @@ public abstract class ItemGroupMixin {
 	public abstract int getId();
 
 	@Inject(method = "getIconItem", at = @At("HEAD"), cancellable = true)
-	private void getIconItem(CallbackInfoReturnable<ItemStack> cir) {
+	public void getIconItem(CallbackInfoReturnable<ItemStack> cir) {
+		if (!isMixinIconsReady()) initMixinIcons();
+
 		if (MIXIN_ICONS.containsKey(this.getId())) {
 			cir.setReturnValue(new ItemStack(MIXIN_ICONS.get(this.getId())));
 			cir.cancel();
