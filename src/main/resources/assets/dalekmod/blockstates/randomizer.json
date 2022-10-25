@@ -1,8 +1,21 @@
 {
   "variants": {
-    "facing=north": { "model": "dalekmod:block/randomizer", "y": 0},
-    "facing=south": { "model": "dalekmod:block/randomizer", "y": 180},
-    "facing=west": { "model": "dalekmod:block/randomizer", "y": 270},
-    "facing=east": { "model": "dalekmod:block/randomizer", "y": 90}
+    "facing=north": {
+		"model": "dmadditions:block/randomizer",
+		"y": 0
+	},
+    "facing=south": {
+		"model": "dmadditions:block/randomizer",
+		"y": 180
+	},
+    "facing=west": {
+		"model": "dmadditions:block/randomizer",
+		"y": 270
+	},
+    "facing=east":
+	{
+		"model": "dmadditions:block/randomizer",
+		"y": 90
+	}
   }
 }

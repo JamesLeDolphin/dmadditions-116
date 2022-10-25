@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import com.swdteam.common.block.tardis.CoordPanelBlock;
 
 public class RandomizerBlock extends HorizontalBlock {
 	private String dimensionKey;
