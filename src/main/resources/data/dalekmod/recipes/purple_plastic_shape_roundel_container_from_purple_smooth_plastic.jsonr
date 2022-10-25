@@ -1,0 +1,14 @@
+{
+	"type": "dalekmod:roundel_builder",
+	"ingredients": [
+		{
+			"item": "minecraft:barrel"
+		},
+		{
+			"item": "dalekmod:purple_smooth_plastic"
+		}
+	],
+	"result": {
+		"item": "dalekmod:purple_plastic_shape_roundel_container"
+	}
+}

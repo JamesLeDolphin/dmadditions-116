@@ -1,0 +1,14 @@
+{
+	"type": "dalekmod:roundel_builder",
+	"ingredients": [
+		{
+			"item": "minecraft:barrel"
+		},
+		{
+			"item": "minecraft:red_terracotta"
+		}
+	],
+	"result": {
+		"item": "dalekmod:red_terracotta_roundel_container"
+	}
+}
