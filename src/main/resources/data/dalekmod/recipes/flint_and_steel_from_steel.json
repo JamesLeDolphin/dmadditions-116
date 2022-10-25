@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"tag": "forge:steel_ingot"
+		},
+		{
+			"item": "minecraft:flint"
+		}
+	],
+	"result": {
+		"item": "minecraft:flint_and_steel"
+	}
+}
