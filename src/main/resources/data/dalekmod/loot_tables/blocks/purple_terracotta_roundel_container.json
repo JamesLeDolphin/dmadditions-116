@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:purple_terracotta_roundel_containers"
+					"name": "dalekmod:purple_terracotta_roundel_container"
 				}
 			],
 			"conditions": [
