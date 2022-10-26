@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
+import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
 import com.swdteam.common.tardis.TardisData;
@@ -27,7 +28,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import com.swdteam.common.block.tardis.CoordPanelBlock;
 
 public class RandomizerBlock extends HorizontalBlock {
 	private String dimensionKey;
@@ -116,6 +116,8 @@ public class RandomizerBlock extends HorizontalBlock {
 			ChatUtil.sendCompletedMsg(player,
 				new TranslationTextComponent("notice.dalekmod.tardis.randomizer_set", newPos.getX(), newPos.getZ()),
 				MessageType.STATUS_BAR);
+
+			worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
 		}
 		return ActionResultType.SUCCESS;
 	}
