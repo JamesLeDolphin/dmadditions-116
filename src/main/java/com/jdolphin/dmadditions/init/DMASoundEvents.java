@@ -1,13 +1,19 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.common.RegistryHandler;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
-
-import static com.swdteam.common.init.DMSoundEvents.buildSound;
+import net.minecraftforge.registries.DeferredRegister;
 
 public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> PISTOL_SHOOT;
+
+	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
+		return register.register(registryName,
+			() -> new SoundEvent(new ResourceLocation(DmAdditions.MODID, registryName)));
+	}
 
 	static {
 		PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");

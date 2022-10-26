@@ -3,7 +3,7 @@
 		"catergory": "player",
 		"subtitle": "subtitles.item.pistol.shoot",
 		"sounds": [
-			"dalekmod:item/pistol/shoot"
+			"dmadditions:item/pistol/shoot"
 		]
 	}
 }
