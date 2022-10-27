@@ -29,7 +29,13 @@ public class DMABlocks {
 		MIXIN_BLOCKS.put("flight_lever",
 			() -> new BetterFlightLeverBlock(
 				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
+
+		MIXIN_BLOCKS.put("chameleon_panel",
+			() -> new BetterChameleonPanelBlock(
+				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)
+			));
 	}
+
 	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
 		() -> new DoorOpenPanel(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
 			.noOcclusion().sound(SoundType.STONE)),
