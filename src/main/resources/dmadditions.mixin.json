@@ -9,6 +9,7 @@
 	"mixins": [
 		"DMBlocksMixin",
 		"ItemGroupMixin",
-		"ItemPropertiesMixin"
+		"ItemPropertiesMixin",
+		"NameTagItemMixin"
 	]
 }
