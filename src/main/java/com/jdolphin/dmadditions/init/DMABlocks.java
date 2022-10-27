@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.block.BetterFastReturnLeverBlock;
-import com.jdolphin.dmadditions.block.BetterFlightLeverBlock;
-import com.jdolphin.dmadditions.block.RandomizerBlock;
-import com.jdolphin.dmadditions.block.RoundelContainerBlock;
+import com.jdolphin.dmadditions.block.*;
 import com.swdteam.common.init.DMTabs;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -33,6 +30,10 @@ public class DMABlocks {
 			() -> new BetterFlightLeverBlock(
 				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
 	}
+	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
+		() -> new DoorOpenPanel(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
+			.noOcclusion().sound(SoundType.STONE)),
+		"door_open_panel", DMTabs.DM_TARDIS);
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
 		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
