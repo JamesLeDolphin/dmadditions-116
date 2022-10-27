@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.block.*;
 import com.swdteam.common.init.DMTabs;
+import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -34,6 +35,9 @@ public class DMABlocks {
 			() -> new BetterChameleonPanelBlock(
 				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)
 			));
+
+		MIXIN_BLOCKS.put("coord_panel",
+			() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
 	}
 
 	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(

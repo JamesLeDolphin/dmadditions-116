@@ -1,12 +1,11 @@
 package com.jdolphin.dmadditions.block;
 
-import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
-import com.swdteam.common.block.tardis.ChameleonPanelBlock;
+import com.swdteam.common.block.tardis.CoordPanelBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -15,11 +14,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class BetterChameleonPanelBlock extends ChameleonPanelBlock implements IBetterPanel {
-	private final static DirectionProperty FACING = AbstractRotateableWaterLoggableBlock.FACING;
+import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
-	public BetterChameleonPanelBlock(Properties properties) {
-		super(properties);
+// TODO: fix the text, and the buttons
+public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
+	public BetterCoordPanelBlock(Supplier<TileEntity> tileEntitySupplier, Properties properties) {
+		super(tileEntitySupplier, properties);
 	}
 
 	@Override
@@ -49,6 +50,7 @@ public class BetterChameleonPanelBlock extends ChameleonPanelBlock implements IB
 	}
 
 	@Override
+	@Nonnull
 	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return IBetterPanel.super.getCollisionShape(state, worldIn, pos, context);
 	}
