@@ -14,7 +14,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-
+import com.swdteam.client.render.tileentity.RenderDimensionSelectorPanel;
+//TODO: Use renderer to fix the planets not showing ^
 import java.util.function.Supplier;
 
 public class BetterDimensionSelector extends DimensionSelectorPanelBlock implements IBetterPanel {
