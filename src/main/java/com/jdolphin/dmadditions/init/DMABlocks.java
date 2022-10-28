@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.block.*;
 import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
+import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -36,7 +37,7 @@ public class DMABlocks {
 				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)
 			));
 		MIXIN_BLOCKS.put("dimension_selector_panel",
-			() -> new BetterDimensionSelector(CoordPanelTileEntity::new,
+			() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new,
 				net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
 
 		MIXIN_BLOCKS.put("coord_panel",
