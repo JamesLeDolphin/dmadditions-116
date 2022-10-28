@@ -40,7 +40,7 @@ import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Supplier;
 
-// TODO: fix the text, and the buttons
+// TODO: fix the text, and the buttons: Check block renderer
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
 	public static List<CoordPanelButtons> buttons = new ArrayList<>();
 	private Boolean didPressButton = false;
