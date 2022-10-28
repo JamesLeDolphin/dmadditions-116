@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.client.render.tileentity.RenderCoordPanel;
+import com.jdolphin.dmadditions.client.render.tileentity.RenderDimensionSelectorPanel;
 import com.swdteam.client.render.tileentity.RenderTileEntityBase;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.model.javajson.JSONModel;
@@ -19,10 +20,12 @@ import java.util.function.Function;
 public class DMATileRenderRegistry {
 	public static void init() {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
+		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
 	}
 
 	public static final ArrayList<TileEntityType<?>> MIXIN_RENDERERS = new ArrayList<TileEntityType<?>>() {{
 		add(DMBlockEntities.TILE_COORD_PANEL.get());
+		add(DMBlockEntities.TILE_DIMENSION_SELECTOR.get());
 	}};
 
 	public static <T extends TileEntity> void registerModel(TileEntityType<T> tileEntityType, Function<? super TileEntityRendererDispatcher, ? extends TileEntityRenderer<? super T>> rendererFactory) {
