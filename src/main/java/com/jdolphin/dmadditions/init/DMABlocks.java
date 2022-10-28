@@ -35,9 +35,13 @@ public class DMABlocks {
 			() -> new BetterChameleonPanelBlock(
 				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)
 			));
+		MIXIN_BLOCKS.put("dimension_selector_panel",
+			() -> new BetterDimensionSelector(CoordPanelTileEntity::new,
+				net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
 
 		MIXIN_BLOCKS.put("coord_panel",
-			() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
+			() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new,
+				net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
 	}
 
 	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
@@ -50,7 +54,7 @@ public class DMABlocks {
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"coral_flight_lever", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlock(
-		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
+		() -> new CopperHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> RANDOMIZER = registerBlock(

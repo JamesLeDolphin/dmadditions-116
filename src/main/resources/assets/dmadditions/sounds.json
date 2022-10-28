@@ -5,5 +5,11 @@
 		"sounds": [
 			"dmadditions:item/pistol/shoot"
 		]
+	},
+	"block.coral_lever": {
+		"subtitle": "subtitles.block.handbrake.copperhandbrake",
+		"sounds": [
+			"dmadditions:block/handbrake/copperhandbrake"
+		]
 	}
 }

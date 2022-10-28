@@ -35,12 +35,13 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import com.swdteam.client.render.tileentity.RenderCoordPanel;
 
 import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Supplier;
 
-// TODO: fix the text, and the buttons
+// TODO: fix the text, and the buttons: Check block renderer. check imports!
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
 	public static List<CoordPanelButtons> buttons = new ArrayList<>();
 	private Boolean didPressButton = false;
