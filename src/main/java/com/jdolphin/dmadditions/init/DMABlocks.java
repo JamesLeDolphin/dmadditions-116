@@ -47,6 +47,10 @@ public class DMABlocks {
 		MIXIN_BLOCKS.put("sonic_interface",
 			() -> new BetterSonicInterfaceBlock(
 				AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD)));
+
+		MIXIN_BLOCKS.put("waypoint_panel",
+			() -> new BetterWaypointPanelBlock(
+				AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD)));
 	}
 
 	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
