@@ -54,7 +54,7 @@ public class DMABlocks {
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"coral_flight_lever", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlock(
-		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
+		() -> new CopperHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> RANDOMIZER = registerBlock(
