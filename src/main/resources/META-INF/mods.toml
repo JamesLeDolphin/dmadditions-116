@@ -10,7 +10,7 @@ displayURL="https://discord.gg/P6SstpZsjX"
 logoFile="logo.png"
 credits="1jamesledolphin, SamTiz, Torchwood_one"
 authors="QRT Studios"
-description='''Adds various things and changes diffrent features of The Dalek Mod'''
+description='''Adds various things, and changes different features of The Dalek Mod'''
 
 [[dependencies.dmadditions]]
     modId="forge"
