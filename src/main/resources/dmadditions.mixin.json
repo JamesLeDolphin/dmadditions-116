@@ -10,5 +10,9 @@
 		"DMBlocksMixin",
 		"ItemGroupMixin",
 		"ItemPropertiesMixin"
+	],
+	"client": [
+		"ClientProxyMixin",
+		"DMTileRenderRegistryMixin"
 	]
 }
