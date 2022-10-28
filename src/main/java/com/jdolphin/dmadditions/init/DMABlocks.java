@@ -38,11 +38,15 @@ public class DMABlocks {
 			));
 		MIXIN_BLOCKS.put("dimension_selector_panel",
 			() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new,
-				net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
+				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
 
 		MIXIN_BLOCKS.put("coord_panel",
 			() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new,
-				net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
+				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
+
+		MIXIN_BLOCKS.put("sonic_interface",
+			() -> new BetterSonicInterfaceBlock(
+				AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD)));
 	}
 
 	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
