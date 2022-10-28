@@ -130,7 +130,7 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 	}
 
 	public ITextComponent getName(BlockState state, BlockPos pos, Vector3d hitVec, PlayerEntity player) {
-		return IBetterBlockTooltip.super.getName(state, pos, hitVec, player);
+		return IBetterPanel.super.getName(state, pos, hitVec, player);
 	}
 
 	@Override

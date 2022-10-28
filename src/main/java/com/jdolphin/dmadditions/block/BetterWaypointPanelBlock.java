@@ -60,7 +60,7 @@ public class BetterWaypointPanelBlock extends WaypointPanelBlock implements IBet
 
 	@Override
 	public ITextComponent getName(BlockState state, BlockPos pos, Vector3d hitVec, PlayerEntity player) {
-		return IBetterBlockTooltip.super.getName(state, pos, hitVec, player);
+		return IBetterPanel.super.getName(state, pos, hitVec, player);
 	}
 
 	@Override

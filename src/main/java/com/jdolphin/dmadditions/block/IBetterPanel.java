@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
-import com.swdteam.common.block.IBlockTooltip;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,7 +20,7 @@ import net.minecraft.world.IWorldReader;
 
 import javax.annotation.Nullable;
 
-public interface IBetterPanel extends IHorizontalFaceBlock, IBlockTooltip {
+public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip {
 	DirectionProperty FACING = AbstractRotateableWaterLoggableBlock.FACING;
 
 	VoxelShape EAST_AABB = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);

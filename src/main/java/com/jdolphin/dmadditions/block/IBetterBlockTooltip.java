@@ -25,5 +25,7 @@ public interface IBetterBlockTooltip extends IBlockTooltip {
 	}
 
 
-	String getTooltipTranslationKey(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity);
+	default String getTooltipTranslationKey(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity){
+		return null;
+	}
 }
