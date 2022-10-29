@@ -91,6 +91,6 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 
 	@Override
 	default ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
-		return blockState.getBlock().getName();
+		return IBetterBlockTooltip.super.getName(blockState, blockPos, vector3d, playerEntity);
 	}
 }

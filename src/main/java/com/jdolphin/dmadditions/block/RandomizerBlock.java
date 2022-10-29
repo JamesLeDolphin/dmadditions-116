@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.block;
 
-import com.swdteam.common.block.IBlockTooltip;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
@@ -22,9 +21,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -32,7 +29,7 @@ import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class RandomizerBlock extends HorizontalBlock implements IBlockTooltip {
+public class RandomizerBlock extends HorizontalBlock implements IBetterBlockTooltip {
 	private String dimensionKey;
 
 	protected static final VoxelShape SHAPE_N = VoxelShapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 8.0D), Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D));
@@ -123,10 +120,5 @@ public class RandomizerBlock extends HorizontalBlock implements IBlockTooltip {
 			worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
 		}
 		return ActionResultType.SUCCESS;
-	}
-
-	@Override
-	public ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
-		return new TranslationTextComponent("block.dalekmod.randomizer");
 	}
 }

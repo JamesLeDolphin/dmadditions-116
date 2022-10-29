@@ -192,7 +192,7 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 		}
 
 		SonicInterfaceTileEntity te = (SonicInterfaceTileEntity) player.getCommandSenderWorld().getBlockEntity(pos);
-		if (te.getScrewdriver() != null && te.getScrewdriver().getItem() instanceof SonicScrewdriverCustomizedItem && txt == TXT_INSERT_SONIC) {
+		if (te.getScrewdriver() != null && te.getScrewdriver().getItem() instanceof SonicScrewdriverCustomizedItem && txt.equals(TXT_INSERT_SONIC)) {
 			txt = TXT_REMOVE_SONIC;
 		}
 
