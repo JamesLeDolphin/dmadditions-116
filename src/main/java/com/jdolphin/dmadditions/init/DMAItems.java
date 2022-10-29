@@ -60,6 +60,9 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
+
+
+
 		STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",
 			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 

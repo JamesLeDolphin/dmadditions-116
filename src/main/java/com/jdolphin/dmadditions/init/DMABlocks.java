@@ -72,7 +72,7 @@ public class DMABlocks {
 		"randomizer", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
 		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"timekeeper_console", DMTabs.DM_TARDIS);
+		"timekeeper_console");
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER;
