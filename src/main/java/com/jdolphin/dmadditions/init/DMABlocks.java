@@ -54,7 +54,7 @@ public class DMABlocks {
 	}
 
 	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
-		() -> new DoorOpenPanel(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
+		() -> new DoorPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak()
 			.noOcclusion().sound(SoundType.STONE)),
 		"door_open_panel", DMTabs.DM_TARDIS);
 
