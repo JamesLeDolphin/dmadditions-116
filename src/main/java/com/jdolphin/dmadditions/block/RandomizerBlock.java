@@ -1,5 +1,7 @@
 package com.jdolphin.dmadditions.block;
 
+import javax.annotation.Nullable;
+
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
@@ -14,7 +16,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -29,8 +33,10 @@ import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class RandomizerBlock extends HorizontalBlock implements IBetterBlockTooltip {
+public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	private String dimensionKey;
+
+	public static final DirectionProperty FACING = IBetterPanel.FACING;
 
 	protected static final VoxelShape SHAPE_N = VoxelShapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 8.0D), Block.box(0.0D, 0.0D, 8.0D, 16.0D, 8.0D, 16.0D));
 	protected static final VoxelShape SHAPE_E = VoxelShapes.or(Block.box(8.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 8.0D, 8.0D, 16.0D));
@@ -42,16 +48,28 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterBlockTool
 
 		this.registerDefaultState(this.stateDefinition.any()
 			.setValue(FACING, Direction.NORTH)
+			.setValue(FACE, AttachFace.FLOOR)
 		);
 	}
 
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+	@Override
+	@Nullable
+	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
+		return IBetterPanel.super.getStateForPlacement(p_196258_1_);
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_,
+			ISelectionContext p_220071_4_) {
+
+		return this.getShape(p_220071_1_, p_220071_2_, p_220071_3_, p_220071_4_);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext selectionContext) {
 		Direction facing = state.getValue(FACING);
+		if(!state.getValue(FACE).equals(AttachFace.FLOOR)) return IBetterPanel.super.getShape(state, reader, pos, selectionContext);
+
 		switch (facing) {
 			case NORTH:
 			default:
@@ -68,7 +86,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterBlockTool
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FACING);
+		builder.add(FACING, FACE);
 	}
 
 	public RegistryKey<World> dimensionWorldKey() {

@@ -1,21 +1,68 @@
 {
-  "variants": {
-    "facing=north": {
-		"model": "dmadditions:block/randomizer",
-		"y": 0
-	},
-    "facing=south": {
-		"model": "dmadditions:block/randomizer",
-		"y": 180
-	},
-    "facing=west": {
-		"model": "dmadditions:block/randomizer",
-		"y": 270
-	},
-    "facing=east":
-	{
-		"model": "dmadditions:block/randomizer",
-		"y": 90
+	"variants": {
+		"face=floor,facing=north": {
+			"model": "dmadditions:block/randomizer",
+			"y": 0,
+			"x": 0
+		},
+		"face=floor,facing=south": {
+			"model": "dmadditions:block/randomizer",
+			"y": 180,
+			"x": 0
+		},
+		"face=floor,facing=west": {
+			"model": "dmadditions:block/randomizer",
+			"y": 270,
+			"x": 0
+		},
+		"face=floor,facing=east": {
+			"model": "dmadditions:block/randomizer",
+			"y": 90,
+			"x": 0
+		},
+
+
+		"face=wall,facing=north": {
+			"model": "dmadditions:block/randomizer",
+			"y": 0,
+			"x": 90
+		},
+		"face=wall,facing=south": {
+			"model": "dmadditions:block/randomizer",
+			"y": 180,
+			"x": 90
+		},
+		"face=wall,facing=west": {
+			"model": "dmadditions:block/randomizer",
+			"y": 270,
+			"x": 90
+		},
+		"face=wall,facing=east": {
+			"model": "dmadditions:block/randomizer",
+			"y": 90,
+			"x": 90
+		},
+
+		"face=ceiling,facing=north": {
+			"model": "dmadditions:block/randomizer",
+			"y": 0,
+			"x": 180
+		},
+		"face=ceiling,facing=south": {
+			"model": "dmadditions:block/randomizer",
+			"y": 180,
+			"x": 180
+		},
+		"face=ceiling,facing=west": {
+			"model": "dmadditions:block/randomizer",
+			"y": 270,
+			"x": 180
+		},
+		"face=ceiling,facing=east": {
+			"model": "dmadditions:block/randomizer",
+			"y": 90,
+			"x": 180
+		}
+
 	}
-  }
 }
