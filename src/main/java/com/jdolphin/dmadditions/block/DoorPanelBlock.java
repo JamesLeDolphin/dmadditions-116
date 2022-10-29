@@ -16,6 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -60,10 +61,19 @@ public class DoorPanelBlock extends HorizontalBlock implements IBetterPanel {
 
 		TardisTileEntity exterior = (TardisTileEntity) te;
 
-		exterior.toggleDoor(TardisDoor.BOTH, TardisTileEntity.DoorSource.TARDIS);
+		tardis.setDoorOpen(!tardis.isDoorOpen());
+		exterior.setDoor(TardisDoor.BOTH, tardis.isDoorOpen(), TardisTileEntity.DoorSource.TARDIS);
 
 		world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_DING.get(), SoundCategory.BLOCKS, 1, 1);
 
 		return ActionResultType.SUCCESS;
+	}
+
+	@Override
+	public String getTooltipTranslationKey(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
+		TardisData tardis = DMTardis.getTardisFromInteriorPos(blockPos);
+
+		if (tardis.isDoorOpen()) return "close";
+		return "open";
 	}
 }
