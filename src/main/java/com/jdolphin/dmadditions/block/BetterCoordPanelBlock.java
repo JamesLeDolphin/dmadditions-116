@@ -35,13 +35,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import com.swdteam.client.render.tileentity.RenderCoordPanel;
 
 import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Supplier;
 
-// TODO: fix the text, and the buttons: Check block renderer. check imports!
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
 	public static List<CoordPanelButtons> buttons = new ArrayList<>();
 	private Boolean didPressButton = false;
@@ -65,7 +63,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 				double mouseY = hitVec.y() - (double) pos.getY();
 				CoordPanelButtons buttonClicked = this.getButton(mouseX, mouseY, mouseZ, state.getValue(RotatableTileEntityBase.FACING), state.getValue(FACE));
 				System.out.printf("button: %s%n", buttonClicked);
-				System.out.printf("mouse: %s %s %s%n", mouseX, mouseY, mouseZ);
+				System.out.printf("mouse: %.2f %.2f %.2f%n", mouseX, mouseY, mouseZ);
 				if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
 					TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 					TardisFlightData flightData = null;
@@ -217,12 +215,27 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 				if (vec == null) continue;
 
 				switch (face) {
-					// TODO: make wall panels work
-
 					case CEILING:
 						if (checkButton(button, vec, facing, mouseX, mouseZ, true, true))
 							return button;
 						break;
+
+					case WALL:
+						switch (facing) {
+							case EAST:
+							default:
+								mouseX = 1 - mouseY;
+								break;
+							case WEST:
+								mouseX = mouseY;
+								break;
+							case NORTH:
+								mouseZ = mouseY;
+								break;
+							case SOUTH:
+								mouseZ = 1 - mouseY;
+								break;
+						}
 
 					case FLOOR:
 					default:
