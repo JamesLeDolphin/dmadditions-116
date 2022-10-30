@@ -43,6 +43,7 @@ public class DmAdditions {
 
 		// Register things
 		RegistryHandler.init();
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMACommonConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
