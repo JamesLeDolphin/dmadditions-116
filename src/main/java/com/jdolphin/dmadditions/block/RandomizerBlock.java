@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.block;
 
 import javax.annotation.Nullable;
 
+import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
@@ -109,7 +110,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 			Location currentLocation = tardis.getCurrentLocation();
 			BlockPos currentPos = currentLocation.getBlockPosition();
 
-			double maxDistance = 10_000; // TODO: put this in server config file or something idk
+			double maxDistance = DMACommonConfig.randomizer_max.get();
 
 			double maxX = Math.min(border.getMaxX(), currentPos.getX() + maxDistance);
 			double minX = Math.max(border.getMinX(), currentPos.getX() - maxDistance);
@@ -121,7 +122,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 			double zPos = Math.floor(Math.random() * (maxZ - minZ + 1) + minZ);
 			double yPos = currentPos.getY();
 
-			System.out.printf("Randomizer going to %s %s %s%n", xPos, yPos, zPos);
+			//System.out.printf("Randomizer going to %s %s %s%n", xPos, yPos, zPos);
 
 			BlockPos newPos = new BlockPos(xPos, yPos, zPos);
 
