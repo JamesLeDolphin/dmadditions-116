@@ -110,7 +110,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 			Location currentLocation = tardis.getCurrentLocation();
 			BlockPos currentPos = currentLocation.getBlockPosition();
 
-			double maxDistance = DMACommonConfig.randomizer_max.get(); // TODO: put this in server config file or something idk
+			double maxDistance = DMACommonConfig.randomizer_max.get();
 
 			double maxX = Math.min(border.getMaxX(), currentPos.getX() + maxDistance);
 			double minX = Math.max(border.getMinX(), currentPos.getX() - maxDistance);
