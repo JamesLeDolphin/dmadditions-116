@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "dalekmod:item/advent/candy_cane_orange"
+	}
+}

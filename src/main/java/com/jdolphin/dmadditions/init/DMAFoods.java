@@ -5,6 +5,6 @@ import net.minecraft.item.Food;
 public class DMAFoods {
 	public static final Food DINO_NUGGETS = (new Food.Builder()).nutrition(10).saturationMod(1.3F).build();
 	public static final Food DINO_NUGGETS_CUSTARD = (new Food.Builder()).nutrition(10).saturationMod(1.3F).build();
-	public static final Food CANDY_CANE = (new Food.Builder()).nutrition(10).saturationMod(1.3F).build();
+	public static final Food CANDY_CANE = (new Food.Builder()).nutrition(3).saturationMod(1F).build();
 
 }

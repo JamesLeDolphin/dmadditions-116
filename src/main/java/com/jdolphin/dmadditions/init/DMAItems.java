@@ -58,8 +58,14 @@ public class DMAItems {
 
 	static {
 		if (AdventUnlock.canAdventBeUnlocked(1)) {
-			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
-				() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_blue",
+				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_red",
+				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_green",
+				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_orange",
+				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 		}
 
 		PISTOL = RegistryHandler.ITEMS.register("pistol",
@@ -74,9 +80,6 @@ public class DMAItems {
 
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
-
-		/*CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
-			() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));*/
 
 
 

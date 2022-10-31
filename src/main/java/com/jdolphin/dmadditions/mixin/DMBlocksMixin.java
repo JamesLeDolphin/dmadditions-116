@@ -18,7 +18,7 @@ import static com.jdolphin.dmadditions.init.DMABlocks.MIXIN_BLOCKS;
 @Mixin({DMBlocks.class})
 public abstract class DMBlocksMixin {
 
-	@Inject(method = "Lcom/swdteam/common/init/DMBlocks;registerBlock(Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/item/Item$Properties;Z)Lnet/minecraftforge/fml/RegistryObject;",
+	@Inject(method = "registerBlock(Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/item/Item$Properties;Z)Lnet/minecraftforge/fml/RegistryObject;",
 		at = @At("HEAD"),
 		cancellable = true,
 		remap = false)
