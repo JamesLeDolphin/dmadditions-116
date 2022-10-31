@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.item.CandyCaneItem;
+import com.jdolphin.dmadditions.item.LaserScrewdriver;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.jdolphin.dmadditions.item.UnitGun;
 import com.swdteam.common.RegistryHandler;
@@ -23,6 +24,7 @@ public class DMAItems {
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 	public static RegistryObject<Item> PISTOL;
 	public static RegistryObject<Item> UNIT_GUN;
+	public static RegistryObject<Item> LASER_SCREWDRIVER;
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
 	public static RegistryObject<Item> CANDY_CANE;
 
@@ -78,6 +80,8 @@ public class DMAItems {
 
 		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
 			() -> new UnitGun((new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+		LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
+			() -> new LaserScrewdriver((new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 
 

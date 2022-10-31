@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
+import com.jdolphin.dmadditions.entity.BulletEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.Item;
@@ -20,10 +21,10 @@ public class UnitGun extends Item {
 		ItemStack itemstack = playerEntity.getItemInHand(handIn);
 		worldIn.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		if (!worldIn.isClientSide) {
-			SnowballEntity snowballentity = new SnowballEntity(worldIn, playerEntity);
-			snowballentity.setItem(itemstack);
-			snowballentity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
-			worldIn.addFreshEntity(snowballentity);
+			BulletEntity bulletEntity = new BulletEntity(worldIn, playerEntity);
+			bulletEntity.setItem(itemstack);
+			bulletEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
+			worldIn.addFreshEntity(bulletEntity);
 		}
 
 		playerEntity.awardStat(Stats.ITEM_USED.get(this));
