@@ -5,6 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import com.swdteam.client.gui.title.RenderPanorama;
+import net.minecraft.client.gui.screen.MainMenuScreen;
 
 @OnlyIn(Dist.CLIENT)
 public class ClassicDMTitleScreen extends Screen {

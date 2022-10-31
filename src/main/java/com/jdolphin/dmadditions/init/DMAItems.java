@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.item.CandyCaneItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
+import com.jdolphin.dmadditions.item.UnitGun;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMSoundEvents;
@@ -21,6 +22,7 @@ public class DMAItems {
 	public static RegistryObject<Item> DINO_NUGGETS;
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 	public static RegistryObject<Item> PISTOL;
+	public static RegistryObject<Item> UNIT_GUN;
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
 	public static RegistryObject<Item> CANDY_CANE;
 
@@ -73,6 +75,9 @@ public class DMAItems {
 
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
+
+		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
+			() -> new UnitGun((new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 
 
