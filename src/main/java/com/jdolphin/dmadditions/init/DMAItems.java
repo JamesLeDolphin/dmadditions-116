@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.item.CandyCaneItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
@@ -20,6 +21,7 @@ public class DMAItems {
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 	public static RegistryObject<Item> PISTOL;
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
+	public static RegistryObject<Item> CANDY_CANE;
 
 	public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
@@ -60,6 +62,8 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
+		CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
+			() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 
 

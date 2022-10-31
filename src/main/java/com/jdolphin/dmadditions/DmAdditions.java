@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.advent.Calender;
+import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -47,7 +48,7 @@ public class DmAdditions {
 
 		// Register things
 		RegistryHandler.init();
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMACommonConfig.SPEC, "dma-client.toml");
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
