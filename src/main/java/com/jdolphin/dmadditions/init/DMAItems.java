@@ -18,13 +18,6 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class DMAItems {
 
-	/*public static void Unlock {
-		if (Calender.canAdventBeUnlocked(1)) {
-			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
-				() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-		}
-	}*/
-
 	public static RegistryObject<Item> DINO_NUGGETS;
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 	public static RegistryObject<Item> PISTOL;
