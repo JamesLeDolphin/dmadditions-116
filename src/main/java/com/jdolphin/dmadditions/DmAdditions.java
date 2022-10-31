@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions;
 
-import com.jdolphin.dmadditions.advent.Calender;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import net.minecraft.block.Block;
@@ -22,7 +22,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Calendar;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -32,7 +31,7 @@ public class DmAdditions {
 	// Directly reference a log4j logger.
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	public static final boolean IS_CHRISTMAS = Calender.isDecember();
+	public static final boolean IS_CHRISTMAS = AdventUnlock.isDecember();
 
 
 	public DmAdditions() {

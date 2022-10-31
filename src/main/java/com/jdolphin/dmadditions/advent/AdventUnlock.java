@@ -3,7 +3,7 @@ package com.jdolphin.dmadditions.advent;
 import java.util.Calendar;
 
 
-public class Calender {
+public class AdventUnlock {
 	public static boolean isDecember() {
 		Calendar cal = Calendar.getInstance();
 		int month = cal.get(Calendar.MONTH);

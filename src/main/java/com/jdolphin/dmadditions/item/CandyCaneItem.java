@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.advent.Calender;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.swdteam.common.item.FoodItem;
 
 public class CandyCaneItem extends FoodItem {
@@ -9,7 +9,7 @@ public class CandyCaneItem extends FoodItem {
 		super(properties);
 	}
 	public static boolean Unlock() {
-		return Calender.canAdventBeUnlocked(1);
+		return AdventUnlock.canAdventBeUnlocked(1);
 	}
 
 }

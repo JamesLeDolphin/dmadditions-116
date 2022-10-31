@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.item.CandyCaneItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
@@ -16,6 +17,13 @@ import net.minecraftforge.fml.RegistryObject;
 
 
 public class DMAItems {
+
+	/*public static void Unlock {
+		if (Calender.canAdventBeUnlocked(1)) {
+			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
+				() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		}
+	}*/
 
 	public static RegistryObject<Item> DINO_NUGGETS;
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
@@ -49,6 +57,11 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_BOOTS;
 
 	static {
+		if (AdventUnlock.canAdventBeUnlocked(1)) {
+			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
+				() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		}
+
 		PISTOL = RegistryHandler.ITEMS.register("pistol",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
 				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
@@ -62,8 +75,8 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
-		CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
-			() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		/*CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane",
+			() -> new CandyCaneItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));*/
 
 
 
