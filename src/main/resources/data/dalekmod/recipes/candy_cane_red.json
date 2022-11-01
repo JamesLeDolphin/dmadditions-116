@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:sugar_cane"
+        },
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "item": "minecraft:sugar_cane"
+        },
+        {
+            "item": "minecraft:sugar_cane"
+        }
+    ],
+    "result": {
+        "item": "dalekmod:candy_cane_orange",
+        "count": 1
+    }
+}

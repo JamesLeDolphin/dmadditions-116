@@ -132,5 +132,10 @@
 	"block.dalekmod.brown_plastic_shape_roundel_container": "Brown Diamond Roundel Container",
 	"block.dalekmod.green_plastic_shape_roundel_container": "Green Hexagon Roundel Container",
 	"block.dalekmod.red_plastic_shape_roundel_container": "Red Hexagon Roundel Container",
-	"block.dalekmod.black_plastic_shape_roundel_container": "Black Diamond Roundel Container"
+	"block.dalekmod.black_plastic_shape_roundel_container": "Black Diamond Roundel Container",
+
+	"item.dalekmod.candy_cane_orange": "Orange Candy Cane",
+	"item.dalekmod.candy_cane_blue": "Blue Candy Cane",
+	"item.dalekmod.candy_cane_green": "Green Candy Cane",
+	"item.dalekmod.candy_cane_red": "Red Candy Cane"
 }
