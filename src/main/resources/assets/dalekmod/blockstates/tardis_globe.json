@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "dalekmod:block/tardis_globe",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "dalekmod:block/tardis_globe"
+		},
+		"facing=south": {
+			"model": "dalekmod:block/tardis_globe",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "dalekmod:block/tardis_globe",
+			"y": 270
+		}
+	}
+}
