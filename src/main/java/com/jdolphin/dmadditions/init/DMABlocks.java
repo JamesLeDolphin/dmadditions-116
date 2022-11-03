@@ -27,9 +27,7 @@ public class DMABlocks {
 	public static final Map<String, Supplier<Block>> MIXIN_BLOCKS;
 
 	static {
-		//if (AdventUnlock.canAdventBeUnlocked(6)) {
 
-		//}
 
 		MIXIN_BLOCKS = new HashMap<>();
 
@@ -172,9 +170,19 @@ public class DMABlocks {
 	public static RegistryObject<Block> GREEN_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
+	public static RegistryObject<Block> TARDIS_GLOBE;
+	public static RegistryObject<Block> WRAITH;
 
 
 	static {
+		if (AdventUnlock.canAdventBeUnlocked(6)) {
+		TARDIS_GLOBE = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "tardis_snowglobe", DMTabs.DM_TARDIS);
+		}
+		if (AdventUnlock.canAdventBeUnlocked(3)) {
+			WRAITH = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "wraith", ItemGroup.TAB_DECORATIONS);
+		}
+
+
 
 		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "black_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "yellow_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);

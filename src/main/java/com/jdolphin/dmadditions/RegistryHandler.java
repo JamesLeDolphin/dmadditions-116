@@ -13,7 +13,6 @@ public class RegistryHandler {
 	public static DMAItems dmaItems;
 	public static DMASoundEvents dmaSounds;
 	public static DMABlocks dmaBlocks;
-	public static DMADaleks dmaDaleks;
 
 
 	public static void init() {
@@ -25,6 +24,5 @@ public class RegistryHandler {
 		dmaItems = new DMAItems();
 		dmaBlocks = new DMABlocks();
 		dmaTiles = new DMABlockEntities();
-		dmaDaleks = new DMADaleks();
 	}
 }
