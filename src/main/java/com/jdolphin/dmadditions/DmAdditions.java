@@ -16,6 +16,9 @@ import net.minecraftforge.fml.config.ModConfig;
 @Mod("dmadditions")
 public class DmAdditions {
 	public static final String MODID = "dmadditions";
+	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
+		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+
 	// Directly reference a log4j logger.
 	private static final Logger LOGGER = LogManager.getLogger();
 
@@ -23,6 +26,8 @@ public class DmAdditions {
 
 
 	public DmAdditions() {
+		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
+
 		// Register things
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
