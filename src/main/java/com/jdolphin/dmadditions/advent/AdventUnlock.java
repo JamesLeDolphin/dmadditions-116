@@ -7,22 +7,23 @@ import static com.jdolphin.dmadditions.DmAdditions.IS_DEBUG;
 
 public class AdventUnlock {
 	public static boolean isDecember() {
-		if(IS_DEBUG) return true;
+		if (IS_DEBUG) return true;
 
 		Calendar cal = Calendar.getInstance();
 		int month = cal.get(Calendar.MONTH);
 		return (month == 11);
 	}
-	public static boolean canAdventBeUnlocked(int day) {
-		if(IS_DEBUG) return true;
 
-		if (is2022()) {
-			if (isDecember())
-				return (day <= getDate());
-		} else {
+	public static boolean canAdventBeUnlocked(int day) {
+		if (IS_DEBUG) return true;
+
+		if (!is2022())
 			return true;
-		}
-		return false;
+
+		if (!isDecember())
+			return false;
+
+		return (getDate() >= day);
 	}
 
 	public static int getDate() {
@@ -31,7 +32,7 @@ public class AdventUnlock {
 	}
 
 	public static boolean is2022() {
-		if(IS_DEBUG) return true;
+		if (IS_DEBUG) return true;
 
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
