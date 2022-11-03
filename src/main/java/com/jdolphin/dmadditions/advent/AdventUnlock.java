@@ -24,7 +24,7 @@ public class AdventUnlock {
 			return false;
 
 		return (getDate() >= day);
-	}
+}
 
 	public static int getDate() {
 		Calendar cal = Calendar.getInstance();

@@ -1,11 +1,10 @@
 package com.jdolphin.dmadditions.mixin;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.entity.CustomDalekBase;
+import com.jdolphin.dmadditions.entity.dalek.types.ChristmasDalek;
+import com.jdolphin.dmadditions.entity.dalek.types.CustomDalekBase;
 import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
-import com.swdteam.common.entity.dalek.types.Chocolate;
-import com.swdteam.common.entity.dalek.types.Skaro;
 import com.swdteam.common.init.DMDalekRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,7 +28,7 @@ public class DalekRegistryMixin {
 	@Inject(method = "init()V", at = @At("HEAD"), remap = false)
 	private static void init(CallbackInfo ci) {
 		if (AdventUnlock.canAdventBeUnlocked(24)) {
-			DALEK_SANTA = addDalek(DalekType.OTHER, new CustomDalekBase("Dalek Santa"), "dalek_santa");
+			DALEK_SANTA = addDalek(DalekType.OTHER, new ChristmasDalek("Dalek Santa"), "dalek_santa");
 		}
 	}
 
