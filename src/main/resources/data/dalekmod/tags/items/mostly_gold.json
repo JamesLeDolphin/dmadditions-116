@@ -1,0 +1,13 @@
+{
+	"replace": false,
+	"values": [
+		"#forge:foods/gold",
+		"minecraft:clock",
+		"minecraft:light_weighted_pressure_plate",
+		"minecraft:golden_horse_armor",
+		"minecraft:bell",
+		"minecraft:totem_of_undying",
+		"dalekmod:data_module_gold",
+		"dalekmod:tardis_gold_key"
+	]
+}
