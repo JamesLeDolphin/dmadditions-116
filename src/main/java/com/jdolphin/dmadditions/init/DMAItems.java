@@ -11,11 +11,17 @@ import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
+import com.swdteam.common.item.SpawnerItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+
+import java.util.List;
+
+import static com.swdteam.common.init.DMItems.addSpawnItem;
 
 
 public class DMAItems {
@@ -52,6 +58,31 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_CHESTPLATE;
 	public static RegistryObject<Item> METALERT_LEGGINGS;
 	public static RegistryObject<Item> METALERT_BOOTS;
+	public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
+
+
+	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, List<String> types, String itemKey) {
+		RegistryObject<Item> item = RegistryHandler.ITEMS.register(itemKey + "_spawner", () -> {
+			return new SpawnerItem(key, types);
+		});
+		return item;
+	}
+
+	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, List<String> types) {
+		return addSpawnItem(key, types, (String)types.get(0));
+	}
+
+	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, String type) {
+		RegistryObject<Item> item = RegistryHandler.ITEMS.register(type + "_spawner", () -> {
+			return new SpawnerItem(key, type);
+		});
+		return item;
+	}
+
+	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key) {
+		return addSpawnItem(key, key);
+	}
+
 
 	static {
 		if (AdventUnlock.canAdventBeUnlocked(1)) {
@@ -64,7 +95,9 @@ public class DMAItems {
 			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_orange",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 		}
-
+		if (AdventUnlock.canAdventBeUnlocked(17)) {
+			WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
+		}
 		PISTOL = RegistryHandler.ITEMS.register("pistol",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
 				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
@@ -81,7 +114,7 @@ public class DMAItems {
 		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
 			() -> new UnitGun((new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 		LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
-			() -> new LaserScrewdriver((new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 
 
 

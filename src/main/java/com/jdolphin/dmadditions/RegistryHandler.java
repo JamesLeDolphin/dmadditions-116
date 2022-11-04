@@ -6,7 +6,7 @@ public class RegistryHandler {
 	//	public static DMAdditionsBlocks dmAdditionsBlocks;
 	//	public static DMAdditionsParticleTypes dmParticles;
 	//	public static DMAdditionsBiomes dmBiomes;
-	//	public static DMAdditionsEntities dmEntities;
+	//public static DMAEntities dmaEntities;
 	public static DMABlockEntities dmaTiles;
 	//	public static DMAdditionsWorldCarvers dmCarvers;
 	//	public static DMAdditionsCraftingTypes dmAdditionsCraftingTypes;
@@ -18,7 +18,7 @@ public class RegistryHandler {
 	public static void init() {
 
 		DMAProjectiles.init();
-
+		DMAEntities.init();
 
 		dmaSounds = new DMASoundEvents();
 		dmaItems = new DMAItems();
