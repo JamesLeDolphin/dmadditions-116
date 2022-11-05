@@ -1,0 +1,62 @@
+{
+	"default_rotation": 180,
+	"door_offset": [ 16, 4, 9.5 ],
+	"block_offset": [ 0, -2, 0 ],
+	"name": "dmadditions.interior.name.australian",
+	"schematic": "dmadditions:australia",
+	"preview": "dmadditions:textures/gui/interior_selection/australian.png",
+	"recipe": [
+		{
+			"item": "dalekmod:plastic_chunk",
+			"quantity": 512
+		},
+		{
+			"item": "minecraft:stone",
+			"quantity": 128
+		},
+		{
+			"item": "dalekmod:ship_light",
+			"quantity": 64
+		},
+		{
+			"item": "dalekmod:light_box",
+			"quantity": 16
+		},
+		{
+			"item": "dalekmod:coord_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:dimension_selector_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:waypoint_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:chameleon_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:flight_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fast_return_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:scanner",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fault_locator",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:glass_rotor",
+			"quantity": 1
+		}
+	]
+}
