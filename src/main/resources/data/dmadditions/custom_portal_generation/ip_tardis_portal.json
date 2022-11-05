@@ -1,11 +1,12 @@
 {
 	"schema_version": "imm_ptl:v1",
-	"from": [
-		"imm_ptl:any_dimension"
-	],
+	"from":
+		["imm_ptl:any_dimension"],
 	"to": "dalekmod:tardis",
 	"form": {
+		"type": "imm_ptl:imm_ptl:convert_conventional_portal",
 		"from_frame_block": "dalekmod:tardis",
+		"area_block": "minecraft:air",
 		"to_frame_block": "dalekmod:tardis_door_hitbox",
 		"generate_frame_if_not_found": false
 	},
