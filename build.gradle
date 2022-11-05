@@ -71,6 +71,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:3987010")
+    implementation fg.deobf("curse.maven:immersive-portals-for-forge-355440:3562072")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
