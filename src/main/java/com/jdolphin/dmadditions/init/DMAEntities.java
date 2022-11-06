@@ -36,7 +36,8 @@ public class DMAEntities {
 	static {
 		
 		WOODEN_CYBERMAN_ENTITY = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman", () -> {
-			return EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F).build((new ResourceLocation("dalekmod", "wooden_cyberman")).toString());
+			return EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
+				.build((new ResourceLocation("dalekmod", "wooden_cyberman")).toString());
 		});
 	}
 }

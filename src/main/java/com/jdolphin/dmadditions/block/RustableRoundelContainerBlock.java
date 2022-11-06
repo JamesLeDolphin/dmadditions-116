@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.block;
 
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
-import com.swdteam.common.block.RotatableTileEntityBase;
+import com.swdteam.common.block.IRust;
 import com.swdteam.common.block.RoundelBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.monster.piglin.PiglinTasks;
@@ -33,10 +33,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+public class RustableRoundelContainerBlock extends BarrelBlock implements IRust {
 
-public class RoundelContainerBlock extends BarrelBlock {
-
-	public RoundelContainerBlock(Properties p_i49996_1_) {
+	public RustableRoundelContainerBlock(Properties p_i49996_1_) {
 		super(p_i49996_1_);
 	}
 
@@ -72,7 +71,7 @@ public class RoundelContainerBlock extends BarrelBlock {
 			((RoundelContainerTileEntity) tileentity).recheckOpen();
 		}
 	}
-	public static class WaterLoggable extends RoundelContainerBlock implements IWaterLoggable {
+	public static class WaterLoggable extends RustableRoundelContainerBlock implements IWaterLoggable {
 		public static final BooleanProperty WATERLOGGED;
 
 		public WaterLoggable(AbstractBlock.Properties properties) {
@@ -82,7 +81,7 @@ public class RoundelContainerBlock extends BarrelBlock {
 
 		@OnlyIn(Dist.CLIENT)
 		public boolean skipRendering(BlockState p_200122_1_, BlockState p_200122_2_, Direction p_200122_3_) {
-			return p_200122_2_.is(this) ? true : super.skipRendering(p_200122_1_, p_200122_2_, p_200122_3_);
+			return p_200122_2_.is(this) || super.skipRendering(p_200122_1_, p_200122_2_, p_200122_3_);
 		}
 
 		public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -109,7 +108,7 @@ public class RoundelContainerBlock extends BarrelBlock {
 
 		protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> state) {
 			super.createBlockStateDefinition(state);
-			state.add(new Property[]{WATERLOGGED});
+			state.add(WATERLOGGED);
 		}
 
 		static {
