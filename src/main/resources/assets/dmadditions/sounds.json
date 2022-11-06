@@ -4,5 +4,12 @@
 		"sounds": [
 			"dmadditions:item/pistol/shoot"
 		]
-	}
+	},
+
+	"block.handbrake.copperhandbrake": {
+    		"subtitle": "subtitles.block.handbrake.copperhandbrake",
+    		"sounds": [
+    			"dmadditions:block/handbrake/copperhandbrake"
+    		]
+    	}
 }

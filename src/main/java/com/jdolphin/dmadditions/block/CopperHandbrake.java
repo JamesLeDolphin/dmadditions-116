@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
@@ -29,7 +30,7 @@ public class CopperHandbrake extends BetterFlightLeverBlock{
 				if (data.isInFlight()) {
 					if (data.timeLeft() == 0.0D) {
 						if (TardisActionList.remat(player, worldIn, data)) {
-							worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+							worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMASoundEvents.COPPER_HANDBRAKE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
 							this.switchLever(state, worldIn, pos);
 						}
 					} else {
