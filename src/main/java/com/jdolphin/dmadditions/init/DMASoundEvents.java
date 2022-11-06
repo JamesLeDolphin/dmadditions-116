@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> PISTOL_SHOOT;
 	public static final RegistryObject<SoundEvent> COPPER_HANDBRAKE;
+	public static final RegistryObject<SoundEvent> CORAL_HANDBRAKE;
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
 		return register.register(registryName,
@@ -19,5 +20,6 @@ public class DMASoundEvents {
 	static {
 		PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
 		COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copperhandbrake");
+		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coralhandbrake");
 	}
 }

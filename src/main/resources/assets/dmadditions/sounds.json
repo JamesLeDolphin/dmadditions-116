@@ -11,5 +11,11 @@
     		"sounds": [
     			"dmadditions:block/handbrake/copperhandbrake"
     		]
-    	}
+    	},
+	"block.handbrake.coralhandbrake": {
+		"subtitle": "subtitles.block.handbrake.coralhandbrake",
+		"sounds": [
+			"dmadditions:block/handbrake/coralhandbrake"
+		]
+	}
 }

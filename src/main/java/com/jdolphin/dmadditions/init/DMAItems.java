@@ -98,6 +98,12 @@ public class DMAItems {
 		if (AdventUnlock.canAdventBeUnlocked(17)) {
 			WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
 		}
+		if (AdventUnlock.canAdventBeUnlocked(17)) {
+			UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
+				() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
+					DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+		}
+
 		PISTOL = RegistryHandler.ITEMS.register("pistol",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
 				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
@@ -111,8 +117,6 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
-		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
-			() -> new UnitGun((new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 		LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
 			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 

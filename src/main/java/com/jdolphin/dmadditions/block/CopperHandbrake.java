@@ -19,34 +19,15 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-public class CopperHandbrake extends BetterFlightLeverBlock{
+import static com.swdteam.common.block.AbstractLeverBlock.PULLED;
+
+public class CopperHandbrake extends BetterFlightLeverBlock {
 	public CopperHandbrake(Properties properties) {
 		super(properties);
 	}
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-		if (handIn == Hand.MAIN_HAND && !worldIn.isClientSide) {
-			if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
-				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
-				if (data.isInFlight()) {
-					if (data.timeLeft() == 0.0D) {
-						if (TardisActionList.remat(player, worldIn, data)) {
-							worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMASoundEvents.COPPER_HANDBRAKE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-							this.switchLever(state, worldIn, pos);
-						}
-					} else {
-						int seconds = (int) data.timeLeft();
-						String s = seconds + "s";
-						ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.traveling", new StringTextComponent(s)), ChatUtil.MessageType.CHAT);
-					}
-				} else if (TardisActionList.demat(player, worldIn, data)) {
-					worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMASoundEvents.COPPER_HANDBRAKE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-					this.switchLever(state, worldIn, pos);
-				}
-			} else {
-				this.switchLever(state, worldIn, pos);
-			}
-		}
 
-		return ActionResultType.CONSUME;
+	public void switchLever(BlockState state, World worldIn, BlockPos pos) {
+		worldIn.setBlockAndUpdate(pos, (BlockState)state.setValue(POWERED, !(Boolean)state.getValue(POWERED)));
+		worldIn.playSound((PlayerEntity)null, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (SoundEvent)DMASoundEvents.COPPER_HANDBRAKE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
 	}
 }

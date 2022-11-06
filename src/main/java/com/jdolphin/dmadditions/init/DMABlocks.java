@@ -67,7 +67,7 @@ public class DMABlocks {
 		"door_open_panel", DMTabs.DM_TARDIS);
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
-		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
+		() -> new CoralHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"coral_flight_lever", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlock(
