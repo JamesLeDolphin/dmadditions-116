@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static com.swdteam.common.block.IRust.rustedMap;
 
 @Mixin(IRust.class)
-public class AddRustMixin {
-	@Inject(method = "addRustedVariants()V", at = @At("HEAD"), remap = false)
+public abstract class AddRustMixin {
+	@Inject(method = "addRustedVariants()V", at = @At("TAIL"), remap = false)
 
-	static void addRustedVariants(CallbackInfo ci) {
+	private static void addRustedVariants(CallbackInfo ci) {
 		rustedMap.put(DMABlocks.STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER.get());
 		rustedMap.put(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());
 		rustedMap.put(DMABlocks.FILLED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.FILLED_RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());

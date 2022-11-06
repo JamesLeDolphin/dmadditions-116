@@ -82,7 +82,7 @@ public class RoundelContainerBlock extends BarrelBlock {
 
 		@OnlyIn(Dist.CLIENT)
 		public boolean skipRendering(BlockState p_200122_1_, BlockState p_200122_2_, Direction p_200122_3_) {
-			return p_200122_2_.is(this) ? true : super.skipRendering(p_200122_1_, p_200122_2_, p_200122_3_);
+			return p_200122_2_.is(this) || super.skipRendering(p_200122_1_, p_200122_2_, p_200122_3_);
 		}
 
 		public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -109,7 +109,7 @@ public class RoundelContainerBlock extends BarrelBlock {
 
 		protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> state) {
 			super.createBlockStateDefinition(state);
-			state.add(new Property[]{WATERLOGGED});
+			state.add(WATERLOGGED);
 		}
 
 		static {
