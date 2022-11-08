@@ -1,5 +1,5 @@
 {
-	"default_rotation": 180,
+	"default_rotation": 360,
 	"door_offset": [ 16, 9, 9.5 ],
 	"block_offset": [ 0, -2, 0 ],
 	"name": "dmadditions.interior.name.australian",

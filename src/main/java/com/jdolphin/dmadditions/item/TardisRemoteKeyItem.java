@@ -26,6 +26,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.Objects;
+
 
 public class TardisRemoteKeyItem extends TardisKeyItem {
 	public TardisRemoteKeyItem(Properties properties, String tardisLocation) {
@@ -43,16 +45,13 @@ public class TardisRemoteKeyItem extends TardisKeyItem {
 		BlockState blockState = world.getBlockState(pos);
 //        ChatUtil.sendCompletedMsg(context.getPlayer(), String.valueOf(blockState.getBlock().is(DMBlocks.TARDIS.get())) , ChatUtil.MessageType.CHAT);
 
-		if (context.getItemInHand().hasTag() && context.getItemInHand().getTag().contains(DMNBTKeys.LINKED_ID)) {
+		if (context.getItemInHand().hasTag() && Objects.requireNonNull(context.getItemInHand().getTag()).contains(DMNBTKeys.LINKED_ID)) {
 			if (super.useOn(context).equals(ActionResultType.CONSUME)) return ActionResultType.CONSUME;
 
 			BlockPos posUp = context.getClickedPos().above();
-			boolean canContinue = false;
 			if (WorldUtils.canPlace(world, pos, false)) {
 				posUp = pos;
-				canContinue = true;
 			} else if (world.isEmptyBlock(posUp)) {
-				canContinue = true;
 			}
 
 			if (!world.getBlockState(posUp).canBeReplaced(new DirectionalPlaceContext(world, posUp, Direction.NORTH, context.getItemInHand(), Direction.NORTH))) {
