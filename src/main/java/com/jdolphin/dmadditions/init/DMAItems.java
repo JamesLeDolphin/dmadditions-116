@@ -109,17 +109,17 @@ public class DMAItems {
 				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
-			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS).stacksTo(1), ""));
+			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
 
 		DINO_NUGGETS = RegistryHandler.ITEMS.register("dino_nuggets",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));
 
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
-		if (AdventUnlock.canAdventBeUnlocked(9)) {
-			LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
-				() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
-		}
+
+		LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
+			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
+
 
 
 		STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",
