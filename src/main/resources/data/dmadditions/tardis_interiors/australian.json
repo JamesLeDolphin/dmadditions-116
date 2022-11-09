@@ -1,7 +1,7 @@
 {
-	"default_rotation": 180,
-	"door_offset": [ 16, 9, 9.5 ],
-	"block_offset": [ 0, -2, 0 ],
+	"default_rotation": 0,
+	"door_offset": [ 16, 9, 22.5 ],
+	"block_offset": [ 0, 0, 0 ],
 	"name": "dmadditions.interior.name.australian",
 	"schematic": "dmadditions:australia",
 	"preview": "dmadditions:textures/gui/interior_selection/australian.png",
