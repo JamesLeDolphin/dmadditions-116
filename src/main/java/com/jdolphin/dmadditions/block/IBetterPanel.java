@@ -86,7 +86,7 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 			}
 		}
 
-		return null;
+		return this.defaultBlockState();
 	}
 
 	@Override
