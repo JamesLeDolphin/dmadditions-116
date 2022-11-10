@@ -61,10 +61,10 @@ public class DMABlocks {
 	}
 
 
-	public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
+	/*public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
 		() -> new DoorPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak()
 			.noOcclusion().sound(SoundType.STONE)),
-		"door_open_panel", DMTabs.DM_TARDIS);
+		"door_open_panel", DMTabs.DM_TARDIS);*/
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
 		() -> new CoralHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
