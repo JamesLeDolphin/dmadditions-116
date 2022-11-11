@@ -76,7 +76,14 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 		for (Direction direction : context.getNearestLookingDirections()) {
 			BlockState blockstate;
 			if (direction.getAxis() == Direction.Axis.Y) {
-				blockstate = this.defaultBlockState().setValue(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR).setValue(FACING, context.getHorizontalDirection().getOpposite());
+				blockstate = this.defaultBlockState()
+
+
+					.setValue(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR)
+
+
+					.setValue(FACING, context.getHorizontalDirection()
+						.getOpposite());
 			} else {
 				blockstate = this.defaultBlockState().setValue(FACE, AttachFace.WALL).setValue(FACING, direction.getOpposite());
 			}
@@ -86,7 +93,7 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 			}
 		}
 
-		return this.defaultBlockState();
+		return defaultBlockState();
 	}
 
 	@Override
