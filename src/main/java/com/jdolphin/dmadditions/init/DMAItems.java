@@ -7,6 +7,7 @@ import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.jdolphin.dmadditions.item.UnitGun;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
+import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.item.FoodItem;
@@ -98,15 +99,14 @@ public class DMAItems {
 		if (AdventUnlock.canAdventBeUnlocked(17)) {
 			WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
 		}
-		if (AdventUnlock.canAdventBeUnlocked(17)) {
+		if (AdventUnlock.canAdventBeUnlocked(5)) {
 			UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
 				() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
 					DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 		}
 
 		PISTOL = RegistryHandler.ITEMS.register("pistol",
-			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
-				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+			() -> new UnitGun(DMItemTiers.STEEL, 100, DMAProjectiles.BULLET, DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().tab(ItemGroup.TAB_COMBAT))));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
 			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
@@ -117,9 +117,10 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
-		LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
-			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
-
+		if (AdventUnlock.canAdventBeUnlocked(9)) {
+			LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
+				() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
+		}
 
 
 		STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",

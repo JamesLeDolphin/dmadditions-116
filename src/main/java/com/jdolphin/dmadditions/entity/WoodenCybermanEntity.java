@@ -38,7 +38,6 @@ import net.minecraftforge.common.extensions.IForgeEntity;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttackMob, IForgeEntity {
-	public static final DataParameter<Integer> CYBERMAN_TYPE;
 	public static final DataParameter<Boolean> HAS_GUN;
 	private Goal meeleAttack;
 	private ItemStack pickResult;
@@ -78,9 +77,6 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 	public void addAdditionalSaveData(CompoundNBT compound) {
 		compound.putBoolean(DMNBTKeys.GUN_ARMED, (Boolean)this.getEntityData().get(HAS_GUN));
-		if (this.entityData != null) {
-			compound.putInt(DMNBTKeys.TYPE_CYBER, (Integer)this.entityData.get(CYBERMAN_TYPE));
-		}
 
 		super.addAdditionalSaveData(compound);
 	}
@@ -88,12 +84,6 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 	public void readAdditionalSaveData(CompoundNBT compound) {
 		if (compound.contains(DMNBTKeys.GUN_ARMED)) {
 			this.getEntityData().set(HAS_GUN, compound.getBoolean(DMNBTKeys.GUN_ARMED));
-		}
-
-		if (compound.contains(DMNBTKeys.TYPE_CYBER)) {
-			this.setCybermanType(compound.getInt(DMNBTKeys.TYPE_CYBER));
-		} else {
-			this.setCybermanType(this.random.nextInt(4));
 		}
 
 		super.readAdditionalSaveData(compound);
@@ -105,24 +95,9 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 	protected void defineSynchedData() {
 		this.getEntityData().define(HAS_GUN, this.level.random.nextInt(5) == 3);
-		this.getEntityData().define(CYBERMAN_TYPE, this.random.nextInt(4));
 		super.defineSynchedData();
 	}
 
-	public int getCybermanType() {
-		return (Integer)this.entityData.get(CYBERMAN_TYPE);
-	}
-
-	public void setCybermanType(int i) {
-		if (i < 0 || i >= 4) {
-			i = this.random.nextInt(3);
-		}
-
-		if (this.entityData != null) {
-			this.entityData.set(CYBERMAN_TYPE, i);
-		}
-
-	}
 
 	public void performRangedAttack(LivingEntity target, float distanceFactor) {
 		double d0 = 0.0;
@@ -210,7 +185,6 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 	}
 
 	static {
-		CYBERMAN_TYPE = EntityDataManager.defineId(AutonEntity.class, DataSerializers.INT);
 		HAS_GUN = EntityDataManager.defineId(WoodenCybermanEntity.class, DataSerializers.BOOLEAN);
 	}
 }
