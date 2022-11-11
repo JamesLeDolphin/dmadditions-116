@@ -10,7 +10,8 @@
 		"DMBlocksMixin",
 		"ItemGroupMixin",
 		"DalekRegistryMixin",
-		"ItemPropertiesMixin"
+		"ItemPropertiesMixin",
+		"TardisKeyMixin"
 	],
 	"client": [
 		"ClientProxyMixin",
