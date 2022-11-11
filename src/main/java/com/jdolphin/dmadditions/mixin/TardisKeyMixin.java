@@ -17,7 +17,7 @@ public class TardisKeyMixin {
 	@Inject(method = "<init>(Lnet/minecraft/item/Item$Properties;Ljava/lang/String;)V", at = @At("TAIL"))
 
 	private void TardisKeyItem(Item.Properties properties, String tardisLocation, CallbackInfo ci) {
-		//super(properties.stacksTo(1));
+		super(properties.stacksTo(1));
 		this.tardisLocation = tardisLocation;
 	}
 }
