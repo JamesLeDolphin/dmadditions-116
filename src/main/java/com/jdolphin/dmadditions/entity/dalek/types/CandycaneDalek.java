@@ -12,11 +12,11 @@ public class CandycaneDalek extends DalekBase {
 		super(dalekName);
 	}
 		public float getMaxHealth() {
-			return 15.0F;
+			return 17.0F;
 		}
 
 		public DMProjectiles.Laser getLaser(DalekEntity dalek) {
-			return DMProjectiles.GREEN_LASER;
+			return DMProjectiles.NAUSEA_LASER;
 		}
 
 		public SoundEvent getAttackSound(Entity e) {

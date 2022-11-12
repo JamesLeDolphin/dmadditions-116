@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.mixin;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.entity.dalek.types.CandycaneDalek;
 import com.jdolphin.dmadditions.entity.dalek.types.DMADalekType;
 import com.jdolphin.dmadditions.entity.dalek.types.DalekSantaBase;
 import com.jdolphin.dmadditions.entity.dalek.types.IronsideDalekBase;
@@ -26,13 +27,19 @@ public class DalekRegistryMixin {
 	private static Map<String, IDalek> daleks = new HashMap();
 	private static IDalek DALEK_SANTA;
 	private static IDalek IRONSIDE;
+	private static IDalek CANDYCANE;
 
 	@Inject(method = "init()V", at = @At("HEAD"), remap = false)
 	private static void init(CallbackInfo ci) {
 		if (AdventUnlock.canAdventBeUnlocked(24)) {
 			DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 		}
-		if (AdventUnlock.canAdventBeUnlocked(22)) {
+		if (AdventUnlock.canAdventBeUnlocked(2)) {
+			CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
+			CANDYCANE.addChild("blue_candycane_dalek");
+			CANDYCANE.addChild("red_candycane_dalek");
+		}
+			if (AdventUnlock.canAdventBeUnlocked(22)) {
 			//IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		}
 	}

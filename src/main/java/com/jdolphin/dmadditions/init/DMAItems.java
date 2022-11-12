@@ -35,7 +35,7 @@ public class DMAItems {
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
 	public static RegistryObject<Item> CANDY_CANE;
 
-	public static RegistryObject<Item> STEEL_HELMET;
+	/*public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
 	public static RegistryObject<Item> STEEL_LEGGINGS;
 	public static RegistryObject<Item> STEEL_BOOTS;
@@ -58,7 +58,8 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_HELMET;
 	public static RegistryObject<Item> METALERT_CHESTPLATE;
 	public static RegistryObject<Item> METALERT_LEGGINGS;
-	public static RegistryObject<Item> METALERT_BOOTS;
+	public static RegistryObject<Item> METALERT_BOOTS;*/
+
 	public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
 
 
@@ -123,7 +124,7 @@ public class DMAItems {
 		}
 
 
-		STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",
+		/*STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",
 			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		STEEL_CHESTPLATE = RegistryHandler.ITEMS.register("steel_chestplate",
@@ -181,6 +182,6 @@ public class DMAItems {
 			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.LEGS, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		METALERT_BOOTS = RegistryHandler.ITEMS.register("metalert_boots",
-			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));*/
 	}
 }

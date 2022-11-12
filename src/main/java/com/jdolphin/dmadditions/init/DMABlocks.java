@@ -171,7 +171,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> TARDIS_GLOBE;
-	public static RegistryObject<Block> WRAITH;
+	public static RegistryObject<Block> WREATH;
 
 
 	static {
@@ -179,7 +179,7 @@ public class DMABlocks {
 		TARDIS_GLOBE = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "tardis_snowglobe", DMTabs.DM_TARDIS);
 		}
 		if (AdventUnlock.canAdventBeUnlocked(3)) {
-			WRAITH = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "wraith", ItemGroup.TAB_DECORATIONS);
+			WREATH = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "wreath", ItemGroup.TAB_DECORATIONS);
 		}
 
 
