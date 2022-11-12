@@ -5,6 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.properties.AttachFace;
@@ -69,31 +71,18 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 	default VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return getShape(state, worldIn, pos, context);
 	}
+	default FluidState getFluidState(BlockState state) {
+		return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+	}
 
 	@Nullable
 	@Override
 	default BlockState getStateForPlacement(BlockItemUseContext context) {
-		for (Direction direction : context.getNearestLookingDirections()) {
-			BlockState blockstate;
-			if (direction.getAxis() == Direction.Axis.Y) {
-				blockstate = this.defaultBlockState()
-
-
-					.setValue(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR)
-
-
-					.setValue(FACING, context.getHorizontalDirection()
-						.getOpposite());
-			} else {
-				blockstate = this.defaultBlockState().setValue(FACE, AttachFace.WALL).setValue(FACING, direction.getOpposite());
-			}
-
-			if (blockstate.canSurvive(context.getLevel(), context.getClickedPos())) {
-				return blockstate;
-			}
-		}
-
-		return defaultBlockState();
+		Direction direction = context.getClickedFace();
+		BlockPos blockpos = context.getClickedPos();
+		FluidState fluidstate = context.getLevel().getFluidState(blockpos);
+		BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos().relative(direction.getOpposite()));
+		return blockstate.is() && blockstate.getValue(FACING) == direction ? ((BlockState)this.defaultBlockState().setValue(FACING, direction.getOpposite())).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER) : (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, direction)).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 	}
 
 	@Override
