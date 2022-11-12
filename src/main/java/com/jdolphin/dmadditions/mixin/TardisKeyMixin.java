@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TardisKeyItem.class)
 abstract class TardisKeyMixin {
-	@Shadow
+	/*@Shadow
 	String tardisLocation;
 
 	@Redirect(method = "<init>(Lnet/minecraft/item/Item$Properties;Ljava/lang/String;)V",
@@ -20,5 +20,5 @@ abstract class TardisKeyMixin {
 	private void TardisKeyItem(Item.Properties properties, String tardisLocation) {
 		return properties.tab(DMTabs.DM_TARDIS);
 		this.tardisLocation = tardisLocation;
-	}
+	}*/
 }

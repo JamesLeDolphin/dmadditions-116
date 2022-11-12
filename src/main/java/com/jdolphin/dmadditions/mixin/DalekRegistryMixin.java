@@ -38,6 +38,7 @@ public class DalekRegistryMixin {
 			CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
 			CANDYCANE.addChild("blue_candycane_dalek");
 			CANDYCANE.addChild("red_candycane_dalek");
+			CANDYCANE.addChild("orange_candycane_dalek");
 		}
 			if (AdventUnlock.canAdventBeUnlocked(22)) {
 			//IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
