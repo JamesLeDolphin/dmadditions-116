@@ -9,7 +9,6 @@
 	"mixins": [
 		"DMBlocksMixin",
 		"ItemGroupMixin",
-		"DalekRegistryMixin",
 		"ItemPropertiesMixin"
 	],
 	"client": [

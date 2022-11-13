@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.client.init.DMAEntityRenderRegistry;
 import com.jdolphin.dmadditions.init.*;
+import com.swdteam.common.init.DMDalekRegistry;
 
 public class RegistryHandler {
 	//	public static DMAdditionsBlocks dmAdditionsBlocks;
@@ -18,9 +19,12 @@ public class RegistryHandler {
 
 
 	public static void init() {
-
+		DMADalekRegistry.init();
 		DMAProjectiles.init();
 		DMAEntities.init();
+		//DMASpawnerRegistry.init();
+		DMASpawnerRegistry.initDalekSpawns();
+
 
 		dmaSounds = new DMASoundEvents();
 		dmaItems = new DMAItems();
