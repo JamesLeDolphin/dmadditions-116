@@ -33,7 +33,6 @@ public class DMADalekRegistry {
 		if (AdventUnlock.canAdventBeUnlocked(24)) {
 			DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 		}
-
 		if (AdventUnlock.canAdventBeUnlocked(2)) {
 			CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
 			CANDYCANE.addChild("blue_candycane_dalek");

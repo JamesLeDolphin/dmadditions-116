@@ -16,7 +16,7 @@ public class CandycaneDalek extends DalekBase {
 		}
 
 		public DMProjectiles.Laser getLaser(DalekEntity dalek) {
-			return DMProjectiles.NAUSEA_LASER;
+			return DMProjectiles.BLUE_LASER;
 		}
 
 		public SoundEvent getAttackSound(Entity e) {

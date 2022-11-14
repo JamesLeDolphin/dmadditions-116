@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.swdteam.common.init.DMBiomes;
 import com.swdteam.common.init.DMDalekRegistry;
 import com.swdteam.common.init.DMEntities;
+import com.swdteam.common.init.DMSpawnerRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -20,7 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
-public class DMASpawnerRegistry {
+public class DMASpawnerRegistry extends DMSpawnerRegistry {
 	public static Map<ResourceLocation, com.jdolphin.dmadditions.init.DMASpawnerRegistry.SpawnInfo> spawns = new HashMap();
 
 	public DMASpawnerRegistry() {
@@ -30,8 +31,8 @@ public class DMASpawnerRegistry {
 	}
 
 	public static void initDalekSpawns() {
-		DMADalekRegistry.addSpawn(DMADalekRegistry.DALEK_SANTA, new RegistryKey[]{Biomes.GRAVELLY_MOUNTAINS});
-		DMADalekRegistry.addSpawn(DMADalekRegistry.CANDYCANE, new RegistryKey[]{Biomes.BASALT_DELTAS});
+		DMADalekRegistry.addSpawn(DMADalekRegistry.DALEK_SANTA, new RegistryKey[]{Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS});
+		DMADalekRegistry.addSpawn(DMADalekRegistry.CANDYCANE, new RegistryKey[]{Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS});
 
 	}
 

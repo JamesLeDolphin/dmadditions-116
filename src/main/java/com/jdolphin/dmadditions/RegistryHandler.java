@@ -22,7 +22,7 @@ public class RegistryHandler {
 		DMADalekRegistry.init();
 		DMAProjectiles.init();
 		DMAEntities.init();
-		//DMASpawnerRegistry.init();
+		DMASpawnerRegistry.init();
 		DMASpawnerRegistry.initDalekSpawns();
 
 
