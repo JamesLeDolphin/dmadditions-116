@@ -87,10 +87,21 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 	default BlockState getStateForPlacement(BlockItemUseContext context) {
 		Direction direction = context.getClickedFace();
 		BlockPos blockpos = context.getClickedPos();
-		FluidState fluidstate = context.getLevel().getFluidState(blockpos);
-		BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos().relative(direction.getOpposite()));
-		return blockstate.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER) : this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+		BlockState blockstate;
+		if (direction.getAxis() == Direction.Axis.Y) {
+			blockstate = this.defaultBlockState().setValue(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR).setValue(FACING, context.getHorizontalDirection());
+		} else {
+			blockstate = this.defaultBlockState().setValue(FACE, AttachFace.WALL).setValue(FACING, direction.getOpposite());
+		}
+
+		if (blockstate.canSurvive(context.getLevel(), context.getClickedPos())) {
+			return blockstate;
+
+		}
+		return null;
 	}
+
+
 
 	@Override
 	default ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
