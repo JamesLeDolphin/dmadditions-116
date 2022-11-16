@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -10,8 +11,11 @@ public class DMADimensions {
 
 	public DMADimensions() {
 	}
-	static {
-		MOON = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod", "moon"));
 
+	static {
+		if (AdventUnlock.canAdventBeUnlocked(16)) {
+			MOON = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod", "moon"));
+
+		}
 	}
 }
