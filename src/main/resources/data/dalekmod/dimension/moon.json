@@ -1,64 +1,64 @@
 {
-	"generator":
-	{
+	"generator": {
 		"type": "minecraft:noise",
 		"seed": 286956243,
-		"biome_source":
-		{
+		"biome_source": {
+			"type": "minecraft:fixed",
 			"seed": 286956243,
-			"type": "minecraft:multi_noise",
-			"temperature_noise":
-			{
-				"firstOctave": -7,
-				"amplitudes":
-				[
-					1,
-					1
+			"biome": "dalekmod:moon",
+			"temperature_noise": {
+				"firstOctave": -9,
+				"amplitudes": [
+					1.0,
+					1.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0
 				]
 			},
-			"humidity_noise":
-			{
-				"firstOctave": -7,
-				"amplitudes":
-				[
-					1,
-					1
+			"humidity_noise": {
+				"firstOctave": -9,
+				"amplitudes": [
+					1.0,
+					1.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0,
+					2.0
 				]
 			},
-			"altitude_noise":
-			{
-				"firstOctave": -7,
-				"amplitudes":
-				[
-					1,
-					1
+			"altitude_noise": {
+				"firstOctave": -5,
+				"amplitudes": [
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					1.0
 				]
 			},
-			"weirdness_noise":
-			{
+			"weirdness_noise": {
 				"firstOctave": -7,
-				"amplitudes":
-				[
-					1,
-					1
+				"amplitudes": [
+					1.0,
+					1.0
 				]
-			},
-			"biomes":
-			[
-				{
-					"biome": "dalekmod:irradiated_jungle",
-					"parameters":
-					{
-						"altitude": 0,
-						"weirdness": 0,
-						"offset": 0,
-						"temperature": 0.8,
-						"humidity": 0.4
-					}
-				}
-			]
+			}
 		},
-		"settings": "dalekmod:skaro_noise"
+		"settings": "dalekmod:classic_noise"
 	},
 	"type": "dalekmod:moon"
 }

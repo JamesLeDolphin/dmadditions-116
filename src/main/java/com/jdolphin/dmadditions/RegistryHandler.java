@@ -19,7 +19,7 @@ public class RegistryHandler {
 
 
 	public static void init() {
-		DMADalekRegistry.init();
+		//DMADalekRegistry.init();
 		DMAProjectiles.init();
 		DMAEntities.init();
 		DMASpawnerRegistry.init();
