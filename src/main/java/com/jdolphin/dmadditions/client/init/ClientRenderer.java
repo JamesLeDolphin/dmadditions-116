@@ -1,5 +1,7 @@
-package com.jdolphin.dmadditions.client.clientinit;
+package com.jdolphin.dmadditions.client.init;
 
+import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMoon;
+import com.jdolphin.dmadditions.init.DMADimensions;
 import com.swdteam.client.dimension.sky.SkyRendererMCClassic;
 import com.swdteam.common.init.DMDimensions;
 import net.minecraft.client.Minecraft;
@@ -14,10 +16,10 @@ public class ClientRenderer {
 	@SubscribeEvent
 	public static void skyRenderer(RenderWorldLastEvent event) {
 		ClientWorld world;
-		if (Minecraft.getInstance().level.dimension().equals(DMDimensions.CLASSIC)) {
+		if (Minecraft.getInstance().level.dimension().equals(DMADimensions.MOON)) {
 			world = Minecraft.getInstance().level;
 			if (world.effects().getSkyRenderHandler() == null) {
-				world.effects().setSkyRenderHandler(SkyRendererMCClassic.INSTANCE);
+				world.effects().setSkyRenderHandler(SkyRendererMoon.INSTANCE);
 			}
 		}
 	}

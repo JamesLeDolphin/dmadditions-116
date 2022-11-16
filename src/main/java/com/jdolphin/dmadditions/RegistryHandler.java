@@ -10,7 +10,7 @@ public class RegistryHandler {
 	public static DMABiomes dmaBiomes;
 	//public static DMAEntities dmaEntities;
 	public static DMABlockEntities dmaTiles;
-	//	public static DMAdditionsWorldCarvers dmCarvers;
+	public static DMAWorldCarvers dmaCarvers;
 	//	public static DMAdditionsCraftingTypes dmAdditionsCraftingTypes;
 	public static DMAEntityRenderRegistry dmaEntityRenderer;
 	public static DMAItems dmaItems;
@@ -24,6 +24,7 @@ public class RegistryHandler {
 		DMAEntities.init();
 		DMASpawnerRegistry.init();
 
+		dmaCarvers = new DMAWorldCarvers();
 		dmaBiomes = new DMABiomes();
 		dmaSounds = new DMASoundEvents();
 		dmaItems = new DMAItems();

@@ -26,9 +26,6 @@ public class SkyRendererMoon implements ISkyRenderHandler {
 	}
 
 	public void render(int ticks, float partialTicks, MatrixStack matrixStack, ClientWorld world, Minecraft mc) {
-		if (ClientPlayerData.inCustomLava) {
-			RenderSystem.enableFog();
-		}
 
 		RenderSystem.disableAlphaTest();
 		RenderSystem.defaultBlendFunc();
