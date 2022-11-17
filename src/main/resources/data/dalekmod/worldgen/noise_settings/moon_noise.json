@@ -34,5 +34,11 @@
 	},
 	"default_block": {
 		"Name": "dalekmod:anorthosite"
+	},
+	"default_fluid": {
+		"Properties": {
+			"level": "0"
+		},
+		"Name": "minecraft:water"
 	}
 }
