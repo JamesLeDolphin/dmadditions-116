@@ -19,8 +19,7 @@ import net.minecraftforge.client.ISkyRenderHandler;
 public class SkyRendererMoon implements ISkyRenderHandler {
 	public static SkyRendererMoon INSTANCE = new SkyRendererMoon();
 	public static MatrixStack matrixStackIn = new MatrixStack();
-	public static ResourceLocation SKY = new ResourceLocation("dalekmod", "textures/sky/classic.png");
-	public static ResourceLocation CLOUDS = new ResourceLocation("dalekmod", "textures/sky/clouds.png");
+	public static ResourceLocation SKY = new ResourceLocation("dalekmod", "textures/sky/moon.png");
 
 	public SkyRendererMoon() {
 	}

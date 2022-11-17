@@ -6,10 +6,17 @@ import com.swdteam.client.dimension.sky.SkyRendererMCClassic;
 import com.swdteam.common.init.DMDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(
+	modid = "dalekmod",
+	bus = Mod.EventBusSubscriber.Bus.FORGE,
+	value = {Dist.CLIENT}
+)
 public class ClientRenderer {
 	public ClientRenderer() {
 	}
