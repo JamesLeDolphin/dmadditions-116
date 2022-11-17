@@ -106,8 +106,9 @@ public class DMAItems {
 					DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 		}
 
-		PISTOL = RegistryHandler.ITEMS.register("pistol",
-			() -> new UnitGun(DMItemTiers.STEEL, 100, DMAProjectiles.BULLET, DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().tab(ItemGroup.TAB_COMBAT))));
+		 PISTOL = RegistryHandler.ITEMS.register("pistol", ()
+			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
+			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
 			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
