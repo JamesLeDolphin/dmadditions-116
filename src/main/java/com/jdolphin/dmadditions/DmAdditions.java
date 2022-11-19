@@ -66,7 +66,6 @@ public class DmAdditions {
 	}
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		DMA_PROXY.doClientStuff(event);
-		RenderTypeLookup.setRenderLayer(DMABlocks.WREATH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
