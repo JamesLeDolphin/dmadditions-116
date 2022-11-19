@@ -1,19 +1,5 @@
 {
 	"variants": {
-		"facing=east": {
-			"model": "dalekmod:block/wreath",
-			"y": 90
-		},
-		"facing=north": {
-			"model": "dalekmod:block/wreath"
-		},
-		"facing=south": {
-			"model": "dalekmod:block/wreath",
-			"y": 180
-		},
-		"facing=west": {
-			"model": "dalekmod:block/wreath",
-			"y": 270
-		}
+		"": { "model": "dalekmod:block/wreath" }
 	}
 }

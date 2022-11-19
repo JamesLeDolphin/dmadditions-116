@@ -23,6 +23,7 @@ public class ClientRenderer {
 	@SubscribeEvent
 	public static void skyRenderer(RenderWorldLastEvent event) {
 		ClientWorld world;
+		assert Minecraft.getInstance().level != null;
 		if (Minecraft.getInstance().level.dimension().equals(DMADimensions.MOON)) {
 			world = Minecraft.getInstance().level;
 			if (world.effects().getSkyRenderHandler() == null) {
