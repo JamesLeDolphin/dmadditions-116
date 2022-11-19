@@ -1,0 +1,81 @@
+{
+	"rolls": 1,
+	"entries": [{
+		"type": "minecraft:item",
+		"name": "dalekmod:candy_cane_orange",
+		"conditions": [{
+			"condition": "minecraft:killed_by_player",
+			"inverse": false
+		}, {
+			"condition": "minecraft:random_chance",
+			"chance": 0.03
+		}, {
+			"condition": "minecraft:entity_properties",
+			"entity": "this",
+			"predicate": {
+				"type": "dalekmod:dalek",
+				"nbt": "{DalekType:\"candy_cane_orange\"}"
+			}
+		}]
+	}]
+},{
+     "rolls": 1,
+      	"entries": [{
+      		"type": "minecraft:item",
+      		"name": "dalekmod:candy_cane_green",
+      		"conditions": [{
+      			"condition": "minecraft:killed_by_player",
+      			"inverse": false
+      		}, {
+      			"condition": "minecraft:random_chance",
+      			"chance": 0.03
+      		}, {
+      			"condition": "minecraft:entity_properties",
+      			"entity": "this",
+      			"predicate": {
+      				"type": "dalekmod:dalek",
+      				"nbt": "{DalekType:\"candy_cane_green\"}"
+      			}
+      		}]
+      	}]
+    },{
+        "rolls": 1,
+        	"entries": [{
+        		"type": "minecraft:item",
+        		"name": "dalekmod:candy_cane_blue",
+        		"conditions": [{
+        			"condition": "minecraft:killed_by_player",
+        			"inverse": false
+        		}, {
+       				"condition": "minecraft:random_chance",
+       				"chance": 0.03
+        		}, {
+        			"condition": "minecraft:entity_properties",
+        			"entity": "this",
+        			"predicate": {
+        				"type": "dalekmod:dalek",
+        				"nbt": "{DalekType:\"candy_cane_blue\"}"
+        			}
+        		}]
+        	}]
+        },{
+            "rolls": 1,
+            	"entries": [{
+            		"type": "minecraft:item",
+            		"name": "dalekmod:candy_cane_red",
+            		"conditions": [{
+            			"condition": "minecraft:killed_by_player",
+            			"inverse": false
+            		}, {
+            			"condition": "minecraft:random_chance",
+            			"chance": 0.03
+            		}, {
+            			"condition": "minecraft:entity_properties",
+            			"entity": "this",
+            			"predicate": {
+            				"type": "dalekmod:dalek",
+            				"nbt": "{DalekType:\"candy_cane_red\"}"
+            			}
+            		}]
+            	}]
+            }
