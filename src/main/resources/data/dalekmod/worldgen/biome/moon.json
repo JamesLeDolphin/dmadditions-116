@@ -1,0 +1,15 @@
+{
+	"surface_builder": "dalekmod:meteorite",
+	"depth": 0.125,
+	"scale": 0.05,
+	"temperature": 0.8,
+	"downfall": 0.4,
+	"precipitation": "rain",
+	"category": "plains",
+	"effects": "dalekmod:moon",
+	"starts": [],
+	"spawners": {},
+	"spawn_costs": {},
+	"carvers": {},
+	"features": []
+}

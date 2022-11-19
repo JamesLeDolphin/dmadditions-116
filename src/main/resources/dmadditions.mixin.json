@@ -10,6 +10,7 @@
 		"DMBlocksMixin",
 		"ItemGroupMixin",
 		"TardisKeyMixin",
+		"SpawnRegistryMixin",
 		"DalekRegistryMixin"
 	],
 	"client": [

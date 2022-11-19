@@ -62,10 +62,11 @@ public class DmAdditions {
 	}
 	private void setup(FMLCommonSetupEvent event) {
 		IRustToo.addRustedVariants();
-	GlobalEntityTypeAttributes.put((EntityType) DMAEntities.WOODEN_CYBERMAN_ENTITY.get(), WoodenCybermanEntity.setCustomAttributes().build());
+	GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN_ENTITY.get(), WoodenCybermanEntity.setCustomAttributes().build());
 	}
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		DMA_PROXY.doClientStuff(event);
+		RenderTypeLookup.setRenderLayer(DMABlocks.WREATH.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());

@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.client.init.DMAEntityRenderRegistry;
+import com.jdolphin.dmadditions.dimension.Gravity;
 import com.jdolphin.dmadditions.init.*;
 import com.swdteam.common.init.DMDalekRegistry;
 
