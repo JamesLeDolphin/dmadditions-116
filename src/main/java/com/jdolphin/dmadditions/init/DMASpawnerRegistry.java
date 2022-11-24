@@ -1,9 +1,5 @@
 package com.jdolphin.dmadditions.init;
 
-import com.swdteam.common.init.DMBiomes;
-import com.swdteam.common.init.DMDalekRegistry;
-import com.swdteam.common.init.DMEntities;
-import com.swdteam.common.init.DMSpawnerRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -21,7 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
-public class DMASpawnerRegistry extends DMSpawnerRegistry {
+public class DMASpawnerRegistry {
 	public static Map<ResourceLocation, com.jdolphin.dmadditions.init.DMASpawnerRegistry.SpawnInfo> spawns = new HashMap();
 
 	public DMASpawnerRegistry() {
@@ -71,18 +67,18 @@ public class DMASpawnerRegistry extends DMSpawnerRegistry {
 	}
 
 	public static class SpawnInfo {
-		private List<com.swdteam.common.init.DMSpawnerRegistry.SpawnInfo.Spawn> spawners = new ArrayList();
+		private List<DMASpawnerRegistry.SpawnInfo.Spawn> spawners = new ArrayList();
 
 		public SpawnInfo() {
 		}
 
 		public void addSpawn(EntityType<?> type, int weight, int min, int max, EntityClassification entType) {
-			this.spawners.add(new com.swdteam.common.init.DMSpawnerRegistry.SpawnInfo.Spawn(new MobSpawnInfo.Spawners(type, weight, min, max), entType));
+			this.spawners.add(new DMASpawnerRegistry.SpawnInfo.Spawn(new MobSpawnInfo.Spawners(type, weight, min, max), entType));
 		}
 
 		public void removeSpawn(EntityType<?> type) {
 			for(int i = 0; i < this.spawners.size(); ++i) {
-				com.swdteam.common.init.DMSpawnerRegistry.SpawnInfo.Spawn spawn = this.spawners.get(i);
+				DMASpawnerRegistry.SpawnInfo.Spawn spawn = this.spawners.get(i);
 				if (spawn.spawner.type == type) {
 					this.spawners.remove(i);
 					break;
@@ -91,7 +87,7 @@ public class DMASpawnerRegistry extends DMSpawnerRegistry {
 
 		}
 
-		public List<com.swdteam.common.init.DMSpawnerRegistry.SpawnInfo.Spawn> getSpawners() {
+		public List<DMASpawnerRegistry.SpawnInfo.Spawn> getSpawners() {
 			return this.spawners;
 		}
 

@@ -25,7 +25,7 @@ public abstract class DMBlocksMixin {
 	private static <B extends Block> void registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem, CallbackInfoReturnable<RegistryObject<Block>> cir) {
 //		System.out.printf("Block is being registered: %s!%n", name);
 		if (MIXIN_BLOCKS.containsKey(name)) {
-			System.out.printf("Mi want chanj dis bluk: %s!%n", name);
+			System.out.printf("We changing this block a bit: %s!%n", name);
 
 			RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, MIXIN_BLOCKS.get(name));
 			if (needsItem) {

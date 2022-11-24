@@ -8,9 +8,7 @@
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
 		"DMBlocksMixin",
-		"ItemGroupMixin",
 		"TardisKeyMixin",
-		"SpawnRegistryMixin",
 		"DalekRegistryMixin"
 	],
 	"client": [

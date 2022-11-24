@@ -59,26 +59,27 @@
 			"rolls":1,
 			"entries":[
 				{
-					"type":"minecraft:item",
-					"name":"dalekmod:candy_cane_blue",
-					"conditions":[
+					"type": "minecraft:item",
+					"name": "dalekmod:candy_cane_blue",
+					"conditions": [
 						{
-							"condition":"minecraft:killed_by_player",
-							"inverse":false
+							"condition": "minecraft:killed_by_player",
+							"inverse": false
 						},
 						{
-							"condition":"minecraft:random_chance",
-							"chance":1
+							"condition": "minecraft:random_chance",
+							"chance": 1
 						},
 						{
-							"condition":"minecraft:entity_properties",
-							"entity":"this",
-							"predicate":{
-								"type":"dalekmod:dalek",
-								"nbt":"{DalekType:\"blue_candycane_dalek\"}"
+							"condition": "minecraft:entity_properties",
+							"entity": "this",
+							"predicate": {
+								"type": "dalekmod:dalek",
+								"nbt": "{DalekType:\"blue_candycane_dalek\"}"
 							}
 						}
 					]
+				}]
 				},
 				{
 					"rolls":1,
@@ -108,6 +109,4 @@
 					]
 				}
 			]
-		}
-	]
 }
