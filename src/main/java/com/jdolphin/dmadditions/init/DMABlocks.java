@@ -74,10 +74,6 @@ public class DMABlocks {
 		() -> new CopperHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
-	public static final RegistryObject<Block> RANDOMIZER = registerBlock(
-		() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak()
-			.noOcclusion().sound(SoundType.STONE)),
-		"randomizer", DMTabs.DM_TARDIS);
 	public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
 		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 		"timekeeper_console");
@@ -172,6 +168,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> TARDIS_GLOBE;
 	public static RegistryObject<Block> WREATH;
+	public static RegistryObject<Block> RANDOMIZER;
 
 
 	static {
@@ -180,6 +177,10 @@ public class DMABlocks {
 		}
 		if (AdventUnlock.canAdventBeUnlocked(3)) {
 			WREATH = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "wreath", ItemGroup.TAB_DECORATIONS);
+		}
+		if (AdventUnlock.canAdventBeUnlocked(9)){
+			RANDOMIZER = registerBlock(() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+				"randomizer", DMTabs.DM_TARDIS);
 		}
 
 
