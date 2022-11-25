@@ -8,11 +8,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 import static com.swdteam.common.init.DMBlocks.registerBlock;
+import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 public class DMABlocks {
 	/*public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
@@ -120,23 +122,22 @@ public class DMABlocks {
 	public static RegistryObject<Block> GREEN_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
-	public static RegistryObject<Block> TARDIS_GLOBE;
+	public static RegistryObject<Block> TARDIS_SNOWGLOBE;
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
 
 
 	static {
 		if (AdventUnlock.canAdventBeUnlocked(6)) {
-		TARDIS_GLOBE = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "tardis_snowglobe", DMTabs.DM_TARDIS);
+			TARDIS_SNOWGLOBE = registerBlock(() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)), "tardis_snowglobe", DMTabs.DM_TARDIS);
 		}
 		if (AdventUnlock.canAdventBeUnlocked(3)) {
 			WREATH = registerBlock(() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()), "wreath", ItemGroup.TAB_DECORATIONS);
 		}
-		if (AdventUnlock.canAdventBeUnlocked(9)){
+		if (AdventUnlock.canAdventBeUnlocked(9)) {
 			RANDOMIZER = registerBlock(() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 				"randomizer", DMTabs.DM_TARDIS);
 		}
-
 
 
 		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "black_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
@@ -235,6 +236,10 @@ public class DMABlocks {
 		GREEN_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "green_plastic_shape_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "red_plastic_shape_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "black_plastic_shape_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
+	}
+
+	public static void registerRenderTypes() {
+		registerRenderType(TARDIS_SNOWGLOBE.get(), RenderType.cutoutMipped());
 	}
 }
 
