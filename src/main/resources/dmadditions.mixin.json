@@ -7,11 +7,12 @@
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
+		"DalekRegistryMixin",
 		"DMBlocksMixin",
-		"TardisKeyMixin",
-		"DalekRegistryMixin"
+		"TardisKeyMixin"
 	],
 	"client": [
+		"ClientProxyMixin",
 		"DMEntityRenderRegistryMixin",
 		"DMTileRenderRegistryMixin"
 	]
