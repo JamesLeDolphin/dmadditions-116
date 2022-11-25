@@ -2,65 +2,19 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
-import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMTabs;
-import com.swdteam.common.item.FoodItem;
-import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
-import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 
 public class DMABlocks {
-	public static final Map<String, Supplier<Block>> MIXIN_BLOCKS;
-
-	static {
-
-
-		MIXIN_BLOCKS = new HashMap<>();
-
-		MIXIN_BLOCKS.put("fast_return_lever",
-			() -> new BetterFastReturnLeverBlock(
-				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
-
-		MIXIN_BLOCKS.put("flight_lever",
-			() -> new BetterFlightLeverBlock(
-				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)));
-
-		MIXIN_BLOCKS.put("chameleon_panel",
-			() -> new BetterChameleonPanelBlock(
-				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)
-			));
-		MIXIN_BLOCKS.put("dimension_selector_panel",
-			() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new,
-				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
-
-		MIXIN_BLOCKS.put("coord_panel",
-			() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new,
-				AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)));
-
-		MIXIN_BLOCKS.put("sonic_interface",
-			() -> new BetterSonicInterfaceBlock(
-				AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD)));
-
-		MIXIN_BLOCKS.put("waypoint_panel",
-			() -> new BetterWaypointPanelBlock(
-				AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD)));
-	}
-
-
 	/*public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
 		() -> new DoorPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak()
 			.noOcclusion().sound(SoundType.STONE)),

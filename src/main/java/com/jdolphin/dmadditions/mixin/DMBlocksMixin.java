@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.mixin;
 
+import com.jdolphin.dmadditions.init.MixinBlock;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.item.BaseBlockItem;
@@ -13,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Supplier;
 
-import static com.jdolphin.dmadditions.init.DMABlocks.MIXIN_BLOCKS;
-
 @Mixin({DMBlocks.class})
 public abstract class DMBlocksMixin {
 
@@ -24,10 +23,10 @@ public abstract class DMBlocksMixin {
 		remap = false)
 	private static <B extends Block> void registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem, CallbackInfoReturnable<RegistryObject<Block>> cir) {
 //		System.out.printf("Block is being registered: %s!%n", name);
-		if (MIXIN_BLOCKS.containsKey(name)) {
+		if (MixinBlock.has(name)) {
 			System.out.printf("We changing this block a bit: %s!%n", name);
 
-			RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, MIXIN_BLOCKS.get(name));
+			RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, MixinBlock.get(name).supplier);
 			if (needsItem) {
 				RegistryHandler.ITEMS.register(name,
 					() -> new BaseBlockItem(blockObj.get(), properties));
