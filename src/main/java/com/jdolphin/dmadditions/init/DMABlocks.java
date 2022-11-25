@@ -130,7 +130,7 @@ public class DMABlocks {
 		TARDIS_GLOBE = registerBlock(() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE)), "tardis_snowglobe", DMTabs.DM_TARDIS);
 		}
 		if (AdventUnlock.canAdventBeUnlocked(3)) {
-			WREATH = registerBlock(() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion()), "wreath", ItemGroup.TAB_DECORATIONS);
+			WREATH = registerBlock(() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()), "wreath", ItemGroup.TAB_DECORATIONS);
 		}
 		if (AdventUnlock.canAdventBeUnlocked(9)){
 			RANDOMIZER = registerBlock(() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
