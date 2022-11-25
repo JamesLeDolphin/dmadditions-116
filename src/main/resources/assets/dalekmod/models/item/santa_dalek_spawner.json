@@ -1,0 +1,4 @@
+{
+	"parent": "dalekmod:item/nether_dalek_spawner",
+	"display": { "gui": {"rotation": [180,0,0]} }
+}
