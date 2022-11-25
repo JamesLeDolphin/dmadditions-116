@@ -1,0 +1,25 @@
+{
+	"credit": "Manually typed by sam >:)",
+	"parent": "dalekmod:block/wreath",
+	"display": {
+		"gui": {
+			"rotation": [-90, 0, 0]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 5, -5]
+		},
+		"thirdperson_righthand": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 5, -5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-90, -15, 180],
+			"translation": [0, 5, 5]
+		},
+		"firstperson_righthand": {
+			"rotation": [-90, -15, 180],
+			"translation": [0, 5, 5]
+		}
+	}
+}
