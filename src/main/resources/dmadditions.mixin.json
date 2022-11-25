@@ -12,7 +12,7 @@
 		"DalekRegistryMixin"
 	],
 	"client": [
-		"ClientProxyMixin",
+		"DMEntityRenderRegistryMixin",
 		"DMTileRenderRegistryMixin"
 	]
 }
