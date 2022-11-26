@@ -12,6 +12,9 @@ credits="1JamesLeDolphin, SamTiz, Torchwood_one, TheMajorNoob_239"
 authors="QRT Studios"
 description='''Adds various things, and changes different features of The Dalek Mod'''
 
+# the other stuff here - ID, version, display name, etc.
+updateJSONURL = "https://api.modrinth.com/updates/dalek-mod-additions/forge_updates.json"
+
 [[dependencies.dmadditions]]
     modId="forge"
     mandatory=true
@@ -31,3 +34,4 @@ mandatory=true
 versionRange="[65.1.1, )"
 ordering="NONE"
 side="BOTH"
+
