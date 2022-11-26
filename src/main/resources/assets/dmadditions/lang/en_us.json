@@ -141,13 +141,12 @@
 
 	"block.dalekmod.tardis_snowglobe": "TARDIS Snow Globe",
 
-	"item.dalekmod.candy_cane_orange": "Orange Candy Cane",
-	"item.dalekmod.candy_cane_blue": "Blue Candy Cane",
-	"item.dalekmod.candy_cane_green": "Green Candy Cane",
-	"item.dalekmod.candy_cane_red": "Red Candy Cane",
+	"item.dalekmod.orange_candy_cane": "Orange Candy Cane",
+	"item.dalekmod.blue_candy_cane": "Blue Candy Cane",
+	"item.dalekmod.green_candy_cane": "Green Candy Cane",
+	"item.dalekmod.red_candy_cane": "Red Candy Cane",
 
 	"block.dalekmod.wreath": "Christmas Wreath",
-
 
 	"item.dalekmod.wooden_cyberman_spawner": "Wooden Cyberman Spawner",
 	"item.dalekmod.santa_dalek_spawner": "Santa Dalek Spawner",

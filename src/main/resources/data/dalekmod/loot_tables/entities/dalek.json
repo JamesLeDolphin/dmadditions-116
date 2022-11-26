@@ -1,66 +1,66 @@
-{	"type":"minecraft:entity",
-	"pools":[
+{
+	"type": "minecraft:entity",
+	"pools": [
 		{
-			"rolls":1,
-			"entries":
-			[
-				{
-					"type":"minecraft:item",
-					"name":"dalekmod:candy_cane_orange",
-					"conditions":[
-						{
-							"condition":"minecraft:killed_by_player",
-							"inverse":false
-						},
-						{
-							"condition":"minecraft:random_chance",
-							"chance":1
-						},
-						{
-							"condition":"minecraft:entity_properties",
-							"entity":"this",
-							"predicate":{
-								"type":"dalekmod:dalek",
-								"nbt":"{DalekType:\"orange_candycane_dalek\"}"
-							}
-						}
-					]
-				}
-			]
-		},
-		{
-			"rolls":1,
-			"entries":[
-				{
-					"type":"minecraft:item",
-					"name":"dalekmod:candy_cane_red",
-					"conditions":[
-						{
-							"condition":"minecraft:killed_by_player",
-							"inverse":false
-						},
-						{
-							"condition":"minecraft:random_chance",
-							"chance":1
-						},
-						{
-							"condition":"minecraft:entity_properties",
-							"entity":"this",
-							"predicate":{
-								"type":"dalekmod:dalek",
-								"nbt":"{DalekType:\"red_candycane_dalek\"}"
-							}
-						}
-					]
-				}
-			]
-		},
-		{
-			"rolls":1,
-			"entries":[
+			"rolls": 1,
+			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:candy_cane_blue",
+					"name": "dalekmod:orange_candy_cane",
+					"conditions": [
+						{
+							"condition": "minecraft:killed_by_player",
+							"inverse": false
+						},
+						{
+							"condition": "minecraft:random_chance",
+							"chance": 1
+						},
+						{
+							"condition": "minecraft:entity_properties",
+							"entity": "this",
+							"predicate": {
+								"type": "dalekmod:dalek",
+								"nbt": "{DalekType:\"orange_candycane_dalek\"}"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "dalekmod:red_candy_cane",
+					"conditions": [
+						{
+							"condition": "minecraft:killed_by_player",
+							"inverse": false
+						},
+						{
+							"condition": "minecraft:random_chance",
+							"chance": 1
+						},
+						{
+							"condition": "minecraft:entity_properties",
+							"entity": "this",
+							"predicate": {
+								"type": "dalekmod:dalek",
+								"nbt": "{DalekType:\"red_candycane_dalek\"}"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "dalekmod:blue_candy_cane",
 					"conditions": [
 						{
 							"condition": "minecraft:killed_by_player",
@@ -79,34 +79,35 @@
 							}
 						}
 					]
-				}]
-				},
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"entries": [
 				{
-					"rolls":1,
-					"entries":[
+					"type": "minecraft:item",
+					"name": "dalekmod:green_candy_cane",
+					"conditions": [
 						{
-							"type":"minecraft:item",
-							"name":"dalekmod:candy_cane_green",
-							"conditions":[
-								{
-									"condition":"minecraft:killed_by_player",
-									"inverse":false
-								},
-								{
-									"condition":"minecraft:random_chance",
-									"chance":1
-								},
-								{
-									"condition":"minecraft:entity_properties",
-									"entity":"this",
-									"predicate":{
-										"type":"dalekmod:dalek",
-										"nbt":"{DalekType:\"lime_candycane_dalek\"}"
-									}
-								}
-							]
+							"condition": "minecraft:killed_by_player",
+							"inverse": false
+						},
+						{
+							"condition": "minecraft:random_chance",
+							"chance": 1
+						},
+						{
+							"condition": "minecraft:entity_properties",
+							"entity": "this",
+							"predicate": {
+								"type": "dalekmod:dalek",
+								"nbt": "{DalekType:\"lime_candycane_dalek\"}"
+							}
 						}
 					]
 				}
 			]
+		}
+	]
 }

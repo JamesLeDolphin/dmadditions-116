@@ -5,7 +5,7 @@
             "item": "minecraft:sugar_cane"
         },
         {
-            "item": "minecraft:blue_dye"
+            "item": "minecraft:orange_dye"
         },
         {
             "item": "minecraft:sugar_cane"
@@ -15,7 +15,7 @@
         }
     ],
     "result": {
-        "item": "dalekmod:candy_cane_blue",
+        "item": "dalekmod:orange_candy_cane",
         "count": 1
     }
 }

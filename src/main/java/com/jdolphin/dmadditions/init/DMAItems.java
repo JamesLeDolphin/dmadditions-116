@@ -73,16 +73,16 @@ public class DMAItems {
 
 	static {
 		if (AdventUnlock.canAdventBeUnlocked(1)) {
-			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_blue",
+			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-			RED_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_red",
+			RED_CANDY_CANE = RegistryHandler.ITEMS.register("red_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-			GREEN_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_green",
+			GREEN_CANDY_CANE = RegistryHandler.ITEMS.register("green_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-			ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_orange",
+			ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("orange_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 		}
 
