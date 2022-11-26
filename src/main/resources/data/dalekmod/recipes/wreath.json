@@ -1,22 +1,19 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#SR",
-        "VVV",
-        "VVV"
+        "#S#",
+        "#R#",
+        "###"
     ],
     "key": {
         "#": {
-            "item": "minecraft:snowball"
+            "item": "minecraft:spruce_leaves"
         },
         "S": {
-            "item": "minecraft:string"
+            "item": "minecraft:snowball"
         },
         "R": {
             "item": "minecraft:red_dye"
-        },
-        "V": {
-            "item": "minecraft:spruce_leaves"
         }
     },
     "result": {
