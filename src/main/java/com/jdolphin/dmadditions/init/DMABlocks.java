@@ -13,6 +13,8 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
+import java.util.function.Supplier;
+
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
@@ -126,19 +128,25 @@ public class DMABlocks {
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
 
+	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
+		if (!AdventUnlock.canAdventBeUnlocked(day))
+			return null;
+
+		return registerBlock(supplier, name, tab);
+	}
 
 	static {
-		if (AdventUnlock.canAdventBeUnlocked(6)) {
-			TARDIS_SNOWGLOBE = registerBlock(() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)), "tardis_snowglobe", DMTabs.DM_TARDIS);
-		}
-		if (AdventUnlock.canAdventBeUnlocked(3)) {
-			WREATH = registerBlock(() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()), "wreath", ItemGroup.TAB_DECORATIONS);
-		}
-		if (AdventUnlock.canAdventBeUnlocked(9)) {
-			RANDOMIZER = registerBlock(() -> new RandomizerBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-				"randomizer", DMTabs.DM_TARDIS);
-		}
+		WREATH = registerAdventBlock(3,
+			() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
+			"wreath", ItemGroup.TAB_DECORATIONS);
 
+		TARDIS_SNOWGLOBE = registerAdventBlock(6,
+			() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
+			"tardis_snowglobe", DMTabs.DM_TARDIS);
+
+		RANDOMIZER = registerAdventBlock(9,
+			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+			"randomizer", DMTabs.DM_TARDIS);
 
 		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "black_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "yellow_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);

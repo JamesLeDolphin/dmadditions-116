@@ -1,26 +1,19 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.item.CandyCaneItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriver;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
-import com.jdolphin.dmadditions.item.UnitGun;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
-import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
-import com.swdteam.common.item.SpawnerItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 
-import java.util.List;
+import java.util.function.Supplier;
 
 import static com.swdteam.common.init.DMItems.addSpawnItem;
 
@@ -33,7 +26,11 @@ public class DMAItems {
 	public static RegistryObject<Item> UNIT_GUN;
 	public static RegistryObject<Item> LASER_SCREWDRIVER;
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
-	public static RegistryObject<Item> CANDY_CANE;
+
+	public static RegistryObject<Item> BLUE_CANDY_CANE;
+	public static RegistryObject<Item> GREEN_CANDY_CANE;
+	public static RegistryObject<Item> RED_CANDY_CANE;
+	public static RegistryObject<Item> ORANGE_CANDY_CANE;
 
 	/*public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
@@ -62,51 +59,45 @@ public class DMAItems {
 
 	public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
 
+	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
+		if (!AdventUnlock.canAdventBeUnlocked(day)) return null;
 
-	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, List<String> types, String itemKey) {
-		RegistryObject<Item> item = RegistryHandler.ITEMS.register(itemKey + "_spawner", () -> {
-			return new SpawnerItem(key, types);
-		});
-		return item;
+		return RegistryHandler.ITEMS.register(name, supplier);
 	}
 
-	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, List<String> types) {
-		return addSpawnItem(key, types, (String)types.get(0));
-	}
+	protected static RegistryObject<Item> addAdventSpawnItem(int day, String key) {
+		if (!AdventUnlock.canAdventBeUnlocked(day)) return null;
 
-	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, String type) {
-		RegistryObject<Item> item = RegistryHandler.ITEMS.register(type + "_spawner", () -> {
-			return new SpawnerItem(key, type);
-		});
-		return item;
+		return addSpawnItem(key);
 	}
-
-	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key) {
-		return addSpawnItem(key, key);
-	}
-
 
 	static {
 		if (AdventUnlock.canAdventBeUnlocked(1)) {
-			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_blue",
+			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_blue",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_red",
+
+			RED_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_red",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_green",
+
+			GREEN_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_green",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-			CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_orange",
+
+			ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("candy_cane_orange",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-		}
-		if (AdventUnlock.canAdventBeUnlocked(17)) {
-			WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
-		}
-		if (AdventUnlock.canAdventBeUnlocked(5)) {
-			UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
-				() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
-					DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 		}
 
-		 PISTOL = RegistryHandler.ITEMS.register("pistol", ()
+		UNIT_GUN = registerAdventItem(5, "unit_gun",
+			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
+				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+
+		LASER_SCREWDRIVER = registerAdventItem(9 ,"laser_screwdriver",
+			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
+
+		WOODEN_CYBERMAN_SPAWNER = addAdventSpawnItem(17, "wooden_cyberman");
+
+
+
+		PISTOL = RegistryHandler.ITEMS.register("pistol", ()
 			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
@@ -118,12 +109,6 @@ public class DMAItems {
 
 		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
-
-		if (AdventUnlock.canAdventBeUnlocked(9)) {
-			LASER_SCREWDRIVER = RegistryHandler.ITEMS.register("laser_screwdriver",
-				() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
-		}
-
 
 		/*STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",
 			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
