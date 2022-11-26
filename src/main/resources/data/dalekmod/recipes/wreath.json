@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#SR",
+        "VVV",
+        "VVV"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:snowball"
+        },
+        "S": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "minecraft:red_dye"
+        },
+        "V": {
+            "item": "minecraft:spruce_leaves"
+        }
+    },
+    "result": {
+        "item": "dalekmod:wreath",
+        "count": 1
+    }
+}
