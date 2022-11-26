@@ -247,7 +247,8 @@ public class DMABlocks {
 	}
 
 	public static void registerRenderTypes() {
-		registerRenderType(TARDIS_SNOWGLOBE.get(), RenderType.cutoutMipped());
+		if (TARDIS_SNOWGLOBE != null)
+			registerRenderType(TARDIS_SNOWGLOBE.get(), RenderType.cutoutMipped());
 	}
 }
 
