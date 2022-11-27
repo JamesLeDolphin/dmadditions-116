@@ -150,5 +150,8 @@
 
 	"item.dalekmod.wooden_cyberman_spawner": "Wooden Cyberman Spawner",
 	"item.dalekmod.santa_dalek_spawner": "Santa Dalek Spawner",
-	"item.dalekmod.candycane_dalek_spawner": "Candy Cane Dalek Spawner"
+	"item.dalekmod.candycane_dalek_spawner": "Candy Cane Dalek Spawner",
+
+	"item.dalekmod.music_disc_pfd": "Music Disc",
+	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks"
 }

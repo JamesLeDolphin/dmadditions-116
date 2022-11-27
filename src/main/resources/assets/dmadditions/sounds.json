@@ -5,17 +5,25 @@
 			"dmadditions:item/pistol/shoot"
 		]
 	},
-
 	"block.handbrake.copperhandbrake": {
-    		"subtitle": "subtitles.block.handbrake.copperhandbrake",
-    		"sounds": [
-    			"dmadditions:block/handbrake/copperhandbrake"
-    		]
-    	},
+		"subtitle": "subtitles.block.handbrake.copperhandbrake",
+		"sounds": [
+			"dmadditions:block/handbrake/copperhandbrake"
+		]
+	},
 	"block.handbrake.coralhandbrake": {
 		"subtitle": "subtitles.block.handbrake.coralhandbrake",
 		"sounds": [
 			"dmadditions:block/handbrake/coralhandbrake"
+		]
+	},
+	"music_disc.pfd": {
+		"category":"music",
+		"sounds": [
+			{
+				"name": "dmadditions:records/pfd",
+				"stream": true
+			}
 		]
 	}
 }

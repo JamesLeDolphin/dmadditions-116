@@ -7,10 +7,12 @@ import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
+import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Rarity;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -31,6 +33,8 @@ public class DMAItems {
 	public static RegistryObject<Item> GREEN_CANDY_CANE;
 	public static RegistryObject<Item> RED_CANDY_CANE;
 	public static RegistryObject<Item> ORANGE_CANDY_CANE;
+
+	public static final RegistryObject<Item> MUSIC_DISC_PFD;
 
 	/*public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
@@ -92,6 +96,9 @@ public class DMAItems {
 
 		LASER_SCREWDRIVER = registerAdventItem(9 ,"laser_screwdriver",
 			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
+
+		MUSIC_DISC_PFD = registerAdventItem(10, "music_disc_pfd",
+			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
 		WOODEN_CYBERMAN_SPAWNER = addAdventSpawnItem(17, "wooden_cyberman");
 
