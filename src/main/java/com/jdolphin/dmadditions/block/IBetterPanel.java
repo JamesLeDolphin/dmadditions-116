@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip {
@@ -70,8 +71,7 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 	default VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return getShape(state, worldIn, pos, context);
 	}
-
-	@Nullable
+	@Nonnull
 	@Override
 	default BlockState getStateForPlacement(BlockItemUseContext context) {
 		for (Direction direction : context.getNearestLookingDirections()) {
@@ -87,7 +87,7 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 			}
 		}
 
-		return defaultBlockState();
+		return this.defaultBlockState();
 	}
 
 	@Override
