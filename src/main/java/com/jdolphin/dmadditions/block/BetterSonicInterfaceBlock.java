@@ -217,7 +217,7 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return IBetterPanel.super.getStateForPlacement(context);
+		return IBetterPanel.super.getStateForPlacement(context, defaultBlockState());
 	}
 
 	@Override

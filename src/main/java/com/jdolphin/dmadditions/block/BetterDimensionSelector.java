@@ -64,7 +64,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return IBetterPanel.super.getStateForPlacement(context);
+		return IBetterPanel.super.getStateForPlacement(context, defaultBlockState());
 	}
 
 	@Override

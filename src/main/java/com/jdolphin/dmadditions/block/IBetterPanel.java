@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
-import com.swdteam.common.block.IBlockTooltip;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -18,9 +17,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip {
 	DirectionProperty FACING = AbstractRotateableWaterLoggableBlock.FACING;
@@ -71,15 +67,14 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 	default VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return getShape(state, worldIn, pos, context);
 	}
-	@Nonnull
-	@Override
-	default BlockState getStateForPlacement(BlockItemUseContext context) {
+
+	default BlockState getStateForPlacement(BlockItemUseContext context, BlockState defaultBlockState){
 		for (Direction direction : context.getNearestLookingDirections()) {
 			BlockState blockstate;
 			if (direction.getAxis() == Direction.Axis.Y) {
-				blockstate = this.defaultBlockState().setValue(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR).setValue(FACING, context.getHorizontalDirection().getOpposite());
+				blockstate = defaultBlockState.setValue(FACE, direction == Direction.UP ? AttachFace.CEILING : AttachFace.FLOOR).setValue(FACING, context.getHorizontalDirection().getOpposite());
 			} else {
-				blockstate = this.defaultBlockState().getBlockState().setValue(FACE, AttachFace.WALL).setValue(FACING, direction.getOpposite());
+				blockstate = defaultBlockState.getBlockState().setValue(FACE, AttachFace.WALL).setValue(FACING, direction.getOpposite());
 			}
 
 			if (blockstate.canSurvive(context.getLevel(), context.getClickedPos())) {
@@ -87,8 +82,11 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 			}
 		}
 
-		return this.defaultBlockState();
+		return defaultBlockState;
 	}
+
+	@Override
+	BlockState getStateForPlacement(BlockItemUseContext context);
 
 	@Override
 	default ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {

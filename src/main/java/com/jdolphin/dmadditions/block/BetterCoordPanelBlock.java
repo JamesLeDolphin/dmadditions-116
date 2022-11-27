@@ -267,7 +267,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return IBetterPanel.super.getStateForPlacement(context);
+		return IBetterPanel.super.getStateForPlacement(context, defaultBlockState());
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package com.jdolphin.dmadditions.block;
 
-import javax.annotation.Nullable;
-
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -34,6 +32,8 @@ import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
+import javax.annotation.Nullable;
+
 public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	private String dimensionKey;
 
@@ -56,7 +56,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	@Override
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-		return IBetterPanel.super.getStateForPlacement(p_196258_1_);
+		return IBetterPanel.super.getStateForPlacement(p_196258_1_, defaultBlockState());
 	}
 
 	@Override

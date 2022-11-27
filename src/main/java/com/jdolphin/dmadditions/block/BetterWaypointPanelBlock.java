@@ -45,7 +45,7 @@ public class BetterWaypointPanelBlock extends WaypointPanelBlock implements IBet
 
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return IBetterPanel.super.getStateForPlacement(context);
+		return IBetterPanel.super.getStateForPlacement(context, this.defaultBlockState());
 	}
 
 	@Override
