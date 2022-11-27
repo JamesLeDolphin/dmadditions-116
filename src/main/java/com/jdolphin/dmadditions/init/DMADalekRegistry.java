@@ -17,7 +17,9 @@ import net.minecraft.world.biome.Biome;
 import javax.annotation.CheckForNull;
 import java.util.*;
 
-public class DMADalekRegistry extends DMDalekRegistry {
+import static com.swdteam.common.init.DMDalekRegistry.SKARO_DALEK;
+
+public class DMADalekRegistry {
 	public static Map<DalekType, List<String>> DALEK_TYPES = new HashMap();
 	public static Map<ResourceLocation, List<IDalek>> DALEK_SPAWNS = new HashMap();
 	private static List<String> dalekList = new ArrayList();
@@ -104,11 +106,11 @@ public class DMADalekRegistry extends DMDalekRegistry {
 	}
 
 	public static String getRandomDalek(Random rand) {
-		return (String)dalekList.get(rand.nextInt(dalekList.size()));
+		return dalekList.get(rand.nextInt(dalekList.size()));
 	}
 
 	public static IDalek getDalek(String identifier) {
-		return daleks.containsKey(identifier) ? (IDalek)daleks.get(identifier) : SKARO_DALEK;
+		return daleks.containsKey(identifier) ? daleks.get(identifier) : SKARO_DALEK;
 	}
 
 	public static List<String> getDalekList() {
@@ -134,14 +136,14 @@ public class DMADalekRegistry extends DMDalekRegistry {
 	}
 
 	public static void addSpawn(RegistryKey<Biome> biome, IDalek... daleks) {
-		Biome b = (Biome) DynamicRegistries.builtin().registryOrThrow(Registry.BIOME_REGISTRY).getOrThrow(biome);
+		Biome b = DynamicRegistries.builtin().registryOrThrow(Registry.BIOME_REGISTRY).getOrThrow(biome);
 		IDalek[] var3 = daleks;
 		int var4 = daleks.length;
 
 		for(int var5 = 0; var5 < var4; ++var5) {
 			IDalek dalek = var3[var5];
 			if (DALEK_SPAWNS.containsKey(b.getRegistryName())) {
-				((List)DALEK_SPAWNS.get(b.getRegistryName())).add(dalek);
+				DALEK_SPAWNS.get(b.getRegistryName()).add(dalek);
 			} else {
 				List<IDalek> l = new ArrayList();
 				l.add(dalek);

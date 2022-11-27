@@ -18,7 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.*;
 
 public class DMASpawnerRegistry {
-	public static Map<ResourceLocation, com.jdolphin.dmadditions.init.DMASpawnerRegistry.SpawnInfo> spawns = new HashMap();
+	public static Map<ResourceLocation, DMASpawnerRegistry.SpawnInfo> spawns = new HashMap();
 
 	public DMASpawnerRegistry() {
 	}
@@ -39,10 +39,10 @@ public class DMASpawnerRegistry {
 
 	private static void addSpawn(RegistryKey<Biome> biome, EntityType<?> type, int weight, int min, int max, EntityClassification entityType) {
 		if (!spawns.containsKey(biome.location())) {
-			spawns.put(biome.location(), new com.jdolphin.dmadditions.init.DMASpawnerRegistry.SpawnInfo());
+			spawns.put(biome.location(), new DMASpawnerRegistry.SpawnInfo());
 		}
 
-		com.jdolphin.dmadditions.init.DMASpawnerRegistry.SpawnInfo info = spawns.get(biome.location());
+		DMASpawnerRegistry.SpawnInfo info = spawns.get(biome.location());
 		info.addSpawn(type, weight, min, max, entityType);
 	}
 
@@ -60,7 +60,7 @@ public class DMASpawnerRegistry {
 		for(int i = 0; i < biome.length; ++i) {
 			RegistryKey<Biome> bi = biome[i];
 			if (spawns.containsKey(bi.location())) {
-				com.jdolphin.dmadditions.init.DMASpawnerRegistry.SpawnInfo info = spawns.get(bi.location());
+				DMASpawnerRegistry.SpawnInfo info = spawns.get(bi.location());
 				info.removeSpawn(type);
 			}
 		}

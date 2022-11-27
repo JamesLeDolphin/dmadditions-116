@@ -7,6 +7,7 @@ import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
+import com.swdteam.common.structure.DMConfiguredStructures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -43,12 +44,11 @@ public class DmAdditions {
 
 	// Directly reference a log4j logger.
 	private static final Logger LOGGER = LogManager.getLogger();
-	public static final DMAServerProxy DMA_PROXY = (DMAServerProxy) DistExecutor.runForDist(() -> {
+	public static final DMAServerProxy DMA_PROXY = DistExecutor.runForDist(() -> {
 		return DMAClientProxy::new;
 	}, () -> {
 		return DMAServerProxy::new;
 	});
-
 
 	public DmAdditions() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

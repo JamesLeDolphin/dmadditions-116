@@ -19,10 +19,8 @@ public class RegistryHandler {
 
 
 	public static void init() {
-		//DMADalekRegistry.init();
 		DMAProjectiles.init();
 		DMAEntities.init();
-		DMASpawnerRegistry.init();
 
 		dmaCarvers = new DMAWorldCarvers();
 		dmaBiomes = new DMABiomes();

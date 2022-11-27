@@ -1,19 +1,20 @@
 {
-	"required": true,
-	"package": "com.jdolphin.dmadditions.mixin",
-	"compatibilityLevel": "JAVA_8",
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"refmap": "dmadditions.mixin-refmap.json",
-	"mixins": [
-		"DalekRegistryMixin",
-		"DMBlocksMixin",
-		"TardisKeyMixin"
-	],
-	"client": [
-		"ClientProxyMixin",
-		"DMEntityRenderRegistryMixin",
-		"DMTileRenderRegistryMixin"
+  "required": true,
+  "package": "com.jdolphin.dmadditions.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "dmadditions.mixin-refmap.json",
+  "mixins": [
+    "DalekRegistryMixin",
+    "DMBlocksMixin",
+    "SpawnRegistryMixin",
+    "TardisKeyMixin"
+  ],
+  "client": [
+    "ClientProxyMixin",
+    "DMEntityRenderRegistryMixin",
+    "DMTileRenderRegistryMixin"
 	]
 }

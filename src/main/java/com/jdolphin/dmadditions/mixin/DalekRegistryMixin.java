@@ -8,6 +8,7 @@ import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,7 +21,7 @@ import java.util.Map;
 import static com.swdteam.common.init.DMDalekRegistry.*;
 
 @Mixin(DMDalekRegistry.class)
-public class DalekRegistryMixin {
+abstract class DalekRegistryMixin {
 
 	private static List<String> dalekList = new ArrayList();
 	private static Map<String, IDalek> daleks = new HashMap();
