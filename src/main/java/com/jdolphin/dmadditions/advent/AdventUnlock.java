@@ -14,7 +14,7 @@ public class AdventUnlock {
 		return (month == 11);
 	}
 
-	public static boolean canAdventBeUnlocked(int day) {
+	public static boolean unlockAt(int day) {
 		if (IS_DEBUG) return true;
 
 		if (!is2022())

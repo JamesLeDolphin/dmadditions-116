@@ -13,7 +13,7 @@ public class DMADimensions {
 	}
 
 	static {
-		if (AdventUnlock.canAdventBeUnlocked(16)) {
+		if (AdventUnlock.unlockAt(16)) {
 			MOON = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod", "moon"));
 
 		}

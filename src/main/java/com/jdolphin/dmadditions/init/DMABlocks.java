@@ -129,7 +129,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> RANDOMIZER;
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
-		if (!AdventUnlock.canAdventBeUnlocked(day))
+		if (!AdventUnlock.unlockAt(day))
 			return null;
 
 		return registerBlock(supplier, name, tab);

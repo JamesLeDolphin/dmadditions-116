@@ -13,12 +13,9 @@ import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.CheckForNull;
 import java.util.*;
-
-import static com.swdteam.common.init.DMDalekRegistry.SKARO_DALEK;
 
 public class DMADalekRegistry extends DMDalekRegistry {
 	public static Map<DalekType, List<String>> DALEK_TYPES = new HashMap();
@@ -31,17 +28,17 @@ public class DMADalekRegistry extends DMDalekRegistry {
 
 	public static void init() {
 
-		if (AdventUnlock.canAdventBeUnlocked(24)) {
+		if (AdventUnlock.unlockAt(24)) {
 			DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 		}
-		if (AdventUnlock.canAdventBeUnlocked(2)) {
+		if (AdventUnlock.unlockAt(2)) {
 			CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
 			CANDYCANE.addChild("blue_candycane_dalek");
 			CANDYCANE.addChild("red_candycane_dalek");
 			CANDYCANE.addChild("orange_candycane_dalek");
 		}
 
-		if (AdventUnlock.canAdventBeUnlocked(22)) {
+		if (AdventUnlock.unlockAt(22)) {
 			//IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		}
 	}

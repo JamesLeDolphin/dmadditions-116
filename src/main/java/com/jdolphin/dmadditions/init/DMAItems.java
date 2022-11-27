@@ -60,19 +60,19 @@ public class DMAItems {
 	public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
 
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
-		if (!AdventUnlock.canAdventBeUnlocked(day)) return null;
+		if (!AdventUnlock.unlockAt(day)) return null;
 
 		return RegistryHandler.ITEMS.register(name, supplier);
 	}
 
 	protected static RegistryObject<Item> addAdventSpawnItem(int day, String key) {
-		if (!AdventUnlock.canAdventBeUnlocked(day)) return null;
+		if (!AdventUnlock.unlockAt(day)) return null;
 
 		return addSpawnItem(key);
 	}
 
 	static {
-		if (AdventUnlock.canAdventBeUnlocked(1)) {
+		if (AdventUnlock.unlockAt(1)) {
 			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
