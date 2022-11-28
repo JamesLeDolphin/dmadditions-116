@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions;
 
-import com.jdolphin.dmadditions.client.init.DMAEntityRenderRegistry;
-import com.jdolphin.dmadditions.dimension.Gravity;
 import com.jdolphin.dmadditions.init.*;
-import com.swdteam.common.init.DMDalekRegistry;
 
 public class RegistryHandler {
 	//	public static DMAdditionsBlocks dmAdditionsBlocks;
@@ -16,6 +13,7 @@ public class RegistryHandler {
 	public static DMAItems dmaItems;
 	public static DMASoundEvents dmaSounds;
 	public static DMABlocks dmaBlocks;
+	public static DMALootConditionManager dmaLootConditionManager;
 
 
 	public static void init() {
@@ -28,5 +26,6 @@ public class RegistryHandler {
 		dmaItems = new DMAItems();
 		dmaBlocks = new DMABlocks();
 		dmaTiles = new DMABlockEntities();
+		dmaLootConditionManager = new DMALootConditionManager();
 	}
 }
