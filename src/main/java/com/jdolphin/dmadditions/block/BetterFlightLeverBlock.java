@@ -45,7 +45,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 				this.switchLever(state, worldIn, pos);
 			}
 		}
-
+		this.updateNeighbours(state, worldIn, pos);
 		return ActionResultType.CONSUME;
 	}
 
