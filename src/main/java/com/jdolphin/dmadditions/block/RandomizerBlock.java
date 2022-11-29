@@ -122,8 +122,6 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 			double zPos = Math.floor(Math.random() * (maxZ - minZ + 1) + minZ);
 			double yPos = currentPos.getY();
 
-			//System.out.printf("Randomizer going to %s %s %s%n", xPos, yPos, zPos);
-
 			BlockPos newPos = new BlockPos(xPos, yPos, zPos);
 
 			TardisFlightData flight = TardisFlightPool.getFlightData(tardis);

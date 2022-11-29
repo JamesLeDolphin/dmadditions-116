@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.mixin;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.init.MixinBlock;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMBlocks;
@@ -7,6 +8,7 @@ import com.swdteam.common.item.BaseBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
+import org.apache.logging.log4j.LogManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,9 +24,8 @@ public abstract class DMBlocksMixin {
 		cancellable = true,
 		remap = false)
 	private static <B extends Block> void registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem, CallbackInfoReturnable<RegistryObject<Block>> cir) {
-//		System.out.printf("Block is being registered: %s!%n", name);
 		if (MixinBlock.has(name)) {
-			System.out.printf("We changing this block a bit: %s!%n", name);
+			LogManager.getLogger(DmAdditions.MODID).info(String.format("We changing this block a bit: %s", name));
 
 			RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, MixinBlock.get(name).supplier);
 			if (needsItem) {

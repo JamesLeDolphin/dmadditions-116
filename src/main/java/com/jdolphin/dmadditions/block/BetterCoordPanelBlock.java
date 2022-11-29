@@ -62,8 +62,6 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 				double mouseZ = hitVec.z() - (double) pos.getZ();
 				double mouseY = hitVec.y() - (double) pos.getY();
 				CoordPanelButtons buttonClicked = this.getButton(mouseX, mouseY, mouseZ, state.getValue(RotatableTileEntityBase.FACING), state.getValue(FACE));
-				System.out.printf("button: %s%n", buttonClicked);
-				System.out.printf("mouse: %.2f %.2f %.2f%n", mouseX, mouseY, mouseZ);
 				if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
 					TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 					TardisFlightData flightData = null;
@@ -201,16 +199,11 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 
 	public CoordPanelButtons getButton(double mouseX, double mouseY, double mouseZ, Direction facing, AttachFace face) {
 		Iterator buttonsIterator = buttons.iterator();
-//		System.out.println("getting button...");
 
 		while (buttonsIterator.hasNext()) {
 			CoordPanelButtons button = (CoordPanelButtons) buttonsIterator.next();
 
-//			System.out.printf("checking button: %s%n", button);
-
 			if (button.values.containsKey(facing)) {
-//				System.out.printf("face: %s%n",face);
-
 				Vector2f vec = button.values.get(facing);
 				if (vec == null) continue;
 

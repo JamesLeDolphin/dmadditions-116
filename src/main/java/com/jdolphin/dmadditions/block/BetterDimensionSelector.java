@@ -78,27 +78,12 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 	}
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-
-		if(!worldIn.isClientSide){
-			System.out.printf("dimension selector clicked: %s %s %s%n%s %s %s%n", pos.getX(), pos.getY(),  pos.getZ(), handIn, worldIn.getBlockEntity(pos), state.getValue(BUTTON_PRESSED));
-		}
-
-		System.out.println((!worldIn.isClientSide) );
-		System.out.println(handIn == Hand.MAIN_HAND);
-		System.out.println(worldIn.getBlockEntity(pos));
-		System.out.println(worldIn.getBlockEntity(pos) instanceof DimensionSelectorTileEntity);
-		System.out.println(state.getValue(BUTTON_PRESSED) == 0);
-
 		if ((!worldIn.isClientSide) && handIn == Hand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof DimensionSelectorTileEntity && state.getValue(BUTTON_PRESSED) == 0) {
-			System.out.println("a");
-
 			Vector3d hitVec = hit.getLocation();
 			float mouseX = (float) ((int) (100.0F * (float) (hitVec.x() - (double) pos.getX()))) / 100.0F;
 			float mouseZ = (float) ((int) (100.0F * (float) (hitVec.z() - (double) pos.getZ()))) / 100.0F;
 			DimensionSelectorTileEntity tet = (DimensionSelectorTileEntity) worldIn.getBlockEntity(pos);
 			DimensionPanelButtons buttonClicked = this.getButton(mouseX, mouseZ, state.getValue(AbstractRotateableWaterLoggableBlock.FACING), state.getValue(FACE));
-
-			System.out.printf("button clicked on dimension selector: %s %s %s%n", buttonClicked, mouseX, mouseZ);
 
 			switch (buttonClicked) {
 				case BTN_LEFT:
