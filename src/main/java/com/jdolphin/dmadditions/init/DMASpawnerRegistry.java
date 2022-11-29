@@ -1,13 +1,11 @@
 package com.jdolphin.dmadditions.init;
 
+import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
@@ -25,14 +23,17 @@ public class DMASpawnerRegistry {
 	}
 
 	public static void initDalekSpawns() {
-		DMDalekRegistry.addSpawn(DMADalekRegistry.DALEK_SANTA, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
+		addSpawn(DMADalekRegistry.DALEK_SANTA, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
 			Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
-		DMDalekRegistry.addSpawn(DMADalekRegistry.CANDYCANE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
+		addSpawn(DMADalekRegistry.CANDYCANE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
 
 	}
 
-	public static boolean canSpawnAmbient(EntityType<?> type, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-		return true;
+	@SafeVarargs
+	public static void addSpawn(IDalek dalek, RegistryKey<Biome>... biomes) {
+		if(dalek == null) return;
+
+		DMDalekRegistry.addSpawn(dalek, biomes);
 	}
 
 	private static void addSpawn(RegistryKey<Biome> biome, EntityType<?> type, int weight, int min, int max, EntityClassification entityType) {
@@ -47,15 +48,15 @@ public class DMASpawnerRegistry {
 	private static void addSpawnToAllBiomes(EntityType<?> type, int weight, int min, int max, EntityClassification entityType) {
 		Iterator var5 = ForgeRegistries.BIOMES.getEntries().iterator();
 
-		while(var5.hasNext()) {
-			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry)var5.next();
-			addSpawn((RegistryKey)rl.getKey(), type, weight, min, max, entityType);
+		while (var5.hasNext()) {
+			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry) var5.next();
+			addSpawn((RegistryKey) rl.getKey(), type, weight, min, max, entityType);
 		}
 
 	}
 
 	private static void removeSpawn(EntityType<?> type, RegistryKey<Biome>... biome) {
-		for(int i = 0; i < biome.length; ++i) {
+		for (int i = 0; i < biome.length; ++i) {
 			RegistryKey<Biome> bi = biome[i];
 			if (spawns.containsKey(bi.location())) {
 				DMASpawnerRegistry.SpawnInfo info = spawns.get(bi.location());
@@ -76,7 +77,7 @@ public class DMASpawnerRegistry {
 		}
 
 		public void removeSpawn(EntityType<?> type) {
-			for(int i = 0; i < this.spawners.size(); ++i) {
+			for (int i = 0; i < this.spawners.size(); ++i) {
 				DMASpawnerRegistry.SpawnInfo.Spawn spawn = this.spawners.get(i);
 				if (spawn.spawner.type == type) {
 					this.spawners.remove(i);
