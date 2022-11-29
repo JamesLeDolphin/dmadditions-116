@@ -3,35 +3,29 @@ package com.jdolphin.dmadditions;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
+import com.jdolphin.dmadditions.config.DMAClientConfig;
+import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
-import com.swdteam.common.structure.DMConfiguredStructures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.config.DMAClientConfig;
-import com.jdolphin.dmadditions.config.DMACommonConfig;
-
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -64,11 +58,6 @@ public class DmAdditions {
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 
-	}
-
-	@SubscribeEvent
-	public void onServerStarting(FMLServerStartingEvent event) {
-		DMASpawnerRegistry.initDalekSpawns();
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
