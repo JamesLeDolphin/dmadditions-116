@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "block/rifle"
+		"1": "item/unit_gun"
 	},
 	"elements": [
 		{
