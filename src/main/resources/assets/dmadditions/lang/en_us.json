@@ -153,5 +153,7 @@
 	"item.dalekmod.candycane_dalek_spawner": "Candy Cane Dalek Spawner",
 
 	"item.dalekmod.music_disc_pfd": "Music Disc",
-	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks"
+	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks",
+
+	"entity.dalekmod.pilot_fish": "Pilot Fish"
 }

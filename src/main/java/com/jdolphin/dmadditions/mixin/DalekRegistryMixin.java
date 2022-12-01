@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 import java.util.Map;
 
-@Mixin(DMDalekRegistry.class)
+@Mixin(value = DMDalekRegistry.class, remap = false)
 abstract class DalekRegistryMixin {
 	@Shadow
 	private static List<String> dalekList;

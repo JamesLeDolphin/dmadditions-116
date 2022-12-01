@@ -1,0 +1,163 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dalekmod:entity/pilot_fish/santa",
+	"texture_width": 128,
+	"texture_height": 128,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "Head",
+			"pivot": [0,0,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [24,8],
+					"size": [8,8,8],
+					"origin": [-4,-8,-4],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,16],
+					"size": [8,8,8],
+					"origin": [-4,-8,-4],
+					"inflate": 0.5,
+					"mirror": false
+				},
+				{
+					"uv": [0,0],
+					"size": [8,8,8],
+					"origin": [-4,-8,-4],
+					"inflate": 0.75,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "Body",
+			"pivot": [0,0,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,32],
+					"size": [8,12,4],
+					"origin": [-4,0,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [28,28],
+					"size": [8,12,4],
+					"origin": [-4,0,-2],
+					"inflate": 0.25,
+					"mirror": false
+				},
+				{
+					"uv": [24,0],
+					"size": [8,3,4],
+					"origin": [-4,0,-2],
+					"inflate": 0.5,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "RightArm",
+			"pivot": [-4,1,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [12,60],
+					"size": [4,12,4],
+					"origin": [-4,-1,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [52,52],
+					"size": [4,12,4],
+					"origin": [-4,-1,-2],
+					"inflate": 0.25,
+					"mirror": false
+				},
+				{
+					"uv": [28,60],
+					"size": [4,2,4],
+					"origin": [-4,-1,-2],
+					"inflate": 0.5,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "LeftArm",
+			"pivot": [4,1,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [52,36],
+					"size": [4,12,4],
+					"origin": [0,-1,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [52,20],
+					"size": [4,12,4],
+					"origin": [0,-1,-2],
+					"inflate": 0.25,
+					"mirror": false
+				},
+				{
+					"uv": [60,12],
+					"size": [4,2,4],
+					"origin": [0,-1,-2],
+					"inflate": 0.5,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "RightLeg",
+			"pivot": [0,12,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [48,0],
+					"size": [4,12,4],
+					"origin": [-3.9,0,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,48],
+					"size": [4,12,4],
+					"origin": [-3.9,0,-2],
+					"inflate": 0.25,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "LeftLeg",
+			"pivot": [0,12,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [36,44],
+					"size": [4,12,4],
+					"origin": [-0.1,0,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [20,44],
+					"size": [4,12,4],
+					"origin": [-0.1,0,-2],
+					"inflate": 0.25,
+					"mirror": false
+				}
+			]
+		}
+	]
+}

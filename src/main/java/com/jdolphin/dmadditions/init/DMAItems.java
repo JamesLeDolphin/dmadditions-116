@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.item.LaserScrewdriver;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
@@ -62,6 +61,7 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_BOOTS;*/
 
 	public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
+	public static RegistryObject<Item> PILOT_FISH_SPAWNER;
 
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
@@ -101,6 +101,7 @@ public class DMAItems {
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
 		WOODEN_CYBERMAN_SPAWNER = addAdventSpawnItem(17, "wooden_cyberman");
+		PILOT_FISH_SPAWNER = addAdventSpawnItem(17, "pilot_fish");
 
 
 
