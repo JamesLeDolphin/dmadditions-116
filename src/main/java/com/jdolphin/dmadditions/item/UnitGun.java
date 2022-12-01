@@ -4,6 +4,7 @@ import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.init.DMProjectiles;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BowItem;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -57,15 +58,16 @@ public class UnitGun extends Item {
 				return;
 			}
 
-			worldIn.playSound((PlayerEntity)null, entityLiving.getX(), entityLiving.getY(), entityLiving.getZ(), this.getShootSound(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			worldIn.playSound(null, entityLiving.getX(), entityLiving.getY(), entityLiving.getZ(), this.getShootSound(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			LaserEntity laser = new LaserEntity(worldIn, entityLiving, 0.0F, this.attackDamage);
 			laser.setLaserType(this.laserType);
-			laser.setDamageSource(new EntityDamageSource("dalekgun", entityLiving));
+			laser.setDamageSource(new EntityDamageSource("unit_gun", entityLiving));
 			laser.shoot(entityLiving, entityLiving.xRot, entityLiving.yRot, 0.0F, 2.5F, 0.0F);
 			worldIn.addFreshEntity(laser);
 			if (entityLiving instanceof ServerPlayerEntity && !((ServerPlayerEntity)entityLiving).isCreative()) {
 				stack.hurt(1, random, (ServerPlayerEntity)entityLiving);
 			}
+
 		}
 
 	}

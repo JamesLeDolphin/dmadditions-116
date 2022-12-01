@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
+import com.jdolphin.dmadditions.item.UnitGun;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
@@ -60,6 +61,8 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_CHESTPLATE;
 	public static RegistryObject<Item> METALERT_LEGGINGS;
 	public static RegistryObject<Item> METALERT_BOOTS;*/
+	public static RegistryObject<Item> BULLET_ITEM;
+
 
 	public static final RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
 	public static final RegistryObject<Item> PILOT_FISH_SPAWNER;
@@ -93,8 +96,11 @@ public class DMAItems {
 		}
 
 		UNIT_GUN = registerAdventItem(5, "unit_gun",
-			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
-				DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+			() -> new UnitGun(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMASoundEvents.PISTOL_SHOOT,
+				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+
+		BULLET_ITEM = registerAdventItem(7, "bullet",
+			() -> new Item((new Item.Properties()).tab(ItemGroup.TAB_MISC)));
 
 		/*LASER_SCREWDRIVER = registerAdventItem(9 ,"laser_screwdriver",
 			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));*/
