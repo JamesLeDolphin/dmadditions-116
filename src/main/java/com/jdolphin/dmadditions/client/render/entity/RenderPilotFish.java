@@ -5,11 +5,11 @@ import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderPilotFish extends LivingRenderer<PilotFishEntity, PilotFishModel> {
+public class RenderPilotFish extends BipedRenderer<PilotFishEntity, PilotFishModel> {
 	public RenderPilotFish(EntityRendererManager rendererManager){
 		super(rendererManager, new PilotFishModel(1.0f), 0.5f);
 	}
