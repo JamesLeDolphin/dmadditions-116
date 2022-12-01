@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
-import com.jdolphin.dmadditions.item.UnitGun;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
@@ -96,7 +95,7 @@ public class DMAItems {
 		}
 
 		UNIT_GUN = registerAdventItem(5, "unit_gun",
-			() -> new UnitGun(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.BULLET, DMASoundEvents.PISTOL_SHOOT,
+			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		BULLET_ITEM = registerAdventItem(7, "bullet",
