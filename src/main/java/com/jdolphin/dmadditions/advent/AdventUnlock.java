@@ -12,6 +12,7 @@ public class AdventUnlock {
 		Calendar cal = Calendar.getInstance();
 		int month = cal.get(Calendar.MONTH);
 		return (month == 11);
+
 	}
 
 	public static boolean unlockAt(int day) {
@@ -38,5 +39,4 @@ public class AdventUnlock {
 		int year = cal.get(Calendar.YEAR);
 		return (year == 2022);
 	}
-
 }
