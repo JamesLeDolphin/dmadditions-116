@@ -7,9 +7,11 @@ import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
+import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
@@ -35,6 +37,8 @@ public class DMAItems {
 	public static RegistryObject<Item> ORANGE_CANDY_CANE;
 
 	public static final RegistryObject<Item> MUSIC_DISC_PFD;
+
+	public static final RegistryObject<Item> SANTA_HAT;
 
 	/*public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
@@ -100,6 +104,9 @@ public class DMAItems {
 
 		BULLET_ITEM = registerAdventItem(7, "bullet",
 			() -> new Item((new Item.Properties()).tab(ItemGroup.TAB_MISC)));
+
+		SANTA_HAT = registerAdventItem(8, "santa_hat",
+			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 		/*LASER_SCREWDRIVER = registerAdventItem(9 ,"laser_screwdriver",
 			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));*/
