@@ -2,8 +2,6 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.swdteam.common.entity.AutonEntity;
-import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -25,9 +23,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -41,7 +37,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttackMob, IForgeEntity {
 	public static final DataParameter<Boolean> HAS_GUN;
 	private Goal meeleAttack;
-	private ItemStack pickResult;
+	private final ItemStack pickResult;
 
 	public WoodenCybermanEntity(EntityType<? extends MonsterEntity> entityType, World world) {
 		super(entityType, world);
@@ -74,11 +70,11 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, HuskEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, SkeletonEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, StrayEntity.class, true));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 	}
 
 	public void addAdditionalSaveData(CompoundNBT compound) {
-		compound.putBoolean(DMNBTKeys.GUN_ARMED, (Boolean)this.getEntityData().get(HAS_GUN));
+		compound.putBoolean(DMNBTKeys.GUN_ARMED, this.getEntityData().get(HAS_GUN));
 
 		super.addAdditionalSaveData(compound);
 	}
@@ -92,7 +88,7 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 	}
 
 	public boolean hasGun() {
-		return (Boolean)this.getEntityData().get(HAS_GUN);
+		return this.getEntityData().get(HAS_GUN);
 	}
 
 	protected void defineSynchedData() {
@@ -110,30 +106,30 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 			d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
 			d2 = target.getZ() - this.getZ();
 			if (this.level.random.nextInt(5) == 2) {
-				this.playSound((SoundEvent)DMSoundEvents.ENTITY_CYBERMAN_LIVING.get(), 1.0F, 1.0F);
+				this.playSound(DMSoundEvents.ENTITY_CYBERMAN_LIVING.get(), 1.0F, 1.0F);
 			}
 
 			LaserEntity laser = new LaserEntity(this.level, this, 0.2F, 2.0F);
 			laser.setLaserType(DMProjectiles.ORANGE_LASER);
 			laser.shoot(d0, d1, d2, 2.5F, 0.0F);
-			this.playSound((SoundEvent)DMSoundEvents.ENTITY_CYBERMAN_SHOOT.get(), 1.0F, 1.0F);
+			this.playSound(DMSoundEvents.ENTITY_CYBERMAN_SHOOT.get(), 1.0F, 1.0F);
 			this.level.addFreshEntity(laser);
 		}
 	}
 
 	protected void playStepSound(BlockPos pos, BlockState blockIn) {
-		this.playSound((SoundEvent)DMSoundEvents.ENTITY_CYBERMAN_STEP.get(), 0.5F, SWDMathUtils.randomRange(0.8F, 1.2F));
+		this.playSound(DMSoundEvents.ENTITY_CYBERMAN_STEP.get(), 0.5F, SWDMathUtils.randomRange(0.8F, 1.2F));
 	}
 
 	public void playAmbientSound() {
 		if (this.tickCount >= 200) {
-			this.playSound((SoundEvent)DMSoundEvents.ENTITY_CYBERMAN_LIVING.get(), 0.5F, 1.0F);
+			this.playSound(DMSoundEvents.ENTITY_CYBERMAN_LIVING.get(), 0.5F, 1.0F);
 		}
 
 	}
 
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return (SoundEvent)DMSoundEvents.ENTITY_CYBERMAN_HURT.get();
+		return DMSoundEvents.ENTITY_CYBERMAN_HURT.get();
 	}
 
 	public boolean hurt(DamageSource source, float f) {
@@ -158,25 +154,25 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 		}
 
 		if (this.level.isClientSide) {
-			this.level.addParticle((IParticleData)DMParticleTypes.GOLD_DUST.get(), this.getRandomX(-0.5), this.getY(0.5), this.getRandomZ(0.5), 0.0, 0.0, 0.0);
+			this.level.addParticle(DMParticleTypes.GOLD_DUST.get(), this.getRandomX(-0.5), this.getY(0.5), this.getRandomZ(0.5), 0.0, 0.0, 0.0);
 		}
 
 	}
 
 	public void killed(ServerWorld level, LivingEntity target) {
 		super.killed(level, target);
-		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity && ForgeEventFactory.canLivingConvert(target, (EntityType)DMAEntities.WOODEN_CYBERMAN_ENTITY.get(), (timer) -> {
+		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity && ForgeEventFactory.canLivingConvert(target, DMAEntities.WOODEN_CYBERMAN.get(), (timer) -> {
 		})) {
 			if (level.getDifficulty() != Difficulty.NORMAL || level.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return;
 			}
 
 			VillagerEntity villagerentity = (VillagerEntity)target;
-			WoodenCybermanEntity woodenCybermanEntity = (WoodenCybermanEntity)villagerentity.convertTo((EntityType)DMAEntities.WOODEN_CYBERMAN_ENTITY.get(), false);
-			woodenCybermanEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(woodenCybermanEntity.blockPosition()), SpawnReason.CONVERSION, new ZombieEntity.GroupData(false, true), (CompoundNBT)null);
+			WoodenCybermanEntity woodenCybermanEntity = (WoodenCybermanEntity)villagerentity.convertTo((EntityType)DMAEntities.WOODEN_CYBERMAN.get(), false);
+			woodenCybermanEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(woodenCybermanEntity.blockPosition()), SpawnReason.CONVERSION, new ZombieEntity.GroupData(false, true), null);
 			ForgeEventFactory.onLivingConvert(target, woodenCybermanEntity);
 			if (!this.isSilent()) {
-				level.levelEvent((PlayerEntity)null, 1026, this.blockPosition(), 0);
+				level.levelEvent(null, 1026, this.blockPosition(), 0);
 			}
 		}
 

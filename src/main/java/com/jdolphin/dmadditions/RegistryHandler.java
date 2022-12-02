@@ -6,7 +6,7 @@ public class RegistryHandler {
 	//	public static DMAdditionsBlocks dmAdditionsBlocks;
 	//	public static DMAdditionsParticleTypes dmParticles;
 	public static DMABiomes dmaBiomes;
-	//public static DMAEntities dmaEntities;
+	public static DMAEntities dmaEntities;
 	public static DMABlockEntities dmaTiles;
 	public static DMAWorldCarvers dmaCarvers;
 	//	public static DMAdditionsCraftingTypes dmAdditionsCraftingTypes;
@@ -26,6 +26,7 @@ public class RegistryHandler {
 		dmaItems = new DMAItems();
 		dmaBlocks = new DMABlocks();
 		dmaTiles = new DMABlockEntities();
+		dmaEntities = new DMAEntities();
 		dmaLootConditionManager = new DMALootConditionManager();
 	}
 }
