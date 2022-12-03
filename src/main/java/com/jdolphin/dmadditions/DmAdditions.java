@@ -66,9 +66,14 @@ public class DmAdditions {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
 		event.enqueueWork(() -> {
-			GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
-			GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
-			GlobalEntityTypeAttributes.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
+			if (DMAEntities.WOODEN_CYBERMAN != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
+
+			if (DMAEntities.SNOWMAN != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
+
+			if (DMAEntities.PILOT_FISH != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 
 		});
 	}
