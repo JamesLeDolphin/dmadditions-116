@@ -6,6 +6,7 @@ import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
+import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
@@ -67,6 +68,7 @@ public class DmAdditions {
 		event.enqueueWork(() -> {
 			GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
 			GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
+			GlobalEntityTypeAttributes.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 
 		});
 	}

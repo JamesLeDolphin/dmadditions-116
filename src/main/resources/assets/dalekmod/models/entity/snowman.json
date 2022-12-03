@@ -1,0 +1,65 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dalekmod:entity/snowman",
+	"texture_width": 64,
+	"texture_height": 64,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "Head",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,18],
+					"size": [8,8,8],
+					"origin": [-4,-25,-4],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "Neck",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [29,11],
+					"size": [7,4,7],
+					"origin": [-3.5,-17,-3.5],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "Torso",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [24,26],
+					"size": [8,5,8],
+					"origin": [-4,-13,-4],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "Skirt",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,0],
+					"size": [9,9,9],
+					"origin": [-4.5,-9,-4.4],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		}
+	]
+}

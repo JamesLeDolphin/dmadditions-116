@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
+import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.main.DalekMod;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.RegistryObject;
 public class DMAEntities {
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN;
 	public static RegistryObject<EntityType<PilotFishEntity>> PILOT_FISH;
+	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN;
 
 	public static void init() {
 	}
@@ -22,6 +24,13 @@ public class DMAEntities {
 			PILOT_FISH = RegistryHandler.ENTITY_TYPES.register("pilot_fish",
 				() -> EntityType.Builder.of(PilotFishEntity::new, EntityClassification.MONSTER).sized(0.6f, 1.9f)
 					.build((new ResourceLocation(DalekMod.MODID, "pilot_fish")).toString()));
+		}
+
+		if (AdventUnlock.unlockAt(5)) {
+			SNOWMAN = RegistryHandler.ENTITY_TYPES.register("snowman",
+				() -> EntityType.Builder.of(SnowmanEntity::new, EntityClassification.MONSTER)
+					.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString())
+				);
 		}
 
 		if (AdventUnlock.unlockAt(17)) {
