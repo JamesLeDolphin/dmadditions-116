@@ -152,10 +152,14 @@
 	"item.dalekmod.wooden_cyberman_spawner": "Wooden Cyberman Spawner",
 	"item.dalekmod.santa_dalek_spawner": "Santa Dalek Spawner",
 	"item.dalekmod.candycane_dalek_spawner": "Candy Cane Dalek Spawner",
+	"item.dalekmod.pilot_fish_spawner": "Pilot Fish Spawner",
+	"item.dalekmod.snowman_spawner": "Snowman Spawner",
+
 	"item.dalekmod.santa_hat": "Santa Hat",
 
 	"item.dalekmod.music_disc_pfd": "Music Disc",
 	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks",
 
-	"entity.dalekmod.pilot_fish": "Pilot Fish"
+	"entity.dalekmod.pilot_fish": "Pilot Fish",
+	"entity.dalekmod.snowman": "Snowman"
 }
