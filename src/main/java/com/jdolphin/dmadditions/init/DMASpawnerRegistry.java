@@ -3,12 +3,15 @@ package com.jdolphin.dmadditions.init;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
@@ -20,18 +23,24 @@ public class DMASpawnerRegistry {
 	}
 
 	public static void init() {
+		if (DMAEntities.SNOWMAN != null) {
+			EntitySpawnPlacementRegistry.register(DMAEntities.SNOWMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
+			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+		}
 	}
 
 	public static void initDalekSpawns() {
-		addSpawn(DMADalekRegistry.DALEK_SANTA, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
+		addDalekSpawn(DMADalekRegistry.DALEK_SANTA, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
 			Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
-		addSpawn(DMADalekRegistry.CANDYCANE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
+		addDalekSpawn(DMADalekRegistry.CANDYCANE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
 
 	}
 
 	@SafeVarargs
-	public static void addSpawn(IDalek dalek, RegistryKey<Biome>... biomes) {
-		if(dalek == null) return;
+	public static void addDalekSpawn(IDalek dalek, RegistryKey<Biome>... biomes) {
+		if (dalek == null) return;
 
 		DMDalekRegistry.addSpawn(dalek, biomes);
 	}
@@ -50,7 +59,7 @@ public class DMASpawnerRegistry {
 
 		while (var5.hasNext()) {
 			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry) var5.next();
-			addSpawn((RegistryKey) rl.getKey(), type, weight, min, max, entityType);
+			addSpawn(rl.getKey(), type, weight, min, max, entityType);
 		}
 
 	}
@@ -67,7 +76,7 @@ public class DMASpawnerRegistry {
 	}
 
 	public static class SpawnInfo {
-		private List<DMASpawnerRegistry.SpawnInfo.Spawn> spawners = new ArrayList();
+		private final List<DMASpawnerRegistry.SpawnInfo.Spawn> spawners = new ArrayList();
 
 		public SpawnInfo() {
 		}

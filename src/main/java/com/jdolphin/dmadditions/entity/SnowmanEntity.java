@@ -17,9 +17,13 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.feature.structure.Structure;
 
 import javax.annotation.Nullable;
 
@@ -90,5 +94,21 @@ public class SnowmanEntity extends MonsterEntity {
 		this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * p_213386_2_.getSpecialMultiplier());
 
 		return p_213386_4_;
+	}
+
+	@Override
+	public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
+		if(!reason.equals(SpawnReason.NATURAL))
+			return super.checkSpawnRules(world, reason);
+
+		BlockPos blockPos = blockPosition();
+		IChunk chunk = world.getChunk(blockPos);
+
+		boolean noVillages = chunk.getReferencesForFeature(Structure.VILLAGE).isEmpty();
+		if(noVillages) return false;
+
+		if(world.getBiome(blockPos).getTemperature(blockPos) >= 0.15F) return false;
+
+		return super.checkSpawnRules(world, reason);
 	}
 }
