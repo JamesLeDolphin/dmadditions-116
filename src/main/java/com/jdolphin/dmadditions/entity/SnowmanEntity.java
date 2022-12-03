@@ -81,7 +81,7 @@ public class SnowmanEntity extends MonsterEntity {
 	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
 		super.populateDefaultEquipmentSlots(p_180481_1_);
 
-		if(random.nextFloat() <= 0.25){
+		if(random.nextFloat() <= 0.25 && DMAItems.SANTA_HAT != null){
 			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 		}
 	}
