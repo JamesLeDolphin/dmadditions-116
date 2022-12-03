@@ -1,27 +1,6 @@
 {
 	"replace": false,
 	"values": [
-		"dalekmod:sonic_screwdriver_basic",
-		"dalekmod:sonic_screwdriver_1",
-		"dalekmod:sonic_screwdriver_2",
-		"dalekmod:sonic_screwdriver_3",
-		"dalekmod:sonic_screwdriver_4",
-		"dalekmod:sonic_screwdriver_5",
-		"dalekmod:sonic_screwdriver_6",
-		"dalekmod:sonic_screwdriver_7",
-		"dalekmod:sonic_screwdriver_8",
-		"dalekmod:sonic_screwdriver_war",
-		"dalekmod:sonic_screwdriver_9",
-		"dalekmod:sonic_screwdriver_river",
-		"dalekmod:sonic_screwdriver_11",
-		"dalekmod:sonic_screwdriver_12",
-		"dalekmod:sonic_screwdriver_13",
-		"dalekmod:sonic_screwdriver_py_green",
-		"dalekmod:sonic_screwdriver_py_blue",
-		"dalekmod:sonic_screwdriver_temporal",
-		"dalekmod:sonic_screwdriver_pen",
-		"dalekmod:sonic_screwdriver_epsilon",
-		"dalekmod:sonic_screwdriver_candy",
-		"dalekmod:laser_screwdriver"
+		"dalekmod:sonic_screwdriver"
 	]
 }
