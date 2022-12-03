@@ -25,6 +25,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -34,6 +35,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_SPAWNER;
 import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
 
 // Robo Santa or something
@@ -54,6 +56,13 @@ public class PilotFishEntity extends MonsterEntity implements IForgeEntity, IRan
 			.add(Attributes.MAX_HEALTH, 20.0)
 			.add(Attributes.ATTACK_DAMAGE, 2.0)
 			.add(Attributes.FOLLOW_RANGE, 20.0);
+	}
+
+	@Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		if(PILOT_FISH_SPAWNER == null) return null;
+
+		return new ItemStack(PILOT_FISH_SPAWNER.get());
 	}
 
 	@Override

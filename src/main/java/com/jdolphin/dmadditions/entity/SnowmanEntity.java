@@ -18,6 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
@@ -26,6 +27,8 @@ import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.Structure;
 
 import javax.annotation.Nullable;
+
+import static com.jdolphin.dmadditions.init.DMAItems.SNOWMAN_SPAWNER;
 
 public class SnowmanEntity extends MonsterEntity {
 
@@ -56,6 +59,13 @@ public class SnowmanEntity extends MonsterEntity {
 			.add(Attributes.MAX_HEALTH, 4.0)
 			.add(Attributes.ATTACK_DAMAGE, 2.0)
 			.add(Attributes.FOLLOW_RANGE, 20.0);
+	}
+
+	@Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		if(SNOWMAN_SPAWNER == null) return null;
+
+		return new ItemStack(SNOWMAN_SPAWNER.get());
 	}
 
 	public boolean isSensitiveToWater() {
