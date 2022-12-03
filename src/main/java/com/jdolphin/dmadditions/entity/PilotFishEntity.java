@@ -23,11 +23,11 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.common.extensions.IForgeEntity;
 
 import javax.annotation.Nonnull;
@@ -174,5 +174,19 @@ public class PilotFishEntity extends MonsterEntity implements IForgeEntity, IRan
 		} else {
 			this.goalSelector.addGoal(4, this.meleeGoal);
 		}
+	}
+
+	@Override
+	public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
+		if(!reason.equals(SpawnReason.NATURAL))
+			return super.checkSpawnRules(world, reason);
+
+		BlockPos blockPos = blockPosition();
+		IChunk chunk = world.getChunk(blockPos);
+
+		boolean noVillages = chunk.getReferencesForFeature(Structure.VILLAGE).isEmpty();
+		if(noVillages) return false;
+
+		return super.checkSpawnRules(world, reason);
 	}
 }

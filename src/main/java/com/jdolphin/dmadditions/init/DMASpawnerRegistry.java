@@ -29,6 +29,16 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
 			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
 		}
+
+		if (DMAEntities.PILOT_FISH != null) {
+			EntitySpawnPlacementRegistry.register(DMAEntities.PILOT_FISH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
+			addSpawn(Biomes.DESERT, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.PLAINS, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+		}
 	}
 
 	public static void initDalekSpawns() {
