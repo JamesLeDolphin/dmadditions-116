@@ -102,7 +102,7 @@ public class DMAItems {
 
 		SNOWMAN_SPAWNER = addAdventSpawnItem(5, "snowman");
 
-		UNIT_GUN = registerAdventItem(5, "unit_gun",
+		UNIT_GUN = registerAdventItem(7, "unit_gun",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
