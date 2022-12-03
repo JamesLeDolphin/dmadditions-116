@@ -7,6 +7,7 @@ import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
+import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +17,7 @@ import javax.annotation.Nonnull;
 
 import static com.swdteam.main.DalekMod.MODID;
 
-public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IModelPartReloader {
+public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IModelPartReloader, IHasHead {
 	public JSONModel model;
 
 	protected ModelRenderer head;
@@ -54,5 +55,10 @@ public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IMode
 	@Nonnull
 	public Iterable<ModelRenderer> parts() {
 		return ImmutableList.of(this.head, this.neck, this.torso, this.skirt);
+	}
+
+	@Override
+	public ModelRenderer getHead() {
+		return this.head;
 	}
 }

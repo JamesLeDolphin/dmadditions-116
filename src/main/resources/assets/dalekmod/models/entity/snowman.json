@@ -7,13 +7,13 @@
 	"groups": [
 		{
 			"group_name": "Head",
-			"pivot": [0,24,0],
+			"pivot": [0,7,0],
 			"rotation": [0,0,0],
 			"cubes": [
 				{
 					"uv": [0,18],
 					"size": [8,8,8],
-					"origin": [-4,-25,-4],
+					"origin": [-4,-8,-4],
 					"inflate": 0,
 					"mirror": false
 				}

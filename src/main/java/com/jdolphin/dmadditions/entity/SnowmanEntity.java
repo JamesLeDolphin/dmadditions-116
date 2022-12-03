@@ -1,7 +1,10 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.init.DMAItems;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -9,9 +12,13 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -66,4 +73,22 @@ public class SnowmanEntity extends MonsterEntity {
 		return SoundEvents.SNOW_GOLEM_DEATH;
 	}
 
+	@Override
+	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+		super.populateDefaultEquipmentSlots(p_180481_1_);
+
+		if(random.nextFloat() <= 0.25){
+			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
+		}
+	}
+
+	@Nullable
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
+		p_213386_4_ = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+		this.populateDefaultEquipmentSlots(p_213386_2_);
+		this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * p_213386_2_.getSpecialMultiplier());
+
+		return p_213386_4_;
+	}
 }
