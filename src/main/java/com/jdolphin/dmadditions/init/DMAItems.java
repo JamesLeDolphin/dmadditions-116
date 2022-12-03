@@ -36,6 +36,8 @@ public class DMAItems {
 	public static RegistryObject<Item> RED_CANDY_CANE;
 	public static RegistryObject<Item> ORANGE_CANDY_CANE;
 
+	public static final RegistryObject<Item> SNOWMAN_SPAWNER;
+
 	public static final RegistryObject<Item> MUSIC_DISC_PFD;
 
 	public static final RegistryObject<Item> SANTA_HAT;
@@ -97,6 +99,8 @@ public class DMAItems {
 			ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("orange_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 		}
+
+		SNOWMAN_SPAWNER = addAdventSpawnItem(5, "snowman");
 
 		UNIT_GUN = registerAdventItem(5, "unit_gun",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,DMASoundEvents.PISTOL_SHOOT,

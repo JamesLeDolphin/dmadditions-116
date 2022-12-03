@@ -1,0 +1,11 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "minecraft:block/carved_pumpkin"
+	},
+	"display": {
+		"gui": {
+			"rotation": [180, 0, 0]
+		}
+	}
+}
