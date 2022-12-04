@@ -12,9 +12,12 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -25,12 +28,16 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraftforge.common.IForgeShearable;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 import static com.jdolphin.dmadditions.init.DMAItems.SNOWMAN_SPAWNER;
 
-public class SnowmanEntity extends MonsterEntity {
+public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 
 	public SnowmanEntity(EntityType<? extends MonsterEntity> p_i48553_1_, World p_i48553_2_) {
 		super(p_i48553_1_, p_i48553_2_);
@@ -63,7 +70,7 @@ public class SnowmanEntity extends MonsterEntity {
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		if(SNOWMAN_SPAWNER == null) return null;
+		if (SNOWMAN_SPAWNER == null) return null;
 
 		return new ItemStack(SNOWMAN_SPAWNER.get());
 	}
@@ -91,7 +98,7 @@ public class SnowmanEntity extends MonsterEntity {
 	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
 		super.populateDefaultEquipmentSlots(p_180481_1_);
 
-		if(random.nextFloat() <= 0.25 && DMAItems.SANTA_HAT != null){
+		if (random.nextFloat() <= 0.25 && DMAItems.SANTA_HAT != null) {
 			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 		}
 	}
@@ -108,17 +115,32 @@ public class SnowmanEntity extends MonsterEntity {
 
 	@Override
 	public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
-		if(!reason.equals(SpawnReason.NATURAL))
+		if (!reason.equals(SpawnReason.NATURAL))
 			return super.checkSpawnRules(world, reason);
 
 		BlockPos blockPos = blockPosition();
 		IChunk chunk = world.getChunk(blockPos);
 
 		boolean noVillages = chunk.getReferencesForFeature(Structure.VILLAGE).isEmpty();
-		if(noVillages) return false;
+		if (noVillages) return false;
 
-		if(world.getBiome(blockPos).getTemperature(blockPos) >= 0.15F) return false;
+		if (world.getBiome(blockPos).getTemperature(blockPos) >= 0.15F) return false;
 
 		return super.checkSpawnRules(world, reason);
+	}
+
+	@Nonnull
+	@Override
+	public List<ItemStack> onSheared(@Nullable PlayerEntity player, @Nonnull ItemStack item, World world, BlockPos pos, int fortune) {
+		ItemStack hat = this.getItemBySlot(EquipmentSlotType.HEAD);
+
+		this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(Items.AIR));
+		world.playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, SoundCategory.PLAYERS, 1, 1);
+		return Collections.singletonList(hat);
+	}
+
+	@Override
+	public boolean isShearable(@Nonnull ItemStack item, World world, BlockPos pos) {
+		return !this.getItemBySlot(EquipmentSlotType.HEAD).isEmpty();
 	}
 }
