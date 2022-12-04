@@ -142,7 +142,7 @@ public class DMABlocks {
 
 		TARDIS_SNOWGLOBE = registerAdventBlock(6,
 			() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
-			"tardis_snowglobe", DMTabs.DM_TARDIS);
+			"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
 
 		RANDOMIZER = registerAdventBlock(9,
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
