@@ -1,4 +1,6 @@
 {
-	"parent": "dalekmod:item/chocolate_dalek_spawner",
-	"display": { "gui": {"rotation": [180,0,0]} }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "dalekmod:item/candycane_dalek_spawner"
+	}
 }

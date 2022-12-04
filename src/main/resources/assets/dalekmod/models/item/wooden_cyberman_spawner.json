@@ -1,4 +1,6 @@
 {
-	"parent": "dalekmod:item/cyberman_spawner",
-	"display": { "gui": {"rotation": [180,0,0]} }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "dalekmod:item/wooden_cyberman_spawner"
+	}
 }
