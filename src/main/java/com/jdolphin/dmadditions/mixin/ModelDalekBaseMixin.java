@@ -89,6 +89,9 @@ public class ModelDalekBaseMixin {
 		instance.ANI_NECK.yRot = neckDefaultState.yRot;
 		instance.ANI_NECK.zRot = neckDefaultState.zRot;
 
+		instance.ANI_TORSO.x = torsoDefaultState.x;
+		instance.ANI_TORSO.y = torsoDefaultState.y;
+
 		instance.ANI_TORSO.xRot = torsoDefaultState.xRot;
 		instance.ANI_TORSO.yRot = torsoDefaultState.yRot;
 		instance.ANI_TORSO.zRot = torsoDefaultState.zRot;
