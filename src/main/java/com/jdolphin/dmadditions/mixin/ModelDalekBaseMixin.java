@@ -6,22 +6,12 @@ import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ModelDalekBase.class)
 public class ModelDalekBaseMixin {
-	@Shadow
-	public ModelRenderer ANI_HEAD;
-
-	@Shadow
-	public ModelRenderer ANI_NECK;
-
-	@Shadow
-	public ModelRenderer ANI_TORSO;
-
 	private ModelRenderer headDefaultState;
 	private ModelRenderer neckDefaultState;
 	private ModelRenderer torsoDefaultState;
@@ -31,13 +21,15 @@ public class ModelDalekBaseMixin {
 
 	@Inject(method = "init", at = @At("TAIL"), remap = false)
 	public void init(CallbackInfo ci) {
-		headDefaultState = ANI_HEAD.createShallowCopy();
-		neckDefaultState = ANI_NECK.createShallowCopy();
-		torsoDefaultState = ANI_TORSO.createShallowCopy();
+		ModelDalekBase instance = (ModelDalekBase) (Object) this;
+
+		headDefaultState = instance.ANI_HEAD.createShallowCopy();
+		neckDefaultState = instance.ANI_NECK.createShallowCopy();
+		torsoDefaultState = instance.ANI_TORSO.createShallowCopy();
 	}
 
 	@Inject(method = "setupAnim(Lcom/swdteam/common/entity/dalek/DalekEntity;FFFFF)V",
-		at = @At("HEAD"), remap = false, cancellable = true)
+		at = @At("HEAD"), cancellable = true, remap = false)
 	public void setupAnim(DalekEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
 		ModelDalekBase instance = (ModelDalekBase) (Object) this;
 
@@ -96,6 +88,10 @@ public class ModelDalekBaseMixin {
 		instance.ANI_NECK.xRot = neckDefaultState.xRot;
 		instance.ANI_NECK.yRot = neckDefaultState.yRot;
 		instance.ANI_NECK.zRot = neckDefaultState.zRot;
+
+		instance.ANI_TORSO.xRot = torsoDefaultState.xRot;
+		instance.ANI_TORSO.yRot = torsoDefaultState.yRot;
+		instance.ANI_TORSO.zRot = torsoDefaultState.zRot;
 
 		if (leftArm != null) leftArm.zRot = leftArmDefaultState.zRot;
 		if (rightArm != null) rightArm.zRot = rightArmDefaultState.zRot;

@@ -8,7 +8,6 @@
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
 		"CarvedPumpkinBlockMixin",
-		"DalekEntityMixin",
 		"DalekRegistryMixin",
 		"DMBlocksMixin",
 		"SpawnRegistryMixin",
@@ -16,6 +15,7 @@
 	],
 	"client": [
 		"ClientProxyMixin",
+		"DalekEntityMixin",
 		"DMEntityRenderRegistryMixin",
 		"DMTileRenderRegistryMixin",
 		"ModelDalekBaseMixin"
