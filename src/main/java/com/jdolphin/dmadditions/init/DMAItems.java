@@ -106,8 +106,6 @@ public class DMAItems {
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-		BULLET_ITEM = registerAdventItem(7, "bullet",
-			() -> new Item((new Item.Properties()).tab(ItemGroup.TAB_MISC)));
 
 		SANTA_HAT = registerAdventItem(8, "santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
