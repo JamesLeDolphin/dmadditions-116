@@ -8,6 +8,7 @@ import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
+import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
@@ -57,6 +58,7 @@ public class DmAdditions {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 

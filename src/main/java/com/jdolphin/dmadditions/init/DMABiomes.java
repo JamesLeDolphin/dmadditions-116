@@ -19,8 +19,6 @@ public class DMABiomes {
 		return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("dalekmod", name));
 	}
 	static {
-		MOON_BIOME = RegistryHandler.BIOMES.register("moon", () -> {
-			return BiomeMaker.theVoidBiome();
-		});
+		MOON_BIOME = RegistryHandler.BIOMES.register("moon", BiomeMaker::theVoidBiome);
 	}
 }
