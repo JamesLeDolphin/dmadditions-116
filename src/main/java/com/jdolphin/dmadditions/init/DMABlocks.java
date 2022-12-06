@@ -2,9 +2,11 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
+import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.OreBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -127,6 +129,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> TARDIS_SNOWGLOBE;
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
+	public static RegistryObject<Block> CHEESE_ORE;
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
@@ -147,6 +150,8 @@ public class DMABlocks {
 		RANDOMIZER = registerAdventBlock(9,
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
+
+		CHEESE_ORE = registerBlock(() ->  new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
 
 		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "black_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "yellow_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
