@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "",
+        "###",
+        "#R "
+    ],
+    "key": {
+        "#": {
+            "tag": "forge:ingots/steel"
+        },
+        "S": {
+            "item": "minecraft:snowball"
+        },
+        "R": {
+            "item": "minecraft:red_dye"
+        }
+    },
+    "result": {
+        "item": "dalekmod:unit_gun",
+        "count": 1
+    }
+}
