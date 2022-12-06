@@ -161,5 +161,6 @@
 	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks",
 
 	"entity.dalekmod.pilot_fish": "Pilot Fish",
-	"entity.dalekmod.snowman": "Snowman"
+	"entity.dalekmod.snowman": "Snowman",
+	"dmadditions.interior.name.coral": "Coral Interior"
 }
