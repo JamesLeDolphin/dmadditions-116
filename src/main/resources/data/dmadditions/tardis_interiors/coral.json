@@ -1,6 +1,6 @@
 {
-	"default_rotation": 180,
-	"door_offset": [ 16, 8, 4 ],
+	"default_rotation": 0,
+	"door_offset": [ 16.5, 8, 5 ],
 	"block_offset": [ 0, 6, 1 ],
 	"name": "dmadditions.interior.name.coral",
 	"schematic": "dmadditions:coral",

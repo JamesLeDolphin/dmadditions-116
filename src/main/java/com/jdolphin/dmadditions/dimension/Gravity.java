@@ -12,7 +12,7 @@ import static com.jdolphin.dmadditions.init.DMADimensions.MOON;
 
 public class Gravity {
 	public static HashMap<RegistryKey<World>, Double> DIMENSION_GRAVITY = new HashMap<RegistryKey<World>, Double>() {{
-		put(MOON, 0.0075);
+		put(MOON, 0.009);
 	}};
 
 	public static void changeGravity(LivingEntity entity, RegistryKey<World> newDim, RegistryKey<World> oldDim) {
