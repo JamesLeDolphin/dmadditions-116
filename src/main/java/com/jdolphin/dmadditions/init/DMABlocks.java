@@ -130,6 +130,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
 	public static RegistryObject<Block> CHEESE_ORE;
+	public static final RegistryObject<Block> CHRISTMAS_TREE;
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
@@ -137,6 +138,7 @@ public class DMABlocks {
 
 		return registerBlock(supplier, name, tab);
 	}
+
 
 	static {
 		WREATH = registerAdventBlock(3,
@@ -151,7 +153,10 @@ public class DMABlocks {
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
 
-		CHEESE_ORE = registerBlock(() ->  new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
+		CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
+
+		CHRISTMAS_TREE = registerAdventBlock(13, () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
+			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
 
 		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "black_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "yellow_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
@@ -254,6 +259,9 @@ public class DMABlocks {
 	public static void registerRenderTypes() {
 		if (TARDIS_SNOWGLOBE != null)
 			registerRenderType(TARDIS_SNOWGLOBE.get(), RenderType.cutoutMipped());
+
+		if (CHRISTMAS_TREE != null)
+			registerRenderType(CHRISTMAS_TREE.get(), RenderType.cutoutMipped());
 	}
 }
 
