@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
+import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -46,7 +47,7 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-		return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.MAX_HEALTH, 20.0).add(Attributes.ATTACK_DAMAGE, 2.0).add(Attributes.FOLLOW_RANGE, 20.0);
+		return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.2).add(Attributes.MAX_HEALTH, 20.0).add(Attributes.ATTACK_DAMAGE, 2.0).add(Attributes.FOLLOW_RANGE, 20.0);
 	}
 
 	protected void registerGoals() {
@@ -110,9 +111,9 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 			}
 
 			LaserEntity laser = new LaserEntity(this.level, this, 0.2F, 2.0F);
-			laser.setLaserType(DMProjectiles.ORANGE_LASER);
+			laser.setLaserType(DMProjectiles.FIRE);
 			laser.shoot(d0, d1, d2, 2.5F, 0.0F);
-			this.playSound(DMSoundEvents.ENTITY_CYBERMAN_SHOOT.get(), 1.0F, 1.0F);
+			this.playSound(DMSoundEvents.ENTITY_DALEK_FLAME_THROWER_SHOOT.get(), 1.0F, 1.0F);
 			this.level.addFreshEntity(laser);
 		}
 	}
@@ -133,42 +134,19 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 	}
 
 	public boolean hurt(DamageSource source, float f) {
-		if (source.getEntity() instanceof LivingEntity) {
-			Item item = ((LivingEntity)source.getEntity()).getMainHandItem().getItem();
-			boolean isGold = item.is(Tags.Items.INGOTS_GOLD) || item.is(Tags.Items.NUGGETS_GOLD) || item.is(Tags.Items.ORES_GOLD) || item.is(Tags.Items.STORAGE_BLOCKS_GOLD) || item.is(com.swdteam.common.init.DMTags.Items.MOSTLY_GOLD_ITEMS) || item.getItem() instanceof TieredItem && ((TieredItem)item.getItem()).getTier().equals(ItemTier.GOLD) || item.getItem() instanceof ArmorItem && ((ArmorItem)item.getItem()).getMaterial().equals(ArmorMaterial.GOLD);
-			if (isGold) {
-				this.goldHurtEffects(f);
-			}
-		} else if (source.getEntity() != null && source.getEntity().getType().is(DMTags.EntityTypes.GOLD)) {
-			this.goldHurtEffects(f);
-		}
-
 		return super.hurt(source, f);
-	}
-
-	private void goldHurtEffects(float attackDamage) {
-		if (this.getHealth() - 3.0F <= 0.0F) {
-			this.setHealth(this.getHealth() - (this.getHealth() - attackDamage));
-		} else {
-			this.setHealth(this.getHealth() - 3.0F);
-		}
-
-		if (this.level.isClientSide) {
-			this.level.addParticle(DMParticleTypes.GOLD_DUST.get(), this.getRandomX(-0.5), this.getY(0.5), this.getRandomZ(0.5), 0.0, 0.0, 0.0);
-		}
-
 	}
 
 	public void killed(ServerWorld level, LivingEntity target) {
 		super.killed(level, target);
-		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity && ForgeEventFactory.canLivingConvert(target, DMAEntities.WOODEN_CYBERMAN.get(), (timer) -> {
+		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity && ForgeEventFactory.canLivingConvert(target, DMEntities.CYBERMAN_ENTITY.get(), (timer) -> {
 		})) {
 			if (level.getDifficulty() != Difficulty.NORMAL || level.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return;
 			}
 
 			VillagerEntity villagerentity = (VillagerEntity)target;
-			WoodenCybermanEntity woodenCybermanEntity = (WoodenCybermanEntity)villagerentity.convertTo((EntityType)DMAEntities.WOODEN_CYBERMAN.get(), false);
+			CybermanEntity woodenCybermanEntity = (CybermanEntity)villagerentity.convertTo((EntityType)DMEntities.CYBERMAN_ENTITY.get(), false);
 			woodenCybermanEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(woodenCybermanEntity.blockPosition()), SpawnReason.CONVERSION, new ZombieEntity.GroupData(false, true), null);
 			ForgeEventFactory.onLivingConvert(target, woodenCybermanEntity);
 			if (!this.isSilent()) {
