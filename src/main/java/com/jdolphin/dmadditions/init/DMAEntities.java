@@ -1,6 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
@@ -16,10 +19,13 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<PilotFishEntity>> PILOT_FISH;
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN;
 
-	public static void init() {
-	}
+	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 
 	static {
+		JAMESLEDOLPHIN = DMARegistries.ENTITY_TYPES.register("jamesledolphin",
+			() -> EntityType.Builder.of(JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE).sized(0.9F, 0.6F)
+				.build((new ResourceLocation(DmAdditions.MODID, "jamesledolphin")).toString()));
+
 		if (AdventUnlock.unlockAt(4)) {
 			PILOT_FISH = RegistryHandler.ENTITY_TYPES.register("pilot_fish",
 				() -> EntityType.Builder.of(PilotFishEntity::new, EntityClassification.MONSTER).sized(0.6f, 1.9f)
@@ -30,7 +36,7 @@ public class DMAEntities {
 			SNOWMAN = RegistryHandler.ENTITY_TYPES.register("snowman",
 				() -> EntityType.Builder.of(SnowmanEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString())
-				);
+			);
 		}
 
 		if (AdventUnlock.unlockAt(17)) {

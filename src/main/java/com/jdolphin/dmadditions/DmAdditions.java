@@ -5,6 +5,7 @@ import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
+import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
@@ -68,6 +69,8 @@ public class DmAdditions {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
 		event.enqueueWork(() -> {
+			GlobalEntityTypeAttributes.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
+
 			if (DMAEntities.WOODEN_CYBERMAN != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
 

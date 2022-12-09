@@ -1,0 +1,111 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dmadditions:entity/jamesledolphin",
+	"texture_width": 64,
+	"texture_height": 64,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "body",
+			"pivot": [0,24,-3],
+			"rotation": [0,0,0],
+			"children": [
+				{
+					"group_name": "head",
+					"pivot": [0,-4,0],
+					"rotation": [0,0,0],
+					"cubes": [
+						{
+							"uv": [0,35],
+							"size": [8,8,8],
+							"origin": [-4.1743,-4.0987,-7.1091],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "right_fin",
+					"pivot": [-3,-2,5],
+					"rotation": [55,0,-107],
+					"cubes": [
+						{
+							"uv": [48,20],
+							"size": [1,4,7],
+							"origin": [-1,-4,-1.5],
+							"inflate": 0,
+							"mirror": true
+						}
+					]
+				},
+				{
+					"group_name": "left_fin",
+					"pivot": [3,-2,5],
+					"rotation": [55,0,107],
+					"cubes": [
+						{
+							"uv": [48,20],
+							"size": [1,4,7],
+							"origin": [0,-4,-1.5],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "back_fin",
+					"pivot": [0,-7,5],
+					"rotation": [60,0,0],
+					"cubes": [
+						{
+							"uv": [51,0],
+							"size": [1,4,5],
+							"origin": [-0.5,-0.75,-0.5],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "tail",
+					"pivot": [0,-2.5,14],
+					"rotation": [-5,0,0],
+					"children": [
+						{
+							"group_name": "tail_fin",
+							"pivot": [0,0,9],
+							"rotation": [-8,0,0],
+							"cubes": [
+								{
+									"uv": [19,20],
+									"size": [10,1,6],
+									"origin": [-5,-0.5,-1],
+									"inflate": 0,
+									"mirror": false
+								}
+							]
+						}
+					],
+					"cubes": [
+						{
+							"uv": [0,19],
+							"size": [4,5,11],
+							"origin": [-2,-2.5,-1],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				}
+			],
+			"cubes": [
+				{
+					"uv": [22,0],
+					"size": [8,7,13],
+					"origin": [-4,-7,0],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		}
+	]
+}
