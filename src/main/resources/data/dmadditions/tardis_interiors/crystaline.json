@@ -1,0 +1,70 @@
+{
+	"default_rotation": 180,
+	"door_offset": [ 21.5, 7, 41 ],
+	"block_offset": [ 1, 7, 1 ],
+	"name": "dmadditions.interior.name.crystaline",
+	"schematic": "dmadditions:crystaline",
+	"preview": "dmadditions:textures/gui/interior_selection/crystaline.png",
+	"recipe": [
+		{
+			"item": "dalekmod:blue_plated_stainless_steel",
+			"quantity": 7
+		},
+		{
+			"item": "dalekmod:filled_rusted_steel_beams_roundel",
+			"quantity": 512
+		},
+		{
+			"item": "dalekmod:crystaline_block",
+			"quantity": 64
+		},
+		{
+			"item": "dalekmod:rusted_steel_beams",
+			"quantity": 256
+		},
+		{
+			"item": "dalekmod:scorched_smooth_quartz",
+			"quantity": 256
+		},
+		{
+			"item": "dalekmod:scorched_smooth_quartz_slab",
+			"quantity": 64
+		},
+		{
+			"item": "dalekmod:scorched_quartz_block",
+			"quantity": 512
+		},
+		{
+			"item": "dalekmod:coord_panel",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:light_blue_stained_glass",
+			"quantity": 128
+		},
+		{
+			"item": "dalekmod:dimension_selector_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:waypoint_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:chameleon_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:flight_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fast_return_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:scanner",
+			"quantity": 1
+		}
+	]
+}
