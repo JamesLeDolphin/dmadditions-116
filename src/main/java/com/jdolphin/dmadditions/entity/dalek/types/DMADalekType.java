@@ -10,6 +10,8 @@ public class DMADalekType {
 	public static DalekType SANTA = new DalekType("santa_dalek");
 	public static DalekType IRONSIDE = new DalekType("ironside_dalek");
 	public static DalekType CANDYCANE = new DalekType("candycane_dalek");
+	public static DalekType PFD = new DalekType("pink_fluffy_dalek");
+
 
 	public String registryName;
 

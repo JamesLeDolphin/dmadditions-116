@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.dalek.types.CandycaneDalek;
 import com.jdolphin.dmadditions.entity.dalek.types.DMADalekType;
 import com.jdolphin.dmadditions.entity.dalek.types.DalekSantaBase;
+import com.jdolphin.dmadditions.entity.dalek.types.PFDDalekBase;
 import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
 
@@ -21,6 +22,7 @@ public class DMADalekRegistry {
 	public static IDalek DALEK_SANTA;
 	public static IDalek IRONSIDE;
 	public static IDalek CANDYCANE;
+	public static IDalek PFD;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		if (AdventUnlock.unlockAt(24)) {
@@ -32,6 +34,7 @@ public class DMADalekRegistry {
 			CANDYCANE.addChild("red_candycane_dalek");
 			CANDYCANE.addChild("orange_candycane_dalek");
 		}
+		PFD = addDalek(DMADalekType.PFD, new PFDDalekBase("Pink Fluffy Dalek"), "pink_fluffy_dalek");
 
 		if (AdventUnlock.unlockAt(22)) {
 			//IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
