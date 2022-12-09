@@ -27,7 +27,7 @@ public abstract class DalekEntityMixin extends LivingEntity implements IDalekEnt
 		if (!this.level.isClientSide) return;
 
 		if (this.jukebox == null
-			|| !this.jukebox.closerThan(this.position(), 3.46D)
+			|| !this.jukebox.closerThan(this.position(), 5.0D)
 			|| !this.level.getBlockState(this.jukebox).is(Blocks.JUKEBOX)) {
 
 			this.party = false;
