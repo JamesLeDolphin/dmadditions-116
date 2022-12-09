@@ -10,6 +10,7 @@
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
 		"DMBlocksMixin",
+		"DolphinEntityMixin",
 		"SpawnRegistryMixin",
 		"TardisKeyMixin"
 	],
