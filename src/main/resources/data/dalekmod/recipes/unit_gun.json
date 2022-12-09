@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"   ",
+		"rrr",
+		"rwr"
+	],
+	"key": {
+		"r": {
+			"tag": "forge:ingots/steel"
+		},
+		"w": {
+			"item": "minecraft:stone_button"
+		}
+	},
+	"result": {
+		"item": "dalekmod:unit_gun"
+	}
+}

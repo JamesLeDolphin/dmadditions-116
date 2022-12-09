@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" g ",
+		"cwc",
+		"rrr"
+	],
+	"key": {
+		"r": {
+			"tag": "forge:stone"
+		},
+		"w": {
+			"item": "minecraft:stone_button"
+		},
+		"c": {
+			"item": "dalekmod:circuit"
+		},
+		"g": {
+			"tag": "forge:glass_panes"
+		}
+	},
+	"result": {
+		"item": "dalekmod:randomizer"
+	}
+}
