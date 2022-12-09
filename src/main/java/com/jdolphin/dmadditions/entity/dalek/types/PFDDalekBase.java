@@ -13,15 +13,15 @@ public class PFDDalekBase extends DalekBase {
 	}
 
 	public float getMaxHealth() {
-		return 17.0F;
+		return 15.0F;
 	}
 
 	public DMProjectiles.Laser getLaser(DalekEntity dalek) {
-		return null;
+		return DMProjectiles.RED_LASER;
 	}
 
 	public SoundEvent getAttackSound(Entity e) {
-		return null;
+		return DMSoundEvents.ENTITY_DALEK_SKARO_ATTACK.get();
 	}
 
 	@Override
