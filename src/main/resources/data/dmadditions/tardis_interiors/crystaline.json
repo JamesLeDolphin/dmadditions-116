@@ -1,7 +1,7 @@
 {
 	"default_rotation": 180,
 	"door_offset": [ 21.5, 7, 41 ],
-	"block_offset": [ 1, 7, 1 ],
+	"block_offset": [ 1, 8, 2 ],
 	"name": "dmadditions.interior.name.crystaline",
 	"schematic": "dmadditions:crystaline",
 	"preview": "dmadditions:textures/gui/interior_selection/crystaline.png",
@@ -64,6 +64,10 @@
 		},
 		{
 			"item": "dalekmod:scanner",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fault_locator",
 			"quantity": 1
 		}
 	]
