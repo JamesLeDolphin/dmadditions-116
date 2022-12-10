@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.client.model.entity.JamesLeDolphinModel;
 import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
@@ -12,6 +13,7 @@ public class JamesLeDolphinRenderer extends MobRenderer<JamesLeDolphinEntity, Ja
 
 	public JamesLeDolphinRenderer(EntityRendererManager p_i50961_1_) {
 		super(p_i50961_1_, new JamesLeDolphinModel<>(), 0.6f);
+		this.addLayer(new HeadLayer<>(this));
 	}
 
 	@Override

@@ -14,8 +14,6 @@ public class AdventUnlock {
 	private static final int FAKE_DATE = 24;
 
 	public static boolean isDecember() {
-		if (IS_DEBUG) return true;
-
 		int month = calendar.get(Calendar.MONTH);
 		return (month == 11);
 
@@ -38,8 +36,6 @@ public class AdventUnlock {
 	}
 
 	public static boolean is2022() {
-		if (IS_DEBUG) return true;
-
 		int year = calendar.get(Calendar.YEAR);
 		return (year == 2022);
 	}

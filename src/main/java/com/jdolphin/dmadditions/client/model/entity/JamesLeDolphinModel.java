@@ -53,7 +53,7 @@ public class JamesLeDolphinModel<T extends DolphinEntity> extends DolphinModel<T
 
 	@Override
 	public ModelRenderer getHead() {
-		return this.head;
+		return this.body;
 	}
 
 
