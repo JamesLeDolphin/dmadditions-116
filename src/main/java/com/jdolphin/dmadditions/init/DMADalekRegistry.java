@@ -39,7 +39,7 @@ public class DMADalekRegistry {
 
 		}
 		if (AdventUnlock.unlockAt(22)) {
-			//IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
+			IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		}
 
 		dalekList.addAll(dmaDalekList);
