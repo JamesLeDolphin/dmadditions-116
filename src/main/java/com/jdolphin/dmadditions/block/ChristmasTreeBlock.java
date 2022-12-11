@@ -1,9 +1,14 @@
 package com.jdolphin.dmadditions.block;
 
+import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
+import com.jdolphin.dmadditions.init.DMAEntities;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -12,7 +17,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -43,10 +48,14 @@ public class ChristmasTreeBlock extends Block {
 	}
 
 	@Override
-	public void onRemove(BlockState p_196243_1_, World p_196243_2_, BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
-		/* TODO: spawn entity
-			It should also not spawn in creative,
-			and it shouldn't spawn if you have silk touch
-		*/
+	public void spawnAfterBreak(BlockState state, ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
+		super.spawnAfterBreak(state, world, blockPos, itemStack);
+
+		if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, itemStack) > 0) return;
+
+		ChristmasTreeEntity entity = new ChristmasTreeEntity(DMAEntities.CHRISTMAS_TREE.get(), world);
+		entity.moveTo(blockPos, 0, 0);
+		world.addFreshEntity(entity);
 	}
+
 }

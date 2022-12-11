@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
-import com.jdolphin.dmadditions.client.render.entity.JamesLeDolphinRenderer;
-import com.jdolphin.dmadditions.client.render.entity.RenderPilotFish;
-import com.jdolphin.dmadditions.client.render.entity.RenderSnowman;
-import com.jdolphin.dmadditions.client.render.entity.WoodenCybermanRenderer;
+import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.Entity;
@@ -23,6 +20,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);
 		registerRender(DMAEntities.PILOT_FISH, RenderPilotFish::new);
 		registerRender(DMAEntities.SNOWMAN, RenderSnowman::new);
+		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 	}
 
 	public static <T extends Entity> void registerRender(RegistryObject<EntityType<T>> entityClass, IRenderFactory<? super T> renderFactory) {

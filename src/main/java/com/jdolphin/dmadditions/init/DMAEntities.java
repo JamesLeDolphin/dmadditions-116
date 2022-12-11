@@ -3,10 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
-import com.jdolphin.dmadditions.entity.PilotFishEntity;
-import com.jdolphin.dmadditions.entity.SnowmanEntity;
-import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
+import com.jdolphin.dmadditions.entity.*;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.EntityClassification;
@@ -18,6 +15,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN;
 	public static RegistryObject<EntityType<PilotFishEntity>> PILOT_FISH;
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN;
+	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE;
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 
@@ -37,6 +35,12 @@ public class DMAEntities {
 				() -> EntityType.Builder.of(SnowmanEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString())
 			);
+		}
+
+		if(AdventUnlock.unlockAt(13)){
+			CHRISTMAS_TREE = RegistryHandler.ENTITY_TYPES.register("christmas_tree",
+				() ->  EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
+					.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
 		}
 
 		if (AdventUnlock.unlockAt(17)) {
