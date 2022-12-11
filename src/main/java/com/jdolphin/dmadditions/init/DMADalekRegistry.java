@@ -38,7 +38,7 @@ public class DMADalekRegistry {
 			STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
 
 		}
-		if (AdventUnlock.unlockAt(22)) {
+		if (AdventUnlock.unlockAt(17)) {
 			IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		}
 
