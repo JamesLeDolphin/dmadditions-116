@@ -12,9 +12,13 @@ import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.DimensionSettings;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -31,8 +35,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-
-import static com.swdteam.main.DalekMod.registerStructure;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("dmadditions")
@@ -56,7 +58,7 @@ public class DmAdditions {
 		DMAItems.ITEMS.register(modEventBus);
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		modEventBus.addListener(this::doClientStuff);
-		modEventBus.addListener(this::addStructures);
+//		modEventBus.addListener(this::addStructures);
 		// Register things
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
@@ -72,7 +74,7 @@ public class DmAdditions {
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
-		
+
 		event.enqueueWork(() -> {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
@@ -120,6 +122,14 @@ public class DmAdditions {
 			return DMAConfiguredStructures.CONFIGURED_SPACESHIP_3;
 		});
 	}
+
+	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
+		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
+			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
+			structuresSettings.structureConfig().put(structure, separationSettings);
+		});
+	}
+
 	public void addStructures(FMLLoadCompleteEvent event) {
 		event.enqueueWork(() -> {
 			registerStructure(DimensionSettings.OVERWORLD, DMAStructures.SPACESHIP_1.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.SPACESHIP_1.get()));
