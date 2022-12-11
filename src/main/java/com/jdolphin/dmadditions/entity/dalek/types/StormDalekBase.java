@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity.dalek.types;
 
+import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.swdteam.common.entity.dalek.DalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import com.swdteam.common.init.DMProjectiles;
@@ -13,8 +14,12 @@ public class StormDalekBase extends DalekBase {
 		}
 
 		public float getMaxHealth() {
-			return 35.0F;
+			return 50.0F;
 		}
+
+		public boolean canFly() {
+		return true;
+	}
 
 		public SoundEvent getLivingSound(Entity e) {
 			return null;
@@ -24,12 +29,12 @@ public class StormDalekBase extends DalekBase {
 			return DMProjectiles.EXPLOSIVE_LASER;
 		}
 
-		public SoundEvent getSpawnSound(Entity e) {
-			return null;
-		}
+		public SoundEvent getDeathSound(Entity e) {
+		return DMASoundEvents.DALEK_STORM_DEATH.get();
+	}
 
 		public SoundEvent getAttackSound(Entity e) {
-			return (SoundEvent) DMSoundEvents.ENTITY_DALEK_SWD_CHARGE.get();
+			return (SoundEvent) DMASoundEvents.DALEK_STORM_EXTERMINATE.get();
 		}
 
 		public SoundEvent getShootSound(Entity e) {

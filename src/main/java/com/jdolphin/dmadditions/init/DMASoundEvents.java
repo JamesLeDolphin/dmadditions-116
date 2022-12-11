@@ -12,6 +12,9 @@ public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> COPPER_HANDBRAKE;
 	public static final RegistryObject<SoundEvent> CORAL_HANDBRAKE;
 	public static final RegistryObject<SoundEvent> MUSIC_DISC_PFD;
+	public static final RegistryObject<SoundEvent> DALEK_STORM_DEATH;
+	public static final RegistryObject<SoundEvent> DALEK_STORM_EXTERMINATE;
+
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
 		return register.register(registryName,
@@ -23,5 +26,7 @@ public class DMASoundEvents {
 		COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copperhandbrake");
 		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coralhandbrake");
 		MUSIC_DISC_PFD = buildSound(RegistryHandler.SOUNDS, "music_disc.pfd");
+		DALEK_STORM_DEATH = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.death");
+		DALEK_STORM_EXTERMINATE = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.exterminate");
 	}
 }
