@@ -12,6 +12,7 @@ import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -52,6 +53,7 @@ public class DmAdditions {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
+		DMAItems.ITEMS.register(modEventBus);
 		modEventBus.addListener(this::doClientStuff);
 		// Register things
 		RegistryHandler.init();

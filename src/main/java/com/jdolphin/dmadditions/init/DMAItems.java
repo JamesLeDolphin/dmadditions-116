@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
@@ -16,6 +17,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -84,7 +87,9 @@ public class DMAItems {
 
 		return addSpawnItem(key);
 	}
-
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
+		() -> new Item(new Item.Properties().fireResistant()));
 	static {
 		if (AdventUnlock.unlockAt(1)) {
 			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
