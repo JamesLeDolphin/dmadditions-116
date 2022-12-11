@@ -17,6 +17,18 @@
 			"dmadditions:block/handbrake/coralhandbrake"
 		]
 	},
+	"entity.dalek.storm.death": {
+		"subtitle": "subtitles.entity.dalek.storm.death",
+		"sounds": [
+			"dmadditions:entity/dalek/storm_death"
+		]
+	},
+	"entity.dalek.storm.exterminate": {
+		"subtitle": "subtitles.entity.dalek.storm.exterminate",
+		"sounds": [
+			"dmadditions:entity/dalek/storm_exterminate"
+		]
+	},
 	"music_disc.pfd": {
 		"category": "music",
 		"sounds": [

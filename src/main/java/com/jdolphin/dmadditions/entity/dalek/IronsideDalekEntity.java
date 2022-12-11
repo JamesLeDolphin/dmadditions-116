@@ -126,7 +126,7 @@ public class IronsideDalekEntity extends DalekEntity implements IRangedAttackMob
 
 	public void setupDalek() {
 		this.getDalekData().setupDalek(this);
-		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double)this.getDalekData().getMaxHealth());
+		this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getDalekData().getMaxHealth());
 		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getDalekData().getMoveSpeed());
 		this.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(15.0);
 		if (this.getDalekData() instanceof Nether) {

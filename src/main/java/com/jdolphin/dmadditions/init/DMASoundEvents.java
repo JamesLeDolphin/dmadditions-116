@@ -13,6 +13,9 @@ public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> CORAL_HANDBRAKE;
 	public static final RegistryObject<SoundEvent> MUSIC_DISC_PFD;
 	public static final RegistryObject<SoundEvent> CHRISTMAS_TREE_JINGLE_BELLS;
+	public static final RegistryObject<SoundEvent> DALEK_STORM_DEATH;
+	public static final RegistryObject<SoundEvent> DALEK_STORM_EXTERMINATE;
+
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
 		return register.register(registryName,
@@ -25,5 +28,7 @@ public class DMASoundEvents {
 		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coralhandbrake");
 		MUSIC_DISC_PFD = buildSound(RegistryHandler.SOUNDS, "music_disc.pfd");
 		CHRISTMAS_TREE_JINGLE_BELLS = buildSound(RegistryHandler.SOUNDS, "entity.christmas_tree.jingle_bells");
+		DALEK_STORM_DEATH = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.death");
+		DALEK_STORM_EXTERMINATE = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.exterminate");
 	}
 }

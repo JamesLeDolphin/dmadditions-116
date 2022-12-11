@@ -164,6 +164,11 @@
 	"entity.dalekmod.pilot_fish": "Pilot Fish",
 	"entity.dalekmod.snowman": "Snowman",
 	"dmadditions.interior.name.coral": "Coral Interior",
-	"dmadditions.interior.name.crystaline": "Crystaline Interior"
+	"dmadditions.interior.name.crystaline": "Crystaline Interior",
+
+	"item.dalekmod.pink_fluffy_dalek_spawner": "Pink Fluffy Dalek Spawner",
+	"item.dalekmod.dalek_storm_spawner": "Dalek Storm Spawner",
+	"item.dalekmod.unit_gun": "UNIT Gun"
+
 
 }
