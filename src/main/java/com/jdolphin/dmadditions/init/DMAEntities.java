@@ -26,20 +26,18 @@ public class DMAEntities {
 			() -> EntityType.Builder.of(JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE).sized(0.9F, 0.6F)
 				.build((new ResourceLocation(DmAdditions.MODID, "jamesledolphin")).toString()));
 
-		if (AdventUnlock.unlockAt(4)) {
 			PILOT_FISH = RegistryHandler.ENTITY_TYPES.register("pilot_fish",
 				() -> EntityType.Builder.of(PilotFishEntity::new, EntityClassification.MONSTER).sized(0.6f, 1.9f)
 					.build((new ResourceLocation(DalekMod.MODID, "pilot_fish")).toString()));
-		}
 
-		if (AdventUnlock.unlockAt(5)) {
+
 			SNOWMAN = RegistryHandler.ENTITY_TYPES.register("snowman",
 				() -> EntityType.Builder.of(SnowmanEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString())
 			);
-		}
 
-		if (AdventUnlock.unlockAt(17)) {
+
+		if (AdventUnlock.unlockAt(15)) {
 			WOODEN_CYBERMAN = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman",
 				() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
 					.build((new ResourceLocation(DalekMod.MODID, "wooden_cyberman")).toString()));
