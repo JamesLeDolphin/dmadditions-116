@@ -12,6 +12,7 @@ public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> COPPER_HANDBRAKE;
 	public static final RegistryObject<SoundEvent> CORAL_HANDBRAKE;
 	public static final RegistryObject<SoundEvent> MUSIC_DISC_PFD;
+	public static final RegistryObject<SoundEvent> CHRISTMAS_TREE_JINGLE_BELLS;
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
 		return register.register(registryName,
@@ -23,5 +24,6 @@ public class DMASoundEvents {
 		COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copperhandbrake");
 		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coralhandbrake");
 		MUSIC_DISC_PFD = buildSound(RegistryHandler.SOUNDS, "music_disc.pfd");
+		CHRISTMAS_TREE_JINGLE_BELLS = buildSound(RegistryHandler.SOUNDS, "entity.christmas_tree.jingle_bells");
 	}
 }

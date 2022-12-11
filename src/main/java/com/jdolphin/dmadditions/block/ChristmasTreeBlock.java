@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -55,6 +56,7 @@ public class ChristmasTreeBlock extends Block {
 
 		ChristmasTreeEntity entity = new ChristmasTreeEntity(DMAEntities.CHRISTMAS_TREE.get(), world);
 		entity.moveTo(blockPos, 0, 0);
+		entity.finalizeSpawn(world, world.getCurrentDifficultyAt(blockPos), SpawnReason.CONVERSION, null, null);
 		world.addFreshEntity(entity);
 	}
 
