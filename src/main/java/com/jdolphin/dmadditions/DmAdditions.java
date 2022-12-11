@@ -9,18 +9,12 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
-import com.swdteam.common.init.DMStructures;
-import com.swdteam.common.structure.DMConfiguredStructures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.DimensionSettings;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -60,7 +54,7 @@ public class DmAdditions {
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
 		DMAItems.ITEMS.register(modEventBus);
-		DMStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::addStructures);
 		// Register things

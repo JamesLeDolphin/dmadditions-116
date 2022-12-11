@@ -1,14 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.jdolphin.dmadditions.structure.Spaceship1Structure;
 import com.jdolphin.dmadditions.structure.Spaceship2Structure;
 import com.jdolphin.dmadditions.structure.Spaceship3Structure;
-import com.swdteam.common.structure.*;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,11 +12,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
+import static com.swdteam.common.init.DMStructures.setupMapSpacingAndLand;
+
 public class DMAStructures {
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE;
-	public static final RegistryObject<Structure<NoFeatureConfig>> SPACESHIP_1;
-	public static final RegistryObject<Structure<NoFeatureConfig>> SPACESHIP_2;
-	public static final RegistryObject<Structure<NoFeatureConfig>> SPACESHIP_3;
+	public static final RegistryObject<Spaceship1Structure> SPACESHIP_1;
+	public static final RegistryObject<Spaceship2Structure> SPACESHIP_2;
+	public static final RegistryObject<Spaceship3Structure> SPACESHIP_3;
 
 	public DMAStructures() {
 	}
@@ -30,21 +28,12 @@ public class DMAStructures {
 	}
 
 	public static void setupStructures() {
-		setupMapSpacingAndLand((Structure) SPACESHIP_1.get(), new StructureSeparationSettings(50, 10, 42069),
+		setupMapSpacingAndLand((Structure<NoFeatureConfig>) SPACESHIP_1.get(), new StructureSeparationSettings(50, 10, 42069),
 			false);
-		setupMapSpacingAndLand((Structure) SPACESHIP_2.get(), new StructureSeparationSettings(40, 30, 72039),
+		setupMapSpacingAndLand((Structure<NoFeatureConfig>) SPACESHIP_2.get(), new StructureSeparationSettings(40, 30, 72039),
 			false);
-		setupMapSpacingAndLand((Structure) SPACESHIP_3.get(), new StructureSeparationSettings(70, 20, 89249),
+		setupMapSpacingAndLand((Structure<NoFeatureConfig>) SPACESHIP_3.get(), new StructureSeparationSettings(70, 20, 89249),
 			false);
-	}
-
-	public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
-		Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
-		if (transformSurroundingLand) {
-			Structure.NOISE_AFFECTING_FEATURES = ImmutableList.builder().addAll(Structure.NOISE_AFFECTING_FEATURES).add(structure).build();
-		}
-
-		DimensionStructuresSettings.DEFAULTS = ImmutableMap.builder().putAll(DimensionStructuresSettings.DEFAULTS).put(structure, structureSeparationSettings).build();
 	}
 
 	static {
