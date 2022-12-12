@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
+import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
@@ -21,7 +22,7 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 	private final DMProjectiles.Laser laserType;
 	protected boolean shootMode = false;
 	public float attackDamage = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ? 4.5f : 3; // torchwood_one says 3 or 4.5 on a good day :)
-
+// if tw1 said that then sure ig
 	public boolean shootMode() {
 		return shootMode;
 	}
@@ -30,7 +31,7 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 	public LaserScrewdriverItem(ItemGroup itemGroup, int xpValue, DMProjectiles.Laser laserType) {
 		super(itemGroup, xpValue);
 		this.laserType = laserType;
-		this.setSonicSound(DMSoundEvents.ENTITY_SONIC_ELEVENTH);
+		this.setSonicSound(DMASoundEvents.LASER_SONIC_SHOOT);
 	}
 
 	private SoundEvent getSonicSound() {
@@ -74,7 +75,7 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 				stack.hurt(1, random, (ServerPlayerEntity) player);
 				player.getCooldowns().addCooldown(this, 20);
 			}
-			world.playSound(null, player, DMSoundEvents.ENTITY_DALEK_LASER_SHOOT.get(),
+			world.playSound(null, player, DMASoundEvents.LASER_SONIC_SHOOT.get(),
 				SoundCategory.PLAYERS, 1, 1);
 			return ActionResult.consume(stack);
 		}

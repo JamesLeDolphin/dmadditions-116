@@ -176,5 +176,6 @@
 	"item.dalekmod.laser_screwdriver.mode.laser": "Laser Mode",
 	"item.dalekmod.laser_screwdriver.mode.sonic": "Sonic mode",
 	"dmadditions.tardis.name.gingerbread": "Gingerbread Exterior",
-	"dalekmod.tardis.description.gingerbread": ""
+	"dalekmod.tardis.description.gingerbread": "Fresh from the oven, this good smelling exterior is now ready for your space-time travels!",
+	"subtitles.item.sonic.laser.shoot": "Laser Screwdriver Shoots"
 }
