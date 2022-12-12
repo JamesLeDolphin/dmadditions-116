@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.init.*;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,15 +36,18 @@ public class RegistryHandler {
 
 	public static class DMARegistries{
 		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES;
+		public static final DeferredRegister<Item> ITEMS;
 
 		public static void register(){
 			IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 			ENTITY_TYPES.register(modEventBus);
+			ITEMS.register(modEventBus);
 		}
 
 		static{
 			ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
+			ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
 		}
 	}
 }
