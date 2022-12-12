@@ -52,8 +52,6 @@ public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEnt
 
 		Direction direction = blockState.getValue(HorizontalBlock.FACING);
 
-//		double screenDistance = block.getScreenDistance();
-
 		if (model != null) {
 			matrixStack.pushPose();
 			matrixStack.translate(0.5D, 1.5D, 0.5D);
