@@ -149,6 +149,7 @@
 	"item.dalekmod.red_candy_cane": "Red Candy Cane",
 
 	"block.dalekmod.wreath": "Christmas Wreath",
+	"block.dalekmod.christmas_tree": "Christmas Tree",
 
 	"item.dalekmod.wooden_cyberman_spawner": "Wooden Cyberman Spawner",
 	"item.dalekmod.santa_dalek_spawner": "Santa Dalek Spawner",
@@ -163,6 +164,8 @@
 
 	"entity.dalekmod.pilot_fish": "Pilot Fish",
 	"entity.dalekmod.snowman": "Snowman",
+	"entity.dalekmod.christmas_tree": "Christmas Tree",
+
 	"dmadditions.interior.name.coral": "Coral Interior",
 	"dmadditions.interior.name.crystaline": "Crystaline Interior",
 
