@@ -174,5 +174,7 @@
 	"item.dalekmod.unit_gun": "UNIT Gun",
 
 	"item.dalekmod.laser_screwdriver.mode.laser": "Laser Mode",
-	"item.dalekmod.laser_screwdriver.mode.sonic": "Sonic mode"
+	"item.dalekmod.laser_screwdriver.mode.sonic": "Sonic mode",
+	"dmadditions.tardis.name.gingerbread": "Gingerbread Exterior",
+	"dalekmod.tardis.description.gingerbread": ""
 }
