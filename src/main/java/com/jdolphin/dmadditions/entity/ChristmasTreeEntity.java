@@ -55,7 +55,7 @@ public class ChristmasTreeEntity extends MonsterEntity {
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData data, @Nullable CompoundNBT nbt) {
 		if (reason.equals(SpawnReason.CONVERSION)) {
-			world.playSound(null, this.blockPosition(), DMASoundEvents.CHRISTMAS_TREE_JINGLE_BELLS.get(), SoundCategory.MUSIC, 1f, 1f);
+			world.playSound(null, this.blockPosition(), DMASoundEvents.CHRISTMAS_TREE_JINGLE_BELLS.get(), SoundCategory.RECORDS, 1f, 1f);
 		}
 
 		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
@@ -66,7 +66,7 @@ public class ChristmasTreeEntity extends MonsterEntity {
 		super.tickDeath();
 
 		if (!this.level.isClientSide) {
-			SStopSoundPacket sstopsoundpacket = new SStopSoundPacket(DMASoundEvents.CHRISTMAS_TREE_JINGLE_BELLS.get().getLocation(), SoundCategory.MUSIC);
+			SStopSoundPacket sstopsoundpacket = new SStopSoundPacket(DMASoundEvents.CHRISTMAS_TREE_JINGLE_BELLS.get().getLocation(), SoundCategory.RECORDS);
 
 			for (ServerPlayerEntity player : ((ServerWorld) this.level).getPlayers(player -> player.distanceTo(this) <= 16))
 				player.connection.send(sstopsoundpacket);
