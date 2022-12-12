@@ -29,6 +29,12 @@
 			"dmadditions:entity/dalek/storm_exterminate"
 		]
 	},
+	"item.sonic.laser.shoot": {
+		"subtitle": "subtitles.item.sonic.laser.shoot",
+		"sounds": [
+			"dmadditions:item/sonic/laser_shoot"
+		]
+	},
 	"music_disc.pfd": {
 		"category": "music",
 		"sounds": [
