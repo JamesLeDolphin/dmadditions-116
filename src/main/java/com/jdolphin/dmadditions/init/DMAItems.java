@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
@@ -31,7 +32,7 @@ public class DMAItems {
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 	public static RegistryObject<Item> PISTOL;
 	public static RegistryObject<Item> UNIT_GUN;
-	//public static RegistryObject<Item> LASER_SCREWDRIVER;
+	public static RegistryObject<Item> LASER_SCREWDRIVER;
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
 
 	public static RegistryObject<Item> BLUE_CANDY_CANE;
@@ -87,9 +88,11 @@ public class DMAItems {
 
 		return addSpawnItem(key);
 	}
+
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
 	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
 		() -> new Item(new Item.Properties().fireResistant()));
+
 	static {
 		if (AdventUnlock.unlockAt(1)) {
 			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
@@ -108,15 +111,15 @@ public class DMAItems {
 		SNOWMAN_SPAWNER = addAdventSpawnItem(5, "snowman");
 
 		UNIT_GUN = registerAdventItem(7, "unit_gun",
-			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,DMASoundEvents.PISTOL_SHOOT,
+			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 
 		SANTA_HAT = registerAdventItem(8, "santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
-		/*LASER_SCREWDRIVER = registerAdventItem(9 ,"laser_screwdriver",
-			() -> new LaserScrewdriver(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));*/
+		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
+			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 
 		MUSIC_DISC_PFD = registerAdventItem(10, "music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
