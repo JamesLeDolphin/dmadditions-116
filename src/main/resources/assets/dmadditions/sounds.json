@@ -32,7 +32,7 @@
 	"item.sonic.laser.shoot": {
 		"subtitle": "subtitles.item.sonic.laser.shoot",
 		"sounds": [
-			"dmadditions:item/sonic/laser_shoot"
+			"dmadditions:item/sonic/laser_sonic"
 		]
 	},
 	"music_disc.pfd": {
