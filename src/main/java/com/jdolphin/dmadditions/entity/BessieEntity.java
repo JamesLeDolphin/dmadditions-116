@@ -1,26 +1,29 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.init.DMASoundEvents;
+import net.java.games.input.Component;
+import net.minecraft.block.SoundType;
+import net.minecraft.client.MinecraftGame;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Pose;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.TeleportationRepositioner;
-import net.minecraft.util.TransportationHelper;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -43,6 +46,12 @@ public class BessieEntity extends Entity {
 	private float deltaRotation;
 	public BessieEntity(EntityType<?> entityType, World wolrdIn) {
 		super(entityType, wolrdIn);
+	}
+	protected void playDriveSound(SoundType soundType) {
+		super.playSound(DMASoundEvents.BESSIE.get(), soundType.getVolume() * 0.15F, soundType.getPitch());
+	}
+	public ActionResultType interact(PlayerEntity p_184230_1_, Hand p_184230_2_) {
+		return ActionResultType.PASS;
 	}
 	private void controlBoat() {
 		if (this.isVehicle()) {
