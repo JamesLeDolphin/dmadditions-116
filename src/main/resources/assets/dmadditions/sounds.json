@@ -29,6 +29,18 @@
 			"dmadditions:entity/dalek/storm_exterminate"
 		]
 	},
+	"entity.vehicle.bessie.horn": {
+		"subtitle": "subtitles.entity.vehicle.bessie.horn",
+		"sounds": [
+			"dmadditions:entity/bessie/bessie_horn"
+		]
+	},
+	"entity.vehicle.bessie.drive": {
+		"subtitle": "subtitles.entity.vehicle.bessie.drive",
+		"sounds": [
+			"dmadditions:entity/bessie/bessie"
+		]
+	},
 	"item.sonic.laser.shoot": {
 		"subtitle": "subtitles.item.sonic.laser.shoot",
 		"sounds": [
