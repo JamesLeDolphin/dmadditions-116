@@ -93,7 +93,6 @@ public class DmAdditions {
 
 			if (DMAEntities.PILOT_FISH != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
-
 		});
 	}
 

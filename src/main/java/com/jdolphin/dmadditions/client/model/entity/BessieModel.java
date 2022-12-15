@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.BessieEntity;
 import com.swdteam.client.model.IModelPartReloader;
+import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
@@ -17,6 +18,11 @@ public class BessieModel extends SegmentedModel<BessieEntity> implements IModelP
 	protected ModelRenderer wheels;
 	protected ModelRenderer body;
 	public JSONModel model;
+
+	public BessieModel(){
+		super();
+		ModelReloaderRegistry.register(this);
+	}
 
 	@Override
 	public Iterable<ModelRenderer> parts() {

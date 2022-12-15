@@ -39,16 +39,21 @@ public class DMAEntities {
 				() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
 		}
-		if (AdventUnlock.unlockAt(20)) {
-			BESSIE = RegistryHandler.ENTITY_TYPES.register("bessie",
-				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.CREATURE)
-					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
-		}
 
 		if (AdventUnlock.unlockAt(15)) {
 			WOODEN_CYBERMAN = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman",
 				() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
 					.build((new ResourceLocation(DalekMod.MODID, "wooden_cyberman")).toString()));
+		}
+
+		if (AdventUnlock.unlockAt(20)) {
+//			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
+//				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC)
+//					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
+
+			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
+				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
+					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
 		}
 	}
 }
