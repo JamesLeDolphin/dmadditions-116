@@ -16,6 +16,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<PilotFishEntity>> PILOT_FISH;
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN;
 	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE;
+	public static RegistryObject<EntityType<BessieEntity>> BESSIE;
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 
@@ -37,6 +38,11 @@ public class DMAEntities {
 			CHRISTMAS_TREE = RegistryHandler.ENTITY_TYPES.register("christmas_tree",
 				() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
+		}
+		if (AdventUnlock.unlockAt(20)) {
+			BESSIE = RegistryHandler.ENTITY_TYPES.register("bessie",
+				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.CREATURE)
+					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
 		}
 
 		if (AdventUnlock.unlockAt(15)) {
