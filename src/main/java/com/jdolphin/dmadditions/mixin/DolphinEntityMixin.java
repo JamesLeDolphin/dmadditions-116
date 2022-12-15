@@ -3,8 +3,10 @@ package com.jdolphin.dmadditions.mixin;
 import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -19,7 +21,7 @@ public abstract class DolphinEntityMixin extends LivingEntity {
 		super(p_i48577_1_, p_i48577_2_);
 	}
 
-	protected void checkName(ITextComponent name){
+	protected void checkName(ITextComponent name) {
 		if (name != null && name.getString()
 			.matches("(?i)1?(james|jimothy)(le)?(dolphin)?")) {
 
@@ -34,6 +36,10 @@ public abstract class DolphinEntityMixin extends LivingEntity {
 			james.setTreasurePos(dolphin.getTreasurePos());
 			james.setInvulnerable(this.isInvulnerable());
 			james.copyPosition(this);
+
+			if (!this.level.isClientSide)
+				james.finalizeSpawn((IServerWorld) this.level, this.level.getCurrentDifficultyAt(this.blockPosition()),
+					SpawnReason.CONVERSION, null, null);
 
 			this.remove();
 			this.level.addFreshEntity(james);
