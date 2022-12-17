@@ -177,5 +177,9 @@
 	"item.dalekmod.laser_screwdriver.mode.sonic": "Sonic mode",
 	"dmadditions.tardis.name.gingerbread": "Gingerbread Exterior",
 	"dalekmod.tardis.description.gingerbread": "Fresh from the oven, this good smelling exterior is now ready for your space-time travels!",
-	"subtitles.item.sonic.laser.shoot": "Laser Screwdriver Shoots"
+	"subtitles.item.sonic.laser.shoot": "Laser Screwdriver Shoots",
+
+	"block.dalekmod.coral_tardis_monitor": "Coral TARDIS Monitor",
+	"block.dalekmod.toyota_tardis_monitor": "Toyota TARDIS Monitor",
+	"block.dalekmod.tardis_monitor_8": "8th TARDIS Monitor"
 }
