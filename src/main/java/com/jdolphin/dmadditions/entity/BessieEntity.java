@@ -5,9 +5,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.HandSide;
-import net.minecraft.util.TransportationHelper;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -154,7 +152,13 @@ public class BessieEntity extends AnimalEntity {
 			p_110237_1_.xRot = this.xRot;
 			p_110237_1_.startRiding(this);
 		}
+	}
 
+	@Override
+	public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+		doPlayerRide(p_230254_1_);
+
+		return super.mobInteract(p_230254_1_, p_230254_2_);
 	}
 
 	public Vector3d getDismountLocationForPassenger(LivingEntity p_230268_1_) {
