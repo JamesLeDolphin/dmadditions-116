@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dalekmod:entity/dalek/gingerbread_dalek_lightmap",
+	"texture": "dalekmod:entity/dalek/gingerbread_dalek",
 	"lightmap": "dalekmod:entity/dalek/gingerbread_dalek_lightmap",
 	"texture_width": 128,
 	"texture_height": 128,

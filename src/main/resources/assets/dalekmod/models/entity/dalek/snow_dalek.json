@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dalekmod:entity/dalek/snow_dalek_lightmap",
+	"texture": "dalekmod:entity/dalek/snow_dalek",
 	"lightmap": "dalekmod:entity/dalek/snow_dalek_lightmap",
 	"texture_width": 128,
 	"texture_height": 128,
@@ -204,6 +204,20 @@
 							"uv": [8,9],
 							"size": [2,2,1],
 							"origin": [-1,-1,-5],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [0,2],
+							"size": [2,2,0],
+							"origin": [-1,-1,-2],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [0,0],
+							"size": [2,2,0],
+							"origin": [-1,-1,-3],
 							"inflate": 0,
 							"mirror": false
 						}

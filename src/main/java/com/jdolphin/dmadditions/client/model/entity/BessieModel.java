@@ -16,17 +16,29 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
+import static com.swdteam.main.DalekMod.MODID;
+
 
 public class BessieModel extends SegmentedModel<BessieEntity> implements IModelPartReloader {
 
+	protected ModelRenderer wheels;
+	protected ModelRenderer body;
+	public JSONModel model;
+	public BessieModel() {
+		super();
+		ModelReloaderRegistry.register(this);
+	}
 	@Override
 	public void init() {
-
+		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/bessie.json"));
+		ModelWrapper modelWrapper = this.model.getModelData().getModel();
+		this.wheels = modelWrapper.getPart("wheels");
+		this.body = modelWrapper.getPart("body");
 	}
 
 	@Override
 	public Iterable<ModelRenderer> parts() {
-		return null;
+		return ImmutableList.of(wheels, body);
 	}
 
 	@Override
