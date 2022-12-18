@@ -1,246 +1,135 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.init.DMASoundEvents;
-import net.minecraft.block.SoundType;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.util.*;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
+import net.minecraft.entity.passive.horse.HorseEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.HandSide;
+import net.minecraft.util.TransportationHelper;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
-public class BessieEntity extends Entity {
-	private static final DataParameter<Integer> DATA_ID_HURT = EntityDataManager.defineId(BessieEntity.class, DataSerializers.INT);
-	private static final DataParameter<Integer> DATA_ID_HURTDIR = EntityDataManager.defineId(BessieEntity.class, DataSerializers.INT);
-	private static final DataParameter<Float> DATA_ID_DAMAGE = EntityDataManager.defineId(BessieEntity.class, DataSerializers.FLOAT);
-	private static final DataParameter<Integer> DATA_ID_TYPE = EntityDataManager.defineId(BessieEntity.class, DataSerializers.INT);
-	private int lerpSteps;
-	private double lerpX;
-	private double lerpY;
-	private double lerpZ;
-	private double lerpYRot;
-	private double lerpXRot;
-	private boolean inputLeft;
-	private boolean inputRight;
-	private boolean inputUp;
-	private boolean inputDown;
-	private float deltaRotation;
-	public BessieEntity(EntityType<?> entityType, World wolrdIn) {
-		super(entityType, wolrdIn);
+
+public class BessieEntity extends AnimalEntity {
+
+	protected BessieEntity(EntityType<? extends AnimalEntity> p_i48568_1_, World p_i48568_2_) {
+		super(p_i48568_1_, p_i48568_2_);
+		this.maxUpStep = 1.0F;
 	}
-	protected void playDriveSound(SoundType soundType) {
-		super.playSound(DMASoundEvents.BESSIE.get(), soundType.getVolume() * 0.15F, soundType.getPitch());
-	}
-	public ActionResultType interact(PlayerEntity p_184230_1_, Hand p_184230_2_) {
-		return ActionResultType.PASS;
-	}
-	private void controlBoat() {
-		if (this.isVehicle()) {
-			float f = 0.0F;
-			if (this.inputLeft) {
-				--this.deltaRotation;
-			}
-
-			if (this.inputRight) {
-				++this.deltaRotation;
-			}
-
-			if (this.inputRight != this.inputLeft && !this.inputUp && !this.inputDown) {
-				f += 0.005F;
-			}
-
-			this.yRot += this.deltaRotation;
-			if (this.inputUp) {
-				f += 0.04F;
-			}
-
-			if (this.inputDown) {
-				f -= 0.005F;
-			}
-
-			this.setDeltaMovement(this.getDeltaMovement().add((double)(MathHelper.sin(-this.yRot * ((float)Math.PI / 180F)) * f), 0.0D, (double)(MathHelper.cos(this.yRot * ((float)Math.PI / 180F)) * f)));
-			}
+	protected void registerGoals() {
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
 	}
 
-	public void positionRider(Entity entity) {
-		if (this.hasPassenger(entity)) {
-			float f = 0.0F;
-			float f1 = (float)((this.removed ? (double)0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset());
-			if (this.getPassengers().size() > 1) {
-				int i = this.getPassengers().indexOf(entity);
-				if (i == 0) {
-					f = 0.2F;
-				} else {
-					f = -0.6F;
-				}
-
-				if (entity instanceof AnimalEntity) {
-					f = (float)((double)f + 0.2D);
-				}
-			}
-
-			Vector3d vector3d = (new Vector3d((double)f, 0.0D, 0.0D)).yRot(-this.yRot * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
-			entity.setPos(this.getX() + vector3d.x, this.getY() + (double)f1, this.getZ() + vector3d.z);
-			entity.yRot += this.deltaRotation;
-			entity.setYHeadRot(entity.getYHeadRot() + this.deltaRotation);
-			this.clampRotation(entity);
-			if (entity instanceof AnimalEntity && this.getPassengers().size() > 1) {
-				int j = entity.getId() % 2 == 0 ? 90 : 270;
-				entity.setYBodyRot(((AnimalEntity)entity).yBodyRot + (float)j);
-				entity.setYHeadRot(entity.getYHeadRot() + (float)j);
-			}
-
-		}
+	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+		return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 1.0).add(Attributes.MAX_HEALTH, 20.0).add(Attributes.ATTACK_DAMAGE, 2.0);
 	}
 
-	public Vector3d getDismountLocationForPassenger(LivingEntity livingEntity) {
-		Vector3d vector3d = getCollisionHorizontalEscapeVector((double)(this.getBbWidth() * MathHelper.SQRT_OF_TWO), (double)livingEntity.getBbWidth(), this.yRot);
-		double d0 = this.getX() + vector3d.x;
-		double d1 = this.getZ() + vector3d.z;
-		BlockPos blockpos = new BlockPos(d0, this.getBoundingBox().maxY, d1);
-		BlockPos blockpos1 = blockpos.below();
-		if (!this.level.isWaterAt(blockpos1)) {
-			double d2 = (double)blockpos.getY() + this.level.getBlockFloorHeight(blockpos);
-			double d3 = (double)blockpos.getY() + this.level.getBlockFloorHeight(blockpos1);
-
-			for(Pose pose : livingEntity.getDismountPoses()) {
-				Vector3d vector3d1 = TransportationHelper.findDismountLocation(this.level, d0, d2, d1, livingEntity, pose);
-				if (vector3d1 != null) {
-					livingEntity.setPose(pose);
-					return vector3d1;
-				}
-
-				Vector3d vector3d2 = TransportationHelper.findDismountLocation(this.level, d0, d3, d1, livingEntity, pose);
-				if (vector3d2 != null) {
-					livingEntity.setPose(pose);
-					return vector3d2;
-				}
-			}
-		}
-
-		return super.getDismountLocationForPassenger(livingEntity);
-	}
-
-	protected void clampRotation(Entity entity) {
-		entity.setYBodyRot(this.yRot);
-		float f = MathHelper.wrapDegrees(entity.yRot - this.yRot);
-		float f1 = MathHelper.clamp(f, -105.0F, 105.0F);
-		entity.yRotO += f1 - f;
-		entity.yRot += f1 - f;
-		entity.setYHeadRot(entity.yRot);
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public void onPassengerTurned(Entity entity) {
-		this.clampRotation(entity);
-	}
-	public boolean canBeCollidedWith() {
+	public boolean isSaddled() {
 		return true;
 	}
 	public boolean isPushable() {
+		return !this.isVehicle();
+	}
+	public boolean canEatGrass() {
+		return false;
+	}
+	public boolean isTamed() {
 		return true;
 	}
 
-	public double getPassengersRidingOffset() {
-		return -0.1D;
+	@Nullable
+	@Override
+	public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		return null;
 	}
-
-	public boolean hurt(DamageSource dmgSource, float float1) {
-		return !this.isInvulnerableTo(dmgSource);
-		}
-
-	protected Vector3d getRelativePortalPosition(Direction.Axis axis, TeleportationRepositioner.Result result) {
-		return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(axis, result));
-	}
-
-	public boolean canCollideWith(Entity entity) {
-		return canVehicleCollide(this, entity);
-	}
-
-	public static boolean canVehicleCollide(Entity entity, Entity entity2) {
-		return (entity2.canBeCollidedWith() || entity2.isPushable()) && !entity.isPassengerOfSameVehicle(entity2);
+	public boolean canBeControlledByRider() {
+		return this.getControllingPassenger() instanceof LivingEntity;
 	}
 	@Override
-	protected void defineSynchedData() {
-			this.entityData.define(DATA_ID_HURT, 0);
-			this.entityData.define(DATA_ID_HURTDIR, 1);
-			this.entityData.define(DATA_ID_DAMAGE, 0.0F);
+	public boolean shouldRiderSit() {
+		return super.shouldRiderSit();
+	}
+	public boolean canMate(AnimalEntity p_70878_1_) {
+		return false;
 	}
 
-	@Override
-	protected void readAdditionalSaveData(CompoundNBT nbt) {
-
+	protected boolean canParent() {
+		return false;
 	}
-
-	@Override
-	protected void addAdditionalSaveData(CompoundNBT nbt) {
-
-	}
-
-	@Override
-	public IPacket<?> getAddEntityPacket() {
-		return new SSpawnObjectPacket(this);
-	}
-	public void setHurtDir(int num) {
-		this.entityData.set(DATA_ID_HURTDIR, num);
-	}
-
-	public int getHurtDir() {
-		return this.entityData.get(DATA_ID_HURTDIR);
-	}
-	protected boolean canAddPassenger(Entity entity) {
-		return this.getPassengers().size() < 2;
-	}
-	@Override
-	protected void addPassenger(Entity passenger) {
-		super.addPassenger(passenger);
-		if (this.isControlledByLocalInstance() && this.lerpSteps > 0) {
-			this.lerpSteps = 0;
-			this.absMoveTo(this.lerpX, this.lerpY, this.lerpZ, (float)this.lerpYRot, (float)this.lerpXRot);
-		}
-	}
-
 	@Nullable
 	public Entity getControllingPassenger() {
-		List<Entity> list = this.getPassengers();
-		return list.isEmpty() ? null : list.get(0);
+		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
+	}
+	public void positionRider(Entity p_184232_1_) {
+		super.positionRider(p_184232_1_);
+		if (p_184232_1_ instanceof MobEntity) {
+			MobEntity mobentity = (MobEntity)p_184232_1_;
+			this.yBodyRot = mobentity.yBodyRot;
+		}
+
+			float f3 = MathHelper.sin(this.yBodyRot * ((float)Math.PI / 180F));
+			float f = MathHelper.cos(this.yBodyRot * ((float)Math.PI / 180F));
+			p_184232_1_.setPos(this.getX() + (double) f3, this.getY() + this.getPassengersRidingOffset() + p_184232_1_.getMyRidingOffset(), this.getZ() - (double)(f));
+			if (p_184232_1_ instanceof LivingEntity) {
+				((LivingEntity)p_184232_1_).yBodyRot = this.yBodyRot;
+		}
+
+	}
+	@Nullable
+	private Vector3d getDismountLocationInDirection(Vector3d p_234236_1_, LivingEntity p_234236_2_) {
+		double d0 = this.getX() + p_234236_1_.x;
+		double d1 = this.getBoundingBox().minY;
+		double d2 = this.getZ() + p_234236_1_.z;
+		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+
+		for(Pose pose : p_234236_2_.getDismountPoses()) {
+			blockpos$mutable.set(d0, d1, d2);
+			double d3 = this.getBoundingBox().maxY + 0.75D;
+
+			while(true) {
+				double d4 = this.level.getBlockFloorHeight(blockpos$mutable);
+				if ((double)blockpos$mutable.getY() + d4 > d3) {
+					break;
+				}
+
+				if (TransportationHelper.isBlockFloorValid(d4)) {
+					AxisAlignedBB axisalignedbb = p_234236_2_.getLocalBoundsForPose(pose);
+					Vector3d vector3d = new Vector3d(d0, (double)blockpos$mutable.getY() + d4, d2);
+					if (TransportationHelper.canDismountTo(this.level, p_234236_2_, axisalignedbb.move(vector3d))) {
+						p_234236_2_.setPose(pose);
+						return vector3d;
+					}
+				}
+
+				blockpos$mutable.move(Direction.UP);
+				if (!((double)blockpos$mutable.getY() < d3)) {
+					break;
+				}
+			}
+		}
+
+		return null;
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public void animateHurt() {
-		this.setHurtDir(-this.getHurtDir());
-		this.setHurtTime(10);
-		this.setDamage(this.getDamage() * 11.0F);
-	}
-	public void setDamage(float float2) {
-		this.entityData.set(DATA_ID_DAMAGE, float2);
-	}
-
-	public float getDamage() {
-		return this.entityData.get(DATA_ID_DAMAGE);
-	}
-
-	public void setHurtTime(int integer) {
-		this.entityData.set(DATA_ID_HURT, integer);
-	}
-
-	public int getHurtTime() {
-		return this.entityData.get(DATA_ID_HURT);
+	public Vector3d getDismountLocationForPassenger(LivingEntity p_230268_1_) {
+		Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
+		Vector3d vector3d1 = this.getDismountLocationInDirection(vector3d, p_230268_1_);
+		if (vector3d1 != null) {
+			return vector3d1;
+		} else {
+			Vector3d vector3d2 = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
+			Vector3d vector3d3 = this.getDismountLocationInDirection(vector3d2, p_230268_1_);
+			return vector3d3 != null ? vector3d3 : this.position();
+		}
 	}
 }

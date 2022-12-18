@@ -14,44 +14,13 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class BessieRenderer extends EntityRenderer<BessieEntity> {
-	protected final BessieModel model = new BessieModel();
 
-	public BessieRenderer(EntityRendererManager p_i46179_1_) {
+	protected BessieRenderer(EntityRendererManager p_i46179_1_) {
 		super(p_i46179_1_);
 	}
 
 	@Override
-	public void render(BessieEntity p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
-		p_225623_4_.pushPose();
-		p_225623_4_.translate(0.0D, 0.375D, 0.0D);
-		p_225623_4_.mulPose(Vector3f.YP.rotationDegrees(180.0F - p_225623_2_));
-		float f = (float) p_225623_1_.getHurtTime() - p_225623_3_;
-		float f1 = p_225623_1_.getDamage() - p_225623_3_;
-		if (f1 < 0.0F) {
-			f1 = 0.0F;
-		}
-
-		if (f > 0.0F) {
-			p_225623_4_.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(f) * f * f1 / 10.0F * (float) p_225623_1_.getHurtDir()));
-		}
-
-		float f2 = 0;//p_225623_1_.getBubbleAngle(p_225623_3_);
-		if (!MathHelper.equal(f2, 0.0F)) {
-			p_225623_4_.mulPose(new Quaternion(new Vector3f(1.0F, 0.0F, 1.0F), f2, true));
-		}
-
-		p_225623_4_.scale(-1.0F, -1.0F, 1.0F);
-		p_225623_4_.mulPose(Vector3f.YP.rotationDegrees(90.0F));
-		this.model.setupAnim(p_225623_1_, p_225623_3_, 0.0F, -0.1F, 0.0F, 0.0F);
-		IVertexBuilder ivertexbuilder = p_225623_5_.getBuffer(this.model.renderType(this.getTextureLocation(p_225623_1_)));
-		this.model.renderToBuffer(p_225623_4_, ivertexbuilder, p_225623_6_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-
-		p_225623_4_.popPose();
-		super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
-	}
-
-	@Override
 	public ResourceLocation getTextureLocation(BessieEntity p_110775_1_) {
-		return model.model.getModelData().getTexture();
+		return null;
 	}
 }

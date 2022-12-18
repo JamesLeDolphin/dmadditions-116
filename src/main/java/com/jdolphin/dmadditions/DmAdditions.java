@@ -85,6 +85,9 @@ public class DmAdditions {
 			if (DMAEntities.WOODEN_CYBERMAN != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
 
+			if (DMAEntities.BESSIE != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
+
 			if (DMAEntities.SNOWMAN != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 
