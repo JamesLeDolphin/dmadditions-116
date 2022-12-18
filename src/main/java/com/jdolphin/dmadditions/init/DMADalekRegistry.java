@@ -40,6 +40,8 @@ public class DMADalekRegistry {
 			IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		if (AdventUnlock.unlockAt(21)) {
 			WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
+		}
+		if (AdventUnlock.unlockAt(22)) {
 			GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
 		}
 		if (AdventUnlock.unlockAt(23)) {
