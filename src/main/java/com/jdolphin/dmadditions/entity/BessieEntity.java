@@ -3,12 +3,8 @@ package com.jdolphin.dmadditions.entity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.Direction;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.TransportationHelper;
@@ -98,55 +94,60 @@ public class BessieEntity extends AnimalEntity {
 
 	public void travel(Vector3d p_213352_1_) {
 		if (this.isAlive()) {
-				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
-				this.yRot = livingentity.yRot;
-				this.yRotO = this.yRot;
-				this.xRot = livingentity.xRot * 0.5F;
-				this.setRot(this.yRot, this.xRot);
-				this.yBodyRot = this.yRot;
-				this.yHeadRot = this.yBodyRot;
-				float f = livingentity.xxa * 0.5F;
-				float f1 = livingentity.zza;
-					f = 0.0F;
-					f1 = 0.0F;
-					this.flyingSpeed = 0.02F;
-					super.travel(p_213352_1_);
+			LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
+
+			if (livingentity == null) return;
+
+			this.yRot = livingentity.yRot;
+			this.yRotO = this.yRot;
+			this.xRot = livingentity.xRot * 0.5F;
+			this.setRot(this.yRot, this.xRot);
+			this.yBodyRot = this.yRot;
+			this.yHeadRot = this.yBodyRot;
+			float f = livingentity.xxa * 0.5F;
+			float f1 = livingentity.zza;
+			f = 0.0F;
+			f1 = 0.0F;
+			this.flyingSpeed = 0.02F;
+			super.travel(p_213352_1_);
 		}
 	}
-		private Vector3d getDismountLocationInDirection (Vector3d vector, LivingEntity entityLiving){
-			double d0 = this.getX() + vector.x;
-			double d1 = this.getBoundingBox().minY;
-			double d2 = this.getZ() + vector.z;
-			BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-			for (Pose pose : entityLiving.getDismountPoses()) {
-				blockpos$mutable.set(d0, d1, d2);
-				double d3 = this.getBoundingBox().maxY + 0.75D;
+	private Vector3d getDismountLocationInDirection(Vector3d vector, LivingEntity entityLiving) {
+		double d0 = this.getX() + vector.x;
+		double d1 = this.getBoundingBox().minY;
+		double d2 = this.getZ() + vector.z;
+		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-				while (true) {
-					double d4 = this.level.getBlockFloorHeight(blockpos$mutable);
-					if ((double) blockpos$mutable.getY() + d4 > d3) {
-						break;
-					}
+		for (Pose pose : entityLiving.getDismountPoses()) {
+			blockpos$mutable.set(d0, d1, d2);
+			double d3 = this.getBoundingBox().maxY + 0.75D;
 
-					if (TransportationHelper.isBlockFloorValid(d4)) {
-						AxisAlignedBB axisalignedbb = entityLiving.getLocalBoundsForPose(pose);
-						Vector3d vector3d = new Vector3d(d0, (double) blockpos$mutable.getY() + d4, d2);
-						if (TransportationHelper.canDismountTo(this.level, entityLiving, axisalignedbb.move(vector3d))) {
-							entityLiving.setPose(pose);
-							return vector3d;
-						}
-					}
+			while (true) {
+				double d4 = this.level.getBlockFloorHeight(blockpos$mutable);
+				if ((double) blockpos$mutable.getY() + d4 > d3) {
+					break;
+				}
 
-					blockpos$mutable.move(Direction.UP);
-					if (!((double) blockpos$mutable.getY() < d3)) {
-						break;
+				if (TransportationHelper.isBlockFloorValid(d4)) {
+					AxisAlignedBB axisalignedbb = entityLiving.getLocalBoundsForPose(pose);
+					Vector3d vector3d = new Vector3d(d0, (double) blockpos$mutable.getY() + d4, d2);
+					if (TransportationHelper.canDismountTo(this.level, entityLiving, axisalignedbb.move(vector3d))) {
+						entityLiving.setPose(pose);
+						return vector3d;
 					}
 				}
-			}
 
-			return null;
+				blockpos$mutable.move(Direction.UP);
+				if (!((double) blockpos$mutable.getY() < d3)) {
+					break;
+				}
+			}
 		}
+
+		return null;
+	}
+
 	protected void doPlayerRide(PlayerEntity p_110237_1_) {
 		if (!this.level.isClientSide) {
 			p_110237_1_.yRot = this.yRot;
@@ -156,15 +157,15 @@ public class BessieEntity extends AnimalEntity {
 
 	}
 
-		public Vector3d getDismountLocationForPassenger (LivingEntity p_230268_1_){
-			Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
-			Vector3d vector3d1 = this.getDismountLocationInDirection(vector3d, p_230268_1_);
-			if (vector3d1 != null) {
-				return vector3d1;
-			} else {
-				Vector3d vector3d2 = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
-				Vector3d vector3d3 = this.getDismountLocationInDirection(vector3d2, p_230268_1_);
-				return vector3d3 != null ? vector3d3 : this.position();
-			}
+	public Vector3d getDismountLocationForPassenger(LivingEntity p_230268_1_) {
+		Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
+		Vector3d vector3d1 = this.getDismountLocationInDirection(vector3d, p_230268_1_);
+		if (vector3d1 != null) {
+			return vector3d1;
+		} else {
+			Vector3d vector3d2 = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
+			Vector3d vector3d3 = this.getDismountLocationInDirection(vector3d2, p_230268_1_);
+			return vector3d3 != null ? vector3d3 : this.position();
 		}
 	}
+}
