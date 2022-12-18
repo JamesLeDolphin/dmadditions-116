@@ -12,6 +12,7 @@ public class DMADalekType {
 	public static DalekType CANDYCANE = new DalekType("candycane_dalek");
 	public static DalekType PFD = new DalekType("pink_fluffy_dalek");
 	public static DalekType STORM = new DalekType("dalek_storm");
+	public static DalekType WAFFLE = new DalekType("waffle_dalek");
 
 
 	public String registryName;

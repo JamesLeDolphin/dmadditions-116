@@ -21,7 +21,7 @@ public class CustomDalekBase extends DalekBase {
 	}
 
 	public SoundEvent getAttackSound(Entity e) {
-		return (SoundEvent) DMSoundEvents.ENTITY_DALEK_CLASSIC_ATTACK.get();
+		return DMSoundEvents.ENTITY_DALEK_CLASSIC_ATTACK.get();
 	}
 
 	protected void aiStep() {

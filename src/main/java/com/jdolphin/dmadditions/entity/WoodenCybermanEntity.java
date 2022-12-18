@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.LaserEntity;

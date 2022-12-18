@@ -22,6 +22,7 @@ public class DMADalekRegistry {
 	public static IDalek CANDYCANE;
 	public static IDalek PFD;
 	public static IDalek STORM;
+	public static IDalek WAFFLE;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		if (AdventUnlock.unlockAt(24)) {
@@ -41,7 +42,9 @@ public class DMADalekRegistry {
 		if (AdventUnlock.unlockAt(17)) {
 			IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		}
-
+		if (AdventUnlock.unlockAt(21)) {
+			WAFFLE = addDalek(DMADalekType.WAFFLE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
+		}
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
 	}
