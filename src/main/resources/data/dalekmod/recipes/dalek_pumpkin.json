@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:pumpkin"
+		},
+		{
+			"tag": "forge:ingots/dalekanium"
+		}
+	],
+	"result": {
+		"item": "dalekmod:dalek_pumpkin"
+	}
+}
