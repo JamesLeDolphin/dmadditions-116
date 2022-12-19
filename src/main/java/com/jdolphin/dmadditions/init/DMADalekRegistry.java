@@ -25,6 +25,7 @@ public class DMADalekRegistry {
 	public static IDalek WAFFLE;
 	public static IDalek GINGERBREAD;
 	public static IDalek SNOW;
+	public static IDalek STEAMPUNK;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		if (AdventUnlock.unlockAt(24)) {
@@ -40,11 +41,13 @@ public class DMADalekRegistry {
 			IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		if (AdventUnlock.unlockAt(21)) {
 			WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
-		}
-		if (AdventUnlock.unlockAt(22)) {
 			GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
 		}
-		if (AdventUnlock.unlockAt(23)) {
+		if (AdventUnlock.unlockAt(22)) {
+			STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_gingerbread_dalek");
+			STEAMPUNK.addChild("grey_steampunk_dalek");
+		}
+		if (AdventUnlock.unlockAt(19)) {
 			SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
 		}
 		dalekList.addAll(dmaDalekList);

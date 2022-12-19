@@ -13,6 +13,7 @@ public class DMADalekType {
 	public static DalekType PFD = new DalekType("pink_fluffy_dalek");
 	public static DalekType STORM = new DalekType("dalek_storm");
 	public static DalekType SNOW = new DalekType("snow_dalek");
+	public static DalekType STEAMPUNK = new DalekType("steampunk_dalek");
 
 
 
