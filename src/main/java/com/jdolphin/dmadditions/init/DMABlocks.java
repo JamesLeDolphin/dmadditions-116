@@ -4,10 +4,7 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
@@ -131,6 +128,10 @@ public class DMABlocks {
 	public static RegistryObject<Block> RANDOMIZER;
 	public static RegistryObject<Block> CHEESE_ORE;
 	public static final RegistryObject<Block> CHRISTMAS_TREE;
+
+	public static RegistryObject<Block> DALEK_PUMPKIN;
+	public static RegistryObject<Block> CARVED_DALEK_PUMPKIN;
+
 //	public static final RegistryObject<Block> CORAL_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TOYOTA_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TARDIS_MONITOR_8;
@@ -157,6 +158,9 @@ public class DMABlocks {
 			"randomizer", DMTabs.DM_TARDIS);
 
 		CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
+
+		DALEK_PUMPKIN = registerAdventBlock(23, () -> new PumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		CARVED_DALEK_PUMPKIN = registerAdventBlock(23, () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 
 		CHRISTMAS_TREE = registerAdventBlock(13, () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
 			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);

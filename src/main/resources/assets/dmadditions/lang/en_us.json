@@ -172,14 +172,14 @@
 	"item.dalekmod.pink_fluffy_dalek_spawner": "Pink Fluffy Dalek Spawner",
 	"item.dalekmod.dalek_storm_spawner": "Dalek Storm Spawner",
 	"item.dalekmod.unit_gun": "UNIT Gun",
-
 	"item.dalekmod.laser_screwdriver.mode.laser": "Laser Mode",
 	"item.dalekmod.laser_screwdriver.mode.sonic": "Sonic mode",
 	"dmadditions.tardis.name.gingerbread": "Gingerbread Exterior",
 	"dalekmod.tardis.description.gingerbread": "Fresh from the oven, this good smelling exterior is now ready for your space-time travels!",
 	"subtitles.item.sonic.laser.shoot": "Laser Screwdriver Shoots",
-
 	"block.dalekmod.coral_tardis_monitor": "Coral TARDIS Monitor",
 	"block.dalekmod.toyota_tardis_monitor": "Toyota TARDIS Monitor",
-	"block.dalekmod.tardis_monitor_8": "8th TARDIS Monitor"
+	"block.dalekmod.tardis_monitor_8": "8th TARDIS Monitor",
+	"block.dalekmod.dalek_pumpkin": "Dalek Pumpkin",
+	"block.dalekmod.carved_dalek_pumpkin": "Carved Dalek Pumpkin"
 }
