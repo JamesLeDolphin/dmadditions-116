@@ -317,6 +317,8 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 
 	@Override
 	public void handleStartJump(int p_184775_1_) {
+		this.level.playSound(null, this, DMASoundEvents.BESSIE_HORN.get(),
+			SoundCategory.NEUTRAL, p_184775_1_ / 100f, 1f);
 	}
 
 	@Override
