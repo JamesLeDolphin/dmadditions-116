@@ -181,5 +181,6 @@
 	"block.dalekmod.toyota_tardis_monitor": "Toyota TARDIS Monitor",
 	"block.dalekmod.tardis_monitor_8": "8th TARDIS Monitor",
 	"block.dalekmod.dalek_pumpkin": "Dalek Pumpkin",
-	"block.dalekmod.carved_dalek_pumpkin": "Carved Dalek Pumpkin"
+	"block.dalekmod.carved_dalek_pumpkin": "Carved Dalek Pumpkin",
+	"entity.dmadditions.bessie": "Bessie"
 }
