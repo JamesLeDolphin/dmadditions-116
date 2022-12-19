@@ -4,7 +4,6 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.dalek.types.*;
 import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
-import com.swdteam.common.init.DMDalekRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,8 +43,8 @@ public class DMADalekRegistry {
 			GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
 		}
 		if (AdventUnlock.unlockAt(22)) {
-			STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_gingerbread_dalek");
-			STEAMPUNK.addChild("grey_steampunk_dalek");
+			STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
+			STEAMPUNK.addChild("gray_steampunk_dalek");
 		}
 		if (AdventUnlock.unlockAt(19)) {
 			SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
