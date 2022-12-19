@@ -88,6 +88,9 @@ public class DmAdditions {
 			if (DMAEntities.BESSIE != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
 
+			if (DMAEntities.TW_SUV != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.TW_SUV.get(), TorchwoodSuvEntity.setCustomAttributes().build());
+
 			if (DMAEntities.SNOWMAN != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 

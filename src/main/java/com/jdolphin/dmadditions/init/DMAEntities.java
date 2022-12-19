@@ -19,6 +19,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<BessieEntity>> BESSIE;
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
+	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
 
 	static {
 		JAMESLEDOLPHIN = DMARegistries.ENTITY_TYPES.register("jamesledolphin",
@@ -50,6 +51,12 @@ public class DMAEntities {
 			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
 				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
 					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
+		}
+
+		if (AdventUnlock.unlockAt(23)) {
+			TW_SUV = DMARegistries.ENTITY_TYPES.register("torchwood_suv",
+				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
+					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
 		}
 	}
 }

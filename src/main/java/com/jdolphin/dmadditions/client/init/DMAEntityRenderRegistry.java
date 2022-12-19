@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.client.render.entity.*;
-import com.jdolphin.dmadditions.entity.BessieEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.Entity;
@@ -23,6 +22,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.SNOWMAN, RenderSnowman::new);
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
+		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
 	}
 
 	public static <T extends Entity> void registerRender(RegistryObject<EntityType<T>> entityClass, IRenderFactory<? super T> renderFactory) {
