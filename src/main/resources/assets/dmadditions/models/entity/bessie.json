@@ -1,18 +1,18 @@
 {
 	"credit": "Made with Blockbench",
 	"texture": "dmadditions:entity/bessie",
-	"texture_width": 16,
-	"texture_height": 16,
+	"texture_width": 128,
+	"texture_height": 128,
 	"scale": 1,
 	"groups": [
 		{
 			"group_name": "body",
-			"pivot": [0,24,0],
-			"rotation": [0,0,0],
+			"pivot": [0, 24, 0],
+			"rotation": [0, 0, 0],
 			"children": [
 				{
-					"pivot": [-4,-5,-8],
-					"rotation": [-45,0,0],
+					"pivot": [-4, -5, -8],
+					"rotation": [-45, 0, 0],
 					"children": [],
 					"cubes": [
 						{

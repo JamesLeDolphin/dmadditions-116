@@ -47,10 +47,6 @@ public class DMAEntities {
 		}
 
 		if (AdventUnlock.unlockAt(20)) {
-//			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
-//				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC)
-//					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
-
 			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
 				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
 					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
