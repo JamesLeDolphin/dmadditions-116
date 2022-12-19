@@ -159,8 +159,8 @@ public class DMABlocks {
 
 		CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
 
-		DALEK_PUMPKIN = registerAdventBlock(23, () -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
-		CARVED_DALEK_PUMPKIN = registerAdventBlock(23, () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		DALEK_PUMPKIN = registerAdventBlock(19, () -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		CARVED_DALEK_PUMPKIN = registerAdventBlock(19, () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 
 		CHRISTMAS_TREE = registerAdventBlock(13, () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
 			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
