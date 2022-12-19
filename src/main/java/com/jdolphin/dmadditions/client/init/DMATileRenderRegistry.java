@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.client.init;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderCoordPanel;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderDimensionSelectorPanel;
-import com.jdolphin.dmadditions.client.render.tileentity.RenderTardisMonitor;
-import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.client.render.tileentity.RenderTileEntityBase;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.model.javajson.JSONModel;
@@ -25,9 +22,9 @@ public class DMATileRenderRegistry {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
 
-		if(AdventUnlock.unlockAt(23)){
-			registerModel(DMABlockEntities.TILE_SCANNER.get(), RenderTardisMonitor::new);
-		}
+//		if(AdventUnlock.unlockAt(23)){
+//			registerModel(DMABlockEntities.TILE_SCANNER.get(), RenderTardisMonitor::new);
+//		}
 	}
 
 	public static final ArrayList<TileEntityType<?>> MIXIN_RENDERERS = new ArrayList<TileEntityType<?>>() {{

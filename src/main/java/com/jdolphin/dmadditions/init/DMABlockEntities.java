@@ -1,10 +1,8 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
 import com.swdteam.common.RegistryHandler;
-import com.swdteam.common.init.DMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -14,14 +12,14 @@ public class DMABlockEntities {
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 
 	static {
-		if (AdventUnlock.unlockAt(23))
-			TILE_SCANNER = RegistryHandler.TILE_ENTITY_TYPES.register("dma_scanner", () ->
-				TileEntityType.Builder.of(BetterScannerTileEntity::new,
-					DMBlocks.SCANNER.get(),
-					DMABlocks.TARDIS_MONITOR_8.get(),
-					DMABlocks.CORAL_TARDIS_MONITOR.get(),
-					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
-				).build(null));
+//		if (AdventUnlock.unlockAt(23))
+//			TILE_SCANNER = RegistryHandler.TILE_ENTITY_TYPES.register("dma_scanner", () ->
+//				TileEntityType.Builder.of(BetterScannerTileEntity::new,
+//					DMBlocks.SCANNER.get(),
+//					DMABlocks.TARDIS_MONITOR_8.get(),
+//					DMABlocks.CORAL_TARDIS_MONITOR.get(),
+//					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
+//				).build(null));
 
 		TILE_ROUNDEL_CONTAINER = RegistryHandler.TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
