@@ -27,17 +27,17 @@ public class DMADalekRegistry {
 	public static IDalek STEAMPUNK;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
-		if (AdventUnlock.unlockAt(24)) {
-			DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
-		}
+		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
+		CANDYCANE.addChild("blue_candycane_dalek");
+		CANDYCANE.addChild("red_candycane_dalek");
+		CANDYCANE.addChild("orange_candycane_dalek");
+		PFD = addDalek(DMADalekType.PFD, new PFDDalekBase("Pink Fluffy Dalek"), "pink_fluffy_dalek");
+		STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
+		IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 
-			CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
-			CANDYCANE.addChild("blue_candycane_dalek");
-			CANDYCANE.addChild("red_candycane_dalek");
-			CANDYCANE.addChild("orange_candycane_dalek");
-			PFD = addDalek(DMADalekType.PFD, new PFDDalekBase("Pink Fluffy Dalek"), "pink_fluffy_dalek");
-			STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
-			IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
+		if (AdventUnlock.unlockAt(19)) {
+			SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
+		}
 		if (AdventUnlock.unlockAt(21)) {
 			WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
 			GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
@@ -46,9 +46,10 @@ public class DMADalekRegistry {
 			STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
 			STEAMPUNK.addChild("gray_steampunk_dalek");
 		}
-		if (AdventUnlock.unlockAt(19)) {
-			SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
+		if (AdventUnlock.unlockAt(24)) {
+			DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 		}
+
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
 	}
