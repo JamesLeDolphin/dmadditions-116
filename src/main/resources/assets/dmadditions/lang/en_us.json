@@ -182,5 +182,8 @@
 	"block.dalekmod.tardis_monitor_8": "8th TARDIS Monitor",
 	"block.dalekmod.dalek_pumpkin": "Dalek Pumpkin",
 	"block.dalekmod.carved_dalek_pumpkin": "Carved Dalek Pumpkin",
-	"entity.dmadditions.bessie": "Bessie"
+	"entity.dmadditions.bessie": "Bessie",
+	"entity.dmadditions.torchwood_suv": "Torchwood SUV",
+	"item.dmadditions.bessie": "Bessie",
+	"item.dmadditions.torchwood_suv": "Torchwood SUV"
 }

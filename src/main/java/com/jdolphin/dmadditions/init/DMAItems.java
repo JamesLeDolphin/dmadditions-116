@@ -17,6 +17,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -75,10 +76,19 @@ public class DMAItems {
 	public static final RegistryObject<Item> PILOT_FISH_SPAWNER;
 	public static final RegistryObject<Item> PILOT_FISH_TRUMPET;
 
+	public static final RegistryObject<Item> BESSIE;
+	public static final RegistryObject<Item> TW_SUV;
+
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
 		return RegistryHandler.ITEMS.register(name, supplier);
+	}
+
+	protected static RegistryObject<Item> registerDMAAdventItem(int day, String name, Supplier<Item> supplier) {
+		if (!AdventUnlock.unlockAt(day)) return null;
+
+		return DMARegistries.ITEMS.register(name, supplier);
 	}
 
 	protected static RegistryObject<Item> addAdventSpawnItem(int day, String key) {
@@ -127,6 +137,12 @@ public class DMAItems {
 			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 2.0F,
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+
+		BESSIE = registerDMAAdventItem(20, "bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+		TW_SUV = registerDMAAdventItem(23, "torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 
 		PISTOL = RegistryHandler.ITEMS.register("pistol", ()
