@@ -161,15 +161,15 @@
 
 	"item.dalekmod.music_disc_pfd": "Music Disc",
 	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks",
-
 	"entity.dalekmod.pilot_fish": "Pilot Fish",
 	"entity.dalekmod.snowman": "Snowman",
 	"entity.dalekmod.christmas_tree": "Christmas Tree",
-
 	"dmadditions.interior.name.coral": "Coral Interior",
 	"dmadditions.interior.name.crystaline": "Crystaline Interior",
-
 	"item.dalekmod.pink_fluffy_dalek_spawner": "Pink Fluffy Dalek Spawner",
+	"item.dalekmod.snow_dalek_spawner": "Snow Dalek Spawner",
+	"item.dalekmod.steampunk_dalek_spawner": "Steampunk Dalek Spawner",
+	"item.dalekmod.ironside_dalek_spawner": "Ironside Dalek Spawner",
 	"item.dalekmod.dalek_storm_spawner": "Dalek Storm Spawner",
 	"item.dalekmod.unit_gun": "UNIT Gun",
 	"item.dalekmod.laser_screwdriver.mode.laser": "Laser Mode",
