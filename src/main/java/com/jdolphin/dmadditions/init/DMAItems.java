@@ -14,14 +14,13 @@ import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Rarity;
+import net.minecraft.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
+import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.ITEMS;
 import static com.swdteam.common.init.DMItems.addSpawnItem;
 
 
@@ -44,6 +43,7 @@ public class DMAItems {
 	public static final RegistryObject<Item> MUSIC_DISC_PFD;
 
 	public static final RegistryObject<Item> SANTA_HAT;
+	public static final RegistryObject<Item> MATTS_PINK_THONG;
 
 	/*public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
@@ -69,6 +69,7 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_CHESTPLATE;
 	public static RegistryObject<Item> METALERT_LEGGINGS;
 	public static RegistryObject<Item> METALERT_BOOTS;*/
+
 	public static RegistryObject<Item> BULLET_ITEM;
 
 
@@ -88,7 +89,7 @@ public class DMAItems {
 	protected static RegistryObject<Item> registerDMAAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
-		return DMARegistries.ITEMS.register(name, supplier);
+		return ITEMS.register(name, supplier);
 	}
 
 	protected static RegistryObject<Item> addAdventSpawnItem(int day, String key) {
@@ -97,7 +98,7 @@ public class DMAItems {
 		return addSpawnItem(key);
 	}
 
-	public static final RegistryObject<Item> MISSINGO = DMARegistries.ITEMS.register("missingo",
+	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
@@ -125,13 +126,16 @@ public class DMAItems {
 		SANTA_HAT = registerAdventItem(8, "santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
+		MATTS_PINK_THONG = registerAdventItem(25, "matts_pink_thong",
+			() -> new ClothesItem(EquipmentSlotType.LEGS));
+
 		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
 			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 
 		MUSIC_DISC_PFD = registerAdventItem(10, "music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
-		WOODEN_CYBERMAN_SPAWNER = addAdventSpawnItem(17, "wooden_cyberman");
+		WOODEN_CYBERMAN_SPAWNER = addAdventSpawnItem(15, "wooden_cyberman");
 		PILOT_FISH_SPAWNER = addAdventSpawnItem(4, "pilot_fish");
 		PILOT_FISH_TRUMPET = registerAdventItem(4, "pilot_fish_trumpet",
 			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 2.0F,
