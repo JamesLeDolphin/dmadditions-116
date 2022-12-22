@@ -145,24 +145,24 @@ public class DMABlocks {
 
 
 	static {
-		WREATH = registerAdventBlock(3,
+		WREATH = registerBlock(
 			() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
 			"wreath", ItemGroup.TAB_DECORATIONS);
 
-		TARDIS_SNOWGLOBE = registerAdventBlock(6,
+		TARDIS_SNOWGLOBE = registerBlock(
 			() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
 			"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
 
-		RANDOMIZER = registerAdventBlock(9,
+		RANDOMIZER = registerBlock(
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
 
 		CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
 
-		DALEK_PUMPKIN = registerAdventBlock(19, () -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
-		CARVED_DALEK_PUMPKIN = registerAdventBlock(19, () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		DALEK_PUMPKIN = registerBlock( () -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		CARVED_DALEK_PUMPKIN = registerBlock( () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 
-		CHRISTMAS_TREE = registerAdventBlock(13, () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
+		CHRISTMAS_TREE = registerBlock( () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
 			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
 
 //		CORAL_TARDIS_MONITOR = registerAdventBlock(23, () -> new BetterScannerBlock(BetterScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL)

@@ -34,21 +34,13 @@ public class DMADalekRegistry {
 		PFD = addDalek(DMADalekType.PFD, new PFDDalekBase("Pink Fluffy Dalek"), "pink_fluffy_dalek");
 		STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
 		IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
+		SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
+		WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
+		GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
+		STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
+		STEAMPUNK.addChild("gray_steampunk_dalek");
+		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 
-		if (AdventUnlock.unlockAt(19)) {
-			SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
-		}
-		if (AdventUnlock.unlockAt(21)) {
-			WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
-			GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
-		}
-		if (AdventUnlock.unlockAt(22)) {
-			STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
-			STEAMPUNK.addChild("gray_steampunk_dalek");
-		}
-		if (AdventUnlock.unlockAt(24)) {
-			DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
-		}
 
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);

@@ -102,7 +102,6 @@ public class DMAItems {
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
-		if (AdventUnlock.unlockAt(1)) {
 			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
@@ -114,16 +113,16 @@ public class DMAItems {
 
 			ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("orange_candy_cane",
 				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-		}
 
-		SNOWMAN_SPAWNER = addAdventSpawnItem(5, "snowman");
 
-		UNIT_GUN = registerAdventItem(7, "unit_gun",
+		SNOWMAN_SPAWNER = addSpawnItem("snowman");
+
+		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 
-		SANTA_HAT = registerAdventItem(8, "santa_hat",
+		SANTA_HAT = RegistryHandler.ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 		MATTS_PINK_THONG = registerAdventItem(25, "matts_pink_thong",
@@ -135,17 +134,17 @@ public class DMAItems {
 		MUSIC_DISC_PFD = registerAdventItem(10, "music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
-		WOODEN_CYBERMAN_SPAWNER = addAdventSpawnItem(15, "wooden_cyberman");
-		PILOT_FISH_SPAWNER = addAdventSpawnItem(4, "pilot_fish");
-		PILOT_FISH_TRUMPET = registerAdventItem(4, "pilot_fish_trumpet",
+		WOODEN_CYBERMAN_SPAWNER = addSpawnItem( "wooden_cyberman");
+		PILOT_FISH_SPAWNER = addSpawnItem("pilot_fish");
+		PILOT_FISH_TRUMPET = RegistryHandler.ITEMS.register("pilot_fish_trumpet",
 			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 2.0F,
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-		BESSIE = registerDMAAdventItem(20, "bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
+		BESSIE = RegistryHandler.ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-		TW_SUV = registerDMAAdventItem(23, "torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
+		TW_SUV = RegistryHandler.ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 

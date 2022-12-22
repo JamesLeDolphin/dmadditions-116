@@ -32,31 +32,22 @@ public class DMAEntities {
 
 		SNOWMAN = RegistryHandler.ENTITY_TYPES.register("snowman",
 			() -> EntityType.Builder.of(SnowmanEntity::new, EntityClassification.MONSTER)
-				.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString())
-		);
+				.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString()));
 
-		if (AdventUnlock.unlockAt(13)) {
 			CHRISTMAS_TREE = RegistryHandler.ENTITY_TYPES.register("christmas_tree",
 				() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
-		}
 
-		if (AdventUnlock.unlockAt(15)) {
 			WOODEN_CYBERMAN = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman",
 				() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
 					.build((new ResourceLocation(DalekMod.MODID, "wooden_cyberman")).toString()));
-		}
 
-		if (AdventUnlock.unlockAt(20)) {
 			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
 				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
 					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
-		}
 
-		if (AdventUnlock.unlockAt(23)) {
 			TW_SUV = DMARegistries.ENTITY_TYPES.register("torchwood_suv",
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
 					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
-		}
 	}
 }
