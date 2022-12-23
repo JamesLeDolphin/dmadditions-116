@@ -15,9 +15,11 @@ import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -107,17 +109,17 @@ public class DMAItems {
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
-			BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
-				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
+			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-			RED_CANDY_CANE = RegistryHandler.ITEMS.register("red_candy_cane",
-				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		RED_CANDY_CANE = RegistryHandler.ITEMS.register("red_candy_cane",
+			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-			GREEN_CANDY_CANE = RegistryHandler.ITEMS.register("green_candy_cane",
-				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		GREEN_CANDY_CANE = RegistryHandler.ITEMS.register("green_candy_cane",
+			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-			ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("orange_candy_cane",
-				() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+		ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("orange_candy_cane",
+			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 
 		SNOWMAN_SPAWNER = addSpawnItem("snowman");
@@ -131,8 +133,16 @@ public class DMAItems {
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 		MATTS_PINK_THONG = registerDMAAdventItem(25, "matts_pink_thong",
-			() -> new CustomModelArmorItem<>(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties(), MattsPinkThongModel::new,
-				new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString()));
+			() -> new CustomModelArmorItem<MattsPinkThongModel>(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties(), MattsPinkThongModel::new,
+				new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString()) {
+				@Override
+				public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
+					if (armorType.equals(EquipmentSlotType.HEAD) || armorType.equals(EquipmentSlotType.LEGS))
+						return true;
+
+					return super.canEquip(stack, armorType, entity);
+				}
+			});
 
 		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
 			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
@@ -140,7 +150,7 @@ public class DMAItems {
 		MUSIC_DISC_PFD = registerAdventItem(10, "music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
-		WOODEN_CYBERMAN_SPAWNER = addSpawnItem( "wooden_cyberman");
+		WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
 		PILOT_FISH_SPAWNER = addSpawnItem("pilot_fish");
 		PILOT_FISH_TRUMPET = RegistryHandler.ITEMS.register("pilot_fish_trumpet",
 			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 2.0F,
