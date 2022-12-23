@@ -1,7 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
+import com.jdolphin.dmadditions.item.CustomModelArmorItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
@@ -14,7 +16,10 @@ import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Rarity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -126,7 +131,8 @@ public class DMAItems {
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 		MATTS_PINK_THONG = registerAdventItem(25, "matts_pink_thong",
-			() -> new ClothesItem(EquipmentSlotType.LEGS));
+			() -> new CustomModelArmorItem<>(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties(), MattsPinkThongModel::new,
+				new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString()));
 
 		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
 			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));

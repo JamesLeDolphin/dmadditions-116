@@ -26,7 +26,9 @@ public enum DMAArmorMaterial implements IArmorMaterial {
 	PURE_DALEKANIUM("pure_dalekanium", 25, new int[]{2, 5, 6, 2}, 10, SoundEvents.ARMOR_EQUIP_IRON, 0.1F, 0.0F,
 		() -> Ingredient.of(DMItems.DALEKANIUM_INGOT.get())),
 	METALERT("metalert", 40, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
-		() -> Ingredient.of(DMItems.METALERT.get()));
+		() -> Ingredient.of(DMItems.METALERT.get())),
+	MATTS_PINK_THONG("matts_pink_thong", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
+		() -> Ingredient.EMPTY);
 
 	private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
 	private final String name;
