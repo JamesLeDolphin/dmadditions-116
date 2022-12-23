@@ -130,7 +130,7 @@ public class DMAItems {
 		SANTA_HAT = RegistryHandler.ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
-		MATTS_PINK_THONG = registerAdventItem(25, "matts_pink_thong",
+		MATTS_PINK_THONG = registerDMAAdventItem(25, "matts_pink_thong",
 			() -> new CustomModelArmorItem<>(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties(), MattsPinkThongModel::new,
 				new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString()));
 
