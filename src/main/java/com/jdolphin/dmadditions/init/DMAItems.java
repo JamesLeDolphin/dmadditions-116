@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
-import com.jdolphin.dmadditions.item.CustomModelArmorItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
@@ -15,13 +14,14 @@ import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.LasergunItem;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -133,8 +133,19 @@ public class DMAItems {
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 		MATTS_PINK_THONG = registerDMAAdventItem(25, "matts_pink_thong",
-			() -> new CustomModelArmorItem<MattsPinkThongModel>(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties(), MattsPinkThongModel::new,
-				new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString()) {
+			() -> new ArmorItem(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties()) {
+
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+					return (A) new MattsPinkThongModel(1f);
+				}
+
+				@Override
+				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString();
+				}
+
 				@Override
 				public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
 					if (armorType.equals(EquipmentSlotType.HEAD) || armorType.equals(EquipmentSlotType.LEGS))
@@ -169,7 +180,7 @@ public class DMAItems {
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
-			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
+			() -> new TardisRemoteKeyItem((new Item.Properties()).tab(DMTabs.DM_TARDIS), ""));
 
 		DINO_NUGGETS = RegistryHandler.ITEMS.register("dino_nuggets",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));
