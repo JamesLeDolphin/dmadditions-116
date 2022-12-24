@@ -168,10 +168,10 @@ public class DMAItems {
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-		BESSIE = RegistryHandler.ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
+		BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-		TW_SUV = RegistryHandler.ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
+		TW_SUV = ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 
