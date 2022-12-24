@@ -11,6 +11,8 @@
 		"DalekRegistryMixin",
 		"DMBlocksMixin",
 		"DolphinEntityMixin",
+		"KerblamItemMixin",
+		"KerblamItemReloadListenerMixin",
 		"SpawnRegistryMixin",
 		"TardisKeyMixin"
 	],

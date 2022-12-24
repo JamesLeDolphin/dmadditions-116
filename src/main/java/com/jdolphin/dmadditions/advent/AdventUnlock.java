@@ -13,6 +13,10 @@ public class AdventUnlock {
 	private static final int FAKE_MONTH = Calendar.DECEMBER;
 	private static final int FAKE_DATE = 25;
 
+	public static Calendar getCalendar() {
+		return calendar;
+	}
+
 	public static boolean isDecember() {
 		int month = calendar.get(Calendar.MONTH);
 		return (month == 11);
