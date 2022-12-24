@@ -17,7 +17,7 @@ public class CustomDalekBase extends DalekBase {
 	}
 
 	public DMProjectiles.Laser getLaser(DalekEntity dalek) {
-		return DMProjectiles.BLUE_LASER;
+		return DMProjectiles.GREEN_LASER;
 	}
 
 	public SoundEvent getAttackSound(Entity e) {
