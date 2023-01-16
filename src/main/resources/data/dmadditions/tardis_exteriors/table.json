@@ -1,0 +1,9 @@
+{
+	"name": "dmadditions.tardis.name.table",
+	"models": [
+		"dmadditions:models/tileentity/tardis/table.json"
+	],
+	"cost": 100,
+	"unlockable": true,
+	"desc": "dalekmod.tardis.description.table"
+}
