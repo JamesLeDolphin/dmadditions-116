@@ -13,8 +13,18 @@ import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.jdolphin.dmadditions.init.DMAStructures;
 import com.jdolphin.dmadditions.sex.SexMessageCommand;
 import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
+import com.mojang.brigadier.CommandDispatcher;
+import com.swdteam.common.command.CommandDalekModBase;
+import com.swdteam.common.command.CommandInteriorDoorPos;
+import com.swdteam.common.command.CommandTardisOwnership;
+import com.swdteam.common.command.dalekmod.ChameleonArgument;
+import com.swdteam.common.command.dalekmod.FacingArgument;
+import com.swdteam.common.command.dalekmod.TardisArgument;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.arguments.ArgumentSerializer;
+import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -24,9 +34,11 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -75,7 +87,15 @@ public class DmAdditions {
 
 	}
 
+	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
+		SexMessageCommand.register(dispatcher);
+	}
 
+	@SubscribeEvent
+	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
+		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
+		this.registerCommands(commandDispatcher);
+	}
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
