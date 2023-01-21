@@ -18,29 +18,27 @@ import java.util.UUID;
 public class SexMessageCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		LiteralArgumentBuilder<CommandSource> literal = Commands.literal("sendmessage");
-		RequiredArgumentBuilder<CommandSource, UUID> uuidArg = Commands.argument("uuid", UUIDArgument.uuid());
-		RequiredArgumentBuilder<CommandSource, String> messageArg = Commands.argument("message", StringArgumentType.string());
-		literal.then(uuidArg).then(messageArg).executes(SexMessageCommand::execute);
+		LiteralArgumentBuilder<CommandSource> literal = Commands.literal("sex");
+		literal.executes(SexMessageCommand::execute);
 		dispatcher.register(literal);
 	}
 
 	private static int execute(CommandContext<CommandSource> context) throws CommandSyntaxException {
-		UUID targetUuid = UUIDArgument.getUuid(context, "uuid");
-		ITextComponent message = new StringTextComponent(StringArgumentType.getString(context, "message"));
-
-		ServerPlayerEntity targetPlayer = context.getSource().getServer().getPlayerList().getPlayerByName(String.valueOf(targetUuid));
-		if ( targetPlayer.getUUID().toString().equals("380df991-f603-344c-a090-369bad2a924a")) {
-			if (context.getSource().getEntity() instanceof ServerPlayerEntity && ((ServerPlayerEntity) context.getSource().getEntity()).getUUID().equals(targetUuid)) {
-				targetPlayer.sendMessage(message, targetUuid);
-				context.getSource().sendSuccess(message, true);
+		ITextComponent message = new StringTextComponent("you don't get sex you get not bitches, jk");
+		CommandSource source = context.getSource();
+		if (source.getEntity() instanceof ServerPlayerEntity) {
+			ServerPlayerEntity player = (ServerPlayerEntity) source.getEntity();
+			UUID uuid = player.getUUID();
+			if (uuid.toString().equals("9d7f31b4-17cb-4ee5-bf00-1652682083ae")) {
+				player.sendMessage(message, uuid);
+//				context.getSource().sendSuccess(message, true);
 				return 1;
 			} else {
-				context.getSource().sendFailure(new StringTextComponent("The player does not exist or is not online!"));
+				context.getSource().sendFailure(new StringTextComponent("You cannot use this command!"));
 				return 0;
 			}
 		} else {
-			context.getSource().sendFailure(new StringTextComponent("The player does not exist or is not online!"));
+			context.getSource().sendFailure(new StringTextComponent("You cannot use this command!"));
 			return 0;
 		}
 	}
