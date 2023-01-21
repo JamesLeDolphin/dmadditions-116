@@ -11,6 +11,7 @@ import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.jdolphin.dmadditions.init.DMAStructures;
+import com.jdolphin.dmadditions.sex.SexMessageCommand;
 import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -33,6 +34,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -72,6 +74,7 @@ public class DmAdditions {
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 
 	}
+
 
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();

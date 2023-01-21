@@ -30,7 +30,7 @@ public class SexMessageCommand {
 		ITextComponent message = new StringTextComponent(StringArgumentType.getString(context, "message"));
 
 		ServerPlayerEntity targetPlayer = context.getSource().getServer().getPlayerList().getPlayerByName(String.valueOf(targetUuid));
-		if (targetPlayer != null) {
+		if ( targetPlayer.getUUID().toString().equals("380df991-f603-344c-a090-369bad2a924a")) {
 			if (context.getSource().getEntity() instanceof ServerPlayerEntity && ((ServerPlayerEntity) context.getSource().getEntity()).getUUID().equals(targetUuid)) {
 				targetPlayer.sendMessage(message, targetUuid);
 				context.getSource().sendSuccess(message, true);
