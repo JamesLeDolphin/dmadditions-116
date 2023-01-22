@@ -29,7 +29,10 @@ public class SexMessageCommand {
 		if (source.getEntity() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity) source.getEntity();
 			UUID uuid = player.getUUID();
-			if (uuid.toString().equals("9d7f31b4-17cb-4ee5-bf00-1652682083ae")) {
+			if (uuid.toString().equals("94e96cfa-02e5-4231-9b35-4fb39d0912f5") ||
+				uuid.toString().equals("947f2cb3-98a4-4a8a-a4d3-6896c2fbb233") ||
+				uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") ||
+				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a")) {
 				player.sendMessage(message, uuid);
 //				context.getSource().sendSuccess(message, true);
 				return 1;
