@@ -2,11 +2,13 @@ package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.client.render.tileentity.RenderCoordPanel;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderDimensionSelectorPanel;
+import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.client.render.tileentity.RenderTileEntityBase;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelJSONTile;
 import com.swdteam.model.javajson.ModelLoader;
+import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.TileEntity;
@@ -17,10 +19,14 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import java.util.ArrayList;
 import java.util.function.Function;
 
+import static com.jdolphin.dmadditions.DmAdditions.MODID;
+
+
 public class DMATileRenderRegistry {
 	public static void init() {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
+		registerModel(DMABlockEntities.TILE_REDDASH_STATUE.get(), new ResourceLocation(MODID, "models/tileentity/reddash_statue.json"));
 
 //		if(AdventUnlock.unlockAt(23)){
 //			registerModel(DMABlockEntities.TILE_SCANNER.get(), RenderTardisMonitor::new);
@@ -36,13 +42,17 @@ public class DMATileRenderRegistry {
 		ClientRegistry.bindTileEntityRenderer(tileEntityType, rendererFactory);
 	}
 
-	public static <T extends TileEntity> void registerModel(TileEntityType<T> tileEntityType, String location) {
-		JSONModel model = ModelLoader.loadModel(new ResourceLocation("dalekmod", "models/tileentity/" + location + ".json"));
+	public static <T extends TileEntity> void registerModel(TileEntityType<T> tileEntityType, ResourceLocation location) {
+		JSONModel model = ModelLoader.loadModel(location);
 		if (model != null) {
 			registerModel(tileEntityType, (s) -> {
-				return new RenderTileEntityBase(s, ModelJSONTile.giveWrapper(location));
+				return new RenderTileEntityBase(s, giveWrapper(location));
 			});
 		}
+	}
 
+	public static ModelWrapper giveWrapper(ResourceLocation location) {
+		JSONModel model = ModelLoader.loadModel(location);
+		return model != null && model.getModelData() != null ? model.getModelData().getModel() : null;
 	}
 }

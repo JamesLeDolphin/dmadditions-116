@@ -8,24 +8,9 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class ReddashStatueTileEntity extends DMTileEntityBase implements IForgeRegistryEntry<ReddashStatueTileEntity> {
+public class ReddashStatueTileEntity extends DMTileEntityBase {
 	public ReddashStatueTileEntity() {
 		super((TileEntityType) DMABlockEntities.TILE_REDDASH_STATUE.get());
 	}
 
-	@Override
-	public ReddashStatueTileEntity setRegistryName(ResourceLocation name) {
-		return null;
-	}
-
-	@Nullable
-	@Override
-	public ResourceLocation getRegistryName() {
-		return null;
-	}
-
-	@Override
-	public Class<ReddashStatueTileEntity> getRegistryType() {
-		return null;
-	}
 }
