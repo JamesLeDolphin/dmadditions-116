@@ -14,17 +14,11 @@ import com.jdolphin.dmadditions.init.DMAStructures;
 import com.jdolphin.dmadditions.sex.SexMessageCommand;
 import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
-import com.swdteam.common.command.CommandDalekModBase;
-import com.swdteam.common.command.CommandInteriorDoorPos;
-import com.swdteam.common.command.CommandTardisOwnership;
-import com.swdteam.common.command.dalekmod.ChameleonArgument;
-import com.swdteam.common.command.dalekmod.FacingArgument;
-import com.swdteam.common.command.dalekmod.TardisArgument;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
-import net.minecraft.command.arguments.ArgumentSerializer;
-import net.minecraft.command.arguments.ArgumentTypes;
+
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -46,7 +40,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
