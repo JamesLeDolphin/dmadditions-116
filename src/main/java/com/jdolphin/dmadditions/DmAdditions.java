@@ -3,6 +3,8 @@ package com.jdolphin.dmadditions;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
+import com.jdolphin.dmadditions.commands.GameModeCommand;
+import com.jdolphin.dmadditions.commands.TeleportCommand;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
@@ -83,8 +85,9 @@ public class DmAdditions {
 
 	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
 		SexMessageCommand.register(dispatcher);
+		GameModeCommand.register(dispatcher);
+		TeleportCommand.register(dispatcher);
 	}
-
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
