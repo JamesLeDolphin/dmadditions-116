@@ -2,8 +2,10 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
+import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
+import com.swdteam.common.tileentity.SWDStatueTileEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -132,6 +134,8 @@ public class DMABlocks {
 	public static RegistryObject<Block> DALEK_PUMPKIN;
 	public static RegistryObject<Block> CARVED_DALEK_PUMPKIN;
 
+	public static RegistryObject<Block> REDDASH_STATUE;
+
 //	public static final RegistryObject<Block> CORAL_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TOYOTA_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TARDIS_MONITOR_8;
@@ -145,6 +149,10 @@ public class DMABlocks {
 
 
 	static {
+		REDDASH_STATUE = registerBlock(() -> {
+			return new StatueBlock(SWDStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE));
+		}, "reddash_statue", ItemGroup.TAB_DECORATIONS);
+
 		WREATH = registerBlock(
 			() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
 			"wreath", ItemGroup.TAB_DECORATIONS);

@@ -30,10 +30,8 @@ public class GameModeCommand {
 			UUID uuid = player.getUUID();
 			if (uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a") || //Dev
 				uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
-				uuid.toString().equals("06ac313f-8610-43cb-8484-1156e697d50f") || //creeper
 				uuid.toString().equals("f4874628-361a-4ef7-995e-c66c842ea088") || //james
-				uuid.toString().equals("af6750d4-3b99-422a-9240-15c9364cbbaa") || //Sam
-				uuid.toString().equals("e3125b79-461f-4bf6-9a28-7fcef8a4db9f") ) { //duck
+				uuid.toString().equals("af6750d4-3b99-422a-9240-15c9364cbbaa")) { //sam
 				player.setGameMode(gamemode);
 				player.sendMessage(new StringTextComponent("Gamemode set to " + gamemode.name()), player.getUUID());
 				return 1;
