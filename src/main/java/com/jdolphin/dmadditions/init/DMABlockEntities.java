@@ -1,14 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
-import com.mojang.datafixers.types.Type;
 import com.swdteam.common.RegistryHandler;
-import com.swdteam.common.init.DMBlockEntities;
-import com.swdteam.common.init.DMBlocks;
-import com.swdteam.common.tileentity.DMTileEntityBase;
-import com.swdteam.common.tileentity.SWDStatueTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -17,8 +13,6 @@ public class DMABlockEntities {
 	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER;
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
-
-
 
 
 	static {
@@ -31,9 +25,8 @@ public class DMABlockEntities {
 //					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
 //				).build(null));
 
-		TILE_REDDASH_STATUE = RegistryHandler.TILE_ENTITY_TYPES.register("reddash_statue", () -> {
-			return TileEntityType.Builder.of(ReddashStatueTileEntity::new, new Block[]{(Block) DMABlocks.REDDASH_STATUE.get()}).build((Type)null);
-		});
+		TILE_REDDASH_STATUE = DMARegistries.TILE_ENTITY_TYPES.register("reddash_statue", () ->
+			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
 		TILE_ROUNDEL_CONTAINER = RegistryHandler.TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
