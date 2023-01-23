@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.sex;
 
+import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.mojang.brigadier.CommandDispatcher;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -10,9 +11,13 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.UUID;
 
@@ -35,6 +40,9 @@ public class SexMessageCommand {
 				uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
 				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a")) { //Dev
 				player.sendMessage(message, uuid);
+
+				SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("dmadditions:music.disc.rickroll"));
+				player.playSound(DMASoundEvents.RICK_ROLL.get(), SoundCategory.RECORDS.ordinal(), 1.0f);
 				return 1;
 			}
 		}
