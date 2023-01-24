@@ -1,6 +1,8 @@
 package com.jdolphin.dmadditions.sex;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
+import com.jdolphin.dmadditions.init.DMASoundTypes;
 import com.mojang.brigadier.CommandDispatcher;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -15,13 +17,19 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SPlaySoundPacket;
 import net.minecraft.util.SoundCategory;
 
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.server.ServerWorld;
+import org.apache.logging.log4j.LogManager;
 
 
+import java.util.Objects;
 import java.util.UUID;
+import java.util.Vector;
+
+import static com.jdolphin.dmadditions.init.DMASoundEvents.RICK_ROLL;
 
 public class SexMessageCommand {
 
@@ -32,7 +40,8 @@ public class SexMessageCommand {
 	}
 
 	private static int execute(CommandContext<CommandSource> context) throws CommandSyntaxException {
-		ITextComponent message = new StringTextComponent("Error: You get no bitches.").withStyle(TextFormatting.RED);
+		ITextComponent message = new StringTextComponent("Error 404: Bitches not found. Falling back to Rick Astley. He will never give you up")
+			.withStyle(TextFormatting.RED);
 		CommandSource source = context.getSource();
 		if (source.getEntity() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity) source.getEntity();
@@ -42,19 +51,13 @@ public class SexMessageCommand {
 				uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
 				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a")) { //Dev
 				player.sendMessage(message, uuid);
-
-
-				ServerWorld world = player.getServer().getWorld(player.getDimension().getType());
-				world.playSound(null, player.getPositionVec(), CUSTOM_SOUND.get(), SoundCategory.MASTER, 1.0f, 1.0f);
-
-
-
+				player.playSound(RICK_ROLL.get(), 1.0f, 1.0f);
 
 				return 1;
 
 			}
 		}
-		context.getSource().sendFailure(new StringTextComponent("You cannot use this command!"));
+		context.getSource().sendFailure(new StringTextComponent("Error: You get no bitches."));
 		return 0;
 	}
 }
