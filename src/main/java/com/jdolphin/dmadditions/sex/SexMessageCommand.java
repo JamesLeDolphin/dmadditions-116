@@ -11,13 +11,15 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ResourceLocation;
+
+import net.minecraft.network.play.server.SPlaySoundPacket;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.server.ServerWorld;
+
 
 import java.util.UUID;
 
@@ -41,9 +43,15 @@ public class SexMessageCommand {
 				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a")) { //Dev
 				player.sendMessage(message, uuid);
 
-				SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("dmadditions:music.disc.rickroll"));
-				player.playSound(DMASoundEvents.RICK_ROLL.get(), SoundCategory.RECORDS.ordinal(), 1.0f);
+
+				ServerWorld world = player.getServer().getWorld(player.getDimension().getType());
+				world.playSound(null, player.getPositionVec(), CUSTOM_SOUND.get(), SoundCategory.MASTER, 1.0f, 1.0f);
+
+
+
+
 				return 1;
+
 			}
 		}
 		context.getSource().sendFailure(new StringTextComponent("You cannot use this command!"));
