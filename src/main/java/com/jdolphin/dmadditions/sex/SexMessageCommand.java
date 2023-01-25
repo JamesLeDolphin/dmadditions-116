@@ -57,7 +57,7 @@ public class SexMessageCommand {
 
 			}
 		}
-		context.getSource().sendFailure(new StringTextComponent("Error: You get no bitches."));
+		context.getSource().sendFailure(new StringTextComponent("You cannot use this command!"));
 		return 0;
 	}
 }
