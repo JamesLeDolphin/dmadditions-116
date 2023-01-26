@@ -51,7 +51,7 @@ public class SexMessageCommand {
 				uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
 				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a")) { //Dev
 				player.sendMessage(message, uuid);
-				player.playSound(RICK_ROLL.get(), 1.0f, 1.0f);
+				player.playNotifySound(DMASoundEvents.RICK_ROLL.get(), SoundCategory.RECORDS, 1, 1);
 
 				return 1;
 
