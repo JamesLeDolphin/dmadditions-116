@@ -141,6 +141,7 @@
 	"block.dalekmod.stainless_steel_reinforced_walling_roundel_container": "Stainless Steel Reinforced Walling Roundel Container",
 
 
+
 	"block.dalekmod.tardis_snowglobe": "TARDIS Snow Globe",
 
 	"item.dalekmod.orange_candy_cane": "Orange Candy Cane",
@@ -186,5 +187,8 @@
 	"entity.dmadditions.torchwood_suv": "Torchwood SUV",
 	"item.dmadditions.bessie": "Bessie",
 	"item.dmadditions.torchwood_suv": "Torchwood SUV",
-	"item.dmadditions.matts_pink_thong": "Matt's Pink Thong"
+	"item.dmadditions.matts_pink_thong": "Matt's Pink Thong",
+	"block.dmadditions.reddash_statue": "Reddashs Statue",
+	"item.dmadditions.reddash_statue": "Reddashs Statue"
+
 }
