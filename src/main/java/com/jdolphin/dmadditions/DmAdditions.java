@@ -13,7 +13,7 @@ import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.jdolphin.dmadditions.init.DMAStructures;
-import com.jdolphin.dmadditions.sex.SexMessageCommand;
+
 import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 
@@ -84,7 +84,6 @@ public class DmAdditions {
 	}
 
 	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
-		SexMessageCommand.register(dispatcher);
 		GameModeCommand.register(dispatcher);
 		TeleportCommand.register(dispatcher);
 	}
