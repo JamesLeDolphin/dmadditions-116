@@ -1,6 +1,8 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
+import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
 import com.swdteam.common.RegistryHandler;
 import net.minecraft.block.Block;
@@ -10,6 +12,8 @@ import net.minecraftforge.fml.RegistryObject;
 public class DMABlockEntities {
 	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER;
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
+	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
+
 
 	static {
 //		if (AdventUnlock.unlockAt(23))
@@ -20,6 +24,9 @@ public class DMABlockEntities {
 //					DMABlocks.CORAL_TARDIS_MONITOR.get(),
 //					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
 //				).build(null));
+
+		TILE_REDDASH_STATUE = DMARegistries.TILE_ENTITY_TYPES.register("reddash_statue", () ->
+			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
 		TILE_ROUNDEL_CONTAINER = RegistryHandler.TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{

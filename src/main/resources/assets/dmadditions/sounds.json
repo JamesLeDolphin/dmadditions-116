@@ -56,6 +56,15 @@
 			}
 		]
 	},
+		"music_disc.rick_roll": {
+    		"category": "music",
+    		"sounds": [
+    			{
+    				"name": "dmadditions:records/rick_roll",
+    				"stream": true
+    			}
+    		]
+    	},
 	"entity.christmas_tree.jingle_bells": {
 		"sounds": [
 			{

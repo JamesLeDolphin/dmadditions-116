@@ -18,6 +18,7 @@ public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> LASER_SONIC_SHOOT;
 	public static final RegistryObject<SoundEvent> BESSIE_HORN;
 	public static final RegistryObject<SoundEvent> BESSIE;
+	public static final RegistryObject<SoundEvent> RICK_ROLL;
 
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
@@ -36,6 +37,7 @@ public class DMASoundEvents {
 		DALEK_STORM_EXTERMINATE = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.exterminate");
 		BESSIE_HORN = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.horn");
 		BESSIE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.drive");
+		RICK_ROLL = buildSound(RegistryHandler.SOUNDS, "music_disc.rick_roll");
 
 	}
 }
