@@ -17,6 +17,7 @@ import com.jdolphin.dmadditions.init.DMAStructures;
 import com.jdolphin.dmadditions.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 
+;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
@@ -29,8 +30,10 @@ import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -82,6 +85,8 @@ public class DmAdditions {
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 
 	}
+
+
 
 	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
 		GameModeCommand.register(dispatcher);
