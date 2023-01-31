@@ -25,7 +25,8 @@ public class TeleportCommand {
 
 	private static int teleport(CommandContext<CommandSource> context, BlockPos pos, ServerPlayerEntity player) {
 		UUID uuid = player.getUUID();
-		if (uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a") || //Dev
+		if (context.getSource().hasPermission(2) ||
+			uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a") || //Dev
 			uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
 			uuid.toString().equals("f4874628-361a-4ef7-995e-c66c842ea088") || //james
 			uuid.toString().equals("af6750d4-3b99-422a-9240-15c9364cbbaa")) { //Sam

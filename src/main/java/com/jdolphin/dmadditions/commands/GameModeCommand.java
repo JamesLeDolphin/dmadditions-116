@@ -28,10 +28,11 @@ public class GameModeCommand {
 		if (source.getEntity() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity) source.getEntity();
 			UUID uuid = player.getUUID();
-			if (uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a") || //Dev
-				uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
+			if (uuid.toString().equals("f54da43a-eedc-43cc-bccd-3337334e9a66") || //TW1
 				uuid.toString().equals("f4874628-361a-4ef7-995e-c66c842ea088") || //james
-				uuid.toString().equals("af6750d4-3b99-422a-9240-15c9364cbbaa")) { //sam
+				uuid.toString().equals("af6750d4-3b99-422a-9240-15c9364cbbaa") || //sam
+				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a") || //Dev
+			source.hasPermission(2)) {
 				player.setGameMode(gamemode);
 				player.sendMessage(new StringTextComponent("Gamemode set to " + gamemode.name()), player.getUUID());
 				return 1;
