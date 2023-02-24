@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
+import com.jdolphin.dmadditions.commands.CommandSit;
 import com.jdolphin.dmadditions.commands.GameModeCommand;
 import com.jdolphin.dmadditions.commands.TeleportCommand;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
@@ -91,6 +92,7 @@ public class DmAdditions {
 	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
 		GameModeCommand.register(dispatcher);
 		TeleportCommand.register(dispatcher);
+		CommandSit.register(dispatcher);
 	}
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
