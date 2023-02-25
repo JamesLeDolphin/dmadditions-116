@@ -14,6 +14,7 @@ import net.minecraft.server.MinecraftServer;
 
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import net.minecraft.inventory.EquipmentSlotType;
@@ -40,7 +41,7 @@ public class CommandSit {
 				armorStand.setItemSlot(EquipmentSlotType.FEET, new ItemStack(Items.AIR));
 				world.addFreshEntity(armorStand);
 				player.startRiding(armorStand, true);
-				player.sendMessage(new StringTextComponent("You have sat down."), player.getUUID());
+				player.sendMessage(new StringTextComponent("You have sat down.").withStyle(TextFormatting.GREEN), player.getUUID());
 				return 1;
 			} else {
 				context.getSource().sendFailure(new StringTextComponent("Only players can use this command!"));

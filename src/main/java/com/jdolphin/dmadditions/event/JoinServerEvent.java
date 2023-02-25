@@ -15,7 +15,7 @@ public class JoinServerEvent {
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerLoggedInEvent event) {
 		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-			ITextComponent message = new StringTextComponent("Using DMA on this server may have adverse side effects.").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.RED);
+			ITextComponent message = new StringTextComponent("Using DMA on this server may have adverse side effects.").withStyle(TextFormatting.BOLD).withStyle(TextFormatting.GOLD);
 			player.sendMessage(message, player.getUUID());
 	}
 }
