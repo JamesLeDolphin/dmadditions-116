@@ -18,6 +18,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.nbt.CompoundNBT;
+
+import java.util.List;
 
 public class CommandSit {
 
@@ -39,9 +42,29 @@ public class CommandSit {
 				armorStand.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(Items.AIR));
 				armorStand.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(Items.AIR));
 				armorStand.setItemSlot(EquipmentSlotType.FEET, new ItemStack(Items.AIR));
+
+				// Add "chair" tag to armor stand
+				CompoundNBT tags = new CompoundNBT();
+				tags.putBoolean("chair", true);
+				armorStand.getPersistentData().put("Tags", tags);
+
 				world.addFreshEntity(armorStand);
 				player.startRiding(armorStand, true);
 				player.sendMessage(new StringTextComponent("You have sat down.").withStyle(TextFormatting.GREEN), player.getUUID());
+
+				// Find and kill unoccupied chairs
+				List<ArmorStandEntity> chairs = world.getEntitiesOfClass(ArmorStandEntity.class, armorStand.getBoundingBox().inflate(1.0));
+				for (ArmorStandEntity chair : chairs) {
+					if (chair.getPersistentData().contains("Tags")) {
+						CompoundNBT chairTags = chair.getPersistentData().getCompound("Tags");
+						if (chairTags.getBoolean("chair")) {
+							if (chair.getPassengers().isEmpty()) {
+								chair.remove();
+							}
+						}
+					}
+				}
+
 				return 1;
 			} else {
 				context.getSource().sendFailure(new StringTextComponent("Only players can use this command!"));
