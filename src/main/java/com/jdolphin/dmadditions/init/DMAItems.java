@@ -37,6 +37,7 @@ public class DMAItems {
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD;
 	public static RegistryObject<Item> PISTOL;
 	public static RegistryObject<Item> UNIT_GUN;
+	public static RegistryObject<Item> TORCHWOOD_PISTOL;
 	public static RegistryObject<Item> LASER_SCREWDRIVER;
 	public static RegistryObject<Item> TARDIS_GOLD_KEY;
 
@@ -125,7 +126,11 @@ public class DMAItems {
 		SNOWMAN_SPAWNER = addSpawnItem("snowman");
 
 		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
-			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE, DMASoundEvents.PISTOL_SHOOT,
+			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
+				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+
+		TORCHWOOD_PISTOL = RegistryHandler.ITEMS.register("torchwood_pistol",
+			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 
@@ -176,7 +181,7 @@ public class DMAItems {
 
 
 		PISTOL = RegistryHandler.ITEMS.register("pistol", ()
-			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE,
+			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",

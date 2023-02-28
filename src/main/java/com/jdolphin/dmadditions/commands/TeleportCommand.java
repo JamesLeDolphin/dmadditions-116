@@ -10,6 +10,7 @@ import net.minecraft.command.arguments.Vec3Argument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.UUID;
 
@@ -32,7 +33,7 @@ public class TeleportCommand {
 			uuid.toString().equals("af6750d4-3b99-422a-9240-15c9364cbbaa")) { //Sam
 
 			player.teleportTo(pos.getX(), pos.getY(), pos.getZ());
-			context.getSource().sendSuccess(new StringTextComponent("Teleported to " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()), true);
+			context.getSource().sendSuccess(new StringTextComponent("Teleported to " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()).withStyle(TextFormatting.GREEN), true);
 			return 1;
 		} else {
 			context.getSource().sendFailure(new StringTextComponent("You do not have permission"));

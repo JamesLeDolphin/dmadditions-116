@@ -7,6 +7,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameType;
 
 import java.util.UUID;
@@ -34,7 +35,7 @@ public class GameModeCommand {
 				uuid.toString().equals("380df991-f603-344c-a090-369bad2a924a") || //Dev
 			source.hasPermission(2)) {
 				player.setGameMode(gamemode);
-				player.sendMessage(new StringTextComponent("Gamemode set to " + gamemode.name()), player.getUUID());
+				player.sendMessage(new StringTextComponent("Gamemode set to " + gamemode.name()).withStyle(TextFormatting.GREEN), player.getUUID());
 				return 1;
 			} else {
 				context.getSource().sendFailure(new StringTextComponent("You do not have permission"));
