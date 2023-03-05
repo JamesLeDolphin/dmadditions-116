@@ -1,0 +1,18 @@
+{
+	"door_animations":[
+  		{
+  			"shape_name": "bone2",
+  			"mode": "translate",
+  			"axis": "z",
+  			"amplifier": 0.001,
+  			"door_type": "right"
+  		},
+  		{
+  			"shape_name": "bone",
+  			"mode": "translate",
+  			"axis": "x",
+  			"amplifier": -0.401,
+  			"door_type": "right"
+  		}
+  	]
+}
