@@ -35,7 +35,8 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 
-public class RoundelContainerBlock extends BarrelBlock {
+public class RoundelContainerBlock extends ContainerBlock {
+	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
 	public RoundelContainerBlock(Properties p_i49996_1_) {
 		super(p_i49996_1_);
