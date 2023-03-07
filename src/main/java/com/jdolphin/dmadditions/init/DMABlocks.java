@@ -33,9 +33,9 @@ public class DMABlocks {
 		() -> new CopperHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
-	public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
-		() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"timekeeper_console");
+	//public static final RegistryObject<Block> TIMEKEEPER_CONSOLE = registerBlock(
+	//	() -> new BetterFlightLeverBlock(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+	//	"timekeeper_console");
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER;

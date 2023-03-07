@@ -30,6 +30,6 @@ updateJSONURL = "https://api.modrinth.com/updates/6XJWjUK9/forge_updates.json"
     modId="dalekmod"
     mandatory=true
     versionRange="[67.0.0,68)"
-    ordering="AFTER"
+    ordering="BEFORE"
     side="BOTH"
 
