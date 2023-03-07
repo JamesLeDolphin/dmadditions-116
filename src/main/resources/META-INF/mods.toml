@@ -27,9 +27,9 @@ updateJSONURL = "https://api.modrinth.com/updates/6XJWjUK9/forge_updates.json"
     side="BOTH"
 
 [[dependencies.dmadditions]]
-modId="dalekmod"
-mandatory=true
-versionRange="[67.0.0, )"
-ordering="AFTER"
-side="BOTH"
+    modId="dalekmod"
+    mandatory=true
+    versionRange="[67.0.0,68)"
+    ordering="AFTER"
+    side="BOTH"
 

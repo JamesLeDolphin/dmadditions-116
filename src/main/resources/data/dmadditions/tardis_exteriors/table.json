@@ -5,5 +5,13 @@
 	],
 	"cost": 100,
 	"unlockable": true,
-	"desc": "dalekmod.tardis.description.table"
+	"desc": "dalekmod.tardis.description.table",
+	"hitbox": [[0,0,0,16,32,16]],
+	"hitbox_visual": {
+		"default": [[0,0,0,16,40,16]],
+		"north": [[-8, 0, 0, 24, 40, 16]],
+		"south": [[-8, 0, 0, 24, 40, 16]],
+		"east": [[0, 0, -8, 16, 40, 24]],
+		"west": [[0, 0, -8, 16, 40, 24]]
+	}
 }
