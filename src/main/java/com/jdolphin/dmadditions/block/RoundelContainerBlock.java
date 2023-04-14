@@ -30,12 +30,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
+
 import java.util.Random;
 
 
-public class RoundelContainerBlock extends ContainerBlock {
+public class RoundelContainerBlock extends BarrelBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
 	public RoundelContainerBlock(Properties p_i49996_1_) {
@@ -94,7 +95,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		public BlockState getStateForPlacement(BlockItemUseContext context) {
 			BlockPos blockpos = context.getClickedPos();
 			FluidState fluidstate = context.getLevel().getFluidState(blockpos);
-			return (BlockState)super.getStateForPlacement(context).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+			return super.getStateForPlacement(context).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 		}
 
 		public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {

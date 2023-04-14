@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.main.DalekMod;
@@ -17,6 +16,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN;
 	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE;
 	public static RegistryObject<EntityType<BessieEntity>> BESSIE;
+	public static RegistryObject<EntityType<CyberDroneEntity>> CYBERBIRD;
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
@@ -34,17 +34,21 @@ public class DMAEntities {
 			() -> EntityType.Builder.of(SnowmanEntity::new, EntityClassification.MONSTER)
 				.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString()));
 
-			CHRISTMAS_TREE = RegistryHandler.ENTITY_TYPES.register("christmas_tree",
+		CHRISTMAS_TREE = RegistryHandler.ENTITY_TYPES.register("christmas_tree",
 				() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
 
-			WOODEN_CYBERMAN = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman",
+		WOODEN_CYBERMAN = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman",
 				() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
 					.build((new ResourceLocation(DalekMod.MODID, "wooden_cyberman")).toString()));
 
-			BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
+		BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
 				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
 					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
+
+		CYBERBIRD = DMARegistries.ENTITY_TYPES.register("cyber_drone",
+			() -> EntityType.Builder.of(CyberDroneEntity::new, EntityClassification.MONSTER).sized(0.9F, 0.6F)
+				.build((new ResourceLocation(DmAdditions.MODID, "cyber_drone")).toString()));
 
 			TW_SUV = DMARegistries.ENTITY_TYPES.register("torchwood_suv",
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
