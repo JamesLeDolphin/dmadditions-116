@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.client.render.entity;
 import com.jdolphin.dmadditions.client.model.entity.CyberDroneModel;
 import com.jdolphin.dmadditions.client.model.entity.WoodenCybermanModel;
 import com.jdolphin.dmadditions.entity.CyberDroneEntity;
+import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -11,6 +12,9 @@ public class CyberDroneRenderer extends LivingRenderer<CyberDroneEntity, CyberDr
 
 	public CyberDroneRenderer(EntityRendererManager rendererManager) {
 		super(rendererManager, new CyberDroneModel(), 1.0f);
+	}
+	protected boolean shouldShowName(CyberDroneEntity entity) {
+		return super.shouldShowName(entity) && (entity.shouldShowName() || entity.hasCustomName() && entity == this.entityRenderDispatcher.crosshairPickEntity);
 	}
 
 	@Override
