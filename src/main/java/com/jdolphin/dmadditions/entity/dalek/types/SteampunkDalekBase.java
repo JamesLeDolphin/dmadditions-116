@@ -2,11 +2,9 @@ package com.jdolphin.dmadditions.entity.dalek.types;
 
 import com.swdteam.common.entity.dalek.DalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
-import com.swdteam.common.init.DMParticleTypes;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import net.minecraft.entity.Entity;
-import net.minecraft.particles.IParticleData;
 import net.minecraft.util.SoundEvent;
 
 public class SteampunkDalekBase extends DalekBase {

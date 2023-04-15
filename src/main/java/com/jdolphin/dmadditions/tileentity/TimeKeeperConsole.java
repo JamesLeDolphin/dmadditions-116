@@ -5,12 +5,10 @@ import com.swdteam.common.block.tardis.CoordPanelBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.block.ChestBlock;
 
 import java.util.List;
 import java.util.function.Supplier;

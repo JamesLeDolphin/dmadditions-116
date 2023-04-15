@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.entity.dalek.types;
 
 import com.swdteam.common.entity.dalek.DalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
-import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMParticleTypes;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;

@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.client.dimension.sky;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.swdteam.client.init.ModClientEvents.ClientPlayerData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;

@@ -2,8 +2,6 @@ package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMoon;
 import com.jdolphin.dmadditions.init.DMADimensions;
-import com.swdteam.client.dimension.sky.SkyRendererMCClassic;
-import com.swdteam.common.init.DMDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraftforge.api.distmarker.Dist;

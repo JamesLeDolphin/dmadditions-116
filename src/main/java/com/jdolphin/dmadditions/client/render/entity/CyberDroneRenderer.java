@@ -1,9 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.CyberDroneModel;
-import com.jdolphin.dmadditions.client.model.entity.WoodenCybermanModel;
 import com.jdolphin.dmadditions.entity.CyberDroneEntity;
-import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;

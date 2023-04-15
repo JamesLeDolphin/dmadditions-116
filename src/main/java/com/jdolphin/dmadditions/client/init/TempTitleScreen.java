@@ -1,8 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RenderSkyboxCube;
@@ -13,6 +11,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 @OnlyIn(Dist.CLIENT)
 public class TempTitleScreen extends RenderSkyboxCube {

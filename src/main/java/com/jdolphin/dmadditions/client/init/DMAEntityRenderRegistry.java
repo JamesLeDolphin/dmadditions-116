@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.client.render.entity.*;
-import com.jdolphin.dmadditions.entity.CyberDroneEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.Entity;

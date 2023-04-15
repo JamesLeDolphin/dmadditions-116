@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;

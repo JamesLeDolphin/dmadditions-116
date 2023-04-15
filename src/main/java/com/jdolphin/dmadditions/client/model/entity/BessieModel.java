@@ -3,20 +3,14 @@ package com.jdolphin.dmadditions.client.model.entity;
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.BessieEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import static com.swdteam.main.DalekMod.MODID;
 
 
 public class BessieModel extends SegmentedModel<BessieEntity> implements IModelPartReloader {

@@ -6,7 +6,6 @@ import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.client.render.tileentity.RenderTileEntityBase;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.model.javajson.JSONModel;
-import com.swdteam.model.javajson.ModelJSONTile;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;

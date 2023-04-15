@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
 import com.jdolphin.dmadditions.init.DMASoundEvents;
-import com.swdteam.common.block.tardis.FlightLeverBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundCategory;

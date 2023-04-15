@@ -1,13 +1,10 @@
 package com.jdolphin.dmadditions.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.ITextComponent;
-
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameType;
 

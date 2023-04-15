@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.CyberDroneEntity;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
