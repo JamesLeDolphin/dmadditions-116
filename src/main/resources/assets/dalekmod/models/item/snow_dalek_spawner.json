@@ -1,0 +1,8 @@
+{
+	"parent": "dalekmod:item/snowman_spawner",
+	"display": {
+		"gui": {
+			"rotation": [180, 0, 0]
+		}
+	}
+}

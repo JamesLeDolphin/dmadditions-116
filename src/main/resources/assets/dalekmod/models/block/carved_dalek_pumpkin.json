@@ -1,0 +1,8 @@
+{
+	"parent": "block/carved_pumpkin",
+	"textures": {
+		"top": "dalekmod:block/dalek_pumpkin_top",
+		"front": "dalekmod:block/dalek_pumpkin_face",
+		"side": "dalekmod:block/dalek_pumpkin_side"
+	}
+}

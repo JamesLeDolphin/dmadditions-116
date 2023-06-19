@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "dalekmod:block/brown_plastic_shape_roundel",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "dalekmod:block/brown_plastic_shape_roundel"
+		},
+		"facing=south": {
+			"model": "dalekmod:block/brown_plastic_shape_roundel",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "dalekmod:block/brown_plastic_shape_roundel",
+			"y": 270
+		}
+	}
+}

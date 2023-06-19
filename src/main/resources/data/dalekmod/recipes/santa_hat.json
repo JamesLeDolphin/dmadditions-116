@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" rw",
+		"rrr",
+		"www"
+	],
+	"key": {
+		"r": {
+			"item": "minecraft:red_wool"
+		},
+		"w": {
+			"item": "minecraft:white_wool"
+		}
+	},
+	"result": {
+		"item": "dalekmod:santa_hat"
+	}
+}

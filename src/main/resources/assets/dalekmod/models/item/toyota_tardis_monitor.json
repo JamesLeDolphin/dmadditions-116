@@ -1,0 +1,9 @@
+{
+	"parent": "dalekmod:block/toyota_tardis_monitor",
+	"display": {
+		"gui": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 2.5, 0]
+		}
+	}
+}

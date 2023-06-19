@@ -1,0 +1,7 @@
+{
+	"parent": "block/pumpkin",
+	"textures": {
+		"end": "dalekmod:block/dalek_pumpkin_top",
+		"side": "dalekmod:block/dalek_pumpkin_side"
+	}
+}

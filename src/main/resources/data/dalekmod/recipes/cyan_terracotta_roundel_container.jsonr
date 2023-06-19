@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "dyed_terracotta_roundel_container",
+	"pattern": [
+		"###",
+		"#X#",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "dalekmod:terracotta_roundel_container"
+		},
+		"X": {
+			"tag": "forge:dyes/cyan"
+		}
+	},
+	"result": {
+		"item": "dalekmod:cyan_terracotta_roundel_container",
+		"count": 8
+	}
+}

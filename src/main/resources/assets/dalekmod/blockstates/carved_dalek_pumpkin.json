@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "dalekmod:block/carved_dalek_pumpkin",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "dalekmod:block/carved_dalek_pumpkin"
+		},
+		"facing=south": {
+			"model": "dalekmod:block/carved_dalek_pumpkin",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "dalekmod:block/carved_dalek_pumpkin",
+			"y": 270
+		}
+	}
+}

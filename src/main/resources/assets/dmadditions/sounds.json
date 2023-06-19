@@ -1,0 +1,76 @@
+{
+	"item.pistol.shoot": {
+		"subtitle": "subtitles.item.pistol.shoot",
+		"sounds": [
+			"dmadditions:item/pistol/shoot"
+		]
+	},
+	"block.handbrake.copperhandbrake": {
+		"subtitle": "subtitles.block.handbrake.copperhandbrake",
+		"sounds": [
+			"dmadditions:block/handbrake/copperhandbrake"
+		]
+	},
+	"block.handbrake.coralhandbrake": {
+		"subtitle": "subtitles.block.handbrake.coralhandbrake",
+		"sounds": [
+			"dmadditions:block/handbrake/coralhandbrake"
+		]
+	},
+	"entity.dalek.storm.death": {
+		"subtitle": "subtitles.entity.dalek.storm.death",
+		"sounds": [
+			"dmadditions:entity/dalek/storm_death"
+		]
+	},
+	"entity.dalek.storm.exterminate": {
+		"subtitle": "subtitles.entity.dalek.storm.exterminate",
+		"sounds": [
+			"dmadditions:entity/dalek/storm_exterminate"
+		]
+	},
+	"entity.vehicle.bessie.horn": {
+		"subtitle": "subtitles.entity.vehicle.bessie.horn",
+		"sounds": [
+			"dmadditions:entity/bessie/bessie_horn"
+		]
+	},
+	"entity.vehicle.bessie.drive": {
+		"subtitle": "subtitles.entity.vehicle.bessie.drive",
+		"sounds": [
+			"dmadditions:entity/bessie/bessie"
+		]
+	},
+	"item.sonic.laser.shoot": {
+		"subtitle": "subtitles.item.sonic.laser.shoot",
+		"sounds": [
+			"dmadditions:item/sonic/laser_sonic"
+		]
+	},
+	"music_disc.pfd": {
+		"category": "music",
+		"sounds": [
+			{
+				"name": "dmadditions:records/pfd",
+				"stream": true
+			}
+		]
+	},
+		"music_disc.rick_roll": {
+    		"category": "music",
+    		"sounds": [
+    			{
+    				"name": "dmadditions:records/rick_roll",
+    				"stream": true
+    			}
+    		]
+    	},
+	"entity.christmas_tree.jingle_bells": {
+		"sounds": [
+			{
+				"name": "dmadditions:entity/christmas_tree/jingle_bells",
+				"stream": true
+			}
+		]
+	}
+}

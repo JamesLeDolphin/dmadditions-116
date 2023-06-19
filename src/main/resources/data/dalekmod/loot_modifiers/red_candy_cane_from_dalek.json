@@ -1,0 +1,18 @@
+{
+	"type": "dmadditions:add_item",
+	"conditions": [
+		{
+			"condition": "minecraft:killed_by_player"
+		},
+		{
+			"condition": "minecraft:dalek_type",
+			"type": "red_candycane_dalek",
+			"entity": "this"
+		}
+	],
+	"items": [
+		{
+			"item": "dalekmod:red_candy_cane"
+		}
+	]
+}

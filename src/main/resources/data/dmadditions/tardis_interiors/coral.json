@@ -1,0 +1,110 @@
+{
+	"default_rotation": 0,
+	"door_offset": [ 16.5, 8, 5 ],
+	"block_offset": [ 0, 6, 1 ],
+	"name": "dmadditions.interior.name.coral",
+	"schematic": "dmadditions:coral",
+	"preview": "dmadditions:textures/gui/interior_selection/coral.png",
+	"recipe": [
+		{
+			"item": "dalekmod:cyan_tube_rotor",
+			"quantity": 8
+		},
+		{
+			"item": "minecraft:stone",
+			"quantity": 512
+		},
+		{
+			"item": "minecraft:oak_stairs",
+			"quantity": 1024
+		},
+		{
+			"item": "minecraft:glowstone",
+			"quantity": 1024
+		},
+		{
+			"item": "minecraft:chest",
+			"quantity": 3
+		},
+		{
+			"item": "minecraft:anvil",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:ender_chest",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:brewing_stand",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:ladder",
+			"quantity": 9
+		},
+		{
+			"item": "minecraft:dark_oak_fence",
+			"quantity": 32
+		},
+		{
+			"item": "dalekmod:red_plated_stained_steel",
+			"quantity": 6
+		},
+		{
+			"item": "dalekmod:red_stainless_steel_slab",
+			"quantity": 6
+		},
+		{
+			"item": "minecraft:polished_blackstone_brick_wall",
+			"quantity": 16
+		},
+		{
+			"item": "dalekmod:rusted_steel_grate_slab",
+			"quantity": 64
+		},
+		{
+			"item": "minecraft:smooth_sandstone",
+			"quantity": 256
+		},
+		{
+			"item": "minecraft:scorched_smooth_quartz_slab",
+			"quantity": 128
+		},
+		{
+			"item": "minecraft:gray_concrete",
+			"quantity": 128
+		},
+		{
+			"item": "dalekmod:coord_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:dimension_selector_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:waypoint_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:chameleon_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:flight_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fast_return_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:scanner",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fault_locator",
+			"quantity": 1
+		}
+	]
+}

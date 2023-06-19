@@ -1,0 +1,11 @@
+{
+	"door_animations":[
+  		{
+  			"shape_name": "door",
+  			"mode": "rotate",
+  			"axis": "z",
+  			"amplifier": 0.9,
+  			"door_type": "right"
+  		}
+  	]
+}

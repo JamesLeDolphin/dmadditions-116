@@ -1,0 +1,14 @@
+{
+	"type": "dalekmod:roundel_builder",
+	"ingredients": [
+		{
+			"item": "minecraft:barrel"
+		},
+		{
+			"item": "dalekmod:cyan_plastic"
+		}
+	],
+	"result": {
+		"item": "dalekmod:cyan_plastic_bowl_roundel_container"
+	}
+}

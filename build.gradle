@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0'
+version = '1.2.4'
 group = 'com.jdolphin.dmadditions'
 archivesBaseName = 'dmadditions'
 
@@ -69,43 +69,46 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:3987010")
+    implementation 'org.jetbrains:annotations:23.0.0'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
+    implementation fg.deobf("curse.maven:the-dalek-mod-59654:4258146")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
-    mixin {
-        add sourceSets.main, "dmadditions.mixin-refmap.json"
-    }
+mixin {
+    add sourceSets.main, "dmadditions.mixin-refmap.json"
+}
 
-    jar {
-        manifest {
-            attributes([
-                    "Specification-Title"     : "dmadditions",
-                    "Specification-Vendor"    : "dmadditionssareus",
-                    "Specification-Version"   : "1", // We are version 1 of ourselves
-                    "Implementation-Title"    : project.name,
-                    "Implementation-Version"  : "${version}",
-                    "Implementation-Vendor"   : "dmadditionssareus",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                    "TweakClass"              : 'org.spongepowered.asm.launch.MixinTweaker',
-                    "TweakOrder"              : 0,
-                    "MixinConfigs"            : "dmadditions.mixin.json"
-            ])
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "dmadditions",
+                "Specification-Vendor"    : "dmadditionssareus",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "dmadditionssareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "TweakClass"              : 'org.spongepowered.asm.launch.MixinTweaker',
+                "TweakOrder"              : 0,
+                "MixinConfigs"            : "dmadditions.mixin.json"
+        ])
+    }
+}
+jar.finalizedBy('reobfJar')
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
         }
     }
-    jar.finalizedBy('reobfJar')
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                artifact jar
-            }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
         }
-        repositories {
-            maven {
-                url "file:///${project.projectDir}/mcmodsrepo"
-            }
 
-        }
     }
+}
 repositories {
     maven {
         url "https://cursemaven.com"

@@ -1,0 +1,56 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dmadditions:models/armor/matts_pink_thong",
+	"texture_width": 32,
+	"texture_height": 32,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "MattsPinkThong",
+			"pivot": [0, 22.3467, 0],
+			"rotation": [0, 0, 0]
+		},
+		{
+			"group_name": "Waist",
+			"pivot": [0, 10, 0],
+			"rotation": [0, 0, 0],
+			"cubes": [
+				{
+					"uv": [0, 0],
+					"size": [8, 12, 4],
+					"origin": [-4, 0, -2],
+					"inflate": 0.1,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "RightLeg",
+			"pivot": [0, 24, 0],
+			"rotation": [0, 0, 0],
+			"cubes": [
+				{
+					"uv": [16, 16],
+					"size": [4, 2, 4],
+					"origin": [-2, 0.02, -2],
+					"inflate": 0.1,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "LeftLeg",
+			"pivot": [0, 24, 0],
+			"rotation": [0, 0, 0],
+			"cubes": [
+				{
+					"uv": [0, 16],
+					"size": [4, 2, 4],
+					"origin": [-2, 0.02, -2],
+					"inflate": 0.1,
+					"mirror": false
+				}
+			]
+		}
+	]
+}

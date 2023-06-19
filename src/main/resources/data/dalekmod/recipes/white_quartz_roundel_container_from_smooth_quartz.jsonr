@@ -1,0 +1,14 @@
+{
+	"type": "dalekmod:roundel_builder",
+	"ingredients": [
+		{
+			"item": "minecraft:barrel"
+		},
+		{
+			"item": "minecraft:smooth_quartz"
+		}
+	],
+	"result": {
+		"item": "dalekmod:white_quartz_roundel_container"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:smithing",
+	"base": {
+		"tag": "minecraft:music_discs"
+	},
+	"addition": {
+		"item": "dalekmod:dalek_cookie"
+	},
+	"result": {
+		"item": "dalekmod:music_disc_pfd"
+	}
+}

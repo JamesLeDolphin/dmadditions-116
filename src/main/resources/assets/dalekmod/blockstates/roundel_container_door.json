@@ -1,0 +1,8 @@
+{
+	"comment": "File used for particles; model is hard-coded",
+	"variants": {
+		"": {
+			"model": "dalekmod:block/black_quartz_roundel"
+		}
+	}
+}

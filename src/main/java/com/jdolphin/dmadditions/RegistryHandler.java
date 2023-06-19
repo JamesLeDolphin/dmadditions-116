@@ -1,28 +1,57 @@
 package com.jdolphin.dmadditions;
 
-import com.jdolphin.dmadditions.init.DMAdditionsBlocks;
-import com.jdolphin.dmadditions.init.DMAdditionsItems;
-import com.jdolphin.dmadditions.init.DMAdditionsProjectiles;
-import com.jdolphin.dmadditions.init.DMAdditionsSoundEvents;
+import com.jdolphin.dmadditions.init.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class RegistryHandler {
-	//	public static DMAdditionsBlocks dmAdditionsBlocks;
-	//	public static DMAdditionsParticleTypes dmParticles;
-	//	public static DMAdditionsBiomes dmBiomes;
-	//	public static DMAdditionsEntities dmEntities;
-	//	public static DMAdditionsBlockEntities dmTiles;
-	//	public static DMAdditionsWorldCarvers dmCarvers;
-	//	public static DMAdditionsCraftingTypes dmAdditionsCraftingTypes;
-	public static DMAdditionsItems dmaItems;
-	public static DMAdditionsSoundEvents dmaSounds;
-	public static DMAdditionsBlocks dmaBlocks;
+	public static DMABiomes dmaBiomes;
+	public static DMAEntities dmaEntities;
+	public static DMABlockEntities dmaTiles;
+	public static DMAWorldCarvers dmaCarvers;
+	public static DMAItems dmaItems;
+	public static DMASoundEvents dmaSounds;
+	public static DMABlocks dmaBlocks;
+	public static DMALootConditionManager dmaLootConditionManager;
+
 
 	public static void init() {
+		DMAProjectiles.init();
 
-		DMAdditionsProjectiles.init();
+		dmaCarvers = new DMAWorldCarvers();
+		dmaBiomes = new DMABiomes();
+		dmaSounds = new DMASoundEvents();
+		dmaItems = new DMAItems();
+		dmaBlocks = new DMABlocks();
+		dmaTiles = new DMABlockEntities();
+		dmaEntities = new DMAEntities();
+		dmaLootConditionManager = new DMALootConditionManager();
 
-		dmaSounds = new DMAdditionsSoundEvents();
-		dmaItems = new DMAdditionsItems();
-		dmaBlocks = new DMAdditionsBlocks();
+		DMARegistries.register();
+	}
+
+	public static class DMARegistries {
+		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES;
+		public static final DeferredRegister<Item> ITEMS;
+		public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES;
+
+		public static void register() {
+			IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+			ENTITY_TYPES.register(modEventBus);
+			TILE_ENTITY_TYPES.register(modEventBus);
+			ITEMS.register(modEventBus);
+		}
+
+		static {
+			ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
+			TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
+			ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+		}
 	}
 }

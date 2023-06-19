@@ -1,0 +1,14 @@
+{
+	"type": "dalekmod:roundel_builder",
+	"ingredients": [
+		{
+			"item": "minecraft:barrel"
+		},
+		{
+			"item": "dalekmod:steel_block"
+		}
+	],
+	"result": {
+		"item": "dalekmod:filled_steel_beams_roundel_container"
+	}
+}

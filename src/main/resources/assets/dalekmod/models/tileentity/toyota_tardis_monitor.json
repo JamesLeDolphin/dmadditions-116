@@ -1,0 +1,123 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dalekmod:tileentity/toyota_tardis_monitor",
+	"texture_width": 32,
+	"texture_height": 32,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "left handel",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [4,14],
+					"size": [1,4,1],
+					"origin": [3.5,-6.5,3],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [10,6],
+					"size": [1,4,1],
+					"origin": [4.5,-6.5,3],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [6,8],
+					"size": [1,1,1],
+					"origin": [3.5,-7.5,3],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,8],
+					"size": [1,1,1],
+					"origin": [3.5,-2.5,3],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "right handel",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [10,11],
+					"size": [1,4,1],
+					"origin": [-4.5,-6.5,3],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,11],
+					"size": [1,4,1],
+					"origin": [-5.5,-6.5,3],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [6,6],
+					"size": [1,1,1],
+					"origin": [-4.5,-2.5,3],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,6],
+					"size": [1,1,1],
+					"origin": [-4.5,-7.5,3],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "screen",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,0],
+					"size": [7,5,1],
+					"origin": [-3.5,-7,3],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "mount",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"children": [
+				{
+					"pivot": [0,0,0],
+					"rotation": [-22.5,0,0],
+					"children": [],
+					"cubes": [
+						{
+							"uv": [0,6],
+							"size": [1,1,4],
+							"origin": [-0.5,-5,2],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				}
+			],
+			"cubes": [
+				{
+					"uv": [4,11],
+					"size": [2,2,1],
+					"origin": [-1,-3,7],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		}
+	]
+}
