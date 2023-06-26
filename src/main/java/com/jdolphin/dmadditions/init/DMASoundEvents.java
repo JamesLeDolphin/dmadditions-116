@@ -28,8 +28,8 @@ public class DMASoundEvents {
 
 	static {
 		PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
-		COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copperhandbrake");
-		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coralhandbrake");
+		COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copper_hand_brake");
+		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coral_hand_brake");
 		MUSIC_DISC_PFD = buildSound(RegistryHandler.SOUNDS, "music_disc.pfd");
 		CHRISTMAS_TREE_JINGLE_BELLS = buildSound(RegistryHandler.SOUNDS, "entity.christmas_tree.jingle_bells");
 		DALEK_STORM_DEATH = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.death");

@@ -5,16 +5,16 @@
 			"dmadditions:item/pistol/shoot"
 		]
 	},
-	"block.handbrake.copperhandbrake": {
-		"subtitle": "subtitles.block.handbrake.copperhandbrake",
+	"block.handbrake.copper_hand_brake": {
+		"subtitle": "subtitles.block.handbrake.copper_hand_brake",
 		"sounds": [
-			"dmadditions:block/handbrake/copperhandbrake"
+			"dmadditions:block/handbrake/copper_hand_brake"
 		]
 	},
-	"block.handbrake.coralhandbrake": {
-		"subtitle": "subtitles.block.handbrake.coralhandbrake",
+	"block.handbrake.coral_hand_brake": {
+		"subtitle": "subtitles.block.handbrake.coral_hand_brake",
 		"sounds": [
-			"dmadditions:block/handbrake/coralhandbrake"
+			"dmadditions:block/handbrake/coral_hand_brake"
 		]
 	},
 	"entity.dalek.storm.death": {
