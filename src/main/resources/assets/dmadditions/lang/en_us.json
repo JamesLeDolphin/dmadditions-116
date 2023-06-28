@@ -6,6 +6,7 @@
 	"item.dalekmod.dino_nuggets": "Dino Nuggets",
 	"item.dalekmod.pilot_fish_trumpet": "Pilot Fish's Trumpet",
 	"item.dalekmod.pistol": "Pistol",
+	"item.dalekmod.torchwood_pistol":  "Torchwood Pistol",
 	"item.dalekmod.tardis_gold_key": "Gold TARDIS Key",
 	"item.dalekmod.steel_helmet": "Steel Helmet",
 	"item.dalekmod.steel_chestplate": "Steel Chestplate",
@@ -27,11 +28,16 @@
 	"item.dalekmod.metalert_chestplate": "Metalert Chestplate",
 	"item.dalekmod.metalert_leggings": "Metalert Leggings",
 	"item.dalekmod.metalert_boots": "Metalert Boots",
+
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
+
 	"notice.dalekmod.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
+
 	"block.dalekmod.door_open_panel": "TARDIS Door Panel",
 	"block.dalekmod.randomizer": "Randomizer",
+
 	"container.dalekmod.roundel_storage": "Roundel Storage",
+
 	"tooltip.block.dalekmod.door_open_panel.open": "Open Door",
 	"tooltip.block.dalekmod.door_open_panel.close": "Close Door",
 	"tooltip.block.dalekmod.sonic_interface.insert_sonic": "Insert Sonic",
@@ -40,6 +46,7 @@
 	"tooltip.block.dalekmod.waypoint_panel.load_data_module": "Load Data Module",
 	"tooltip.block.dalekmod.waypoint_panel.eject_data_module": "Eject Data Module",
 	"tooltip.block.dalekmod.waypoint_panel.apply_waypoint": "Apply Waypoint",
+
 	"dmadditions.interior.name.australian": "Australian Interior",
 
 	"block.dalekmod.black_quartz_roundel_container": "Black Quartz Roundel Container",
@@ -162,11 +169,14 @@
 
 	"item.dalekmod.music_disc_pfd": "Music Disc",
 	"item.dalekmod.music_disc_pfd.desc": "Pink Fluffy Daleks",
+
 	"entity.dalekmod.pilot_fish": "Pilot Fish",
 	"entity.dalekmod.snowman": "Snowman",
 	"entity.dalekmod.christmas_tree": "Christmas Tree",
+
 	"dmadditions.interior.name.coral": "Coral Interior",
 	"dmadditions.interior.name.crystaline": "Crystaline Interior",
+
 	"item.dalekmod.pink_fluffy_dalek_spawner": "Pink Fluffy Dalek Spawner",
 	"item.dalekmod.snow_dalek_spawner": "Snow Dalek Spawner",
 	"item.dalekmod.steampunk_dalek_spawner": "Steampunk Dalek Spawner",
@@ -175,20 +185,28 @@
 	"item.dalekmod.unit_gun": "UNIT Gun",
 	"item.dalekmod.laser_screwdriver.mode.laser": "Laser Mode",
 	"item.dalekmod.laser_screwdriver.mode.sonic": "Sonic mode",
+
 	"dmadditions.tardis.name.gingerbread": "Gingerbread Exterior",
+
 	"dalekmod.tardis.description.gingerbread": "Fresh from the oven, this good smelling exterior is now ready for your space-time travels!",
+
 	"subtitles.item.sonic.laser.shoot": "Laser Screwdriver Shoots",
+
 	"block.dalekmod.coral_tardis_monitor": "Coral TARDIS Monitor",
 	"block.dalekmod.toyota_tardis_monitor": "Toyota TARDIS Monitor",
 	"block.dalekmod.tardis_monitor_8": "8th TARDIS Monitor",
 	"block.dalekmod.dalek_pumpkin": "Dalek Pumpkin",
 	"block.dalekmod.carved_dalek_pumpkin": "Carved Dalek Pumpkin",
+
 	"entity.dmadditions.bessie": "Bessie",
 	"entity.dmadditions.torchwood_suv": "Torchwood SUV",
+
 	"item.dmadditions.bessie": "Bessie",
 	"item.dmadditions.torchwood_suv": "Torchwood SUV",
 	"item.dmadditions.matts_pink_thong": "Matt's Pink Thong",
+
 	"block.dmadditions.reddash_statue": "Reddashs Statue",
+
 	"item.dmadditions.reddash_statue": "Reddashs Statue"
 
 }
