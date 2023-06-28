@@ -28,6 +28,8 @@ public enum DMAArmorMaterial implements IArmorMaterial {
 	METALERT("metalert", 40, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
 		() -> Ingredient.of(DMItems.METALERT.get())),
 	MATTS_PINK_THONG("matts_pink_thong", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
+		() -> Ingredient.EMPTY),
+	SPACE_SUIT("space_suit", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
 		() -> Ingredient.EMPTY);
 
 	private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};

@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
+import com.jdolphin.dmadditions.client.model.armor.SpaceSuitModel;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.RegistryHandler;
@@ -52,6 +53,11 @@ public class DMAItems {
 
 	public static final RegistryObject<Item> SANTA_HAT;
 	public static final RegistryObject<Item> MATTS_PINK_THONG;
+
+	public static final RegistryObject<Item> SPACE_SUIT_BOOTS;
+	public static final RegistryObject<Item> SPACE_SUIT_LEGGINGS;
+	public static final RegistryObject<Item> SPACE_SUIT_CHESTPLATE;
+	public static final RegistryObject<Item> SPACE_SUIT_HELMET;
 
 	/*public static RegistryObject<Item> STEEL_HELMET;
 	public static RegistryObject<Item> STEEL_CHESTPLATE;
@@ -160,6 +166,67 @@ public class DMAItems {
 				}
 			});
 
+		SPACE_SUIT_HELMET = RegistryHandler.ITEMS.register( "space_suit_helmet",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.HEAD, new Item.Properties()) {
+
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+					return (A) new SpaceSuitModel(1f);
+				}
+
+				@Override
+				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_helmet.png").toString();
+				}
+			});
+
+		SPACE_SUIT_CHESTPLATE = RegistryHandler.ITEMS.register( "space_suit_chestplate",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.CHEST, new Item.Properties()) {
+
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+					return (A) new SpaceSuitModel(1f);
+				}
+
+				@Override
+				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_chestplate.png").toString();
+				}
+			});
+
+		SPACE_SUIT_LEGGINGS = RegistryHandler.ITEMS.register( "space_suit_leggings",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.LEGS, new Item.Properties()) {
+
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+					return (A) new SpaceSuitModel(1f);
+				}
+
+				@Override
+				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_leggings.png").toString();
+				}
+			});
+
+		SPACE_SUIT_BOOTS = RegistryHandler.ITEMS.register( "space_suit_boots",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()) {
+
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+					return (A) new SpaceSuitModel(1f);
+				}
+
+				@Override
+				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_boots.png").toString();
+				}
+			});
+
+
 		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
 			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 
@@ -252,5 +319,7 @@ public class DMAItems {
 
 		METALERT_BOOTS = RegistryHandler.ITEMS.register("metalert_boots",
 			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));*/
+
+
 	}
 }
