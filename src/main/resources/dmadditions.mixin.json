@@ -14,7 +14,8 @@
 		"KerblamItemMixin",
 		"KerblamItemReloadListenerMixin",
 		"SpawnRegistryMixin",
-		"TardisKeyMixin"
+		"TardisKeyMixin",
+		"SpecialWeaponsMixin"
 	],
 	"client": [
 		"ClientProxyMixin",
