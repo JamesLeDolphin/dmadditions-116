@@ -15,7 +15,7 @@ public final class DMACommonConfig {
 
 		randomizer_max = BUILDER.comment("Maximum distance for randomizer. Default = 10000").define("randomizer_max", 10000);
 		disable_spawns = BUILDER.comment("Disable the spawning of Dalek Mod mobs. Default = false").define("disable_spawns", false);
-		disable_swd_laser = BUILDER.comment("Disable special weapons daleks explosive laser. Default = false").define("disable_swd_laser", true);
+		disable_swd_laser = BUILDER.comment("Disable special weapons daleks explosive laser. Default = false").define("disable_swd_laser", false);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();

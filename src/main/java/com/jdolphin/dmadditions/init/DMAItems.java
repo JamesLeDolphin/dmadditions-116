@@ -1,12 +1,12 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.SpaceSuitModel;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
-import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
@@ -97,7 +97,7 @@ public class DMAItems {
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
-		return RegistryHandler.ITEMS.register(name, supplier);
+		return com.swdteam.common.RegistryHandler.ITEMS.register(name, supplier);
 	}
 
 	protected static RegistryObject<Item> registerDMAAdventItem(int day, String name, Supplier<Item> supplier) {
@@ -116,31 +116,31 @@ public class DMAItems {
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
-		BLUE_CANDY_CANE = RegistryHandler.ITEMS.register("blue_candy_cane",
+		BLUE_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("blue_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-		RED_CANDY_CANE = RegistryHandler.ITEMS.register("red_candy_cane",
+		RED_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("red_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-		GREEN_CANDY_CANE = RegistryHandler.ITEMS.register("green_candy_cane",
+		GREEN_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("green_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-		ORANGE_CANDY_CANE = RegistryHandler.ITEMS.register("orange_candy_cane",
+		ORANGE_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("orange_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 
 		SNOWMAN_SPAWNER = addSpawnItem("snowman");
 
-		UNIT_GUN = RegistryHandler.ITEMS.register("unit_gun",
+		UNIT_GUN = com.swdteam.common.RegistryHandler.ITEMS.register("unit_gun",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-		TORCHWOOD_PISTOL = RegistryHandler.ITEMS.register("torchwood_pistol",
+		TORCHWOOD_PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("torchwood_pistol",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
 
-		SANTA_HAT = RegistryHandler.ITEMS.register("santa_hat",
+		SANTA_HAT = com.swdteam.common.RegistryHandler.ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 		MATTS_PINK_THONG = registerDMAAdventItem(25, "matts_pink_thong",
@@ -166,7 +166,7 @@ public class DMAItems {
 				}
 			});
 
-		SPACE_SUIT_HELMET = RegistryHandler.ITEMS.register( "space_suit_helmet",
+		SPACE_SUIT_HELMET = com.swdteam.common.RegistryHandler.ITEMS.register( "space_suit_helmet",
 			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.HEAD, new Item.Properties()) {
 
 				@Override
@@ -181,7 +181,7 @@ public class DMAItems {
 				}
 			});
 
-		SPACE_SUIT_CHESTPLATE = RegistryHandler.ITEMS.register( "space_suit_chestplate",
+		SPACE_SUIT_CHESTPLATE = com.swdteam.common.RegistryHandler.ITEMS.register( "space_suit_chestplate",
 			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.CHEST, new Item.Properties()) {
 
 				@Override
@@ -196,7 +196,7 @@ public class DMAItems {
 				}
 			});
 
-		SPACE_SUIT_LEGGINGS = RegistryHandler.ITEMS.register( "space_suit_leggings",
+		SPACE_SUIT_LEGGINGS = com.swdteam.common.RegistryHandler.ITEMS.register( "space_suit_leggings",
 			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.LEGS, new Item.Properties()) {
 
 				@Override
@@ -211,7 +211,7 @@ public class DMAItems {
 				}
 			});
 
-		SPACE_SUIT_BOOTS = RegistryHandler.ITEMS.register( "space_suit_boots",
+		SPACE_SUIT_BOOTS = RegistryHandler.DMARegistries.ITEMS.register( "space_suit_boots",
 			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()) {
 
 				@Override
@@ -235,7 +235,7 @@ public class DMAItems {
 
 		WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
 		PILOT_FISH_SPAWNER = addSpawnItem("pilot_fish");
-		PILOT_FISH_TRUMPET = RegistryHandler.ITEMS.register("pilot_fish_trumpet",
+		PILOT_FISH_TRUMPET = com.swdteam.common.RegistryHandler.ITEMS.register("pilot_fish_trumpet",
 			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 2.0F,
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
@@ -247,17 +247,17 @@ public class DMAItems {
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 
-		PISTOL = RegistryHandler.ITEMS.register("pistol", ()
+		PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("pistol", ()
 			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-		TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
+		TARDIS_GOLD_KEY = com.swdteam.common.RegistryHandler.ITEMS.register("tardis_gold_key",
 			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
 
-		DINO_NUGGETS = RegistryHandler.ITEMS.register("dino_nuggets",
+		DINO_NUGGETS = com.swdteam.common.RegistryHandler.ITEMS.register("dino_nuggets",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));
 
-		DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
+		DINO_NUGGETS_CUSTARD = com.swdteam.common.RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
 		/*STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",

@@ -3,8 +3,12 @@ package com.jdolphin.dmadditions.block;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
+import com.swdteam.common.tardis.Tardis;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisDoor;
+import com.swdteam.common.tardis.TardisState;
+import com.swdteam.common.tardis.data.TardisDataPool;
+import com.swdteam.common.tardis.data.TardisLocationRegistry;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.block.BlockState;
@@ -24,7 +28,6 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class DoorPanelBlock extends HorizontalBlock implements IBetterPanel {
 	private boolean doorOpenLeft;
-
 	public DoorPanelBlock(Properties p_i48377_1_) {
 		super(p_i48377_1_);
 	}
