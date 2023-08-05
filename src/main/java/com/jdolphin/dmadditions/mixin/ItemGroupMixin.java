@@ -12,7 +12,7 @@ import static com.jdolphin.dmadditions.init.DMATabs.*;
 @Mixin({ItemGroup.class})
 public abstract class ItemGroupMixin {
 
-	@Inject(method = "getIconItem()Lnet/minecraft/item/ItemStack;", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "getIconItem()Lnet/minecraft/item/ItemStack;", at = @At("HEAD"), cancellable = true,remap = false)
 	public void getIconItem(CallbackInfoReturnable<ItemStack> cir) {
 		if (!isMixinIconsReady()) initMixinIcons();
 

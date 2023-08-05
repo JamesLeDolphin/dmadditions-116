@@ -11,7 +11,7 @@ abstract class TardisKeyMixin {
 
 
 	@Redirect(method = "<init>(Lnet/minecraft/item/Item$Properties;Ljava/lang/String;)V",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item$Properties;stacksTo(I)Lnet/minecraft/item/Item$Properties;"))
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item$Properties;stacksTo(I)Lnet/minecraft/item/Item$Properties;"), remap = false)
 
 	private static Item.Properties TardisKeyItem(Item.Properties properties, int x) {
 		return properties;

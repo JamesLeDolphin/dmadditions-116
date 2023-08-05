@@ -31,7 +31,7 @@ public abstract class CarvedPumpkinBlockMixin {
 	@Shadow
 	protected abstract BlockPattern getOrCreateSnowGolemFull();
 
-	@Inject(method = "trySpawnGolem", at = @At("HEAD"))
+	@Inject(method = "trySpawnGolem(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V", at = @At("HEAD"), remap = false)
 	public void trySpawnGolem(World p_196358_1_, BlockPos p_196358_2_, CallbackInfo ci) {
 
 		BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreateSnowGolemFull().find(p_196358_1_, p_196358_2_);

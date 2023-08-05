@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="All rights reserved"
 [[mods]]
 modId="dmadditions"
-version="1.2.6"
+version="1.3.0"
 displayName="Dalek Mod Additions"
 displayURL="https://modrinth.com/mod/dalek-mod-additions"
 logoFile="logo.png"
@@ -30,6 +30,12 @@ updateJSONURL = "https://api.modrinth.com/updates/6XJWjUK9/forge_updates.json"
     modId="dalekmod"
     mandatory=true
     versionRange="[67.0.0,68)"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.dmadditions]]
+    modId="tardis"
+    mandatory=false
+    versionRange="[1.5.4, 1.5.5)"
     ordering="BEFORE"
     side="BOTH"
 
