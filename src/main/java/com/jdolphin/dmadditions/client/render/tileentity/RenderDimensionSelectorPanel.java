@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.common.block.tardis.DimensionSelectorPanelBlock;
+import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
@@ -27,7 +28,7 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 	}
 
 	public void render(DimensionSelectorTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int combinedLightIn, int combinedOverlayIn) {
-		if (SCREEN_MODEL != null) {
+		if (SCREEN_MODEL != null && tileEntity.getLevel().dimension().equals(DMDimensions.TARDIS)) {
 			ResourceLocation rl = tileEntity.getTexturePath();
 			if (rl == null) {
 				rl = SCREEN_MODEL.getModelData().getTexture();

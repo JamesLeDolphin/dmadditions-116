@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.client.tardis.data.ClientTardisCache;
 import com.swdteam.client.tardis.data.ClientTardisFlightCache;
@@ -16,7 +17,11 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3f;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.world.dimensions.TDimensions;
 
 public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 	public RenderCoordPanel(TileEntityRendererDispatcher dispatcher) {
@@ -82,10 +87,13 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 		if (te.getLevel().dimension() == DMDimensions.TARDIS) {
 			TardisData data = ClientTardisCache.getTardisData(te.getBlockPos());
 			if (data != null && data.getCurrentLocation() != null) {
+
 				String x = "X: " + data.getCurrentLocation().getBlockPosition().getX();
 				String y = "Y: " + data.getCurrentLocation().getBlockPosition().getY();
 				String z = "Z: " + data.getCurrentLocation().getBlockPosition().getZ();
+
 				if (ClientTardisFlightCache.hasTardisFlightData(data.getGlobalID())) {
+
 					TardisFlightData flight = ClientTardisFlightCache.getTardisFlightData(data.getGlobalID());
 					x = "X: " + (int) flight.getPos(Direction.Axis.X);
 					y = "Y: " + (int) flight.getPos(Direction.Axis.Y);
@@ -95,6 +103,32 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 				font.draw(matrixStack, x, (float) (-font.width(x) / 2), -4.0F, -1);
 				font.draw(matrixStack, y, (float) (-font.width(y) / 2), 34.0F, -1);
 				font.draw(matrixStack, z, (float) (-font.width(z) / 2), 72.0F, -1);
+			}
+		}
+		if (DmAdditions.hasNTM() && WorldHelper.areDimensionTypesSame(te.getLevel(), TDimensions.DimensionTypes.TARDIS_TYPE)) {
+			if (TardisHelper.getConsoleInWorld(te.getLevel()).isPresent()) {
+				TardisHelper.getConsoleInWorld(te.getLevel()).ifPresent(tile -> {
+					BlockPos dest = tile.getDestinationPosition();
+					if (dest != null) {
+						if (tile.hasNavCom()) {
+							String x = "X: " + dest.getX();
+							String y = "Y: " + dest.getY();
+							String z = "Z: " + dest.getZ();
+
+							font.draw(matrixStack, x, (float) (-font.width(x) / 2), -4.0F, -1);
+							font.draw(matrixStack, y, (float) (-font.width(y) / 2), 34.0F, -1);
+							font.draw(matrixStack, z, (float) (-font.width(z) / 2), 72.0F, -1);
+						} else {
+							String x = "X: UNKNOWN";
+							String y = "Y: UNKNOWN";
+							String z = "Z: UNKNOWN";
+
+							font.draw(matrixStack, x, (float) (-font.width(x) / 2), -4.0F, -1);
+							font.draw(matrixStack, y, (float) (-font.width(y) / 2), 34.0F, -1);
+							font.draw(matrixStack, z, (float) (-font.width(z) / 2), 72.0F, -1);
+						}
+					}
+				});
 			}
 		}
 

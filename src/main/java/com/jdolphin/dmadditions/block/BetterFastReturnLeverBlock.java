@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -11,10 +12,16 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.misc.SpaceTimeCoord;
+import net.tardis.mod.world.dimensions.TDimensions;
 
 public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 	public BetterFastReturnLeverBlock(Properties properties) {
@@ -33,9 +40,19 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 
 				ChatUtil.sendCompletedMsg(player, DMTranslationKeys.TARDIS_FAST_RETURN_SET, ChatUtil.MessageType.STATUS_BAR);
 			}
-		}
+			if (DmAdditions.hasNTM()) {
+				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+						SpaceTimeCoord coord = tile.getReturnLocation();
+						RegistryKey<World> worldKey = RegistryKey.create(Registry.DIMENSION_REGISTRY, coord.getDimRL());
+						tile.setDestination(worldKey, coord.getPos());
+						tile.setExteriorFacingDirection(coord.getFacing());
+					});
+				}
+			}
 
-		this.updateNeighbours(state, worldIn, pos);
-		return ActionResultType.CONSUME;
+			this.updateNeighbours(state, worldIn, pos);
+
+		} return ActionResultType.CONSUME;
 	}
 }

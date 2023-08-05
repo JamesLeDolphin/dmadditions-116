@@ -1,6 +1,8 @@
 package com.jdolphin.dmadditions.block;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
+import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
@@ -31,8 +33,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.subsystem.StabilizerSubsystem;
+import net.tardis.mod.world.dimensions.TDimensions;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	private String dimensionKey;
@@ -102,40 +109,52 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 		if (handIn == Hand.MAIN_HAND) {
 			if (ServerLifecycleHooks.getCurrentServer() == null)
 				return ActionResultType.CONSUME;
+			if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
+				ServerWorld level = (ServerWorld) worldIn;
+				WorldBorder border = level.getWorldBorder();
+				TardisData tardis = DMTardis.getTardisFromInteriorPos(pos);
 
-			ServerWorld level = (ServerWorld) worldIn;
-			WorldBorder border = level.getWorldBorder();
-			TardisData tardis = DMTardis.getTardisFromInteriorPos(pos);
+				Location currentLocation = tardis.getCurrentLocation();
+				BlockPos currentPos = currentLocation.getBlockPosition();
 
-			Location currentLocation = tardis.getCurrentLocation();
-			BlockPos currentPos = currentLocation.getBlockPosition();
+				double maxDistance = DMACommonConfig.randomizer_max.get();
 
-			double maxDistance = DMACommonConfig.randomizer_max.get();
+				double maxX = Math.min(border.getMaxX(), currentPos.getX() + maxDistance);
+				double minX = Math.max(border.getMinX(), currentPos.getX() - maxDistance);
 
-			double maxX = Math.min(border.getMaxX(), currentPos.getX() + maxDistance);
-			double minX = Math.max(border.getMinX(), currentPos.getX() - maxDistance);
+				double maxZ = Math.min(border.getMaxZ(), currentPos.getZ() + maxDistance);
+				double minZ = Math.max(border.getMinZ(), currentPos.getZ() - maxDistance);
 
-			double maxZ = Math.min(border.getMaxZ(), currentPos.getZ() + maxDistance);
-			double minZ = Math.max(border.getMinZ(), currentPos.getZ() - maxDistance);
+				double xPos = Math.floor(Math.random() * (maxX - minX + 1) + minX);
+				double zPos = Math.floor(Math.random() * (maxZ - minZ + 1) + minZ);
+				double yPos = currentPos.getY();
 
-			double xPos = Math.floor(Math.random() * (maxX - minX + 1) + minX);
-			double zPos = Math.floor(Math.random() * (maxZ - minZ + 1) + minZ);
-			double yPos = currentPos.getY();
+				BlockPos newPos = new BlockPos(xPos, yPos, zPos);
 
-			BlockPos newPos = new BlockPos(xPos, yPos, zPos);
+				TardisFlightData flight = TardisFlightPool.getFlightData(tardis);
 
-			TardisFlightData flight = TardisFlightPool.getFlightData(tardis);
+				flight.setPos(newPos);
+				flight.recalculateLanding(true);
+				TardisFlightPool.updateFlight(tardis, new Location(newPos, flight.dimensionWorldKey()));
 
-			flight.setPos(newPos);
-			flight.recalculateLanding(true);
-			TardisFlightPool.updateFlight(tardis, new Location(newPos, flight.dimensionWorldKey()));
+				ChatUtil.sendCompletedMsg(player,
+					new TranslationTextComponent("notice.dalekmod.tardis.randomizer_set", newPos.getX(), newPos.getZ()),
+					MessageType.STATUS_BAR);
 
-			ChatUtil.sendCompletedMsg(player,
-				new TranslationTextComponent("notice.dalekmod.tardis.randomizer_set", newPos.getX(), newPos.getZ()),
-				MessageType.STATUS_BAR);
-
-			worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
-		}
+				worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
+			}
+			if (DmAdditions.hasNTM()) {
+				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					Random rand = new Random();
+					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+						if(!player.level.isClientSide() && tile.getLandTime() <= 0) {
+							int rad = 5 * tile.coordIncr;
+							BlockPos dest = tile.getDestinationPosition().offset(rad - rand.nextInt(rad * 2), 0, rad - rand.nextInt(rad * 2));
+							tile.setDestination(tile.getDestinationDimension(), dest);
+					}});
+				}
+			}
+			}
 		return ActionResultType.SUCCESS;
 	}
 }

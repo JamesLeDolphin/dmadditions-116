@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.block;
 
 import com.swdteam.common.init.DMBlocks;
+import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Tardis;
@@ -39,36 +40,37 @@ public class DoorPanelBlock extends HorizontalBlock implements IBetterPanel {
 
 		world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
 
-		TardisData tardis = DMTardis.getTardisFromInteriorPos(pos);
+		if (world.dimension().equals(DMDimensions.TARDIS)) {
+			TardisData tardis = DMTardis.getTardisFromInteriorPos(pos);
 
-		if (ServerLifecycleHooks.getCurrentServer() == null)
-			return ActionResultType.CONSUME;
+			if (ServerLifecycleHooks.getCurrentServer() == null)
+				return ActionResultType.CONSUME;
+			if (tardis.isInFlight()) {
+				ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.in_flight"), ChatUtil.MessageType.STATUS_BAR);
+				return ActionResultType.FAIL;
+			}
+			if (tardis.isLocked()) {
+				ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.is_locked"), ChatUtil.MessageType.STATUS_BAR);
+				return ActionResultType.FAIL;
+			}
 
-		if (tardis.isInFlight()) {
-			ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.in_flight"), ChatUtil.MessageType.STATUS_BAR);
-			return ActionResultType.FAIL;
+			ServerWorld exteriorWorld = world.getServer().getLevel(tardis.getCurrentLocation().dimensionWorldKey());
+			BlockPos exteriorPos = tardis.getCurrentLocation().getBlockPosition();
+			BlockState exteriorState = exteriorWorld.getBlockState(exteriorPos);
+			TileEntity te = exteriorWorld.getBlockEntity(exteriorPos);
+
+			if (exteriorState.getBlock() != DMBlocks.TARDIS.get() || !(te instanceof TardisTileEntity))
+				return ActionResultType.FAIL;
+
+			TardisTileEntity exterior = (TardisTileEntity) te;
+
+			tardis.setDoorOpen(!tardis.isDoorOpen());
+			exterior.setDoor(TardisDoor.BOTH, tardis.isDoorOpen(), TardisTileEntity.DoorSource.TARDIS);
+
+			world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_DING.get(), SoundCategory.BLOCKS, 1, 1);
+
+
 		}
-
-		if (tardis.isLocked()) {
-			ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.is_locked"), ChatUtil.MessageType.STATUS_BAR);
-			return ActionResultType.FAIL;
-		}
-
-		ServerWorld exteriorWorld = world.getServer().getLevel(tardis.getCurrentLocation().dimensionWorldKey());
-		BlockPos exteriorPos = tardis.getCurrentLocation().getBlockPosition();
-		BlockState exteriorState = exteriorWorld.getBlockState(exteriorPos);
-		TileEntity te = exteriorWorld.getBlockEntity(exteriorPos);
-
-		if (exteriorState.getBlock() != DMBlocks.TARDIS.get() || !(te instanceof TardisTileEntity))
-			return ActionResultType.FAIL;
-
-		TardisTileEntity exterior = (TardisTileEntity) te;
-
-		tardis.setDoorOpen(!tardis.isDoorOpen());
-		exterior.setDoor(TardisDoor.BOTH, tardis.isDoorOpen(), TardisTileEntity.DoorSource.TARDIS);
-
-		world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_DING.get(), SoundCategory.BLOCKS, 1, 1);
-
 		return ActionResultType.SUCCESS;
 	}
 

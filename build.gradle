@@ -71,7 +71,10 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
+
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:4258146")
+
+    implementation fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

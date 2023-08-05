@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.common.block.RotatableTileEntityBase;
 import com.swdteam.common.block.tardis.CoordPanelBlock;
 import com.swdteam.common.init.DMDimensions;
@@ -19,10 +20,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -35,22 +33,36 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.LazyOptional;
+import net.tardis.mod.Tardis;
+import net.tardis.mod.ars.ConsoleRoom;
+import net.tardis.mod.blocks.ConsoleBlock;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.tileentities.console.misc.InteriorManager;
+import net.tardis.mod.world.dimensions.TDimensions;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
 	public static List<CoordPanelButtons> buttons = new ArrayList<>();
 	private Boolean didPressButton = false;
 
+
 	public BetterCoordPanelBlock(Supplier<TileEntity> tileEntitySupplier, Properties properties) {
 		super(tileEntitySupplier, properties);
 	}
 
-	protected String formatIncrementMessage(Boolean add, Direction.Axis axis, CoordPanelTileEntity tile) {
-		return (add ? "Added " : "Subtracted ") + tile.incrementValue + (add ? " to " : " from ") + axis.toString().toUpperCase() + " (" + TardisFlightPool.getFlightData(DMTardis.getTardisFromInteriorPos(tile.getBlockPos())).getPos(axis) + ")";
-	}
+	protected String formatIncrementMessage(Boolean add, Direction.Axis axis, CoordPanelTileEntity tile, Boolean ntm) {
+		if (!ntm) {
+			return (add ? "Added " : "Subtracted ") + tile.incrementValue + (add ? " to " : " from ") + axis.toString().toUpperCase() + " (" + TardisFlightPool.getFlightData(DMTardis.getTardisFromInteriorPos(tile.getBlockPos())).getPos(axis) + ")";
+	 	} else return "";
+    }
 
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -62,12 +74,13 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 				double mouseZ = hitVec.z() - (double) pos.getZ();
 				double mouseY = hitVec.y() - (double) pos.getY();
 				CoordPanelButtons buttonClicked = this.getButton(mouseX, mouseY, mouseZ, state.getValue(RotatableTileEntityBase.FACING), state.getValue(FACE));
+				TileEntity te = worldIn.getBlockEntity(pos);
+				if (te instanceof CoordPanelTileEntity) {
+					CoordPanelTileEntity tet = (CoordPanelTileEntity) te;
 				if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
 					TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 					TardisFlightData flightData = null;
-					TileEntity te = worldIn.getBlockEntity(pos);
-					if (te instanceof CoordPanelTileEntity) {
-						CoordPanelTileEntity tet = (CoordPanelTileEntity) te;
+
 						if (data != null) {
 							flightData = TardisFlightPool.getFlightData(data);
 						}
@@ -76,27 +89,27 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 							switch (buttonClicked) {
 								case ADD_X:
 									flightData.incrementPos(tet.incrementValue, Direction.Axis.X);
-									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.X, tet), ChatUtil.MessageType.STATUS_BAR);
+									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.X, tet, false), ChatUtil.MessageType.STATUS_BAR);
 									break;
 								case ADD_Y:
 									flightData.incrementPos(tet.incrementValue, Direction.Axis.Y);
-									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Y, tet), ChatUtil.MessageType.STATUS_BAR);
+									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Y, tet, false), ChatUtil.MessageType.STATUS_BAR);
 									break;
 								case ADD_Z:
 									flightData.incrementPos(tet.incrementValue, Direction.Axis.Z);
-									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Z, tet), ChatUtil.MessageType.STATUS_BAR);
+									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Z, tet, false), ChatUtil.MessageType.STATUS_BAR);
 									break;
 								case SUB_X:
 									flightData.incrementPos(-tet.incrementValue, Direction.Axis.X);
-									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.X, tet), ChatUtil.MessageType.STATUS_BAR);
+									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.X, tet, false), ChatUtil.MessageType.STATUS_BAR);
 									break;
 								case SUB_Y:
 									flightData.incrementPos(-tet.incrementValue, Direction.Axis.Y);
-									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Y, tet), ChatUtil.MessageType.STATUS_BAR);
+									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Y, tet, false), ChatUtil.MessageType.STATUS_BAR);
 									break;
 								case SUB_Z:
 									flightData.incrementPos(-tet.incrementValue, Direction.Axis.Z);
-									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Z, tet), ChatUtil.MessageType.STATUS_BAR);
+									ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Z, tet, false), ChatUtil.MessageType.STATUS_BAR);
 									break;
 								case INCREMENT:
 									if (player.isShiftKeyDown()) {
@@ -135,6 +148,90 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 							}
 						}
 					}
+				if (DmAdditions.hasNTM()) {
+					if (WorldHelper.areDimensionTypesSame(worldIn,TDimensions.DimensionTypes.TARDIS_TYPE)) {
+						switch (buttonClicked) {
+							case ADD_X:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									tile.setDestination(tile.getDestinationDimension(),
+										new BlockPos(tile.getDestinationPosition().getX() + tet.incrementValue,
+											tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ()));
+								});
+								ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.X, tet, true), ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case ADD_Y:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									tile.setDestination(tile.getDestinationDimension(),
+										new BlockPos(tile.getDestinationPosition().getX(),
+											tile.getDestinationPosition().getY() + tet.incrementValue, tile.getDestinationPosition().getZ()));
+								});
+								ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Y, tet, true), ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case ADD_Z:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									tile.setDestination(tile.getDestinationDimension(),
+										new BlockPos(tile.getDestinationPosition().getX(),
+											tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ() + tet.incrementValue));
+								});
+								ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Z, tet, true), ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case SUB_X:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									tile.setDestination(tile.getDestinationDimension(),
+										new BlockPos(tile.getDestinationPosition().getX() - tet.incrementValue,
+											tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ()));
+								});
+								ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.X, tet, true), ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case SUB_Y:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									tile.setDestination(tile.getDestinationDimension(),
+										new BlockPos(tile.getDestinationPosition().getX(),
+											tile.getDestinationPosition().getY() - tet.incrementValue, tile.getDestinationPosition().getZ()));
+								});
+								ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Y, tet, true), ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case SUB_Z:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									tile.setDestination(tile.getDestinationDimension(),
+										new BlockPos(tile.getDestinationPosition().getX(),
+											tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ() - tet.incrementValue));
+								});
+								ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Z, tet, true), ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case INCREMENT:
+								if (player.isShiftKeyDown()) {
+									if (tet.incrementValue == 1) {
+										tet.incrementValue = 10000;
+									} else {
+										tet.incrementValue /= 10;
+									}
+								} else if (tet.incrementValue == 10000) {
+									tet.incrementValue = 1;
+								} else {
+									tet.incrementValue *= 10;
+								}
+
+
+								ChatUtil.sendMessageToPlayer(player, "Coordinate Increment: " + tet.incrementValue, ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case ROTATE:
+								if (player.isShiftKeyDown()) {
+									TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+										tile.rotate(Rotation.CLOCKWISE_90);
+									});
+								} else {
+									TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+										tile.rotate(Rotation.COUNTERCLOCKWISE_90);
+									});
+								}
+
+								ChatUtil.sendMessageToPlayer(player, "Rotated the TARDIS", ChatUtil.MessageType.STATUS_BAR);
+								break;
+							case EMPTY:
+						}
+					}
+				}
 				}
 
 				if (buttonClicked == CoordPanelButtons.AUTO_CALCULATE_Y) {

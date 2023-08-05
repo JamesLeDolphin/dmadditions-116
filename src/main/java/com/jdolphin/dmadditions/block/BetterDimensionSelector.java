@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.DimensionSelectorPanelBlock;
 import com.swdteam.common.init.DMDimensions;
@@ -31,16 +32,31 @@ import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.tardis.mod.controls.DimensionControl;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.network.Network;
+import net.tardis.mod.network.packets.ConsoleUpdateMessage;
+import net.tardis.mod.network.packets.console.DataTypes;
+import net.tardis.mod.network.packets.console.DimensionData;
+import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.world.dimensions.TDimensions;
 
 import java.util.*;
 import java.util.function.Supplier;
 
 public class BetterDimensionSelector extends DimensionSelectorPanelBlock implements IBetterPanel {
 	public static List<DimensionPanelButtons> buttons = new ArrayList<>();
+	private ArrayList<ServerWorld> dimList = new ArrayList();
+	private int index = 0;
 
 	public BetterDimensionSelector(Supplier<TileEntity> tileEntitySupplier, AbstractBlock.Properties properties) {
 		super(tileEntitySupplier, properties);
@@ -141,9 +157,73 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 					}
 				}
 			}
-		}
+			if (DmAdditions.hasNTM()) {
+				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
+						switch (buttonClicked) {
+							case BTN_LEFT:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									if (!tile.getLevel().isClientSide() && tile.getLandTime() <= 0) {
+										this.createDimListIfEmpty();
+										if (!this.dimList.isEmpty()) {
+											this.modIndex(-1);
+											ServerWorld type = (ServerWorld) this.dimList.get(this.index);
+											tile.setDestination(type.dimension(), tile.getDestinationPosition());
+											player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
+												.append((new StringTextComponent(WorldHelper.formatDimName(type.dimension())))
+													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
+											if (tile != null) {
+												Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(this.dimList.size(), this.index)), tile);
+											}
+										} else {
+											this.index = 0;
+										}
+									}
+								});
+								break;
+							case BTN_RIGHT:
+								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									this.createDimListIfEmpty();
+									if (!tile.getLevel().isClientSide() && tile.getLandTime() <= 0) {
+
+										if (!this.dimList.isEmpty()) {
+											this.modIndex(1);
+											ServerWorld type = (ServerWorld) this.dimList.get(this.index);
+											tile.setDestination(type.dimension(), tile.getDestinationPosition());
+											player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
+												.append((new StringTextComponent(WorldHelper.formatDimName(type.dimension())))
+													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
+											if (tile != null) {
+												Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(this.dimList.size(), this.index)), tile);
+											}
+										} else {
+											this.index = 0;
+										}
+									}
+								});
+						}
+					}
+				}
+			}
 
 		return ActionResultType.CONSUME;
+	}
+	private void createDimListIfEmpty(){
+		if(this.dimList.isEmpty()){
+			ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(world -> {
+				if(WorldHelper.canTravelToDimension(world))
+					dimList.add(world);
+			});
+		}
+	}
+
+	private void modIndex(int i) {
+		if (this.index + i >= this.dimList.size()) {
+			this.index = 0;
+		} else if (this.index + i < 0) {
+			this.index = this.dimList.size() - 1;
+		} else {
+			this.index += i;
+		}
 	}
 
 	public DimensionPanelButtons getButton(double mouseX, double mouseZ, Direction facing, AttachFace face) {

@@ -28,6 +28,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -39,9 +40,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod("dmadditions")
 public class DmAdditions {
 	public static final String MODID = "dmadditions";
@@ -55,6 +54,14 @@ public class DmAdditions {
 	}, () -> {
 		return DMAServerProxy::new;
 	});
+
+	public static boolean hasNTM() {
+		return ModList.get().isLoaded("tardis");
+	}
+	public static boolean hasTC() {
+		return ModList.get().isLoaded("tconstruct");
+	}
+
 
 	public DmAdditions() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
