@@ -35,7 +35,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.world.dimensions.TDimensions;
 
 import javax.annotation.Nullable;

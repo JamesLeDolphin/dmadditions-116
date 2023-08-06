@@ -33,20 +33,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.LazyOptional;
-import net.tardis.mod.Tardis;
-import net.tardis.mod.ars.ConsoleRoom;
-import net.tardis.mod.blocks.ConsoleBlock;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.tileentities.ConsoleTile;
-import net.tardis.mod.tileentities.console.misc.InteriorManager;
 import net.tardis.mod.world.dimensions.TDimensions;
 
 import javax.annotation.Nonnull;
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {

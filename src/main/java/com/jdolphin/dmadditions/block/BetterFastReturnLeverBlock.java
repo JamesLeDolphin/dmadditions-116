@@ -42,7 +42,7 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 			}
 			if (DmAdditions.hasNTM()) {
 				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
-					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+					TardisHelper.getConsoleInWorld(worldIn).ifPresent(tile -> {
 						SpaceTimeCoord coord = tile.getReturnLocation();
 						RegistryKey<World> worldKey = RegistryKey.create(Registry.DIMENSION_REGISTRY, coord.getDimRL());
 						tile.setDestination(worldKey, coord.getPos());

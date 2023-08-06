@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.SpaceSuitModel;
