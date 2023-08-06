@@ -159,10 +159,9 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 			}
 			if (DmAdditions.hasNTM()) {
 				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 						switch (buttonClicked) {
 							case BTN_LEFT:
-								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
-									if (!tile.getLevel().isClientSide() && tile.getLandTime() <= 0) {
 										this.createDimListIfEmpty();
 										if (!this.dimList.isEmpty()) {
 											this.modIndex(-1);
@@ -177,14 +176,11 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 										} else {
 											this.index = 0;
 										}
-									}
-								});
+
 								break;
 							case BTN_RIGHT:
-								TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 									this.createDimListIfEmpty();
 									if (!tile.getLevel().isClientSide() && tile.getLandTime() <= 0) {
-
 										if (!this.dimList.isEmpty()) {
 											this.modIndex(1);
 											ServerWorld type = (ServerWorld) this.dimList.get(this.index);
@@ -199,8 +195,8 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 											this.index = 0;
 										}
 									}
-								});
-						}
+								}
+						});
 					}
 				}
 			}
