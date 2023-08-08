@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.tardis.mod.controls.HandbrakeControl;
 import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.WorldHelper;
@@ -51,16 +52,21 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 			if (DmAdditions.hasNTM()) {
 				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
-						if (!tile.isInFlight() || tile.isLanding()) {
-							tile.getControl(ThrottleControl.class).ifPresent(sys -> {
-									sys.setAmount(1.0f);
-								});
-							tile.takeoff();
-							tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> {
-								if (!sys.isControlActivated()) {
-								sys.setControlActivated(true);
-							}});
-						}
+						tile.getControl(HandbrakeControl.class).ifPresent(brake -> {
+							if (brake.isFree()) {
+								if (!tile.isInFlight() || tile.isLanding()) {
+									tile.getControl(ThrottleControl.class).ifPresent(sys -> {
+										sys.setAmount(1.0f);
+									});
+									tile.takeoff();
+									tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> {
+										if (!sys.isControlActivated()) {
+											sys.setControlActivated(true);
+										}
+									});
+								}
+							}else this.switchLever(state, worldIn, pos);
+						});
 						if (tile.isInFlight()) {
 							tile.land();
 						}
