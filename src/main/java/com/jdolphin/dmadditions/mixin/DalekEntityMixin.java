@@ -22,7 +22,7 @@ public abstract class DalekEntityMixin extends LivingEntity implements IDalekEnt
 		super(p_i48577_1_, p_i48577_2_);
 	}
 
-	@Inject(method = "aiStep", at = @At("TAIL"), remap = false)
+	@Inject(method = "aiStep", at = @At("TAIL"))
 	public void aiStep(CallbackInfo ci) {
 		if (!this.level.isClientSide) return;
 
