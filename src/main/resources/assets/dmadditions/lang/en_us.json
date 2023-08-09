@@ -155,6 +155,17 @@
 	"item.dalekmod.blue_candy_cane": "Blue Candy Cane",
 	"item.dalekmod.green_candy_cane": "Green Candy Cane",
 	"item.dalekmod.red_candy_cane": "Red Candy Cane",
+	"item.dalekmod.purple_candy_cane": "Purple Candy Cane",
+	"item.dalekmod.pink_candy_cane": "Pink Candy Cane",
+	"item.dalekmod.yellow_candy_cane": "Yellow Candy Cane",
+
+	"block.dalekmod.orange_candy_cane_block": "Orange Candy Cane",
+	"block.dalekmod.blue_candy_cane_block": "Blue Candy Cane",
+	"block.dalekmod.green_candy_cane_block": "Green Candy Cane",
+	"block.dalekmod.red_candy_cane_block": "Red Candy Cane",
+	"block.dalekmod.purple_candy_cane_block": "Purple Candy Cane",
+	"block.dalekmod.pink_candy_cane_block": "Pink Candy Cane",
+	"block.dalekmod.yellow_candy_cane_block": "Yellow Candy Cane",
 
 	"block.dalekmod.wreath": "Christmas Wreath",
 	"block.dalekmod.christmas_tree": "Christmas Tree",
