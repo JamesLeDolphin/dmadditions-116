@@ -145,11 +145,11 @@ public class DMAItems {
 
 		UNIT_GUN = com.swdteam.common.RegistryHandler.ITEMS.register("unit_gun",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
-				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 		TORCHWOOD_PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("torchwood_pistol",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
-				(new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT)));
 
 
 		SANTA_HAT = com.swdteam.common.RegistryHandler.ITEMS.register("santa_hat",
