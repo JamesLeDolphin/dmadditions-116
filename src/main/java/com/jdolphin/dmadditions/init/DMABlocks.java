@@ -136,6 +136,14 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> REDDASH_STATUE;
 
+	public static RegistryObject<Block> BLUE_CANDY_CANE_BLOCK;
+	public static RegistryObject<Block> GREEN_CANDY_CANE_BLOCK;
+	public static RegistryObject<Block> ORANGE_CANDY_CANE_BLOCK;
+	public static RegistryObject<Block> PINK_CANDY_CANE_BLOCK;
+	public static RegistryObject<Block> PURPLE_CANDY_CANE_BLOCK;
+	public static RegistryObject<Block> RED_CANDY_CANE_BLOCK;
+	public static RegistryObject<Block> YELLOW_CANDY_CANE_BLOCK;
+
 //	public static final RegistryObject<Block> CORAL_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TOYOTA_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TARDIS_MONITOR_8;
@@ -149,6 +157,36 @@ public class DMABlocks {
 
 
 	static {
+
+		BLUE_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "blue_candy_cane_block", DMTabs.DM_TARDIS);
+		GREEN_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "green_candy_cane_block", DMTabs.DM_TARDIS);
+		ORANGE_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "orange_candy_cane_block", DMTabs.DM_TARDIS);
+		PINK_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "pink_candy_cane_block", DMTabs.DM_TARDIS);
+		PURPLE_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "purple_candy_cane_block", DMTabs.DM_TARDIS);
+		RED_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "red_candy_cane_block", DMTabs.DM_TARDIS);
+		YELLOW_CANDY_CANE_BLOCK = registerBlock(() -> {
+			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
+		}, "yellow_candy_cane_block", DMTabs.DM_TARDIS);
+
 		REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
 			.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 
