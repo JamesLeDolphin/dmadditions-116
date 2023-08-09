@@ -4,7 +4,6 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
-import com.jdolphin.dmadditions.client.model.armor.SpaceSuitModel;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.swdteam.common.init.DMItemTiers;
@@ -179,65 +178,17 @@ public class DMAItems {
 				}
 			});
 
-		SPACE_SUIT_HELMET = com.swdteam.common.RegistryHandler.ITEMS.register( "space_suit_helmet",
-			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.HEAD, new Item.Properties()) {
+		SPACE_SUIT_HELMET = RegistryHandler.DMARegistries.ITEMS.register( "space_suit_helmet",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.HEAD, new Item.Properties()));
 
-				@Override
-				@OnlyIn(Dist.CLIENT)
-				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-					return (A) new SpaceSuitModel(1f);
-				}
+		SPACE_SUIT_CHESTPLATE = RegistryHandler.DMARegistries.ITEMS.register( "space_suit_chestplate",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.CHEST, new Item.Properties()));
 
-				@Override
-				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_helmet.png").toString();
-				}
-			});
-
-		SPACE_SUIT_CHESTPLATE = com.swdteam.common.RegistryHandler.ITEMS.register( "space_suit_chestplate",
-			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.CHEST, new Item.Properties()) {
-
-				@Override
-				@OnlyIn(Dist.CLIENT)
-				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-					return (A) new SpaceSuitModel(1f);
-				}
-
-				@Override
-				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_chestplate.png").toString();
-				}
-			});
-
-		SPACE_SUIT_LEGGINGS = com.swdteam.common.RegistryHandler.ITEMS.register( "space_suit_leggings",
-			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.LEGS, new Item.Properties()) {
-
-				@Override
-				@OnlyIn(Dist.CLIENT)
-				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-					return (A) new SpaceSuitModel(1f);
-				}
-
-				@Override
-				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_leggings.png").toString();
-				}
-			});
+		SPACE_SUIT_LEGGINGS = RegistryHandler.DMARegistries.ITEMS.register( "space_suit_leggings",
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.LEGS, new Item.Properties()));
 
 		SPACE_SUIT_BOOTS = RegistryHandler.DMARegistries.ITEMS.register( "space_suit_boots",
-			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()) {
-
-				@Override
-				@OnlyIn(Dist.CLIENT)
-				public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-					return (A) new SpaceSuitModel(1f);
-				}
-
-				@Override
-				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/space_suit_boots.png").toString();
-				}
-			});
+			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()));
 
 
 		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
