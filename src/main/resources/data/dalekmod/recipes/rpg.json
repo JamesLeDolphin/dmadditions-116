@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#GG",
+    "ddd",
+    "dSd"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gunpoweder"
+    },
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "d": {
+      "item": "dalekmod:stainless_steel_ingot"
+    },
+    "S": {
+      "item": "minecraft:stone_button"
+    }
+  },
+  "result": {
+    "item": "dmadditions:rpg",
+    "count": 1
+  }
+}

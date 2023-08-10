@@ -88,6 +88,7 @@ public class DMAItems {
 	public static RegistryObject<Item> METALERT_BOOTS;*/
 
 	public static RegistryObject<Item> BULLET_ITEM;
+	public static RegistryObject<Item> RPG;
 
 
 	public static final RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER;
@@ -145,11 +146,11 @@ public class DMAItems {
 
 		UNIT_GUN = com.swdteam.common.RegistryHandler.ITEMS.register("unit_gun",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
-				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
+				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT)));
 
 		TORCHWOOD_PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("torchwood_pistol",
 			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
-				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT)));
+				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 
 		SANTA_HAT = com.swdteam.common.RegistryHandler.ITEMS.register("santa_hat",
@@ -210,10 +211,13 @@ public class DMAItems {
 		TW_SUV = ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+		RPG = ITEMS.register("rpg",
+			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
+				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 		PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("pistol", ()
 			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
-			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = com.swdteam.common.RegistryHandler.ITEMS.register("tardis_gold_key",
 			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
