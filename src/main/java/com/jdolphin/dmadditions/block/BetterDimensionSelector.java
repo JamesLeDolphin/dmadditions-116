@@ -148,7 +148,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 					}
 				}
 			}
-/*
+
 			if (DmAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
@@ -199,17 +199,19 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 						});
 					}
 				}
-*/
+
 			}
 
 		return ActionResultType.CONSUME;
 	}
 	private void createDimListIfEmpty(){
-		if(this.dimList.isEmpty()){
-			ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(world -> {
-				if(net.tardis.mod.helper.WorldHelper.canTravelToDimension(world))
-					dimList.add(world);
-			});
+		if (DmAdditions.hasNTM()) {
+			if (this.dimList.isEmpty()) {
+				ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(world -> {
+					if (net.tardis.mod.helper.WorldHelper.canTravelToDimension(world))
+						dimList.add(world);
+				});
+			}
 		}
 	}
 

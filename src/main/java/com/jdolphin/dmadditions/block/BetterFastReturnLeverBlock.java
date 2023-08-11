@@ -35,7 +35,7 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 
 				ChatUtil.sendCompletedMsg(player, DMTranslationKeys.TARDIS_FAST_RETURN_SET, ChatUtil.MessageType.STATUS_BAR);
 			}
-/*
+
 			if (DmAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					net.tardis.mod.helper.TardisHelper.getConsoleInWorld(worldIn).ifPresent(tile -> {
@@ -46,7 +46,7 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 					});
 				}
 			}
-*/
+
 
 			this.updateNeighbours(state, worldIn, pos);
 

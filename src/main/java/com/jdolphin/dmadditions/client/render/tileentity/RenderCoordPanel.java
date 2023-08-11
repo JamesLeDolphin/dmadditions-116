@@ -102,7 +102,7 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 				font.draw(matrixStack, z, (float) (-font.width(z) / 2), 72.0F, -1);
 			}
 		}
-/*
+
 		if (DmAdditions.hasNTM() && net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(te.getLevel(), net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 			if (net.tardis.mod.helper.TardisHelper.getConsoleInWorld(te.getLevel()).isPresent()) {
 				net.tardis.mod.helper.TardisHelper.getConsoleInWorld(te.getLevel()).ifPresent(tile -> {
@@ -129,7 +129,7 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 				});
 			}
 		}
-*/
+
 
 		matrixStack.popPose();
 	}

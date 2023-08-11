@@ -140,7 +140,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 				worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
 			}
 
-/*
+
 			if (DmAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					Random rand = new Random();
@@ -152,7 +152,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 					}});
 				}
 			}
-*/
+
 
 		}
 		return ActionResultType.SUCCESS;

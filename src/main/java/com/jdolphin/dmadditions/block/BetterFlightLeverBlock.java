@@ -43,7 +43,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 					this.switchLever(state, worldIn, pos);
 				}
 			}
-/*
+
 			if (DmAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
@@ -72,7 +72,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 					this.switchLever(state, worldIn, pos);
 				}
 			}
-*/
+
 
 		}
 		this.updateNeighbours(state, worldIn, pos);

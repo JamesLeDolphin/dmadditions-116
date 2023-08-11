@@ -138,17 +138,8 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 							}
 						}
 					}
-/*
+
 					if (DmAdditions.hasNTM()) {
-						try {
-*/
-/*
-							Class<?> WorldHelper = Class.forName("net.tardis.mod.helper.WorldHelper");
-							Class<?> TDimensions = Class.forName("net.tardis.mod.world.dimensions.TDimensions");
-							Class<?> TardisHelper = Class.forName("net.tardis.mod.helper.TardisHelper");
-*//*
-
-
 							if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 								net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 									switch (buttonClicked) {
@@ -216,12 +207,9 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 									}
 
 								});
-							}
-						}catch(Exception e){
-							ChatUtil.sendError(player, e.getLocalizedMessage(), ChatUtil.MessageType.CHAT);
 						}
 					}
-*/
+
 				}
 
 				if (buttonClicked == CoordPanelButtons.AUTO_CALCULATE_Y) {
