@@ -3,7 +3,9 @@ package com.jdolphin.dmadditions;
 import com.jdolphin.dmadditions.init.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -32,6 +34,7 @@ public class RegistryHandler {
 		dmaEntities = new DMAEntities();
 		dmaLootConditionManager = new DMALootConditionManager();
 
+		ItemTags.createOptional(new ResourceLocation(DmAdditions.MODID, "tardis_keys"));
 		DMARegistries.register();
 	}
 

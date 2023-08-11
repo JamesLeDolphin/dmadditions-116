@@ -1,8 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
+import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
@@ -10,12 +12,15 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
+import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.register;
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
@@ -148,6 +153,8 @@ public class DMABlocks {
 //	public static final RegistryObject<Block> TOYOTA_TARDIS_MONITOR;
 //	public static final RegistryObject<Block> TARDIS_MONITOR_8;
 
+	public static final RegistryObject<Block> DOOR_PANEL;
+
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
 			return null;
@@ -157,6 +164,8 @@ public class DMABlocks {
 
 
 	static {
+		DOOR_PANEL = registerBlockAndItem("door_panel", () -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
+			new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 		BLUE_CANDY_CANE_BLOCK = registerBlock(() -> {
 			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
@@ -372,6 +381,12 @@ public class DMABlocks {
 
 		if (CHRISTMAS_TREE != null)
 			registerRenderType(CHRISTMAS_TREE.get(), RenderType.cutoutMipped());
+	}
+	public static <B extends Block> RegistryObject<Block> registerBlockAndItem(String name, Supplier<B> block, Item.Properties properties) {
+		RegistryObject<Block> blockObject = RegistryHandler.BLOCKS.register(name, block);
+		RegistryHandler.ITEMS.register(name, () -> new BlockItem(blockObject.get(), properties));
+
+		return blockObject;
 	}
 }
 

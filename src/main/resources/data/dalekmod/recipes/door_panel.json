@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "BCK",
+    "SSS"
+  ],
+  "key": {
+    "K": {
+      "tag": "dalekmod:tardis_keys"
+    },
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "C": {
+      "tag": "forge:circuits/basic"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "dalekmod:door_panel",
+    "count": 1
+  }
+}

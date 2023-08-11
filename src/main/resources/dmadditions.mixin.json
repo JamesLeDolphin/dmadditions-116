@@ -16,7 +16,10 @@
 		"KerblamItemReloadListenerMixin",
 		"SpawnRegistryMixin",
 		"TardisKeyMixin",
-		"SpecialWeaponsMixin"
+		"SpecialWeaponsMixin",
+		"DoubleDoorsTileEntityMixin",
+		"RoundelDoorTileEntityMixin",
+		"TardisTileEntityMixin"
 	],
 	"client": [
 		"ClientProxyMixin",

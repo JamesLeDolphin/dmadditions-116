@@ -1,7 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
+
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
 import com.swdteam.common.RegistryHandler;
@@ -13,6 +15,7 @@ public class DMABlockEntities {
 	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER;
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
+	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL;
 
 
 	static {
@@ -24,6 +27,9 @@ public class DMABlockEntities {
 //					DMABlocks.CORAL_TARDIS_MONITOR.get(),
 //					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
 //				).build(null));
+
+		TILE_DOOR_PANEL = RegistryHandler.TILE_ENTITY_TYPES.register("door_panel",
+			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
 		TILE_REDDASH_STATUE = DMARegistries.TILE_ENTITY_TYPES.register("reddash_statue", () ->
 			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));

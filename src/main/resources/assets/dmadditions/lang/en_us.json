@@ -223,5 +223,17 @@
 	"item.dmadditions.space_suit_helmet": "Space Suit Helmet",
 	"item.dmadditions.space_suit_chestplate": "Space Suit Chestplace",
 	"item.dmadditions.space_suit_leggings": "Space Suit Leggings",
-	"item.dmadditions.space_suit_boots": "Space Suit Boots"
+	"item.dmadditions.space_suit_boots": "Space Suit Boots",
+
+	"block.dmadditions.door_panel": "Door Panel",
+
+	"tooltip.dalekmod.open": "Open Doors",
+	"tooltip.dalekmod.close": "Close Doors",
+	"tooltip.dalekmod.lock": "Lock Doors",
+	"tooltip.dalekmod.unlock": "Unlock Doors",
+
+	"notice.dalekmod.open": "You have opened the TARDIS doors",
+	"notice.dalekmod.close": "You have closed the TARDIS doors",
+	"notice.dalekmod.lock": "You have locked the TARDIS doors",
+	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors"
 }
