@@ -3,10 +3,7 @@ package com.jdolphin.dmadditions;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
-import com.jdolphin.dmadditions.commands.CommandSit;
-import com.jdolphin.dmadditions.commands.GameModeCommand;
-import com.jdolphin.dmadditions.commands.TeleportCommand;
-import com.jdolphin.dmadditions.commands.ToggleModeCommand;
+import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
@@ -86,6 +83,7 @@ public class DmAdditions {
 		TeleportCommand.register(dispatcher);
 		CommandSit.register(dispatcher);
 		ToggleModeCommand.register(dispatcher);
+		GodCommand.register(dispatcher);
 	}
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
