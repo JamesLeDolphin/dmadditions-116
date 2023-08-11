@@ -3,11 +3,11 @@
   "pattern": [
     "Gdd",
     "dS#",
-    "d"
+    "d  "
   ],
   "key": {
     "#": {
-      "item": "minecraft:gunpoweder"
+      "item": "minecraft:gunpowder"
     },
     "G": {
       "item": "minecraft:black_dye"
