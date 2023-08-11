@@ -33,9 +33,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.world.dimensions.TDimensions;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -57,6 +54,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
     }
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND) {
 			worldIn.getBlockTicks().scheduleTick(pos, this, 5);
@@ -140,76 +138,90 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 							}
 						}
 					}
+/*
 					if (DmAdditions.hasNTM()) {
-						if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
-							TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
-								switch (buttonClicked) {
-									case ADD_X:
-										tile.setDestination(tile.getDestinationDimension(),
-											new BlockPos(tile.getDestinationPosition().getX() + tet.incrementValue,
-												tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ()));
-										ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.X, tet, true), ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case ADD_Y:
-										tile.setDestination(tile.getDestinationDimension(),
-											new BlockPos(tile.getDestinationPosition().getX(),
-												tile.getDestinationPosition().getY() + tet.incrementValue, tile.getDestinationPosition().getZ()));
-										ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Y, tet, true), ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case ADD_Z:
-										tile.setDestination(tile.getDestinationDimension(),
-											new BlockPos(tile.getDestinationPosition().getX(),
-												tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ() + tet.incrementValue));
-										ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Z, tet, true), ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case SUB_X:
-										tile.setDestination(tile.getDestinationDimension(),
-											new BlockPos(tile.getDestinationPosition().getX() - tet.incrementValue,
-												tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ()));
-										ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.X, tet, true), ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case SUB_Y:
-										tile.setDestination(tile.getDestinationDimension(),
-											new BlockPos(tile.getDestinationPosition().getX(),
-												tile.getDestinationPosition().getY() - tet.incrementValue, tile.getDestinationPosition().getZ()));
-										ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Y, tet, true), ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case SUB_Z:
-										tile.setDestination(tile.getDestinationDimension(),
-											new BlockPos(tile.getDestinationPosition().getX(),
-												tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ() - tet.incrementValue));
-										ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Z, tet, true), ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case INCREMENT:
-										if (player.isShiftKeyDown()) {
-											if (tet.incrementValue == 1) {
-												tet.incrementValue = 10000;
+						try {
+*/
+/*
+							Class<?> WorldHelper = Class.forName("net.tardis.mod.helper.WorldHelper");
+							Class<?> TDimensions = Class.forName("net.tardis.mod.world.dimensions.TDimensions");
+							Class<?> TardisHelper = Class.forName("net.tardis.mod.helper.TardisHelper");
+*//*
+
+
+							if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+								net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+									switch (buttonClicked) {
+										case ADD_X:
+											tile.setDestination(tile.getDestinationDimension(),
+												new BlockPos(tile.getDestinationPosition().getX() + tet.incrementValue,
+													tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ()));
+											ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.X, tet, true), ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case ADD_Y:
+											tile.setDestination(tile.getDestinationDimension(),
+												new BlockPos(tile.getDestinationPosition().getX(),
+													tile.getDestinationPosition().getY() + tet.incrementValue, tile.getDestinationPosition().getZ()));
+											ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Y, tet, true), ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case ADD_Z:
+											tile.setDestination(tile.getDestinationDimension(),
+												new BlockPos(tile.getDestinationPosition().getX(),
+													tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ() + tet.incrementValue));
+											ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(true, Direction.Axis.Z, tet, true), ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case SUB_X:
+											tile.setDestination(tile.getDestinationDimension(),
+												new BlockPos(tile.getDestinationPosition().getX() - tet.incrementValue,
+													tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ()));
+											ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.X, tet, true), ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case SUB_Y:
+											tile.setDestination(tile.getDestinationDimension(),
+												new BlockPos(tile.getDestinationPosition().getX(),
+													tile.getDestinationPosition().getY() - tet.incrementValue, tile.getDestinationPosition().getZ()));
+											ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Y, tet, true), ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case SUB_Z:
+											tile.setDestination(tile.getDestinationDimension(),
+												new BlockPos(tile.getDestinationPosition().getX(),
+													tile.getDestinationPosition().getY(), tile.getDestinationPosition().getZ() - tet.incrementValue));
+											ChatUtil.sendMessageToPlayer(player, this.formatIncrementMessage(false, Direction.Axis.Z, tet, true), ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case INCREMENT:
+											if (player.isShiftKeyDown()) {
+												if (tet.incrementValue == 1) {
+													tet.incrementValue = 10000;
+												} else {
+													tet.incrementValue /= 10;
+												}
+											} else if (tet.incrementValue == 10000) {
+												tet.incrementValue = 1;
 											} else {
-												tet.incrementValue /= 10;
+												tet.incrementValue *= 10;
 											}
-										} else if (tet.incrementValue == 10000) {
-											tet.incrementValue = 1;
-										} else {
-											tet.incrementValue *= 10;
-										}
 
 
-										ChatUtil.sendMessageToPlayer(player, "Coordinate Increment: " + tet.incrementValue, ChatUtil.MessageType.STATUS_BAR);
-										break;
-									case ROTATE:
-										if (player.isShiftKeyDown()) {
-											tile.rotate(Rotation.CLOCKWISE_90);
-										} else {
-											tile.rotate(Rotation.COUNTERCLOCKWISE_90);
-										}
+											ChatUtil.sendMessageToPlayer(player, "Coordinate Increment: " + tet.incrementValue, ChatUtil.MessageType.STATUS_BAR);
+											break;
+										case ROTATE:
+											if (player.isShiftKeyDown()) {
+												tile.rotate(Rotation.CLOCKWISE_90);
+											} else {
+												tile.rotate(Rotation.COUNTERCLOCKWISE_90);
+											}
 
-										ChatUtil.sendMessageToPlayer(player, "Rotated the TARDIS", ChatUtil.MessageType.STATUS_BAR);
-										break;
-								}
+											ChatUtil.sendMessageToPlayer(player, "Rotated the TARDIS", ChatUtil.MessageType.STATUS_BAR);
+											break;
+									}
 
-							});
+								});
+							}
+						}catch(Exception e){
+							ChatUtil.sendError(player, e.getLocalizedMessage(), ChatUtil.MessageType.CHAT);
 						}
 					}
+*/
 				}
 
 				if (buttonClicked == CoordPanelButtons.AUTO_CALCULATE_Y) {

@@ -40,14 +40,6 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.tardis.mod.flight.DimensionFlightEvent;
-import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.network.Network;
-import net.tardis.mod.network.packets.ConsoleUpdateMessage;
-import net.tardis.mod.network.packets.console.DataTypes;
-import net.tardis.mod.network.packets.console.DimensionData;
-import net.tardis.mod.world.dimensions.TDimensions;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -156,9 +148,10 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 					}
 				}
 			}
+/*
 			if (DmAdditions.hasNTM()) {
-				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
-					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 						switch (buttonClicked) {
 							case BTN_LEFT:
 								if (tile.getFlightEvent() == null) {
@@ -168,15 +161,15 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 										ServerWorld type = (ServerWorld) this.dimList.get(this.index);
 										tile.setDestination(type.dimension(), tile.getDestinationPosition());
 										player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
-											.append((new StringTextComponent(WorldHelper.formatDimName(type.dimension())))
+											.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
 												.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 										if (tile != null) {
-											Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(this.dimList.size(), this.index)), tile);
+											net.tardis.mod.network.Network.sendToTrackingTE(new net.tardis.mod.network.packets.ConsoleUpdateMessage(net.tardis.mod.network.packets.console.DataTypes.DIMENSION_LIST, new net.tardis.mod.network.packets.console.DimensionData(this.dimList.size(), this.index)), tile);
 										}
 									} else {
 										this.index = 0;
 									}
-								} else if (tile.getFlightEvent() instanceof DimensionFlightEvent) {
+								} else if (tile.getFlightEvent() instanceof net.tardis.mod.flight.DimensionFlightEvent) {
 									tile.getFlightEvent().onComplete(tile);
 								}
 								break;
@@ -189,16 +182,16 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 											ServerWorld type = (ServerWorld) this.dimList.get(this.index);
 											tile.setDestination(type.dimension(), tile.getDestinationPosition());
 											player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
-												.append((new StringTextComponent(WorldHelper.formatDimName(type.dimension())))
+												.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
 													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 											if (tile != null) {
-												Network.sendToTrackingTE(new ConsoleUpdateMessage(DataTypes.DIMENSION_LIST, new DimensionData(this.dimList.size(), this.index)), tile);
+												net.tardis.mod.network.Network.sendToTrackingTE(new net.tardis.mod.network.packets.ConsoleUpdateMessage(net.tardis.mod.network.packets.console.DataTypes.DIMENSION_LIST, new net.tardis.mod.network.packets.console.DimensionData(this.dimList.size(), this.index)), tile);
 											}
 										} else {
 											this.index = 0;
 										}
-									} else if (tile.getFlightEvent() instanceof DimensionFlightEvent) {
-										DimensionFlightEvent event = (DimensionFlightEvent) tile.getFlightEvent();
+									} else if (tile.getFlightEvent() instanceof net.tardis.mod.flight.DimensionFlightEvent) {
+										net.tardis.mod.flight.DimensionFlightEvent event = (net.tardis.mod.flight.DimensionFlightEvent) tile.getFlightEvent();
 										tile.getFlightEvent().onComplete(tile);
 									}
 									}
@@ -206,6 +199,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 						});
 					}
 				}
+*/
 			}
 
 		return ActionResultType.CONSUME;
@@ -213,7 +207,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 	private void createDimListIfEmpty(){
 		if(this.dimList.isEmpty()){
 			ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(world -> {
-				if(WorldHelper.canTravelToDimension(world))
+				if(net.tardis.mod.helper.WorldHelper.canTravelToDimension(world))
 					dimList.add(world);
 			});
 		}

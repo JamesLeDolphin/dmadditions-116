@@ -33,9 +33,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.world.dimensions.TDimensions;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -142,10 +139,12 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 
 				worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
 			}
+
+/*
 			if (DmAdditions.hasNTM()) {
-				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
+				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					Random rand = new Random();
-					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 						if(!player.level.isClientSide() && tile.getLandTime() <= 0) {
 							int rad = 5 * tile.coordIncr;
 							BlockPos dest = tile.getDestinationPosition().offset(rad - rand.nextInt(rad * 2), 0, rad - rand.nextInt(rad * 2));
@@ -153,7 +152,9 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 					}});
 				}
 			}
-			}
+*/
+
+		}
 		return ActionResultType.SUCCESS;
 	}
 }

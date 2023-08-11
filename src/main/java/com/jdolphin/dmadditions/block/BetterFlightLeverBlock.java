@@ -17,12 +17,6 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.tardis.mod.controls.HandbrakeControl;
-import net.tardis.mod.controls.ThrottleControl;
-import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.subsystem.StabilizerSubsystem;
-import net.tardis.mod.world.dimensions.TDimensions;
 
 public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 	public BetterFlightLeverBlock(Properties properties) {
@@ -49,17 +43,18 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 					this.switchLever(state, worldIn, pos);
 				}
 			}
+/*
 			if (DmAdditions.hasNTM()) {
-				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
-					TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
-						tile.getControl(HandbrakeControl.class).ifPresent(brake -> {
+				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
+						tile.getControl(net.tardis.mod.controls.HandbrakeControl.class).ifPresent(brake -> {
 							if (brake.isFree()) {
 								if (!tile.isInFlight() || tile.isLanding()) {
-									tile.getControl(ThrottleControl.class).ifPresent(sys -> {
+									tile.getControl(net.tardis.mod.controls.ThrottleControl.class).ifPresent(sys -> {
 										sys.setAmount(1.0f);
 									});
 									tile.takeoff();
-									tile.getSubsystem(StabilizerSubsystem.class).ifPresent(sys -> {
+									tile.getSubsystem(net.tardis.mod.subsystem.StabilizerSubsystem.class).ifPresent(sys -> {
 										if (!sys.isControlActivated()) {
 											sys.setControlActivated(true);
 										}
@@ -77,6 +72,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 					this.switchLever(state, worldIn, pos);
 				}
 			}
+*/
 
 		}
 		this.updateNeighbours(state, worldIn, pos);

@@ -18,11 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.misc.SpaceTimeCoord;
-import net.tardis.mod.world.dimensions.TDimensions;
-
 public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 	public BetterFastReturnLeverBlock(Properties properties) {
 		super(properties);
@@ -40,16 +35,18 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 
 				ChatUtil.sendCompletedMsg(player, DMTranslationKeys.TARDIS_FAST_RETURN_SET, ChatUtil.MessageType.STATUS_BAR);
 			}
+/*
 			if (DmAdditions.hasNTM()) {
-				if (WorldHelper.areDimensionTypesSame(worldIn, TDimensions.DimensionTypes.TARDIS_TYPE)) {
-					TardisHelper.getConsoleInWorld(worldIn).ifPresent(tile -> {
-						SpaceTimeCoord coord = tile.getReturnLocation();
+				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					net.tardis.mod.helper.TardisHelper.getConsoleInWorld(worldIn).ifPresent(tile -> {
+						net.tardis.mod.misc.SpaceTimeCoord coord = tile.getReturnLocation();
 						RegistryKey<World> worldKey = RegistryKey.create(Registry.DIMENSION_REGISTRY, coord.getDimRL());
 						tile.setDestination(worldKey, coord.getPos());
 						tile.setExteriorFacingDirection(coord.getFacing());
 					});
 				}
 			}
+*/
 
 			this.updateNeighbours(state, worldIn, pos);
 

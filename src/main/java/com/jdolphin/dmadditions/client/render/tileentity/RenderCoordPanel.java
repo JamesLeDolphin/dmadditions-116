@@ -19,9 +19,6 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3f;
-import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.world.dimensions.TDimensions;
 
 public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 	public RenderCoordPanel(TileEntityRendererDispatcher dispatcher) {
@@ -105,9 +102,10 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 				font.draw(matrixStack, z, (float) (-font.width(z) / 2), 72.0F, -1);
 			}
 		}
-		if (DmAdditions.hasNTM() && WorldHelper.areDimensionTypesSame(te.getLevel(), TDimensions.DimensionTypes.TARDIS_TYPE)) {
-			if (TardisHelper.getConsoleInWorld(te.getLevel()).isPresent()) {
-				TardisHelper.getConsoleInWorld(te.getLevel()).ifPresent(tile -> {
+/*
+		if (DmAdditions.hasNTM() && net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(te.getLevel(), net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+			if (net.tardis.mod.helper.TardisHelper.getConsoleInWorld(te.getLevel()).isPresent()) {
+				net.tardis.mod.helper.TardisHelper.getConsoleInWorld(te.getLevel()).ifPresent(tile -> {
 					BlockPos dest = tile.getDestinationPosition();
 					if (dest != null) {
 						if (tile.hasNavCom()) {
@@ -131,6 +129,7 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 				});
 			}
 		}
+*/
 
 		matrixStack.popPose();
 	}
