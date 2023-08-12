@@ -8,9 +8,11 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.swdteam.common.block.IBlockTooltip;
 import com.swdteam.common.block.RotatableTileEntityBase;
+import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 
 import net.minecraft.block.Block;
@@ -25,6 +27,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -89,36 +92,71 @@ public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implem
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
 		if (!world.isClientSide && hand == Hand.MAIN_HAND) {
-			Vector3d mouseVector = rayTraceResult.getLocation();
-			double mouseX = mouseVector.x() - pos.getX();
-			double mouseZ = mouseVector.z() - pos.getZ();
-			DoorPanelButtons button = getButtonFromMouse(mouseX, mouseZ, state.getValue(FACING));
+			if (world.dimension().equals(DMDimensions.TARDIS)) {
+				Vector3d mouseVector = rayTraceResult.getLocation();
+				double mouseX = mouseVector.x() - pos.getX();
+				double mouseZ = mouseVector.z() - pos.getZ();
+				DoorPanelButtons button = getButtonFromMouse(mouseX, mouseZ, state.getValue(FACING));
 
-			if (button != null) {
-				TileEntity tile = world.getBlockEntity(pos);
-				if (tile instanceof DoorPanelTileEntity) {
-					DoorPanelTileEntity panel = ((DoorPanelTileEntity) tile);
+				if (button != null) {
+					TileEntity tile = world.getBlockEntity(pos);
+					if (tile instanceof DoorPanelTileEntity) {
+						DoorPanelTileEntity panel = ((DoorPanelTileEntity) tile);
 
-					switch (button) {
-						case DOOR:
-							boolean open = panel.toggleDoors(player);
-							if (state.getValue(OPENED) != open) {
-								world.setBlockAndUpdate(pos, state.setValue(OPENED, open));
-								world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
-							}
-							break;
-						case LOCK:
-							boolean lock = panel.toggleLocks(player);
-							if (state.getValue(LOCKED) != lock) {
-								world.setBlockAndUpdate(pos, state.setValue(LOCKED, lock));
-								world.playSound(null, pos, DMSoundEvents.TARDIS_LOCK.get(), SoundCategory.BLOCKS, 1, 1);
-							}
-							if (lock) {
-								world.setBlockAndUpdate(pos, state.setValue(LOCKED, true).setValue(OPENED, false));
-								world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
-							}
-							break;
+						switch (button) {
+							case DOOR:
+								boolean open = panel.toggleDoors(player);
+								if (state.getValue(OPENED) != open) {
+									world.setBlockAndUpdate(pos, state.setValue(OPENED, open));
+									world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
+								}
+								break;
+							case LOCK:
+								boolean lock = panel.toggleLocks(player);
+								if (state.getValue(LOCKED) != lock) {
+									world.setBlockAndUpdate(pos, state.setValue(LOCKED, lock));
+									world.playSound(null, pos, DMSoundEvents.TARDIS_LOCK.get(), SoundCategory.BLOCKS, 1, 1);
+								}
+								if (lock) {
+									world.setBlockAndUpdate(pos, state.setValue(LOCKED, true).setValue(OPENED, false));
+									world.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
+								}
+								break;
+						}
 					}
+				}
+			}
+			if (DmAdditions.hasNTM()) {
+				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(world, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+					Vector3d mouseVector = rayTraceResult.getLocation();
+					double mouseX = mouseVector.x() - pos.getX();
+					double mouseZ = mouseVector.z() - pos.getZ();
+					DoorPanelButtons button = getButtonFromMouse(mouseX, mouseZ, state.getValue(FACING));
+					net.tardis.mod.helper.TardisHelper.getConsole(world.getServer(), world).ifPresent(tile -> {
+							for(net.tardis.mod.entity.DoorEntity ent : tile.getLevel().getEntitiesOfClass(net.tardis.mod.entity.DoorEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(25))) {
+					if (button != null) {
+
+							switch (button) {
+								case DOOR:
+									boolean closed = ent.getOpenState() == net.tardis.mod.enums.EnumDoorState.CLOSED;
+									world.setBlockAndUpdate(pos, state.setValue(OPENED, closed));
+									if (ent.isLocked()) {
+										player.displayClientMessage(net.tardis.mod.blocks.exteriors.ExteriorBlock.LOCKED, true);
+									}
+									if	(!ent.isLocked() && ent.getOpenState() == net.tardis.mod.enums.EnumDoorState.CLOSED) ent.setOpenState(net.tardis.mod.enums.EnumDoorState.BOTH);
+									else if (!ent.isLocked()) ent.setOpenState(net.tardis.mod.enums.EnumDoorState.CLOSED);
+									ent.playSound(ent.getOpenState() == net.tardis.mod.enums.EnumDoorState.CLOSED ? net.tardis.mod.sounds.TSounds.DOOR_CLOSE.get() : net.tardis.mod.sounds.TSounds.DOOR_OPEN.get(), 1F, 1F);
+									break;
+								case LOCK:
+									boolean locked = ent.isLocked();
+									world.setBlockAndUpdate(pos, state.setValue(LOCKED, locked));
+									ent.setLocked(!locked);
+									ent.playSound(locked ? net.tardis.mod.sounds.TSounds.DOOR_UNLOCK.get() : net.tardis.mod.sounds.TSounds.DOOR_LOCK.get(), 1F, 1F);
+									break;
+							}
+						}
+					}
+				});
 				}
 			}
 		}

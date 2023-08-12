@@ -147,7 +147,11 @@
 	"block.dalekmod.rusted_steel_reinforced_walling_roundel_container": "Rusted Steel Reinforced Walling Roundel Container",
 	"block.dalekmod.stainless_steel_reinforced_walling_roundel_container": "Stainless Steel Reinforced Walling Roundel Container",
 
-
+	"tooltip.dm_door_panel.lock": "Lock The TARDIS Door",
+	"tooltip.dm_door_panel.unlock": "Unlock The TARDIS Door",
+	"tooltip.dm_door_panel.open": "Open The TARDIS Door",
+	"tooltip.dm_door_panel.close": "Close The TARDIS Door",
+	"block.dalekmod.door_panel": "Door Panel",
 
 	"block.dalekmod.tardis_snowglobe": "TARDIS Snow Globe",
 
