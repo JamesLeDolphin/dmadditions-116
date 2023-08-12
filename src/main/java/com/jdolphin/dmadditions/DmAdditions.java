@@ -10,8 +10,10 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
@@ -74,6 +76,7 @@ public class DmAdditions {
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 
+		DMAFluids.FLUIDS.register(modEventBus);
 	}
 
 
@@ -122,6 +125,9 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
+
+		RenderTypeLookup.setRenderLayer(DMAFluids.STEEL_FLUID.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(DMAFluids.STEEL_FLOWING.get(), RenderType.translucent());
 	}
 
 	public void biomeModification(BiomeLoadingEvent event) {
