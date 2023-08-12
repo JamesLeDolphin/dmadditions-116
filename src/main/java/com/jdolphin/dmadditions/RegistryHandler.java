@@ -20,7 +20,7 @@ public class RegistryHandler {
 	public static DMASoundEvents dmaSounds;
 	public static DMABlocks dmaBlocks;
 	public static DMALootConditionManager dmaLootConditionManager;
-	public static DMAFluids dmaFluids;
+//	public static DMAFluids dmaFluids;
 
 
 	public static void init() {
@@ -34,7 +34,7 @@ public class RegistryHandler {
 		dmaTiles = new DMABlockEntities();
 		dmaEntities = new DMAEntities();
 		dmaLootConditionManager = new DMALootConditionManager();
-		dmaFluids = new DMAFluids();
+//		dmaFluids = new DMAFluids();
 
 		ItemTags.createOptional(new ResourceLocation(DmAdditions.MODID, "tardis_keys"));
 		DMARegistries.register();

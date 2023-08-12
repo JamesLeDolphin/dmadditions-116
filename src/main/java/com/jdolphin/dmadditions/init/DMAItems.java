@@ -97,7 +97,7 @@ public class DMAItems {
 
 	public static final RegistryObject<Item> BESSIE;
 	public static final RegistryObject<Item> TW_SUV;
-	public static final RegistryObject<Item> STEEL_BUCKET;
+//	public static final RegistryObject<Item> STEEL_BUCKET;
 
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
@@ -290,8 +290,8 @@ public class DMAItems {
 			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));*/
 
 
-		STEEL_BUCKET = ITEMS.register("steel_bucket",
-			() -> new BucketItem(() -> DMAFluids.STEEL_FLUID.get(),
-				new Item.Properties().stacksTo(1)));
+//		STEEL_BUCKET = ITEMS.register("steel_bucket",
+//			() -> new BucketItem(() -> DMAFluids.STEEL_FLUID.get(),
+//				new Item.Properties().stacksTo(1)));
 	}
 }
