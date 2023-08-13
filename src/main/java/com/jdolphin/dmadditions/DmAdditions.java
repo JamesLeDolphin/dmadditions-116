@@ -129,6 +129,7 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		if(hasTC()) {
 			setTranslucent(DMAFluids.molten_dalekanium);
+			setTranslucent(DMAFluids.molten_steel);
 		}
 	}
 

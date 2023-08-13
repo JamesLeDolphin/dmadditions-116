@@ -14,6 +14,8 @@ public class DMAFluids {
 	public static final FluidDeferredRegister FLUIDS = new FluidDeferredRegister(DmAdditions.MODID);
 
 	public static final FluidObject<ForgeFlowingFluid> molten_dalekanium = FLUIDS.register("molten_dalekanium", hotBuilder().temperature(1234), Material.LAVA,  9);
+	public static final FluidObject<ForgeFlowingFluid> molten_steel = FLUIDS.register("molten_steel", hotBuilder().temperature(1234), Material.LAVA,  9);
+	
 
 	private static FluidAttributes.Builder hotBuilder() {
 		return ModelFluidAttributes.builder().density(2000).viscosity(10000).temperature(1000).sound(SoundEvents.BUCKET_FILL_LAVA, SoundEvents.BUCKET_EMPTY_LAVA);
