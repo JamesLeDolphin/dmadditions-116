@@ -1,0 +1,64 @@
+{
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": 286956243,
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "seed": 286956243,
+      "biome": "dalekmod:moon",
+      "temperature_noise": {
+        "firstOctave": -9,
+        "amplitudes": [
+          1.0,
+          1.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "humidity_noise": {
+        "firstOctave": -9,
+        "amplitudes": [
+          1.0,
+          1.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "altitude_noise": {
+        "firstOctave": -5,
+        "amplitudes": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "weirdness_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "settings": "dalekmod:moon_noise"
+  },
+  "type": "dalekmod:moon"
+}
