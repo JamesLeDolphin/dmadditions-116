@@ -20,7 +20,6 @@ public class RegistryHandler {
 	public static DMASoundEvents dmaSounds;
 	public static DMABlocks dmaBlocks;
 	public static DMALootConditionManager dmaLootConditionManager;
-//	public static DMAFluids dmaFluids;
 
 
 	public static void init() {

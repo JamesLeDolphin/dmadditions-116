@@ -10,7 +10,7 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAEntities;
-//import com.jdolphin.dmadditions.init.DMAFluids;
+import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.block.BlockRenderType;
@@ -35,6 +35,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import slimeknights.mantle.registration.object.FluidObject;
 
 import java.util.List;
 
@@ -75,8 +76,9 @@ public class DmAdditions {
 		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
-
-//		DMAFluids.FLUIDS.register(modEventBus);
+		if (hasTC()) {
+			DMAFluids.FLUIDS.register(modEventBus);
+		}
 	}
 
 
@@ -125,9 +127,14 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
+		if(hasTC()) {
+			setTranslucent(DMAFluids.molten_dalekanium);
+		}
+	}
 
-//		RenderTypeLookup.setRenderLayer(DMAFluids.STEEL_FLUID.get(), RenderType.translucent());
-//		RenderTypeLookup.setRenderLayer(DMAFluids.STEEL_FLOWING.get(), RenderType.translucent());
+	private static void setTranslucent(FluidObject<?> fluid) {
+		RenderTypeLookup.setRenderLayer(fluid.getStill(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(fluid.getFlowing(), RenderType.translucent());
 	}
 
 	public void biomeModification(BiomeLoadingEvent event) {

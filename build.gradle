@@ -75,17 +75,31 @@ minecraft {
 }
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+repositories {
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    //Dalek Mod
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:4258146")
 
-    runtimeOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
-    compileOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
+    //New Tardis Mod
+    implementation fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
 
+    //Tinkers Construct
+    implementation fg.deobf("curse.maven:tinkers-construct-74072:3695126")
+    //Mantle
+    implementation fg.deobf("curse.maven:mantle-74924:3631982")
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 mixin {
     add sourceSets.main, "dmadditions.mixin-refmap.json"
@@ -119,13 +133,5 @@ publishing {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
 
-    }
-}
-repositories {
-    maven {
-        url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
     }
 }
