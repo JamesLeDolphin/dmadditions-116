@@ -157,7 +157,7 @@ public class DMAItems {
 		SANTA_HAT = com.swdteam.common.RegistryHandler.ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
-		MATTS_PINK_THONG = registerDMAAdventItem(25, "matts_pink_thong",
+		MATTS_PINK_THONG = ITEMS.register( "matts_pink_thong",
 			() -> new ArmorItem(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties()) {
 
 				@Override
@@ -193,10 +193,10 @@ public class DMAItems {
 			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()));
 
 
-		LASER_SCREWDRIVER = registerAdventItem(14, "laser_screwdriver",
+		LASER_SCREWDRIVER = com.swdteam.common.RegistryHandler.ITEMS.register( "laser_screwdriver",
 			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 
-		MUSIC_DISC_PFD = registerAdventItem(10, "music_disc_pfd",
+		MUSIC_DISC_PFD = com.swdteam.common.RegistryHandler.ITEMS.register( "music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
 		WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
