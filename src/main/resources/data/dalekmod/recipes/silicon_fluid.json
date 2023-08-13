@@ -14,10 +14,10 @@
       "recipe": {
         "type": "tconstruct:melting",
         "ingredient": {
-          "item": "dalekmod:metalert_block"
+          "item": "dalekmod:silicon_block"
         },
         "result": {
-          "fluid": "dmadditions:molten_metalert",
+          "fluid": "dmadditions:molten_silicon",
           "amount": 1296
         },
         "temperature": 1000,
@@ -33,10 +33,10 @@
       "recipe": {
         "type": "tconstruct:melting",
         "ingredient": {
-          "item": "dalekmod:metalert_block"
+          "item": "dalekmod:silicon_block"
         },
         "result": {
-          "fluid": "dmadditions:molten_metalert",
+          "fluid": "dmadditions:molten_silicon",
           "amount": 1296
         },
         "temperature": 1000,

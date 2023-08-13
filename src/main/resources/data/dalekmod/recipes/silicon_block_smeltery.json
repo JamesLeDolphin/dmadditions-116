@@ -12,16 +12,13 @@
         }
       ],
       "recipe": {
-        "type": "tconstruct:melting",
+        "type": "tconstruct:casting_basin",
         "ingredient": {
-          "item": "dalekmod:metalert_block"
-        },
-        "result": {
-          "fluid": "dmadditions:molten_metalert",
+          "fluid": "dmadditions:molten_silicon",
           "amount": 1296
         },
-        "temperature": 1000,
-        "time": 50
+        "result": "dalekmod:silicon_block",
+        "cooling_time": 237
       }
     },
     {
@@ -31,16 +28,13 @@
         }
       ],
       "recipe": {
-        "type": "tconstruct:melting",
+        "type": "tconstruct:casting_basin",
         "ingredient": {
-          "item": "dalekmod:metalert_block"
-        },
-        "result": {
-          "fluid": "dmadditions:molten_metalert",
+          "fluid": "dmadditions:molten_silicon",
           "amount": 1296
         },
-        "temperature": 1000,
-        "time": 50
+        "result": "dalekmod:silicon_block",
+        "cooling_time": 237
       }
     }
   ]

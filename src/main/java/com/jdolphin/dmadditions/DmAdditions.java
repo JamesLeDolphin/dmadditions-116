@@ -132,6 +132,7 @@ public class DmAdditions {
 			setTranslucent(DMAFluids.molten_steel);
 			setTranslucent(DMAFluids.molten_stainless_steel);
 			setTranslucent(DMAFluids.molten_metalert);
+			setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
 
