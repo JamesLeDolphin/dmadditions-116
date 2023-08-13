@@ -1,0 +1,47 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "modid": "tconstruct",
+            "type": "forge:mod_loaded"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:melting",
+        "ingredient": {
+          "item": "dalekmod:metalert_block"
+        },
+        "result": {
+          "fluid": "dmadditions:molten_metalert",
+          "amount": 1296
+        },
+        "temperature": 1000,
+        "time": 50
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:melting",
+        "ingredient": {
+          "item": "dalekmod:metalert_block"
+        },
+        "result": {
+          "fluid": "dmadditions:metalert_steel",
+          "amount": 1296
+        },
+        "temperature": 1000,
+        "time": 50
+      }
+    }
+  ]
+}
