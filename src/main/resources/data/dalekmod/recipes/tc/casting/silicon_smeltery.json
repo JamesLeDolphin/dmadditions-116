@@ -1,0 +1,47 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "modid": "tconstruct",
+            "type": "forge:mod_loaded"
+          },
+          "type": "forge:not"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:casting_table",
+        "cast": {
+          "tag": "tconstruct:casts/multi_use/ingot"
+        },
+        "fluid": {
+         "tag": "dmadditions:molten_silicon",
+          "amount": 144
+        },
+        "result": "dalekmod:silicon",
+        "cooling_time": 57
+      }
+    },
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:casting_table",
+        "cast": {
+          "tag": "tconstruct:casts/multi_use/ingot"
+        },
+        "fluid": {
+          "tag": "dmadditions:molten_silicon",
+          "amount": 144
+        },
+        "result": "dalekmod:silicon",
+        "cooling_time": 57
+      }
+    }
+  ]
+}

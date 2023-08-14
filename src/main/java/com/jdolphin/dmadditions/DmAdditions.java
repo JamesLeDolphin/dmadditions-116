@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.commands.*;
+import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
@@ -17,9 +18,11 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -32,10 +35,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.registration.object.FluidObject;
+import slimeknights.tconstruct.common.data.tags.FluidTagProvider;
 
 import java.util.List;
 
@@ -135,6 +140,15 @@ public class DmAdditions {
 			setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
+	@SubscribeEvent
+	static void gatherData(final GatherDataEvent event) {
+		DataGenerator datagenerator = event.getGenerator();
+		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		if (hasTC() && event.includeServer()) {
+			datagenerator.addProvider(new FluidTags(datagenerator, existingFileHelper));
+		}
+	}
+
 
 	private static void setTranslucent(FluidObject<?> fluid) {
 		RenderTypeLookup.setRenderLayer(fluid.getStill(), RenderType.translucent());

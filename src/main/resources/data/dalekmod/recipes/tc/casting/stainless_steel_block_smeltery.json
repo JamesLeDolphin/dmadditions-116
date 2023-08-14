@@ -13,11 +13,11 @@
       ],
       "recipe": {
         "type": "tconstruct:casting_basin",
-        "ingredient": {
-          "fluid": "dmadditions:molten_steel",
+        "fluid": {
+          "tag": "dmadditions:molten_stainless_steel",
           "amount": 1296
         },
-        "result": "dalekmod:steel_block",
+        "result": "dalekmod:stainless_steel_block",
         "cooling_time": 237
       }
     },
@@ -29,11 +29,11 @@
       ],
       "recipe": {
         "type": "tconstruct:casting_basin",
-        "ingredient": {
-          "fluid": "dmadditions:molten_steel",
+        "fluid": {
+          "tag": "dmadditions:molten_stainless_steel",
           "amount": 1296
         },
-        "result": "dalekmod:steel_block",
+        "result": "dalekmod:stainless_steel_block",
         "cooling_time": 237
       }
     }
