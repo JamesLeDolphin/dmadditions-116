@@ -39,8 +39,6 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import slimeknights.mantle.registration.object.FluidObject;
-import slimeknights.tconstruct.common.data.tags.FluidTagProvider;
 
 import java.util.List;
 
@@ -149,7 +147,7 @@ public class DmAdditions {
 	}
 
 
-	private static void setTranslucent(FluidObject<?> fluid) {
+	private static void setTranslucent(slimeknights.mantle.registration.object.FluidObject<?> fluid) {
 		RenderTypeLookup.setRenderLayer(fluid.getStill(), RenderType.translucent());
 		RenderTypeLookup.setRenderLayer(fluid.getFlowing(), RenderType.translucent());
 	}
