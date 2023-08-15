@@ -90,7 +90,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //Dalek Mod
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:4705988")
+    implementation fg.deobf("curse.maven:the-dalek-mod-59654:4706185")
 
     //New Tardis Mod
     implementation fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
