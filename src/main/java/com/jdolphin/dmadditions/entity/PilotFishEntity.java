@@ -6,7 +6,7 @@ import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
-import com.swdteam.common.item.LasergunItem;
+import com.swdteam.common.item.GunItem;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -148,7 +148,7 @@ public class PilotFishEntity extends MonsterEntity implements IForgeEntity, IRan
 
 	@Override
 	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
-		Hand hand = ProjectileHelper.getWeaponHoldingHand(this, item -> item instanceof LasergunItem);
+		Hand hand = ProjectileHelper.getWeaponHoldingHand(this, item -> item instanceof GunItem);
 		int damage = 2;
 		ItemStack itemstack = this.getItemInHand(hand);
 
@@ -171,8 +171,8 @@ public class PilotFishEntity extends MonsterEntity implements IForgeEntity, IRan
 		this.goalSelector.removeGoal(this.meleeGoal);
 		this.goalSelector.removeGoal(this.rangedAttackGoal);
 
-		ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, item -> item instanceof LasergunItem));
-		if (itemstack.getItem() instanceof LasergunItem) {
+		ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, item -> item instanceof GunItem));
+		if (itemstack.getItem() instanceof GunItem) {
 			int i = 20;
 			if (this.level.getDifficulty() != Difficulty.HARD) {
 				i = 40;

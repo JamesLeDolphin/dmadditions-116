@@ -16,7 +16,6 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN;
 	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE;
 	public static RegistryObject<EntityType<BessieEntity>> BESSIE;
-	public static RegistryObject<EntityType<CyberDroneEntity>> CYBERBIRD;
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
@@ -45,10 +44,6 @@ public class DMAEntities {
 		BESSIE = DMARegistries.ENTITY_TYPES.register("bessie",
 				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
 					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
-
-		CYBERBIRD = DMARegistries.ENTITY_TYPES.register("cyber_drone",
-			() -> EntityType.Builder.of(CyberDroneEntity::new, EntityClassification.MONSTER).sized(0.9F, 0.6F)
-				.build((new ResourceLocation(DmAdditions.MODID, "cyber_drone")).toString()));
 
 			TW_SUV = DMARegistries.ENTITY_TYPES.register("torchwood_suv",
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)

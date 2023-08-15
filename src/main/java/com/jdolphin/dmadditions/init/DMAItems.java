@@ -13,7 +13,7 @@ import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
-import com.swdteam.common.item.LasergunItem;
+import com.swdteam.common.item.GunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -146,11 +146,11 @@ public class DMAItems {
 		SNOWMAN_SPAWNER = addSpawnItem("snowman");
 
 		UNIT_GUN = com.swdteam.common.RegistryHandler.ITEMS.register("unit_gun",
-			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
+			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT)));
 
 		TORCHWOOD_PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("torchwood_pistol",
-			() -> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
+			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 
@@ -202,7 +202,7 @@ public class DMAItems {
 		WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
 		PILOT_FISH_SPAWNER = addSpawnItem("pilot_fish");
 		PILOT_FISH_TRUMPET = com.swdteam.common.RegistryHandler.ITEMS.register("pilot_fish_trumpet",
-			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 2.0F,
+			() -> new GunItem(DMItemTiers.DALEK_CANNON, 2.0F,
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
@@ -213,11 +213,11 @@ public class DMAItems {
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 		RPG = ITEMS.register("rpg",
-			() -> new LasergunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
+			() -> new GunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 		PISTOL = com.swdteam.common.RegistryHandler.ITEMS.register("pistol", ()
-			-> new LasergunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
+			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
 
 		TARDIS_GOLD_KEY = com.swdteam.common.RegistryHandler.ITEMS.register("tardis_gold_key",

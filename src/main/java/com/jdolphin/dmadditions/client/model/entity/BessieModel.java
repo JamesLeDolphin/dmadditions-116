@@ -31,6 +31,11 @@ public class BessieModel extends SegmentedModel<BessieEntity> implements IModelP
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
+	@Override
 	public Iterable<ModelRenderer> parts() {
 		return ImmutableList.of(wheels, body);
 	}

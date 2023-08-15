@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.entity.ai.goal;
 
-import com.swdteam.common.item.LasergunItem;
+import com.swdteam.common.item.GunItem;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -39,7 +39,7 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 
 	@Override
 	protected boolean isHoldingBow() {
-		return this.mob.isHolding(item -> item instanceof LasergunItem);
+		return this.mob.isHolding(item -> item instanceof GunItem);
 	}
 
 	@Override
@@ -98,14 +98,14 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 				} else if (flag) {
 					int i = this.mob.getTicksUsingItem();
 					Item item = this.mob.getMainHandItem().getItem();
-					if (i >= ((LasergunItem)item).requiredChargeTime) {
+					if (i >= ((GunItem)item).requiredChargeTime) {
 						this.mob.stopUsingItem();
 						this.mob.performRangedAttack(livingentity, BowItem.getPowerForTime(i));
 						this.attackTime = this.attackIntervalMin;
 					}
 				}
 			} else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-				this.mob.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.mob, item -> item instanceof LasergunItem));
+				this.mob.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.mob, item -> item instanceof GunItem));
 			}
 
 		}

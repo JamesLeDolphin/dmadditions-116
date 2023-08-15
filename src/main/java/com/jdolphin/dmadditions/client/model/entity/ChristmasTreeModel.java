@@ -36,6 +36,11 @@ public class ChristmasTreeModel extends SegmentedModel<ChristmasTreeEntity> impl
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
+	@Override
 	public Iterable<ModelRenderer> parts() {
 		return ImmutableList.of(bottom, middle, top);
 	}

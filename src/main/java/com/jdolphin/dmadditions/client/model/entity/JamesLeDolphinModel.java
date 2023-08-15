@@ -46,6 +46,11 @@ public class JamesLeDolphinModel<T extends DolphinEntity> extends DolphinModel<T
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
+	@Override
 	@Nonnull
 	public Iterable<ModelRenderer> parts() {
 		return ImmutableList.of(this.body);

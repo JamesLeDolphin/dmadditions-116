@@ -40,6 +40,11 @@ public class PilotFishModel extends BipedModel<PilotFishEntity> implements IMode
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
+	@Override
 	@Nonnull
 	protected Iterable<ModelRenderer> bodyParts() {
 		return ImmutableList.of(this.body, this.rightArm, this.leftArm, this.rightLeg, this.leftLeg);

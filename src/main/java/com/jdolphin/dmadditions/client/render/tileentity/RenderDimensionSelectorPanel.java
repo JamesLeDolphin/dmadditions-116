@@ -26,6 +26,10 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 		super(dispatcher);
 		ModelReloaderRegistry.register(this);
 	}
+	@Override
+	public JSONModel getModel() {
+		return SCREEN_MODEL;
+	}
 
 	public void render(DimensionSelectorTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int combinedLightIn, int combinedOverlayIn) {
 		if (SCREEN_MODEL != null && tileEntity.getLevel().dimension().equals(DMDimensions.TARDIS)) {
