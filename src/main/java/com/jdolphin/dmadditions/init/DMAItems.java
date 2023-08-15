@@ -62,30 +62,6 @@ public class DMAItems {
 	public static final RegistryObject<Item> SPACE_SUIT_CHESTPLATE;
 	public static final RegistryObject<Item> SPACE_SUIT_HELMET;
 
-	/*public static RegistryObject<Item> STEEL_HELMET;
-	public static RegistryObject<Item> STEEL_CHESTPLATE;
-	public static RegistryObject<Item> STEEL_LEGGINGS;
-	public static RegistryObject<Item> STEEL_BOOTS;
-
-	public static RegistryObject<Item> DALEKANIUM_HELMET;
-	public static RegistryObject<Item> DALEKANIUM_CHESTPLATE;
-	public static RegistryObject<Item> DALEKANIUM_LEGGINGS;
-	public static RegistryObject<Item> DALEKANIUM_BOOTS;
-
-	public static RegistryObject<Item> REFINED_DALEKANIUM_HELMET;
-	public static RegistryObject<Item> REFINED_DALEKANIUM_CHESTPLATE;
-	public static RegistryObject<Item> REFINED_DALEKANIUM_LEGGINGS;
-	public static RegistryObject<Item> REFINED_DALEKANIUM_BOOTS;
-
-	public static RegistryObject<Item> PURE_DALEKANIUM_HELMET;
-	public static RegistryObject<Item> PURE_DALEKANIUM_CHESTPLATE;
-	public static RegistryObject<Item> PURE_DALEKANIUM_LEGGINGS;
-	public static RegistryObject<Item> PURE_DALEKANIUM_BOOTS;
-
-	public static RegistryObject<Item> METALERT_HELMET;
-	public static RegistryObject<Item> METALERT_CHESTPLATE;
-	public static RegistryObject<Item> METALERT_LEGGINGS;
-	public static RegistryObject<Item> METALERT_BOOTS;*/
 
 	public static RegistryObject<Item> BULLET_ITEM;
 	public static RegistryObject<Item> RPG;
@@ -229,65 +205,6 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = com.swdteam.common.RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
-		/*STEEL_HELMET = RegistryHandler.ITEMS.register("steel_helmet",
-			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		STEEL_CHESTPLATE = RegistryHandler.ITEMS.register("steel_chestplate",
-			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.CHEST, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		STEEL_LEGGINGS = RegistryHandler.ITEMS.register("steel_leggings",
-			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.LEGS, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		STEEL_BOOTS = RegistryHandler.ITEMS.register("steel_boots",
-			() -> new ArmorItem(DMAArmorMaterial.STEEL, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		DALEKANIUM_HELMET = RegistryHandler.ITEMS.register("dalekanium_helmet",
-			() -> new ArmorItem(DMAArmorMaterial.DALEKANIUM, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		DALEKANIUM_CHESTPLATE = RegistryHandler.ITEMS.register("dalekanium_chestplate",
-			() -> new ArmorItem(DMAArmorMaterial.DALEKANIUM, EquipmentSlotType.CHEST, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		DALEKANIUM_LEGGINGS = RegistryHandler.ITEMS.register("dalekanium_leggings",
-			() -> new ArmorItem(DMAArmorMaterial.DALEKANIUM, EquipmentSlotType.LEGS, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		DALEKANIUM_BOOTS = RegistryHandler.ITEMS.register("dalekanium_boots",
-			() -> new ArmorItem(DMAArmorMaterial.DALEKANIUM, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		REFINED_DALEKANIUM_HELMET = RegistryHandler.ITEMS.register("refined_dalekanium_helmet",
-			() -> new ArmorItem(DMAArmorMaterial.REFINED_DALEKANIUM, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		REFINED_DALEKANIUM_CHESTPLATE = RegistryHandler.ITEMS.register("refined_dalekanium_chestplate",
-			() -> new ArmorItem(DMAArmorMaterial.REFINED_DALEKANIUM, EquipmentSlotType.CHEST, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		REFINED_DALEKANIUM_LEGGINGS = RegistryHandler.ITEMS.register("refined_dalekanium_leggings",
-			() -> new ArmorItem(DMAArmorMaterial.REFINED_DALEKANIUM, EquipmentSlotType.LEGS, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		REFINED_DALEKANIUM_BOOTS = RegistryHandler.ITEMS.register("refined_dalekanium_boots",
-			() -> new ArmorItem(DMAArmorMaterial.REFINED_DALEKANIUM, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		PURE_DALEKANIUM_HELMET = RegistryHandler.ITEMS.register("pure_dalekanium_helmet",
-			() -> new ArmorItem(DMAArmorMaterial.PURE_DALEKANIUM, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		PURE_DALEKANIUM_CHESTPLATE = RegistryHandler.ITEMS.register("pure_dalekanium_chestplate",
-			() -> new ArmorItem(DMAArmorMaterial.PURE_DALEKANIUM, EquipmentSlotType.CHEST, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		PURE_DALEKANIUM_LEGGINGS = RegistryHandler.ITEMS.register("pure_dalekanium_leggings",
-			() -> new ArmorItem(DMAArmorMaterial.PURE_DALEKANIUM, EquipmentSlotType.LEGS, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		PURE_DALEKANIUM_BOOTS = RegistryHandler.ITEMS.register("pure_dalekanium_boots",
-			() -> new ArmorItem(DMAArmorMaterial.PURE_DALEKANIUM, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		METALERT_HELMET = RegistryHandler.ITEMS.register("metalert_helmet",
-			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.HEAD, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		METALERT_CHESTPLATE = RegistryHandler.ITEMS.register("metalert_chestplate",
-			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.CHEST, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		METALERT_LEGGINGS = RegistryHandler.ITEMS.register("metalert_leggings",
-			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.LEGS, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
-
-		METALERT_BOOTS = RegistryHandler.ITEMS.register("metalert_boots",
-			() -> new ArmorItem(DMAArmorMaterial.METALERT, EquipmentSlotType.FEET, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));*/
 
 
 //		STEEL_BUCKET = ITEMS.register("steel_bucket",
