@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "value": {
+            "modid": "tconstruct",
+            "type": "forge:mod_loaded"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:melting",
+        "ingredient": {
+          "item": "dalekmod:steel_block"
+        },
+        "result": {
+          "fluid": "tconstruct:molten_steel",
+          "amount": 1296
+        },
+        "temperature": 1000,
+        "time": 50
+      }
+    }
+  ]
+}
