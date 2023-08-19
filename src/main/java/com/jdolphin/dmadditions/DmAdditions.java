@@ -5,6 +5,7 @@ import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
+import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
@@ -130,11 +131,11 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		if(hasTC()) {
-			setTranslucent(DMAFluids.molten_dalekanium);
-			setTranslucent(DMAFluids.molten_steel);
-			setTranslucent(DMAFluids.molten_stainless_steel);
-			setTranslucent(DMAFluids.molten_metalert);
-			setTranslucent(DMAFluids.molten_silicon);
+			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
+			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
+			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
+			TinkersRenderType.setTranslucent(DMAFluids.molten_metalert);
+			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
 	@SubscribeEvent
@@ -144,12 +145,6 @@ public class DmAdditions {
 		if (hasTC() && event.includeServer()) {
 			datagenerator.addProvider(new FluidTags(datagenerator, existingFileHelper));
 		}
-	}
-
-
-	private static void setTranslucent(slimeknights.mantle.registration.object.FluidObject<?> fluid) {
-		RenderTypeLookup.setRenderLayer(fluid.getStill(), RenderType.translucent());
-		RenderTypeLookup.setRenderLayer(fluid.getFlowing(), RenderType.translucent());
 	}
 
 	public void biomeModification(BiomeLoadingEvent event) {
