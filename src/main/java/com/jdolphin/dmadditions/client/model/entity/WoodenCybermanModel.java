@@ -24,6 +24,11 @@ public class WoodenCybermanModel extends BipedModel<WoodenCybermanEntity> implem
 
 	}
 
+	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
 	public void init() {
 		this.model = ModelLoader.loadModel(new ResourceLocation("dalekmod", "models/entity/cyber/wooden_cyberman.json"));
 		if (this.model != null) {

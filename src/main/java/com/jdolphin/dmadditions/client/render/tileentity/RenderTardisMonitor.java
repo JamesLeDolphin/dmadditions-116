@@ -28,22 +28,18 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.LightType;
 
 public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEntity> implements IModelPartReloader {
-
+	public static JSONModel MODEL_SCANNER;
 	public RenderTardisMonitor(TileEntityRendererDispatcher p_i226006_1_) {
 		super(p_i226006_1_);
 		ModelReloaderRegistry.register(this);
 	}
-
-	public JSONModel getModel(TileEntity te) {
-		ResourceLocation registryName = te.getBlockState().getBlock().getRegistryName();
-		if (registryName == null) return null;
-
-		return ModelLoader.loadModel(new ResourceLocation(DalekMod.MODID,
-			String.format("models/tileentity/%s.json", registryName.getPath())));
+	@Override
+	public JSONModel getModel() {
+		return MODEL_SCANNER;
 	}
 
 	public void render(BetterScannerTileEntity te, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int combinedLightIn, int combinedOverlayIn) {
-		JSONModel model = getModel(te);
+		JSONModel model = getModel();
 		BlockState blockState = te.getBlockState();
 		BetterScannerBlock block = ((BetterScannerBlock) blockState.getBlock());
 		Vector3d screenTranslate = block.getScreenTranslate();
@@ -88,7 +84,9 @@ public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEnt
 		}
 
 	}
-
+	//TODO: Fix this thingymabob
 	public void init() {
+			MODEL_SCANNER = ModelLoader.loadModel(new ResourceLocation(DalekMod.MODID,
+				String.format("models/tileentity/%s.json"/*, registryName.getPath()*/)));
 	}
 }

@@ -32,6 +32,11 @@ public class TorchwoodSuvModel extends SegmentedModel<TorchwoodSuvEntity> implem
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
+	@Override
 	public void init() {
 		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/torchwood_suv.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();

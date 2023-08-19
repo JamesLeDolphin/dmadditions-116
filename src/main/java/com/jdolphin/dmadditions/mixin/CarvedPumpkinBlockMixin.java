@@ -32,49 +32,49 @@ public abstract class CarvedPumpkinBlockMixin {
 	protected abstract BlockPattern getOrCreateSnowGolemFull();
 
 	@Inject(method = "trySpawnGolem(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V", at = @At("HEAD"), remap = true)
-	public void trySpawnGolem(World p_196358_1_, BlockPos p_196358_2_, CallbackInfo ci) {
+	public void trySpawnGolem(World world, BlockPos pos, CallbackInfo ci) {
 
-		BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreateSnowGolemFull().find(p_196358_1_, p_196358_2_);
+		BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreateSnowGolemFull().find(world, pos);
 		if (blockpattern$patternhelper != null) {
 			for (int i = 0; i < this.getOrCreateSnowGolemFull().getHeight(); ++i) {
 				CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.getBlock(0, i, 0);
-				p_196358_1_.setBlock(cachedblockinfo.getPos(), Blocks.AIR.defaultBlockState(), 2);
-				p_196358_1_.levelEvent(2001, cachedblockinfo.getPos(), Block.getId(cachedblockinfo.getState()));
+				world.setBlock(cachedblockinfo.getPos(), Blocks.AIR.defaultBlockState(), 2);
+				world.levelEvent(2001, cachedblockinfo.getPos(), Block.getId(cachedblockinfo.getState()));
 			}
 
 			LivingEntity snowgolementity;
 			BlockPos blockpos1 = blockpattern$patternhelper.getBlock(0, 2, 0).getPos();
 			if (new Random().nextBoolean()) {
-				snowgolementity = EntityType.SNOW_GOLEM.create(p_196358_1_);
+				snowgolementity = EntityType.SNOW_GOLEM.create(world);
 				snowgolementity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
-				p_196358_1_.addFreshEntity(snowgolementity);
+				world.addFreshEntity(snowgolementity);
 			} else {
-				snowgolementity = new SnowmanEntity(DMAEntities.SNOWMAN.get(), p_196358_1_);
+				snowgolementity = new SnowmanEntity(DMAEntities.SNOWMAN.get(), world);
 				snowgolementity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
 
 				SnowmanEntity snowman = (SnowmanEntity) snowgolementity;
 
-				snowman.finalizeSpawn((IServerWorld) p_196358_1_,
-					p_196358_1_.getCurrentDifficultyAt(snowman.blockPosition()), SpawnReason.SPAWN_EGG, null, null);
+				snowman.finalizeSpawn((IServerWorld) world,
+					world.getCurrentDifficultyAt(snowman.blockPosition()), SpawnReason.SPAWN_EGG, null, null);
 
 				if (!snowman.equipItemIfPossible(new ItemStack(Items.CARVED_PUMPKIN))) {
-					p_196358_1_.addFreshEntity(
-						new ItemEntity(p_196358_1_,
+					world.addFreshEntity(
+						new ItemEntity(world,
 							snowman.getX(), snowman.getY(), snowman.getZ(),
 							new ItemStack(Items.CARVED_PUMPKIN)));
 				}
 
-				p_196358_1_.addFreshEntity(snowgolementity);
+				world.addFreshEntity(snowgolementity);
 			}
 
 
-			for (ServerPlayerEntity serverplayerentity : p_196358_1_.getEntitiesOfClass(ServerPlayerEntity.class, snowgolementity.getBoundingBox().inflate(5.0D))) {
+			for (ServerPlayerEntity serverplayerentity : world.getEntitiesOfClass(ServerPlayerEntity.class, snowgolementity.getBoundingBox().inflate(5.0D))) {
 				CriteriaTriggers.SUMMONED_ENTITY.trigger(serverplayerentity, snowgolementity);
 			}
 
 			for (int l = 0; l < this.getOrCreateSnowGolemFull().getHeight(); ++l) {
 				CachedBlockInfo cachedblockinfo3 = blockpattern$patternhelper.getBlock(0, l, 0);
-				p_196358_1_.blockUpdated(cachedblockinfo3.getPos(), Blocks.AIR);
+				world.blockUpdated(cachedblockinfo3.getPos(), Blocks.AIR);
 			}
 		}
 	}

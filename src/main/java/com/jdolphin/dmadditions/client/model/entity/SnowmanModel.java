@@ -40,6 +40,10 @@ public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IMode
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+	@Override
 	public void init() {
 		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/snowman.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();

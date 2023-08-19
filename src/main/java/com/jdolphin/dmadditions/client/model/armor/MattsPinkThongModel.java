@@ -31,6 +31,11 @@ public class MattsPinkThongModel extends BipedModel<LivingEntity> implements IMo
 	}
 
 	@Override
+	public JSONModel getModel() {
+		return model;
+	}
+
+	@Override
 	protected Iterable<ModelRenderer> bodyParts() {
 		return ImmutableList.of(leftLeg, rightLeg, body);
 	}

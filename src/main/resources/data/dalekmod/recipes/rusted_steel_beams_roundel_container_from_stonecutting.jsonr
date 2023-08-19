@@ -1,8 +1,0 @@
-{
-		"type": "minecraft:stonecutting",
-		"ingredient": {
-				"item": "dalekmod:filled_rusted_steel_beams_roundel_container"
-		},
-		"result": "dalekmod:rusted_steel_beams_roundel_container",
-		"count": 1
-}

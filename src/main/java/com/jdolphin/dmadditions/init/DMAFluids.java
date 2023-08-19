@@ -15,7 +15,7 @@ public class DMAFluids {
 
 	public static final FluidObject<ForgeFlowingFluid> molten_dalekanium = FLUIDS.register("molten_dalekanium", hotBuilder().temperature(1234), Material.LAVA,  9);
 	public static final FluidObject<ForgeFlowingFluid> molten_steel = FLUIDS.register("molten_steel", hotBuilder().temperature(1234), Material.LAVA,  9);
-	public static final FluidObject<ForgeFlowingFluid> molten_stainless_steel = FLUIDS.register("molten_stainless_steel", hotBuilder().temperature(1234), Material.LAVA,  9);
+	public static final FluidObject<ForgeFlowingFluid> molten_stainless_steel = FLUIDS.register("molten_stainless_steel", hotBuilder().temperature(1234), Material.LAVA, 9);
 	public static final FluidObject<ForgeFlowingFluid> molten_metalert = FLUIDS.register("molten_metalert", hotBuilder().temperature(1234), Material.LAVA,  9);
 	public static final FluidObject<ForgeFlowingFluid> molten_silicon = FLUIDS.register("molten_silicon", hotBuilder().temperature(1234), Material.LAVA,  9);
 
