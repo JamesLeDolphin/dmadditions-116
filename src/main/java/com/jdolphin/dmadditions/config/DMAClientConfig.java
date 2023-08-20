@@ -1,19 +1,36 @@
 package com.jdolphin.dmadditions.config;
 
+import com.jdolphin.dmadditions.vortex.Vortex;
+import com.jdolphin.dmadditions.vortex.VortexType;
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.util.Random;
+
 
 public final class DMAClientConfig {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 	public static final ForgeConfigSpec SPEC;
-
-	public static final ForgeConfigSpec.ConfigValue<Boolean> dma_title;
+	public static ForgeConfigSpec.ConfigValue<Boolean> dma_vortex;
+	public static ForgeConfigSpec.EnumValue<VortexType> vortex_type;
+	public static ForgeConfigSpec.BooleanValue white_hole;
 
 	static {
 		BUILDER.push("Dalek Mod: Additions Client Config");
-
-		dma_title = BUILDER.comment("Use Dalek Mod: Additions title screen. Deafult = true").define("dma_title_classic", true);
+		dma_vortex = BUILDER.comment("Use time vortex on title screen").define("vortex", true);
+		white_hole = BUILDER.comment("Enable White Hole at the end of the vortex").define("white_hole", false);
+		vortex_type = BUILDER.comment("The type of vortex to use").defineEnum("vortex_type", VortexType.NONE);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();
+	}
+	public static Vortex getVortex() {
+		if (vortex_type.get() == VortexType.NONE) {
+			int i = new Random().nextInt(VortexType.values().length);
+			return VortexType.values()[i].vortex;
+		}
+		return vortex_type.get().vortex;
+	}
+	public static boolean whiteHole() {
+		return white_hole.get();
 	}
 }

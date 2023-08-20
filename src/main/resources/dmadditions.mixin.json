@@ -22,6 +22,7 @@
 		"TardisTileEntityMixin"
 	],
 	"client": [
+		"MainMenuScreenMixin",
 		"ClientProxyMixin",
 		"DalekEntityMixin",
 		"DMEntityRenderRegistryMixin",
