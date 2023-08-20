@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.vortex;
+package com.jdolphin.dmadditions.client.title.vortex;
 
 import net.minecraft.client.renderer.RenderSkybox;
 import net.minecraft.client.renderer.RenderSkyboxCube;

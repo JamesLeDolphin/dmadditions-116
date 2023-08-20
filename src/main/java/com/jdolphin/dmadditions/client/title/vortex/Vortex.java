@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.vortex;
+package com.jdolphin.dmadditions.client.title.vortex;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.config.DMAClientConfig;

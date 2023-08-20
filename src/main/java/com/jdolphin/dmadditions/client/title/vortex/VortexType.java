@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.vortex;
+package com.jdolphin.dmadditions.client.title.vortex;
 
 public enum VortexType {
 	Y1976("1976"),
