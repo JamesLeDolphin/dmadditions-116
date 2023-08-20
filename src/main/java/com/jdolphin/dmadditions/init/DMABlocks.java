@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
+import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.StatueBlock;
@@ -20,7 +20,6 @@ import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
-import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.register;
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
 

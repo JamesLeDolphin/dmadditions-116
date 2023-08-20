@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.config;
 
-import com.jdolphin.dmadditions.client.title.MenuBackGround;
 import com.jdolphin.dmadditions.client.title.vortex.Vortex;
 import com.jdolphin.dmadditions.client.title.vortex.VortexType;
 import net.minecraftforge.common.ForgeConfigSpec;

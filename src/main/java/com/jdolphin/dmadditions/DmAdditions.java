@@ -15,7 +15,6 @@ import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;

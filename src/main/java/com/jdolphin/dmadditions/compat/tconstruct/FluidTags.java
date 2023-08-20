@@ -8,7 +8,6 @@ import net.minecraft.fluid.Fluid;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.registration.object.FluidObject;
-import slimeknights.tconstruct.common.data.tags.FluidTagProvider;
 
 public class FluidTags extends FluidTagsProvider {
 
