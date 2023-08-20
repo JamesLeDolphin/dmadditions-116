@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.mixin;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
+import com.jdolphin.dmadditions.client.title.vortex.VortexSkybox;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.MainMenuScreen;
@@ -47,8 +48,8 @@ public abstract class MainMenuScreenMixin extends Screen{
 			int i = new Random().nextInt(MenuBackGround.values().length);
 			dmadditions_116$getBg(MenuBackGround.values()[i].toString().toLowerCase());
 		}
-		//if (DMAClientConfig.dma_vortex.get()) {
-		//	panorama = new VortexSkybox(DMAClientConfig.getVortex());
-		//}
+		if (DMAClientConfig.dma_vortex.get()) {
+			panorama = new VortexSkybox(DMAClientConfig.getVortex());
+		}
 	}
 }
