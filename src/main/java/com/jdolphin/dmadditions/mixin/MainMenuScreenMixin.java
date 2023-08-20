@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.mixin;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
-import com.jdolphin.dmadditions.client.title.vortex.VortexSkybox;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.MainMenuScreen;
@@ -28,15 +27,13 @@ public abstract class MainMenuScreenMixin extends Screen{
 	@Shadow
 	@Final private RenderSkybox panorama;
 
-	@Unique
 	@Mutable
+	@Shadow
 	@Final private static ResourceLocation PANORAMA_OVERLAY;
 
-
 	@Unique
-	private static void getBg(String name) {
+	private static void dmadditions_116$getBg(String name) {
 		PANORAMA_OVERLAY = new ResourceLocation(DmAdditions.MODID, "textures/gui/main/background/" + name + ".png");
-
 	}
 
 	@Inject(method = "render", at = @At(value = "HEAD"))
@@ -48,11 +45,10 @@ public abstract class MainMenuScreenMixin extends Screen{
 	private void init(CallbackInfo ci) {
 		if (DMAClientConfig.dma_classic.get()) {
 			int i = new Random().nextInt(MenuBackGround.values().length);
-			String s = MenuBackGround.values()[i].toString().toLowerCase();
-			getBg(s);
+			dmadditions_116$getBg(MenuBackGround.values()[i].toString().toLowerCase());
 		}
-		if (DMAClientConfig.dma_vortex.get()) {
-			panorama = new VortexSkybox(DMAClientConfig.getVortex());
-		}
+		//if (DMAClientConfig.dma_vortex.get()) {
+		//	panorama = new VortexSkybox(DMAClientConfig.getVortex());
+		//}
 	}
 }
