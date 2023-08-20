@@ -32,6 +32,9 @@ public enum MixinBlock {
 
 	WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(
 		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
+
+	FLIGHT_PANEL(() -> new BetterFlightPanel(
+		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	;
 
 	public final Supplier<Block> supplier;

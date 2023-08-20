@@ -25,7 +25,7 @@ public abstract class DMBlocksMixin {
 		remap = false)
 	private static <B extends Block> void registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem, CallbackInfoReturnable<RegistryObject<Block>> cir) {
 		if (MixinBlock.has(name)) {
-			LogManager.getLogger(DmAdditions.MODID).info(String.format("Changing %s", name, "'s behavior."));
+			LogManager.getLogger(DmAdditions.MODID).info(String.format("Changing %s 's behavior", name));
 
 			RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, MixinBlock.get(name).supplier);
 			if (needsItem) {
