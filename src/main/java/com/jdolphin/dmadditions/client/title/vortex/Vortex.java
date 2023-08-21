@@ -68,7 +68,7 @@ public class Vortex{
 		buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
 
 		for (int i = 0; i < 24; ++i) {
-			this.renderSection(buffer, i, time * -this.speed, f3, (float) Math.sin(i * Math.PI / 64), (float) Math.sin((i + 1) * Math.PI / 64));
+			this.renderSection(buffer, i, time * -this.speed, f3, (float) Math.sin(i * Math.PI / 36), (float) Math.sin((i + 1) * Math.PI / 36));
 		}
 		tessellator.end();
 
@@ -76,13 +76,13 @@ public class Vortex{
 		time += Minecraft.getInstance().getDeltaFrameTime() / 100;
 	}
 
-	private static final float oneEighth = 1/8f;
+	private static final float oneEighth = 1/6f;
 	//135* aka octagon angle
-	private static final float sqrt2Over2 = (float) Math.sqrt(2) / 2.0f;
+	private static final float sqrt2Over2 = (float) Math.sqrt(3) / 2;
 
 	public void renderSection(BufferBuilder builder, int locationOffset, float textureDistanceOffset, float textureRotationOffset, float startScale, float endScale) {
-		int verticalOffset = (locationOffset * oneEighth + textureDistanceOffset > 1.0) ? locationOffset - 8 : locationOffset;
-		int horizontalOffset = (textureRotationOffset > 1.0) ? -8 : 0;
+		int verticalOffset = (locationOffset * oneEighth + textureDistanceOffset > 1.0) ? locationOffset - 6 : locationOffset;
+		int horizontalOffset = (textureRotationOffset > 1.0) ? -6 : 0;
 
 		builder.vertex(0, -startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEighth + textureRotationOffset, verticalOffset * oneEighth + textureDistanceOffset).endVertex();
@@ -108,6 +108,7 @@ public class Vortex{
 
 		builder.vertex(startScale * -sqrt2Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEighth + oneEighth + textureRotationOffset, verticalOffset * oneEighth + 0.0f + textureDistanceOffset).endVertex();
+
 		horizontalOffset = ((1.0f / 3.0f + textureRotationOffset > 1.0) ? -4 : 2);
 
 		builder.vertex(startScale * -sqrt2Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
