@@ -15,13 +15,15 @@
 
 package com.jdolphin.dmadditions.mixin;
 
-import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
-import com.swdteam.common.tileentity.TardisTileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
+import com.swdteam.common.tileentity.TardisTileEntity;
+
+import net.minecraft.tileentity.TileEntityType;
 
 @Mixin(TardisTileEntity.class)
 public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase {

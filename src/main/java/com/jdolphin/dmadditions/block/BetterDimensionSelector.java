@@ -164,7 +164,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 											.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
 												.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 										if (tile != null) {
-											tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());
+											net.tardis.mod.network.Network.sendToTrackingTE(new net.tardis.mod.network.packets.ConsoleUpdateMessage(net.tardis.mod.network.packets.console.DataTypes.DIMENSION_LIST, new net.tardis.mod.network.packets.console.DimensionData(this.dimList.size(), this.index)), tile);
 										}
 									} else {
 										this.index = 0;
@@ -185,7 +185,8 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 												.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
 													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 											if (tile != null) {
-												tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());											}
+												net.tardis.mod.network.Network.sendToTrackingTE(new net.tardis.mod.network.packets.ConsoleUpdateMessage(net.tardis.mod.network.packets.console.DataTypes.DIMENSION_LIST, new net.tardis.mod.network.packets.console.DimensionData(this.dimList.size(), this.index)), tile);
+											}
 										} else {
 											this.index = 0;
 										}
