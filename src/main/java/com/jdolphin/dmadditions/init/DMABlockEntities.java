@@ -1,8 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
-import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
+
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
 import com.swdteam.common.RegistryHandler;

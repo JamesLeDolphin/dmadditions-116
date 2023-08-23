@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
-import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
@@ -15,6 +14,7 @@ import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
@@ -24,8 +24,6 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -86,6 +84,8 @@ public class DmAdditions {
 		}
 	}
 
+
+
 	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
 		GameModeCommand.register(dispatcher);
 		TeleportCommand.register(dispatcher);
@@ -130,11 +130,11 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		if(hasTC()) {
-			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_metalert);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
+			setTranslucent(DMAFluids.molten_dalekanium);
+			setTranslucent(DMAFluids.molten_steel);
+			setTranslucent(DMAFluids.molten_stainless_steel);
+			setTranslucent(DMAFluids.molten_metalert);
+			setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
 	@SubscribeEvent
@@ -144,6 +144,12 @@ public class DmAdditions {
 		if (hasTC() && event.includeServer()) {
 			datagenerator.addProvider(new FluidTags(datagenerator, existingFileHelper));
 		}
+	}
+
+
+	private static void setTranslucent(slimeknights.mantle.registration.object.FluidObject<?> fluid) {
+		RenderTypeLookup.setRenderLayer(fluid.getStill(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(fluid.getFlowing(), RenderType.translucent());
 	}
 
 	public void biomeModification(BiomeLoadingEvent event) {

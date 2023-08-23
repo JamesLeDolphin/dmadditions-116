@@ -39,8 +39,8 @@ import static com.jdolphin.dmadditions.init.DMAItems.SNOWMAN_SPAWNER;
 
 public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 
-	public SnowmanEntity(EntityType<? extends SnowmanEntity> type, World level) {
-		super(type, level);
+	public SnowmanEntity(EntityType<? extends MonsterEntity> p_i48553_1_, World p_i48553_2_) {
+		super(p_i48553_1_, p_i48553_2_);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 	}
 
 	@Nullable
-	protected SoundEvent getHurtSound(DamageSource source) {
+	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
 		return SoundEvents.SNOW_GOLEM_HURT;
 	}
 
@@ -95,8 +95,8 @@ public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 	}
 
 	@Override
-	protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
-		super.populateDefaultEquipmentSlots(instance);
+	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+		super.populateDefaultEquipmentSlots(p_180481_1_);
 
 		if (random.nextFloat() <= 0.25 && DMAItems.SANTA_HAT != null) {
 			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
@@ -105,12 +105,12 @@ public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 
 	@Nullable
 	@Override
-	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance dif, SpawnReason reason, @Nullable ILivingEntityData data, @Nullable CompoundNBT tag) {
-		data = super.finalizeSpawn(world, dif, reason, data, tag);
-		this.populateDefaultEquipmentSlots(dif);
-		this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * dif.getSpecialMultiplier());
+	public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
+		p_213386_4_ = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+		this.populateDefaultEquipmentSlots(p_213386_2_);
+		this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * p_213386_2_.getSpecialMultiplier());
 
-		return data;
+		return p_213386_4_;
 	}
 
 	@Override

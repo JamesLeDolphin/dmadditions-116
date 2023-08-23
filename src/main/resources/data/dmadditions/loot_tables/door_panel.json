@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dalekmod:door_panel"
+          "name": "dm_door_panel:door_panel"
         }
       ],
       "conditions": [

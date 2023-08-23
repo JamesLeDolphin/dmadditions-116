@@ -8,7 +8,6 @@
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
-		"BotiMixin",
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
 		"DMBlocksMixin",
@@ -23,7 +22,6 @@
 		"TardisTileEntityMixin"
 	],
 	"client": [
-		"MainMenuScreenMixin",
 		"ClientProxyMixin",
 		"DalekEntityMixin",
 		"DMEntityRenderRegistryMixin",

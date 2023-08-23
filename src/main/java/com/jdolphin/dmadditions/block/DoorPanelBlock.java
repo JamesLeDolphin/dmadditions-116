@@ -16,12 +16,21 @@
 
 package com.jdolphin.dmadditions.block;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.swdteam.common.block.IBlockTooltip;
 import com.swdteam.common.block.RotatableTileEntityBase;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -47,13 +56,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implements IBlockTooltip {
 
