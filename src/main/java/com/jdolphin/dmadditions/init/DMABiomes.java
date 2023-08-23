@@ -15,11 +15,7 @@ public class DMABiomes {
 	public static RegistryKey<Biome> MOON;
 
 	public static final RegistryObject<Biome> ANDROZANIMINOR_BIOME;
-
 	public static RegistryKey<Biome> ANDROZANIMINOR;
-
-
-
 
 	private static RegistryKey<Biome> makeKey(String name) {
 		return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("dalekmod", name));
