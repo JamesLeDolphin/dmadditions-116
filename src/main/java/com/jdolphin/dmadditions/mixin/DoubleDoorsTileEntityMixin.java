@@ -15,18 +15,16 @@
 
 package com.jdolphin.dmadditions.mixin;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisDoor;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.tardis.DoubleDoorsTileEntity;
-
 import net.minecraft.tileentity.TileEntityType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DoubleDoorsTileEntity.class)
 public abstract class DoubleDoorsTileEntityMixin extends DMTileEntityBase  {

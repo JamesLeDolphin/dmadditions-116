@@ -15,17 +15,15 @@
 
 package com.jdolphin.dmadditions.mixin;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.tardis.RoundelDoorTileEntity;
-
 import net.minecraft.tileentity.TileEntityType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RoundelDoorTileEntity.class)
 public abstract class RoundelDoorTileEntityMixin extends DMTileEntityBase {
