@@ -1,0 +1,22 @@
+{
+    "coordinate_scale": 1.0,
+    "infiniburn": "minecraft:infiniburn_overworld",
+    "logical_height": 256,
+    "ambient_light": 0.0,
+    "has_ceiling": false,
+    "has_skylight": true,
+    "ultrawarm": false,
+    "natural": false,
+    "piglin_safe": false,
+    "bed_works": true,
+    "respawn_anchor_works": false,
+    "has_raids": false,
+    "logical_depth": 0,
+    "effects": "minecraft:overworld",
+    "min_y": 0,
+    "height": 256,
+    "logical_minimum_y": 0,
+    "min_build_height": 0,
+    "name": "dalekmod:androzaniminor"
+  }
+}

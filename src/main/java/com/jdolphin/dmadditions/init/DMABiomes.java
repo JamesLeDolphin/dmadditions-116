@@ -14,11 +14,18 @@ public class DMABiomes {
 	public static final RegistryObject<Biome> MOON_BIOME;
 	public static RegistryKey<Biome> MOON;
 
+	public static final RegistryObject<Biome> ANDROZANIMINOR_BIOME;
+
+	public static RegistryKey<Biome> ANDROZANIMINOR;
+
+
+
 
 	private static RegistryKey<Biome> makeKey(String name) {
 		return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("dalekmod", name));
 	}
 	static {
 		MOON_BIOME = RegistryHandler.BIOMES.register("moon", BiomeMaker::theVoidBiome);
+		ANDROZANIMINOR_BIOME = RegistryHandler.BIOMES.register("androzaniminor", BiomeMaker::theVoidBiome);
 	}
 }
