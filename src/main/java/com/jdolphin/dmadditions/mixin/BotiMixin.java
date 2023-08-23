@@ -70,15 +70,11 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 	@Inject(method = "tick()V", at = @At("TAIL"), remap = false)
 	public void tick(CallbackInfo ci) {
-
 		TardisTileEntity t = (TardisTileEntity) ((Object) this);
-
-		if(portal != null)
-		{
+		if(portal != null) {
 			portal.setId(8762);
 		}
-
-		if (!this.level.isClientSide) {
+		if (!this.level.isClientSide()) {
 			t.tardisData = DMTardis.getTardis(t.globalID);
 
                     /*
