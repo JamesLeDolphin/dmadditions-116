@@ -1,12 +1,11 @@
-{
-  "type": "minecraft:dimension",
-  "generator": {
-    "type": "minecraft:noise",
-    "seed": 123456789,
-    "settings": "minecraft:overworld",
-    "biome_source": {
-      "type": "minecraft:fixed",
-      "biome": "minecraft:snowy_taiga"
-    }
-  }
-}
+{ 
+   "type": "minecraft:dimension", 
+   "generator": { 
+     "type": "minecraft:noise", 
+     "seed": 123456789
+   },
+   "biome_source": { 
+     "type": "minecraft:fixed", 
+     "biome": "minecraft:snowy_taiga" 
+   } 
+ }
