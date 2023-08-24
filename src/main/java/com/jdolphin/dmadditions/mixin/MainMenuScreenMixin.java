@@ -46,7 +46,7 @@ public abstract class MainMenuScreenMixin extends Screen{
 	private void init(CallbackInfo ci) {
 		if (DMAClientConfig.dma_classic.get()) {
 			int i = new Random().nextInt(MenuBackGround.values().length);
-			dmadditions_116$getBg(MenuBackGround.values()[i].toString().toLowerCase());
+			dmadditions_116$getBg(MenuBackGround.values()[i].getName());
 		}
 		if (DMAClientConfig.dma_vortex.get()) {
 			panorama = new VortexSkybox(DMAClientConfig.getVortex());
