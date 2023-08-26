@@ -1,6 +1,6 @@
 {
-  "type": "dalekmod:androzaniminor_carver",
+  "type": "minecraft:cave",
   "config": {
-    "probability": 0.14159
+    "probability": 0.01
   }
 }
