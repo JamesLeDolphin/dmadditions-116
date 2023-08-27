@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -154,6 +155,8 @@ public class DMABlocks {
 
 	public static final RegistryObject<Block> DOOR_PANEL;
 
+	public static final RegistryObject<Block> CHRISTMAS_PRESENT;
+
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
 			return null;
@@ -163,8 +166,11 @@ public class DMABlocks {
 
 
 	static {
+
+
+
 		DOOR_PANEL = registerBlockAndItem("door_panel", () -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
-			new Item.Properties().tab(DMTabs.DM_TARDIS));
+		new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 		BLUE_CANDY_CANE_BLOCK = registerBlock(() -> {
 			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
@@ -198,17 +204,22 @@ public class DMABlocks {
 		REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
 			.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 
+		CHRISTMAS_PRESENT = registerAdventBlock(1,
+			() -> new DimensionTpBlock(new ResourceLocation("dalekmod","androzaniminor"), AbstractBlock.Properties.copy(Blocks.STONE).harvestTool(ToolType.PICKAXE)),
+			"christmas_present", ItemGroup.TAB_DECORATIONS);
+
+
 		WREATH = registerBlock(
-			() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
-			"wreath", ItemGroup.TAB_DECORATIONS);
+		() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
+		"wreath", ItemGroup.TAB_DECORATIONS);
 
 		TARDIS_SNOWGLOBE = registerBlock(
-			() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
-			"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
+		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
+		"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
 
 		RANDOMIZER = registerBlock(
-			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-			"randomizer", DMTabs.DM_TARDIS);
+		() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+		"randomizer", DMTabs.DM_TARDIS);
 
 		CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.get())), "cheese_ore");
 

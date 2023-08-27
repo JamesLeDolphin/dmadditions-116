@@ -8,7 +8,7 @@ import static com.jdolphin.dmadditions.DmAdditions.IS_DEBUG;
 public class AdventUnlock {
 	protected static Calendar calendar = Calendar.getInstance();
 
-	protected static final boolean FORCE_FAKE_DATE = false;
+	protected static final boolean FORCE_FAKE_DATE = true;
 	private static final int FAKE_YEAR = 2023;
 	private static final int FAKE_MONTH = Calendar.DECEMBER;
 	private static final int FAKE_DATE = 25;
