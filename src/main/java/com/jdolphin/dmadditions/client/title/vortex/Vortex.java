@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.client.title.vortex;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.swdteam.client.gui.util.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -36,16 +37,15 @@ public class Vortex{
 		int width = Minecraft.getInstance().screen.width;
 		int height = Minecraft.getInstance().screen.height;
 		float scale = Math.max(width, height) / 14;
-
 		GlStateManager._clearColor(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager._clear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT, true);
+
+		//VortexTardis.render();
 
 		GlStateManager._pushMatrix();
 		GlStateManager._translatef(width / 2, height / 2, -scale);
 		GlStateManager._scalef(scale, scale, 0);
-
 		renderVortex();
-
 		GlStateManager._popMatrix();
 	}
 
@@ -71,7 +71,7 @@ public class Vortex{
 			this.renderSection(buffer, i, time * -this.speed, f3, (float) Math.sin(i * Math.PI / 36), (float) Math.sin((i + 1) * Math.PI / 36));
 		}
 		tessellator.end();
-
+		GlStateManager._disableCull();
 		GlStateManager._popMatrix();
 		time += Minecraft.getInstance().getDeltaFrameTime() / 100;
 	}
