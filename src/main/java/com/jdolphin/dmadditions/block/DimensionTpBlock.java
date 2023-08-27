@@ -3,14 +3,12 @@ package com.jdolphin.dmadditions.block;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.util.ActionResultType;
@@ -28,11 +26,10 @@ public class DimensionTpBlock extends Block {
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide()) {
-			ServerWorld destinationWorld = getServerWorldForDimension(targetDimensionId, worldIn.getServer());
+			ServerWorld destinationWorld = getServerWorldForDimension(targetDimensionId, player.getServer());
 
 			if (destinationWorld != null) {
-				Vector3d targetPos = player.position();
-				teleportPlayerToDimension(player, targetPos, destinationWorld);
+				teleportPlayerToDimension(player, destinationWorld);
 			}
 		}
 		return ActionResultType.SUCCESS;
@@ -43,12 +40,11 @@ public class DimensionTpBlock extends Block {
 		return server.getLevel(key);
 	}
 
-	private void teleportPlayerToDimension(PlayerEntity player, Vector3d targetPos, ServerWorld destinationWorld) {
-		// Teleport the player to the target dimension and location
-		Entity entity = player.changeDimension(destinationWorld);
+	private void teleportPlayerToDimension(PlayerEntity player, ServerWorld destinationWorld) {
+		ServerWorld originWorld = player.level.getServer().getLevel(player.level.dimension());
 
-		if (entity != null) {
-			entity.teleportTo(targetPos.x, targetPos.y, targetPos.z);
+		if (originWorld != null && originWorld != destinationWorld) {
+			player.changeDimension(destinationWorld);
 		}
 	}
 }
