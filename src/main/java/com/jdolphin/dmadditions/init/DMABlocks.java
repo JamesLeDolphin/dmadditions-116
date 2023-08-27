@@ -205,8 +205,8 @@ public class DMABlocks {
 			.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 
 		CHRISTMAS_PRESENT = registerAdventBlock(1,
-			() -> new DimensionTpBlock(new ResourceLocation("dalekmod","androzaniminor"), AbstractBlock.Properties.copy(Blocks.STONE).harvestTool(ToolType.PICKAXE)),
-			"christmas_present", ItemGroup.TAB_DECORATIONS);
+			() -> new DimensionTpBlock(new ResourceLocation("dalekmod","androzaniminor"), AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
+				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 
 		WREATH = registerBlock(
