@@ -8,6 +8,7 @@ import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
+import com.swdteam.main.DalekMod;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -205,7 +206,7 @@ public class DMABlocks {
 			.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 
 		CHRISTMAS_PRESENT = registerAdventBlock(1,
-			() -> new DimensionTpBlock(new ResourceLocation("dalekmod","androzaniminor"), AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
+			() -> new DimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
 				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 
