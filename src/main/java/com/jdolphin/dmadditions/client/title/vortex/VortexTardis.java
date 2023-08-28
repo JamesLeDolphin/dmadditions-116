@@ -34,19 +34,22 @@ public class VortexTardis {
 		Random rand = new Random();
 		List<Tardis> list = DMTardisRegistry.getRegistryAsList();
 		System.out.print(list.size());
-		int j = rand.nextInt(17);
+		if (list.size() > 0) {
+			int j = rand.nextInt(list.size());
 
-		IRenderTypeBuffer buffer = Minecraft.getInstance().renderBuffers().bufferSource();
+			IRenderTypeBuffer buffer = Minecraft.getInstance().renderBuffers().bufferSource();
 
-		MatrixStack matrixStack = new MatrixStack();
-		matrixStack.pushPose();
+			MatrixStack matrixStack = new MatrixStack();
+			matrixStack.pushPose();
 
-		matrixStack.translate(0, 0, 1);
-		matrixStack.scale(scale, scale, scale);
-		RenderSystem.translatef(0f, 0f, 0f);
-		GuiUtils.drawEntityOnScreen(matrixStack, width / 2, height / 2, scale, rotation, ExteriorModels.getModel(DMTardisRegistry
-			.getRegistryAsList().get(j).getRegistryName()));
+			matrixStack.translate(0, 0, 1);
+			matrixStack.scale(scale, scale, scale);
+			RenderSystem.translatef(0f, 0f, 0f);
+			ResourceLocation rl = DMTardisRegistry.getRegistryAsList().get(j).getRegistryName();
+			GuiUtils.drawEntityOnScreen(matrixStack, width / 2, height / 2, scale, rotation, ExteriorModels.getModel(rl));
+			ExteriorModels.resetDoorAnimation(rl);
 
-		matrixStack.popPose();
+			matrixStack.popPose();
+		}
 	}
 }
