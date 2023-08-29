@@ -44,17 +44,24 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.JarFile;
 
 
 @Mod("dmadditions")
 public class DmAdditions {
 	public static final String MODID = "dmadditions";
+
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
@@ -79,6 +86,7 @@ public class DmAdditions {
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
+		modEventBus.addListener(this::dataEvent);
 		// Register things
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
@@ -144,6 +152,31 @@ public class DmAdditions {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
+	public static List<Data> EXTERIORS = new ArrayList<>();
+
+	public void dataEvent(final FMLLoadCompleteEvent event) {
+		System.out.print("Bing bong this thing aint wrong");
+		Gson gson = new Gson();
+		List<ModFileInfo> files = ModList.get().getModFiles();
+		for (ModFileInfo file : files) {
+			try (JarFile jarFile = new JarFile(file.getFile().getFilePath().toFile())) {
+				jarFile.stream()
+					.filter(entry -> entry.getName().startsWith("data/")
+						&& entry.getName().contains("/tardis_exteriors/") && entry.getName().contains(".json"))
+					.forEach(entry -> {
+						try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
+							Data myObject = gson.fromJson(reader, Data.class);
+							EXTERIORS.add(myObject);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	@SubscribeEvent
 	static void gatherData(final GatherDataEvent event) {
 		DataGenerator datagenerator = event.getGenerator();

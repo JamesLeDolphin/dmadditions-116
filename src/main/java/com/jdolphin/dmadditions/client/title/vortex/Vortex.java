@@ -2,14 +2,18 @@ package com.jdolphin.dmadditions.client.title.vortex;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.swdteam.client.gui.util.GuiUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 
 public class Vortex{
@@ -23,6 +27,7 @@ public class Vortex{
 	private float rotationSpeed = 1.0f;
 	private float textureRotationOffsetFactor = 0.0f;
 	private float speed = 4f;
+	private static long rotation = 1;
 
 	public Vortex(float rotationFactor, String id){
 		this(id);
@@ -46,7 +51,20 @@ public class Vortex{
 		GlStateManager._translatef(width / 2, height / 2, -scale);
 		GlStateManager._scalef(scale, scale, 0);
 		renderVortex();
+		if (Minecraft.getInstance().screen instanceof MainMenuScreen) {
+
+		}
 		GlStateManager._popMatrix();
+	}
+	public static void renderTardis() {
+		int width = Minecraft.getInstance().screen.width;
+		int height = Minecraft.getInstance().screen.height;
+		rotation += 5;
+		MatrixStack stack = new MatrixStack();
+		Random rand = new Random();
+		int i = rand.nextInt(DmAdditions.EXTERIORS.size());
+		JSONModel TARDIS = ModelLoader.loadModel(DmAdditions.EXTERIORS.get(i).getModel(1));
+		GuiUtils.drawEntityOnScreen(stack, width / 2, height / 2, 1, rotation, TARDIS);
 	}
 
 	public void renderVortex() {
