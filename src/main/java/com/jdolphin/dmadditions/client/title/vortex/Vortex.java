@@ -2,13 +2,20 @@ package com.jdolphin.dmadditions.client.title.vortex;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.swdteam.client.gui.util.GuiUtils;
+import com.swdteam.model.javajson.JSONModel;
+import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 
 public class Vortex{
@@ -22,6 +29,7 @@ public class Vortex{
 	private float rotationSpeed = 1.0f;
 	private float textureRotationOffsetFactor = 0.0f;
 	private float speed = 4f;
+	private static long rotation = 1;
 
 	public Vortex(float rotationFactor, String id){
 		this(id);
@@ -36,17 +44,27 @@ public class Vortex{
 		int width = Minecraft.getInstance().screen.width;
 		int height = Minecraft.getInstance().screen.height;
 		float scale = Math.max(width, height) / 14;
-
 		GlStateManager._clearColor(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager._clear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT, true);
 
 		GlStateManager._pushMatrix();
 		GlStateManager._translatef(width / 2, height / 2, -scale);
 		GlStateManager._scalef(scale, scale, 0);
-
 		renderVortex();
+		if (Minecraft.getInstance().screen instanceof MainMenuScreen) {
 
+		}
 		GlStateManager._popMatrix();
+	}
+	public static void renderTardis() {
+		int width = Minecraft.getInstance().screen.width;
+		int height = Minecraft.getInstance().screen.height;
+		rotation += 5;
+		MatrixStack stack = new MatrixStack();
+		Random rand = new Random();
+		int i = rand.nextInt(DmAdditions.EXTERIORS.size());
+		JSONModel TARDIS = ModelLoader.loadModel(DmAdditions.EXTERIORS.get(i).getModel(1));
+		GuiUtils.drawEntityOnScreen(stack, width / 2, height / 2, 1, rotation, TARDIS);
 	}
 
 	public void renderVortex() {
@@ -68,21 +86,21 @@ public class Vortex{
 		buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
 
 		for (int i = 0; i < 24; ++i) {
-			this.renderSection(buffer, i, time * -this.speed, f3, (float) Math.sin(i * Math.PI / 64), (float) Math.sin((i + 1) * Math.PI / 64));
+			this.renderSection(buffer, i, time * -this.speed, f3, (float) Math.sin(i * Math.PI / 36), (float) Math.sin((i + 1) * Math.PI / 36));
 		}
 		tessellator.end();
-
+		GlStateManager._disableCull();
 		GlStateManager._popMatrix();
 		time += Minecraft.getInstance().getDeltaFrameTime() / 100;
 	}
 
-	private static final float oneEighth = 1/8f;
+	private static final float oneEighth = 1/6f;
 	//135* aka octagon angle
-	private static final float sqrt2Over2 = (float) Math.sqrt(2) / 2.0f;
+	private static final float sqrt2Over2 = (float) Math.sqrt(3) / 2;
 
 	public void renderSection(BufferBuilder builder, int locationOffset, float textureDistanceOffset, float textureRotationOffset, float startScale, float endScale) {
-		int verticalOffset = (locationOffset * oneEighth + textureDistanceOffset > 1.0) ? locationOffset - 8 : locationOffset;
-		int horizontalOffset = (textureRotationOffset > 1.0) ? -8 : 0;
+		int verticalOffset = (locationOffset * oneEighth + textureDistanceOffset > 1.0) ? locationOffset - 6 : locationOffset;
+		int horizontalOffset = (textureRotationOffset > 1.0) ? -6 : 0;
 
 		builder.vertex(0, -startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEighth + textureRotationOffset, verticalOffset * oneEighth + textureDistanceOffset).endVertex();
@@ -108,6 +126,7 @@ public class Vortex{
 
 		builder.vertex(startScale * -sqrt2Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEighth + oneEighth + textureRotationOffset, verticalOffset * oneEighth + 0.0f + textureDistanceOffset).endVertex();
+
 		horizontalOffset = ((1.0f / 3.0f + textureRotationOffset > 1.0) ? -4 : 2);
 
 		builder.vertex(startScale * -sqrt2Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
