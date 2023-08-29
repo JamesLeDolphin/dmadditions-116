@@ -44,6 +44,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -154,8 +155,8 @@ public class DmAdditions {
 		for (ModFileInfo file : files) {
 			try (JarFile jarFile = new JarFile(file.getFile().getFilePath().toFile())) {
 				jarFile.stream()
-					.filter(entry -> entry.getName().startsWith("data/")
-						&& entry.getName().contains("/tardis_exteriors/") && entry.getName().contains(".json"))
+					.filter(entry -> entry.getName().startsWith("data" + File.separator)
+						&& entry.getName().contains(File.separator + "tardis_exteriors" + File.separator) && entry.getName().contains(".json"))
 					.forEach(entry -> {
 						try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
 							Data myObject = gson.fromJson(reader, Data.class);

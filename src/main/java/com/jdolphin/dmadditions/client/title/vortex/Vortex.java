@@ -65,7 +65,7 @@ public class Vortex{
 		final BufferBuilder buffer = tessellator.getBuilder();
 		buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
 
-		for (int i =/* DMAClientConfig.whiteHole() ? 1 :*/ 0; i < 24; ++i) {
+		for (int i = 0; i < 24; ++i) {
 			this.renderSection(buffer, i, time * -this.speed, f3, (float) Math.sin(i * Math.PI / 36), (float) Math.sin((i + 1) * Math.PI / 36));
 		}
 		tessellator.end();
