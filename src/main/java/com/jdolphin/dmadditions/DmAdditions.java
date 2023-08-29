@@ -86,7 +86,6 @@ public class DmAdditions {
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
-		modEventBus.addListener(this::dataEvent);
 		// Register things
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
@@ -150,30 +149,6 @@ public class DmAdditions {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_metalert);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
-		}
-	}
-	public static List<Data> EXTERIORS = new ArrayList<>();
-
-	public void dataEvent(final FMLLoadCompleteEvent event) {
-		System.out.print("Bing bong this thing aint wrong");
-		Gson gson = new Gson();
-		List<ModFileInfo> files = ModList.get().getModFiles();
-		for (ModFileInfo file : files) {
-			try (JarFile jarFile = new JarFile(file.getFile().getFilePath().toFile())) {
-				jarFile.stream()
-					.filter(entry -> entry.getName().startsWith("data/")
-						&& entry.getName().contains("/tardis_exteriors/") && entry.getName().contains(".json"))
-					.forEach(entry -> {
-						try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
-							Data myObject = gson.fromJson(reader, Data.class);
-							EXTERIORS.add(myObject);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
