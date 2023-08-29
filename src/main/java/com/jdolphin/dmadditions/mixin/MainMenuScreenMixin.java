@@ -2,18 +2,9 @@ package com.jdolphin.dmadditions.mixin;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
-import com.jdolphin.dmadditions.client.title.vortex.Vortex;
 import com.jdolphin.dmadditions.client.title.vortex.VortexSkybox;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.swdteam.client.gui.util.GuiUtils;
-import com.swdteam.client.tardis.data.ExteriorModels;
-import com.swdteam.common.init.DMTardisRegistry;
-import com.swdteam.common.tardis.Data;
-import com.swdteam.common.tardis.Tardis;
-import com.swdteam.main.DalekMod;
-import com.swdteam.model.javajson.JSONModel;
-import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.RenderSkybox;
@@ -25,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.List;
 import java.util.Random;
 
 @Mixin(MainMenuScreen.class)
@@ -67,7 +57,6 @@ public abstract class MainMenuScreenMixin extends Screen{
 			int j = new Random().nextInt(MenuBackGround.values().length);
 			dmadditions_116$getBg(MenuBackGround.values()[j].getName());
 		}
-		Vortex.renderTardis();
 		if (DMAClientConfig.dma_vortex.get()) {
 			panorama = new VortexSkybox(DMAClientConfig.getVortex());
 		}
