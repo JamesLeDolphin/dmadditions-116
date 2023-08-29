@@ -27,7 +27,6 @@ import com.swdteam.common.tardis.TardisDoor;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.common.tileentity.TardisTileEntity.DoorSource;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
