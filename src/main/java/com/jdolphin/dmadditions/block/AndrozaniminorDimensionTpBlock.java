@@ -19,9 +19,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.tardis.mod.world.dimensions.TDimensions;
 
-public class DimensionTpBlock extends Block {
+public class AndrozaniminorDimensionTpBlock extends Block {
 
-	public DimensionTpBlock(AbstractBlock.Properties properties) {
+	public AndrozaniminorDimensionTpBlock(AbstractBlock.Properties properties) {
 		super(properties);
 	}
 
