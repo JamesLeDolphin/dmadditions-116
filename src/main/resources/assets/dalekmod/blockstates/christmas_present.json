@@ -1,7 +1,7 @@
 {
   "variants": {
-    "": [
-      { "model": "dalekmod:block/christmas_present" }
-    ]
+    "": {
+      "model": "dalekmod:block/christmas_present"
+    }
   }
 }
