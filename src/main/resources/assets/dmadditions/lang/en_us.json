@@ -240,5 +240,7 @@
 	"notice.dalekmod.open": "You have opened the TARDIS doors",
 	"notice.dalekmod.close": "You have closed the TARDIS doors",
 	"notice.dalekmod.lock": "You have locked the TARDIS doors",
-	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors"
+	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors",
+
+	"block.dalekmod.christmas_present": "Christmas Present"
 }
