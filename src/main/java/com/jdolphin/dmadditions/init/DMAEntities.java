@@ -20,6 +20,7 @@ public class DMAEntities {
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
+	public static final RegistryObject<EntityType<BeatriceFlyingSharkEntity>> BEATRICE_FLYING_SHARK;
 
 	static {
 		JAMESLEDOLPHIN = ENTITY_TYPES.register("jamesledolphin",
@@ -35,29 +36,29 @@ public class DMAEntities {
 				.build((new ResourceLocation(DalekMod.MODID, "snowman")).toString()));
 
 		CHRISTMAS_TREE = RegistryHandler.ENTITY_TYPES.register("christmas_tree",
-				() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
-					.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
+			() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
+				.build((new ResourceLocation(DalekMod.MODID, "christmas_tree")).toString()));
 
 		WOODEN_CYBERMAN = RegistryHandler.ENTITY_TYPES.register("wooden_cyberman",
-				() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
-					.build((new ResourceLocation(DalekMod.MODID, "wooden_cyberman")).toString()));
+			() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)
+				.build((new ResourceLocation(DalekMod.MODID, "wooden_cyberman")).toString()));
 
 		BESSIE = ENTITY_TYPES.register("bessie",
-				() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
-					.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
+			() -> EntityType.Builder.of(BessieEntity::new, EntityClassification.MISC).sized(0.9F, 0.6F)
+				.build((new ResourceLocation(DmAdditions.MODID, "bessie")).toString()));
 
-			TW_SUV = ENTITY_TYPES.register("torchwood_suv",
-				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
-					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
+		TW_SUV = ENTITY_TYPES.register("torchwood_suv",
+			() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
+				.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
+
+		BEATRICE_FLYING_SHARK =
+			ENTITY_TYPES.register("beatrice_flying_shark",
+				() -> EntityType.Builder.of(BeatriceFlyingSharkEntity::new, EntityClassification.CREATURE)
+					.sized(0.6F, 1.95F)  // Adjust size as needed
+					.setTrackingRange(80)
+					.setUpdateInterval(3)
+					.setShouldReceiveVelocityUpdates(true)
+					.build(new ResourceLocation(DmAdditions.MODID, "beatrice_flying_shark").toString()));
 	}
-
-	public static final RegistryObject<EntityType<BeatriceFlyingSharkEntity>> BEATRICE_FLYING_SHARK =
-		ENTITY_TYPES.register("beatrice_flying_shark",
-			() -> EntityType.Builder.of(BeatriceFlyingSharkEntity::new, EntityClassification.CREATURE)
-				.sized(0.6F, 1.95F)  // Adjust size as needed
-				.setTrackingRange(80)
-				.setUpdateInterval(3)
-				.setShouldReceiveVelocityUpdates(true)
-				.build(new ResourceLocation(DmAdditions.MODID, "beatrice_flying_shark").toString()));
 
 }
