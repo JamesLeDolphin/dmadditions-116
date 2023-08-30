@@ -4,7 +4,6 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.block.*;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
-import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -37,8 +36,6 @@ public enum MixinBlock {
 	FLIGHT_PANEL(() -> new BetterFlightPanel(
 		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
-	TARDIS_DOOR_HITBOX(() -> new BetterTardisVoidBlock(TardisDoorHitboxTileEntity::new,
-		AbstractBlock.Properties.of(Material.STONE).strength(2.8F).sound(SoundType.WOOD))),
 	;
 
 	public final Supplier<Block> supplier;

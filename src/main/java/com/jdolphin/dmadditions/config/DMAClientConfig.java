@@ -2,8 +2,6 @@ package com.jdolphin.dmadditions.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
-import java.util.Random;
-
 
 public final class DMAClientConfig {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
