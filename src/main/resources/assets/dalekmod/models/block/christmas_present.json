@@ -1,6 +1,9 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dalekmod:block/christmas_present",
+	"textures": {
+		"0": "dalekmod:block/christmas_present",
+		"particle": "dalekmod:block/christmas_present"
+	},
 	"texture_width": 128,
 	"texture_height": 128,
 	"scale": 1,

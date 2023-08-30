@@ -23,11 +23,6 @@ public abstract class MainMenuScreenMixin extends Screen{
 		super(p_i51108_1_);
 	}
 
-
-	@Mutable
-	@Shadow
-	@Final private RenderSkybox panorama;
-
 	@Mutable
 	@Shadow
 	@Final private static ResourceLocation PANORAMA_OVERLAY;
@@ -47,9 +42,6 @@ public abstract class MainMenuScreenMixin extends Screen{
 		if (DMAClientConfig.dma_classic.get()) {
 			int i = new Random().nextInt(MenuBackGround.values().length);
 			dmadditions_116$getBg(MenuBackGround.values()[i].toString().toLowerCase());
-		}
-		if (DMAClientConfig.dma_vortex.get()) {
-			panorama = new VortexSkybox(DMAClientConfig.getVortex());
 		}
 	}
 }

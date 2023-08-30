@@ -29,7 +29,4 @@ public class ClientRenderer {
 			}
 		}
 	}
-	@SubscribeEvent
-	public static void skyRenderer(RenderPlayerEvent event) {
-	}
 }
