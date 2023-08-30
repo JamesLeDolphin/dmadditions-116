@@ -4,7 +4,6 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.block.*;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
-import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

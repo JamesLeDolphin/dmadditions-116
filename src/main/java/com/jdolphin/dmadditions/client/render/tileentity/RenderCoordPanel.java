@@ -129,8 +129,6 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 				});
 			}
 		}
-
-
 		matrixStack.popPose();
 	}
 }
