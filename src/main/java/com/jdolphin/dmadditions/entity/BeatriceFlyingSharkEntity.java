@@ -1,6 +1,8 @@
 package com.jdolphin.dmadditions.entity;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -17,6 +19,14 @@ import java.util.UUID;
 public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerable, IRideable {
 	// DataParameter for flying state
 	private static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+
+	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+		return MobEntity.createMobAttributes()
+			.add(Attributes.MOVEMENT_SPEED, 0.3)
+			.add(Attributes.MAX_HEALTH, 20.0)
+			.add(Attributes.ATTACK_DAMAGE, 2.0)
+			.add(Attributes.FOLLOW_RANGE, 20.0);
+	}
 
 	public BeatriceFlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
