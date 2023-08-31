@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "ingredient": [
+    {
+      "item": "dalekmod:steel_shovel"
+    }
+  ],
+  "result": {
+    "fluid": "tconstruct:molten_steel",
+    "amount": 144
+  },
+  "temperature": 1000,
+  "time": 100
+}

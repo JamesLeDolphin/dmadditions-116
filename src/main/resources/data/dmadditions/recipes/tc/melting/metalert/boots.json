@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:melting",
+  "type": "tconstruct:damagable_melting",
   "ingredient": {
-    "item": "dalekmod:metalert_block"
+    "item": "dalekmod:metalert_boots"
   },
   "result": {
     "fluid": "dmadditions:molten_metalert",
-    "amount": 1000
+    "amount": 576
   },
   "temperature": 1000,
-  "time": 100
+  "time": 150
 }

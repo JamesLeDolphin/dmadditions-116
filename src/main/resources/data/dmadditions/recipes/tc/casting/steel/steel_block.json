@@ -2,7 +2,7 @@
   "type": "tconstruct:casting_basin",
   "fluid": {
     "tag": "tconstruct:molten_steel",
-    "amount": 1000
+    "amount": 1296
   },
   "result": "dalekmod:steel_block",
   "cooling_time": 250

@@ -1,12 +1,12 @@
 {
   "type": "tconstruct:damagable_melting",
   "ingredient": {
-    "item": "dalekmod:dalekanium_leggings"
+    "item": "dalekmod:dalekanium_chestplate"
   },
   "result": {
     "fluid": "dmadditions:molten_dalekanium",
-    "amount": 800
+    "amount": 1152
   },
   "temperature": 1000,
-  "time": 209
+  "time": 223
 }

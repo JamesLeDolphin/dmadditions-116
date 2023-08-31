@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "ingredient": [
+    {
+      "item": "dalekmod:dalekanium_battleaxe"
+    }
+  ],
+  "result": {
+    "fluid": "dmadditions:molten_dalekanium",
+    "amount": 720
+  },
+  "temperature": 1000,
+  "time": 100
+}

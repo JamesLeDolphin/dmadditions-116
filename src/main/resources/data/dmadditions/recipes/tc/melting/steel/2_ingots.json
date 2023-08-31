@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "ingredient": [
+    {
+      "item": "dalekmod:steel_sword"
+    },
+    {
+      "item": "dalekmod:steel_hoe"
+    }
+  ],
+  "result": {
+    "fluid": "tconstruct:molten_steel",
+    "amount": 288
+  },
+  "temperature": 1000,
+  "time": 100
+}

@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "dalekmod:metalert_block"
+  },
+  "result": {
+    "fluid": "dmadditions:molten_metalert",
+    "amount": 1296
+  },
+  "temperature": 1000,
+  "time": 100
+}

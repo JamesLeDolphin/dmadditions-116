@@ -1,11 +1,11 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "dalekmod:steel_block"
+    "item": "dalekmod:silicate_ore"
   },
   "result": {
-    "fluid": "tconstruct:molten_steel",
-    "amount": 1000
+    "fluid": "dmadditions:molten_silicon",
+    "amount": 288
   },
   "temperature": 1000,
   "time": 50

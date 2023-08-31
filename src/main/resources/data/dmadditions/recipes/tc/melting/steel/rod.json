@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "dalekmod:steel_rod"
+  },
+  "result": {
+    "fluid": "dmadditions:molten_steel",
+    "amount": 244
+  },
+  "temperature": 1000,
+  "time": 50
+}

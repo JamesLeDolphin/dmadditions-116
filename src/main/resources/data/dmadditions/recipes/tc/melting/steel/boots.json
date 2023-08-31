@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "ingredient": {
+    "item": "dalekmod:steel_boots"
+  },
+  "result": {
+    "fluid": "tconstruct:molten_steel",
+    "amount": 576
+  },
+  "temperature": 1000,
+  "time": 150
+}

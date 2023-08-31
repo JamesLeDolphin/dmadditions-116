@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "ingredient": {
+    "item": "dalekmod:steel_chestplate"
+  },
+  "result": {
+    "fluid": "tconstruct:molten_steel",
+    "amount": 1152
+  },
+  "temperature": 1000,
+  "time": 223
+}

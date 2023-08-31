@@ -2,7 +2,7 @@
   "type": "tconstruct:casting_basin",
   "fluid": {
     "name": "dmadditions:molten_metalert",
-    "amount": 1000
+    "amount": 1296
   },
   "result": "dalekmod:metalert_block",
   "cooling_time": 300

@@ -1,11 +1,11 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "dalekmod:silicate_ore"
+    "item": "dalekmod:metalert_scrap"
   },
   "result": {
-    "fluid": "dmadditions:molten_silicon",
-    "amount": 200
+    "fluid": "dmadditions:molten_metalert",
+    "amount": 144
   },
   "temperature": 1000,
   "time": 50
