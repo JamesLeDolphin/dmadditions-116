@@ -16,9 +16,7 @@ public class HandlesItem extends Item {
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		if (!world.isClientSide) {
-			// Open the chat interface for the player to type their question
 			player.sendMessage(new StringTextComponent("You interacted with the Handles item!"), player.getUUID());
-			// You can implement further logic to handle communication with ChatGPTIntegration here
 		}
 		return ActionResult.success(player.getItemInHand(hand));
 	}
