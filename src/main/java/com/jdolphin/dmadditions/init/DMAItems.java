@@ -6,6 +6,7 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
+import com.jdolphin.dmadditions.item.handles.HandlesItem;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
@@ -23,6 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -75,6 +77,7 @@ public class DMAItems {
 	public static final RegistryObject<Item> TW_SUV;
 //	public static final RegistryObject<Item> STEEL_BUCKET;
 
+	public static final RegistryObject<Item> HANDLES_ITEM;
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
@@ -93,10 +96,19 @@ public class DMAItems {
 		return addSpawnItem(key);
 	}
 
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+
+		// Register HandlesItem
+		HANDLES_ITEM.ifPresent(event.getRegistry()::register);
+	}
+
 	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
+		HANDLES_ITEM = registerAdventItem(2, "handles_item",
+			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 		BLUE_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("blue_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
@@ -205,10 +217,9 @@ public class DMAItems {
 		DINO_NUGGETS_CUSTARD = com.swdteam.common.RegistryHandler.ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
-
-
 //		STEEL_BUCKET = ITEMS.register("steel_bucket",
 //			() -> new BucketItem(() -> DMAFluids.STEEL_FLUID.get(),
 //				new Item.Properties().stacksTo(1)));
 	}
+
 }
