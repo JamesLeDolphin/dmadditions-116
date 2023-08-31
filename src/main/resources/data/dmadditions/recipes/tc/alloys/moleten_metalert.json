@@ -1,0 +1,18 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "dalekmod:dalekanium_concentrate",
+      "amount": 432
+    },
+    {
+      "name": "minecraft:lava",
+      "amount": 144
+    }
+  ],
+  "result": {
+    "fluid": "dmadditions:molten_metalert",
+    "amount": 576
+  },
+  "temperature": 550
+}
