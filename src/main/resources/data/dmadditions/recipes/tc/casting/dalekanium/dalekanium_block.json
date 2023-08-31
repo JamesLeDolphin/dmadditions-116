@@ -1,0 +1,9 @@
+{
+    "type": "tconstruct:casting_basin",
+    "fluid": {
+      "name": "dmadditions:molten_dalekanium",
+      "amount": 1000
+    },
+    "result": "dalekmod:dalekanium_block",
+    "cooling_time": 250
+}

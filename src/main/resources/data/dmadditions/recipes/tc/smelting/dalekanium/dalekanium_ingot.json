@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "dalekmod:dalekanium_ingot"
+  },
+  "result": {
+    "fluid": "dmadditions:molten_dalekanium",
+    "amount": 144
+  },
+  "temperature": 1000,
+  "time": 50
+}

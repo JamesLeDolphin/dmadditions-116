@@ -1,15 +1,17 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 public class DMATags {
 	public static class Blocks {
-
 		public static final Tags.IOptionalNamedTag<Block> ROUNDEL_CONTAINERS = createTag("roundel_containers");
 
 
@@ -17,10 +19,8 @@ public class DMATags {
 			if (itemTag) {
 				ItemTags.createOptional(new ResourceLocation("dalekmod", name));
 			}
-
 			return BlockTags.createOptional(new ResourceLocation("dalekmod", name));
 		}
-
 		private static Tags.IOptionalNamedTag<Block> createTag(String name) {
 			return createTag(name, true);
 		}
@@ -31,6 +31,16 @@ public class DMATags {
 
 		private static Tags.IOptionalNamedTag<Item> createTag(String name) {
 			return ItemTags.createOptional(new ResourceLocation("dalekmod", name));
+		}
+	}
+	public static class Fluids {
+		public static final Tags.IOptionalNamedTag<Fluid> METALERT = createTag("metalert");
+		public static final Tags.IOptionalNamedTag<Fluid> DALEKANIUM = createTag("dalekanium");
+		public static final Tags.IOptionalNamedTag<Fluid> SILICON = createTag("silicon");
+		public static final Tags.IOptionalNamedTag<Fluid> STAINLESS_STEEL = createTag("stainless_steel");
+
+		private static Tags.IOptionalNamedTag<Fluid> createTag(String name) {
+			return FluidTags.createOptional(new ResourceLocation(DmAdditions.MODID, name));
 		}
 	}
 

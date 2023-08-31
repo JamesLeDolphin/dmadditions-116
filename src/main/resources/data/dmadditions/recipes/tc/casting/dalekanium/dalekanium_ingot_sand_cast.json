@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/single_use/ingot"
+  },
+  "fluid": {
+    "name": "dmadditions:molten_dalekanium",
+    "amount": 144
+  },
+  "result": "dalekmod:dalekanium_ingot",
+  "cooling_time": 79
+}

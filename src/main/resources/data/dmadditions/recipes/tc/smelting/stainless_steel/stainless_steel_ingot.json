@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "dalekmod:stainless_steel_ingot"
+  },
+  "result": {
+    "fluid": "dmadditions:molten_stainless_steel",
+    "amount": 144
+  },
+  "temperature": 1000,
+  "time": 50
+}

@@ -240,5 +240,10 @@
 	"notice.dalekmod.open": "You have opened the TARDIS doors",
 	"notice.dalekmod.close": "You have closed the TARDIS doors",
 	"notice.dalekmod.lock": "You have locked the TARDIS doors",
-	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors"
+	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors",
+
+	"fluid.dmadditions.molten_metalert": "Molten Metalert",
+	"fluid.dmadditions.molten_dalekanium": "Molten Dalekanium",
+	"fluid.dmadditions.molten_silicon": "Molten Silicon",
+	"fluid.dmadditions.molten_stainless_steel": "Molten Stainless Steel"
 }
