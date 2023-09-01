@@ -39,6 +39,16 @@ public class DMAEventHandlerGeneral {
 				player.displayClientMessage(new StringTextComponent("<Handles> How may I help you " + player.getName().getString() + "?"), false);
 				event.setCanceled(true);
 			}
+				if ((q.startsWith("echo"))) {
+					String e = q.substring(4);
+					player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
+					event.setCanceled(true);
+				}
+				if ((q.startsWith("say"))) {
+					String e = q.substring(3);
+					player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
+					event.setCanceled(true);
+				}
 				if ((q.contains("who") || q.contains("whos") || q.contains("who's") || q.contains("who is")) && (q.contains("near")
 					|| q.contains("nearest") || q.contains("close"))) {
 					PlayerEntity closestPlayer = player.level.getNearestPlayer(EntityPredicate.DEFAULT, player);
@@ -68,16 +78,7 @@ public class DMAEventHandlerGeneral {
 						event.setCanceled(true);
 					}
 				}
-				if ((q.startsWith("echo"))) {
-					String e = q.substring(5);
-					player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
-					event.setCanceled(true);
-				}
-				if ((q.startsWith("say"))) {
-					String e = q.substring(4);
-					player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
-					event.setCanceled(true);
-				}
+
 			}
 
 		}
