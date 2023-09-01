@@ -33,53 +33,53 @@ public class DMAEventHandlerGeneral {
 		PlayerEntity player = event.getPlayer();
 		String message = event.getMessage().toLowerCase();
 		if (message.contains("handles")) {
-			String q = message.substring(7);
+			String q = message.substring(7).toLowerCase();
+			{
 			if (q.isEmpty()) {
 				player.displayClientMessage(new StringTextComponent("<Handles> How may I help you " + player.getName().getString() + "?"), false);
 				event.setCanceled(true);
 			}
-			if ((q.contains("who") || q.contains("whos") || q.contains("who's") || q.contains("who is")) && (q.contains("near")
-				|| q.contains("nearest") || q.contains("close"))) {
-				PlayerEntity closestPlayer = player.level.getNearestPlayer(EntityPredicate.DEFAULT, player);
-				if (closestPlayer != null) {
-					ITextComponent n = closestPlayer.getName();
-					player.displayClientMessage(new StringTextComponent("<Handles> " + n + " is the closest player to you"), false);
-				} else
-					player.displayClientMessage(new StringTextComponent("<Handles> I am unable to find anyone near you"), false);
-				event.setCanceled(true);
-			}
-			if ((q.contains("where") || q.contains("wheres") || q.contains("where's") || q.contains("where is") || q.contains("wher ma")) && (q.contains("tardis")
-				|| q.contains("tardus") || q.contains("ship"))) {
-				List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
-				if (!ids.isEmpty()) {
-					for (int id : ids) {
-						int tardis = DMTardis.getTardis(id).getGlobalID();
-						TardisData data = DMTardis.getTardis(tardis);
-						BlockPos loc = DMTardis.getTardis(id).getCurrentLocation().getBlockPosition();
-						ResourceLocation dim = DMTardis.getTardis(id).getCurrentLocation().dimensionWorldKey().location();
-						player.displayClientMessage(new StringTextComponent("<Handles> Your TARDIS (" + id + ") is at " + loc.getX() + "; " + loc.getY() + "; " + loc.getZ() +
-								"; Dimension: " + dim),
-							false);
+				if ((q.contains("who") || q.contains("whos") || q.contains("who's") || q.contains("who is")) && (q.contains("near")
+					|| q.contains("nearest") || q.contains("close"))) {
+					PlayerEntity closestPlayer = player.level.getNearestPlayer(EntityPredicate.DEFAULT, player);
+					if (closestPlayer != null) {
+						ITextComponent n = closestPlayer.getName();
+						player.displayClientMessage(new StringTextComponent("<Handles> " + n + " is the closest player to you"), false);
+					} else
+						player.displayClientMessage(new StringTextComponent("<Handles> I am unable to find anyone near you"), false);
+					event.setCanceled(true);
+				}
+				if ((q.contains("where") || q.contains("wheres") || q.contains("where's") || q.contains("where is") || q.contains("wher ma")) && (q.contains("tardis")
+					|| q.contains("tardus") || q.contains("ship"))) {
+					List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
+					if (!ids.isEmpty()) {
+						for (int id : ids) {
+							int tardis = DMTardis.getTardis(id).getGlobalID();
+							TardisData data = DMTardis.getTardis(tardis);
+							BlockPos loc = DMTardis.getTardis(id).getCurrentLocation().getBlockPosition();
+							ResourceLocation dim = DMTardis.getTardis(id).getCurrentLocation().dimensionWorldKey().location();
+							player.displayClientMessage(new StringTextComponent("<Handles> Your TARDIS (" + id + ") is at " + loc.getX() + "; " + loc.getY() + "; " + loc.getZ() +
+									"; Dimension: " + dim),
+								false);
+							event.setCanceled(true);
+						}
+					} else {
+						player.displayClientMessage(new StringTextComponent("<Handles> Unable to find your TARDIS"), false);
 						event.setCanceled(true);
 					}
-				} else {
-					player.displayClientMessage(new StringTextComponent("<Handles> Cant find ye tardis mate, tried lookin where ya left it?"), false);
+				}
+				if ((q.startsWith("echo"))) {
+					String e = q.substring(5);
+					player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
+					event.setCanceled(true);
+				}
+				if ((q.startsWith("say"))) {
+					String e = q.substring(4);
+					player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
 					event.setCanceled(true);
 				}
 			}
-			if ((q.startsWith("echo"))) {
-				String e = q.substring(5);
-				player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
-				event.setCanceled(true);
-			}
-			if ((q.startsWith("say"))) {
-				String e = q.substring(4);
-				player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
-				event.setCanceled(true);
-			}
-			else {
-				player.displayClientMessage(new StringTextComponent("<Handles> Sorry, I do not understand"), false);
-			}
+
 		}
 	}
 
