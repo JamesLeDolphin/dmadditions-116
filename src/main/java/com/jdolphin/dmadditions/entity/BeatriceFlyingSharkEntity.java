@@ -4,21 +4,28 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import com.jdolphin.dmadditions.entity.ai.goal.*;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.Serializable;
 import java.util.UUID;
-
 
 public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerable, IRideable {
 	// DataParameter for flying state
 	private static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+
+	// Add a boolean to represent tamed state
+	private static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
 		return MobEntity.createMobAttributes()
@@ -33,6 +40,9 @@ public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerabl
 		// Set initial flying state to false
 		this.setFlying(false);
 
+		// Initialize tamed state to false
+		this.setTamed(false);
+
 		// Register AI goals
 		this.goalSelector.addGoal(6, new FlyRandomlySharkGoal(this));
 
@@ -40,6 +50,7 @@ public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerabl
 
 		// Register data parameters
 		this.entityData.define(FLYING, false);
+		this.entityData.define(TAMED, false); // Initialize tamed state
 	}
 
 	// Getter and Setter for flying state
@@ -49,6 +60,64 @@ public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerabl
 
 	public void setFlying(boolean flying) {
 		this.entityData.set(FLYING, flying);
+	}
+
+	// Getter and Setter for tamed state
+	public boolean isTamed() {
+		return this.entityData.get(TAMED);
+	}
+
+	public void setTamed(boolean tamed) {
+		this.entityData.set(TAMED, tamed);
+	}
+
+	// Attempt to tame the entity when fed with fish
+	public boolean attemptTame(Hand hand, ItemStack itemStack) {
+		if (!this.isTamed() && itemStack.getItem() == Items.COD) {
+			if (!this.level.isClientSide) {
+				// Calculate a chance for taming (you can adjust the chance as needed)
+				double tamingChance = 0.25; // 25% chance for taming, adjust as needed
+
+				if (this.random.nextDouble() <= tamingChance) {
+					// Successfully tamed
+					this.setTamed(true);
+
+					// Remove one fish from the player's hand (you may want to adjust this part)
+					if (hand == Hand.MAIN_HAND) {
+						itemStack.shrink(1);
+					} else if (hand == Hand.OFF_HAND) {
+						PlayerEntity player = this.level.getNearestPlayer(this, 4.0);
+						if (player != null) {
+							player.getItemInHand(hand).shrink(1);
+						}
+					}
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean isFood(ItemStack stack) {
+		return stack.getItem() == Items.COD;
+	}
+
+	public Serializable processInteract(PlayerEntity player, Hand hand) {
+		ItemStack itemStack = player.getItemInHand(hand);
+
+		// Attempt to tame the entity when right-clicked with fish
+		if (this.attemptTame(hand, itemStack)) {
+			return true;
+		}
+
+		// Add other interactions here if needed
+
+		return super.interact(player, hand);
 	}
 
 	@Nullable
