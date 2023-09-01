@@ -6,11 +6,15 @@ import com.swdteam.common.tardis.Tardis;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisSaveHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -29,8 +33,22 @@ public class DMAEventHandlerGeneral {
 		PlayerEntity player = event.getPlayer();
 		String message = event.getMessage().toLowerCase();
 		if (message.contains("handles")) {
-			String q = message.substring(8);
-			if ((q.contains("where") || q.contains("wheres") || q.contains("where's")) && (q.contains("tardis")
+			String q = message.substring(7);
+			if (q.isEmpty()) {
+				player.displayClientMessage(new StringTextComponent("<Handles> How may I help you " + player.getName().getString() + "?"), false);
+				event.setCanceled(true);
+			}
+			if ((q.contains("who") || q.contains("whos") || q.contains("who's") || q.contains("who is")) && (q.contains("near")
+				|| q.contains("nearest") || q.contains("close"))) {
+				PlayerEntity closestPlayer = player.level.getNearestPlayer(EntityPredicate.DEFAULT, player);
+				if (closestPlayer != null) {
+					ITextComponent n = closestPlayer.getName();
+					player.displayClientMessage(new StringTextComponent("<Handles> " + n + " is the closest player to you"), false);
+				} else
+					player.displayClientMessage(new StringTextComponent("<Handles> I am unable to find anyone near you"), false);
+				event.setCanceled(true);
+			}
+			if ((q.contains("where") || q.contains("wheres") || q.contains("where's") || q.contains("where is") || q.contains("wher ma")) && (q.contains("tardis")
 				|| q.contains("tardus") || q.contains("ship"))) {
 				List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
 				if (!ids.isEmpty()) {
@@ -48,9 +66,19 @@ public class DMAEventHandlerGeneral {
 					player.displayClientMessage(new StringTextComponent("<Handles> Cant find ye tardis mate, tried lookin where ya left it?"), false);
 					event.setCanceled(true);
 				}
-			} else {
-				player.displayClientMessage(new StringTextComponent("<Handles> I dont understand ye mate"), false);
+			}
+			if ((q.startsWith("echo"))) {
+				String e = q.substring(5);
+				player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
 				event.setCanceled(true);
+			}
+			if ((q.startsWith("say"))) {
+				String e = q.substring(4);
+				player.displayClientMessage(new StringTextComponent("<Handles> " + e), false);
+				event.setCanceled(true);
+			}
+			else {
+				player.displayClientMessage(new StringTextComponent("<Handles> Sorry, I do not understand"), false);
 			}
 		}
 	}
