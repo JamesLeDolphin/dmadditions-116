@@ -16,8 +16,13 @@ public class HandlesItem extends Item {
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		if (!world.isClientSide) {
+
 			player.sendMessage(new StringTextComponent("You interacted with the Handles item!"), player.getUUID());
 		}
 		return ActionResult.success(player.getItemInHand(hand));
+	}
+
+	public static void handlesMessage(String message){
+
 	}
 }
