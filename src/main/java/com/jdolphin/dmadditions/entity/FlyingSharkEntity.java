@@ -4,6 +4,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,9 +21,8 @@ import org.jetbrains.annotations.Nullable;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class FlyingSharkEntity extends AnimalEntity implements IAngerable, IRideable {
+public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRideable {
 	// DataParameter for flying state
-
 	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
 	// Add a boolean to represent tamed state
@@ -43,7 +43,7 @@ public class FlyingSharkEntity extends AnimalEntity implements IAngerable, IRide
 	}
 
 	public FlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
-		super(entityType, world);
+		super((EntityType<? extends TameableEntity>) entityType, world);
 
 		// Register AI goals
 		this.goalSelector.addGoal(6, new FlyRandomlySharkGoal(this));
