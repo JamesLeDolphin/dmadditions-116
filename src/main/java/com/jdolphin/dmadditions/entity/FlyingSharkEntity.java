@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.swdteam.common.init.DMDalekRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -13,7 +12,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
 import com.jdolphin.dmadditions.entity.ai.goal.*;
 import net.minecraft.world.server.ServerWorld;
@@ -22,13 +20,13 @@ import org.jetbrains.annotations.Nullable;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerable, IRideable {
+public class FlyingSharkEntity extends AnimalEntity implements IAngerable, IRideable {
 	// DataParameter for flying state
 
-	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
 	// Add a boolean to represent tamed state
-	public static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+	public static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
@@ -44,7 +42,7 @@ public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerabl
 			.add(Attributes.FOLLOW_RANGE, 20.0);
 	}
 
-	public BeatriceFlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+	public FlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 
 		// Register AI goals

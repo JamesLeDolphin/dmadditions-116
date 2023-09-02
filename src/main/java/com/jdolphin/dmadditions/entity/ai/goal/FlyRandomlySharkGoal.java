@@ -1,15 +1,15 @@
 package com.jdolphin.dmadditions.entity.ai.goal;
 
 
-import com.jdolphin.dmadditions.entity.BeatriceFlyingSharkEntity;
+import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.vector.Vector3d;
 
 public class FlyRandomlySharkGoal extends Goal {
-	private final BeatriceFlyingSharkEntity entity;
+	private final FlyingSharkEntity entity;
 	private Vector3d targetPosition;
 
-	public FlyRandomlySharkGoal(BeatriceFlyingSharkEntity entity) {
+	public FlyRandomlySharkGoal(FlyingSharkEntity entity) {
 		this.entity = entity;
 	}
 
