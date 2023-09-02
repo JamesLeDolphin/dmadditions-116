@@ -3,14 +3,19 @@ package com.jdolphin.dmadditions.entity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -30,8 +35,14 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(FLYING, false);
+		this.entityData.define(FLYING, true);
 		this.entityData.define(TAMED, false);
+	}
+
+	protected void registerGoals() {
+		this.goalSelector.addGoal(0, new BreedGoal(this, 1.0D));
+		this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(Items.COD), false));
+		this.goalSelector.addGoal(2, new SwimGoal(this));
 	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
