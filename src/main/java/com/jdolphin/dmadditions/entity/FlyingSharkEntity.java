@@ -3,9 +3,8 @@ package com.jdolphin.dmadditions.entity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.BreedGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.controller.MovementController;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,7 +14,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -24,6 +22,8 @@ import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.Serializable;
+import java.util.EnumSet;
+import java.util.Random;
 import java.util.UUID;
 
 public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRideable {
@@ -43,6 +43,13 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		this.goalSelector.addGoal(0, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(Items.COD), false));
 		this.goalSelector.addGoal(2, new SwimGoal(this));
+		this.goalSelector.addGoal(3, new FlyingSharkEntity.RandomFlyGoal(this));
+		this.goalSelector.addGoal(4, new FlyRandomlySharkGoal(this));
+		this.targetSelector.addGoal(5, new OwnerHurtByTargetGoal(this));
+		this.targetSelector.addGoal(6, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(7, (new HurtByTargetGoal(this)).setAlertOthers());
+		this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
+		this.goalSelector.addGoal(9, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -174,5 +181,37 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		return 0;
 	}
 
-	// Other methods, goals, and overrides
+	static class RandomFlyGoal extends Goal {
+		private final FlyingSharkEntity shark;
+
+		public RandomFlyGoal(FlyingSharkEntity p_i45836_1_) {
+			this.shark = p_i45836_1_;
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+		}
+
+		public boolean canUse() {
+			MovementController movementcontroller = this.shark.getMoveControl();
+			if (!movementcontroller.hasWanted()) {
+				return true;
+			} else {
+				double d0 = movementcontroller.getWantedX() - this.shark.getX();
+				double d1 = movementcontroller.getWantedY() - this.shark.getY();
+				double d2 = movementcontroller.getWantedZ() - this.shark.getZ();
+				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+				return d3 < 1.0D || d3 > 3600.0D;
+			}
+		}
+
+		public boolean canContinueToUse() {
+			return false;
+		}
+
+		public void start() {
+			Random random = this.shark.getRandom();
+			double d0 = this.shark.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double d1 = this.shark.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double d2 = this.shark.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			this.shark.getMoveControl().setWantedPosition(d0, d1, d2, 1.0D);
+		}
+	}
 }
