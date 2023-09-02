@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.swdteam.common.init.DMDalekRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -12,6 +13,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
 import com.jdolphin.dmadditions.entity.ai.goal.*;
 import net.minecraft.world.server.ServerWorld;
@@ -22,10 +24,17 @@ import java.util.UUID;
 
 public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerable, IRideable {
 	// DataParameter for flying state
-	private static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+
+	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
 	// Add a boolean to represent tamed state
-	private static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+	public static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(BeatriceFlyingSharkEntity.class, DataSerializers.BOOLEAN);
+
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(FLYING, false);
+		this.entityData.define(TAMED, false);
+	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
 		return MobEntity.createMobAttributes()
@@ -37,20 +46,9 @@ public class BeatriceFlyingSharkEntity extends AnimalEntity implements IAngerabl
 
 	public BeatriceFlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
-		// Set initial flying state to false
-		this.setFlying(false);
-
-		// Initialize tamed state to false
-		this.setTamed(false);
 
 		// Register AI goals
 		this.goalSelector.addGoal(6, new FlyRandomlySharkGoal(this));
-
-		// Other attributes initialization
-
-		// Register data parameters
-		this.entityData.define(FLYING, false);
-		this.entityData.define(TAMED, false); // Initialize tamed state
 	}
 
 	// Getter and Setter for flying state

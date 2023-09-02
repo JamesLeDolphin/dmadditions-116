@@ -8,9 +8,9 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class BetriceFlyingSharkRenderer extends MobRenderer<BeatriceFlyingSharkEntity, BeatriceFlyingSharkModel> {
+public class BeatriceFlyingSharkRenderer extends MobRenderer<BeatriceFlyingSharkEntity, BeatriceFlyingSharkModel> {
 
-	public BetriceFlyingSharkRenderer(EntityRendererManager p_i46179_1_) {
+	public BeatriceFlyingSharkRenderer(EntityRendererManager p_i46179_1_) {
 		super(p_i46179_1_, new BeatriceFlyingSharkModel(), 1.0f);
 	}
 

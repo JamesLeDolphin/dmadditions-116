@@ -23,6 +23,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
+		registerRender(DMAEntities.BEATRICE_FLYING_SHARK, BeatriceFlyingSharkRenderer::new);
 	}
 
 
