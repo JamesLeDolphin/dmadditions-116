@@ -7,13 +7,16 @@ import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -25,6 +28,8 @@ import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.Random;
 import java.util.UUID;
+
+import static net.minecraft.entity.passive.WolfEntity.PREY_SELECTOR;
 
 public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRideable {
 	// DataParameter for flying state
@@ -50,6 +55,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		this.targetSelector.addGoal(7, (new HurtByTargetGoal(this)).setAlertOthers());
 		this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
 		this.goalSelector.addGoal(9, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+		this.targetSelector.addGoal(10, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, PREY_SELECTOR));
+		this.targetSelector.addGoal(11, new NonTamedTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
 	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -208,10 +215,99 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 		public void start() {
 			Random random = this.shark.getRandom();
-			double d0 = this.shark.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			double d1 = this.shark.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			double d2 = this.shark.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double d0 = this.shark.getX() + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double d1 = this.shark.getY() + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double d2 = this.shark.getZ() + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.shark.getMoveControl().setWantedPosition(d0, d1, d2, 1.0D);
 		}
+	}
+
+	public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
+		if (this.isInvulnerableTo(p_70097_1_)) {
+			return false;
+		} else {
+			Entity entity = p_70097_1_.getEntity();
+			this.setOrderedToSit(false);
+			if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof AbstractArrowEntity)) {
+				p_70097_2_ = (p_70097_2_ + 1.0F) / 2.0F;
+			}
+
+			return super.hurt(p_70097_1_, p_70097_2_);
+		}
+	}
+
+	public boolean doHurtTarget(Entity p_70652_1_) {
+		boolean flag = p_70652_1_.hurt(DamageSource.mobAttack(this), (float) ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+		if (flag) {
+			this.doEnchantDamageEffects(this, p_70652_1_);
+		}
+
+		return flag;
+	}
+
+	public void setTame(boolean p_70903_1_) {
+		super.setTame(p_70903_1_);
+		if (p_70903_1_) {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30.0D);
+			this.setHealth(20.0F);
+		} else {
+			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(16.0D);
+		}
+
+		this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+	}
+
+	public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+		Item item = itemstack.getItem();
+		if (this.level.isClientSide) {
+			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame() && !this.isAngry();
+			return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
+		} else {
+			if (this.isTame()) {
+				if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+					if (!p_230254_1_.abilities.instabuild) {
+						itemstack.shrink(1);
+					}
+
+					this.heal((float) item.getFoodProperties().getNutrition());
+					return ActionResultType.SUCCESS;
+				}
+
+				if (!(item instanceof DyeItem)) {
+					ActionResultType actionresulttype = super.mobInteract(p_230254_1_, p_230254_2_);
+					if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(p_230254_1_)) {
+						this.setOrderedToSit(!this.isOrderedToSit());
+						this.jumping = false;
+						this.navigation.stop();
+						this.setTarget((LivingEntity) null);
+						return ActionResultType.SUCCESS;
+					}
+
+					return actionresulttype;
+				}
+
+				if (item == Items.COD && !this.isAngry()) {
+					if (!p_230254_1_.abilities.instabuild) {
+						itemstack.shrink(1);
+					}
+
+					if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
+						this.tame(p_230254_1_);
+						this.navigation.stop();
+						this.setTarget((LivingEntity) null);
+						this.setOrderedToSit(true);
+						this.level.broadcastEntityEvent(this, (byte) 7);
+					} else {
+						this.level.broadcastEntityEvent(this, (byte) 6);
+					}
+
+					return ActionResultType.SUCCESS;
+				}
+
+				return super.mobInteract(p_230254_1_, p_230254_2_);
+			}
+		}
+		return ActionResultType.sidedSuccess(false);
 	}
 }
