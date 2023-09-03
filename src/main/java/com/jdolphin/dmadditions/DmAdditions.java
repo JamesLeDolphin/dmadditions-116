@@ -121,7 +121,7 @@ public class DmAdditions {
 				GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 
 			if (DMAEntities.BEATRICE_FLYING_SHARK != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.BEATRICE_FLYING_SHARK.get(), BeatriceFlyingSharkEntity.setCustomAttributes().build());
+				GlobalEntityTypeAttributes.put(DMAEntities.BEATRICE_FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
 		});
 	}
 

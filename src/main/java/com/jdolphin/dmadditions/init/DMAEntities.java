@@ -20,7 +20,7 @@ public class DMAEntities {
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
-	public static final RegistryObject<EntityType<BeatriceFlyingSharkEntity>> BEATRICE_FLYING_SHARK;
+	public static final RegistryObject<EntityType<FlyingSharkEntity>> BEATRICE_FLYING_SHARK;
 
 	static {
 		JAMESLEDOLPHIN = ENTITY_TYPES.register("jamesledolphin",
@@ -53,7 +53,7 @@ public class DMAEntities {
 
 		BEATRICE_FLYING_SHARK =
 			ENTITY_TYPES.register("beatrice_flying_shark",
-				() -> EntityType.Builder.of(BeatriceFlyingSharkEntity::new, EntityClassification.CREATURE)
+				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
 					.sized(0.6F, 1.95F)  // Adjust size as needed
 					.setTrackingRange(80)
 					.setUpdateInterval(3)
