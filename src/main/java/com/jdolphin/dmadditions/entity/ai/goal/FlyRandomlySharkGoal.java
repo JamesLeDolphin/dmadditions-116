@@ -22,11 +22,13 @@ public class FlyRandomlySharkGoal extends Goal {
 
 	@Override
 	public void start() {
-		entity.setFlying(true); // Set the entity as flying when starting to fly
+//		entity.setFlying(true); // Set the entity as flying when starting to fly
 		double targetX = entity.getX() + entity.getRandom().nextDouble() * 20 - 10;
 		double targetY = entity.getY() + entity.getRandom().nextDouble() * 10 - 5;
 		double targetZ = entity.getZ() + entity.getRandom().nextDouble() * 20 - 10;
 		targetPosition = new Vector3d(targetX, targetY, targetZ);
+
+
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class FlyRandomlySharkGoal extends Goal {
 
 	@Override
 	public void stop() {
-		entity.setFlying(false); // Set the entity as not flying when stopping this goal
+//		entity.setFlying(false); // Set the entity as not flying when stopping this goal
 		targetPosition = null;
 	}
 }
