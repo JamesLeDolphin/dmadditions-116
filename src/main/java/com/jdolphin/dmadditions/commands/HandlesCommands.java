@@ -89,7 +89,7 @@ public class HandlesCommands {
 			return command;
 		}
 		public static HandlesCommand create(String pattern, HandlesCommandFunction function){
-			return create(Pattern.compile(pattern), function);
+			return create(Pattern.compile(pattern, Pattern.CASE_INSENSITIVE), function);
 		}
 
 		public Pattern getPattern(){
