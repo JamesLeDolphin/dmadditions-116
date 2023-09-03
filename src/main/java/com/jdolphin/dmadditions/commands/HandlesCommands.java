@@ -34,7 +34,7 @@ public class HandlesCommands {
 		return true;
 	});
 
-	public static HandlesCommand LOCATE_TARDIS = HandlesCommand.create("(locate|find|wher).*(tardis|ship)\\??", (player, matcher, query) -> {
+	public static HandlesCommand LOCATE_TARDIS = HandlesCommand.create("(locate|find|where|wher).*(tardis|tardus|ship)\\??", (player, matcher, query) -> {
 		List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
 		if (!ids.isEmpty()) {
 			for (int id : ids) {
@@ -42,7 +42,7 @@ public class HandlesCommands {
 				TardisData data = DMTardis.getTardis(tardis);
 				BlockPos loc = DMTardis.getTardis(id).getCurrentLocation().getBlockPosition();
 				ResourceLocation dim = DMTardis.getTardis(id).getCurrentLocation().dimensionWorldKey().location();
-				sendHandlesMessage(player, String.format("Your TARDIS (\"%s\") is at %d %d %d; Dimension: %s", id, loc.getX(), loc.getY(), loc.getZ(), dim));
+				sendHandlesMessage(player, String.format("Your TARDIS (%s) is at %d %d %d; Dimension: %s", id, loc.getX(), loc.getY(), loc.getZ(), dim));
 			}
 		} else {
 			sendHandlesMessage(player, "Unable to find your TARDIS");
@@ -68,7 +68,7 @@ public class HandlesCommands {
 
 
 	public static void sendHandlesMessage(PlayerEntity player, String message){
-		IFormattableTextComponent handlesText = new StringTextComponent("<Handles> ").withStyle(TextFormatting.RED);
+		IFormattableTextComponent handlesText = new StringTextComponent("<Handles> ").withStyle(TextFormatting.AQUA);
 		IFormattableTextComponent messageText = new StringTextComponent(message).withStyle(TextFormatting.RESET);
 
 		player.displayClientMessage(new StringTextComponent("").append(handlesText).append(messageText), false);
