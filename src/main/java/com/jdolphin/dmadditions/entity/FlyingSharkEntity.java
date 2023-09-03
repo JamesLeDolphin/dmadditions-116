@@ -323,6 +323,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.passive.WolfEntity;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
@@ -330,7 +331,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import com.jdolphin.dmadditions.entity.ai.goal.*;
@@ -342,12 +345,28 @@ import java.util.EnumSet;
 import java.util.Random;
 import java.util.UUID;
 
-public class FlyingSharkEntity extends WolfEntity implements IRideable, IEquipable{
+public class FlyingSharkEntity extends WolfEntity implements IRideable, IEquipable {
 	private static final DataParameter<Boolean> DATA_SADDLE_ID = EntityDataManager.defineId(PigEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> DATA_BOOST_TIME = EntityDataManager.defineId(PigEntity.class, DataSerializers.INT);
 	private final BoostHelper steering = new BoostHelper(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
+	private static final DataParameter<Byte> DATA_ID_FLAGS = EntityDataManager.defineId(AbstractHorseEntity.class, DataSerializers.BYTE);
+	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON);
 	// DataParameter for flying state
 	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
+	private int mouthCounter;
+	private int standCounter;
+	public int tailCounter;
+	public int sprintCounter;
+	private float eatAnim;
+	private float standAnim;
+	private float mouthAnim;
+	private float eatAnimO;
+	private float standAnimO;
+	private boolean allowStandSliding;
+	private float mouthAnimO;
+	protected int gallopSoundCounter;
+	protected boolean isJumping;
+	protected float playerJumpPendingScale;
 
 	// Add a boolean to represent tamed state
 	public static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
@@ -371,6 +390,8 @@ public class FlyingSharkEntity extends WolfEntity implements IRideable, IEquipab
 		this.goalSelector.addGoal(9, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 		this.targetSelector.addGoal(10, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, PREY_SELECTOR));
 		this.targetSelector.addGoal(11, new NonTamedTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
+		this.goalSelector.addGoal(12, new TemptGoal(this, 1.2D, Ingredient.of(Items.CARROT_ON_A_STICK), false));
+		this.goalSelector.addGoal(13, new TemptGoal(this, 1.2D, false, FOOD_ITEMS));
 	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -379,6 +400,21 @@ public class FlyingSharkEntity extends WolfEntity implements IRideable, IEquipab
 			.add(Attributes.MAX_HEALTH, 20.0)
 			.add(Attributes.ATTACK_DAMAGE, 2.0)
 			.add(Attributes.FOLLOW_RANGE, 20.0);
+	}
+
+	@javax.annotation.Nullable
+	public Entity getControllingPassenger() {
+		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
+	}
+
+	public boolean canBeControlledByRider() {
+		Entity entity = this.getControllingPassenger();
+		if (!(entity instanceof PlayerEntity)) {
+			return false;
+		} else {
+			PlayerEntity playerentity = (PlayerEntity) entity;
+			return playerentity.getMainHandItem().getItem() == Items.CARROT_ON_A_STICK || playerentity.getOffhandItem().getItem() == Items.CARROT_ON_A_STICK;
+		}
 	}
 
 	public FlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -585,6 +621,7 @@ public class FlyingSharkEntity extends WolfEntity implements IRideable, IEquipab
 			}
 		}
 	}
+
 	public boolean isSaddleable() {
 		return this.isAlive() && !this.isBaby();
 	}
@@ -592,12 +629,124 @@ public class FlyingSharkEntity extends WolfEntity implements IRideable, IEquipab
 	public void equipSaddle(@javax.annotation.Nullable SoundCategory p_230266_1_) {
 		this.steering.setSaddle(true);
 		if (p_230266_1_ != null) {
-			this.level.playSound((PlayerEntity)null, this, SoundEvents.HORSE_SADDLE, p_230266_1_, 0.5F, 1.0F);
+			this.level.playSound((PlayerEntity) null, this, SoundEvents.HORSE_SADDLE, p_230266_1_, 0.5F, 1.0F);
 		}
 
 	}
 
 	public boolean isSaddled() {
 		return this.steering.hasSaddle();
+	}
+
+	protected void setFlag(int p_110208_1_, boolean p_110208_2_) {
+		byte b0 = this.entityData.get(DATA_ID_FLAGS);
+		if (p_110208_2_) {
+			this.entityData.set(DATA_ID_FLAGS, (byte) (b0 | p_110208_1_));
+		} else {
+			this.entityData.set(DATA_ID_FLAGS, (byte) (b0 & ~p_110208_1_));
+		}
+
+	}
+
+	public double getCustomJump() {
+		return this.getAttributeValue(Attributes.JUMP_STRENGTH);
+	}
+
+	public void setStanding(boolean p_110219_1_) {
+		if (p_110219_1_) {
+			this.setEating(false);
+		}
+
+		this.setFlag(32, p_110219_1_);
+	}
+
+	public void setEating(boolean p_110227_1_) {
+		this.setFlag(16, p_110227_1_);
+	}
+
+	public boolean isEating() {
+		return this.getFlag(16);
+	}
+
+	protected boolean getFlag(int p_110233_1_) {
+		return (this.entityData.get(DATA_ID_FLAGS) & p_110233_1_) != 0;
+	}
+
+	public boolean isStanding() {
+		return this.getFlag(32);
+	}
+
+	public boolean isJumping() {
+		return this.isJumping;
+	}
+
+	public void setIsJumping(boolean p_110255_1_) {
+		this.isJumping = p_110255_1_;
+	}
+
+	public void travel(Vector3d p_213352_1_) {
+		if (this.isAlive()) {
+			if (this.isVehicle() && this.canBeControlledByRider() && this.isSaddled()) {
+				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
+				this.yRot = livingentity.yRot;
+				this.yRotO = this.yRot;
+				this.xRot = livingentity.xRot * 0.5F;
+				this.setRot(this.yRot, this.xRot);
+				this.yBodyRot = this.yRot;
+				this.yHeadRot = this.yBodyRot;
+				float f = livingentity.xxa * 0.5F;
+				float f1 = livingentity.zza;
+				if (f1 <= 0.0F) {
+					f1 *= 0.25F;
+					this.gallopSoundCounter = 0;
+				}
+
+				if (this.onGround && this.playerJumpPendingScale == 0.0F && this.isStanding() && !this.allowStandSliding) {
+					f = 0.0F;
+					f1 = 0.0F;
+				}
+
+				if (this.playerJumpPendingScale > 0.0F && !this.isJumping() && this.onGround) {
+					double d0 = this.getCustomJump() * (double) this.playerJumpPendingScale * (double) this.getBlockJumpFactor();
+					double d1;
+					if (this.hasEffect(Effects.JUMP)) {
+						d1 = d0 + (double) ((float) (this.getEffect(Effects.JUMP).getAmplifier() + 1) * 0.1F);
+					} else {
+						d1 = d0;
+					}
+
+					Vector3d vector3d = this.getDeltaMovement();
+					this.setDeltaMovement(vector3d.x, d1, vector3d.z);
+					this.setIsJumping(true);
+					this.hasImpulse = true;
+					net.minecraftforge.common.ForgeHooks.onLivingJump(this);
+					if (f1 > 0.0F) {
+						float f2 = MathHelper.sin(this.yRot * ((float) Math.PI / 180F));
+						float f3 = MathHelper.cos(this.yRot * ((float) Math.PI / 180F));
+						this.setDeltaMovement(this.getDeltaMovement().add((double) (-0.4F * f2 * this.playerJumpPendingScale), 0.0D, (double) (0.4F * f3 * this.playerJumpPendingScale)));
+					}
+
+					this.playerJumpPendingScale = 0.0F;
+				}
+
+				this.flyingSpeed = this.getSpeed() * 0.1F;
+				if (this.isControlledByLocalInstance()) {
+					this.setSpeed((float) this.getAttributeValue(Attributes.MOVEMENT_SPEED));
+					super.travel(new Vector3d((double) f, p_213352_1_.y, (double) f1));
+				} else if (livingentity instanceof PlayerEntity) {
+					this.setDeltaMovement(Vector3d.ZERO);
+				}
+
+				if (this.onGround) {
+					this.playerJumpPendingScale = 0.0F;
+					this.setIsJumping(false);
+				}
+
+				this.calculateEntityAnimation(this, false);
+			} else {
+				this.flyingSpeed = 0.02F;
+				super.travel(p_213352_1_);
+			}
+		}
 	}
 }
