@@ -2,6 +2,8 @@ package com.jdolphin.dmadditions.event;
 
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.dimension.Gravity;
+import com.jdolphin.dmadditions.init.DMAItems;
+import com.jdolphin.dmadditions.item.handles.HandlesItem;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Tardis;
 import com.swdteam.common.tardis.TardisData;
@@ -10,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -33,33 +36,37 @@ public class DMAEventHandlerGeneral {
 	public static void onPlayerChat(ServerChatEvent event) {
 		PlayerEntity player = event.getPlayer();
 		String message = event.getMessage();
-
-		if(message.toLowerCase().startsWith("handles")){
-			String query = message.substring(7).trim();
-
-			if(query.isEmpty()){
-				HandlesCommands.HELLO.execute(player, query);
-				event.setCanceled(true);
-				return;
+		ItemStack stack = player.getItemInHand(player.getUsedItemHand());
+		if (stack.getItem().equals(DMAItems.HANDLES_ITEM.get())) {
+			if(stack.hasCustomHoverName()) {
+				HandlesCommands.setName(stack.getHoverName().getContents());
 			}
+			if (message.toLowerCase().startsWith("handles")) {
+				String query = message.substring(7).trim();
 
-			HandlesCommands.HandlesCommand command = HandlesCommands.get(query);
-			if(command == null) {
-				HandlesCommands.sendHandlesMessage(player, "Sorry, I don't seem to understand");
+				if (query.isEmpty()) {
+					HandlesCommands.HELLO.execute(player, query);
+					event.setCanceled(true);
+					return;
+				}
+
+				HandlesCommands.HandlesCommand command = HandlesCommands.get(query);
+				if (command == null) {
+					HandlesCommands.sendHandlesMsg(player, "Sorry, I don't seem to understand");
+					event.setCanceled(true);
+					return;
+				}
+
+				try {
+					command.execute(player, query);
+				} catch (Exception e) {
+					HandlesCommands.sendHandlesMsg(player, "Seems like that didn't work");
+					e.printStackTrace();
+				}
+
 				event.setCanceled(true);
-				return;
-			};
-
-			try {
-				command.execute(player, query);
-			}catch(Exception e){
-				HandlesCommands.sendHandlesMessage(player, "Seems like that didn't work");
-				e.printStackTrace();
 			}
-
-			event.setCanceled(true);
 		}
-
 	}
 
 	@SubscribeEvent
