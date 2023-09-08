@@ -242,5 +242,7 @@
 	"notice.dalekmod.lock": "You have locked the TARDIS doors",
 	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors",
 
-	"block.dalekmod.christmas_present": "Christmas Present"
+	"block.dalekmod.christmas_present": "Christmas Present",
+
+	"item.dalekmod.handles_item": "Handles"
 }

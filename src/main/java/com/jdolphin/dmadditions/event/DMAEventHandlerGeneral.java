@@ -38,29 +38,26 @@ public class DMAEventHandlerGeneral {
 		String message = event.getMessage();
 		ItemStack stack = player.getItemInHand(player.getUsedItemHand());
 		if (stack.getItem().equals(DMAItems.HANDLES_ITEM.get())) {
-			if(stack.hasCustomHoverName()) {
-				HandlesCommands.setName(stack.getHoverName().getContents());
-			}
 			if (message.toLowerCase().startsWith("handles")) {
 				String query = message.substring(7).trim();
 
 				if (query.isEmpty()) {
-					HandlesCommands.HELLO.execute(player, query);
+					HandlesCommands.HELLO.execute(stack, player, query);
 					event.setCanceled(true);
 					return;
 				}
 
 				HandlesCommands.HandlesCommand command = HandlesCommands.get(query);
 				if (command == null) {
-					HandlesCommands.sendHandlesMsg(player, "Sorry, I don't seem to understand");
+					HandlesCommands.sendHandlesMessage(player, stack, "Sorry, I don't seem to understand");
 					event.setCanceled(true);
 					return;
 				}
 
 				try {
-					command.execute(player, query);
+					command.execute(stack, player, query);
 				} catch (Exception e) {
-					HandlesCommands.sendHandlesMsg(player, "Seems like that didn't work");
+					HandlesCommands.sendHandlesMessage(player, stack, "Seems like that didn't work");
 					e.printStackTrace();
 				}
 
