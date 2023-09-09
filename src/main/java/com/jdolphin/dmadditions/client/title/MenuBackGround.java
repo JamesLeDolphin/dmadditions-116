@@ -9,7 +9,7 @@ public enum MenuBackGround {
 	ANGELS("bg_5"),
 	TARDIS("bg_6"),
 	D13("bg_7"),
-	REGEN("bg_8"),
+	TARDIS_SHADERS("bg_8"),
 	FOREMAN("bg_9");
   
 	String name;
