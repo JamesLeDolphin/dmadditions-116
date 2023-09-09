@@ -1,13 +1,17 @@
 package com.jdolphin.dmadditions.commands;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.common.init.DMTardis;
+import com.swdteam.common.tardis.Tardis;
 import com.swdteam.common.tardis.TardisData;
+import com.swdteam.main.DalekMod;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
+import net.minecraft.world.gen.placement.ChanceConfig;
 
 import java.util.HashSet;
 import java.util.List;
@@ -39,11 +43,26 @@ public class HandlesCommands {
 		List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
 		if (!ids.isEmpty()) {
 			for (int id : ids) {
-				int tardis = DMTardis.getTardis(id).getGlobalID();
-				TardisData data = DMTardis.getTardis(tardis);
 				BlockPos loc = DMTardis.getTardis(id).getCurrentLocation().getBlockPosition();
 				ResourceLocation dim = DMTardis.getTardis(id).getCurrentLocation().dimensionWorldKey().location();
 				sendHandlesMessage(player, handles, String.format("Your TARDIS (%s) is at %d %d %d; Dimension: %s", id, loc.getX(), loc.getY(), loc.getZ(), dim));
+			}
+		} else {
+			sendHandlesMessage(player, handles, "Unable to find your TARDIS");
+			return false;
+		}
+
+		return true;
+	});
+
+	public static HandlesCommand TARDIS_DISGUISE = HandlesCommand.create("(whats|wuh|what|wah).*(tardis|tardus|ship)\\??", (player, handles, matcher, query) -> {
+		List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
+		if (!ids.isEmpty()) {
+			for (int id : ids) {
+				int tardis = DMTardis.getTardis(id).getGlobalID();
+				TardisData data = DMTardis.getTardis(tardis);
+				Tardis ext = data.getTardisExterior();
+				sendHandlesMessage(player, handles, String.format("Your TARDIS (%s) is disguised as %s", id, ext.getRegName()));
 			}
 		} else {
 			sendHandlesMessage(player, handles, "Unable to find your TARDIS");
@@ -63,12 +82,31 @@ public class HandlesCommands {
 
 	public static HandlesCommand HELLO = HandlesCommand.create("(hell?o|hi)", (player, handles, matcher, query) -> {
 		sendHandlesMessage(player, handles, String.format("How may I help you, %s?", player.getName().getString()));
+		return true;
+	});
+
+	public static HandlesCommand LIFE = HandlesCommand.create("(whats|wuh|what|wah|what is).*(meaning|point).*(life)\\??", (player, handles, matcher, query) -> {
+		if (DalekMod.RANDOM.nextInt(250) == 0) sendHandlesMessage(player, handles, "DMA is the meaning of life");
+		if (DalekMod.RANDOM.nextInt(4096) == 0) sendHandlesMessage(player, handles, "The doors of hell have opened");
+		else sendHandlesMessage(player, handles, "42");
 
 		return true;
-	} );
+	});
+
+	public static HandlesCommand VERSION = HandlesCommand.create("(whats|wuh|what|wah).*(version|vers|ver|v|versioon)\\??", (player, handles, matcher, query) -> {
+		sendHandlesMessage(player, handles, String.format("My current version is: %s", DalekMod.VERSION + "-" + DmAdditions.VERSION));
+		return true;
+	});
+
+	public static HandlesCommand NAME = HandlesCommand.create("(whats|wuh|what|wah|say|who).*(name|i)\\??", (player, handles, matcher, query) -> {
+		sendHandlesMessage(player, handles, String.format("Your name is %s", player.getName().getString()));
+		return true;
+	});
+
+
 
 	public static void sendHandlesMessage(PlayerEntity player, ItemStack itemStack, String message){
-		IFormattableTextComponent handlesText = new StringTextComponent("<").append(itemStack.getDisplayName()).append("> ").withStyle(TextFormatting.AQUA);
+		IFormattableTextComponent handlesText = new StringTextComponent("<").append(itemStack.getHoverName()).append("> ").withStyle(TextFormatting.AQUA);
 		IFormattableTextComponent messageText = new StringTextComponent(message).withStyle(TextFormatting.RESET);
 
 		player.displayClientMessage(new StringTextComponent("").append(handlesText).append(messageText), false);
