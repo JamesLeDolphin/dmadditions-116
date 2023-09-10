@@ -23,6 +23,7 @@
 		"TardisTileEntityMixin"
 	],
 	"client": [
+		"BusClientEventsMixin",
 		"MainMenuScreenMixin",
 		"ClientProxyMixin",
 		"DalekEntityMixin",

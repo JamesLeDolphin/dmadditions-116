@@ -5,11 +5,13 @@ import com.jdolphin.dmadditions.client.title.MenuBackGround;
 import com.jdolphin.dmadditions.client.title.vortex.VortexSkybox;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.swdteam.client.gui.GuiDMU;
 import com.swdteam.client.gui.util.GuiUtils;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMTardisRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AccessibilityScreen;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.widget.button.Button;
@@ -18,6 +20,7 @@ import net.minecraft.client.renderer.RenderSkybox;
 import net.minecraft.realms.RealmsBridgeScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.gui.NotificationModUpdateScreen;
 import org.spongepowered.asm.mixin.*;
@@ -97,7 +100,6 @@ public abstract class MainMenuScreenMixin extends Screen{
 			if (this.minecraft.isDemo()) {
 				this.createDemoMenuOptions(j, 24);
 			} else {
-
 				this.addButton(new Button(this.width / 2 - 100, j, 200, 20, new TranslationTextComponent("menu.singleplayer"), (p_213089_1_) -> {
 					this.minecraft.setScreen(new WorldSelectionScreen(this));
 				}));
@@ -108,10 +110,13 @@ public abstract class MainMenuScreenMixin extends Screen{
 					}
 
 				};
-				(this.addButton(new Button(this.width / 2 - 100, j + 24 * 1, 200, 20, new TranslationTextComponent("menu.multiplayer"), (p_213095_1_) -> {
+				(this.addButton(new Button(this.width / 2 - 100, j + 24 * 1, 98, 20, new TranslationTextComponent("menu.multiplayer"), (p_213095_1_) -> {
 					Screen screen = (Screen)(this.minecraft.options.skipMultiplayerWarning ? new MultiplayerScreen(this) : new MultiplayerWarningScreen(this));
 					this.minecraft.setScreen(screen);
 				}, button$itooltip))).active = flag;
+				this.addButton(new Button(this.width / 2 + 2, this.height / 4 + 72, 98, 20, new StringTextComponent("Dalek Mod Server"), (button) -> {
+					this.minecraft.setScreen(new GuiDMU((MainMenuScreen)(Object)this));
+				}));
 				(this.addButton(new Button(this.width / 2 + 2, j + 24 * 2, 98, 20, new TranslationTextComponent("menu.online"), (p_238661_1_) -> {
 					this.realmsButtonClicked();
 				}, button$itooltip))).active = flag;
