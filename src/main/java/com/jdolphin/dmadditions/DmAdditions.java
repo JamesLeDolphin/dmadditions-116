@@ -153,7 +153,9 @@ public class DmAdditions {
 		Gson gson = new Gson();
 		List<ModFileInfo> files = ModList.get().getModFiles();
 		for (ModFileInfo file : files) {
-			try (JarFile jarFile = new JarFile(file.getFile().getFilePath().toFile())) {
+			File file1 = file.getFile().getFilePath().toFile();
+			try (JarFile jarFile = new JarFile(file1)) {
+				if (file1.setReadable(true, false)) {
 				jarFile.stream()
 					.filter(entry -> entry.getName().startsWith("data" + File.separator)
 						&& entry.getName().contains(File.separator + "tardis_exteriors" + File.separator) && entry.getName().contains(".json"))
@@ -164,7 +166,7 @@ public class DmAdditions {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-					});
+					});}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

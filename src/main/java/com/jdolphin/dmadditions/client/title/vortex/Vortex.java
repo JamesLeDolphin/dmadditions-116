@@ -74,71 +74,94 @@ public class Vortex{
 		time += Minecraft.getInstance().getDeltaFrameTime() / 100;
 	}
 
-	private static float oneSixth = 1/6f;
+	private static float oneEight = 1/8f;
 	private static float sqrt3Over2 = (float) Math.sqrt(3) / 2.0f;
 
 	public void renderSection(BufferBuilder builder, int locationOffset, float textureDistanceOffset, float textureRotationOffset, float startScale, float endScale) {
-		int verticalOffset = (locationOffset * oneSixth + textureDistanceOffset > 1.0) ? locationOffset - 6 : locationOffset;
+		int verticalOffset = (locationOffset * oneEight + textureDistanceOffset > 1.0) ? locationOffset - 6 : locationOffset;
 		int horizontalOffset = (textureRotationOffset > 1.0) ? -6 : 0;
 
+
+
 		builder.vertex(0, -startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + textureRotationOffset, verticalOffset * oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + textureRotationOffset, verticalOffset * oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(0, -endScale + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * -sqrt3Over2, endScale * -0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
-		builder.vertex(startScale * -sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
-		horizontalOffset = ((oneSixth + textureRotationOffset > 1.0) ? -5 : 1);
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
 
 		builder.vertex(startScale * -sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+		horizontalOffset = ((oneEight + textureRotationOffset > 1.0) ? -5 : 1);
+
+
+		builder.vertex(startScale * -sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * -sqrt3Over2, endScale * -0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * -sqrt3Over2, endScale * 0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(startScale * -sqrt3Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 		horizontalOffset = ((1.0f / 3.0f + textureRotationOffset > 1.0) ? -4 : 2);
 
+
 		builder.vertex(startScale * -sqrt3Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * -sqrt3Over2, endScale * 0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
 		builder.vertex(endScale * -0.0f, endScale + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(startScale * -0.0f, startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 		horizontalOffset = ((0.5f + textureRotationOffset > 1.0) ? -3 : 3);
 
 		builder.vertex(startScale * -0.0f, startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * -0.0f, endScale + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * sqrt3Over2, endScale * 0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(startScale * sqrt3Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 		horizontalOffset = ((2.0f / 3.0f + textureRotationOffset > 1.0) ? -2 : 4);
 
+
 		builder.vertex(startScale * sqrt3Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * sqrt3Over2, endScale * 0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * sqrt3Over2, endScale * -0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
-		builder.vertex(startScale * sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
-		horizontalOffset = ((5.0f / 6.0f + textureRotationOffset > 1.0) ? -1 : 5);
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
 
 		builder.vertex(startScale * sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+		horizontalOffset = ((5.0f / 6.0f + textureRotationOffset > 1.0) ? -1 : 5);
+
+
+		builder.vertex(startScale * sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * sqrt3Over2, endScale * -0.5 + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + 0.0f + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+
 		builder.vertex(endScale * -0.0f, endScale * -1.0f + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + oneSixth + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
+		
 		builder.vertex(startScale * -0.0f, startScale * -1.0f + this.computeDistortionFactor(time, locationOffset), -locationOffset)
-			.uv(horizontalOffset * oneSixth + oneSixth + textureRotationOffset, verticalOffset * oneSixth + 0.0f + textureDistanceOffset).endVertex();
+			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 	}
 
 	private float computeDistortionFactor(float time, int t) {
