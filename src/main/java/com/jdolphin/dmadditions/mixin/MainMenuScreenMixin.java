@@ -94,34 +94,32 @@ public abstract class MainMenuScreenMixin extends Screen{
 
 			this.copyrightWidth = this.font.width("Copyright Mojang AB. Do not distribute!");
 			this.copyrightX = this.width - this.copyrightWidth - 2;
-			int i = 24;
-			int j = this.height / 4 + 48;
+			int i = 20;
+			int j = this.height / 4 + 20;
 			Button modButton = null;
 			if (this.minecraft.isDemo()) {
 				this.createDemoMenuOptions(j, 24);
 			} else {
-				this.addButton(new Button(this.width / 2 - 100, j, 200, 20, new TranslationTextComponent("menu.singleplayer"), (p_213089_1_) -> {
+				this.addButton(new Button(0, j, 200, i, new TranslationTextComponent("menu.singleplayer"), (p_213089_1_) -> {
 					this.minecraft.setScreen(new WorldSelectionScreen(this));
 				}));
 				boolean flag = this.minecraft.allowsMultiplayer();
 				Button.ITooltip button$itooltip = flag ? Button.NO_TOOLTIP : (p_238659_1_, p_238659_2_, p_238659_3_, p_238659_4_) -> {
 					if (!p_238659_1_.active) {
 						this.renderTooltip(p_238659_2_, this.minecraft.font.split(new TranslationTextComponent("title.multiplayer.disabled"), Math.max(this.width / 2 - 43, 170)), p_238659_3_, p_238659_4_);
-					}
-
-				};
-				(this.addButton(new Button(this.width / 2 - 100, j + 24 * 1, 98, 20, new TranslationTextComponent("menu.multiplayer"), (p_213095_1_) -> {
+					}};
+				(this.addButton(new Button(0, j + 24, 200, i, new TranslationTextComponent("menu.multiplayer"), (p_213095_1_) -> {
 					Screen screen = (Screen)(this.minecraft.options.skipMultiplayerWarning ? new MultiplayerScreen(this) : new MultiplayerWarningScreen(this));
 					this.minecraft.setScreen(screen);
 				}, button$itooltip))).active = flag;
-				this.addButton(new Button(this.width / 2 + 2, this.height / 4 + 72, 98, 20, new StringTextComponent("Dalek Mod Server"), (button) -> {
+				this.addButton(new Button(0, j + 48, 200, i, new StringTextComponent("Dalek Mod Server"), (button) -> {
 					this.minecraft.setScreen(new GuiDMU((MainMenuScreen)(Object)this));
 				}));
-				(this.addButton(new Button(this.width / 2 + 2, j + 24 * 2, 98, 20, new TranslationTextComponent("menu.online"), (p_238661_1_) -> {
+				(this.addButton(new Button(0, j + 72, 200, i, new TranslationTextComponent("menu.online"), (p_238661_1_) -> {
 					this.realmsButtonClicked();
 				}, button$itooltip))).active = flag;
 
-				modButton = this.addButton(new Button(this.width / 2 - 100, j + 24 * 2, 98, 20, new TranslationTextComponent("fml.menu.mods"), button -> {
+				modButton = this.addButton(new Button(0, j + 96, 200, i, new TranslationTextComponent("fml.menu.mods"), button -> {
 					this.minecraft.setScreen(new net.minecraftforge.fml.client.gui.screen.ModListScreen(this));
 				}));
 			}
@@ -130,10 +128,10 @@ public abstract class MainMenuScreenMixin extends Screen{
 			this.addButton(new ImageButton(this.width / 2 - 124, j + 72 + 12, 20, 20, 0, 106, 20, Button.WIDGETS_LOCATION, 256, 256, (p_213090_1_) -> {
 				this.minecraft.setScreen(new LanguageScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));
 			}, new TranslationTextComponent("narrator.button.language")));
-			this.addButton(new Button(this.width / 2 - 100, j + 72 + 12, 98, 20, new TranslationTextComponent("menu.options"), (p_213096_1_) -> {
+			this.addButton(new Button(0, j + 96 + 24, 200, i, new TranslationTextComponent("menu.options"), (p_213096_1_) -> {
 				this.minecraft.setScreen(new OptionsScreen(this, this.minecraft.options));
 			}));
-			this.addButton(new Button(this.width / 2 + 2, j + 72 + 12, 98, 20, new TranslationTextComponent("menu.quit"), (p_213094_1_) -> {
+			this.addButton(new Button(0, j + 96 + 48, 200, i, new TranslationTextComponent("menu.quit"), (p_213094_1_) -> {
 				this.minecraft.stop();
 			}));
 			this.addButton(new Button(this.width / 2 + 104, j + 72 + 12, 20, 20, new TranslationTextComponent("narrator.button.accessibility"), (p_213088_1_) -> {
