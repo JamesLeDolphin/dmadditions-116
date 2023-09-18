@@ -87,7 +87,7 @@ public abstract class MainMenuScreenMixin extends Screen{
 	 */
 	@Overwrite
 	public void init() {
-		if (DMAClientConfig.dma_classic.get()) {
+		//if (DMAClientConfig.dma_classic.get()) {
 			if (this.splash == null) {
 				this.splash = this.minecraft.getSplashManager().getSplash();
 			}
@@ -148,7 +148,7 @@ public abstract class MainMenuScreenMixin extends Screen{
 				this.realmsNotificationsScreen.init(this.minecraft, this.width, this.height);
 			}
 
-		}
+		//}
 	}
 
 
