@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.init.*;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
