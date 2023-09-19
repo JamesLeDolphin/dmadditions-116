@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "minecraft:block/smooth_stone",
+        "down": "dalekmod:block/yellow_candy_cane_block_top",
+        "up": "dalekmod:block/yellow_candy_cane_block_top",
+        "side": "dalekmod:block/yellow_candy_cane_block"
+     }
+ }

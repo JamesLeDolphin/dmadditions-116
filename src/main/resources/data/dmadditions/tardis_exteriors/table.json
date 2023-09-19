@@ -5,7 +5,7 @@
 	],
 	"cost": 100,
 	"unlockable": true,
-	"desc": "dalekmod.tardis.description.table",
+	"desc": "dmadditions.tardis.description.table",
 	"hitbox": [[0,0,0,16,32,16]],
 	"hitbox_visual": {
 		"default": [[0,0,0,16,40,16]],

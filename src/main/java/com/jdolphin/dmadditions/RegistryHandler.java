@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.init.*;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
@@ -24,6 +25,7 @@ public class RegistryHandler {
 
 	public static void init() {
 		DMAProjectiles.init();
+		DMARegistries.register();
 
 		dmaCarvers = new DMAWorldCarvers();
 		dmaBiomes = new DMABiomes();
@@ -33,15 +35,14 @@ public class RegistryHandler {
 		dmaTiles = new DMABlockEntities();
 		dmaEntities = new DMAEntities();
 		dmaLootConditionManager = new DMALootConditionManager();
-//		dmaFluids = new DMAFluids();
 
 		ItemTags.createOptional(new ResourceLocation(DmAdditions.MODID, "tardis_keys"));
-		DMARegistries.register();
 	}
 
 	public static class DMARegistries {
 		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES;
 		public static final DeferredRegister<Item> ITEMS;
+
 		public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES;
 
 		public static void register() {
@@ -50,6 +51,7 @@ public class RegistryHandler {
 			ENTITY_TYPES.register(modEventBus);
 			TILE_ENTITY_TYPES.register(modEventBus);
 			ITEMS.register(modEventBus);
+
 		}
 
 		static {

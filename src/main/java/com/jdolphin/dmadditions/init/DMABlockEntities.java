@@ -18,14 +18,6 @@ public class DMABlockEntities {
 
 
 	static {
-//		if (AdventUnlock.unlockAt(23))
-//			TILE_SCANNER = RegistryHandler.TILE_ENTITY_TYPES.register("dma_scanner", () ->
-//				TileEntityType.Builder.of(BetterScannerTileEntity::new,
-//					DMBlocks.SCANNER.get(),
-//					DMABlocks.TARDIS_MONITOR_8.get(),
-//					DMABlocks.CORAL_TARDIS_MONITOR.get(),
-//					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
-//				).build(null));
 
 		TILE_DOOR_PANEL = RegistryHandler.TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
