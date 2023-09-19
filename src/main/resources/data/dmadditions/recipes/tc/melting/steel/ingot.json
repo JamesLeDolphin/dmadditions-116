@@ -1,4 +1,14 @@
 {
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
   "type": "tconstruct:melting",
   "ingredient": {
     "item": "dalekmod:steel_ingot"
@@ -9,4 +19,7 @@
   },
   "temperature": 1000,
   "time": 50
+      }
+    }
+  ]
 }

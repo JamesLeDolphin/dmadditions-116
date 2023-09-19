@@ -1,9 +1,22 @@
 {
-  "type": "tconstruct:casting_basin",
-  "fluid": {
-    "tag": "tconstruct:molten_steel",
-    "amount": 1296
-  },
-  "result": "dalekmod:steel_block",
-  "cooling_time": 250
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:casting_basin",
+      "fluid": {
+        "tag": "tconstruct:molten_steel",
+        "amount": 1296
+      },
+      "result": "dalekmod:steel_block",
+      "cooling_time": 250
+      }
+    }
+  ]
 }

@@ -1,14 +1,28 @@
 {
-  "type": "tconstruct:damagable_melting",
-  "ingredient": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "dalekmod:dalekanium_mace"
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:damagable_melting",
+      "ingredient": [
+        {
+          "item": "dalekmod:dalekanium_mace"
+        }
+      ],
+      "result": {
+        "fluid": "dmadditions:molten_dalekanium",
+        "amount": 576
+      },
+      "temperature": 1000,
+      "time": 100
+
+      }
     }
-  ],
-  "result": {
-    "fluid": "dmadditions:molten_dalekanium",
-    "amount": 576
-  },
-  "temperature": 1000,
-  "time": 100
+  ]
 }

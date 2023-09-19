@@ -1,12 +1,25 @@
 {
-  "type": "tconstruct:melting",
-  "ingredient": {
-    "item": "dalekmod:silicon"
-  },
-  "result": {
-    "fluid": "dmadditions:molten_silicon",
-    "amount": 144
-  },
-  "temperature": 1000,
-  "time": 50
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:melting",
+      "ingredient": {
+        "item": "dalekmod:silicon"
+      },
+      "result": {
+        "fluid": "dmadditions:molten_silicon",
+        "amount": 144
+      },
+      "temperature": 1000,
+      "time": 50
+      }
+    }
+  ]
 }

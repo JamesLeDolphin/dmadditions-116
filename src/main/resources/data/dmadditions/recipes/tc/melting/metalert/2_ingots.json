@@ -1,17 +1,31 @@
 {
-  "type": "tconstruct:damagable_melting",
-  "ingredient": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "dalekmod:metalert_sword"
-    },
-    {
-      "item": "dalekmod:metalert_hoe"
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:damagable_melting",
+      "ingredient": [
+        {
+          "item": "dalekmod:metalert_sword"
+        },
+        {
+          "item": "dalekmod:metalert_hoe"
+        }
+      ],
+      "result": {
+        "fluid": "dmadditions:molten_metalert",
+        "amount": 288
+      },
+      "temperature": 1000,
+      "time": 100
+
+      }
     }
-  ],
-  "result": {
-    "fluid": "dmadditions:molten_metalert",
-    "amount": 288
-  },
-  "temperature": 1000,
-  "time": 100
+  ]
 }

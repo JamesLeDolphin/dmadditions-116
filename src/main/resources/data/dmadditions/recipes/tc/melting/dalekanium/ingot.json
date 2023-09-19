@@ -1,12 +1,25 @@
 {
-  "type": "tconstruct:melting",
-  "ingredient": {
-    "item": "dalekmod:dalekanium_ingot"
-  },
-  "result": {
-    "fluid": "dmadditions:molten_dalekanium",
-    "amount": 144
-  },
-  "temperature": 1000,
-  "time": 50
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:melting",
+      "ingredient": {
+        "item": "dalekmod:dalekanium_ingot"
+      },
+      "result": {
+        "fluid": "dmadditions:molten_dalekanium",
+        "amount": 144
+      },
+      "temperature": 1000,
+      "time": 50
+      }
+    }
+  ]
 }

@@ -1,9 +1,23 @@
 {
-  "type": "tconstruct:casting_basin",
-  "fluid": {
-    "tag": "dmadditions:molten_stainless_steel",
-    "amount": 144
-  },
-  "result": "dalekmod:stainless_steel_ingot",
-  "cooling_time": 250
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+
+      "type": "tconstruct:casting_basin",
+      "fluid": {
+        "tag": "dmadditions:molten_stainless_steel",
+        "amount": 144
+      },
+      "result": "dalekmod:stainless_steel_ingot",
+      "cooling_time": 250
+      }
+    }
+  ]
 }

@@ -1,18 +1,31 @@
 {
-  "type": "tconstruct:entity_melting",
-  "entity": {
-    "types": [
-      "dalekmod:cyberman",
-      "dalekmod:cybermat",
-      "dalekmod:cyberdrone",
-      "dalekmod:cybervillager",
-      "dalekmod:pilot_fish",
-      "dalekmod:kerblam_man"
-    ]
-  },
-  "result": {
-    "fluid": "tconstruct:molten_steel",
-    "amount": 20
-  },
-  "damage": 2
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:entity_melting",
+        "entity": {
+          "types": [
+            "dalekmod:cyberman",
+            "dalekmod:cybermat",
+            "dalekmod:cyberdrone",
+            "dalekmod:cybervillager",
+            "dalekmod:pilot_fish",
+            "dalekmod:kerblam_man"
+          ]
+        },
+        "result": {
+          "fluid": "tconstruct:molten_steel",
+          "amount": 20
+        },
+        "damage": 2
+      }
+    }
+  ]
 }

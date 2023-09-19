@@ -1,11 +1,25 @@
 {
-  "type": "tconstruct:entity_melting",
-  "entity": {
-    "type": "dalekmod:dalek"
-  },
-  "result": {
-    "fluid": "dmadditions:molten_dalekanium",
-    "amount": 20
-  },
-  "damage": 2
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:entity_melting",
+      "entity": {
+        "type": "dalekmod:dalek"
+      },
+      "result": {
+        "fluid": "dmadditions:molten_dalekanium",
+        "amount": 20
+      },
+      "damage": 2
+
+      }
+    }
+  ]
 }
