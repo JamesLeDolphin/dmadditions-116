@@ -10,7 +10,7 @@ public final class DMAClientConfig {
 
 	static {
 		BUILDER.push("Dalek Mod: Additions Client Config");
-		dma_classic = BUILDER.comment("Use classic Dalek Mod (1.12) background images on title screen").define("classic", true);
+		dma_classic = BUILDER.comment("Use classic Dalek Mod (1.12) background images on title screen").define("classic", false);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();

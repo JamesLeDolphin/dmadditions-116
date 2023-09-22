@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "dalekmod:block/blue_candy_cane_block", "y": 0, "x": 90 },
+    "facing=south": { "model": "dalekmod:block/blue_candy_cane_block", "y": 180, "x": 90  },
+    "facing=west":  { "model": "dalekmod:block/blue_candy_cane_block", "y": 270, "x": 90  },
+    "facing=east":  { "model": "dalekmod:block/blue_candy_cane_block", "y": 90, "x": 90  },
+    "facing=up":    { "model": "dalekmod:block/blue_candy_cane_block", "x": 180 },
+    "facing=down":  { "model": "dalekmod:block/blue_candy_cane_block", "x": 0 }
+  }
+}
