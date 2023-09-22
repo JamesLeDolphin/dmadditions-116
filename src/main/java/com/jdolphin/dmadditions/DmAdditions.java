@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.block.IRustToo;
+import com.jdolphin.dmadditions.block.RoundelContainerBlock;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.commands.*;
@@ -10,22 +11,28 @@ import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
-import com.jdolphin.dmadditions.init.DMABlocks;
-import com.jdolphin.dmadditions.init.DMAEntities;
-import com.jdolphin.dmadditions.init.DMAFluids;
-import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
+import com.jdolphin.dmadditions.init.*;
 import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.Item;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.world.ForgeWorldType;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -45,6 +52,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+
+import static com.jdolphin.dmadditions.init.DMABlocks.registerBlock;
 
 
 @Mod("dmadditions")
@@ -78,6 +87,7 @@ public class DmAdditions {
 		modEventBus.addListener(this::doClientStuff);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);
+
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
@@ -166,7 +176,7 @@ public class DmAdditions {
 		}
 
 	}
-
+	// Replaces all missing mappings if possible. Surely theres a better way but eh
 	@SubscribeEvent
 	public void missingItems(RegistryEvent.MissingMappings<Item> event) {
 		for (RegistryEvent.MissingMappings.Mapping<Item> itemMapping : event.getMappings("dalekmod")) {
@@ -176,6 +186,19 @@ public class DmAdditions {
 				RegistryHandler.DMARegistries.ITEMS.getEntries().stream()
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(item -> itemMapping.remap(item.get()));
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void missingEntities(RegistryEvent.MissingMappings<EntityType<?>> event) {
+		for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> entityMapping : event.getMappings("dalekmod")) {
+			ResourceLocation regName = entityMapping.key;
+			if (regName != null) {
+				String path = regName.getPath();
+				RegistryHandler.DMARegistries.ENTITY_TYPES.getEntries().stream()
+					.filter(thing -> thing.getId().getPath().equals(path))
+					.forEach(entity -> entityMapping.remap(entity.get()));
 			}
 		}
 	}
@@ -189,6 +212,21 @@ public class DmAdditions {
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(block -> blockMapping.remap(block.get()));
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public void missingBiomes(RegistryEvent.MissingMappings<Biome> event) {
+		for (RegistryEvent.MissingMappings.Mapping<Biome> mapping : event.getMappings("dalekmod")) {
+			mapping.remap(DMABiomes.MOON_BIOME.get());
+		}
+	}
+	@SubscribeEvent
+	public void missingCarvers(RegistryEvent.MissingMappings<WorldCarver<?>> event) {
+		for (RegistryEvent.MissingMappings.Mapping<WorldCarver<?>> mapping : event.getMappings("dalekmod")) {
+			ResourceLocation regName = mapping.key;
+			mapping.remap(DMAWorldCarvers.CARVER.get());
+
 		}
 	}
 

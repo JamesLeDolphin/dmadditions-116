@@ -14,9 +14,12 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.data.BlockModelProvider;
+import net.minecraft.data.BlockStateVariantBuilder;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +27,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
+import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.ITEMS;
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 public class DMABlocks {
@@ -311,6 +315,14 @@ public class DMABlocks {
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name) {
 		return registerBlock(block, name, new Item.Properties(), true);
+	}
+
+	public static void addRoundelContainers() {
+		//Thingy no work. idk y
+		com.swdteam.common.RegistryHandler.BLOCKS.getEntries().stream().filter(block ->
+			block.get().getRegistryName().getPath().contains("roundel")).forEach(block ->
+			registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.copy(block.get())),
+				block.get().getName().getString() + "_container", DMATabs.DMA_ROUNDEL_CONTAINERS));
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem) {

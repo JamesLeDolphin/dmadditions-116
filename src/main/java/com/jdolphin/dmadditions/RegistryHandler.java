@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -41,7 +43,8 @@ public class RegistryHandler {
 	public static class DMARegistries {
 		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES;
 		public static final DeferredRegister<Item> ITEMS;
-
+		public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS;
+		public static final DeferredRegister<Biome> BIOMES;
 		public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES;
 
 		public static void register() {
@@ -50,13 +53,16 @@ public class RegistryHandler {
 			ENTITY_TYPES.register(modEventBus);
 			TILE_ENTITY_TYPES.register(modEventBus);
 			ITEMS.register(modEventBus);
-
+			WORLD_CARVERS.register(modEventBus);
+			BIOMES.register(modEventBus);
 		}
 
 		static {
 			ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
 			TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
 			ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+			WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DmAdditions.MODID);
+			BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, DmAdditions.MODID);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 	"downfall": 0.4,
 	"precipitation": "rain",
 	"category": "plains",
-	"effects": "dalekmod:moon",
+	"effects": "dmadditions:moon",
 	"starts": [],
 	"spawners": {},
 	"spawn_costs": {},
