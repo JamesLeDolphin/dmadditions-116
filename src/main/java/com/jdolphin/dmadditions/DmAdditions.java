@@ -15,19 +15,15 @@ import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -65,7 +61,6 @@ public class DmAdditions {
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
-
 	public static boolean hasTC() {
 		return ModList.get().isLoaded("tconstruct");
 	}
@@ -77,7 +72,6 @@ public class DmAdditions {
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		// Register things
-		DMABlocks.BLOCKS.register(modEventBus);
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
@@ -98,13 +92,11 @@ public class DmAdditions {
 		ToggleModeCommand.register(dispatcher);
 		GodCommand.register(dispatcher);
 	}
-
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
 		this.registerCommands(commandDispatcher);
 	}
-
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
@@ -136,7 +128,7 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
-		if (hasTC()) {
+		if(hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
@@ -162,32 +154,6 @@ public class DmAdditions {
 				DMASpawnerRegistry.SpawnInfo.Spawn spawn = info.getSpawners().get(i);
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
-			}
-		}
-
-	}
-
-	@SubscribeEvent
-	public void missingItems(RegistryEvent.MissingMappings<Item> event) {
-		for (RegistryEvent.MissingMappings.Mapping<Item> itemMapping : event.getMappings("dalekmod")) {
-			ResourceLocation regName = itemMapping.key;
-			if (regName != null) {
-				String path = regName.getPath();
-				RegistryHandler.DMARegistries.ITEMS.getEntries().stream()
-					.filter(thing -> thing.getId().getPath().equals(path))
-					.forEach(item -> itemMapping.remap(item.get()));
-			}
-		}
-	}
-	@SubscribeEvent
-	public void missingBlocks(RegistryEvent.MissingMappings<Block> event) {
-		for (RegistryEvent.MissingMappings.Mapping<Block> blockMapping : event.getMappings("dalekmod")) {
-			ResourceLocation regName = blockMapping.key;
-			if (regName != null) {
-				String path = regName.getPath();
-				DMABlocks.BLOCKS.getEntries().stream()
-					.filter(thing -> thing.getId().getPath().equals(path))
-					.forEach(block -> blockMapping.remap(block.get()));
 			}
 		}
 	}
