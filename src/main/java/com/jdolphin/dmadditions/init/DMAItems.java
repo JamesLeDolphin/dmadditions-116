@@ -47,10 +47,7 @@ public class DMAItems {
 		return addSpawnItem(key);
 	}
 
-	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
-		() -> new Item(new Item.Properties().fireResistant()));
-
-		public static RegistryObject<Item> BLUE_CANDY_CANE = RegistryHandler.DMARegistries.ITEMS.register("blue_candy_cane",
+	public static RegistryObject<Item> BLUE_CANDY_CANE = RegistryHandler.DMARegistries.ITEMS.register("blue_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 	public static RegistryObject<Item> RED_CANDY_CANE = RegistryHandler.DMARegistries.ITEMS.register("red_candy_cane",
