@@ -13,6 +13,8 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.mojang.brigadier.CommandDispatcher;
+import com.swdteam.common.block.RoundelBlock;
+import com.swdteam.common.init.DMBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
@@ -35,6 +37,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.world.ForgeWorldType;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -48,9 +51,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.jdolphin.dmadditions.init.DMABlocks.registerBlock;
@@ -85,6 +90,7 @@ public class DmAdditions {
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
+		modEventBus.addListener(this::entityAttributeEvent);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);
 
@@ -115,30 +121,19 @@ public class DmAdditions {
 		this.registerCommands(commandDispatcher);
 	}
 
+	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
+		event.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
+		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
+		event.put(DMAEntities.TW_SUV.get(), TorchwoodSuvEntity.setCustomAttributes().build());
+		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
+		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
+	}
+
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
-		event.enqueueWork(() -> {
-			GlobalEntityTypeAttributes.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
-
-			if (DMAEntities.WOODEN_CYBERMAN != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
-
-			if (DMAEntities.BESSIE != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
-
-			if (DMAEntities.TW_SUV != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.TW_SUV.get(), TorchwoodSuvEntity.setCustomAttributes().build());
-
-			if (DMAEntities.SNOWMAN != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
-
-			if (DMAEntities.CHRISTMAS_TREE != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
-
-			if (DMAEntities.PILOT_FISH != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
-		});
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
