@@ -31,7 +31,7 @@ import java.util.Random;
 
 
 public class RoundelContainerBlock extends ContainerBlock {
-	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 
 	public RoundelContainerBlock(Properties p_i49996_1_) {
