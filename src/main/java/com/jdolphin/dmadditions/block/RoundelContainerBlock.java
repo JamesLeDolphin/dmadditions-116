@@ -13,9 +13,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -32,11 +30,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 
-public class RoundelContainerBlock extends BarrelBlock {
+public class RoundelContainerBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+
 
 	public RoundelContainerBlock(Properties p_i49996_1_) {
 		super(p_i49996_1_);
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
@@ -52,6 +52,19 @@ public class RoundelContainerBlock extends BarrelBlock {
 
 			return ActionResultType.CONSUME;
 		}
+	}
+
+	public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
+		return p_185499_1_.setValue(FACING, p_185499_2_.rotate(p_185499_1_.getValue(FACING)));
+	}
+
+	public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
+		return p_185471_1_.rotate(p_185471_2_.getRotation(p_185471_1_.getValue(FACING)));
+	}
+
+
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
+		p_206840_1_.add(FACING);
 	}
 
 	@Nullable
