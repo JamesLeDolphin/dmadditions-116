@@ -89,6 +89,9 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    //WorldEdit
+    runtimeOnly fg.deobf("curse.maven:worldedit-225608:3283693")
+
     //JEI
     runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
 
