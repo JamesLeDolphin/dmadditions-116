@@ -89,17 +89,19 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    //JEI
+    runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
+
     //Dalek Mod
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:4706185")
 
     //New Tardis Mod
-    implementation fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
+    compileOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
 
     //Tinkers Construct
-    implementation fg.deobf("curse.maven:tinkers-construct-74072:3695126")
+    compileOnly fg.deobf("curse.maven:tinkers-construct-74072:3695126")
     //Mantle
-    implementation fg.deobf("curse.maven:mantle-74924:3631982")
-
+    compileOnly fg.deobf("curse.maven:mantle-74924:3631982")
 }
 mixin {
     add sourceSets.main, "dmadditions.mixin-refmap.json"
