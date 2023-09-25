@@ -170,7 +170,7 @@ public abstract class MainMenuScreenMixin extends Screen{
 			Random rand = new Random();
 			if (!DmAdditions.EXTERIORS.isEmpty()) {
 				int i = rand.nextInt(DmAdditions.EXTERIORS.size());
-				TARDIS = ModelLoader.loadModel(DmAdditions.EXTERIORS.get(1).getModel(1));
+				TARDIS = ModelLoader.loadModel(DmAdditions.EXTERIORS.get(i).getModel(1));
 			}
 		}
 	}

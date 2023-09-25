@@ -149,26 +149,26 @@ public class DmAdditions {
 	public static List<Data> EXTERIORS = new ArrayList<>();
 
 	public void dataEvent(final FMLLoadCompleteEvent event) {
-		System.out.print("Bing bong this thing aint wrong");
+		LOGGER.info("Bing bong this thing aint wrong");
 		Gson gson = new Gson();
 		List<ModFileInfo> files = ModList.get().getModFiles();
 		for (ModFileInfo file : files) {
 			File file1 = file.getFile().getFilePath().toFile();
 			try (JarFile jarFile = new JarFile(file1)) {
-				if (file1.setReadable(true, false)) {
 				jarFile.stream()
-					.filter(entry -> entry.getName().startsWith("data" + File.separator)
-						&& entry.getName().contains(File.separator + "tardis_exteriors" + File.separator) && entry.getName().contains(".json"))
 					.forEach(entry -> {
-						try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
-							Data myObject = gson.fromJson(reader, Data.class);
-							EXTERIORS.add(myObject);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});}
-			} catch (IOException e) {
-				e.printStackTrace();
+						if (entry.getName().contains("data" + File.separator)
+						&& entry.getName().contains(File.separator + "tardis_exteriors" + File.separator) && entry.getName().contains(".json")) {
+							try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
+								LOGGER.info(entry.getName());
+								Data myObject = gson.fromJson(reader, Data.class);
+								EXTERIORS.add(myObject);
+							} catch (IOException e) {
+								e.fillInStackTrace();
+							}
+						} });}
+			 catch (IOException e) {
+				e.fillInStackTrace();
 			}
 		}
 	}
