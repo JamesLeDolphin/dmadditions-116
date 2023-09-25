@@ -2,8 +2,12 @@ package com.jdolphin.dmadditions.init;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.jdolphin.dmadditions.world.structure.ManorStructure;
+
+import java.util.List;
 import java.util.function.Supplier;
+
+import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.world.structure.ManorStructure;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
@@ -37,7 +41,7 @@ public class DMAStructures {
 	}
 
 	static {
-		DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, "dmadditions");
+		DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DmAdditions.MODID);
 		MANOR = registerStructure("manor", () -> {
 			return new ManorStructure(NoFeatureConfig.CODEC);
 		});

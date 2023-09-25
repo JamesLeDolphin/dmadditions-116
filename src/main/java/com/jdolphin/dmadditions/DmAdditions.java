@@ -10,21 +10,30 @@ import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
-import com.jdolphin.dmadditions.init.DMABlocks;
-import com.jdolphin.dmadditions.init.DMAEntities;
-import com.jdolphin.dmadditions.init.DMAFluids;
-import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
+import com.jdolphin.dmadditions.init.*;
+import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
+import com.swdteam.common.init.DMStructures;
+import com.swdteam.common.structure.DMConfiguredStructures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.DimensionSettings;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -71,6 +80,7 @@ public class DmAdditions {
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
+		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		// Register things
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
@@ -80,6 +90,7 @@ public class DmAdditions {
 		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
+		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) {
 			DMAFluids.FLUIDS.register(modEventBus);
 		}
@@ -101,6 +112,8 @@ public class DmAdditions {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
 		event.enqueueWork(() -> {
+			DMAStructures.setupStructures();
+			DMAConfiguredStructures.registerConfiguredStructures();
 			GlobalEntityTypeAttributes.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
 
 			if (DMAEntities.WOODEN_CYBERMAN != null)
@@ -123,6 +136,29 @@ public class DmAdditions {
 
 			if (DMAEntities.BEATRICE_FLYING_SHARK != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.BEATRICE_FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+		});
+	}
+
+	public void addDimensionalSpacing(WorldEvent.Load event) {
+		if (event.getWorld() instanceof ServerWorld) {
+			ServerWorld serverWorld = (ServerWorld)event.getWorld();
+			if (!serverWorld.dimension().equals(World.OVERWORLD)) {
+				return;
+			}
+
+			if (serverWorld.isFlat()) {
+				return;
+			}
+
+			serverWorld.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+		}
+
+	}
+
+	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
+		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
+			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
+			structuresSettings.structureConfig.put(structure, separationSettings);
 		});
 	}
 
@@ -158,6 +194,9 @@ public class DmAdditions {
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
 			}
+			event.getGeneration().getStructures().add(() -> {
+				return DMAConfiguredStructures.CONFIGURED_MANOR;
+			});
 		}
 	}
 
