@@ -60,7 +60,7 @@ public class ManorStructure extends Structure<NoFeatureConfig> {
 				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(DmAdditions.MODID, "manor/start_pool"));
 			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 			this.pieces.forEach((piece) -> {
-				piece.move(0, -40, 0);
+				piece.move(0, 0, 0);
 			});
 			this.pieces.forEach((piece) -> {
 				--piece.getBoundingBox().y0;

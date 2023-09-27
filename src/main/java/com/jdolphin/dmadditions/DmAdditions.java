@@ -13,18 +13,23 @@ import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
-import com.swdteam.common.init.DMStructures;
-import com.swdteam.common.structure.DMConfiguredStructures;
+import com.mojang.serialization.Codec;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeAmbience;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
+import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -41,6 +46,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -49,6 +55,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 
@@ -139,18 +146,32 @@ public class DmAdditions {
 		});
 	}
 
+
+	private static Method GETCODEC_METHOD;
 	public void addDimensionalSpacing(WorldEvent.Load event) {
 		if (event.getWorld() instanceof ServerWorld) {
-			ServerWorld serverWorld = (ServerWorld)event.getWorld();
-			if (!serverWorld.dimension().equals(World.OVERWORLD)) {
+			ServerWorld world = (ServerWorld)event.getWorld();
+			if (!world.dimension().equals(World.OVERWORLD)) {
+				return;
+			}
+			try {
+				if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(world.getChunkSource().generator));
+				if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
+			}
+			catch(Exception e){
+				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
+			}
+
+			if(world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
+				world.dimension().equals(World.OVERWORLD)){
+				return;
+			}
+			if (world.isFlat()) {
 				return;
 			}
 
-			if (serverWorld.isFlat()) {
-				return;
-			}
-
-			serverWorld.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+			world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 		}
 
 	}
@@ -199,5 +220,4 @@ public class DmAdditions {
 			});
 		}
 	}
-
 }
