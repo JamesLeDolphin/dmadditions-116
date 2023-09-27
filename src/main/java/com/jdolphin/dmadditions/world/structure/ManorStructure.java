@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
+import com.jdolphin.dmadditions.DmAdditions;
 import com.mojang.serialization.Codec;
 import java.util.List;
 import net.minecraft.util.ResourceLocation;
@@ -31,7 +32,7 @@ public class ManorStructure extends Structure<NoFeatureConfig> {
 	}
 
 	public Structure.IStartFactory<NoFeatureConfig> getStartFactory() {
-		return com.swdteam.common.structure.AutonDungeonStructure.Start::new;
+		return ManorStructure.Start::new;
 	}
 
 	public GenerationStage.Decoration step() {
@@ -56,7 +57,7 @@ public class ManorStructure extends Structure<NoFeatureConfig> {
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
 			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation("dmadditions", "manor/start_pool"));
+				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(DmAdditions.MODID, "manor/start_pool"));
 			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 			this.pieces.forEach((piece) -> {
 				piece.move(0, -40, 0);
