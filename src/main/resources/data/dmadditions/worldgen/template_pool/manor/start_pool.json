@@ -1,6 +1,6 @@
 {
   "name": "dmadditions:manor/start_pool",
-  "fallback": "minecraft:empty",
+  "fallback": "dmadditions:manor/empty_pool",
   "elements": [
     {
       "weight": 1,

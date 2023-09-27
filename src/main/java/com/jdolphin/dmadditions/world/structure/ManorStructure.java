@@ -53,6 +53,13 @@ public class ManorStructure extends Structure<NoFeatureConfig> {
 		}
 
 		public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
+
+//			if (!biomeIn.getRegistryName().equals(Biome.Category.TAIGA)) {
+//
+//				return;
+//			}
+//Biome check doesn't work
+
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
