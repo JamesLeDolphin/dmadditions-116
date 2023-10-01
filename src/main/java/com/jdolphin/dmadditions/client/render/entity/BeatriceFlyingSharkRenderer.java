@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.client.render.entity;
 
 
 import com.jdolphin.dmadditions.client.model.entity.BeatriceFlyingSharkModel;
-
 import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

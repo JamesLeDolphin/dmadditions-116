@@ -3,32 +3,16 @@ package com.jdolphin.dmadditions.event;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.dimension.Gravity;
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.jdolphin.dmadditions.item.handles.HandlesItem;
-import com.swdteam.common.init.DMTardis;
-import com.swdteam.common.tardis.Tardis;
-import com.swdteam.common.tardis.TardisData;
-import com.swdteam.common.tardis.TardisSaveHandler;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.awt.*;
-import java.util.List;
 
 public class DMAEventHandlerGeneral {
 

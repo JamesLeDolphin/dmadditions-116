@@ -1,29 +1,19 @@
 package com.jdolphin.dmadditions.block;
 
-import com.swdteam.common.init.*;
-import com.swdteam.common.tardis.Tardis;
-import com.swdteam.common.tardis.TardisData;
-import com.swdteam.network.NetworkHandler;
-import com.swdteam.network.packets.PacketOpenGui;
-import com.swdteam.network.packets.PacketXPSync;
-import com.swdteam.util.ChatUtil;
-import jdk.nashorn.internal.ir.Statement;
+import com.swdteam.common.init.DMDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.ToolType;
-
-import java.util.Set;
 
 public class PlayerLocatorBlock extends Block implements IBetterPanel {
 
