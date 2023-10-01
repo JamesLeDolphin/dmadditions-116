@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
@@ -168,6 +169,9 @@ public class DmAdditions {
 				return;
 			}
 			if (world.isFlat()) {
+				return;
+			}
+			if (!AdventUnlock.unlockAt(1)) {
 				return;
 			}
 
