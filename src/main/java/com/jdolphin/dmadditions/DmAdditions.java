@@ -142,6 +142,9 @@ public class DmAdditions {
 
 			if (DMAEntities.BEATRICE_FLYING_SHARK != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.BEATRICE_FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+
+			if (DMAEntities.RACNOSS != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
 		});
 	}
 

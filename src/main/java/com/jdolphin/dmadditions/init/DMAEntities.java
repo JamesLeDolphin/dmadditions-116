@@ -21,6 +21,7 @@ public class DMAEntities {
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN;
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
 	public static final RegistryObject<EntityType<FlyingSharkEntity>> BEATRICE_FLYING_SHARK;
+	public static final RegistryObject<EntityType<RacnossEntity>> RACNOSS;
 
 	static {
 		JAMESLEDOLPHIN = ENTITY_TYPES.register("jamesledolphin",
@@ -59,6 +60,11 @@ public class DMAEntities {
 					.setUpdateInterval(3)
 					.setShouldReceiveVelocityUpdates(true)
 					.build(new ResourceLocation(DmAdditions.MODID, "beatrice_flying_shark").toString()));
+
+
+		RACNOSS = ENTITY_TYPES.register("racnoss",
+			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
+				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
 	}
 
 }
