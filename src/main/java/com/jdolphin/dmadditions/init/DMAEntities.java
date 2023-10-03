@@ -55,7 +55,7 @@ public class DMAEntities {
 		BEATRICE_FLYING_SHARK =
 			ENTITY_TYPES.register("beatrice_flying_shark",
 				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
-					.sized(0.6F, 1.95F)  // Adjust size as needed
+					.sized(2F, 1F)
 					.setTrackingRange(80)
 					.setUpdateInterval(3)
 					.setShouldReceiveVelocityUpdates(true)
