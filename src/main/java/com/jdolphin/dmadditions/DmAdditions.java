@@ -9,6 +9,7 @@ import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
+import com.jdolphin.dmadditions.data.DMARecipeProvider;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
@@ -69,7 +70,7 @@ public class DmAdditions {
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
 	// Directly reference a log4j logger.
-	private static final Logger LOGGER = LogManager.getLogger();
+	public static final Logger LOGGER = LogManager.getLogger();
 	public static final DMAServerProxy DMA_PROXY = DistExecutor.runForDist(() -> {
 		return DMAClientProxy::new;
 	}, () -> {
@@ -154,9 +155,11 @@ public class DmAdditions {
 	static void gatherData(final GatherDataEvent event) {
 		DataGenerator datagenerator = event.getGenerator();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		datagenerator.addProvider(new DMARecipeProvider(datagenerator, existingFileHelper));
 		if (hasTC() && event.includeServer()) {
 			datagenerator.addProvider(new FluidTags(datagenerator, existingFileHelper));
 		}
+
 	}
 
 	public void biomeModification(BiomeLoadingEvent event) {
