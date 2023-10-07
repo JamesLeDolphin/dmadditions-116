@@ -5,9 +5,11 @@ import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.RegistryHandler;
+import com.swdteam.common.block.Nitro9Block;
 import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
+import com.swdteam.common.item.BaseBlockItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -130,6 +132,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> TARDIS_SNOWGLOBE;
+	public static RegistryObject<Block> BAUBLE_BLOCK;
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
 	public static RegistryObject<Block> CHEESE_ORE;
@@ -148,9 +151,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> RED_CANDY_CANE_BLOCK;
 	public static RegistryObject<Block> YELLOW_CANDY_CANE_BLOCK;
 
-//	public static final RegistryObject<Block> CORAL_TARDIS_MONITOR;
-//	public static final RegistryObject<Block> TOYOTA_TARDIS_MONITOR;
-//	public static final RegistryObject<Block> TARDIS_MONITOR_8;
 
 	public static final RegistryObject<Block> DOOR_PANEL;
 
@@ -160,12 +160,17 @@ public class DMABlocks {
 		if (!AdventUnlock.unlockAt(day))
 			return null;
 
-		return registerBlock(supplier, name, tab);
+		return DMBlocks.registerBlock(supplier, name, tab);
+	}
+
+	public static <B extends Block> RegistryObject<Block> registerDMABlock(Supplier<B> block, String name) {
+		RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, block);
+		return blockObj;
 	}
 
 
 	static {
-
+		BAUBLE_BLOCK = registerDMABlock(() -> new TNTBlock(AbstractBlock.Properties.of(Material.GLASS)), "bauble");
 		DOOR_PANEL = registerBlockAndItem("door_panel", () -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
 
@@ -226,63 +231,6 @@ public class DMABlocks {
 		CHRISTMAS_TREE = registerBlock( () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
 			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
 
-//		CORAL_TARDIS_MONITOR = registerAdventBlock(23, () -> new BetterScannerBlock(BetterScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL)
-//				.strength(2.0F, 2.0F).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()) {
-//				@Override
-//				public Vector3f getScreenRotate() {
-//					return new Vector3f(-20, 0, 0);
-//				}
-//
-//				@Override
-//				public Vector3d getScreenTranslate() {
-//					return new Vector3d(-0.05, 0.35, 0.75);
-//				}
-//
-//				@Override
-//				public Vector3f getScreenScale() {
-//					return new Vector3f(0.7f, 0.7f, 0.7f);
-//				}
-//			},
-//			"coral_tardis_monitor", DMTabs.DM_TARDIS);
-//
-//		TOYOTA_TARDIS_MONITOR = registerAdventBlock(23, () -> new BetterScannerBlock(BetterScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL)
-//				.strength(2.0F, 2.0F).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()) {
-//
-//				@Override
-//				public Vector3f getScreenRotate() {
-//					return new Vector3f();
-//				}
-//
-//				@Override
-//				public Vector3d getScreenTranslate() {
-//					return new Vector3d(0, 0, 0.5);
-//				}
-//
-//				@Override
-//				public Vector3f getScreenScale() {
-//					return super.getScreenScale();
-//				}
-//			},
-//			"toyota_tardis_monitor", DMTabs.DM_TARDIS);
-//
-//		TARDIS_MONITOR_8 = registerAdventBlock(23, () -> new BetterScannerBlock(BetterScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL)
-//				.strength(2.0F, 2.0F).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()) {
-//				@Override
-//				public Vector3f getScreenRotate() {
-//					return new Vector3f();
-//				}
-//
-//				@Override
-//				public Vector3d getScreenTranslate() {
-//					return Vector3d.ZERO;
-//				}
-//
-//				@Override
-//				public Vector3f getScreenScale() {
-//					return super.getScreenScale();
-//				}
-//			},
-//			"tardis_monitor_8", DMTabs.DM_TARDIS);
 
 		BLACK_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "black_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(0.8F, 0.8F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "yellow_quartz_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
@@ -301,17 +249,12 @@ public class DMABlocks {
 		STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RustableRoundelContainerBlock.WaterLoggable(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion()), "steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		FILLED_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RustableRoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "filled_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock.WaterLoggable(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion()), "rusted_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
-		//STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion()), "steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
-		//FILLED_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "filled_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
-		//RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion()), "rusted_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 
 		FILLED_RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "filled_rusted_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock.WaterLoggable(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion()), "stainless_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
-		//STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1).noOcclusion()), "stainless_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		FILLED_STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL).strength(6.0F, 6.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "filled_stainless_steel_beams_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 
 		STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(8.0F, 7.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "steel_reinforced_walling_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
-		//STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(8.0F, 7.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "steel_reinforced_walling_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		RUSTED_STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).strength(6.5F, 6.5F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "rusted_steel_reinforced_walling_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		STAINLESS_STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_GRAY).strength(8.5F, 8.5F).sound(SoundType.METAL).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).harvestLevel(1)), "stainless_steel_reinforced_walling_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 		TERRACOTTA_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.STONE).strength(1.25F, 4.2F).sound(SoundType.STONE).requiresCorrectToolForDrops()), "terracotta_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);

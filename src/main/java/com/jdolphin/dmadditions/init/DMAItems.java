@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
+import com.jdolphin.dmadditions.item.BaubleBlockItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.jdolphin.dmadditions.item.handles.HandlesItem;
@@ -75,7 +76,7 @@ public class DMAItems {
 
 	public static final RegistryObject<Item> BESSIE;
 	public static final RegistryObject<Item> TW_SUV;
-//	public static final RegistryObject<Item> STEEL_BUCKET;
+	public static final RegistryObject<Item> BAUBLE;
 
 	public static final RegistryObject<Item> HANDLES_ITEM;
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
@@ -106,6 +107,7 @@ public class DMAItems {
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
+		BAUBLE = registerAdventItem(1, "bauble", () -> new BaubleBlockItem(new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
 		HANDLES_ITEM = registerAdventItem(2, "handles_item",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
