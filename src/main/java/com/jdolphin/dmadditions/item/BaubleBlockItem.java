@@ -9,6 +9,8 @@ import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class BaubleBlockItem extends BlockItem {
@@ -16,22 +18,31 @@ public class BaubleBlockItem extends BlockItem {
 		super(DMABlocks.BAUBLE_BLOCK.get(), properties);
 	}
 
-	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-		ItemStack itemstack = p_77659_2_.getItemInHand(p_77659_3_);
-		p_77659_1_.playSound((PlayerEntity)null, p_77659_2_.getX(), p_77659_2_.getY(), p_77659_2_.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-		if (!p_77659_1_.isClientSide) {
-			SnowballEntity snowballentity = new SnowballEntity(p_77659_1_, p_77659_2_);
+	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
+		if(playerEntity.isCrouching()){
+			return ActionResult.success(playerEntity.getItemInHand(hand));
+		}
+		ItemStack itemstack = playerEntity.getItemInHand(hand);
+		world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+		if (!world.isClientSide) {
+			SnowballEntity snowballentity = new SnowballEntity(world, playerEntity){
+				@Override
+				protected void onHitBlock(BlockRayTraceResult blockRayTraceResult) {
+					super.onHitBlock(blockRayTraceResult);
+					this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1, Explosion.Mode.DESTROY);
+				}
+			};
 			snowballentity.setItem(itemstack);
-			snowballentity.shootFromRotation(p_77659_2_, p_77659_2_.xRot, p_77659_2_.yRot, 0.0F, 1.5F, 1.0F);
-			p_77659_1_.addFreshEntity(snowballentity);
+			snowballentity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
+			world.addFreshEntity(snowballentity);
 		}
 
-		p_77659_2_.awardStat(Stats.ITEM_USED.get(this));
-		if (!p_77659_2_.abilities.instabuild) {
+		playerEntity.awardStat(Stats.ITEM_USED.get(this));
+		if (!playerEntity.abilities.instabuild) {
 			itemstack.shrink(1);
 		}
 
-		return ActionResult.sidedSuccess(itemstack, p_77659_1_.isClientSide());
+		return ActionResult.sidedSuccess(itemstack, world.isClientSide());
 	}
 
 	@Override
