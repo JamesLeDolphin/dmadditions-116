@@ -246,5 +246,7 @@
 
 	"block.dalekmod.bauble": "Bauble",
 
-	"item.dalekmod.handles_item": "Handles"
+	"item.dalekmod.handles_item": "Handles",
+
+	"entity.dmadditions.flying_shark": "Beatrice the Shark"
 }

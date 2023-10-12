@@ -12,21 +12,21 @@ import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class BeatriceFlyingSharkModel extends SegmentedModel<FlyingSharkEntity> implements IModelPartReloader {
+public class FlyingSharkModel extends SegmentedModel<FlyingSharkEntity> implements IModelPartReloader {
 
-	protected ModelRenderer beatrice_flying_shark;
+	protected ModelRenderer flyingShark;
 	public JSONModel model;
 
-	public BeatriceFlyingSharkModel() {
+	public FlyingSharkModel() {
 		super();
 		ModelReloaderRegistry.register(this);
 	}
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/beatrice_flying_shark.json"));
+		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/flying_shark.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
-		this.beatrice_flying_shark = modelWrapper.getPart("beatrice_flying_shark");
+		this.flyingShark = modelWrapper.getPart("flying_shark");
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class BeatriceFlyingSharkModel extends SegmentedModel<FlyingSharkEntity> 
 
 	@Override
 	public Iterable<ModelRenderer> parts() {
-		return ImmutableList.of(beatrice_flying_shark);
+		return ImmutableList.of(flyingShark);
 	}
 
 	@Override

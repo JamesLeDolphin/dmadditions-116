@@ -140,8 +140,8 @@ public class DmAdditions {
 			if (DMAEntities.PILOT_FISH != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 
-			if (DMAEntities.BEATRICE_FLYING_SHARK != null)
-				GlobalEntityTypeAttributes.put(DMAEntities.BEATRICE_FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+			if (DMAEntities.FLYING_SHARK != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
 
 			if (DMAEntities.RACNOSS != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
