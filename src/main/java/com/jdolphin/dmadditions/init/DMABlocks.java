@@ -17,6 +17,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -170,7 +174,13 @@ public class DMABlocks {
 
 
 	static {
-		BAUBLE_BLOCK = registerDMABlock(() -> new TNTBlock(AbstractBlock.Properties.of(Material.GLASS)), "bauble");
+		BAUBLE_BLOCK = registerDMABlock(() -> new Block(AbstractBlock.Properties.of(Material.GLASS).noOcclusion()){
+
+			@Override
+			public VoxelShape getShape(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, ISelectionContext iSelectionContext) {
+				return Block.box(5.0D, 10.0D, 5.0D, 11.0D, 16.0D, 11.0D);
+			}
+		}, "bauble");
 		DOOR_PANEL = registerBlockAndItem("door_panel", () -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
 
