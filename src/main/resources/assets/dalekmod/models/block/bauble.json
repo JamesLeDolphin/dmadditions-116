@@ -1,0 +1,64 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [8, 8],
+	"textures": {
+		"1": "dmadditions:block/advent/santa_bauble",
+		"particle": "dmadditions:block/advent/santa_bauble"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [9, 2, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#1"},
+				"east": {"uv": [0, 4, 4, 8], "texture": "#1"},
+				"south": {"uv": [4, 0, 8, 4], "texture": "#1"},
+				"west": {"uv": [4, 4, 8, 8], "texture": "#1"},
+				"up": {"uv": [4, 12, 0, 8], "texture": "#1"},
+				"down": {"uv": [12, 0, 8, 4], "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, 2, 7],
+			"to": [8, 4, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 4], "texture": "#1"},
+				"east": {"uv": [4, 8, 8, 12], "texture": "#1"},
+				"south": {"uv": [0, 0, 0, 4], "texture": "#1"},
+				"west": {"uv": [8, 4, 12, 8], "texture": "#1"},
+				"up": {"uv": [0, 4, 0, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 4], "texture": "#1"}
+			}
+		},
+		{
+			"from": [7, 2, 8],
+			"to": [9, 4, 8],
+			"faces": {
+				"north": {"uv": [8, 8, 12, 12], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 4], "texture": "#1"},
+				"south": {"uv": [0, 12, 4, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 4], "texture": "#1"},
+				"up": {"uv": [4, 0, 0, 0], "texture": "#1"},
+				"down": {"uv": [4, 0, 0, 0], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 7.75, 0]
+		}
+	},
+	"groups": [
+		{
+			"name": "all",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": []
+		},
+		0,
+		1,
+		2
+	]
+}

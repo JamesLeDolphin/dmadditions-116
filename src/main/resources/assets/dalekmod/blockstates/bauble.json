@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "dmadditions:block/advent/santa_bauble",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "dmadditions:block/advent/santa_bauble"
+    },
+    "facing=south": {
+      "model": "dmadditions:block/advent/santa_bauble",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "dmadditions:block/advent/santa_bauble",
+      "y": 270
+    }
+  }
+}
