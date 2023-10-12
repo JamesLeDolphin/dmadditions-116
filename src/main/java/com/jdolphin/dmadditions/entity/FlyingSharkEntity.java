@@ -1,26 +1,28 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.swdteam.common.init.DMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -46,6 +48,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 	public static final DataParameter<Optional<UUID>> OWNER = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.OPTIONAL_UUID);
 
+	public Inventory inventory = new Inventory(8);
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(FLYING, true);
@@ -59,6 +63,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		this.goalSelector.addGoal(0, new BreedGoal(this, 1.0D));
 */
 		this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(Items.COD), false));
+		this.goalSelector.addGoal(1, new StealSonicGoal(this, 10));
 		this.goalSelector.addGoal(2, new SwimGoal(this));
 		this.goalSelector.addGoal(3, new FlyingSharkEntity.RandomFlyGoal(this));
 		this.goalSelector.addGoal(4, new FlyingSharkEntity.LookAroundGoal(this));
@@ -212,6 +217,19 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		return 0;
 	}
 
+	@Override
+	protected void dropAllDeathLoot(DamageSource p_213345_1_) {
+		super.dropAllDeathLoot(p_213345_1_);
+		if(this.getEntity().level.isClientSide) return;
+
+		for(int i = 0; i < this.inventory.getContainerSize(); i++){
+			ItemStack itemStack = this.inventory.getItem(i);
+			if(itemStack.isEmpty()) continue;
+
+			this.spawnAtLocation(itemStack);
+		}
+	}
+
 	static class LookAroundGoal extends Goal {
 		private final FlyingSharkEntity shark;
 
@@ -240,6 +258,47 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 				}
 			}
 
+		}
+	}
+
+	private boolean inventoryFull() {
+
+		for(int i = 0; i < this.inventory.getContainerSize(); i++){
+			ItemStack itemstack = this.inventory.getItem(i);
+			if (itemstack.isEmpty() || itemstack.getCount() != itemstack.getMaxStackSize()) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	static class StealSonicGoal extends TemptGoal{
+		public StealSonicGoal(FlyingSharkEntity mob, double speedModifier) {
+			super(mob, speedModifier, Ingredient.of(DMTags.Items.SONICS), false);
+		}
+
+		@Override
+		public void tick() {
+			super.tick();
+
+			if (this.mob.distanceToSqr(this.player) < 6.25D) {
+				ItemStack itemStack = this.player.getItemInHand(player.getUsedItemHand());
+				if(itemStack.getItem().is(DMTags.Items.SONICS)){
+
+					Inventory inventory = ((FlyingSharkEntity) this.mob).inventory;
+					if(((FlyingSharkEntity) this.mob).inventoryFull()){
+						this.mob.spawnAtLocation(itemStack);
+
+						this.mob.playSound(SoundEvents.PLAYER_BURP, 1, 1);
+					}else {
+						inventory.addItem(itemStack);
+					}
+
+					player.setItemInHand(player.getUsedItemHand(), ItemStack.EMPTY);
+					this.mob.playSound(SoundEvents.GENERIC_EAT, 1, 1);
+				}
+			}
 		}
 	}
 
@@ -364,5 +423,17 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 			}
 		}
 		return ActionResultType.sidedSuccess(false);
+	}
+
+	public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
+		super.addAdditionalSaveData(p_213281_1_);
+
+		p_213281_1_.put("Inventory", this.inventory.createTag());
+	}
+
+	public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
+		super.readAdditionalSaveData(p_70037_1_);
+
+		this.inventory.fromTag(p_70037_1_.getList("Inventory", 10));
 	}
 }
