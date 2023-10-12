@@ -138,7 +138,7 @@ public class DmAdditions {
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
 		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
-		event.put(DMAEntities.BEATRICE_FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+		event.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
 		event.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
 	}
 
@@ -148,7 +148,7 @@ public class DmAdditions {
 		event.enqueueWork(() -> {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
-			});
+		});
 	}
 
 

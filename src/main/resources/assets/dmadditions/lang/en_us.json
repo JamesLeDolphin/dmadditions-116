@@ -244,5 +244,9 @@
 
 	"block.dalekmod.christmas_present": "Christmas Present",
 
-	"item.dalekmod.handles_item": "Handles"
+	"block.dalekmod.bauble": "Bauble",
+
+	"item.dalekmod.handles_item": "Handles",
+
+	"entity.dmadditions.flying_shark": "Beatrice the Shark"
 }

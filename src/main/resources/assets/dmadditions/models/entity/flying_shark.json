@@ -1,12 +1,12 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dmadditions:entity/beatrice_flying_shark",
+	"texture": "dmadditions:entity/flying_shark",
 	"texture_width": 128,
 	"texture_height": 128,
 	"scale": 1,
 	"groups": [
 		{
-			"group_name": "beatrice_flying_shark",
+			"group_name": "flying_shark",
 			"pivot": [8,19,-2],
 			"rotation": [0,0,0],
 			"children": [

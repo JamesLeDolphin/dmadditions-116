@@ -47,14 +47,13 @@ public class DMAEntities {
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
 					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
 
-	public static RegistryObject<EntityType<FlyingSharkEntity>> BEATRICE_FLYING_SHARK = ENTITY_TYPES.register("beatrice_flying_shark",
+	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
 					.sized(2F, 1F)
 					.setTrackingRange(80)
 					.setUpdateInterval(3)
 					.setShouldReceiveVelocityUpdates(true)
-					.build(new ResourceLocation(DmAdditions.MODID, "beatrice_flying_shark").toString()));
-
+					.build(new ResourceLocation(DmAdditions.MODID, "flying_shark").toString()));
 
 	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = ENTITY_TYPES.register("racnoss",
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
