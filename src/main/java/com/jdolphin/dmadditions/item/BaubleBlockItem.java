@@ -1,8 +1,9 @@
 package com.jdolphin.dmadditions.item;
 
+import com.jdolphin.dmadditions.entity.projectile.BaubleEntity;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -29,10 +30,10 @@ public class BaubleBlockItem extends BlockItem {
 		p_77659_1_.playSound((PlayerEntity) null, p_77659_2_.getX(), p_77659_2_.getY(), p_77659_2_.getZ(),
 				SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		if (!p_77659_1_.isClientSide) {
-			SnowballEntity snowballentity = new SnowballEntity(p_77659_1_, p_77659_2_);
-			snowballentity.setItem(itemstack);
-			snowballentity.shootFromRotation(p_77659_2_, p_77659_2_.xRot, p_77659_2_.yRot, 0.0F, 1.5F, 1.0F);
-			p_77659_1_.addFreshEntity(snowballentity);
+			BaubleEntity baubleEntity = new BaubleEntity(p_77659_1_, p_77659_2_);
+			baubleEntity.setItem(itemstack);
+			baubleEntity.shootFromRotation(p_77659_2_, p_77659_2_.xRot, p_77659_2_.yRot, 0.0F, 1.5F, 1.0F);
+			p_77659_1_.addFreshEntity(baubleEntity);
 		}
 
 		p_77659_2_.awardStat(Stats.ITEM_USED.get(this));
