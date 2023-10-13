@@ -244,9 +244,15 @@
 
 	"block.dalekmod.christmas_present": "Christmas Present",
 
-	"block.dalekmod.bauble": "Bauble",
+	"block.dmadditions.bauble": "Bauble",
+	"block.dmadditions.santa_bauble": "Santa Bauble",
+	"block.dmadditions.blue_bauble": "Blue Bauble",
+	"block.dmadditions.red_bauble": "Red Bauble",
+	"block.dmadditions.gold_bauble": "Gold Bauble",
+	"block.dmadditions.green_bauble": "Green Bauble",
 
 	"item.dalekmod.handles_item": "Handles",
 
 	"entity.dmadditions.flying_shark": "Beatrice the Shark"
+
 }
