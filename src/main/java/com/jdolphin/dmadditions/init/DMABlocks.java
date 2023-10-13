@@ -15,6 +15,7 @@ import com.swdteam.common.item.BaseBlockItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -24,6 +25,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
+import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 public class DMABlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
@@ -37,6 +39,13 @@ public class DMABlocks {
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 
+	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
+		if (!AdventUnlock.unlockAt(day))
+			return null;
+
+		return registerBlock(supplier, name);
+	}
+
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
 			return null;
@@ -45,6 +54,12 @@ public class DMABlocks {
 	}
 
 
+		// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
+	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "blue_bauble");
+	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "gold_bauble");
+	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "green_bauble");
+	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "red_bauble");
+	public static RegistryObject<Block> SANTA_BAUBLE_BLOCK;
 
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerAdventBlock(20, () ->
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
@@ -56,12 +71,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerAdventBlock(1,
 												() -> new AndrozaniminorDimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
 				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
-
-	// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
-	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "blue_bauble", ItemGroup.TAB_DECORATIONS);
-	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "gold_bauble", ItemGroup.TAB_DECORATIONS);
-	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "green_bauble", ItemGroup.TAB_DECORATIONS);
-	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "red_bauble", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
 			() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
@@ -111,7 +120,7 @@ public class DMABlocks {
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore");
+	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
 
 		public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock( () -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 		public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock( () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
@@ -218,13 +227,36 @@ public class DMABlocks {
 			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);
 	}
 
+	public static void registerRenderTypes(RenderType renderType, RegistryObject<Block> ...blocks){
+		for(RegistryObject<Block> block : blocks ){
+			if(block != null && block.isPresent()){
+				registerRenderType(block.get(), renderType);
+			}
+		}
+	}
+
+	public static void registerRenderTypes() {
+		registerRenderTypes(RenderType.cutoutMipped(),
+			TARDIS_SNOWGLOBE,
+			CHRISTMAS_TREE
+		);
+
+		registerRenderTypes(RenderType.cutoutMipped(),
+			BLUE_BAUBLE_BLOCK,
+			GOLD_BAUBLE_BLOCK,
+			GREEN_BAUBLE_BLOCK,
+			RED_BAUBLE_BLOCK,
+			SANTA_BAUBLE_BLOCK
+		);
+	}
+
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name) {
 		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(SoundType.WOOD)),
 			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name) {
-		return registerBlock(block, name, new Item.Properties(), true);
+		return registerBlock(block, name, new Item.Properties(), false);
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem) {

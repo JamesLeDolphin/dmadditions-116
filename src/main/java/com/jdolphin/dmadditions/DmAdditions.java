@@ -196,6 +196,12 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
+
+		RenderTypeLookup.setRenderLayer(DMABlocks.BLUE_BAUBLE_BLOCK.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(DMABlocks.GOLD_BAUBLE_BLOCK.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(DMABlocks.GREEN_BAUBLE_BLOCK.get(), RenderType.cutout());
+		RenderTypeLookup.setRenderLayer(DMABlocks.RED_BAUBLE_BLOCK.get(), RenderType.cutout());
+
 		if(hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);

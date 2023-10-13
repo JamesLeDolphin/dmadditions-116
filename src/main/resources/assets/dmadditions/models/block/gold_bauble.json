@@ -1,0 +1,8 @@
+{
+	"parent": "dmadditions:block/bauble",
+
+	"textures": {
+		"cross": "dmadditions:block/advent/gold_bauble",
+		"particle": "dmadditions:block/advent/gold_bauble"
+	}
+}
