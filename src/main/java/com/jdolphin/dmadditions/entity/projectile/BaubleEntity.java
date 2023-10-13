@@ -4,6 +4,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
@@ -22,8 +24,8 @@ public class BaubleEntity extends SnowballEntity {
 
 
 	@Override
-	protected void onHitBlock(BlockRayTraceResult blockRayTraceResult) {
-		super.onHitBlock(blockRayTraceResult);
+	protected void onHit(RayTraceResult rayTraceResult) {
+		super.onHit(rayTraceResult);
 		this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1, Explosion.Mode.DESTROY);
 	}
 }
