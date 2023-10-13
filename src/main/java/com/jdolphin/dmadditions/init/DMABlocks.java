@@ -5,11 +5,9 @@ import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.RegistryHandler;
-import com.swdteam.common.block.Nitro9Block;
 import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
-import com.swdteam.common.item.BaseBlockItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -17,17 +15,15 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
+import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.BLOCKS;
 
 public class DMABlocks {
 	/*public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
@@ -136,7 +132,8 @@ public class DMABlocks {
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER;
 	public static RegistryObject<Block> TARDIS_SNOWGLOBE;
-	public static RegistryObject<Block> BAUBLE_BLOCK;
+	public static RegistryObject<Block> SANTA_BAUBLE_BLOCK;
+	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK;
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
 	public static RegistryObject<Block> CHEESE_ORE;
@@ -167,20 +164,30 @@ public class DMABlocks {
 		return DMBlocks.registerBlock(supplier, name, tab);
 	}
 
+	protected static RegistryObject<Block> registerAdventDMABlock(int day, Supplier<Block> supplier, String name){
+		return registerAdventDMABlock(day, supplier, name, null);
+	}
+	protected static RegistryObject<Block> registerAdventDMABlock(int day, Supplier<Block> supplier, String name, @Nullable ItemGroup tab){
+		if(!AdventUnlock.unlockAt(day))
+			return null;
+
+		if(tab == null){
+			return registerDMABlock(supplier, name);
+		}
+
+		return registerBlockAndItem(name, supplier, new Item.Properties().tab(tab));
+	}
+
 	public static <B extends Block> RegistryObject<Block> registerDMABlock(Supplier<B> block, String name) {
-		RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, block);
+		RegistryObject<Block> blockObj = BLOCKS.register(name, block);
 		return blockObj;
 	}
 
 
 	static {
-		BAUBLE_BLOCK = registerDMABlock(() -> new Block(AbstractBlock.Properties.of(Material.GLASS).noOcclusion()){
+		SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
+		BLUE_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "blue_bauble");
 
-			@Override
-			public VoxelShape getShape(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, ISelectionContext iSelectionContext) {
-				return Block.box(5.0D, 10.0D, 5.0D, 11.0D, 16.0D, 11.0D);
-			}
-		}, "bauble");
 		DOOR_PANEL = registerBlockAndItem("door_panel", () -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
 

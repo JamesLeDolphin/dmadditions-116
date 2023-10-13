@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.init.DMABlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,14 +7,18 @@ import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
 
 public class BaubleBlockItem extends BlockItem {
-	public BaubleBlockItem(Item.Properties properties) {
-		super(DMABlocks.BAUBLE_BLOCK.get(), properties);
+	public BaubleBlockItem(RegistryObject<Block> type, Item.Properties properties) {
+		super(type.get(), properties);
+	}
+
+	public BaubleBlockItem(RegistryObject<Block> type) {
+		super(type.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS));
 	}
 
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {

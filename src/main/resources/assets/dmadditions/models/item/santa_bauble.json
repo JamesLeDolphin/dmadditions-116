@@ -1,0 +1,6 @@
+{
+	"parent": "dmadditions:block/bauble",
+	"textures": {
+		"1": "dmadditions:block/advent/santa_bauble"
+	}
+}

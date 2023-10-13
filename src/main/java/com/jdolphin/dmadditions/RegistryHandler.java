@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.init.*;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
@@ -45,6 +46,7 @@ public class RegistryHandler {
 		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES;
 		public static final DeferredRegister<Item> ITEMS;
 		public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES;
+		public static final DeferredRegister<Block> BLOCKS;
 
 		public static void register() {
 			IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -52,12 +54,14 @@ public class RegistryHandler {
 			ENTITY_TYPES.register(modEventBus);
 			TILE_ENTITY_TYPES.register(modEventBus);
 			ITEMS.register(modEventBus);
+			BLOCKS.register(modEventBus);
 		}
 
 		static {
 			ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
 			TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
 			ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+			BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
 		}
 	}
 }

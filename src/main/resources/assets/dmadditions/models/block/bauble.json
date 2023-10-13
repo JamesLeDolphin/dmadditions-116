@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"texture_size": [8, 8],
 	"textures": {
-		"1": "dalekmod:block/bauble",
-		"particle": "dalekmod:block/santa_bauble"
+		"1": "dmadditions:block/advent/santa_bauble",
+		"particle": "dmadditions:block/advent/santa_bauble"
 	},
 	"elements": [
 		{
