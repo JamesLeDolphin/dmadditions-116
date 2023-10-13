@@ -20,7 +20,7 @@ public class BaubleBlock extends Block {
 	}
 
 	public BaubleBlock(){
-		this(AbstractBlock.Properties.of(Material.GLASS).noOcclusion());
+		this(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().noCollission());
 	}
 
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, IWorld world, BlockPos pos, BlockPos pos1) {
