@@ -1,18 +1,14 @@
 package com.jdolphin.dmadditions.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -45,17 +41,5 @@ public class BaubleBlockItem extends BlockItem {
 		}
 
 		return ActionResult.sidedSuccess(itemstack, p_77659_1_.isClientSide());
-	}
-
-	@Override
-	public ActionResultType useOn(ItemUseContext context) {
-		if (!context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.AIR)) {
-			this.use(context.getLevel(), context.getPlayer(), context.getHand());
-		}
-
-		ActionResultType resultType = this.place(new BlockItemUseContext(context));
-		return !resultType.consumesAction() && this.isEdible()
-				? this.use(context.getLevel(), context.getPlayer(), context.getHand()).getResult()
-				: resultType;
 	}
 }
