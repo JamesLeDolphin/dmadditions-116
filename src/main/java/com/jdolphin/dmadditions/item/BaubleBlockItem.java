@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
+import com.jdolphin.dmadditions.entity.projectile.BaubleEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SnowballEntity;
@@ -12,8 +13,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -33,16 +32,10 @@ public class BaubleBlockItem extends BlockItem {
 		ItemStack itemstack = playerEntity.getItemInHand(hand);
 		world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		if (!world.isClientSide) {
-			SnowballEntity snowballentity = new SnowballEntity(world, playerEntity){
-				@Override
-				protected void onHitBlock(BlockRayTraceResult blockRayTraceResult) {
-					super.onHitBlock(blockRayTraceResult);
-					this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1, Explosion.Mode.DESTROY);
-				}
-			};
-			snowballentity.setItem(itemstack);
-			snowballentity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
-			world.addFreshEntity(snowballentity);
+			BaubleEntity baubleEntity = new BaubleEntity(world, playerEntity);
+			baubleEntity.setItem(itemstack);
+			baubleEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
+			world.addFreshEntity(baubleEntity);
 		}
 
 		playerEntity.awardStat(Stats.ITEM_USED.get(this));
