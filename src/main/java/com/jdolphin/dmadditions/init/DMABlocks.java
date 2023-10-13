@@ -134,6 +134,9 @@ public class DMABlocks {
 	public static RegistryObject<Block> TARDIS_SNOWGLOBE;
 	public static RegistryObject<Block> SANTA_BAUBLE_BLOCK;
 	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK;
+	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK;
+	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK;
+	public static RegistryObject<Block> RED_BAUBLE_BLOCK;
 	public static RegistryObject<Block> WREATH;
 	public static RegistryObject<Block> RANDOMIZER;
 	public static RegistryObject<Block> CHEESE_ORE;
@@ -185,8 +188,11 @@ public class DMABlocks {
 
 
 	static {
-		SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
+		// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
 		BLUE_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "blue_bauble");
+		GOLD_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "gold_bauble");
+		GREEN_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "green_bauble");
+		RED_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "red_bauble");
 
 		DOOR_PANEL = registerBlockAndItem("door_panel", () -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
@@ -342,12 +348,27 @@ public class DMABlocks {
 		BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 2.5F).sound(SoundType.WOOD)), "black_plastic_shape_roundel_container", DMATabs.DMA_ROUNDEL_CONTAINERS);
 	}
 
-	public static void registerRenderTypes() {
-		if (TARDIS_SNOWGLOBE != null)
-			registerRenderType(TARDIS_SNOWGLOBE.get(), RenderType.cutoutMipped());
+	public static void registerRenderTypes(RenderType renderType, RegistryObject<Block> ...blocks){
+		for(RegistryObject<Block> block : blocks ){
+			if(block != null && block.isPresent()){
+				registerRenderType(block.get(), renderType);
+			}
+		}
+	}
 
-		if (CHRISTMAS_TREE != null)
-			registerRenderType(CHRISTMAS_TREE.get(), RenderType.cutoutMipped());
+	public static void registerRenderTypes() {
+		registerRenderTypes(RenderType.cutoutMipped(),
+			TARDIS_SNOWGLOBE,
+			CHRISTMAS_TREE
+		);
+
+		registerRenderTypes(RenderType.cutoutMipped(),
+			BLUE_BAUBLE_BLOCK,
+			GOLD_BAUBLE_BLOCK,
+			GREEN_BAUBLE_BLOCK,
+			RED_BAUBLE_BLOCK,
+			SANTA_BAUBLE_BLOCK
+		);
 	}
 	public static <B extends Block> RegistryObject<Block> registerBlockAndItem(String name, Supplier<B> block, Item.Properties properties) {
 		RegistryObject<Block> blockObject = RegistryHandler.BLOCKS.register(name, block);

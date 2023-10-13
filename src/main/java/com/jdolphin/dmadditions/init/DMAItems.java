@@ -76,8 +76,11 @@ public class DMAItems {
 
 	public static final RegistryObject<Item> BESSIE;
 	public static final RegistryObject<Item> TW_SUV;
-	public static final RegistryObject<Item> BAUBLE;
+	public static RegistryObject<Item> SANTA_BAUBLE;
 	public static final RegistryObject<Item> BLUE_BAUBLE;
+	public static final RegistryObject<Item> GOLD_BAUBLE;
+	public static final RegistryObject<Item> GREEN_BAUBLE;
+	public static final RegistryObject<Item> RED_BAUBLE;
 
 	public static final RegistryObject<Item> HANDLES_ITEM;
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
@@ -108,8 +111,11 @@ public class DMAItems {
 		() -> new Item(new Item.Properties().fireResistant()));
 
 	static {
-		BAUBLE = registerDMAAdventItem(1, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
+		// SANTA_BAUBLE = registerDMAAdventItem(1, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
 		BLUE_BAUBLE = registerDMAAdventItem(1, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
+		GOLD_BAUBLE = registerDMAAdventItem(1, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
+		GREEN_BAUBLE = registerDMAAdventItem(1, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
+		RED_BAUBLE = registerDMAAdventItem(1, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
 		HANDLES_ITEM = registerAdventItem(2, "handles_item",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));

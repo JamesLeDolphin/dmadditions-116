@@ -2,7 +2,7 @@
 	"parent": "dmadditions:block/bauble",
 
 	"textures": {
-		"1": "dmadditions:block/advent/santa_bauble",
+		"cross": "dmadditions:block/advent/santa_bauble",
 		"particle": "dmadditions:block/advent/santa_bauble"
 	}
 }
