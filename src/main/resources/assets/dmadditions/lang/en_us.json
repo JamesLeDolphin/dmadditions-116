@@ -253,6 +253,7 @@
 
 	"item.dalekmod.handles_item": "Handles",
 
-	"entity.dmadditions.flying_shark": "Beatrice the Shark"
+	"entity.dmadditions.flying_shark": "Beatrice the Shark",
+	"item.dmadditions.flying_shark_spawner": "Flying Shark Spawner"
 
 }
