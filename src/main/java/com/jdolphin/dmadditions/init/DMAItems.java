@@ -18,6 +18,7 @@ import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.GunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -83,6 +84,9 @@ public class DMAItems {
 	public static final RegistryObject<Item> RED_BAUBLE;
 
 	public static final RegistryObject<Item> HANDLES_ITEM;
+
+	public static final RegistryObject<Item> FLYING_SHARK_SPAWNER;
+
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
@@ -100,6 +104,33 @@ public class DMAItems {
 
 		return addSpawnItem(key);
 	}
+
+	public static <T extends Entity> RegistryObject<Item> addDMASpawnItem(String key, Supplier<? extends EntityType<?>> type, int backgroundColor, int highlightColor, Item.Properties props) {
+		RegistryObject<Item> item = ITEMS.register(key,
+			() -> new ForgeSpawnEggItem(type, backgroundColor, highlightColor, props));
+		return item;
+	}
+
+	public static <T extends Entity> RegistryObject<Item> addDMASpawnItem(String key, Supplier<? extends  EntityType<?>> type, int backgroundColor, int highlightColor) {
+		return addDMASpawnItem(key, type, backgroundColor, highlightColor, new Item.Properties().tab(ItemGroup.TAB_MISC));
+	}
+
+	public static <T extends Entity> RegistryObject<Item> addDMASpawnItem(String key, Supplier<? extends  EntityType<?>> type) {
+		return addDMASpawnItem(key, type, 0, 0);
+	}
+
+	protected static RegistryObject<Item> addDMAAdventSpawnItem(int day, String key, Supplier<? extends EntityType<?>> type, int backgroundColor, int highlightColor) {
+		if (!AdventUnlock.unlockAt(day)) return null;
+
+		return addDMASpawnItem(key, type, backgroundColor, highlightColor);
+	}
+
+	protected static RegistryObject<Item> addDMAAdventSpawnItem(int day, String key, Supplier<? extends EntityType<?>> type) {
+		if (!AdventUnlock.unlockAt(day)) return null;
+
+		return addDMASpawnItem(key, type);
+	}
+
 
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 
@@ -205,11 +236,12 @@ public class DMAItems {
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-		BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		FLYING_SHARK_SPAWNER = addDMAAdventSpawnItem(7, "flying_shark_spawner", DMAEntities.FLYING_SHARK::get,
+			0x004A5B, 0xffffff);
 
-		TW_SUV = ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		BESSIE = addDMASpawnItem("bessie", DMAEntities.BESSIE::get);
+
+		TW_SUV = addDMASpawnItem("torchwood_suv", DMAEntities.TW_SUV::get);
 
 		RPG = ITEMS.register("rpg",
 			() -> new GunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
