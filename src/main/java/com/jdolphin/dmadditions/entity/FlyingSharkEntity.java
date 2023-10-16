@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.swdteam.common.init.DMTags;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.Entity;
@@ -57,6 +58,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RangedInteger;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.TickRangeConverter;
 import net.minecraft.util.math.BlockPos;
@@ -567,4 +569,22 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	protected void playSaddleEquipSound() {
 		this.playSound(SoundEvents.HORSE_SADDLE, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 	}
+
+	@Override
+	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
+		this.playSound(SoundEvents.TROPICAL_FISH_FLOP, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+		return SoundEvents.TROPICAL_FISH_HURT;
+	}
+
+
+	@Override
+	protected SoundEvent getSwimSound() {
+		return SoundEvents.DOLPHIN_SWIM;
+	}
+
 }
