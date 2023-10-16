@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "dmadditions:block/christmas_pudding"
+    },
+    "bites=1": {
+      "model": "dmadditions:block/christmas_pudding_slice1"
+    }
+  }
+}
