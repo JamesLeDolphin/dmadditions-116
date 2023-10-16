@@ -15,7 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IAngerable;
-import net.minecraft.entity.IRideable;
+import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -54,6 +54,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RangedInteger;
 import net.minecraft.util.SoundEvents;
@@ -64,11 +65,13 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRideable {
+public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJumpingMount {
 	private static final ITag<Item> FOOD_ITEMS = ItemTags.FISHES;
 
 	// DataParameter for flying state
 	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
+
+	public static final DataParameter<Boolean> SADDLED = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
 	private static final DataParameter<Integer> DATA_REMAINING_ANGER_TIME = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.INT);
 	private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
@@ -82,6 +85,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		super.defineSynchedData();
 		this.entityData.define(FLYING, true);
 		this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
+		this.entityData.define(SADDLED, false);
 	}
 
 	protected void registerGoals() {
@@ -193,20 +197,65 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		this.persistentAngerTarget = p_230259_1_;
 	}
 
-
 	@Override
-	public boolean boost() {
-		return false;
+	public void travel(Vector3d p_213352_1_) {
+		if (this.isAlive()) {
+			if (this.isVehicle() && this.canBeSteered() && this.isSaddled()) {
+				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
+				this.yRot = livingentity.yRot;
+				this.yRotO = this.yRot;
+				this.xRot = livingentity.xRot * 0.5F;
+				this.setRot(this.yRot, this.xRot);
+				this.yBodyRot = this.yRot;
+				this.yHeadRot = this.yBodyRot;
+				float f = livingentity.xxa * 0.5F;
+				float f1 = livingentity.zza;
+
+				if (f1 <= 0.0F) {
+					f1 *= 0.25F;
+				}
+
+				if (f1 > 0.5F) {
+					f1 = 0.5F;
+				}
+
+
+				if (f1 > 0.0F) {
+					float f2 = MathHelper.sin(this.yRot * 0.017453292F);
+					float f3 = MathHelper.cos(this.yRot * 0.017453292F);
+
+					this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, Math.toRadians(this.xRot) * -0.5, 0.2F * f3));
+
+					this.setNoGravity(false);
+				} else if (this.getEntity().getDeltaMovement().y <= 0) {
+					this.setNoGravity(true);
+
+					if (this.level.getBlockState(this.blockPosition().below()).isFaceSturdy(level, this.blockPosition(), Direction.DOWN)) {
+						this.setDeltaMovement(this.getDeltaMovement().add(0, 0.1, 0));
+					}
+				}
+
+			}
+
+			super.travel(p_213352_1_);
+		}
 	}
 
-	@Override
-	public void travelWithInput(Vector3d p_230267_1_) {
 
+	public boolean isSaddled() {
+		return this.entityData.get(SADDLED);
 	}
 
-	@Override
-	public float getSteeringSpeed() {
-		return 0;
+	public void setSaddled(boolean saddled) {
+		this.entityData.set(SADDLED, saddled);
+	}
+
+	public void removeSaddle() {
+		if (this.isSaddled()) {
+			this.spawnAtLocation(new ItemStack(Items.SADDLE));
+		}
+
+		setSaddled(false);
 	}
 
 	@Override
@@ -214,12 +263,36 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		super.dropAllDeathLoot(p_213345_1_);
 		if (this.getEntity().level.isClientSide) return;
 
+		this.removeSaddle();
+
 		for (int i = 0; i < this.inventory.getContainerSize(); i++) {
 			ItemStack itemStack = this.inventory.getItem(i);
 			if (itemStack.isEmpty()) continue;
 
 			this.spawnAtLocation(itemStack);
 		}
+	}
+
+	@Override
+	public boolean rideableUnderWater() {
+		return true;
+	}
+
+	@Override
+	public void onPlayerJump(int p_110206_1_) {
+	}
+
+	@Override
+	public boolean canJump() {
+		return true;
+	}
+
+	@Override
+	public void handleStartJump(int p_184775_1_) {
+	}
+
+	@Override
+	public void handleStopJump() {
 	}
 
 	static class LookAroundGoal extends Goal {
@@ -330,7 +403,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		}
 
 		public boolean canUse() {
-			return FlyingSharkEntity.this.navigation.isDone() && FlyingSharkEntity.this.random.nextInt(10) == 0 && !FlyingSharkEntity.this.isOrderedToSit();
+			return FlyingSharkEntity.this.navigation.isDone() && FlyingSharkEntity.this.random.nextInt(10) == 0 && !FlyingSharkEntity.this.isOrderedToSit() && !FlyingSharkEntity.this.isVehicle();
 		}
 
 		public boolean canContinueToUse() {
@@ -391,16 +464,16 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(8.0D);
 	}
 
-	public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if (this.level.isClientSide) {
-			boolean flag = this.isOwnedBy(p_230254_1_) || this.isTame() || item == Items.BONE && !this.isTame() && !this.isAngry();
+			boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.BONE && !this.isTame() && !this.isAngry();
 			return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
 		} else {
 			if (this.isTame()) {
 				if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-					if (!p_230254_1_.abilities.instabuild) {
+					if (!player.abilities.instabuild) {
 						itemstack.shrink(1);
 					}
 
@@ -408,9 +481,22 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 					return ActionResultType.SUCCESS;
 				}
 
+				if (this.isSaddled()) {
+					if (itemstack.isEmpty() && !isOrderedToSit() && !player.isCrouching()) {
+						player.startRiding(this);
+						return ActionResultType.PASS;
+					}
+				} else if (item == Items.SADDLE) {
+					this.setSaddled(true);
+					this.playSaddleEquipSound();
+					itemstack.shrink(1);
+
+					return ActionResultType.CONSUME;
+				}
+
 				if (!(item instanceof DyeItem)) {
-					ActionResultType actionresulttype = super.mobInteract(p_230254_1_, p_230254_2_);
-					if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(p_230254_1_)) {
+					ActionResultType actionresulttype = super.mobInteract(player, hand);
+					if ((!actionresulttype.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
 						this.setOrderedToSit(!this.isOrderedToSit());
 						this.jumping = false;
 						this.navigation.stop();
@@ -422,12 +508,12 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 				}
 
 			} else if (isFood(itemstack) && !this.isAngry()) {
-				if (!p_230254_1_.abilities.instabuild) {
+				if (!player.abilities.instabuild) {
 					itemstack.shrink(1);
 				}
 
-				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
-					this.tame(p_230254_1_);
+				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+					this.tame(player);
 					this.navigation.stop();
 					this.setTarget((LivingEntity) null);
 					this.setOrderedToSit(true);
@@ -439,20 +525,35 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 				return ActionResultType.SUCCESS;
 			}
 
-			return super.mobInteract(p_230254_1_, p_230254_2_);
+			return super.mobInteract(player, hand);
 		}
+	}
+
+	public boolean canBeControlledByRider() {
+		return this.getControllingPassenger() instanceof LivingEntity;
+	}
+
+	public boolean canBeSteered() {
+		return this.getControllingPassenger() instanceof LivingEntity;
+	}
+
+	@javax.annotation.Nullable
+	public Entity getControllingPassenger() {
+		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
 	}
 
 	public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
 		super.addAdditionalSaveData(p_213281_1_);
 
 		p_213281_1_.put("Inventory", this.inventory.createTag());
+		p_213281_1_.putBoolean("Saddled", this.isSaddled());
 	}
 
 	public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
 		super.readAdditionalSaveData(p_70037_1_);
 
 		this.inventory.fromTag(p_70037_1_.getList("Inventory", 10));
+		this.setSaddled(p_70037_1_.getBoolean("Saddled"));
 	}
 
 	public void aiStep() {
@@ -461,5 +562,9 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		if (!this.level.isClientSide) {
 			this.updatePersistentAnger((ServerWorld) this.level, true);
 		}
+	}
+
+	protected void playSaddleEquipSound() {
+		this.playSound(SoundEvents.HORSE_SADDLE, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 	}
 }
