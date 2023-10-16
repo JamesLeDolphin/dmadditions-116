@@ -456,7 +456,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 		super.setTame(p_70903_1_);
 		if (p_70903_1_) {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30.0D);
-			this.setHealth(20.0F);
+			this.setHealth(this.getMaxHealth());
 		} else {
 			this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(16.0D);
 		}
