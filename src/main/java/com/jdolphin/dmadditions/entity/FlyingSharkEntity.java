@@ -24,10 +24,9 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -35,23 +34,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.Serializable;
 import java.util.EnumSet;
-import java.util.Optional;
 import java.util.UUID;
 
 import static net.minecraft.entity.passive.WolfEntity.PREY_SELECTOR;
 
 public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRideable {
+	private static final ITag<Item> FOOD_ITEMS = ItemTags.FISHES;
+
 	// DataParameter for flying state
 	public static final DataParameter<Boolean> FLYING = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
 
-	// Add a boolean to represent tamed state
-	public static final DataParameter<Boolean> TAMED = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
-
-	public static final DataParameter<Boolean> SITTING = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.BOOLEAN);
-
-	public static final DataParameter<Optional<UUID>> OWNER = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.OPTIONAL_UUID);
+	private static final DataParameter<Integer> DATA_REMAINING_ANGER_TIME = EntityDataManager.defineId(FlyingSharkEntity.class, DataSerializers.INT);
+	private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
+	private UUID persistentAngerTarget;
 
 	public Inventory inventory = new Inventory(8);
 
@@ -60,28 +56,27 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(FLYING, true);
-		this.entityData.define(TAMED, false);
-		this.entityData.define(SITTING, false);
-		this.entityData.define(OWNER, Optional.empty());
+		this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
 	}
 
 	protected void registerGoals() {
 		this.stealSonicGoal = new StealSonicGoal(this, 2);
 
-/*
-		this.goalSelector.addGoal(0, new BreedGoal(this, 1.0D));
-*/
-		this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(Items.COD), false));
-		this.goalSelector.addGoal(1, stealSonicGoal);
-		this.goalSelector.addGoal(2, new SwimGoal(this));
-		this.goalSelector.addGoal(3, new FlyingSharkEntity.WanderGoal());
-		this.goalSelector.addGoal(4, new FlyingSharkEntity.LookAroundGoal(this));
-		this.targetSelector.addGoal(5, new OwnerHurtByTargetGoal(this));
-		this.targetSelector.addGoal(6, new OwnerHurtTargetGoal(this));
-		this.targetSelector.addGoal(7, (new HurtByTargetGoal(this)).setAlertOthers());
-		this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
-		this.goalSelector.addGoal(9, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-		this.targetSelector.addGoal(10, new NonTamedTargetGoal<>(this,  AnimalEntity.class, false, PREY_SELECTOR));
+		this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(FOOD_ITEMS), false));
+		this.goalSelector.addGoal(2, stealSonicGoal);
+		this.goalSelector.addGoal(3, new SwimGoal(this));
+		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+		this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, true));
+		this.goalSelector.addGoal(6, new FlyingSharkEntity.WanderGoal());
+		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.addGoal(8, new FlyingSharkEntity.LookAroundGoal(this));
+		this.goalSelector.addGoal(9, new BreedGoal(this, 1.0D));
+
+		this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+		this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::isAngryAt));
+		this.targetSelector.addGoal(5, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, PREY_SELECTOR));
 	}
 
 	protected PathNavigator createNavigation(World world) {
@@ -91,7 +86,11 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 			}
 
 			public void tick() {
+				if (((TameableEntity) this.mob).isOrderedToSit()) {
+					this.stop();
+				} else {
 					super.tick();
+				}
 			}
 		};
 
@@ -134,32 +133,17 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 	// Getter and Setter for tamed state
 	public boolean isTamed() {
-		return this.entityData.get(TAMED);
-	}
-
-	public boolean isSitting() {
-		return this.entityData.get(SITTING);
-	}
-
-	public void setSitting(boolean b) {
-		this.entityData.set(SITTING, b);
-	}
-
-	public void setTamed(boolean tamed) {
-		this.entityData.set(TAMED, tamed);
+		return this.entityData.get(DATA_OWNERUUID_ID).isPresent();
 	}
 
 	// Attempt to tame the entity when fed with fish
 	public boolean attemptTame(Hand hand, ItemStack itemStack) {
-		if (!this.isTamed() && itemStack.getItem() == Items.COD) {
+		if (!this.isTamed() && FOOD_ITEMS.contains(itemStack.getItem())) {
 			if (!this.level.isClientSide) {
 				// Calculate a chance for taming (you can adjust the chance as needed)
 				double tamingChance = 0.25; // 25% chance for taming, adjust as needed
 
 				if (this.random.nextDouble() <= tamingChance) {
-					// Successfully tamed
-					this.setTamed(true);
-
 					// Remove one fish from the player's hand (you may want to adjust this part)
 					if (hand == Hand.MAIN_HAND) {
 						itemStack.shrink(1);
@@ -182,20 +166,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 	@Override
 	public boolean isFood(ItemStack stack) {
-		return stack.getItem() == Items.COD;
-	}
-
-	public Serializable processInteract(PlayerEntity player, Hand hand) {
-		ItemStack itemStack = player.getItemInHand(hand);
-
-		// Attempt to tame the entity when right-clicked with fish
-		if (this.attemptTame(hand, itemStack)) {
-			return true;
-		}
-
-		// Add other interactions here if needed
-
-		return super.interact(player, hand);
+		return FOOD_ITEMS.contains(stack.getItem());
 	}
 
 	@Nullable
@@ -204,31 +175,27 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		return null;
 	}
 
-	@Override
 	public int getRemainingPersistentAngerTime() {
-		return 0;
+		return this.entityData.get(DATA_REMAINING_ANGER_TIME);
 	}
 
-	@Override
 	public void setRemainingPersistentAngerTime(int p_230260_1_) {
+		this.entityData.set(DATA_REMAINING_ANGER_TIME, p_230260_1_);
+	}
 
+	public void startPersistentAngerTimer() {
+		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.randomValue(this.random));
 	}
 
 	@Nullable
-	@Override
 	public UUID getPersistentAngerTarget() {
-		return null;
+		return this.persistentAngerTarget;
 	}
 
-	@Override
 	public void setPersistentAngerTarget(@Nullable UUID p_230259_1_) {
-
+		this.persistentAngerTarget = p_230259_1_;
 	}
 
-	@Override
-	public void startPersistentAngerTimer() {
-
-	}
 
 	@Override
 	public boolean boost() {
@@ -248,11 +215,11 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 	@Override
 	protected void dropAllDeathLoot(DamageSource p_213345_1_) {
 		super.dropAllDeathLoot(p_213345_1_);
-		if(this.getEntity().level.isClientSide) return;
+		if (this.getEntity().level.isClientSide) return;
 
-		for(int i = 0; i < this.inventory.getContainerSize(); i++){
+		for (int i = 0; i < this.inventory.getContainerSize(); i++) {
 			ItemStack itemStack = this.inventory.getItem(i);
-			if(itemStack.isEmpty()) continue;
+			if (itemStack.isEmpty()) continue;
 
 			this.spawnAtLocation(itemStack);
 		}
@@ -271,7 +238,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		}
 
 		public void tick() {
-			if (!this.shark.isInWater() && shark.level.getBlockState(shark.blockPosition().below()).getBlock().is(Blocks.AIR)){
+			if (!this.shark.isInWater() && shark.level.getBlockState(shark.blockPosition().below()).getBlock().is(Blocks.AIR)) {
 				this.shark.setFlying(true);
 			}
 
@@ -287,7 +254,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 				if (livingentity.distanceToSqr(this.shark) < 4096.0D) {
 					double d1 = livingentity.getX() - this.shark.getX();
 					double d2 = livingentity.getZ() - this.shark.getZ();
-					this.shark.yRot = -((float)MathHelper.atan2(d1, d2)) * (180F / (float)Math.PI);
+					this.shark.yRot = -((float) MathHelper.atan2(d1, d2)) * (180F / (float) Math.PI);
 					this.shark.yBodyRot = this.shark.yRot;
 				}
 			}
@@ -297,7 +264,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 	private boolean inventoryFull() {
 
-		for(int i = 0; i < this.inventory.getContainerSize(); i++){
+		for (int i = 0; i < this.inventory.getContainerSize(); i++) {
 			ItemStack itemstack = this.inventory.getItem(i);
 			if (itemstack.isEmpty() || itemstack.getCount() != itemstack.getMaxStackSize()) {
 				return false;
@@ -307,7 +274,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		return true;
 	}
 
-	static class StealSonicGoal extends TemptGoal{
+	static class StealSonicGoal extends TemptGoal {
 		private static final EntityPredicate TEMP_TARGETING = (new EntityPredicate()).range(64.0D).allowInvulnerable().allowSameTeam().allowNonAttackable().allowUnseeable();
 		private int calmDown;
 
@@ -321,14 +288,14 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 
 			if (this.mob.distanceToSqr(this.player) < 6.25D) {
 				ItemStack itemStack = this.player.getItemInHand(player.getUsedItemHand());
-				if(itemStack.getItem().is(DMTags.Items.SONICS)){
+				if (itemStack.getItem().is(DMTags.Items.SONICS)) {
 
 					Inventory inventory = ((FlyingSharkEntity) this.mob).inventory;
-					if(((FlyingSharkEntity) this.mob).inventoryFull()){
+					if (((FlyingSharkEntity) this.mob).inventoryFull()) {
 						this.mob.spawnAtLocation(itemStack);
 
 						this.mob.playSound(SoundEvents.PLAYER_BURP, 1, 1);
-					}else {
+					} else {
 						inventory.addItem(itemStack);
 					}
 
@@ -366,7 +333,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		}
 
 		public boolean canUse() {
-			return FlyingSharkEntity.this.navigation.isDone() && FlyingSharkEntity.this.random.nextInt(10) == 0;
+			return FlyingSharkEntity.this.navigation.isDone() && FlyingSharkEntity.this.random.nextInt(10) == 0 && !FlyingSharkEntity.this.isOrderedToSit();
 		}
 
 		public boolean canContinueToUse() {
@@ -387,8 +354,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 			vector3d = FlyingSharkEntity.this.getViewVector(0.0F);
 
 			int i = 8;
-			Vector3d vector3d2 = RandomPositionGenerator.getAboveLandPos(FlyingSharkEntity.this, 8, 7, vector3d, ((float)Math.PI / 2F), 2, 1);
-			return vector3d2 != null ? vector3d2 : RandomPositionGenerator.getAirPos(FlyingSharkEntity.this, 8, 4, -2, vector3d, (double)((float)Math.PI / 2F));
+			Vector3d vector3d2 = RandomPositionGenerator.getAboveLandPos(FlyingSharkEntity.this, 8, 7, vector3d, ((float) Math.PI / 2F), 2, 1);
+			return vector3d2 != null ? vector3d2 : RandomPositionGenerator.getAirPos(FlyingSharkEntity.this, 8, 4, -2, vector3d, (double) ((float) Math.PI / 2F));
 		}
 	}
 
@@ -457,28 +424,26 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 					return actionresulttype;
 				}
 
-				if (item == Items.COD && !this.isAngry()) {
-					if (!p_230254_1_.abilities.instabuild) {
-						itemstack.shrink(1);
-					}
-
-					if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
-						this.tame(p_230254_1_);
-						this.navigation.stop();
-						this.setTarget((LivingEntity) null);
-						this.setOrderedToSit(true);
-						this.level.broadcastEntityEvent(this, (byte) 7);
-					} else {
-						this.level.broadcastEntityEvent(this, (byte) 6);
-					}
-
-					return ActionResultType.SUCCESS;
+			} else if (isFood(itemstack) && !this.isAngry()) {
+				if (!p_230254_1_.abilities.instabuild) {
+					itemstack.shrink(1);
 				}
 
-				return super.mobInteract(p_230254_1_, p_230254_2_);
+				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
+					this.tame(p_230254_1_);
+					this.navigation.stop();
+					this.setTarget((LivingEntity) null);
+					this.setOrderedToSit(true);
+					this.level.broadcastEntityEvent(this, (byte) 7);
+				} else {
+					this.level.broadcastEntityEvent(this, (byte) 6);
+				}
+
+				return ActionResultType.SUCCESS;
 			}
+
+			return super.mobInteract(p_230254_1_, p_230254_2_);
 		}
-		return ActionResultType.sidedSuccess(false);
 	}
 
 	public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
@@ -491,5 +456,13 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		super.readAdditionalSaveData(p_70037_1_);
 
 		this.inventory.fromTag(p_70037_1_.getList("Inventory", 10));
+	}
+
+	public void aiStep() {
+		super.aiStep();
+
+		if (!this.level.isClientSide) {
+			this.updatePersistentAnger((ServerWorld) this.level, true);
+		}
 	}
 }
