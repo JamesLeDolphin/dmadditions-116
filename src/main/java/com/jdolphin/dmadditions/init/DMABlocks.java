@@ -11,6 +11,7 @@ import com.swdteam.common.init.DMTabs;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.audio.Sound;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -163,6 +164,7 @@ public class DMABlocks {
 	public static final RegistryObject<Block> CHRISTMAS_PRESENT;
 
 	public static final RegistryObject<Block> CHRISTMAS_PUDDING;
+	public static final RegistryObject<Block> CHRISTMAS_LIGHTS;
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
@@ -192,6 +194,9 @@ public class DMABlocks {
 
 
 	static {
+		CHRISTMAS_LIGHTS = registerAdventDMABlock(20, () ->
+			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.STONE).strength(1F).sound(SoundType.STONE).noOcclusion()), "christmas_lights", ItemGroup.TAB_DECORATIONS);
+
 		CHRISTMAS_PUDDING = registerAdventDMABlock(12, () ->
 			new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
 
