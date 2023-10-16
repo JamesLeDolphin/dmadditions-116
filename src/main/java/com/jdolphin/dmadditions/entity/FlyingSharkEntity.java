@@ -161,34 +161,6 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IRi
 		return this.entityData.get(DATA_OWNERUUID_ID).isPresent();
 	}
 
-	// Attempt to tame the entity when fed with fish
-	public boolean attemptTame(Hand hand, ItemStack itemStack) {
-		if (!this.isTamed() && FOOD_ITEMS.contains(itemStack.getItem())) {
-			if (!this.level.isClientSide) {
-				// Calculate a chance for taming (you can adjust the chance as needed)
-				double tamingChance = 0.25; // 25% chance for taming, adjust as needed
-
-				if (this.random.nextDouble() <= tamingChance) {
-					// Remove one fish from the player's hand (you may want to adjust this part)
-					if (hand == Hand.MAIN_HAND) {
-						itemStack.shrink(1);
-					} else if (hand == Hand.OFF_HAND) {
-						PlayerEntity player = this.level.getNearestPlayer(this, 4.0);
-						if (player != null) {
-							player.getItemInHand(hand).shrink(1);
-						}
-					}
-
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		return false;
-	}
-
 	@Override
 	public boolean isFood(ItemStack stack) {
 		return FOOD_ITEMS.contains(stack.getItem());
