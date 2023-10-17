@@ -11,6 +11,7 @@ import com.swdteam.common.init.DMTabs;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.audio.Sound;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -18,12 +19,14 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 
+
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static com.swdteam.common.init.DMBlocks.registerBlock;
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
 import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.BLOCKS;
+import static com.jdolphin.dmadditions.RegistryHandler.DMARegistries.ITEMS;
 
 public class DMABlocks {
 	/*public static final RegistryObject<Block> DOOR_OPEN_PANEL = registerBlock(
@@ -160,6 +163,9 @@ public class DMABlocks {
 
 	public static final RegistryObject<Block> CHRISTMAS_PRESENT;
 
+	public static final RegistryObject<Block> CHRISTMAS_PUDDING;
+	public static final RegistryObject<Block> CHRISTMAS_LIGHTS;
+
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
 		if (!AdventUnlock.unlockAt(day))
 			return null;
@@ -178,7 +184,7 @@ public class DMABlocks {
 			return registerDMABlock(supplier, name);
 		}
 
-		return registerBlockAndItem(name, supplier, new Item.Properties().tab(tab));
+		return registerDMABlockAndItem(name, supplier, new Item.Properties().tab(tab));
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerDMABlock(Supplier<B> block, String name) {
@@ -188,6 +194,12 @@ public class DMABlocks {
 
 
 	static {
+		CHRISTMAS_LIGHTS = registerAdventDMABlock(20, () ->
+			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.STONE).strength(1F).sound(SoundType.STONE).noOcclusion()), "christmas_lights", ItemGroup.TAB_DECORATIONS);
+
+		CHRISTMAS_PUDDING = registerAdventDMABlock(12, () ->
+			new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
+
 		// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
 		BLUE_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "blue_bauble");
 		GOLD_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "gold_bauble");
@@ -373,6 +385,13 @@ public class DMABlocks {
 	public static <B extends Block> RegistryObject<Block> registerBlockAndItem(String name, Supplier<B> block, Item.Properties properties) {
 		RegistryObject<Block> blockObject = RegistryHandler.BLOCKS.register(name, block);
 		RegistryHandler.ITEMS.register(name, () -> new BlockItem(blockObject.get(), properties));
+
+		return blockObject;
+	}
+
+	public static <B extends Block> RegistryObject<Block> registerDMABlockAndItem(String name, Supplier<B> block, Item.Properties properties) {
+		RegistryObject<Block> blockObject = BLOCKS.register(name, block);
+		ITEMS.register(name, () -> new BlockItem(blockObject.get(), properties));
 
 		return blockObject;
 	}
