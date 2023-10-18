@@ -257,6 +257,8 @@
 	"item.dmadditions.flying_shark_spawner": "Flying Shark Spawner",
 
 	"block.dmadditions.christmas_pudding": "Christmas Pudding",
-	"block.dmadditions.christmas_lights": "Christmas Lights"
+	"block.dmadditions.christmas_lights": "Christmas Lights",
+
+	"entity.dmadditions.racnoss": "Racnoss"
 
 }
