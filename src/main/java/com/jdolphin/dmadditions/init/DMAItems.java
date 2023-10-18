@@ -143,6 +143,8 @@ public class DMAItems {
 
 	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = registerAdventItem(7, "flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK::get, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
 
+	public static RegistryObject<Item> RACNOSS_SPAWNER = registerAdventItem(7, "racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS::get, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); 
+
 	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
