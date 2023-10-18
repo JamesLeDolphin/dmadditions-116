@@ -8,8 +8,12 @@ import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
+import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.Hand;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -31,7 +35,12 @@ public class RacnossModel extends SegmentedModel<RacnossEntity> implements IMode
 	public ModelRenderer leg6;
 	public ModelRenderer leg7;
 
-	public RacnossModel(){
+	public ModelRenderer rightArm;
+	public ModelRenderer leftArm;
+	public BipedModel.ArmPose leftArmPose = BipedModel.ArmPose.EMPTY;
+	public BipedModel.ArmPose rightArmPose = BipedModel.ArmPose.EMPTY;
+
+	public RacnossModel() {
 		super();
 		ModelReloaderRegistry.register(this);
 	}
@@ -53,6 +62,9 @@ public class RacnossModel extends SegmentedModel<RacnossEntity> implements IMode
 		this.leg5 = modelWrapper.getPart("LeftLeg1");
 		this.leg6 = modelWrapper.getPart("RightLeg4");
 		this.leg7 = modelWrapper.getPart("LeftLeg4");
+
+		this.rightArm = modelWrapper.getPart("RightArm");
+		this.leftArm = modelWrapper.getPart("LeftArm");
 	}
 
 	@Override
@@ -68,5 +80,77 @@ public class RacnossModel extends SegmentedModel<RacnossEntity> implements IMode
 	@Override
 	public void setupAnim(RacnossEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		entity.setupAnim(this, entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	}
+
+	public HandSide getAttackArm(RacnossEntity p_217147_1_) {
+		HandSide handside = p_217147_1_.getMainArm();
+		return p_217147_1_.swingingArm == Hand.MAIN_HAND ? handside : handside.getOpposite();
+	}
+	public ModelRenderer getArm(HandSide p_187074_1_) {
+		return p_187074_1_ == HandSide.LEFT ? this.leftArm : this.rightArm;
+	}
+
+	public void poseRightArm(RacnossEntity entity) {
+		switch (this.rightArmPose) {
+			case EMPTY:
+				this.rightArm.yRot = 0.0F;
+				break;
+			case BLOCK:
+				this.rightArm.xRot = this.rightArm.xRot * 0.5F - 0.9424779F;
+				this.rightArm.yRot = (-(float) Math.PI / 6F);
+				break;
+			case ITEM:
+				this.rightArm.xRot = this.rightArm.xRot * 0.5F - ((float) Math.PI / 10F);
+				this.rightArm.yRot = 0.0F;
+				break;
+			case THROW_SPEAR:
+				this.rightArm.xRot = this.rightArm.xRot * 0.5F - (float) Math.PI;
+				this.rightArm.yRot = 0.0F;
+				break;
+			case BOW_AND_ARROW:
+				this.rightArm.yRot = -0.1F + this.head.yRot;
+				this.leftArm.yRot = 0.1F + this.head.yRot + 0.4F;
+				this.rightArm.xRot = (-(float) Math.PI / 2F) + this.head.xRot;
+				this.leftArm.xRot = (-(float) Math.PI / 2F) + this.head.xRot;
+				break;
+			case CROSSBOW_CHARGE:
+				ModelHelper.animateCrossbowCharge(this.rightArm, this.leftArm, entity, true);
+				break;
+			case CROSSBOW_HOLD:
+				ModelHelper.animateCrossbowHold(this.rightArm, this.leftArm, this.head, true);
+		}
+
+	}
+
+	public void poseLeftArm(RacnossEntity entity) {
+		switch (this.leftArmPose) {
+			case EMPTY:
+				this.leftArm.yRot = 0.0F;
+				break;
+			case BLOCK:
+				this.leftArm.xRot = this.leftArm.xRot * 0.5F - 0.9424779F;
+				this.leftArm.yRot = ((float) Math.PI / 6F);
+				break;
+			case ITEM:
+				this.leftArm.xRot = this.leftArm.xRot * 0.5F - ((float) Math.PI / 10F);
+				this.leftArm.yRot = 0.0F;
+				break;
+			case THROW_SPEAR:
+				this.leftArm.xRot = this.leftArm.xRot * 0.5F - (float) Math.PI;
+				this.leftArm.yRot = 0.0F;
+				break;
+			case BOW_AND_ARROW:
+				this.rightArm.yRot = -0.1F + this.head.yRot - 0.4F;
+				this.leftArm.yRot = 0.1F + this.head.yRot;
+				this.rightArm.xRot = (-(float) Math.PI / 2F) + this.head.xRot;
+				this.leftArm.xRot = (-(float) Math.PI / 2F) + this.head.xRot;
+				break;
+			case CROSSBOW_CHARGE:
+				ModelHelper.animateCrossbowCharge(this.rightArm, this.leftArm, entity, false);
+				break;
+			case CROSSBOW_HOLD:
+				ModelHelper.animateCrossbowHold(this.rightArm, this.leftArm, this.head, false);
+		}
+
 	}
 }
