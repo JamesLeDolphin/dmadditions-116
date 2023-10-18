@@ -24,6 +24,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
 		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
+		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
 	}
 
 
