@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.RacnossModel;
 import com.swdteam.common.entity.LookAtGoalBetter;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -10,9 +11,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.piglin.PiglinBruteEntity;
-import net.minecraft.entity.monster.piglin.PiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
@@ -40,18 +40,15 @@ public class RacnossEntity extends MonsterEntity implements IForgeEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinEntity.class, 6.0F, 1.0, 1.2));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinBruteEntity.class, 6.0F, 1.0, 1.2));
-		this.goalSelector.addGoal(5, new LookAtGoalBetter(this, PlayerEntity.class, 8.0F));
-		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Entity.class));
 		this.goalSelector.addGoal(1, new SwimGoal(this));
 		this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
-		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+		this.goalSelector.addGoal(5, new LookAtGoalBetter(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
 		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Entity.class));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 
 	}
 
@@ -131,5 +128,53 @@ public class RacnossEntity extends MonsterEntity implements IForgeEntity {
 		model.leg3.zRot += -f8;
 		model.leg4.zRot += f9;
 		model.leg5.zRot += -f9;
+
+		model.rightArm.xRot = -0.3f;
+		model.leftArm.xRot = -0.3f;
+		model.rightArm.yRot = 0;
+		model.leftArm.yRot = 0;
+		model.rightArm.zRot = 0;
+		model.leftArm.zRot = 0;
+
+		boolean flag2 = entity.getMainArm() == HandSide.RIGHT;
+		boolean flag3 = flag2 ? model.leftArmPose.isTwoHanded() : model.rightArmPose.isTwoHanded();
+		if (flag2 != flag3) {
+			model.poseLeftArm(entity);
+			model.poseRightArm(entity);
+		} else {
+			model.poseRightArm(entity);
+			model.poseLeftArm(entity);
+		}
+
+		this.setupAttackAnimation(model, ageInTicks);
+	}
+
+	protected void setupAttackAnimation(RacnossModel model, float p_230486_2_) {
+		if (!(model.attackTime <= 0.0F)) {
+			HandSide handside = model.getAttackArm(this);
+			ModelRenderer modelrenderer = model.getArm(handside);
+			float f = model.attackTime;
+			model.body.yRot = MathHelper.sin(MathHelper.sqrt(f) * ((float)Math.PI * 2F)) * 0.2F;
+			if (handside == HandSide.LEFT) {
+				model.body.yRot *= -1.0F;
+			}
+
+			model.rightArm.z = MathHelper.sin(model.body.yRot) * 5.0F;
+			model.rightArm.x = -MathHelper.cos(model.body.yRot) * 5.0F;
+			model.leftArm.z = -MathHelper.sin(model.body.yRot) * 5.0F;
+			model.leftArm.x = MathHelper.cos(model.body.yRot) * 5.0F;
+			model.rightArm.yRot += model.body.yRot;
+			model.leftArm.yRot += model.body.yRot;
+			model.leftArm.xRot += model.body.yRot;
+			f = 1.0F - model.attackTime;
+			f = f * f;
+			f = f * f;
+			f = 1.0F - f;
+			float f1 = MathHelper.sin(f * (float)Math.PI);
+			float f2 = MathHelper.sin(model.attackTime * (float)Math.PI) * -(model.head.xRot - 0.7F) * 0.75F;
+			modelrenderer.xRot = (float)((double)modelrenderer.xRot - ((double)f1 * 1.2D + (double)f2));
+			modelrenderer.yRot += model.body.yRot * 2.0F;
+			modelrenderer.zRot += MathHelper.sin(model.attackTime * (float)Math.PI) * -0.4F;
+		}
 	}
 }
