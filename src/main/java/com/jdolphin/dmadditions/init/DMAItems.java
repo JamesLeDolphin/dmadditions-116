@@ -86,6 +86,7 @@ public class DMAItems {
 	public static final RegistryObject<Item> HANDLES_ITEM;
 
 	public static final RegistryObject<Item> FLYING_SHARK_SPAWNER;
+	public static final RegistryObject<Item> RACNOSS_SPAWNER;
 
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
@@ -238,6 +239,9 @@ public class DMAItems {
 
 		FLYING_SHARK_SPAWNER = addDMAAdventSpawnItem(7, "flying_shark_spawner", DMAEntities.FLYING_SHARK::get,
 			0x004A5B, 0xffffff);
+
+		RACNOSS_SPAWNER = addDMAAdventSpawnItem(4, "racnoss_spawner", DMAEntities.RACNOSS::get,
+			0xa61911, 0x0);
 
 		BESSIE = addDMASpawnItem("bessie", DMAEntities.BESSIE::get);
 

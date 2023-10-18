@@ -259,6 +259,7 @@
 	"block.dmadditions.christmas_pudding": "Christmas Pudding",
 	"block.dmadditions.christmas_lights": "Christmas Lights",
 
-	"entity.dmadditions.racnoss": "Racnoss"
+	"entity.dmadditions.racnoss": "Racnoss",
+	"item.dmadditions.racnoss_spawner": "Racnoss Spawner"
 
 }
