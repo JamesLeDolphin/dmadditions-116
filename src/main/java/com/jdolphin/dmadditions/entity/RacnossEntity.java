@@ -32,7 +32,7 @@ public class RacnossEntity extends MonsterEntity implements IForgeEntity {
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
 		return MobEntity.createMobAttributes()
-			.add(Attributes.MOVEMENT_SPEED, 0.7)
+			.add(Attributes.MOVEMENT_SPEED, 0.4)
 			.add(Attributes.MAX_HEALTH, 200.0)
 			.add(Attributes.ATTACK_DAMAGE, 4.356)
 			.add(Attributes.FOLLOW_RANGE, 20.0);
