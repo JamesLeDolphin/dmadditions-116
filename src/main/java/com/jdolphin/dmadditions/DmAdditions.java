@@ -29,6 +29,7 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -56,6 +57,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.function.Supplier;
 
 
 @Mod("dmadditions")
@@ -76,6 +78,7 @@ public class DmAdditions {
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
+
 	public static boolean hasTC() {
 		return ModList.get().isLoaded("tconstruct");
 	}
@@ -109,11 +112,13 @@ public class DmAdditions {
 		ToggleModeCommand.register(dispatcher);
 		GodCommand.register(dispatcher);
 	}
+
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
 		this.registerCommands(commandDispatcher);
 	}
+
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
@@ -150,33 +155,37 @@ public class DmAdditions {
 
 
 	private static Method GETCODEC_METHOD;
+
 	public void addDimensionalSpacing(WorldEvent.Load event) {
 		if (event.getWorld() instanceof ServerWorld) {
-			ServerWorld world = (ServerWorld)event.getWorld();
+			ServerWorld world = (ServerWorld) event.getWorld();
 			if (!world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
 			try {
-				if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+				if (GETCODEC_METHOD == null)
+					GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
 				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(world.getChunkSource().generator));
-				if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
-			}
-			catch(Exception e){
+				if (cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
+			} catch (Exception e) {
 				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
 			}
 
-			if(world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
-				world.dimension().equals(World.OVERWORLD)){
+			if (world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
+				world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
 			if (world.isFlat()) {
 				return;
 			}
-			if (!AdventUnlock.unlockAt(1)) {
-				return;
+			if (AdventUnlock.unlockAt(5)) {
+				world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 			}
 
-			world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+			if (AdventUnlock.unlockAt(9)) {
+				world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+			}
+
 		}
 
 	}
@@ -194,7 +203,7 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.solid());
 		RenderTypeLookup.setRenderLayer(DMABlocks.CHRISTMAS_PRESENT.get(), RenderType.cutout());
-		if(hasTC()) {
+		if (hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
@@ -202,6 +211,7 @@ public class DmAdditions {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
+
 	@SubscribeEvent
 	static void gatherData(final GatherDataEvent event) {
 		DataGenerator datagenerator = event.getGenerator();
@@ -220,9 +230,9 @@ public class DmAdditions {
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
 			}
-			event.getGeneration().getStructures().add(() -> {
-				return DMAConfiguredStructures.CONFIGURED_MANOR;
-			});
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
 		}
 	}
 }
