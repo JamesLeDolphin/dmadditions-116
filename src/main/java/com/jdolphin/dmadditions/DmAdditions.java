@@ -59,9 +59,13 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.minecraft.world.gen.feature.StructureFeature;
+
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.function.Supplier;
+
 
 
 @Mod("dmadditions")
@@ -155,31 +159,34 @@ public class DmAdditions {
 	private static Method GETCODEC_METHOD;
 	public void addDimensionalSpacing(WorldEvent.Load event) {
 		if (event.getWorld() instanceof ServerWorld) {
-			ServerWorld world = (ServerWorld)event.getWorld();
+			ServerWorld world = (ServerWorld) event.getWorld();
 			if (!world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
 			try {
-				if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+				if (GETCODEC_METHOD == null)
+					GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
 				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(world.getChunkSource().generator));
-				if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
-			}
-			catch(Exception e){
+				if (cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
+			} catch (Exception e) {
 				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
 			}
 
-			if(world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
-				world.dimension().equals(World.OVERWORLD)){
+			if (world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
+				world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
 			if (world.isFlat()) {
 				return;
 			}
-			if (!AdventUnlock.unlockAt(1)) {
-				return;
+			if (AdventUnlock.unlockAt(2)) {
+				world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 			}
 
-			world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+			if (AdventUnlock.unlockAt(9)) {
+				world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+			}
+
 		}
 
 	}
@@ -228,12 +235,30 @@ public class DmAdditions {
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
 			}
-			event.getGeneration().getStructures().add(() -> {
-				return DMAConfiguredStructures.CONFIGURED_MANOR;
-			});
-		}
 
+			Biome.Category category = event.getCategory();
+			ResourceLocation biomeRegistryKey = event.getName();
+
+			if (isBiomeValidForManor(category, biomeRegistryKey)) {
+				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
+			}
+
+			if (isBiomeValidForCyberUnderground(category, biomeRegistryKey)) {
+				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
+			}
+		}
 	}
+
+	private static boolean isBiomeValidForManor(Biome.Category category, ResourceLocation biomeRegistryKey) {
+		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
+	}
+
+	private static boolean isBiomeValidForCyberUnderground(Biome.Category category, ResourceLocation biomeRegistryKey) {
+		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
+	}
+
 	// Replaces all missing mappings if possible. Surely theres a better way but eh
 	@SubscribeEvent
 	public void missingItems(RegistryEvent.MissingMappings<Item> event) {

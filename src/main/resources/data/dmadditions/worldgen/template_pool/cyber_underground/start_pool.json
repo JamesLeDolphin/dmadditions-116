@@ -1,0 +1,15 @@
+{
+  "name": "dmadditions:cyber_underground/start_pool",
+  "fallback": "dmadditions:cyber_underground/empty_pool",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "dmadditions:cyber_underground",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

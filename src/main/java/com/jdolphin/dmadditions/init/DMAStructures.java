@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.world.structure.CyberUndergroundStructure;
 import com.jdolphin.dmadditions.world.structure.ManorStructure;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -18,7 +19,9 @@ public class DMAStructures {
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DmAdditions.MODID);
 	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> { return new ManorStructure(NoFeatureConfig.CODEC);
 	});
-
+	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_UNDERGROUND = registerStructure("cyber_underground",
+		() -> { return new CyberUndergroundStructure(NoFeatureConfig.CODEC);
+	});
 	public DMAStructures() {
 	}
 
@@ -28,6 +31,7 @@ public class DMAStructures {
 
 	public static void setupStructures() {
 		setupMapSpacingAndLand((Structure) MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
+		setupMapSpacingAndLand((Structure) CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
 	}
 
 	public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
