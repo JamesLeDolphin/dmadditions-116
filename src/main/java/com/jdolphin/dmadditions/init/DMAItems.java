@@ -149,7 +149,7 @@ public class DMAItems {
 		GREEN_BAUBLE = registerDMAAdventItem(1, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
 		RED_BAUBLE = registerDMAAdventItem(1, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
-		HANDLES_ITEM = registerAdventItem(2, "handles_item",
+		HANDLES_ITEM = registerAdventItem(21, "handles_item",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 		BLUE_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("blue_candy_cane",
