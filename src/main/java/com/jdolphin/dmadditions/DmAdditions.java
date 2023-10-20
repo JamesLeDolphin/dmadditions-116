@@ -251,6 +251,10 @@ public class DmAdditions {
 		}
 	}
 
+	/* To specify a type of biome return category == Biome.Category.TAIGA, however if you want to specify a speficic
+	 biome like in the example below, use (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
+	 		-TW1 	*/
+
 	private static boolean isBiomeValidForManor(Biome.Category category, ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
 	}
