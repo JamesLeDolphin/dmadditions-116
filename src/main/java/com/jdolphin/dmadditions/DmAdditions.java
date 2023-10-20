@@ -25,6 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
@@ -52,6 +53,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -230,9 +232,31 @@ public class DmAdditions {
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
 			}
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
-			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
+
+			Biome.Category category = event.getCategory();
+			ResourceLocation biomeRegistryKey = event.getName();
+
+			if (isBiomeValidForManor(category, biomeRegistryKey)) {
+				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
+			}
+
+			if (isBiomeValidForCyberUnderground(category, biomeRegistryKey)) {
+				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
+			}
 		}
+	}
+
+	/* To specify a type of biome return category == Biome.Category.TAIGA, however if you want to specify a speficic
+	 biome like in the example below, use (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
+	 		-TW1 	*/
+
+	private static boolean isBiomeValidForManor(Biome.Category category, ResourceLocation biomeRegistryKey) {
+		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
+	}
+
+	private static boolean isBiomeValidForCyberUnderground(Biome.Category category, ResourceLocation biomeRegistryKey) {
+		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
 	}
 }
