@@ -1,10 +1,16 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.init.DMItems;
+import com.swdteam.common.init.DMProjectiles;
+import com.swdteam.common.init.DMSoundEvents;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
@@ -13,9 +19,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class K9Entity extends WolfEntity {
+public class K9Entity extends WolfEntity implements IRangedAttackMob {
 	public static final Ingredient TAME_ITEMS = Ingredient.of(DMItems.CIRCUIT.get());
 
 	public K9Entity(EntityType<? extends WolfEntity> p_i50240_1_, World p_i50240_2_) {
@@ -30,6 +37,8 @@ public class K9Entity extends WolfEntity {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
+
+		this.goalSelector.addGoal(4, new RangedAttackGoal(this, 1.0D, 10, 15.0F));
 	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -102,5 +111,22 @@ public class K9Entity extends WolfEntity {
 		}
 
 		return super.mobInteract(p_230254_1_, p_230254_2_);
+	}
+
+	@Override
+	public void performRangedAttack(LivingEntity entity, float p_82196_2_) {
+		LaserEntity laser = new LaserEntity(entity.level, this, 0.0F, (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+		laser.setLaserType(DMProjectiles.RED_LASER);
+		laser.setEmitsSmoke(true);
+		laser.setDamageSource(new EntityDamageSource("dalekgun", entity));
+		double d0 = entity.getX() - this.getX();
+		double d1 = entity.getY() - laser.getY();
+		double d2 = entity.getZ() - this.getZ();
+		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+		laser.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F,  0);
+//		laser.shoot(this, this.xRot, this.yRot, 0.0F, 2.5F, 0.0F);
+
+		this.playSound(DMSoundEvents.ENTITY_DALEK_LASER_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+		level.addFreshEntity(laser);
 	}
 }
