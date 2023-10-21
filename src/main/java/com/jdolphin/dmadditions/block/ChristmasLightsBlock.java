@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -47,6 +46,7 @@ public class ChristmasLightsBlock extends HorizontalBlock {
 				return EAST_AABB;
 		}
 	}
+
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
 		if (!blockItemUseContext.replacingClickedOnBlock()) {
