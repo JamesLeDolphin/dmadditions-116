@@ -195,7 +195,8 @@ public class DMABlocks {
 
 	static {
 		CHRISTMAS_LIGHTS = registerAdventDMABlock(20, () ->
-			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.STONE).strength(1F).sound(SoundType.STONE).noOcclusion()), "christmas_lights", ItemGroup.TAB_DECORATIONS);
+			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
+			"christmas_lights", ItemGroup.TAB_DECORATIONS);
 
 		CHRISTMAS_PUDDING = registerAdventDMABlock(12, () ->
 			new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
