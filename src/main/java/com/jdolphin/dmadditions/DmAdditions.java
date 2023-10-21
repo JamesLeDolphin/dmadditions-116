@@ -53,7 +53,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -152,6 +151,9 @@ public class DmAdditions {
 
 			if (DMAEntities.RACNOSS != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
+
+			if (DMAEntities.K9 != null)
+				GlobalEntityTypeAttributes.put(DMAEntities.K9.get(), K9Entity.setCustomAttributes().build());
 		});
 	}
 

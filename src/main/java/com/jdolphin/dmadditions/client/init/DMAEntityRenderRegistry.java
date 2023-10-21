@@ -25,6 +25,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
 		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
 		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
+		registerRender(DMAEntities.K9, K9Renderer::new);
 	}
 
 

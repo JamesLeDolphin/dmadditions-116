@@ -22,6 +22,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV;
 	public static final RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK;
 	public static final RegistryObject<EntityType<RacnossEntity>> RACNOSS;
+	public static final RegistryObject<EntityType<K9Entity>> K9;
 
 	static {
 		JAMESLEDOLPHIN = ENTITY_TYPES.register("jamesledolphin",
@@ -65,6 +66,10 @@ public class DMAEntities {
 		RACNOSS = ENTITY_TYPES.register("racnoss",
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
 				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
+
+		K9 = ENTITY_TYPES.register("k9",
+			() -> EntityType.Builder.of(K9Entity::new, EntityClassification.CREATURE).sized(1F, 1F)
+				.build((new ResourceLocation(DmAdditions.MODID, "k9")).toString()));
 	}
 
 }
