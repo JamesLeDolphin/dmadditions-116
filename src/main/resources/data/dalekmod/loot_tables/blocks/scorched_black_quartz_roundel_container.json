@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:scorched_black_quartz_roundel_container"
+					"name": "dmadditions:scorched_black_quartz_roundel_container"
 				}
 			],
 			"conditions": [

@@ -14,38 +14,29 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RegistryHandler {
-	public static DMABiomes dmaBiomes;
-	public static DMAEntities dmaEntities;
-	public static DMABlockEntities dmaTiles;
-	public static DMAWorldCarvers dmaCarvers;
-	public static DMAItems dmaItems;
-	public static DMASoundEvents dmaSounds;
-	public static DMABlocks dmaBlocks;
-	public static DMALootConditionManager dmaLootConditionManager;
+	public static DMABiomes dmaBiomes = new DMABiomes();
+	public static DMAEntities dmaEntities = new DMAEntities();
+	public static DMABlockEntities dmaTiles = new DMABlockEntities();
+	public static DMAWorldCarvers dmaCarvers = new DMAWorldCarvers();
+	public static DMAItems dmaItems = new DMAItems();
+	public static DMASoundEvents dmaSounds = new DMASoundEvents();
+	public static DMABlocks dmaBlocks = new DMABlocks();
+	public static DMALootConditionManager dmaLootConditionManager = new DMALootConditionManager();
 
 
 	public static void init() {
 		DMAProjectiles.init();
 		DMARegistries.register();
 
-		dmaCarvers = new DMAWorldCarvers();
-		dmaBiomes = new DMABiomes();
-		dmaSounds = new DMASoundEvents();
-		dmaItems = new DMAItems();
-		dmaBlocks = new DMABlocks();
-		dmaTiles = new DMABlockEntities();
-		dmaEntities = new DMAEntities();
-		dmaLootConditionManager = new DMALootConditionManager();
-
 		ItemTags.createOptional(new ResourceLocation(DmAdditions.MODID, "tardis_keys"));
 	}
 
 	public static class DMARegistries {
-		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES;
-		public static final DeferredRegister<Item> ITEMS;
-		public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS;
-		public static final DeferredRegister<Biome> BIOMES;
-		public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES;
+		public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
+		public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+		public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DmAdditions.MODID);
+		public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, DmAdditions.MODID);
+		public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
 
 		public static void register() {
 			IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -55,14 +46,6 @@ public class RegistryHandler {
 			ITEMS.register(modEventBus);
 			WORLD_CARVERS.register(modEventBus);
 			BIOMES.register(modEventBus);
-		}
-
-		static {
-			ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
-			TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
-			ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
-			WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DmAdditions.MODID);
-			BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, DmAdditions.MODID);
 		}
 	}
 }

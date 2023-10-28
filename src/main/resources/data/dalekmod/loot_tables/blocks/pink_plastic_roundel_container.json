@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:pink_plastic_roundel_container"
+					"name": "dmadditions:pink_plastic_roundel_container"
 				}
 			],
 			"conditions": [

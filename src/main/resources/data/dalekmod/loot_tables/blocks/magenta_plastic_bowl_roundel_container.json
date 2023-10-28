@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:magenta_plastic_bowl_roundel_container"
+					"name": "dmadditions:magenta_plastic_bowl_roundel_container"
 				}
 			],
 			"conditions": [

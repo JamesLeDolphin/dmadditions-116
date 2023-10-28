@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:metalert_roundel_container"
+					"name": "dmadditions:metalert_roundel_container"
 				}
 			],
 			"conditions": [

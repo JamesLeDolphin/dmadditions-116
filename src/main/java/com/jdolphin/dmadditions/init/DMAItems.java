@@ -146,8 +146,8 @@ public class DMAItems {
 			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
 
-	public static RegistryObject<Item> TARDIS_GOLD_KEY = RegistryHandler.DMARegistries.ITEMS.register("tardis_gold_key",
-			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
+	//public static RegistryObject<Item> TARDIS_GOLD_KEY = RegistryHandler.DMARegistries.ITEMS.register("tardis_gold_key",
+	//		() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
 
 	public static RegistryObject<Item> DINO_NUGGETS = RegistryHandler.DMARegistries.ITEMS.register("dino_nuggets",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));

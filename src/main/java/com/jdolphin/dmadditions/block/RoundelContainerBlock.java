@@ -45,6 +45,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		} else {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof RoundelContainerTileEntity) {
+				playerEntity.playSound(SoundEvents.BARREL_OPEN, 1, 1);
 				playerEntity.openMenu((RoundelContainerTileEntity)tileentity);
 				playerEntity.awardStat(Stats.OPEN_BARREL);
 				PiglinTasks.angerNearbyPiglins(playerEntity, true);

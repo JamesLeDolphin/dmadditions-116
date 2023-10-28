@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "dalekmod:pink_candy_cane"
+      "item": "dmadditions:pink_candy_cane"
     }
   },
   "result": {
-    "item": "dalekmod:pink_candy_cane_block",
+    "item": "dmadditions:pink_candy_cane_block",
     "count": 1
   }
 }

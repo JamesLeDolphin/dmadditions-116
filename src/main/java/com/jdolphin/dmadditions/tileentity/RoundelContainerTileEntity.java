@@ -66,7 +66,7 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 	}
 
 	protected ITextComponent getDefaultName() {
-		return new TranslationTextComponent("container.dalekmod.roundel_storage");
+		return new TranslationTextComponent("container.dmadditions.roundel_storage");
 	}
 
 	protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
@@ -80,12 +80,6 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 			}
 
 			++this.openCount;
-			BlockState blockstate = this.getBlockState();
-			boolean flag = blockstate.getValue(BarrelBlock.OPEN);
-			if (!flag) {
-				this.playSound(blockstate, SoundEvents.BARREL_OPEN);
-				this.updateBlockState(blockstate, true);
-			}
 
 			this.scheduleRecheck();
 		}
@@ -108,12 +102,6 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 			if (!blockstate.is(ROUNDEL_CONTAINERS)) {
 				this.setRemoved();
 				return;
-			}
-
-			boolean flag = blockstate.getValue(BarrelBlock.OPEN);
-			if (flag) {
-				this.playSound(blockstate, SoundEvents.BARREL_CLOSE);
-				this.updateBlockState(blockstate, false);
 			}
 		}
 

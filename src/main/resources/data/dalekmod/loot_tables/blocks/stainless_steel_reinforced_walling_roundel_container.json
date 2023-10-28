@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:stainless_steel_reinforced_walling_roundel_container"
+					"name": "dmadditions:stainless_steel_reinforced_walling_roundel_container"
 				}
 			],
 			"conditions": [

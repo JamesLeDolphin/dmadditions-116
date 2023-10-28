@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:coral_flight_lever"
+					"name": "dmadditions:coral_flight_lever"
 				}
 			],
 			"conditions": [

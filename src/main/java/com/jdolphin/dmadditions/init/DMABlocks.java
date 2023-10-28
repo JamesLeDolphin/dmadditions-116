@@ -30,7 +30,6 @@ import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 public class DMABlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
-	public static ArrayList<Block> ROUNDEL_CONTAINERS = new ArrayList<>();
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
 		() -> new CoralHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
@@ -199,7 +198,6 @@ public class DMABlocks {
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerContainer(Supplier<B> block, String name, ItemGroup itemgroup) {
-		ROUNDEL_CONTAINERS.add(block.get());
 		return registerBlock(block, name, (new Item.Properties()).tab(itemgroup), true);
 	}
 

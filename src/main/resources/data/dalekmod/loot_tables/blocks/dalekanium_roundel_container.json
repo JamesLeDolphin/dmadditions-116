@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:dalekanium_roundel_container"
+					"name": "dmadditions:dalekanium_roundel_container"
 				}
 			],
 			"conditions": [

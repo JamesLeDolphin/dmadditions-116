@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:gray_plastic_bowl_roundel_container"
+					"name": "dmadditions:gray_plastic_bowl_roundel_container"
 				}
 			],
 			"conditions": [

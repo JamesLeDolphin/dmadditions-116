@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:carved_dalek_pumpkin"
+					"name": "dmadditions:carved_dalek_pumpkin"
 				}
 			],
 			"conditions": [

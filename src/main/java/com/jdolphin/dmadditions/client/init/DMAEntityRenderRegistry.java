@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.main.DalekMod;
@@ -14,7 +15,7 @@ public class DMAEntityRenderRegistry {
 	}
 
 	public static void registryEntityRenders() {
-		DalekMod.LOGGER.info("Registering DMA Entity Renders");
+		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);

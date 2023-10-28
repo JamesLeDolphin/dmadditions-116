@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:copper_flight_lever"
+					"name": "dmadditions:copper_flight_lever"
 				}
 			],
 			"conditions": [

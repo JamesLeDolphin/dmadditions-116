@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:yellow_plastic_shape_roundel_container"
+					"name": "dmadditions:yellow_plastic_shape_roundel_container"
 				}
 			],
 			"conditions": [

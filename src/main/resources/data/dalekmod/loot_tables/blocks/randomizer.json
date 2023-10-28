@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:randomizer"
+					"name": "dmadditions:randomizer"
 				}
 			],
 			"conditions": [

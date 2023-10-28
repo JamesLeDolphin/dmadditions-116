@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:lime_terracotta_roundel_container"
+					"name": "dmadditions:lime_terracotta_roundel_container"
 				}
 			],
 			"conditions": [

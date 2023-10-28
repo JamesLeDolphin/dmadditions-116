@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "dalekmod:orange_candy_cane"
+      "item": "dmadditions:orange_candy_cane"
     }
   },
   "result": {
-    "item": "dalekmod:orange_candy_cane_block",
+    "item": "dmadditions:orange_candy_cane_block",
     "count": 1
   }
 }

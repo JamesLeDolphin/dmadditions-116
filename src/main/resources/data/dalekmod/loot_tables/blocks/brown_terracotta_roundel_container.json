@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:brown_terracotta_roundel_container"
+					"name": "dmadditions:brown_terracotta_roundel_container"
 				}
 			],
 			"conditions": [

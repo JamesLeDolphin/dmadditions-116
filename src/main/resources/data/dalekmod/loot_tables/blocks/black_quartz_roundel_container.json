@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dalekmod:black_quartz_roundel_container"
+					"name": "dmadditions:black_quartz_roundel_container"
 				}
 			],
 			"conditions": [
