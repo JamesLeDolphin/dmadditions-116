@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.carver.MoonCarver;
-import com.swdteam.common.RegistryHandler;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraftforge.fml.RegistryObject;

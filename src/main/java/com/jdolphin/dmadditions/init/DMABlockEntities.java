@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
-import com.swdteam.common.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
