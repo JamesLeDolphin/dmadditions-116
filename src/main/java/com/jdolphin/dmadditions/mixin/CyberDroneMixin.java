@@ -86,12 +86,12 @@ public class CyberDroneMixin extends FlyingEntity implements IForgeEntity {
 					d1 = livingentity.getY(0.3333333333333333) - this.drone.getY() - 0.75;
 					d2 = livingentity.getZ() - this.drone.getZ();
 					LaserEntity laser = new LaserEntity(world, this.drone, 0.2F, 2.5F);
-					if (DMACommonConfig.disable_cyberdrone_laser.get()) {
+					if (!DMACommonConfig.disable_cyberdrone_laser.get()) {
 						laser.setExplosionSize(2.0F);
 						laser.setLaserType(DMProjectiles.EXPLOSIVE_LASER);
 						laser.setCausesFireExplosion(this.drone.level.random.nextBoolean());
 					} else {
-						laser.setLaserType(DMProjectiles.GREEN_LASER);
+						laser.setLaserType(DMProjectiles.ORANGE_LASER);
 						laser.setExplosive(false);
 					}
 					laser.shoot(d0, d1, d2, 2.5F, 0.0F);
