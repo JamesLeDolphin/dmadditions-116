@@ -13,6 +13,5 @@ public class ClientProxyMixin {
 	@Inject(method = "registerReloadable", at = @At("HEAD"), remap = false)
 	private static void registerReloadable(CallbackInfo ci){
 		DMATileRenderRegistry.init();
-		DMABlocks.registerRenderTypes();
 	}
 }
