@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
@@ -21,14 +20,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
-import static com.jdolphin.dmadditions.RegistryHandler.ITEMS;
-
 
 public class DMAItems {
-
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
@@ -142,22 +141,22 @@ public class DMAItems {
 			() -> new GunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
-	public static RegistryObject<Item> PISTOL = RegistryHandler.ITEMS.register("pistol", ()
+	public static RegistryObject<Item> PISTOL =  ITEMS.register("pistol", ()
 			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
 
-	public static RegistryObject<Item> TARDIS_GOLD_KEY = RegistryHandler.ITEMS.register("tardis_gold_key",
+	public static RegistryObject<Item> TARDIS_GOLD_KEY =  ITEMS.register("tardis_gold_key",
 			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
 
-	public static RegistryObject<Item> DINO_NUGGETS = RegistryHandler.ITEMS.register("dino_nuggets",
+	public static RegistryObject<Item> DINO_NUGGETS =  ITEMS.register("dino_nuggets",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));
 
-	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD = RegistryHandler.ITEMS.register("dino_nuggets_custard",
+	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD =  ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
 
 
 	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, String type) {
-		RegistryObject<Item> item = RegistryHandler.ITEMS.register(type + "_spawner", () -> {
+		RegistryObject<Item> item =  ITEMS.register(type + "_spawner", () -> {
 			return new SpawnerItem(key, type);
 		});
 		return item;

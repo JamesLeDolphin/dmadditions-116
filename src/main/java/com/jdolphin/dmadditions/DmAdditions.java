@@ -93,8 +93,14 @@ public class DmAdditions {
 		modEventBus.addListener(this::entityAttributeEvent);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);
-
-		RegistryHandler.init();
+		DMAEntities.ENTITY_TYPES.register(modEventBus);
+		DMABlockEntities.TILE_ENTITY_TYPES.register(modEventBus);
+		DMAItems.ITEMS.register(modEventBus);
+		DMAWorldCarvers.WORLD_CARVERS.register(modEventBus);
+		DMABiomes.BIOMES.register(modEventBus);
+		DMAProjectiles.init();
+		new DMALootConditionManager();
+		new DMASoundEvents();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 		// Register ourselves for server and other game events we are interested in
@@ -182,7 +188,7 @@ public class DmAdditions {
 			ResourceLocation regName = itemMapping.key;
 			if (regName != null) {
 				String path = regName.getPath();
-				RegistryHandler.ITEMS.getEntries().stream()
+				DMAItems.ITEMS.getEntries().stream()
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(item -> itemMapping.remap(item.get()));
 			}
@@ -195,7 +201,7 @@ public class DmAdditions {
 			ResourceLocation regName = entityMapping.key;
 			if (regName != null) {
 				String path = regName.getPath();
-				RegistryHandler.ENTITY_TYPES.getEntries().stream()
+				DMAEntities.ENTITY_TYPES.getEntries().stream()
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(entity -> entityMapping.remap(entity.get()));
 			}

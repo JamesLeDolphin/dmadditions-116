@@ -6,7 +6,13 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "dmadditions:dalekanium_roundel_container"
+					"name": "dmadditions:dalekanium_roundel_container",
+					"functions": [
+						{
+							"function": "minecraft:copy_name",
+							"source": "block_entity"
+						}
+					]
 				}
 			],
 			"conditions": [

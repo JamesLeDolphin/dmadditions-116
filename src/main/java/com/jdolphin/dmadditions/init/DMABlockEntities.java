@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
@@ -8,8 +9,11 @@ import com.swdteam.common.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DMABlockEntities {
+	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
 	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER;
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
@@ -18,13 +22,13 @@ public class DMABlockEntities {
 
 	static {
 
-		TILE_DOOR_PANEL = RegistryHandler.TILE_ENTITY_TYPES.register("door_panel",
+		TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
-		TILE_REDDASH_STATUE = RegistryHandler.TILE_ENTITY_TYPES.register("reddash_statue", () ->
+		TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
 			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
-		TILE_ROUNDEL_CONTAINER = RegistryHandler.TILE_ENTITY_TYPES.register("roundel_container", () ->
+		TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
 				DMABlocks.BLACK_QUARTZ_ROUNDEL_CONTAINER.get(),
 				DMABlocks.YELLOW_QUARTZ_ROUNDEL_CONTAINER.get(),
