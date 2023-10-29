@@ -19,18 +19,15 @@ public class RegistryHandler {
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DmAdditions.MODID);
 	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, DmAdditions.MODID);
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
+
 	public static void init() {
 		DMAProjectiles.init();
-		register();
-
-		ItemTags.createOptional(new ResourceLocation(DmAdditions.MODID, "tardis_keys"));
-	}
-	public static void register() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ENTITY_TYPES.register(modEventBus);
 		TILE_ENTITY_TYPES.register(modEventBus);
 		ITEMS.register(modEventBus);
 		WORLD_CARVERS.register(modEventBus);
 		BIOMES.register(modEventBus);
+		ItemTags.createOptional(new ResourceLocation(DmAdditions.MODID, "tardis_keys"));
 	}
 }
