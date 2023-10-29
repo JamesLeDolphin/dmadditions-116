@@ -19,6 +19,6 @@ public class DMABiomes {
 		return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DmAdditions.MODID, name));
 	}
 	static {
-		MOON_BIOME = RegistryHandler.DMARegistries.BIOMES.register("moon", BiomeMaker::theVoidBiome);
+		MOON_BIOME = RegistryHandler.BIOMES.register("moon", BiomeMaker::theVoidBiome);
 	}
 }

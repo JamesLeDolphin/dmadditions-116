@@ -182,7 +182,7 @@ public class DmAdditions {
 			ResourceLocation regName = itemMapping.key;
 			if (regName != null) {
 				String path = regName.getPath();
-				RegistryHandler.DMARegistries.ITEMS.getEntries().stream()
+				RegistryHandler.ITEMS.getEntries().stream()
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(item -> itemMapping.remap(item.get()));
 			}
@@ -195,7 +195,7 @@ public class DmAdditions {
 			ResourceLocation regName = entityMapping.key;
 			if (regName != null) {
 				String path = regName.getPath();
-				RegistryHandler.DMARegistries.ENTITY_TYPES.getEntries().stream()
+				RegistryHandler.ENTITY_TYPES.getEntries().stream()
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(entity -> entityMapping.remap(entity.get()));
 			}

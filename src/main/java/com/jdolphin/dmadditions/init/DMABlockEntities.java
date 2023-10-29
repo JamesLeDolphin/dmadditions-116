@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
@@ -22,7 +21,7 @@ public class DMABlockEntities {
 		TILE_DOOR_PANEL = RegistryHandler.TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
-		TILE_REDDASH_STATUE = DMARegistries.TILE_ENTITY_TYPES.register("reddash_statue", () ->
+		TILE_REDDASH_STATUE = RegistryHandler.TILE_ENTITY_TYPES.register("reddash_statue", () ->
 			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
 		TILE_ROUNDEL_CONTAINER = RegistryHandler.TILE_ENTITY_TYPES.register("roundel_container", () ->

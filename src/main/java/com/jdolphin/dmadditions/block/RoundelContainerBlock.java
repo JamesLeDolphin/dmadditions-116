@@ -35,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-
+@SuppressWarnings("deprecation")
 public class RoundelContainerBlock extends ContainerBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
