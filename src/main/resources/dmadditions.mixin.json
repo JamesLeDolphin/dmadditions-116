@@ -8,7 +8,7 @@
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
-		"CyberDroneMixin",
+		"DMProjectilesMixin",
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
 		"DMBlocksMixin",
