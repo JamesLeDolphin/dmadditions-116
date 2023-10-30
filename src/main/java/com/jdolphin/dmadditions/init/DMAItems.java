@@ -124,7 +124,10 @@ public class DMAItems {
 	public static RegistryObject<Item> MUSIC_DISC_PFD = ITEMS.register("music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
-		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = addSpawnItem("wooden_cyberman");
+		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("pilot_fish",
+			() -> new ForgeSpawnEggItem(DMAEntities.PILOT_FISH::get,
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 		public static RegistryObject<Item> PILOT_FISH_SPAWNER = addSpawnItem("pilot_fish");
 		public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 			() -> new GunItem(DMItemTiers.DALEK_CANNON, 2.0F,
