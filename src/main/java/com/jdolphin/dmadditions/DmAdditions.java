@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
@@ -12,16 +13,26 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.DimensionSettings;
+import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -29,6 +40,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,6 +48,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -44,18 +57,19 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 
 @Mod("dmadditions")
 public class DmAdditions {
 	public static final String MODID = "dmadditions";
-
+	public static final String VERSION = "1.3.4";
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
 	// Directly reference a log4j logger.
-	public static final Logger LOGGER = LogManager.getLogger();
+	private static final Logger LOGGER = LogManager.getLogger();
 	public static final DMAServerProxy DMA_PROXY = DistExecutor.runForDist(() -> {
 		return DMAClientProxy::new;
 	}, () -> {
@@ -65,7 +79,6 @@ public class DmAdditions {
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
-
 	public static boolean hasTC() {
 		return ModList.get().isLoaded("tconstruct");
 	}
@@ -77,6 +90,7 @@ public class DmAdditions {
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::entityAttributeEvent);
+		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);
 		DMAEntities.ENTITY_TYPES.register(modEventBus);
@@ -94,6 +108,7 @@ public class DmAdditions {
 		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
+		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) {
 			DMAFluids.FLUIDS.register(modEventBus);
 		}
@@ -106,7 +121,6 @@ public class DmAdditions {
 		ToggleModeCommand.register(dispatcher);
 		GodCommand.register(dispatcher);
 	}
-
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
@@ -126,6 +140,50 @@ public class DmAdditions {
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();
+		event.enqueueWork(() -> {
+			DMAStructures.setupStructures();
+			DMAConfiguredStructures.registerConfiguredStructures();
+			});
+	}
+
+
+	private static Method GETCODEC_METHOD;
+	public void addDimensionalSpacing(WorldEvent.Load event) {
+		if (event.getWorld() instanceof ServerWorld) {
+			ServerWorld world = (ServerWorld)event.getWorld();
+			if (!world.dimension().equals(World.OVERWORLD)) {
+				return;
+			}
+			try {
+				if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(world.getChunkSource().generator));
+				if(cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
+			}
+			catch(Exception e){
+				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
+			}
+
+			if(world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
+				world.dimension().equals(World.OVERWORLD)){
+				return;
+			}
+			if (world.isFlat()) {
+				return;
+			}
+			if (!AdventUnlock.unlockAt(1)) {
+				return;
+			}
+
+			world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+		}
+
+	}
+
+	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
+		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
+			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
+			structuresSettings.structureConfig.put(structure, separationSettings);
+		});
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -133,9 +191,7 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
-		RenderTypeLookup.setRenderLayer(DMABlocks.TARDIS_SNOWGLOBE.get(), RenderType.cutoutMipped());
-		RenderTypeLookup.setRenderLayer(DMABlocks.CHRISTMAS_TREE.get(), RenderType.cutoutMipped());
-		if (hasTC()) {
+		if(hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
@@ -143,15 +199,12 @@ public class DmAdditions {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
 		}
 	}
-
 	@SubscribeEvent
 	static void gatherData(final GatherDataEvent event) {
 		DataGenerator datagenerator = event.getGenerator();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-		if (event.includeServer()) {
-			if (hasTC()) {
-				datagenerator.addProvider(new FluidTags(datagenerator, existingFileHelper));
-			}
+		if (hasTC() && event.includeServer()) {
+			datagenerator.addProvider(new FluidTags(datagenerator, existingFileHelper));
 		}
 	}
 
@@ -164,6 +217,9 @@ public class DmAdditions {
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
 			}
+			event.getGeneration().getStructures().add(() -> {
+				return DMAConfiguredStructures.CONFIGURED_MANOR;
+			});
 		}
 
 	}

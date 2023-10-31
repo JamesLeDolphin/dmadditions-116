@@ -23,6 +23,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: 'official', version: '1.16.5'
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -89,6 +90,9 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    //WorldEdit
+    runtimeOnly fg.deobf("curse.maven:worldedit-225608:3283693")
+
     //JEI
     runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
 
@@ -96,12 +100,12 @@ dependencies {
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:4706185")
 
     //New Tardis Mod
-    compileOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
+    runtimeOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
 
     //Tinkers Construct
-    compileOnly fg.deobf("curse.maven:tinkers-construct-74072:3695126")
+            runtimeOnly fg.deobf("curse.maven:tinkers-construct-74072:3695126")
     //Mantle
-    compileOnly fg.deobf("curse.maven:mantle-74924:3631982")
+            runtimeOnly fg.deobf("curse.maven:mantle-74924:3631982")
 
 }
 mixin {

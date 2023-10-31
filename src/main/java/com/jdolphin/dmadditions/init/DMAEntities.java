@@ -1,18 +1,19 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.entity.*;
+import com.swdteam.common.RegistryHandler;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class DMAEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
-	
+
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN = ENTITY_TYPES.register("jamesledolphin",
 			() -> EntityType.Builder.of(JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE).sized(0.9F, 0.6F)
 				.build((new ResourceLocation(DmAdditions.MODID, "jamesledolphin")).toString()));
@@ -40,5 +41,20 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV = ENTITY_TYPES.register("torchwood_suv",
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
 					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
+
+	public static RegistryObject<EntityType<FlyingSharkEntity>> BEATRICE_FLYING_SHARK =
+			ENTITY_TYPES.register("beatrice_flying_shark",
+				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
+					.sized(2F, 1F)
+					.setTrackingRange(80)
+					.setUpdateInterval(3)
+					.setShouldReceiveVelocityUpdates(true)
+					.build(new ResourceLocation(DmAdditions.MODID, "beatrice_flying_shark").toString()));
+
+
+	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = ENTITY_TYPES.register("racnoss",
+			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
+				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
+	}
 
 }

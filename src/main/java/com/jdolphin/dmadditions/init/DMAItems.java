@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
@@ -9,7 +10,10 @@ import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
-import com.swdteam.common.item.*;
+import com.swdteam.common.item.ClothesItem;
+import com.swdteam.common.item.DiscItem;
+import com.swdteam.common.item.FoodItem;
+import com.swdteam.common.item.GunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -46,7 +50,15 @@ public class DMAItems {
 		return addSpawnItem(key);
 	}
 
-	public static RegistryObject<Item> BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",
+	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
+		() -> new Item(new Item.Properties().fireResistant()));
+
+
+	public static RegistryObject<Item> BAUBLE = registerAdventItem(1, "bauble", () -> new BaubleBlockItem(new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static RegistryObject<Item> HANDLES_ITEM = registerAdventItem(2, "handles_item",
+			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item>	BLUE_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("blue_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 	public static RegistryObject<Item> RED_CANDY_CANE = ITEMS.register("red_candy_cane",
