@@ -12,8 +12,8 @@ import java.util.Map;
 import static com.swdteam.common.init.DMDalekRegistry.DALEK_TYPES;
 
 public class DMADalekRegistry {
-	private static List<String> dmaDalekList = new ArrayList();
-	private static Map<String, IDalek> dmaDaleks = new HashMap();
+	private static List<String> dmaDalekList = new ArrayList<>();
+	private static Map<String, IDalek> dmaDaleks = new HashMap<>();
 
 	public static IDalek DALEK_SANTA;
 	public static IDalek IRONSIDE;
@@ -24,6 +24,7 @@ public class DMADalekRegistry {
 	public static IDalek GINGERBREAD;
 	public static IDalek SNOW;
 	public static IDalek STEAMPUNK;
+	public static IDalek SWD;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
@@ -34,6 +35,7 @@ public class DMADalekRegistry {
 		STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
 		IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
+		SWD = addDalek(DMADalekType.SWD, new CustomDalekBase("SWD Team Dalek"), "1wtc_dalek");
 		WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
 		GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
 		STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");

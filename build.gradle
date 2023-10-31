@@ -103,9 +103,9 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
 
     //Tinkers Construct
-            runtimeOnly fg.deobf("curse.maven:tinkers-construct-74072:3695126")
+    implementation fg.deobf("curse.maven:tinkers-construct-74072:3695126")
     //Mantle
-            runtimeOnly fg.deobf("curse.maven:mantle-74924:3631982")
+    implementation fg.deobf("curse.maven:mantle-74924:3631982")
 
 }
 mixin {

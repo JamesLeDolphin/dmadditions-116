@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "CorridorBlockTexture",
-		"particle": "CorridorBlockTexture"
+		"0": "dmadditions/advent/architecture_extender",
+		"particle": "dmadditions/advent/architecture_extender"
 	},
 	"elements": [
 		{

@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
 import com.jdolphin.dmadditions.entity.*;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.main.DalekMod;
@@ -10,6 +9,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DMAEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
@@ -55,6 +55,4 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = ENTITY_TYPES.register("racnoss",
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
 				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
-	}
-
 }

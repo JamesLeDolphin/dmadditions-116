@@ -18,6 +18,4 @@ public class DMAEventBusEvents {
 			new AddItemLootModifier.Serializer().setRegistryName(new ResourceLocation(DmAdditions.MODID, "add_item"))
 		);
 	}
-
-
 }

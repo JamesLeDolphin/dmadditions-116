@@ -1,19 +1,17 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.RegistryHandler;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
+import com.jdolphin.dmadditions.item.BaubleBlockItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
+import com.jdolphin.dmadditions.item.handles.HandlesItem;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTabs;
-import com.swdteam.common.item.ClothesItem;
-import com.swdteam.common.item.DiscItem;
-import com.swdteam.common.item.FoodItem;
-import com.swdteam.common.item.GunItem;
+import com.swdteam.common.item.*;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
