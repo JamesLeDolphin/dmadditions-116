@@ -52,7 +52,8 @@ public class DMAItems {
 		() -> new Item(new Item.Properties().fireResistant()));
 
 
-	public static RegistryObject<Item> BAUBLE = registerAdventItem(1, "bauble", () -> new BaubleBlockItem(new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+	public static RegistryObject<Item> BAUBLE = registerAdventItem(1, "bauble", () -> new BaubleBlockItem(new Item.Properties().tab(ItemGroup.TAB_DECORATIONS),
+		DMABlocks.RED_BAUBLE_BLOCK.get()));
 	public static RegistryObject<Item> HANDLES_ITEM = registerAdventItem(2, "handles_item",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

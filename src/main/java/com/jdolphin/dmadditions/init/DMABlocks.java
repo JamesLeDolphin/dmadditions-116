@@ -41,6 +41,25 @@ public class DMABlocks {
 		return registerBlock(supplier, name, tab);
 	}
 
+
+
+	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerAdventBlock(20, () ->
+		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
+		"christmas_lights", ItemGroup.TAB_DECORATIONS);
+
+	public static RegistryObject<Block> CHRISTMAS_PUDDING = registerAdventBlock(12, () ->
+		new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
+
+	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerAdventBlock(1,
+												() -> new AndrozaniminorDimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
+				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
+
+	// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
+	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "blue_bauble");
+	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "gold_bauble");
+	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "green_bauble");
+	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "red_bauble");
+
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
 			() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 			new Item.Properties().tab(DMTabs.DM_TARDIS));

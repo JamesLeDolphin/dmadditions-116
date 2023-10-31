@@ -12,8 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BaubleBlockItem extends BlockItem {
-	public BaubleBlockItem(Item.Properties properties) {
-		super(DMABlocks.BAUBLE_BLOCK.get(), properties);
+	public BaubleBlockItem(Item.Properties properties, Block block) {
+		super(block, properties);
 	}
 
 	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
