@@ -16,7 +16,7 @@
 
 package com.jdolphin.dmadditions.tileentity;
 
-import com.jdolphin.dmadditions.block.DoorPanelBlock;
+import com.jdolphin.dmadditions.block.tardis.DoorPanelBlock;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMTardis;

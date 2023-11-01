@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
 import net.minecraft.block.*;

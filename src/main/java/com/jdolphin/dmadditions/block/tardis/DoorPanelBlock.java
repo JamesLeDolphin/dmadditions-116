@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.swdteam.common.block.IBlockTooltip;

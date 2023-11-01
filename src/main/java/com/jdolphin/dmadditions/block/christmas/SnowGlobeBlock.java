@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.christmas;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

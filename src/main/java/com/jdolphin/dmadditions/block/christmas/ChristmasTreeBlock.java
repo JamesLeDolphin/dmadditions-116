@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.christmas;
 
 import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;

@@ -1,5 +1,7 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
+import com.jdolphin.dmadditions.block.IBetterBlockTooltip;
+import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.SonicInterfaceBlock;
 import com.swdteam.common.init.DMSoundEvents;

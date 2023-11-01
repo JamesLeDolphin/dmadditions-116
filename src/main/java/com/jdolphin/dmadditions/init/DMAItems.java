@@ -57,7 +57,7 @@ public class DMAItems {
 	public static RegistryObject<Item> HANDLES_ITEM = registerAdventItem(2, "handles_item",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item>	BLUE_CANDY_CANE = com.swdteam.common.RegistryHandler.ITEMS.register("blue_candy_cane",
+	public static RegistryObject<Item>	BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 	public static RegistryObject<Item> RED_CANDY_CANE = ITEMS.register("red_candy_cane",

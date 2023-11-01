@@ -1,5 +1,6 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
+import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.ChameleonPanelBlock;
 import net.minecraft.block.Block;

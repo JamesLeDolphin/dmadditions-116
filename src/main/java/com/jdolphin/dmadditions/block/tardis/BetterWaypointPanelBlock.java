@@ -1,5 +1,7 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
+import com.jdolphin.dmadditions.block.IBetterBlockTooltip;
+import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.jdolphin.dmadditions.init.DMATags;
 import com.swdteam.common.block.tardis.WaypointPanelBlock;
 import net.minecraft.block.Block;

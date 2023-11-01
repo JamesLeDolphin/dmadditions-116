@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
-import com.jdolphin.dmadditions.block.BetterScannerBlock;
+import com.jdolphin.dmadditions.block.tardis.BetterScannerBlock;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.client.model.IModelPartReloader;

@@ -3,6 +3,8 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
+import com.jdolphin.dmadditions.block.christmas.*;
+import com.jdolphin.dmadditions.block.tardis.*;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.block.StatueBlock;
@@ -55,10 +57,10 @@ public class DMABlocks {
 				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 	// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
-	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "blue_bauble");
-	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "gold_bauble");
-	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "green_bauble");
-	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "red_bauble");
+	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "blue_bauble", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "gold_bauble", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "green_bauble", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(23, BaubleBlock::new, "red_bauble", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
 			() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),

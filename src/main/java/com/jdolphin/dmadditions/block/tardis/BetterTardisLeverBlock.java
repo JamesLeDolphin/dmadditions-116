@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
 import com.swdteam.common.init.DMSoundEvents;
 import net.minecraft.block.BlockState;

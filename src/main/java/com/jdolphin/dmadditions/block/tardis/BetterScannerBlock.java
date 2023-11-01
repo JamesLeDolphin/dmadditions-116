@@ -1,5 +1,6 @@
-package com.jdolphin.dmadditions.block;
+package com.jdolphin.dmadditions.block.tardis;
 
+import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
 import com.swdteam.common.block.tardis.ScannerBlock;
 import com.swdteam.common.init.DMDimensions;
