@@ -148,10 +148,10 @@
 	"block.dmadditions.rusted_steel_reinforced_walling_roundel_container": "Rusted Steel Reinforced Walling Roundel Container",
 	"block.dmadditions.stainless_steel_reinforced_walling_roundel_container": "Stainless Steel Reinforced Walling Roundel Container",
 
-	"tooltip.dm_door_panel.lock": "Lock The TARDIS Door",
-	"tooltip.dm_door_panel.unlock": "Unlock The TARDIS Door",
-	"tooltip.dm_door_panel.open": "Open The TARDIS Door",
-	"tooltip.dm_door_panel.close": "Close The TARDIS Door",
+	"tooltip.dmadditions.lock": "Lock The TARDIS Door",
+	"tooltip.dmadditions.unlock": "Unlock The TARDIS Door",
+	"tooltip.dmadditions.open": "Open The TARDIS Door",
+	"tooltip.dmadditions.close": "Close The TARDIS Door",
 	"block.dmadditions.door_panel": "Door Panel",
 
 	"block.dmadditions.tardis_snowglobe": "TARDIS Snow Globe",
@@ -232,11 +232,6 @@
 	"item.dmadditions.space_suit_leggings": "Space Suit Leggings",
 	"item.dmadditions.space_suit_boots": "Space Suit Boots",
 
-	"tooltip.dmadditions.open": "Open Doors",
-	"tooltip.dmadditions.close": "Close Doors",
-	"tooltip.dmadditions.lock": "Lock Doors",
-	"tooltip.dmadditions.unlock": "Unlock Doors",
-
 	"notice.dmadditions.open": "You have opened the TARDIS doors",
 	"notice.dmadditions.close": "You have closed the TARDIS doors",
 	"notice.dmadditions.lock": "You have locked the TARDIS doors",
@@ -245,11 +240,7 @@
 	"fluid.dmadditions.molten_metalert": "Molten Metalert",
 	"fluid.dmadditions.molten_dalekanium": "Molten Dalekanium",
 	"fluid.dmadditions.molten_silicon": "Molten Silicon",
-	"fluid.dmadditions.molten_stainless_steel": "Molten Stainless Steel"
-	"notice.dalekmod.open": "You have opened the TARDIS doors",
-	"notice.dalekmod.close": "You have closed the TARDIS doors",
-	"notice.dalekmod.lock": "You have locked the TARDIS doors",
-	"notice.dalekmod.unlock": "You have unlocked the TARDIS doors",
+	"fluid.dmadditions.molten_stainless_steel": "Molten Stainless Steel",
 
 	"block.dalekmod.christmas_present": "Christmas Present",
 
