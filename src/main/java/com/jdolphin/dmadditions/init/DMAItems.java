@@ -30,27 +30,12 @@ import java.util.function.Supplier;
 
 public class DMAItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+
 	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
 		return ITEMS.register(name, supplier);
 	}
-
-	protected static RegistryObject<Item> registerDMAAdventItem(int day, String name, Supplier<Item> supplier) {
-		if (!AdventUnlock.unlockAt(day)) return null;
-
-		return ITEMS.register(name, supplier);
-	}
-
-	protected static RegistryObject<Item> addAdventSpawnItem(int day, String key) {
-		if (!AdventUnlock.unlockAt(day)) return null;
-
-		return addSpawnItem(key);
-	}
-
-	public static final RegistryObject<Item> MISSINGO = ITEMS.register("missingo",
-		() -> new Item(new Item.Properties().fireResistant()));
-
 
 	public static RegistryObject<Item> BAUBLE = registerAdventItem(1, "bauble", () -> new BaubleBlockItem(new Item.Properties().tab(ItemGroup.TAB_DECORATIONS),
 		DMABlocks.RED_BAUBLE_BLOCK.get()));
@@ -70,16 +55,18 @@ public class DMAItems {
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 	public static RegistryObject<Item> PURPLE_CANDY_CANE = ITEMS.register("purple_candy_cane",
-
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+
 	public static RegistryObject<Item> PINK_CANDY_CANE = ITEMS.register("pink_candy_cane",
-
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
+
 	public static RegistryObject<Item> YELLOW_CANDY_CANE = ITEMS.register("yellow_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 
-	public static RegistryObject<Item> SNOWMAN_SPAWNER = addSpawnItem("snowman");
+	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
+		() -> new ForgeSpawnEggItem(DMAEntities.SNOWMAN::get,
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
 			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
@@ -135,11 +122,14 @@ public class DMAItems {
 	public static RegistryObject<Item> MUSIC_DISC_PFD = ITEMS.register("music_disc_pfd",
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
-		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("pilot_fish",
-			() -> new ForgeSpawnEggItem(DMAEntities.PILOT_FISH::get,
+		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("wooden_cyberman_spawner",
+			() -> new ForgeSpawnEggItem(DMAEntities.WOODEN_CYBERMAN::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-		public static RegistryObject<Item> PILOT_FISH_SPAWNER = addSpawnItem("pilot_fish");
+	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
+		() -> new ForgeSpawnEggItem(DMAEntities.PILOT_FISH::get,
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 		public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 			() -> new GunItem(DMItemTiers.DALEK_CANNON, 2.0F,
 				DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
@@ -167,16 +157,4 @@ public class DMAItems {
 
 	public static RegistryObject<Item> DINO_NUGGETS_CUSTARD =  ITEMS.register("dino_nuggets_custard",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS_CUSTARD).tab(ItemGroup.TAB_FOOD)));
-
-
-	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key, String type) {
-		RegistryObject<Item> item =  ITEMS.register(type + "_spawner", () -> {
-			return new SpawnerItem(key, type);
-		});
-		return item;
-	}
-
-	public static <T extends Entity> RegistryObject<Item> addSpawnItem(String key) {
-		return addSpawnItem(key, key);
-	}
 }
