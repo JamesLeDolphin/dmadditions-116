@@ -11,8 +11,15 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Optional;
+
 public class DMAEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
+
+	public static EntityType<?> getEntityTypeFromString(String s) {
+		Optional<EntityType<?>> ty = EntityType.byString("dmadditions:" + s);
+		return (EntityType)ty.get();
+	}
 
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN = ENTITY_TYPES.register("jamesledolphin",
 			() -> EntityType.Builder.of(JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE).sized(0.9F, 0.6F)
@@ -42,8 +49,7 @@ public class DMAEntities {
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
 					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
 
-	public static RegistryObject<EntityType<FlyingSharkEntity>> BEATRICE_FLYING_SHARK =
-			ENTITY_TYPES.register("beatrice_flying_shark",
+	public static RegistryObject<EntityType<FlyingSharkEntity>> BEATRICE_FLYING_SHARK = ENTITY_TYPES.register("beatrice_flying_shark",
 				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
 					.sized(2F, 1F)
 					.setTrackingRange(80)

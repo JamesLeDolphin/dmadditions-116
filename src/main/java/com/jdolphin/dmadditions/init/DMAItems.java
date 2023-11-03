@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.item.BaubleBlockItem;
+import com.jdolphin.dmadditions.item.DMASpawnerItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
 import com.jdolphin.dmadditions.item.handles.HandlesItem;
@@ -65,8 +66,7 @@ public class DMAItems {
 
 
 	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.SNOWMAN::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>("snowman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
 			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
@@ -123,12 +123,10 @@ public class DMAItems {
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
 		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("wooden_cyberman_spawner",
-			() -> new ForgeSpawnEggItem(DMAEntities.WOODEN_CYBERMAN::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+			() -> new DMASpawnerItem<>("wooden_cyberman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.PILOT_FISH::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>("pilot_fish", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 		public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 			() -> new GunItem(DMItemTiers.DALEK_CANNON, 2.0F,
