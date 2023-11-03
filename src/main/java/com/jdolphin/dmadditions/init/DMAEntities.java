@@ -2,8 +2,6 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.*;
-import com.swdteam.common.RegistryHandler;
-import com.swdteam.main.DalekMod;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;

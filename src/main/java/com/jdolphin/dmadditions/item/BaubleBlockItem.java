@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.init.DMABlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,7 +7,6 @@ import net.minecraft.entity.projectile.SnowballEntity;
 import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BaubleBlockItem extends BlockItem {
