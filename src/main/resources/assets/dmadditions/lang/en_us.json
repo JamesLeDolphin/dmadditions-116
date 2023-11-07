@@ -242,7 +242,7 @@
 	"fluid.dmadditions.molten_silicon": "Molten Silicon",
 	"fluid.dmadditions.molten_stainless_steel": "Molten Stainless Steel",
 
-	"block.dalekmod.christmas_present": "Christmas Present",
+	"block.dmadditions.christmas_present": "Christmas Present",
 
 	"block.dmadditions.bauble": "Bauble",
 	"block.dmadditions.santa_bauble": "Santa Bauble",
@@ -251,7 +251,7 @@
 	"block.dmadditions.gold_bauble": "Gold Bauble",
 	"block.dmadditions.green_bauble": "Green Bauble",
 
-	"item.dalekmod.handles_item": "Handles",
+	"item.dmadditions.handles_item": "Handles",
 
 	"entity.dmadditions.flying_shark": "Beatrice the Shark",
 	"item.dmadditions.flying_shark_spawner": "Flying Shark Spawner",
