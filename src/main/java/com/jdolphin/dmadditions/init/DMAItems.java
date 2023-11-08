@@ -48,7 +48,7 @@ public class DMAItems {
 	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(1, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
 	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(1, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
-	public static RegistryObject<Item> HANDLES_ITEM = registerAdventItem(21, "handles_item",
+	public static RegistryObject<Item> HANDLES = registerAdventItem(21, "handles",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item>	BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",

@@ -21,7 +21,7 @@ public class DMAEventHandlerGeneral {
 		PlayerEntity player = event.getPlayer();
 		String message = event.getMessage();
 		ItemStack stack = player.getItemInHand(player.getUsedItemHand());
-		if (stack.getItem().equals(DMAItems.HANDLES_ITEM.get())) {
+		if (stack.getItem().equals(DMAItems.HANDLES.get())) {
 			if (message.toLowerCase().startsWith("handles")) {
 				String query = message.substring(7).trim();
 
