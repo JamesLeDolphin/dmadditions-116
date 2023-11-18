@@ -44,8 +44,6 @@ public class DMADalekRegistry {
 		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 		GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
 
-
-
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
 	}
