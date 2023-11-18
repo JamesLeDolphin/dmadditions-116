@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.dalek.types.*;
 import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
@@ -42,8 +43,9 @@ public class DMADalekRegistry {
 		STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
 		STEAMPUNK.addChild("gray_steampunk_dalek");
 		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
-		GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
-
+		if (AdventUnlock.unlockAt(6)) {
+			GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
+		}
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
 	}
