@@ -26,7 +26,6 @@ public class DMADalekRegistry {
 	public static IDalek SNOW;
 	public static IDalek STEAMPUNK;
 	public static IDalek SWD;
-	public static IDalek GLASS;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
@@ -43,9 +42,6 @@ public class DMADalekRegistry {
 		STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
 		STEAMPUNK.addChild("gray_steampunk_dalek");
 		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
-		if (AdventUnlock.unlockAt(6)) {
-			GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
-		}
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
 	}

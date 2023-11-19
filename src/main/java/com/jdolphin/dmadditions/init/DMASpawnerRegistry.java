@@ -39,6 +39,17 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+
+			if (DMAEntities.GLASS_DALEK != null) {
+				EntitySpawnPlacementRegistry.register(DMAEntities.GLASS_DALEK.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
+				addSpawn(Biomes.MOUNTAINS, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+				addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+				addSpawn(Biomes.SNOWY_TAIGA_MOUNTAINS, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+				addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+				addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+				addSpawn(Biomes.SNOWY_TAIGA_HILLS, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+				addSpawn(Biomes.SNOWY_BEACH, DMAEntities.GLASS_DALEK.get(), 2, 1, 3, EntityClassification.MONSTER);
+			}
 		}
 
 	}
@@ -50,8 +61,6 @@ public class DMASpawnerRegistry {
 			addDalekSpawn(DMADalekRegistry.PFD, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
 			addDalekSpawn(DMADalekRegistry.STORM, Biomes.DARK_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS,
 				Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU);
-		addDalekSpawn(DMADalekRegistry.GLASS, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
-			Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
 
 	}
 
