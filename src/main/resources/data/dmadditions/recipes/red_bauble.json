@@ -1,0 +1,23 @@
+{
+	"type": "crafting_shaped",
+	"key": {
+		"#": {
+			"item": "minecraft:red_stained_glass_pane"
+		},
+		"~": {
+			"item": "minecraft:string"
+		}, 
+		"@": {
+			"item": "minecraft:gunpowder"
+		}
+	},
+	"pattern": [
+		" ~ ",
+		"#@#",
+		" # "
+	],
+	"result": {
+		"item": "dmadditions:red_bauble",
+		"count": 4
+	}
+}
