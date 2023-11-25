@@ -1,14 +1,23 @@
 package com.jdolphin.dmadditions.mixin;
 
-import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
-import com.swdteam.client.model.ModelDalekBase;
-import com.swdteam.common.entity.dalek.DalekEntity;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
+import java.lang.reflect.Field;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.google.common.base.Function;
+import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
+import com.swdteam.client.model.ModelDalekBase;
+import com.swdteam.common.entity.dalek.DalekEntity;
+import com.swdteam.model.javajson.JSONModel;
+
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 @Mixin(ModelDalekBase.class)
 public class ModelDalekBaseMixin {
@@ -18,6 +27,24 @@ public class ModelDalekBaseMixin {
 
 	private ModelRenderer leftArmDefaultState;
 	private ModelRenderer rightArmDefaultState;
+
+	@Inject(method = "<init>", at = @At("TAIL"), remap = false)
+	public void ModelDalekBase(JSONModel model, CallbackInfo ci) {
+		ModelDalekBase modelDalekBase = (ModelDalekBase) (Object) this;
+		Field renderTypeField;
+		try {
+			renderTypeField = Model.class
+				.getDeclaredField("renderType");
+
+			renderTypeField.setAccessible(true);
+			Function<ResourceLocation, RenderType> renderType = RenderType::entityTranslucent;
+			renderTypeField.set(modelDalekBase, renderType);
+		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 
 	@Inject(method = "init", at = @At("TAIL"), remap = false)
 	public void init(CallbackInfo ci) {
