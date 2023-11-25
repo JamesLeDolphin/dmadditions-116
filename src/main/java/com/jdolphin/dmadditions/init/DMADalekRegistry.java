@@ -45,6 +45,7 @@ public class DMADalekRegistry {
 		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
 		if (AdventUnlock.unlockAt(6)) {
 			GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
+			GLASS.addChild("glass_dalek_without_mutant");
 		}
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
