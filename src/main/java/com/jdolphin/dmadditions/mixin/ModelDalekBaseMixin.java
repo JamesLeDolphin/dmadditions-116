@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.google.common.base.Function;
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
 import com.swdteam.client.model.ModelDalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -33,8 +34,7 @@ public class ModelDalekBaseMixin {
 		ModelDalekBase modelDalekBase = (ModelDalekBase) (Object) this;
 		Field renderTypeField;
 		try {
-			renderTypeField = Model.class
-				.getDeclaredField("renderType");
+			renderTypeField = Model.class.getDeclaredField(DmAdditions.IS_DEBUG ? "renderType" : "field_228281_q_");
 
 			renderTypeField.setAccessible(true);
 			Function<ResourceLocation, RenderType> renderType = RenderType::entityTranslucent;
@@ -45,7 +45,6 @@ public class ModelDalekBaseMixin {
 
 	}
 
-
 	@Inject(method = "init", at = @At("TAIL"), remap = false)
 	public void init(CallbackInfo ci) {
 		ModelDalekBase instance = (ModelDalekBase) (Object) this;
@@ -55,9 +54,9 @@ public class ModelDalekBaseMixin {
 		torsoDefaultState = instance.ANI_TORSO.createShallowCopy();
 	}
 
-	@Inject(method = "setupAnim(Lcom/swdteam/common/entity/dalek/DalekEntity;FFFFF)V",
-		at = @At("HEAD"), cancellable = true, remap = false)
-	public void setupAnim(DalekEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+	@Inject(method = "setupAnim(Lcom/swdteam/common/entity/dalek/DalekEntity;FFFFF)V", at = @At("HEAD"), cancellable = true, remap = false)
+	public void setupAnim(DalekEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
+			float netHeadYaw, float headPitch, CallbackInfo ci) {
 		ModelDalekBase instance = (ModelDalekBase) (Object) this;
 
 		ModelRenderer leftArm = instance.getPart(entity.getDalekArmLeft());
@@ -68,7 +67,6 @@ public class ModelDalekBaseMixin {
 
 		if (rightArmDefaultState == null && rightArm != null)
 			rightArmDefaultState = rightArm.createShallowCopy();
-
 
 		instance.ANI_HEAD.xRot = headPitch * ((float) Math.PI / 180F);
 		instance.ANI_HEAD.zRot = 0.0F;
@@ -123,8 +121,10 @@ public class ModelDalekBaseMixin {
 		instance.ANI_TORSO.yRot = torsoDefaultState.yRot;
 		instance.ANI_TORSO.zRot = torsoDefaultState.zRot;
 
-		if (leftArm != null) leftArm.zRot = leftArmDefaultState.zRot;
-		if (rightArm != null) rightArm.zRot = rightArmDefaultState.zRot;
+		if (leftArm != null)
+			leftArm.zRot = leftArmDefaultState.zRot;
+		if (rightArm != null)
+			rightArm.zRot = rightArmDefaultState.zRot;
 
 	}
 }
