@@ -1,9 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.dalek.GlassDalek;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -36,10 +34,6 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE = ENTITY_TYPES.register("christmas_tree",
 				() -> EntityType.Builder.of(ChristmasTreeEntity::new, EntityClassification.MONSTER)
 					.build((new ResourceLocation(DmAdditions.MODID, "christmas_tree")).toString()));
-
-	public static RegistryObject<EntityType<GlassDalek>> GLASS_DALEK = AdventUnlock.unlockAt(6) ? ENTITY_TYPES.register("glass_dalek",
-		() -> EntityType.Builder.of(GlassDalek::new, EntityClassification.MONSTER)
-			.build((new ResourceLocation(DmAdditions.MODID, "glass_dalek")).toString())) : null;
 
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN = ENTITY_TYPES.register("wooden_cyberman",
 				() -> EntityType.Builder.of(WoodenCybermanEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.9F)

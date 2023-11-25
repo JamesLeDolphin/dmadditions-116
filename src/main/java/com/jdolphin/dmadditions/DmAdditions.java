@@ -15,7 +15,6 @@ import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
-import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -141,7 +140,6 @@ public class DmAdditions {
 		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 		event.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
 		event.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
-		event.put(DMAEntities.GLASS_DALEK.get(), DalekEntity.setCustomAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {

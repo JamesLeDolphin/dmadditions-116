@@ -261,6 +261,6 @@
 	"block.dmadditions.christmas_lights": "Christmas Lights",
 
 	"entity.dmadditions.racnoss": "Racnoss",
-	"item.dmadditions.racnoss_spawner": "Racnoss Spawner",
-	"death.attack.dmadditions:glass_dalek": "%1$s was exterminated by a Glass Dalek!"
+	"item.dmadditions.racnoss_spawner": "Racnoss Spawner"
+
 }
