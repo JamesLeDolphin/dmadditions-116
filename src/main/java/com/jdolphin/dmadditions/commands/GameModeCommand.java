@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
+import com.jdolphin.dmadditions.init.DMACommands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -19,9 +20,9 @@ public class GameModeCommand {
 		LiteralArgumentBuilder<CommandSource> gms = Commands.literal("gms").executes(context -> setGamemode(context, GameType.SURVIVAL));
 		LiteralArgumentBuilder<CommandSource> gmsp = Commands.literal("gmsp").executes(context -> setGamemode(context, GameType.SPECTATOR));
 
-		dispatcher.register(gmc);
-		dispatcher.register(gms);
-		dispatcher.register(gmsp);
+		DMACommands.register(dispatcher, gmc);
+		DMACommands.register(dispatcher, gms);
+		DMACommands.register(dispatcher, gmsp);
 	}
 
 	private static int setGamemode(CommandContext<CommandSource> context, GameType gamemode) {

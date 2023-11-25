@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
+import com.jdolphin.dmadditions.init.DMACommands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -19,7 +20,7 @@ public class GodCommand {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		LiteralArgumentBuilder<CommandSource> godCommand = Commands.literal("god").executes(GodCommand::toggleGodMode);
 
-		dispatcher.register(godCommand);
+		DMACommands.register(dispatcher, godCommand);
 	}
 
 	private static int toggleGodMode(CommandContext<CommandSource> context) {

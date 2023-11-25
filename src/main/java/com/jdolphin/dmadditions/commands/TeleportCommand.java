@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
+import com.jdolphin.dmadditions.init.DMACommands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -21,7 +22,7 @@ public class TeleportCommand {
 			.then(Commands.argument("player", EntityArgument.players())
 				.then(Commands.argument("location", Vec3Argument.vec3())
 					.executes(context -> teleport(context, Vec3Argument.getCoordinates(context,"location").getBlockPos(context.getSource()), EntityArgument.getPlayer(context, "player")))));
-		dispatcher.register(tp);
+		DMACommands.register(dispatcher, tp);
 	}
 
 	private static int teleport(CommandContext<CommandSource> context, BlockPos pos, ServerPlayerEntity player) {
