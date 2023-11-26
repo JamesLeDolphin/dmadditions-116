@@ -42,11 +42,11 @@ public class DMAItems {
 		return ITEMS.register(name, supplier);
 	}
 
-	// SANTA_BAUBLE = registerDMAAdventItem(1, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
-	public static RegistryObject<Item> BLUE_BAUBLE = registerAdventItem(1, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
-	public static RegistryObject<Item> GOLD_BAUBLE = registerAdventItem(1, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
-	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(1, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
-	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(1, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
+	// SANTA_BAUBLE = registerDMAAdventItem(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
+	public static RegistryObject<Item> BLUE_BAUBLE = registerAdventItem(7, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
+	public static RegistryObject<Item> GOLD_BAUBLE = registerAdventItem(7, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
+	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(7, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
+	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(7, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
 	public static RegistryObject<Item> HANDLES = registerAdventItem(1, "handles",
 			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
