@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
+import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -23,8 +24,8 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
-		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
-		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
+		registerRender((RegistryObject) DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
+		registerRender((RegistryObject) DMAEntities.RACNOSS, RacnossRenderer::new);
 	}
 
 

@@ -1,15 +1,28 @@
 package com.jdolphin.dmadditions.init;
 
+import java.util.Optional;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.entity.BessieEntity;
+import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
+import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
+import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
+import com.jdolphin.dmadditions.entity.PilotFishEntity;
+import com.jdolphin.dmadditions.entity.RacnossEntity;
+import com.jdolphin.dmadditions.entity.SnowmanEntity;
+import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
+import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
+
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Optional;
 
 public class DMAEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
@@ -47,7 +60,7 @@ public class DMAEntities {
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
 					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
 
-	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
+	public static RegistryObject<EntityType<?>> FLYING_SHARK = registerAdventEntity(3, "flying_shark",
 				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
 					.sized(2F, 1F)
 					.setTrackingRange(80)
@@ -55,7 +68,16 @@ public class DMAEntities {
 					.setShouldReceiveVelocityUpdates(true)
 					.build(new ResourceLocation(DmAdditions.MODID, "flying_shark").toString()));
 
-	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = ENTITY_TYPES.register("racnoss",
+	public static RegistryObject<EntityType<?>> RACNOSS = registerAdventEntity(25, "racnoss", // TODO: set the correct date
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
 				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
+
+	@Nullable 
+	protected static RegistryObject<EntityType<?>> registerAdventEntity(int date, String name, Supplier<EntityType<?>> supplier){
+		if(AdventUnlock.unlockAt(date)){
+			return ENTITY_TYPES.register(name, supplier);
+		}
+
+		return null;
+	}
 }

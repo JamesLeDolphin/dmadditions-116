@@ -142,8 +142,12 @@ public class DmAdditions {
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
 		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
-		event.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
-		event.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
+
+		if(DMAEntities.FLYING_SHARK != null)
+			event.put((EntityType) DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+
+		if(DMAEntities.RACNOSS != null)
+			event.put((EntityType) DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
