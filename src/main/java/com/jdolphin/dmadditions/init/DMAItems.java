@@ -1,9 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
+import java.util.function.Supplier;
+
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
-import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import com.jdolphin.dmadditions.item.BaubleBlockItem;
 import com.jdolphin.dmadditions.item.DMASpawnerItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
@@ -17,20 +18,28 @@ import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.GunItem;
+
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Supplier;
 
 
 public class DMAItems {
@@ -41,6 +50,18 @@ public class DMAItems {
 
 		return ITEMS.register(name, supplier);
 	}
+
+	// TODO: set correct date
+	// TODO: texture
+	public static RegistryObject<Item> XMAS_CRACKER = registerAdventItem(25, "christmas_cracker", 
+			() -> new Item((new Item.Properties()).tab(ItemGroup.TAB_MISC)){
+   public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+	   player.playSound(SoundEvents.GENERIC_EXPLODE, 0.5f, 1);
+	   ItemStack itemStack = player.getItemInHand(hand);
+	   itemStack.shrink(1);
+	   return ActionResult.consume(itemStack);
+   }
+	});
 
 	// SANTA_BAUBLE = registerDMAAdventItem(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
 	public static RegistryObject<Item> BLUE_BAUBLE = registerAdventItem(7, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));

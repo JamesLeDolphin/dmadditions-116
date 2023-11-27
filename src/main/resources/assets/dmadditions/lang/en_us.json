@@ -262,6 +262,8 @@
 	"block.dmadditions.christmas_lights": "Christmas Lights",
 
 	"entity.dmadditions.racnoss": "Racnoss",
-	"item.dmadditions.racnoss_spawner": "Racnoss Spawner"
+	"item.dmadditions.racnoss_spawner": "Racnoss Spawner",
+
+	"item.dmadditions.christmas_cracker": "Christmas Cracker"
 
 }
