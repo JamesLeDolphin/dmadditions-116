@@ -28,6 +28,7 @@
 		"DalekEntityMixin",
 		"DMEntityRenderRegistryMixin",
 		"DMTileRenderRegistryMixin",
-		"ModelDalekBaseMixin"
+		"ModelDalekBaseMixin",
+		"SplashesMixin"
 	]
 }
