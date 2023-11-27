@@ -1,0 +1,11 @@
+{
+	"name": "dmadditions.tardis.name.christmas_present",
+	"models": [
+		"dmadditions:models/tileentity/tardis/christmas_present_tardis.json"
+	],
+	"cost": 100,
+	"unlockable": true,
+	"desc": "dmadditions.tardis.description.christmas_present",
+	"doorOpenSound": "minecraft:block.wool.break",
+	"doorCloseSound": "minecraft:block.wool.place"
+}

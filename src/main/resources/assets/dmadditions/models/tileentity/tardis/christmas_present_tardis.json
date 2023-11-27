@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dmadditions:tileentity/tardis/christmas_present_tardis",
+	"texture_width": 128,
+	"texture_height": 128,
+	"scale": 1,
+	"groups": [
+		{
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [1,1],
+					"size": [32,32,31],
+					"origin": [-16,-32,-15],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "leftdoor",
+			"pivot": [16,9,-16],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [36,64],
+					"size": [16,32,2],
+					"origin": [-16,-17,0],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "rightdoor",
+			"pivot": [-16,9,-16],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,64],
+					"size": [16,32,2],
+					"origin": [0,-17,0],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		}
+	]
+}
