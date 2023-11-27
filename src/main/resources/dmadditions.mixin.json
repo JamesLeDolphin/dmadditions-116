@@ -20,7 +20,8 @@
 		"SpecialWeaponsMixin",
 		"DoubleDoorsTileEntityMixin",
 		"RoundelDoorTileEntityMixin",
-		"TardisTileEntityMixin"
+		"TardisTileEntityMixin",
+		"DataMixin"
 	],
 	"client": [
 		"MainMenuScreenMixin",

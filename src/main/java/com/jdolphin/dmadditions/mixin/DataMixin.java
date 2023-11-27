@@ -1,0 +1,45 @@
+package com.jdolphin.dmadditions.mixin;
+
+import net.minecraft.util.text.TranslationTextComponent;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import com.jdolphin.dmadditions.advent.AdventTardis;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.swdteam.common.tardis.Data;
+
+@Mixin(Data.class)
+public abstract class DataMixin {
+	@Inject(method = "isUnlockable", at = @At("RETURN"), remap = false, cancellable = true)
+	private void isUnlockable(CallbackInfoReturnable<Boolean> cir) {
+		try {
+			Data data = (Data) (Object) this;
+
+			String key = ((TranslationTextComponent) data.getExteriorName()).getKey();
+
+			Logger logger = LogManager.getLogger();
+			logger.info("Checking if tardis has advent unlock: {}", key);
+
+			AdventTardis adventTardis = AdventTardis.getByName(key);
+
+			if (adventTardis == null)
+				return;
+
+			logger.info("Tardis {} unlocks at advent day {}", key, adventTardis.date);
+
+			if (!AdventUnlock.unlockAt(adventTardis.date)) {
+				cir.setReturnValue(false);
+				cir.cancel();
+			}
+
+		} catch (ClassCastException e) {
+			return;
+		}
+	}
+
+}
