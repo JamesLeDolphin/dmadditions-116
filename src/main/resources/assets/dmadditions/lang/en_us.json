@@ -207,8 +207,11 @@
 
 
 	"dmadditions.tardis.name.gingerbread": "Gingerbread Exterior",
-
 	"dmadditions.tardis.description.gingerbread": "Fresh from the oven, this good smelling exterior is now ready for your space-time travels!",
+
+	"dmadditions.tardis.name.christmas_present": "XMas Present",
+	"dmadditions.tardis.description.christmas_present": "A little gift",
+
 
 	"subtitles.item.sonic.laser.shoot": "Laser Screwdriver Shoots",
 
