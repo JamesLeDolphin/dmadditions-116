@@ -67,7 +67,7 @@ public class DoorPanelTileEntity extends DMTileEntityBase implements ITickableTi
 				if (tile != null && tile instanceof TardisTileEntity) {
 					TardisTileEntity tardis = (TardisTileEntity) tile;
 					boolean isOpen = tardis.doorOpenLeft || tardis.doorOpenRight;
-					TranslationTextComponent text = new TranslationTextComponent(isOpen ? "notice.dm_door_panel.close" : "notice.dm_door_panel.open");
+					TranslationTextComponent text = new TranslationTextComponent(isOpen ? "notice.dmadditions.close" : "notice.dmadditions.open");
 
 					setDoors(tardis, !isOpen);
 					data.setDoorOpen(!isOpen);
@@ -87,7 +87,7 @@ public class DoorPanelTileEntity extends DMTileEntityBase implements ITickableTi
 			if (data != null) {
 				data.setLocked(!data.isLocked());
 
-				TranslationTextComponent text = new TranslationTextComponent(data.isLocked() ? "notice.dm_door_panel.lock" : "notice.dm_door_panel.unlock");
+				TranslationTextComponent text = new TranslationTextComponent(data.isLocked() ? "notice.dmadditions.lock" : "notice.dmadditions.unlock");
 				player.displayClientMessage(new StringTextComponent(TextFormatting.GREEN + text.getString()), true);
 
 				if (data.isLocked()) {

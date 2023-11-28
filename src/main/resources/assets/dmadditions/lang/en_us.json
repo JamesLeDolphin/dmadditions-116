@@ -34,19 +34,16 @@
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 
-	"block.dmadditions.door_open_panel": "TARDIS Door Panel",
 	"block.dmadditions.randomizer": "Randomizer",
 
 	"container.dmadditions.roundel_storage": "Roundel Storage",
 
-	"tooltip.block.dmadditions.door_open_panel.open": "Open Door",
-	"tooltip.block.dmadditions.door_open_panel.close": "Close Door",
-	"tooltip.block.dmadditions.sonic_interface.insert_sonic": "Insert Sonic",
-	"tooltip.block.dmadditions.sonic_interface.remove_sonic": "Remove Sonic",
-	"tooltip.block.dmadditions.sonic_interface.open_interface": "Open Interface",
-	"tooltip.block.dmadditions.waypoint_panel.load_data_module": "Load Data Module",
-	"tooltip.block.dmadditions.waypoint_panel.eject_data_module": "Eject Data Module",
-	"tooltip.block.dmadditions.waypoint_panel.apply_waypoint": "Apply Waypoint",
+	"tooltip.block.dalekmod.sonic_interface.insert_sonic": "Insert Sonic",
+	"tooltip.block.dalekmod.sonic_interface.remove_sonic": "Remove Sonic",
+	"tooltip.block.dalekmod.sonic_interface.open_interface": "Open Interface",
+	"tooltip.block.dalekmod.waypoint_panel.load_data_module": "Load Data Module",
+	"tooltip.block.dalekmod.waypoint_panel.eject_data_module": "Eject Data Module",
+	"tooltip.block.dalekmod.waypoint_panel.apply_waypoint": "Apply Waypoint",
 
 	"dmadditions.interior.name.australian": "Australian Interior",
 
@@ -148,10 +145,10 @@
 	"block.dmadditions.rusted_steel_reinforced_walling_roundel_container": "Rusted Steel Reinforced Walling Roundel Container",
 	"block.dmadditions.stainless_steel_reinforced_walling_roundel_container": "Stainless Steel Reinforced Walling Roundel Container",
 
-	"tooltip.dmadditions.lock": "Lock The TARDIS Door",
-	"tooltip.dmadditions.unlock": "Unlock The TARDIS Door",
-	"tooltip.dmadditions.open": "Open The TARDIS Door",
-	"tooltip.dmadditions.close": "Close The TARDIS Door",
+	"tooltip.dmadditions.door_panel.lock": "Lock The TARDIS Door",
+	"tooltip.dmadditions.door_panel.unlock": "Unlock The TARDIS Door",
+	"tooltip.dmadditions.door_panel.open": "Open The TARDIS Door",
+	"tooltip.dmadditions.door_panel.close": "Close The TARDIS Door",
 	"block.dmadditions.door_panel": "Door Panel",
 
 	"block.dmadditions.tardis_snowglobe": "TARDIS Snow Globe",

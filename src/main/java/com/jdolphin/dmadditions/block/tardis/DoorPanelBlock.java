@@ -150,8 +150,8 @@ public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implem
 		if (button == null) return null;
 
 		switch (button) {
-			case DOOR: return state.getValue(OPENED) ? new TranslationTextComponent("tooltip.dm_door_panel.close") : new TranslationTextComponent("tooltip.dm_door_panel.open");
-			case LOCK: return state.getValue(LOCKED) ? new TranslationTextComponent("tooltip.dm_door_panel.unlock") : new TranslationTextComponent("tooltip.dm_door_panel.lock");
+			case DOOR: return state.getValue(OPENED) ? new TranslationTextComponent("tooltip.dmadditions.door_panel.close") : new TranslationTextComponent("tooltip.dmadditions.door_panel.open");
+			case LOCK: return state.getValue(LOCKED) ? new TranslationTextComponent("tooltip.dmadditions.door_panel.unlock") : new TranslationTextComponent("tooltip.dmadditions.door_panel.lock");
 			default: return null;
 		}
 
