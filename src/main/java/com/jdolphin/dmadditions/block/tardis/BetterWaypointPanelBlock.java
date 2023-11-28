@@ -1,9 +1,9 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.block.IBetterBlockTooltip;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.jdolphin.dmadditions.init.DMATags;
 import com.swdteam.common.block.tardis.WaypointPanelBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class BetterWaypointPanelBlock extends WaypointPanelBlock implements IBetterPanel, IBetterBlockTooltip {
+public class BetterWaypointPanelBlock extends WaypointPanelBlock implements IBetterPanel {
 	public final String LOAD_CARTRIDGE = "load_data_module";
 	public final String EJECT_CARTRIDGE = "eject_data_module";
 	public final String APPLY_WAYPOINT = "apply_waypoint";

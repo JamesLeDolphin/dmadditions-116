@@ -142,8 +142,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 			.add(Attributes.FLYING_SPEED, 1);
 	}
 
-	public FlyingSharkEntity(EntityType<? extends AnimalEntity> entityType, World world) {
-		super((EntityType<? extends TameableEntity>) entityType, world);
+	public FlyingSharkEntity(EntityType<? extends TameableEntity> entityType, World world) {
+		super(entityType, world);
 
 		this.moveControl = new FlyingMovementController(this, 1, false);
 	}
@@ -210,7 +210,6 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 				this.setRot(this.yRot, this.xRot);
 				this.yBodyRot = this.yRot;
 				this.yHeadRot = this.yBodyRot;
-				float f = livingentity.xxa * 0.5F;
 				float f1 = livingentity.zza;
 
 				if (f1 <= 0.0F) {
@@ -322,7 +321,6 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 */
 			} else {
 				LivingEntity livingentity = this.shark.getTarget();
-				double d0 = 64.0D;
 				if (livingentity.distanceToSqr(this.shark) < 4096.0D) {
 					double d1 = livingentity.getX() - this.shark.getX();
 					double d2 = livingentity.getZ() - this.shark.getZ();
@@ -424,8 +422,6 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 		private Vector3d findPos() {
 			Vector3d vector3d;
 			vector3d = FlyingSharkEntity.this.getViewVector(0.0F);
-
-			int i = 8;
 			Vector3d vector3d2 = RandomPositionGenerator.getAboveLandPos(FlyingSharkEntity.this, 8, 7, vector3d, ((float) Math.PI / 2F), 2, 1);
 			return vector3d2 != null ? vector3d2 : RandomPositionGenerator.getAirPos(FlyingSharkEntity.this, 8, 4, -2, vector3d, (double) ((float) Math.PI / 2F));
 		}

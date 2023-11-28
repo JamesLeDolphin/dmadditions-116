@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DMADalekType {
-	public static List<DMADalekType> DMA_DALEK_TYPES = new ArrayList();
+	public static List<DMADalekType> DMA_DALEK_TYPES = new ArrayList<>();
 	public static DalekType SANTA = new DalekType("santa_dalek");
 	public static DalekType IRONSIDE = new DalekType("ironside_dalek");
 	public static DalekType CANDYCANE = new DalekType("candycane_dalek");

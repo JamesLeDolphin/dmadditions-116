@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.RacnossModel;
 import com.swdteam.common.entity.LookAtGoalBetter;
+
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -9,7 +10,13 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.HandSide;
@@ -21,9 +28,8 @@ import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.extensions.IForgeEntity;
 
-public class RacnossEntity extends MonsterEntity implements IForgeEntity {
+public class RacnossEntity extends MonsterEntity {
 	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false);
 
 	public RacnossEntity(EntityType<? extends MonsterEntity> type, World world) {
@@ -69,7 +75,6 @@ public class RacnossEntity extends MonsterEntity implements IForgeEntity {
 	@OnlyIn(Dist.CLIENT)
 	public void setupAnim(RacnossModel model, RacnossEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		boolean fallFlying = entity.getFallFlyingTicks() > 4;
-		boolean swimming = entity.isVisuallySwimming();
 
 		float f = 1.0F;
 		if (fallFlying) {
@@ -93,8 +98,6 @@ public class RacnossEntity extends MonsterEntity implements IForgeEntity {
 		model.leg5.zRot = -1;
 		model.leg6.zRot = -7;
 		model.leg7.zRot = -7;
-		float f1 = -0.0F;
-		float f2 = ((float)Math.PI / 8F);
 		model.leg0.yRot = -12.5f;
 		model.leg1.yRot = 12.5f;
 		model.leg2.yRot = 0;
@@ -113,7 +116,6 @@ public class RacnossEntity extends MonsterEntity implements IForgeEntity {
 		float f7 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + 0.0F) * 0.4F) * limbSwingAmount;
 		float f8 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float)Math.PI) * 0.4F) * limbSwingAmount;
 		float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
-		float f10 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI * 1.5F)) * 0.4F) * limbSwingAmount;
 		model.leg0.yRot += f3;
 		model.leg1.yRot += -f3;
 		model.leg2.yRot += f4;

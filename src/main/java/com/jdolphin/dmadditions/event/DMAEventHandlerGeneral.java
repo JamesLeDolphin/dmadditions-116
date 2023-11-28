@@ -62,7 +62,8 @@ public class DMAEventHandlerGeneral {
 
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
-		if (event.getWorld().isClientSide) return;
+		World world = event.getWorld();
+		if (world.isClientSide) return;
 
 		Entity entity = event.getEntity();
 		if (!(entity instanceof LivingEntity)) return;

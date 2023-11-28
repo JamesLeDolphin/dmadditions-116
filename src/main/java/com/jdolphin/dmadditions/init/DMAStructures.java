@@ -30,8 +30,8 @@ public class DMAStructures {
 	}
 
 	public static void setupStructures() {
-		setupMapSpacingAndLand((Structure) MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
-		setupMapSpacingAndLand((Structure) CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
+		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
+		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
 	}
 
 	public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {

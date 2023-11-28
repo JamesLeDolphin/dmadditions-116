@@ -227,6 +227,7 @@ public class DMABlocks {
 			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);
 	}
 
+	@SafeVarargs
 	public static void registerRenderTypes(RenderType renderType, RegistryObject<Block> ...blocks){
 		for(RegistryObject<Block> block : blocks ){
 			if(block != null && block.isPresent()){

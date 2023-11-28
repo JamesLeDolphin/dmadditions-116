@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntityType;
 
 public class ReddashStatueTileEntity extends DMTileEntityBase {
 	public ReddashStatueTileEntity() {
-		super((TileEntityType) DMABlockEntities.TILE_REDDASH_STATUE.get());
+		super((TileEntityType<ReddashStatueTileEntity>) DMABlockEntities.TILE_REDDASH_STATUE.get());
 	}
 
 }

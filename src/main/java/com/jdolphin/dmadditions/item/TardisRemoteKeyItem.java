@@ -35,11 +35,12 @@ public class TardisRemoteKeyItem extends TardisKeyItem {
 	@Override
 
 	public ActionResultType useOn(ItemUseContext context) {
-		if (context.getLevel().isClientSide)
+		World world = context.getLevel();
+
+		if (world.isClientSide)
 			return super.useOn(context);
 
 		BlockPos pos = context.getClickedPos();
-		World world = context.getLevel();
 		BlockState blockState = world.getBlockState(pos);
 //        ChatUtil.sendCompletedMsg(context.getPlayer(), String.valueOf(blockState.getBlock().is(DMBlocks.TARDIS.get())) , ChatUtil.MessageType.CHAT);
 

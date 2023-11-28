@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.dimension.sky;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -31,7 +32,8 @@ public class SkyRendererMoon implements ISkyRenderHandler {
 		mc.textureManager.bind(SKY);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
-		ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getMainCamera();
+		Minecraft minecraft = Minecraft.getInstance();
+		ActiveRenderInfo renderInfo = minecraft.gameRenderer.getMainCamera();
 		Vector2f angle = new Vector2f(renderInfo.getXRot(), renderInfo.getYRot());
 		matrixStackIn.pushPose();
 		RenderSystem.enableDepthTest();
@@ -60,7 +62,7 @@ public class SkyRendererMoon implements ISkyRenderHandler {
 			}
 
 			float skyDepth = 10.0F;
-			skyDepth = skyDepth * (float)Minecraft.getInstance().options.renderDistance / 4.0F;
+			skyDepth = skyDepth * (float)minecraft.options.renderDistance / 4.0F;
 			Matrix4f matrix4f = matrixStackIn.last().pose();
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 			bufferbuilder.vertex(matrix4f, -skyDepth, -skyDepth, -skyDepth).uv(0.0F, 0.0F).color(255, 255, 255, 255).endVertex();

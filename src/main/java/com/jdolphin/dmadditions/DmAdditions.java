@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -36,6 +37,7 @@ import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -128,12 +130,14 @@ public class DmAdditions {
 		ToggleModeCommand.register(dispatcher);
 		GodCommand.register(dispatcher);
 	}
+
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
 		this.registerCommands(commandDispatcher);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
 		event.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
 		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
@@ -144,10 +148,10 @@ public class DmAdditions {
 		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 
 		if(DMAEntities.FLYING_SHARK != null)
-			event.put((EntityType) DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+			event.put((EntityType<? extends LivingEntity>) DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
 
 		if(DMAEntities.RACNOSS != null)
-			event.put((EntityType) DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
+			event.put((EntityType<? extends LivingEntity>) DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
@@ -167,16 +171,17 @@ public class DmAdditions {
 			if (!world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
+			ServerChunkProvider chunkSource = world.getChunkSource();
 			try {
 				if (GETCODEC_METHOD == null)
 					GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(world.getChunkSource().generator));
+				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(chunkSource.generator));
 				if (cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
 			} catch (Exception e) {
 				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
 			}
 
-			if (world.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
+			if (chunkSource.getGenerator() instanceof FlatChunkGenerator &&
 				world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
@@ -184,11 +189,11 @@ public class DmAdditions {
 				return;
 			}
 			if (AdventUnlock.unlockAt(2)) {
-				world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
+				chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 			}
 
 			if (AdventUnlock.unlockAt(9)) {
-				world.getChunkSource().generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+				chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 			}
 
 		}
@@ -317,7 +322,6 @@ public class DmAdditions {
 	@SubscribeEvent
 	public void missingCarvers(RegistryEvent.MissingMappings<WorldCarver<?>> event) {
 		for (RegistryEvent.MissingMappings.Mapping<WorldCarver<?>> mapping : event.getMappings("dalekmod")) {
-			ResourceLocation regName = mapping.key;
 			mapping.remap(DMAWorldCarvers.CARVER.get());
 
 		}

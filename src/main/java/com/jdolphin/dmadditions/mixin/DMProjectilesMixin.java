@@ -30,7 +30,7 @@ import java.util.List;
 
 @Mixin(DMProjectiles.class)
 public class DMProjectilesMixin {
-	@Shadow private static List<DMProjectiles.Laser> LASERS = new ArrayList();
+	@Shadow private static List<DMProjectiles.Laser> LASERS = new ArrayList<>();
 	@Shadow public static DMProjectiles.Laser BLUE_LASER;
 	@Shadow public static DMProjectiles.Laser RED_LASER;
 	@Shadow public static DMProjectiles.Laser GREEN_LASER;

@@ -1,5 +1,14 @@
 package com.jdolphin.dmadditions.block.tardis;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import javax.annotation.Nonnull;
+
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.RotatableTileEntityBase;
@@ -14,6 +23,7 @@ import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.util.ChatUtil;
 import com.swdteam.util.SWDMathUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +31,11 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -34,10 +48,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
-import java.util.*;
-import java.util.function.Supplier;
 
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
 	public static List<CoordPanelButtons> buttons = new ArrayList<>();
@@ -55,7 +65,6 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
     }
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide && handIn == Hand.MAIN_HAND) {
 			worldIn.getBlockTicks().scheduleTick(pos, this, 5);
@@ -205,6 +214,8 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 
 											ChatUtil.sendMessageToPlayer(player, "Rotated the TARDIS", ChatUtil.MessageType.STATUS_BAR);
 											break;
+										default:
+											break;
 									}
 
 								});
@@ -275,7 +286,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 	}
 
 	public CoordPanelButtons getButton(double mouseX, double mouseY, double mouseZ, Direction facing, AttachFace face) {
-		Iterator buttonsIterator = buttons.iterator();
+		Iterator<CoordPanelButtons> buttonsIterator = buttons.iterator();
 
 		while (buttonsIterator.hasNext()) {
 			CoordPanelButtons button = (CoordPanelButtons) buttonsIterator.next();
@@ -352,7 +363,6 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 	}
 
 	public ITextComponent getName(BlockState state, BlockPos pos, Vector3d hitVec, PlayerEntity player) {
-		String ss = "";
 		double mouseX = hitVec.x() - (double) pos.getX();
 		double mouseZ = hitVec.z() - (double) pos.getZ();
 		double mouseY = hitVec.y() - (double) pos.getY();
@@ -371,7 +381,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 		AUTO_CALCULATE_Y("Toggle Height Calculator", 5.0F, 5.0F, 13.0F, 2.0F),
 		EMPTY(null, 0.0F, 0.0F, 0.0F, 0.0F);
 
-		final Map<Direction, Vector2f> values = new HashMap();
+		final Map<Direction, Vector2f> values = new HashMap<>();
 		final float width;
 		final float height;
 		StringTextComponent displayName;

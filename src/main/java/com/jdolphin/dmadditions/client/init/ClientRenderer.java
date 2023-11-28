@@ -20,9 +20,10 @@ public class ClientRenderer {
 	@SubscribeEvent
 	public static void skyRenderer(RenderWorldLastEvent event) {
 		ClientWorld world;
-		assert Minecraft.getInstance().level != null;
-		if (Minecraft.getInstance().level.dimension().equals(DMADimensions.MOON)) {
-			world = Minecraft.getInstance().level;
+		Minecraft minecraft = Minecraft.getInstance();
+		assert minecraft.level != null;
+		if (minecraft.level.dimension().equals(DMADimensions.MOON)) {
+			world = minecraft.level;
 			if (world.effects().getSkyRenderHandler() == null) {
 				world.effects().setSkyRenderHandler(SkyRendererMoon.INSTANCE);
 			}

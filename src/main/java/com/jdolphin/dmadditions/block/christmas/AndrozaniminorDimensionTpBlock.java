@@ -2,23 +2,18 @@ package com.jdolphin.dmadditions.block.christmas;
 
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMADimensions;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.state.properties.DoorHingeSide;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -41,7 +36,6 @@ public class AndrozaniminorDimensionTpBlock extends Block {
 			ServerWorld destinationWorld = worldIn.getServer().getLevel(key);
 			if (destinationWorld != null && destinationWorld != worldIn) {
 				BlockPos headPos = player.blockPosition().above();
-				double y = player.getY();
 				if (destinationWorld.getBlockState(headPos).isSuffocating(worldIn, pos)) {
 					for (int i = -1; i <= 1; i++) {
 						for (int j = -1; j <= 1; j++) {

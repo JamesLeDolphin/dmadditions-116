@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.entity.dalek;
 
 import com.swdteam.common.entity.CybermanEntity;
-import com.swdteam.common.entity.IEntityVariant;
 import com.swdteam.common.entity.ai.DestroyTargetBlock;
 import com.swdteam.common.entity.ai.NearestAttackableTargetGoalForDalek;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -12,17 +11,28 @@ import com.swdteam.common.init.DMDalekRegistry;
 import com.swdteam.common.init.DMItems;
 import com.swdteam.common.init.DMNBTKeys;
 import com.swdteam.common.init.DMSoundEvents;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
-import net.minecraft.entity.*;
+import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,19 +42,27 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.*;
-import net.minecraftforge.common.extensions.IForgeEntity;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.Dimension;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class IronsideDalekEntity extends DalekEntity implements IRangedAttackMob, IEntityVariant, IForgeEntity, IFlyingAnimal {
+public class IronsideDalekEntity extends DalekEntity {
 	private boolean isSetup = false;
-	private final RangedLaserAttack<IronsideDalekEntity> aiLaserAttack = new RangedLaserAttack(this, 1.0, 20, 15.0F);
+	private final RangedLaserAttack<IronsideDalekEntity> aiLaserAttack = new RangedLaserAttack<>(this, 1.0, 20, 15.0F);
 	private DestroyTargetBlock destroyTargetBlock;
 	public static final DataParameter<String> DALEK_TYPE;
 	public static final DataParameter<String> DALEK_ARM_LEFT;
@@ -70,15 +88,15 @@ public class IronsideDalekEntity extends DalekEntity implements IRangedAttackMob
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(5, this.waterOne = new WaterAvoidingRandomWalkingGoal(this, 1.0));
-		this.goalSelector.addGoal(1, this.laserRange = new RangedLaserAttack(this, 1.0, 20, 2.0F));
+		this.goalSelector.addGoal(1, this.laserRange = new RangedLaserAttack<>(this, 1.0, 20, 2.0F));
 		this.goalSelector.addGoal(5, this.lookAt = new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(6, this.randomGoal = new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(7, this.destroyTargetBlock = new DestroyTargetBlock(DoorBlock.class, this, 6.0));
 		this.goalSelector.addGoal(7, new DestroyTargetBlock(Blocks.TNT.defaultBlockState(), this, 6.0));
 		this.targetSelector.addGoal(1, this.hurtGoal = new HurtByTargetGoal(this, new Class[0]));
-		this.targetSelector.addGoal(2, this.nearestPlayerGoal = new NearestAttackableTargetGoalForDalek(this, PlayerEntity.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoalForDalek(this, VillagerEntity.class, true));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoalForDalek(this, CybermanEntity.class, true));
+		this.targetSelector.addGoal(2, this.nearestPlayerGoal = new NearestAttackableTargetGoalForDalek<>(this, PlayerEntity.class, true));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoalForDalek<>(this, VillagerEntity.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoalForDalek<>(this, CybermanEntity.class, true));
 	}
 
 	public void setID(String id) {

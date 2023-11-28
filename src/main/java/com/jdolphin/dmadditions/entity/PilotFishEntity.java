@@ -1,5 +1,13 @@
 package com.jdolphin.dmadditions.entity;
 
+import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_SPAWNER;
+import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
+
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.jdolphin.dmadditions.entity.ai.goal.RangedLasergunAttackGoal;
 import com.jdolphin.dmadditions.init.DMANBTKeys;
 import com.swdteam.common.entity.LaserEntity;
@@ -7,10 +15,22 @@ import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.item.GunItem;
-import net.minecraft.entity.*;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.piglin.PiglinBruteEntity;
 import net.minecraft.entity.monster.piglin.PiglinEntity;
@@ -26,20 +46,16 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.*;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraftforge.common.extensions.IForgeEntity;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.List;
-
-import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_SPAWNER;
-import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
 
 // Robo Santa or something
-public class PilotFishEntity extends MonsterEntity implements IForgeEntity, IRangedAttackMob {
+public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 	public static final DataParameter<String> PILOT_FISH_TYPE = EntityDataManager.defineId(PilotFishEntity.class, DataSerializers.STRING);
 	private final RangedLasergunAttackGoal<PilotFishEntity> rangedAttackGoal = new RangedLasergunAttackGoal<>(this, 1.0D, 20, 15.0F);
 	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false);

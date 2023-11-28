@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.block.IBetterBlockTooltip;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.SonicInterfaceBlock;
@@ -10,6 +9,7 @@ import com.swdteam.common.tileentity.tardis.SonicInterfaceTileEntity;
 import com.swdteam.network.NetworkHandler;
 import com.swdteam.network.packets.PacketOpenGui;
 import com.swdteam.network.packets.PacketXPSync;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +35,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IBetterPanel, IBetterBlockTooltip {
+public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IBetterPanel {
 	protected static String TXT_INSERT_SONIC = "insert_sonic";
 	protected static String TXT_REMOVE_SONIC = "remove_sonic";
 	protected static String TXT_OPEN_INTERFACE = "open_interface";

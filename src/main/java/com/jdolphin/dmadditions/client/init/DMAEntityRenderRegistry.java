@@ -1,9 +1,17 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.client.render.entity.*;
-import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
+import com.jdolphin.dmadditions.client.render.entity.BessieRenderer;
+import com.jdolphin.dmadditions.client.render.entity.ChristmasTreeRenderer;
+import com.jdolphin.dmadditions.client.render.entity.FlyingSharkRenderer;
+import com.jdolphin.dmadditions.client.render.entity.JamesLeDolphinRenderer;
+import com.jdolphin.dmadditions.client.render.entity.RacnossRenderer;
+import com.jdolphin.dmadditions.client.render.entity.RenderPilotFish;
+import com.jdolphin.dmadditions.client.render.entity.RenderSnowman;
+import com.jdolphin.dmadditions.client.render.entity.TorchwoodSuvRenderer;
+import com.jdolphin.dmadditions.client.render.entity.WoodenCybermanRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -14,6 +22,7 @@ public class DMAEntityRenderRegistry {
 	public DMAEntityRenderRegistry() {
 	}
 
+	@SuppressWarnings({"rawtype", "unchecked"})
 	public static void registryEntityRenders() {
 		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
 

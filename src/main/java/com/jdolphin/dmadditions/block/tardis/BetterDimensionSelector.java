@@ -47,7 +47,7 @@ import java.util.function.Supplier;
 
 public class BetterDimensionSelector extends DimensionSelectorPanelBlock implements IBetterPanel {
 	public static List<DimensionPanelButtons> buttons = new ArrayList<>();
-	private ArrayList<ServerWorld> dimList = new ArrayList();
+	private ArrayList<ServerWorld> dimList = new ArrayList<>();
 	private int index = 0;
 
 	public BetterDimensionSelector(Supplier<TileEntity> tileEntitySupplier, AbstractBlock.Properties properties) {
@@ -102,6 +102,9 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 					break;
 				case BTN_RIGHT:
 					worldIn.setBlockAndUpdate(pos, state.setValue(BUTTON_PRESSED, 3));
+					break;
+				default:
+					break;
 			}
 
 			if (buttonClicked != DimensionPanelButtons.EMPTY) {
@@ -137,6 +140,9 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 							break;
 						case BTN_RIGHT:
 							tet.setIndex((tet.getIndex() + 1) % TardisLocationRegistry.getLocationRegistry().size());
+							break;
+						default:
+							break;
 					}
 
 					if (buttonClicked == DimensionPanelButtons.BTN_LEFT || buttonClicked == DimensionPanelButtons.BTN_RIGHT) {
@@ -162,8 +168,8 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 										ServerWorld type = (ServerWorld) this.dimList.get(this.index);
 										tile.setDestination(type.dimension(), tile.getDestinationPosition());
 										player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
-											.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
-												.withStyle(TextFormatting.LIGHT_PURPLE)), true);
+												.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
+													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 										if (tile != null) {
 											tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());
 										}
@@ -183,24 +189,26 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 											ServerWorld type = (ServerWorld) this.dimList.get(this.index);
 											tile.setDestination(type.dimension(), tile.getDestinationPosition());
 											player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
-												.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
-													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
+													.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
+														.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 											if (tile != null) {
 												tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());											}
 										} else {
 											this.index = 0;
 										}
 									} else if (tile.getFlightEvent() instanceof net.tardis.mod.flight.DimensionFlightEvent) {
-										net.tardis.mod.flight.DimensionFlightEvent event = (net.tardis.mod.flight.DimensionFlightEvent) tile.getFlightEvent();
 										tile.getFlightEvent().onComplete(tile);
 									}
-									}
 								}
-						});
-					}
+								break;
+							default:
+								break;
+						}
+					});
 				}
-
 			}
+
+		}
 
 		return ActionResultType.CONSUME;
 	}
@@ -270,7 +278,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 		BTN_RIGHT("Next Dimension", 4.0F, 3.0F, 11.0F, 1.0F),
 		EMPTY(null, 0.0F, 0.0F, 0.0F, 0.0F);
 
-		Map<Direction, Vector2f> values = new HashMap();
+		Map<Direction, Vector2f> values = new HashMap<>();
 		float width;
 		float height;
 		public StringTextComponent displayName;
@@ -294,7 +302,6 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 	}
 
 	public ITextComponent getName(BlockState state, BlockPos pos, Vector3d hitVec, PlayerEntity player) {
-		String ss = "";
 		double mouseX = hitVec.x() - (double) pos.getX();
 		double mouseZ = hitVec.z() - (double) pos.getZ();
 		StringTextComponent text = this.getButton(mouseX, mouseZ, state.getValue(AbstractRotateableWaterLoggableBlock.FACING), state.getValue(FACE)).displayName;

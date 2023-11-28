@@ -1,9 +1,10 @@
 package com.jdolphin.dmadditions.block.christmas;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -14,8 +15,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-
-import javax.annotation.Nullable;
 
 public class ChristmasLightsBlock extends HorizontalBlock {
 	VoxelShape EAST_AABB = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);
@@ -59,7 +58,6 @@ public class ChristmasLightsBlock extends HorizontalBlock {
 		BlockState blockstate1 = this.defaultBlockState();
 		IWorldReader iworldreader = blockItemUseContext.getLevel();
 		BlockPos blockpos = blockItemUseContext.getClickedPos();
-		FluidState fluidstate = blockItemUseContext.getLevel().getFluidState(blockItemUseContext.getClickedPos());
 
 		for(Direction direction : blockItemUseContext.getNearestLookingDirections()) {
 			if (direction.getAxis().isHorizontal()) {

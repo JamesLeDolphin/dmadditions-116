@@ -1,12 +1,11 @@
 package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.block.IBetterPanel;
-import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.ChameleonPanelBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -17,8 +16,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
 public class BetterChameleonPanelBlock extends ChameleonPanelBlock implements IBetterPanel {
-	private final static DirectionProperty FACING = AbstractRotateableWaterLoggableBlock.FACING;
-
 	public BetterChameleonPanelBlock(Properties properties) {
 		super(properties);
 	}

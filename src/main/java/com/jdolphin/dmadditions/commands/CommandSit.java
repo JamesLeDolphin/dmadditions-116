@@ -14,7 +14,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -27,7 +26,6 @@ public class CommandSit {
 			Entity entity = context.getSource().getEntity();
 			if (entity instanceof PlayerEntity) {
 				PlayerEntity player = (PlayerEntity) entity;
-				MinecraftServer server = context.getSource().getServer();
 				World world = player.getEntity().getCommandSenderWorld();
 				Vector3d pos = player.position();
 				ArmorStandEntity armorStand = new ArmorStandEntity(world, pos.x, pos.y - 1.7, pos.z);
