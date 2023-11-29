@@ -165,27 +165,6 @@
 			"rotation": [0,0,0],
 			"children": [
 				{
-					"group_name": "Lights",
-					"pivot": [0,0,-1],
-					"rotation": [0,0,0],
-					"cubes": [
-						{
-							"uv": [42,35],
-							"size": [1,1,1],
-							"origin": [3.5,-3.25,0.5],
-							"inflate": 0,
-							"mirror": false
-						},
-						{
-							"uv": [42,14],
-							"size": [1,1,1],
-							"origin": [-4.5,-3.25,0.5],
-							"inflate": 0,
-							"mirror": false
-						}
-					]
-				},
-				{
 					"group_name": "EyeStalk",
 					"pivot": [0,0,-1],
 					"rotation": [0,0,0],
@@ -229,6 +208,27 @@
 							"uv": [43,23],
 							"size": [3,3,1],
 							"origin": [-1.5,-2.25,-9.75],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "Lights",
+					"pivot": [0,0,-1],
+					"rotation": [0,0,0],
+					"cubes": [
+						{
+							"uv": [42,35],
+							"size": [1,1,1],
+							"origin": [3.5,-3.25,0.5],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [42,14],
+							"size": [1,1,1],
+							"origin": [-4.5,-3.25,0.5],
 							"inflate": 0,
 							"mirror": false
 						}

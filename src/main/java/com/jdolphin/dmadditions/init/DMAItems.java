@@ -9,7 +9,6 @@ import com.jdolphin.dmadditions.item.BaubleBlockItem;
 import com.jdolphin.dmadditions.item.DMASpawnerItem;
 import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.item.TardisRemoteKeyItem;
-import com.jdolphin.dmadditions.item.handles.HandlesItem;
 import com.swdteam.common.init.DMItemTiers;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
@@ -70,7 +69,7 @@ public class DMAItems {
 	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(7, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
 	public static RegistryObject<Item> HANDLES = registerAdventItem(1, "handles",
-			() -> new HandlesItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item>	BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
