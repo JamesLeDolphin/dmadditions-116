@@ -135,7 +135,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 				TardisFlightPool.updateFlight(tardis, new Location(newPos, flight.dimensionWorldKey()));
 
 				ChatUtil.sendCompletedMsg(player,
-					new TranslationTextComponent("notice.dalekmod.tardis.randomizer_set", newPos.getX(), newPos.getZ()),
+					new TranslationTextComponent("notice.dmadditions.tardis.randomizer_set", newPos.getX(), newPos.getZ()),
 					MessageType.STATUS_BAR);
 
 				worldIn.playSound(null, pos, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(), SoundCategory.BLOCKS, 1, 1);
