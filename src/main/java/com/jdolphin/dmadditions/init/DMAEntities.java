@@ -13,6 +13,7 @@ import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.jdolphin.dmadditions.entity.RacnossEntity;
+import com.jdolphin.dmadditions.entity.ShoppingCartEntity;
 import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
@@ -71,6 +72,10 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<?>> RACNOSS = registerAdventEntity(25, "racnoss", // TODO: set the correct date
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
 				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
+
+	public static RegistryObject<EntityType<?>> SHOPPING_CART = registerAdventEntity(21, "shopping_cart",
+			() -> EntityType.Builder.of(ShoppingCartEntity::new, EntityClassification.MISC).sized(0.98F, 0.7F).clientTrackingRange(8)
+			.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
 
 	@Nullable 
 	protected static RegistryObject<EntityType<?>> registerAdventEntity(int date, String name, Supplier<EntityType<?>> supplier){

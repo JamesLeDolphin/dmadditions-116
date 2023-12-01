@@ -8,6 +8,7 @@ import com.jdolphin.dmadditions.client.render.entity.JamesLeDolphinRenderer;
 import com.jdolphin.dmadditions.client.render.entity.RacnossRenderer;
 import com.jdolphin.dmadditions.client.render.entity.RenderPilotFish;
 import com.jdolphin.dmadditions.client.render.entity.RenderSnowman;
+import com.jdolphin.dmadditions.client.render.entity.ShoppingCartRenderer;
 import com.jdolphin.dmadditions.client.render.entity.TorchwoodSuvRenderer;
 import com.jdolphin.dmadditions.client.render.entity.WoodenCybermanRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
@@ -35,6 +36,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
 		registerRender((RegistryObject) DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
 		registerRender((RegistryObject) DMAEntities.RACNOSS, RacnossRenderer::new);
+		registerRender((RegistryObject) DMAEntities.SHOPPING_CART, ShoppingCartRenderer::new);
 	}
 
 

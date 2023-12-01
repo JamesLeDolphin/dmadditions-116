@@ -152,6 +152,9 @@ public class DmAdditions {
 
 		if(DMAEntities.RACNOSS != null)
 			event.put((EntityType<? extends LivingEntity>) DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
+
+		if(DMAEntities.SHOPPING_CART != null)
+			event.put((EntityType<? extends LivingEntity>) DMAEntities.SHOPPING_CART.get(), ShoppingCartEntity.setCustomAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
