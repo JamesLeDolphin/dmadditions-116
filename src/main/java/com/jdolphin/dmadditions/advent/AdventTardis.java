@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.advent;
 
 public enum AdventTardis{
-	CHRISTMAS_PRESENT("dmadditions.tardis.name.christmas_present", 25), // TODO: set correct date
+	CHRISTMAS_PRESENT("dmadditions.tardis.name.christmas_present", 17), 
 	;
 
 	public final String name;

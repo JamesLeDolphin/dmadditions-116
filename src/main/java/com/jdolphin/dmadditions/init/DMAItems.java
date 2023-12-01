@@ -50,9 +50,8 @@ public class DMAItems {
 		return ITEMS.register(name, supplier);
 	}
 
-	// TODO: set correct date
 	// TODO: texture
-	public static RegistryObject<Item> XMAS_CRACKER = registerAdventItem(25, "christmas_cracker", 
+	public static RegistryObject<Item> XMAS_CRACKER = registerAdventItem(12, "christmas_cracker", 
 			() -> new Item((new Item.Properties()).tab(ItemGroup.TAB_MISC)){
    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 	   player.playSound(SoundEvents.GENERIC_EXPLODE, 0.5f, 1);
