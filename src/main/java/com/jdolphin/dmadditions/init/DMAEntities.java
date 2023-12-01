@@ -69,7 +69,7 @@ public class DMAEntities {
 					.setShouldReceiveVelocityUpdates(true)
 					.build(new ResourceLocation(DmAdditions.MODID, "flying_shark").toString()));
 
-	public static RegistryObject<EntityType<?>> RACNOSS = registerAdventEntity(25, "racnoss", // TODO: set the correct date
+	public static RegistryObject<EntityType<?>> RACNOSS = registerAdventEntity(11, "racnoss", // TODO: set the correct date
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
 				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
 

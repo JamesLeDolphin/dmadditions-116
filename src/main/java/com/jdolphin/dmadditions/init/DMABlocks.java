@@ -54,14 +54,13 @@ public class DMABlocks {
 	}
 
 
-		// SANTA_BAUBLE_BLOCK = registerAdventDMABlock(23, BaubleBlock::new, "santa_bauble");
+	//public static RegistryObject<Block> SANTA_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "santa_bauble");
 	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "blue_bauble");
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "gold_bauble");
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "red_bauble");
-	public static RegistryObject<Block> SANTA_BAUBLE_BLOCK;
 
-	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerAdventBlock(20, () ->
+	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerAdventBlock(8, () ->
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
 		"christmas_lights", ItemGroup.TAB_DECORATIONS);
 
@@ -246,8 +245,8 @@ public class DMABlocks {
 			BLUE_BAUBLE_BLOCK,
 			GOLD_BAUBLE_BLOCK,
 			GREEN_BAUBLE_BLOCK,
-			RED_BAUBLE_BLOCK,
-			SANTA_BAUBLE_BLOCK
+			RED_BAUBLE_BLOCK
+			//SANTA_BAUBLE_BLOCK
 		);
 	}
 

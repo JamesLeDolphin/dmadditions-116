@@ -62,7 +62,7 @@ public class DMAItems {
    }
 	});
 
-	// SANTA_BAUBLE = registerDMAAdventItem(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
+	//public static RegistryObject<Item> SANTA_BAUBLE = registerAdventItem(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
 	public static RegistryObject<Item> BLUE_BAUBLE = registerAdventItem(7, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
 	public static RegistryObject<Item> GOLD_BAUBLE = registerAdventItem(7, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
 	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(7, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
