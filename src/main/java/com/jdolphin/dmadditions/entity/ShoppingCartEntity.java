@@ -104,6 +104,15 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 		}
 	}
 
+	public void positionRider(Entity entity) {
+		if (this.hasPassenger(entity)) {
+			float f = -0.5F;
+			float f1 = (float) ((!this.isAlive() ? (double) 0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset());
+			Vector3d vector3d = (new Vector3d(f, 0.0D, 0.0D)).yRot(-this.yRot * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
+			entity.setPos(this.getX() + vector3d.x, this.getY() + (double) f1, this.getZ() + vector3d.z);
+		}
+	}
+
 	@Override
 	public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
 		return false;
