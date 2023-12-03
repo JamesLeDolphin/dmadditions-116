@@ -21,18 +21,13 @@ import com.swdteam.common.item.GunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -49,17 +44,6 @@ public class DMAItems {
 
 		return ITEMS.register(name, supplier);
 	}
-
-	// TODO: texture
-	public static RegistryObject<Item> XMAS_CRACKER = registerAdventItem(12, "christmas_cracker", 
-			() -> new Item((new Item.Properties()).tab(ItemGroup.TAB_MISC)){
-   public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-	   player.playSound(SoundEvents.GENERIC_EXPLODE, 0.5f, 1);
-	   ItemStack itemStack = player.getItemInHand(hand);
-	   itemStack.shrink(1);
-	   return ActionResult.consume(itemStack);
-   }
-	});
 
 	//public static RegistryObject<Item> SANTA_BAUBLE = registerAdventItem(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
 	public static RegistryObject<Item> BLUE_BAUBLE = registerAdventItem(7, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
