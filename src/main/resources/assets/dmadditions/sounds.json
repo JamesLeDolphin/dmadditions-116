@@ -41,6 +41,18 @@
 			"dmadditions:entity/bessie/bessie"
 		]
 	},
+	"entity.vehicle.shopping_cart.v8_idle": {
+		"subtitle": "subtitles.entity.vehicle.shopping_cart.v8.idle",
+		"sounds": [
+			"dmadditions:entity/shopping_cart/v8_idle"
+		]
+	},
+	"entity.vehicle.shopping_cart.v8_revving": {
+		"subtitle": "subtitles.entity.vehicle.shopping_cart.v8.revving",
+		"sounds": [
+			"dmadditions:entity/shopping_cart/v8_revving"
+		]
+	},
 	"item.sonic.laser.shoot": {
 		"subtitle": "subtitles.item.sonic.laser.shoot",
 		"sounds": [

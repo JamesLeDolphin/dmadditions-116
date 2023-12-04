@@ -1,5 +1,10 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.client.audio.ShoppingCartTickableSound;
+import com.jdolphin.dmadditions.init.DMASoundEvents;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IJumpingMount;
@@ -13,13 +18,19 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	public boolean flyable = false;
+	public boolean engineStarted = false;
+	private int engineRevTime = 0;
+
+	@OnlyIn(Dist.CLIENT)
+	ShoppingCartTickableSound sound;
 
 	public ShoppingCartEntity(EntityType<? extends MobEntity> p_i48576_1_, World p_i48576_2_) {
 		super(p_i48576_1_, p_i48576_2_);
@@ -61,7 +72,10 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	@Override
 	public void travel(Vector3d p_213352_1_) {
 		if (this.isAlive()) {
+
 			if (this.isVehicle() && this.canBeSteered()) {
+				this.engineStarted = true;
+
 				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
 				this.yRot = livingentity.yRot;
 				this.yRotO = this.yRot;
@@ -73,6 +87,8 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 
 				if (f1 <= 0.0F) {
 					f1 *= 0.25F;
+
+					this.engineRevTime = 0;
 				}
 
 				if (f1 > 0.5F) {
@@ -96,12 +112,22 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 					if(f1 > 0.0F) {
 						this.setNoGravity(false);
 						this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, 0, 0.2F * f3));
+
+						--this.engineRevTime;
+						if (this.engineRevTime <= 0) {
+							this.engineRevTime = 40;
+							playRevSound(0.5f, 0.5f + f1);
+						}
 					}
 				}
 			}
 
 			super.travel(p_213352_1_);
 		}
+	}
+
+	public void playRevSound(float volume, float pitch){
+		this.playSound(DMASoundEvents.V8_REVVING.get(), volume, pitch);
 	}
 
 	public void positionRider(Entity entity) {
@@ -141,8 +167,12 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	public boolean hurt(DamageSource source, float p_70097_2_) {
 		Entity entity = source.getEntity();
 		if(entity instanceof PlayerEntity){
+			if(engineStarted){
+				engineStarted = false;
+				return false;
+			}
+
 			PlayerEntity player = (PlayerEntity) entity;
-			
 			if(player.abilities.instabuild)
 				this.kill();
 		}
@@ -150,23 +180,54 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-		return null;
-	}
-
-	@Override
 	public void readAdditionalSaveData(CompoundNBT tag) {
 		super.readAdditionalSaveData(tag);
 
 		this.flyable = tag.getBoolean("Flyable");
+		this.engineStarted = tag.getBoolean("EngineStarted");
 		this.setNoGravity(this.flyable);
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundNBT tag) {
 		tag.putBoolean("Flyable", flyable);
+		tag.putBoolean("EngineStarted", engineStarted);
 
 		super.addAdditionalSaveData(tag);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public void playSound() {
+		if (!this.level.isClientSide) return;
+
+		SoundHandler soundManager = Minecraft.getInstance().getSoundManager();
+
+		if(sound == null)
+			sound = new ShoppingCartTickableSound(this, DMASoundEvents.V8_IDLE.get());
+
+		if (!soundManager.isActive(sound)) {
+			soundManager.play(sound);
+		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public void clientTick() {
+		SoundHandler soundManager = Minecraft.getInstance().getSoundManager();
+
+		if(this.engineStarted && (this.sound == null || this.sound.isStopped() || !soundManager.isActive(sound))){
+			this.playSound();
+		} else if(this.sound != null && this.sound.isStopped()){
+			sound = null;
+		}
+	}
+
+	@Override
+	public void tick() {
+		if(this.level.isClientSide()){
+			clientTick();
+		}
+
+		super.tick();
 	}
 
 }

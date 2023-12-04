@@ -19,6 +19,8 @@ public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> BESSIE_HORN = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.horn");
 	public static final RegistryObject<SoundEvent> BESSIE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.drive");
 	public static final RegistryObject<SoundEvent> RICKROLL = buildSound(RegistryHandler.SOUNDS, "music_disc.rick_roll");
+	public static final RegistryObject<SoundEvent> V8_IDLE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_idle");
+	public static final RegistryObject<SoundEvent> V8_REVVING = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_revving");
 
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
