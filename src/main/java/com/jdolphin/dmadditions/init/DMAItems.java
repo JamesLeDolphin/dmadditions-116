@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.client.model.armor.ChristmasHatModel;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.item.BaubleBlockItem;
 import com.jdolphin.dmadditions.item.DMASpawnerItem;
@@ -92,7 +93,26 @@ public class DMAItems {
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
 	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(12,"christmas_hat",
-		() -> new ClothesItem(EquipmentSlotType.HEAD));
+		() -> new ArmorItem(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
+			@Override
+			@OnlyIn(Dist.CLIENT)
+			public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+				return (A) new ChristmasHatModel(1f);
+			}
+
+			@Override
+			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+				return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/christmas_hat.png").toString();
+			}
+
+			@Override
+			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
+				if (armorType.equals(EquipmentSlotType.HEAD))
+					return true;
+
+				return super.canEquip(stack, armorType, entity);
+			}
+		});
 
 	public static RegistryObject<Item> MATTS_PINK_THONG = ITEMS.register("matts_pink_thong",
 			() -> new ArmorItem(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties()) {
