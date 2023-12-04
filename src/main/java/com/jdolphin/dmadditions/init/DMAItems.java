@@ -91,6 +91,9 @@ public class DMAItems {
 	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
+	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(12,"christmas_hat",
+		() -> new ClothesItem(EquipmentSlotType.HEAD));
+
 	public static RegistryObject<Item> MATTS_PINK_THONG = ITEMS.register("matts_pink_thong",
 			() -> new ArmorItem(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties()) {
 
