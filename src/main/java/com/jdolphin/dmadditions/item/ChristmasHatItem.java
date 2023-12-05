@@ -24,13 +24,6 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		super(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES));
 	}
 
-	public static int hatColor(ItemStack stack, int tint){
-		if(tint == 0){
-			CompoundNBT compoundnbt = stack.getTagElement("display");
-			return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 10511680;
-		}
-		return 0xFFFFFF;
-	}
 	@Override
 	public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
 		if(getItemCategory() == group) {
