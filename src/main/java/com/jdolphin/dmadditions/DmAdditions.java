@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
+import com.jdolphin.dmadditions.client.DMAColorHandler;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.commands.*;
@@ -99,6 +100,7 @@ public class DmAdditions {
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::entityAttributeEvent);
+		modEventBus.addListener(DMAColorHandler::registerItemColor);
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);
