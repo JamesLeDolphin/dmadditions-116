@@ -25,7 +25,7 @@ public class ShoppingCartTickableSound extends TickableSound{
 	}
 
 	public void tick() {
-		if (this.shoppingCart == null || !this.shoppingCart.isAlive() || !this.shoppingCart.engineStarted) {
+		if (this.shoppingCart == null || !this.shoppingCart.isAlive() || !this.shoppingCart.isEngineStarted()) {
 			this.stop();
 		} else {
 			this.x = (float) this.shoppingCart.getX();

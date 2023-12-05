@@ -1,5 +1,8 @@
 package com.jdolphin.dmadditions.entity;
 
+import java.util.Collections;
+import java.util.List;
+
 import com.jdolphin.dmadditions.client.audio.ShoppingCartTickableSound;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 
@@ -15,19 +18,28 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.IForgeShearable;
 
-public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
-	public boolean flyable = false;
-	public boolean engineStarted = false;
+public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IForgeShearable{
 	private int engineRevTime = 0;
+
+	protected static final DataParameter<Boolean> DATA_ID_FLYABLE = EntityDataManager.defineId(ShoppingCartEntity.class, DataSerializers.BOOLEAN);
+	protected static final DataParameter<Boolean> DATA_ID_HAS_ENGINE = EntityDataManager.defineId(ShoppingCartEntity.class, DataSerializers.BOOLEAN);
+	protected static final DataParameter<Boolean> DATA_ID_ENGINE_STARTED = EntityDataManager.defineId(ShoppingCartEntity.class, DataSerializers.BOOLEAN);
 
 	@OnlyIn(Dist.CLIENT)
 	ShoppingCartTickableSound sound;
@@ -38,6 +50,13 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 		this.setNoAi(true);
 	}
 
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_ID_FLYABLE, true);
+		this.entityData.define(DATA_ID_HAS_ENGINE, true);
+		this.entityData.define(DATA_ID_ENGINE_STARTED, false);
+	}
+
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
 		return MobEntity.createMobAttributes()
 				.add(Attributes.MOVEMENT_SPEED, 0.4)
@@ -46,14 +65,33 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	}
 
 	@Override
-	protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+		if(level.isClientSide)
+			return ActionResultType.PASS;
+
 		ItemStack itemstack = player.getItemInHand(hand);
-		if (itemstack.isEmpty() && !player.isCrouching()) {
+
+		if (itemstack.isEmpty() && !player.isCrouching()) { // FIXME: for some reason, itemstack.isEmpty() appears to be returning true when it shouldn't
 			player.startRiding(this);
 			return ActionResultType.PASS;
 		}
 
 		return super.mobInteract(player, hand);
+	}
+
+	@Override
+	public List<ItemStack> onSheared(PlayerEntity player, ItemStack item, World world, BlockPos pos, int fortune) {
+		if(!player.isCrouching()) return Collections.emptyList();
+
+		this.setHasEngine(false);
+
+		world.playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, SoundCategory.PLAYERS, 1, 1);
+		return IForgeShearable.super.onSheared(player, item, world, pos, fortune);
+	}
+
+	@Override
+	public boolean isShearable(ItemStack item, World world, BlockPos pos) {
+		return this.hasEngine();
 	}
 
 	public boolean canBeControlledByRider() {
@@ -74,7 +112,8 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 		if (this.isAlive()) {
 
 			if (this.isVehicle() && this.canBeSteered()) {
-				this.engineStarted = true;
+				if(hasEngine()) this.setEngineStarted(true);
+				else this.setEngineStarted(false);
 
 				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
 				this.yRot = livingentity.yRot;
@@ -98,7 +137,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 				float f2 = MathHelper.sin(this.yRot * 0.017453292F);
 				float f3 = MathHelper.cos(this.yRot * 0.017453292F);
 
-				if(this.flyable){
+				if(this.isFlyable()){
 					this.setNoGravity(true);
 					if (f1 > 0.0F) {
 
@@ -111,12 +150,14 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 				} else {
 					if(f1 > 0.0F) {
 						this.setNoGravity(false);
-						this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, 0, 0.2F * f3));
+						if(this.isEngineStarted()){
+							this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, 0, 0.2F * f3));
 
-						--this.engineRevTime;
-						if (this.engineRevTime <= 0) {
-							this.engineRevTime = 40;
-							playRevSound(0.5f, 0.5f + f1);
+							--this.engineRevTime;
+							if (this.engineRevTime <= 0) {
+								this.engineRevTime = 40;
+								playRevSound(0.5f, 0.5f + f1);
+							}
 						}
 					}
 				}
@@ -151,7 +192,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 
 	@Override
 	public boolean canJump() {
-		return this.flyable || this.isNoGravity();
+		return this.isFlyable() || this.isNoGravity();
 	}
 
 	@Override
@@ -167,8 +208,8 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	public boolean hurt(DamageSource source, float p_70097_2_) {
 		Entity entity = source.getEntity();
 		if(entity instanceof PlayerEntity){
-			if(engineStarted){
-				engineStarted = false;
+			if(isEngineStarted()){
+				this.setEngineStarted(false);
 				return false;
 			}
 
@@ -183,17 +224,46 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	public void readAdditionalSaveData(CompoundNBT tag) {
 		super.readAdditionalSaveData(tag);
 
-		this.flyable = tag.getBoolean("Flyable");
-		this.engineStarted = tag.getBoolean("EngineStarted");
-		this.setNoGravity(this.flyable);
+		this.setFlyable(tag.getBoolean("Flyable"));
+		this.setNoGravity(this.isFlyable());
+		this.setEngineStarted(tag.getBoolean("EngineStarted"));
+		if(tag.contains("HasEngine"))
+			this.setHasEngine(tag.getBoolean("HasEngine"));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundNBT tag) {
-		tag.putBoolean("Flyable", flyable);
-		tag.putBoolean("EngineStarted", engineStarted);
-
 		super.addAdditionalSaveData(tag);
+
+		tag.putBoolean("Flyable", isFlyable());
+		tag.putBoolean("EngineStarted", isEngineStarted());
+		tag.putBoolean("HasEngine", hasEngine());
+	}
+
+	public boolean hasEngine(){
+		return this.entityData.get(DATA_ID_HAS_ENGINE);
+	}
+
+	public void setHasEngine(boolean hasEngine){
+		this.entityData.set(DATA_ID_HAS_ENGINE, hasEngine);
+		if(!hasEngine)
+			this.setEngineStarted(false);
+	}
+
+	public boolean isEngineStarted(){
+		return this.entityData.get(DATA_ID_ENGINE_STARTED);
+	}
+
+	public void setEngineStarted(boolean isEngineStarted){
+		this.entityData.set(DATA_ID_ENGINE_STARTED, isEngineStarted);
+	}
+
+	public boolean isFlyable(){
+		return this.entityData.get(DATA_ID_FLYABLE);
+	}
+
+	public void setFlyable(boolean isFlyable){
+		this.entityData.set(DATA_ID_FLYABLE, isFlyable);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -214,7 +284,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount {
 	public void clientTick() {
 		SoundHandler soundManager = Minecraft.getInstance().getSoundManager();
 
-		if(this.engineStarted && (this.sound == null || this.sound.isStopped() || !soundManager.isActive(sound))){
+		if(this.isEngineStarted() && (this.sound == null || this.sound.isStopped() || !soundManager.isActive(sound))){
 			this.playSound();
 		} else if(this.sound != null && this.sound.isStopped()){
 			sound = null;
