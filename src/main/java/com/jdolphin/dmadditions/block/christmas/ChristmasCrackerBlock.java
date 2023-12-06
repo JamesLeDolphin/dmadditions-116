@@ -20,6 +20,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ChristmasCrackerBlock extends HorizontalBlock {
@@ -70,16 +72,28 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 		return ActionResultType.FAIL;
 	}
 
-	// Spawns a hat and explosion at the location x,y,z
+	// Spawns contents at the location x,y,z with particle and sound
 	public static void openCracker(World world, double x, double y, double z){
-		ItemStack item = DMAItems.CHRISTMAS_HAT.get().getDefaultInstance();
-		int color = ChristmasHatItem.colors[world.random.nextInt(ChristmasHatItem.colors.length)];
-		item.getOrCreateTagElement("display").putInt("color", color);
-		ItemEntity surprise = new ItemEntity(world, x, y, z, item);
-		world.addFreshEntity(surprise);
+		for (ItemStack item : generateContents(world)) {
+			ItemEntity surprise = new ItemEntity(world, x, y, z, item);
+			world.addFreshEntity(surprise);
+		}
 		world.getServer().getLevel(world.dimension()).sendParticles(ParticleTypes.EXPLOSION, x,y,z,1,0.1,0.1,0.1,0);
 		BlockPos soundPoint = new BlockPos(Math.floor(x),Math.floor(y),Math.floor(z));
 		world.playSound(null, soundPoint, SoundEvents.GENERIC_EXPLODE, SoundCategory.NEUTRAL, 1,1);
+	}
+
+	// Generates the items a cracker will drop when it is opened
+	public static List<ItemStack> generateContents(World world){
+		List<ItemStack> contents = new ArrayList<ItemStack>();
+
+		// christmas_hat
+		ItemStack hat = DMAItems.CHRISTMAS_HAT.get().getDefaultInstance();
+		int color = ChristmasHatItem.colors[world.random.nextInt(ChristmasHatItem.colors.length)];
+		hat.getOrCreateTagElement("display").putInt("color", color);
+		contents.add(hat);
+
+		return contents;
 	}
 
 }

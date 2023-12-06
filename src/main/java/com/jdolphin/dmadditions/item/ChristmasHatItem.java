@@ -20,13 +20,16 @@ public class ChristmasHatItem extends DyeableArmorItem {
 
 	// Standard colours for use in Christmas crackers
 	public static final int[] colors = new int[]{
-		0xFFFFFF,
-		0xFF0000,
-		0x00FF00,
-		0x0000FF,
-		0xFFFF00,
-		0xFF00FF,
-		0x00FFFF
+		0xC04E3D,
+		0xF98E36,
+		0xFDCD60,
+		0x8ECD37,
+		0x71A346,
+		0x4FBBDE,
+		0x575EB6,
+		0x9648BF,
+		0xC35595,
+		0xF497B3
 	};
 	public ChristmasHatItem(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
 		super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
@@ -44,7 +47,7 @@ public class ChristmasHatItem extends DyeableArmorItem {
 
 	@Override
 	public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-		if(getItemCategory() == group) {
+		if(getItemCategory() == group || group == ItemGroup.TAB_SEARCH) {
 			ItemStack stack = new ItemStack(this);
 			setColor(stack, 0xFFFFFF);
 			items.add(stack);
