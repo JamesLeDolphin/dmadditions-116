@@ -10,6 +10,7 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.BessieEntity;
 import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
 import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
+import com.jdolphin.dmadditions.entity.IceGovernessEntity;
 import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.jdolphin.dmadditions.entity.RacnossEntity;
@@ -68,6 +69,11 @@ public class DMAEntities {
 					.setUpdateInterval(3)
 					.setShouldReceiveVelocityUpdates(true)
 					.build(new ResourceLocation(DmAdditions.MODID, "flying_shark").toString()));
+
+	public static RegistryObject<EntityType<?>> ICE_GOVERNESS = registerAdventEntity(18, "ice_governess",
+			() -> EntityType.Builder.of(IceGovernessEntity::new, EntityClassification.MONSTER)
+			.sized(0.6f, 1.8f)
+			.build(new ResourceLocation(DmAdditions.MODID, "ice_governess").toString()));
 
 	public static RegistryObject<EntityType<?>> RACNOSS = registerAdventEntity(11, "racnoss", 
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
