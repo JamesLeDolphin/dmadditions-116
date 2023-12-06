@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -65,7 +66,7 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
 		if(hand == Hand.MAIN_HAND && player.getItemInHand(hand).isEmpty() && !world.isClientSide()){
-			openCracker(world, pos.getX()+.5,pos.getY(),pos.getZ()+.5);
+			openCracker(world, new Vector3d(pos.getX()+.5,pos.getY(),pos.getZ()+.5));
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 			return ActionResultType.SUCCESS;
 		}
@@ -73,14 +74,15 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 	}
 
 	// Spawns contents at the location x,y,z with particle and sound
-	public static void openCracker(World world, double x, double y, double z){
+	public static void openCracker(World world, Vector3d position){
+		if(world.isClientSide) return;
 		for (ItemStack item : generateContents(world)) {
-			ItemEntity surprise = new ItemEntity(world, x, y, z, item);
+			ItemEntity surprise = new ItemEntity(world, position.x, position.y, position.z, item);
 			world.addFreshEntity(surprise);
 		}
-		world.getServer().getLevel(world.dimension()).sendParticles(ParticleTypes.EXPLOSION, x,y,z,1,0.1,0.1,0.1,0);
-		BlockPos soundPoint = new BlockPos(Math.floor(x),Math.floor(y),Math.floor(z));
-		world.playSound(null, soundPoint, SoundEvents.GENERIC_EXPLODE, SoundCategory.NEUTRAL, 1,1);
+		world.getServer().getLevel(world.dimension()).sendParticles(ParticleTypes.FIREWORK, position.x,position.y,position.z,30,0.1,0.1,0.1,0.1);
+		BlockPos soundPoint = new BlockPos(Math.floor(position.x),Math.floor(position.y),Math.floor(position.z));
+		world.playSound(null, soundPoint, SoundEvents.FIREWORK_ROCKET_BLAST, SoundCategory.NEUTRAL, 2,1);
 	}
 
 	// Generates the items a cracker will drop when it is opened
