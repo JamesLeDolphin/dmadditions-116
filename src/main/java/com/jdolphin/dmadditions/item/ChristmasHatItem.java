@@ -17,11 +17,29 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 public class ChristmasHatItem extends DyeableArmorItem {
+
+	// Standard colours for use in Christmas crackers
+	public static final int[] colors = new int[]{
+		0xFFFFFF,
+		0xFF0000,
+		0x00FF00,
+		0x0000FF,
+		0xFFFF00,
+		0xFF00FF,
+		0x00FFFF
+	};
 	public ChristmasHatItem(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
 		super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
 	}
 	public ChristmasHatItem(){
 		super(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES));
+	}
+
+	@Override
+	public ItemStack getDefaultInstance() {
+		ItemStack instance = new ItemStack(this);
+		instance.getOrCreateTagElement("display").putInt("color", 0xFFFFFF);
+		return instance;
 	}
 
 	@Override

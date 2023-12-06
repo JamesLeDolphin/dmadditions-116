@@ -48,6 +48,7 @@ public class DMAItems {
 	public static RegistryObject<Item> GOLD_BAUBLE = registerAdventItem(7, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
 	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(7, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
 	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(7, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
+	public static RegistryObject<Item> CHRISTMAS_CRACKER = registerAdventItem(12, "christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
 	public static RegistryObject<Item> HANDLES = registerAdventItem(1, "handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
