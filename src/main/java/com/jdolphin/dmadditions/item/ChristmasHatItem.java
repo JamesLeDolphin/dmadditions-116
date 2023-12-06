@@ -1,20 +1,26 @@
 package com.jdolphin.dmadditions.item;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.model.armor.ChristmasHatModel;
 import com.jdolphin.dmadditions.init.DMAArmorMaterial;
 import com.swdteam.common.init.DMTabs;
+
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.item.DyeableArmorItem;
+import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.IDyeableArmorItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.Nullable;
 
 public class ChristmasHatItem extends DyeableArmorItem {
 
@@ -58,13 +64,12 @@ public class ChristmasHatItem extends DyeableArmorItem {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-		return (A) new ChristmasHatModel(1f);
+		return (A) new ChristmasHatModel(1f, ((IDyeableArmorItem) itemStack.getItem()).getColor(itemStack));
 	}
 
 	@Nullable
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-		int col = getColor(stack);
 		return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/christmas_hat.png").toString();
 	}
 
@@ -74,7 +79,5 @@ public class ChristmasHatItem extends DyeableArmorItem {
 			return true;
 		return super.canEquip(stack, armorType, entity);
 	}
-
-
 
 }
