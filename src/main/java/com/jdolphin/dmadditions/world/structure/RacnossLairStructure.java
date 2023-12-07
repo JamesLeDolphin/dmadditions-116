@@ -24,20 +24,20 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.List;
 
-public class ManorStructure extends Structure<NoFeatureConfig> {
+public class RacnossLairStructure extends Structure<NoFeatureConfig> {
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of();
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of();
 
-	public ManorStructure(Codec<NoFeatureConfig> codec) {
+	public RacnossLairStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
 	}
 
 	public Structure.IStartFactory<NoFeatureConfig> getStartFactory() {
-		return ManorStructure.Start::new;
+		return CyberUndergroundStructure.Start::new;
 	}
 
 	public GenerationStage.Decoration step() {
-		return Decoration.SURFACE_STRUCTURES;
+		return Decoration.UNDERGROUND_STRUCTURES;
 	}
 
 	public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
@@ -59,10 +59,10 @@ public class ManorStructure extends Structure<NoFeatureConfig> {
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
 			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(DmAdditions.MODID, "manor/start_pool"));
+				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(DmAdditions.MODID, "racnoss_lair/start_pool"));
 			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 			this.pieces.forEach((piece) -> {
-				piece.move(0, 0, 0);
+				piece.move(0, -50, 0);
 			});
 			this.pieces.forEach((piece) -> {
 				--piece.getBoundingBox().y0;
