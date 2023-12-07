@@ -100,7 +100,6 @@ public class DmAdditions {
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::entityAttributeEvent);
-		modEventBus.addListener(DMAColorHandler::registerItemColor);
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);

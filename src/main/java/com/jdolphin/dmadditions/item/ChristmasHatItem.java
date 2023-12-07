@@ -37,9 +37,11 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		0xC35595,
 		0xF497B3
 	};
+
 	public ChristmasHatItem(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
 		super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
 	}
+
 	public ChristmasHatItem(){
 		super(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES));
 	}
