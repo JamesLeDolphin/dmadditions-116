@@ -22,6 +22,9 @@ public enum DMAArmorMaterial implements IArmorMaterial {
 		() -> Ingredient.EMPTY),
 
 	CHRISTMAS_HAT("christmas_hat", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
+		() -> Ingredient.EMPTY),
+
+	WEDDING_DRESS("wedding_dress", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
 		() -> Ingredient.EMPTY);
 
 	private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};

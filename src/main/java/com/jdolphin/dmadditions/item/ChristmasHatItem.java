@@ -77,8 +77,7 @@ public class ChristmasHatItem extends DyeableArmorItem {
 
 	@Override
 	public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
-		if (armorType.equals(EquipmentSlotType.HEAD))
-			return true;
+		if (armorType.equals(EquipmentSlotType.HEAD)) return true;
 		return super.canEquip(stack, armorType, entity);
 	}
 
