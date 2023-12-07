@@ -25,9 +25,9 @@ public class WeddingDressModel extends BipedModel<LivingEntity> implements IMode
 		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/armor/wedding_dress.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 
-		this.body = modelWrapper.getPart("Body");
 		this.leftLeg = modelWrapper.getPart("LeftLeg");
 		this.rightLeg = modelWrapper.getPart("RightLeg");
+		this.body = modelWrapper.getPart("Body");
 	}
 
 	@Override
@@ -37,6 +37,6 @@ public class WeddingDressModel extends BipedModel<LivingEntity> implements IMode
 
 	@Override
 	protected Iterable<ModelRenderer> bodyParts() {
-		return ImmutableList.of(body, rightLeg, leftLeg);
+		return ImmutableList.of(leftLeg, rightLeg, body);
 	}
 }

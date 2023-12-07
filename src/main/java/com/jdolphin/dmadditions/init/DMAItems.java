@@ -94,7 +94,7 @@ public class DMAItems {
 	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(12,"christmas_hat", ChristmasHatItem::new);
 
 	public static RegistryObject<Item> WEDDING_DRESS = registerAdventItem(9, "wedding_dress",
-		() -> new ArmorItem(DMAArmorMaterial.WEDDING_DRESS, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
+		() -> new ArmorItem(DMAArmorMaterial.WEDDING_DRESS, EquipmentSlotType.LEGS, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
 			@Override
 			@OnlyIn(Dist.CLIENT)
 			public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {

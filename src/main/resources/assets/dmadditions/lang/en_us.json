@@ -262,6 +262,8 @@
 	"block.dmadditions.christmas_pudding": "Christmas Pudding",
 	"block.dmadditions.christmas_lights": "Christmas Lights",
 
+	"item.dmadditions.wedding_dress" : "Wedding Dress",
+
 	"entity.dmadditions.racnoss": "Racnoss",
 	"item.dmadditions.racnoss_spawner": "Racnoss Spawner",
 
