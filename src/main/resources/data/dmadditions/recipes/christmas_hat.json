@@ -11,9 +11,6 @@
   },
   "result": {
     "item": "dmadditions:christmas_hat",
-    "count": 1,
-    "nbt": {
-      "display": {"color": 16777215}
-    }
+    "count": 1
   }
 }

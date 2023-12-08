@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.DMAColorHandler;
 import com.jdolphin.dmadditions.init.DMAItems;
+import com.jdolphin.dmadditions.item.ChristmasHatItem;
 import com.jdolphin.dmadditions.loot.modifiers.AddItemLootModifier;
 
 import net.minecraft.util.ResourceLocation;
@@ -28,6 +29,6 @@ public class DMAEventBusEvents {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public static void registerItemColor(ColorHandlerEvent.Item event) {
-		event.getItemColors().register(DMAColorHandler::getColor, DMAItems.CHRISTMAS_HAT.get());
+		if(DMAItems.CHRISTMAS_HAT != null) event.getItemColors().register(ChristmasHatItem::itemColor, DMAItems.CHRISTMAS_HAT.get());
 	}
 }

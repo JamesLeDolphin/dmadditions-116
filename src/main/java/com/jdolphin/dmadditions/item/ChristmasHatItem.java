@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
+import net.minecraft.nbt.CompoundNBT;
 import org.jetbrains.annotations.Nullable;
 
 import com.jdolphin.dmadditions.DmAdditions;
@@ -46,22 +47,6 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		super(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES));
 	}
 
-	@Override
-	public ItemStack getDefaultInstance() {
-		ItemStack instance = new ItemStack(this);
-		instance.getOrCreateTagElement("display").putInt("color", 0xFFFFFF);
-		return instance;
-	}
-
-	@Override
-	public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-		if(getItemCategory() == group || group == ItemGroup.TAB_SEARCH) {
-			ItemStack stack = new ItemStack(this);
-			setColor(stack, 0xFFFFFF);
-			items.add(stack);
-		}
-	}
-
 	@Nullable
 	@Override
 	@OnlyIn(Dist.CLIENT)
@@ -79,5 +64,19 @@ public class ChristmasHatItem extends DyeableArmorItem {
 	public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
 		if (armorType.equals(EquipmentSlotType.HEAD)) return true;
 		return super.canEquip(stack, armorType, entity);
+	}
+
+	@Override
+	public int getColor(ItemStack p_200886_1_) {
+		CompoundNBT compoundnbt = p_200886_1_.getTagElement("display");
+		return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 0xFFFFFF;
+	}
+
+	public static int itemColor(ItemStack stack, int tint){
+		if(tint == 0) {
+			CompoundNBT compoundnbt = stack.getTagElement("display");
+			return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 0xFFFFFF;
+		}
+		return 0xFFFFFF;
 	}
 }
