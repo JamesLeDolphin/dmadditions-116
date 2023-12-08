@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "dmadditions:christmas_hat",
+    "count": 1,
+    "nbt": {
+      "display": {"color": 16777215}
+    }
+  }
+}

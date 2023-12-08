@@ -80,5 +80,4 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		if (armorType.equals(EquipmentSlotType.HEAD)) return true;
 		return super.canEquip(stack, armorType, entity);
 	}
-
 }

@@ -108,7 +108,7 @@ public class DMAItems {
 
 			@Override
 			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
-				if(armorType == EquipmentSlotType.CHEST) return true;
+				if(armorType == EquipmentSlotType.LEGS) return true;
 				return super.canEquip(stack, armorType, entity);
 			}
 		}

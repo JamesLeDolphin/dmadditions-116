@@ -21,7 +21,7 @@
 		},
 		{
 			"group_name": "RightLeg",
-			"pivot": [0,24,0],
+			"pivot": [-3,24,0],
 			"rotation": [0,0,0],
 			"cubes": [
 				{
@@ -35,7 +35,7 @@
 		},
 		{
 			"group_name": "LeftLeg",
-			"pivot": [0,24,0],
+			"pivot": [3,24,0],
 			"rotation": [0,0,0],
 			"cubes": [
 				{
