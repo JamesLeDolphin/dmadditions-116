@@ -1,8 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"textures":{
-		"layer0": "dmadditions:models/armor/christmas_hat"
-	},
+	"texture": "dmadditions:models/armor/christmas_hat",
 	"texture_width": 18,
 	"texture_height": 3,
 	"scale": 1,
