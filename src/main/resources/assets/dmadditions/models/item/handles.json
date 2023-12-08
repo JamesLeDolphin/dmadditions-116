@@ -4,20 +4,6 @@
 	"textures": {
 		"handles": "dmadditions:block/advent/handles"
 	},
-	"display": {
-		"gui": {
-			"rotation": [0, 180, 0],
-			"translation": [0, 1, 0]
-		},
-		"firstperson_lefthand": {
-			"translation": [0, 5, -10],
-			"rotation": [0, -15, 0]
-		},
-		"head": {
-			"translation": [0, 8, 0],
-			"scale": [1.9, 1.9, 1.9]
-		}
-	},
 	"elements": [
 		{
 			"from": [4.5, 0, 4],
@@ -124,6 +110,20 @@
 			}
 		}
 	],
+	"display": {
+		"firstperson_lefthand": {
+			"rotation": [0, -15, 0],
+			"translation": [0, 5, -10]
+		},
+		"gui": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 1, 0]
+		},
+		"head": {
+			"translation": [0, 8, 0],
+			"scale": [1.9, 1.9, 1.9]
+		}
+	},
 	"groups": [
 		{
 			"name": "Head",
