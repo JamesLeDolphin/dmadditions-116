@@ -270,6 +270,9 @@
 	"block.dmadditions.christmas_cracker": "Christmas Cracker",
 	"tooltip.item.dmadditions.christmas_cracker": "Open to reveal a surprise!",
 	"item.dmadditions.christmas_hat" : "Christmas Hat",
-	"item.dmadditions.joke": "Cracker Joke"
+	"item.dmadditions.joke": "Cracker Joke",
+
+	"item.dmadditions.christmas_creeper_spawner": "Christmas Creeper Spawner",
+	"entity.dmadditions.christmas_creeper": "Christmas Creeper"
 
 }
