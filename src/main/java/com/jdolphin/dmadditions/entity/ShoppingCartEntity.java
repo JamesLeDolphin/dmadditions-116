@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.jdolphin.dmadditions.client.audio.ShoppingCartTickableSound;
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 
 import net.minecraft.client.Minecraft;
@@ -29,6 +30,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -46,13 +48,11 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 	public ShoppingCartEntity(EntityType<? extends MobEntity> p_i48576_1_, World p_i48576_2_) {
 		super(p_i48576_1_, p_i48576_2_);
-
-		this.setNoAi(true);
 	}
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_ID_FLYABLE, true);
+		this.entityData.define(DATA_ID_FLYABLE, false);
 		this.entityData.define(DATA_ID_HAS_ENGINE, true);
 		this.entityData.define(DATA_ID_ENGINE_STARTED, false);
 	}
@@ -214,10 +214,26 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 			}
 
 			PlayerEntity player = (PlayerEntity) entity;
-			if(player.abilities.instabuild)
-				this.kill();
+			if(player.abilities.instabuild){
+				this.remove();
+				return false;
+			}
 		}
+
 		return super.hurt(source, p_70097_2_);
+	}
+
+	@Override
+	public void die(DamageSource p_70645_1_) {
+		this.remove();
+		if (this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+			ItemStack itemstack = new ItemStack(DMAItems.SHOPPING_CART.get());
+			if (this.hasCustomName()) {
+				itemstack.setHoverName(this.getCustomName());
+			}
+
+			this.spawnAtLocation(itemstack);
+		}
 	}
 
 	@Override

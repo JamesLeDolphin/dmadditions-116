@@ -174,6 +174,9 @@ public class DMAItems {
 	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = registerAdventItem(12, "christmas_creeper_spawner", 
 			() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0xda70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
+		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
