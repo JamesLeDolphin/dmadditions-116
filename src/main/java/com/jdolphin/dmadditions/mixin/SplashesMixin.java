@@ -41,6 +41,7 @@ public class SplashesMixin {
 				add("java.lang.NullPointerException");
 
 				add("Soon™");
+				add("We do a little hacking");
 			}
 		};
 
