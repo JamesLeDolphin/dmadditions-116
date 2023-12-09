@@ -49,7 +49,7 @@ public class DMAItems {
 	public static RegistryObject<Item> GOLD_BAUBLE = registerAdventItem(7, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
 	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(7, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
 	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(7, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
-	public static RegistryObject<Item> CHRISTMAS_CRACKER = registerAdventItem(12, "christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
+	public static RegistryObject<Item> CHRISTMAS_CRACKER = registerAdventItem(10, "christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
 	public static RegistryObject<Item> HANDLES = registerAdventItem(1, "handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
@@ -91,9 +91,9 @@ public class DMAItems {
 	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
-	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(12,"christmas_hat", ChristmasHatItem::new);
+	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(10,"christmas_hat", ChristmasHatItem::new);
 
-	public static RegistryObject<Item> JOKE = registerAdventItem(12, "joke", JokeItem::new);
+	public static RegistryObject<Item> JOKE = registerAdventItem(10, "joke", JokeItem::new);
 	public static RegistryObject<Item> WEDDING_DRESS = registerAdventItem(9, "wedding_dress",
 		() -> new ArmorItem(DMAArmorMaterial.WEDDING_DRESS, EquipmentSlotType.LEGS, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
 			@Override

@@ -84,7 +84,7 @@ public class DMAEntities {
 			() -> EntityType.Builder.of(ShoppingCartEntity::new, EntityClassification.MISC).sized(0.98F, 0.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
 
-	public static RegistryObject<EntityType<?>> CHRISTMAS_CREEPER = registerAdventEntity(10, "christmas_creeper",
+	public static RegistryObject<EntityType<?>> CHRISTMAS_CREEPER = registerAdventEntity(12, "christmas_creeper",
 			() -> EntityType.Builder.of(ChristmasCreeperEntity::new, EntityClassification.MISC).sized(0.6F, 1.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "christmas_creeper").toString())));
 
