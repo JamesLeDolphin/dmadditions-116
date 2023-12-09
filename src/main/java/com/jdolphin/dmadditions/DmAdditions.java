@@ -1,5 +1,7 @@
 package com.jdolphin.dmadditions;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.DMAColorHandler;
@@ -13,6 +15,7 @@ import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
+import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
@@ -42,6 +45,7 @@ import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -85,7 +89,7 @@ public class DmAdditions {
 	}, () -> {
 		return DMAServerProxy::new;
 	});
-
+	public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
@@ -324,6 +328,11 @@ public class DmAdditions {
 			mapping.remap(DMAWorldCarvers.CARVER.get());
 
 		}
+	}
+
+	@SubscribeEvent
+	public void addReloadListeners(AddReloadListenerEvent event){
+		event.addListener(new JokeReloadListener(GSON, "cracker_jokes"));
 	}
 
 }
