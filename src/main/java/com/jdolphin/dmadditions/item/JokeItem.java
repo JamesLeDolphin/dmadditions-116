@@ -62,7 +62,7 @@ public class JokeItem extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		if(world.isClientSide) {
 			Joke joke = getJoke(player.getItemInHand(hand));
-			StringTextComponent text = new StringTextComponent(player.isShiftKeyDown() ? joke.question : joke.answer);
+			StringTextComponent text = new StringTextComponent(player.isShiftKeyDown() ? joke.answer : joke.question);
 			TextFormatting format = player.isShiftKeyDown() ? TextFormatting.GOLD : TextFormatting.LIGHT_PURPLE;
 			player.displayClientMessage(text.withStyle(format).withStyle(TextFormatting.BOLD), true);
 			player.getCooldowns().addCooldown(this, 10);
