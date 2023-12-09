@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.block.christmas;
 
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.ChristmasHatItem;
+import com.jdolphin.dmadditions.item.JokeItem;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.ItemEntity;
@@ -94,6 +95,11 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 		int color = ChristmasHatItem.colors[world.random.nextInt(ChristmasHatItem.colors.length)];
 		hat.getOrCreateTagElement("display").putInt("color", color);
 		contents.add(hat);
+
+		// joke
+		ItemStack joke = DMAItems.JOKE.get().getDefaultInstance();
+		JokeItem.setJoke(joke, JokeItem.randomJoke(world));
+		contents.add(joke);
 
 		return contents;
 	}

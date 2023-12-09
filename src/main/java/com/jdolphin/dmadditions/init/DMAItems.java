@@ -93,6 +93,7 @@ public class DMAItems {
 
 	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(12,"christmas_hat", ChristmasHatItem::new);
 
+	public static RegistryObject<Item> JOKE = registerAdventItem(12, "joke", JokeItem::new);
 	public static RegistryObject<Item> WEDDING_DRESS = registerAdventItem(9, "wedding_dress",
 		() -> new ArmorItem(DMAArmorMaterial.WEDDING_DRESS, EquipmentSlotType.LEGS, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
 			@Override
