@@ -8,6 +8,7 @@ import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.BessieEntity;
+import com.jdolphin.dmadditions.entity.ChristmasCreeperEntity;
 import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
 import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import com.jdolphin.dmadditions.entity.IceGovernessEntity;
@@ -82,6 +83,10 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<?>> SHOPPING_CART = registerAdventEntity(21, "shopping_cart",
 			() -> EntityType.Builder.of(ShoppingCartEntity::new, EntityClassification.MISC).sized(0.98F, 0.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
+
+	public static RegistryObject<EntityType<?>> CHRISTMAS_CREEPER = registerAdventEntity(10, "christmas_creeper",
+			() -> EntityType.Builder.of(ChristmasCreeperEntity::new, EntityClassification.MISC).sized(0.6F, 1.7F).clientTrackingRange(8)
+			.build((new ResourceLocation(DmAdditions.MODID, "christmas_creeper").toString())));
 
 	@Nullable 
 	protected static RegistryObject<EntityType<?>> registerAdventEntity(int date, String name, Supplier<EntityType<?>> supplier){

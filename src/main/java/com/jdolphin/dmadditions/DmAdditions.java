@@ -26,6 +26,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -163,6 +164,9 @@ public class DmAdditions {
 
 		if(DMAEntities.ICE_GOVERNESS != null)
 			event.put((EntityType<? extends LivingEntity>) DMAEntities.ICE_GOVERNESS.get(), IceGovernessEntity.createAttributes().build());
+
+		if(DMAEntities.CHRISTMAS_CREEPER != null)
+			event.put((EntityType<? extends LivingEntity>) DMAEntities.CHRISTMAS_CREEPER.get(), CreeperEntity.createAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
