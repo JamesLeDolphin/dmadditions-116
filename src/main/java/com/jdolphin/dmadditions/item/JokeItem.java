@@ -47,6 +47,8 @@ public class JokeItem extends Item {
 	}
 
 	public static void setJoke(ItemStack stack, Joke joke){
+		if(joke == null) return;
+
 		setJoke(stack, joke.question, joke.answer);
 	}
 
@@ -55,7 +57,11 @@ public class JokeItem extends Item {
 	}
 
 	public static Joke randomJoke(World world){
-		return jokes.get(world.random.nextInt(jokes.size()));
+		int size = jokes.size();
+
+		if(size <= 0) return null;
+
+		return jokes.get(random.nextInt(size));
 	}
 
 	@Override
