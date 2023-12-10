@@ -1,8 +1,18 @@
 package com.jdolphin.dmadditions.init;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
+import com.jdolphin.dmadditions.entity.ChristmasCreeperEntity;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
+
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -13,10 +23,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.*;
-import java.util.Map.Entry;
 
 public class DMASpawnerRegistry {
 	public static Map<ResourceLocation, DMASpawnerRegistry.SpawnInfo> spawns = new HashMap<>();
@@ -40,6 +48,11 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
+		}
+
+		if(DMAEntities.CHRISTMAS_CREEPER != null && AdventUnlock.isDecember()){
+			EntitySpawnPlacementRegistry.register((EntityType<ChristmasCreeperEntity>) DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
+			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
 		}
 
 	}
