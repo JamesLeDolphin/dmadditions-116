@@ -98,7 +98,7 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 
 		// joke
 		ItemStack joke = DMAItems.JOKE.get().getDefaultInstance();
-		JokeItem.setJoke(joke, JokeItem.randomJoke(world));
+		JokeItem.setJoke(joke, JokeItem.randomJoke());
 		contents.add(joke);
 
 		return contents;

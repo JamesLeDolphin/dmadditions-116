@@ -56,7 +56,7 @@ public class JokeItem extends Item {
 		setJoke(stack, joke[0], joke[1]);
 	}
 
-	public static Joke randomJoke(World world){
+	public static Joke randomJoke(){
 		int size = jokes.size();
 
 		if(size <= 0) return null;
