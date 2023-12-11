@@ -1,20 +1,19 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.jdolphin.dmadditions.jokes.Joke;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JokeItem extends Item {
 	public JokeItem(Properties properties) {
@@ -31,8 +30,8 @@ public class JokeItem extends Item {
 		CompoundNBT compoundnbt = stack.getTagElement("joke");
 		if(compoundnbt != null && compoundnbt.contains("question") && compoundnbt.contains("answer")){
 			return new Joke (
-				compoundnbt.get("question").toString(),
-				compoundnbt.get("answer").toString()
+				compoundnbt.getString("question"),
+				compoundnbt.getString("answer")
 			);
 		}
 		return new Joke (
