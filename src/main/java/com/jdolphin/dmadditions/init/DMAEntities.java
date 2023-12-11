@@ -90,6 +90,10 @@ public class DMAEntities {
 			() -> EntityType.Builder.of(ChristmasCreeperEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "christmas_creeper").toString())));
 
+	public static RegistryObject<EntityType<WhispermanEntity>> WHISPERMAN = registerAdventEntity(15, "whisperman",
+			() -> EntityType.Builder.of(WhispermanEntity::new, EntityClassification.MONSTER).sized(0.6f, 1.8f)
+			.build((new ResourceLocation(DmAdditions.MODID, "whisperman").toString())));
+
 	@Nullable 
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){
 		if(AdventUnlock.unlockAt(date)){

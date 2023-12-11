@@ -143,7 +143,6 @@ public class DmAdditions {
 		this.registerCommands(commandDispatcher);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
 		event.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
 		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
@@ -167,6 +166,9 @@ public class DmAdditions {
 
 		if(DMAEntities.CHRISTMAS_CREEPER != null)
 			event.put(DMAEntities.CHRISTMAS_CREEPER.get(), CreeperEntity.createAttributes().build());
+
+		if(DMAEntities.WHISPERMAN != null)
+			event.put(DMAEntities.WHISPERMAN.get(), WhispermanEntity.createAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
