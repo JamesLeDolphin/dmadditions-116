@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "CRC",
+    "SSS"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "C": {
+      "tag":"forge:circuits/basic"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "dmadditions:cloak_panel",
+    "count": 1
+  }
+}

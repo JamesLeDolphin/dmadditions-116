@@ -42,6 +42,8 @@ public class SplashesMixin {
 
 				add("Soon™");
 				add("We do a little hacking");
+				add("JAMES DID NOTHING WRONG!!!");
+				add("James was here");
 			}
 		};
 

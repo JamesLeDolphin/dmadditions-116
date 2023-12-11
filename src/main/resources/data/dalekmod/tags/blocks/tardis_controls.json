@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dmadditions:door_panel"
+    "dmadditions:door_panel",
+    "dmadditions:cloak_panel"
   ]
 }

@@ -15,21 +15,27 @@
 
 package com.jdolphin.dmadditions.mixin;
 
+import com.jdolphin.dmadditions.block.tardis.ITardisInvis;
 import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
+import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TardisTileEntity.class)
-public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase {
+public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity, ITardisInvis {
 
 	public TardisTileEntityMixin(TileEntityType<?> tileEntityTypeIn) { super(tileEntityTypeIn); }
 	private TardisTileEntity _this = ((TardisTileEntity)(Object)this);
 
 	public boolean open = false;
+	private boolean invisible = false;
 
 	@Inject(at = @At("TAIL"), method = "tick")
 	public void tick(CallbackInfo ci) {
@@ -39,6 +45,28 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 				this.open = exteriorOpen;
 				_this.tardisData.setDoorOpen(exteriorOpen);
 			}
+		}
+	}
+
+
+	public boolean isInvisible(){
+		return invisible;
+	};
+
+	@Override
+	public void setInvisible(boolean invisible) {
+		this.invisible = invisible;
+	}
+
+	@Inject(at=@At("HEAD"), method = "save", remap = true)
+	public void save(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir){
+		compound.putBoolean("Invisible", invisible);
+	}
+
+	@Inject(at=@At("HEAD"), method = "load", remap = true)
+	public void load(BlockState blockstate, CompoundNBT compound, CallbackInfo ci){
+		if (compound.contains("Invisible")) {
+			invisible = compound.getBoolean("Invisible");
 		}
 	}
 }
