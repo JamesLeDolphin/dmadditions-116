@@ -16,6 +16,7 @@ public class DMADalekType {
 	public static DalekType SWD = new DalekType("swd_dalek");
 	public static DalekType STEAMPUNK = new DalekType("steampunk_dalek");
 	public static DalekType GLASS = new DalekType("glass_dalek_with_mutant");
+	public static DalekType SESAME_STREET = new DalekType("sesame_street_dalek");
 
 
 	public String registryName;

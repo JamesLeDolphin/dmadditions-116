@@ -27,6 +27,7 @@ public class DMADalekRegistry {
 	public static IDalek STEAMPUNK;
 	public static IDalek SWD;
 	public static IDalek GLASS;
+	public static IDalek SESAME_STREET;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
@@ -46,6 +47,11 @@ public class DMADalekRegistry {
 		if (AdventUnlock.unlockAt(6)) {
 			GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
 			GLASS.addChild("glass_dalek_without_mutant");
+		}
+		if (AdventUnlock.unlockAt(20)) {
+			SESAME_STREET = addDalek(DMADalekType.SESAME_STREET, new CustomDalekBase("Sesame Street Dalek"), "sesame_street_dalek_red");
+			SESAME_STREET.addChild("sesame_street_dalek_yellow");
+			SESAME_STREET.addChild("sesame_street_dalek_emperor");
 		}
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);

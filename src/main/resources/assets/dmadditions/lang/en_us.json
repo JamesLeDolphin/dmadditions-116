@@ -259,5 +259,7 @@
 	"entity.dmadditions.christmas_creeper": "Christmas Creeper",
 
 	"item.dmadditions.scarf_red" : "4's Red Scarf",
-	"item.dmadditions.scarf_brown" : "4's Colorful Scarf"
+	"item.dmadditions.scarf_brown" : "4's Colorful Scarf",
+
+	"item.dalekmod.sesame_street_dalek_spawnder": "Sesame Street Daleks"
 }

@@ -44,6 +44,8 @@ public class SplashesMixin {
 				add("We do a little hacking");
 				add("JAMES DID NOTHING WRONG!!!");
 				add("James was here");
+				add("Torchwood is resposible for everything");
+				add("Don't trust Torchwood");
 			}
 		};
 
