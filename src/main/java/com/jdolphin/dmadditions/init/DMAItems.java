@@ -6,6 +6,7 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.ChristmasHatModel;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
+import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.item.*;
 import com.swdteam.common.init.DMItemTiers;
@@ -110,6 +111,48 @@ public class DMAItems {
 			@Override
 			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
 				if(armorType == EquipmentSlotType.LEGS) return true;
+				return super.canEquip(stack, armorType, entity);
+			}
+		}
+	);
+
+	public static RegistryObject<Item> SCARF_RED = registerAdventItem(13, "scarf_red",
+		() -> new ArmorItem(DMAArmorMaterial.SCARF, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
+			@Override
+			@OnlyIn(Dist.CLIENT)
+			public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+				return (A) new ScarfModel(1f);
+			}
+
+			@Override
+			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+				return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/scarf_red.png").toString();
+			}
+
+			@Override
+			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
+				if(armorType == EquipmentSlotType.CHEST) return true;
+				return super.canEquip(stack, armorType, entity);
+			}
+		}
+	);
+
+	public static RegistryObject<Item> SCARF_BROWN = registerAdventItem(13, "scarf_brown",
+		() -> new ArmorItem(DMAArmorMaterial.SCARF, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
+			@Override
+			@OnlyIn(Dist.CLIENT)
+			public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+				return (A) new ScarfModel(1f);
+			}
+
+			@Override
+			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+				return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/scarf_brown.png").toString();
+			}
+
+			@Override
+			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
+				if(armorType == EquipmentSlotType.CHEST) return true;
 				return super.canEquip(stack, armorType, entity);
 			}
 		}
