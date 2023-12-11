@@ -261,5 +261,6 @@
 	"item.dmadditions.scarf_red" : "4's Red Scarf",
 	"item.dmadditions.scarf_brown" : "4's Colorful Scarf",
 
-	"item.dalekmod.sesame_street_dalek_spawnder": "Sesame Street Daleks"
+	"item.dalekmod.sesame_street_dalek_spawner": "Sesame Street Daleks",
+	"item.dmadditions.top_hat": "Top Hat"
 }
