@@ -65,7 +65,7 @@ public class DMABlocks {
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
 		"christmas_lights", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> CLOAKING_PANEL = registerBlock(() ->
+	public static RegistryObject<Block> CLOAKING_PANEL = registerAdventBlock(22, () ->
 			new CloakPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
 		"cloak_panel", ItemGroup.TAB_BUILDING_BLOCKS);
 
