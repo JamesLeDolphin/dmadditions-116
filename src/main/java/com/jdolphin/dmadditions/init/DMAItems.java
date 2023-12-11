@@ -221,13 +221,13 @@ public class DMAItems {
 			() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0xda70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> SHOPPING_CART = registerAdventItem(21, "shopping_cart",
-		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
 	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
 	public static RegistryObject<Item> TW_SUV = ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
-			0, 0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+			0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
 	public static RegistryObject<Item> RPG = ITEMS.register("rpg",
 			() -> new GunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
