@@ -25,7 +25,6 @@ public class DMAEntityRenderRegistry {
 	public DMAEntityRenderRegistry() {
 	}
 
-	@SuppressWarnings({"rawtype", "unchecked"})
 	public static void registryEntityRenders() {
 		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
 
@@ -36,11 +35,11 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
-		registerRender((RegistryObject) DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
-		registerRender((RegistryObject) DMAEntities.RACNOSS, RacnossRenderer::new);
-		registerRender((RegistryObject) DMAEntities.SHOPPING_CART, ShoppingCartRenderer::new);
-		registerRender((RegistryObject) DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
-		registerRender((RegistryObject) DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
+		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
+		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
+		registerRender(DMAEntities.SHOPPING_CART, ShoppingCartRenderer::new);
+		registerRender(DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
+		registerRender(DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
 	}
 
 

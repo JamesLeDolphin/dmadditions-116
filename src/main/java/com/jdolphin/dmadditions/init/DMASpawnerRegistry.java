@@ -51,7 +51,7 @@ public class DMASpawnerRegistry {
 		}
 
 		if(DMAEntities.CHRISTMAS_CREEPER != null && AdventUnlock.isDecember()){
-			EntitySpawnPlacementRegistry.register((EntityType<ChristmasCreeperEntity>) DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
+			EntitySpawnPlacementRegistry.register(DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
 			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
 		}
 

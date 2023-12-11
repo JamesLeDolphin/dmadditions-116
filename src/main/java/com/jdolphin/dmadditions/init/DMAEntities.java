@@ -18,8 +18,10 @@ import com.jdolphin.dmadditions.entity.RacnossEntity;
 import com.jdolphin.dmadditions.entity.ShoppingCartEntity;
 import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
+import com.jdolphin.dmadditions.entity.WhispermanEntity;
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -63,7 +65,7 @@ public class DMAEntities {
 				() -> EntityType.Builder.of(TorchwoodSuvEntity::new, EntityClassification.MISC).sized(3F, 2F)
 					.build((new ResourceLocation(DmAdditions.MODID, "torchwood_suv")).toString()));
 
-	public static RegistryObject<EntityType<?>> FLYING_SHARK = registerAdventEntity(3, "flying_shark",
+	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = registerAdventEntity(3, "flying_shark",
 				() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
 					.sized(2F, 1F)
 					.setTrackingRange(80)
@@ -71,25 +73,25 @@ public class DMAEntities {
 					.setShouldReceiveVelocityUpdates(true)
 					.build(new ResourceLocation(DmAdditions.MODID, "flying_shark").toString()));
 
-	public static RegistryObject<EntityType<?>> ICE_GOVERNESS = registerAdventEntity(18, "ice_governess",
+	public static RegistryObject<EntityType<IceGovernessEntity>> ICE_GOVERNESS = registerAdventEntity(18, "ice_governess",
 			() -> EntityType.Builder.of(IceGovernessEntity::new, EntityClassification.MONSTER)
 			.sized(0.6f, 1.8f)
 			.build(new ResourceLocation(DmAdditions.MODID, "ice_governess").toString()));
 
-	public static RegistryObject<EntityType<?>> RACNOSS = registerAdventEntity(11, "racnoss", 
+	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = registerAdventEntity(11, "racnoss", 
 			() -> EntityType.Builder.of(RacnossEntity::new, EntityClassification.MONSTER).sized(3F, 2F)
 				.build((new ResourceLocation(DmAdditions.MODID, "racnoss")).toString()));
 
-	public static RegistryObject<EntityType<?>> SHOPPING_CART = registerAdventEntity(21, "shopping_cart",
+	public static RegistryObject<EntityType<ShoppingCartEntity>> SHOPPING_CART = registerAdventEntity(21, "shopping_cart",
 			() -> EntityType.Builder.of(ShoppingCartEntity::new, EntityClassification.MISC).sized(0.98F, 0.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
 
-	public static RegistryObject<EntityType<?>> CHRISTMAS_CREEPER = registerAdventEntity(12, "christmas_creeper",
+	public static RegistryObject<EntityType<ChristmasCreeperEntity>> CHRISTMAS_CREEPER = registerAdventEntity(12, "christmas_creeper",
 			() -> EntityType.Builder.of(ChristmasCreeperEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "christmas_creeper").toString())));
 
 	@Nullable 
-	protected static RegistryObject<EntityType<?>> registerAdventEntity(int date, String name, Supplier<EntityType<?>> supplier){
+	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){
 		if(AdventUnlock.unlockAt(date)){
 			return ENTITY_TYPES.register(name, supplier);
 		}
