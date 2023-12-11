@@ -50,7 +50,9 @@ public class WhispermanModel extends BipedModel<WhispermanEntity> implements IMo
 	protected void setupAttackAnimation(WhispermanEntity entity, float jeffery) {
 		super.setupAttackAnimation(entity, jeffery);
 
-		this.getArm(entity.isLeftHanded() ? HandSide.LEFT : HandSide.RIGHT).xRot = entity.isAggressive() ? -1.5f : 0;
+		if(entity.isAggressive()){
+			this.getArm(entity.isLeftHanded() ? HandSide.LEFT : HandSide.RIGHT).xRot = -1.5f;
+		}
 	}
 
 }
