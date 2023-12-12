@@ -140,6 +140,7 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> CHRISTMAS_CRACKER = registerAdventBlock (10, () -> new ChristmasCrackerBlock(AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion().dynamicShape().noCollission().sound(SoundType.WOOL)), "christmas_cracker");
 
+	public static RegistryObject<Block> MAGPIE_TELEVISION = registerAdventBlock(24, () -> new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), "magpie_television", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);
@@ -264,6 +265,10 @@ public class DMABlocks {
 			GREEN_BAUBLE_BLOCK,
 			RED_BAUBLE_BLOCK
 			//SANTA_BAUBLE_BLOCK
+		);
+
+		registerRenderTypes(RenderType.cutoutMipped(),
+			MAGPIE_TELEVISION
 		);
 
 		registerRenderTypes(RenderType.cutout(),
