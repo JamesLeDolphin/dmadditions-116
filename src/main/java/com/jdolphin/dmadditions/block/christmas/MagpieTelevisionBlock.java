@@ -14,18 +14,39 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class MagpieTelevisionBlock extends HorizontalBlock {
+	public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 5, 16, 13, 16);
+	public static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 11, 13, 16);
+	public static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 13, 11);
+	public static final VoxelShape SHAPE_WEST = Block.box(5, 0, 0, 16, 13, 16);
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
 	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 2);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
 	private boolean powered = false;
+
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+		switch (state.getValue(HorizontalBlock.FACING)) {
+            case EAST:
+				return SHAPE_EAST;
+			case SOUTH:
+				return SHAPE_SOUTH;
+			case WEST:
+				return SHAPE_WEST;
+			default:
+				return SHAPE_NORTH;
+		}
+	}
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
