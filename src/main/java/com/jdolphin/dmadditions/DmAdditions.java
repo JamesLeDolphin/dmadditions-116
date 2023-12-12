@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
+import com.jdolphin.dmadditions.block.christmas.MagpieTelevisionBlock;
 import com.jdolphin.dmadditions.client.DMAColorHandler;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
@@ -16,9 +17,11 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
+import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
+import com.swdteam.common.init.DMSonicRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -64,6 +67,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -105,6 +109,7 @@ public class DmAdditions {
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::entityAttributeEvent);
+		modEventBus.addListener(this::runLater);
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
 		// Register things
 		DMABlocks.BLOCKS.register(modEventBus);
@@ -341,4 +346,11 @@ public class DmAdditions {
 		event.addListener(new JokeReloadListener(GSON, "cracker_jokes"));
 	}
 
+	private void runLater(ParallelDispatchEvent event) {
+		if(DMABlocks.MAGPIE_TELEVISION != null){
+			event.enqueueWork(() -> {
+				DMSonicRegistry.SONIC_LOOKUP.put(DMABlocks.MAGPIE_TELEVISION.get(), new SonicMagpieTelevision());
+			});
+		}
+	}
 }

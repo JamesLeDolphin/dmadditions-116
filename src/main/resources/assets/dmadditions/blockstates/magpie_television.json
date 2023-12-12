@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "facing=east,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television",
+      "y": 90
+    },
+    "facing=north,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television"
+    },
+    "facing=south,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television",
+      "y": 180
+    },
+    "facing=west,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/doctor_who_60th",
+      "y": 90
+    },
+    "facing=north,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/doctor_who_60th"
+    },
+    "facing=south,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/doctor_who_60th",
+      "y": 180
+    },
+    "facing=west,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/doctor_who_60th",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/meow",
+      "y": 90
+    },
+    "facing=north,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/meow"
+    },
+    "facing=south,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/meow",
+      "y": 180
+    },
+    "facing=west,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/meow",
+      "y": 270
+    }
+  }
+}

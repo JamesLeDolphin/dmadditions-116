@@ -2,5 +2,7 @@
 	"item.dmadditions.scarf_brown" : "4's Colourful Scarf",
 
 	"entity.dmadditions.shopping_cart": "Shopping Trolley",
-	"item.dmadditions.shopping_cart": "Shopping Trolley"
+	"item.dmadditions.shopping_cart": "Shopping Trolley",
+
+	"block.dmadditions.magpie_television": "Magpie Electricals Telly"
 }
