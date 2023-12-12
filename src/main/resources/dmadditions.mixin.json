@@ -31,6 +31,7 @@
 		"DMEntityRenderRegistryMixin",
 		"DMTileRenderRegistryMixin",
 		"ModelDalekBaseMixin",
-		"SplashesMixin"
+		"SplashesMixin",
+		"ItemRenderingInitMixin"
 	]
 }
