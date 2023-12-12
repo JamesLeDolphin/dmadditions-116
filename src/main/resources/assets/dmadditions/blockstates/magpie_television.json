@@ -33,18 +33,18 @@
     },
 
     "facing=east,on=true,channel=1": {
-      "model": "dmadditions:block/magpie/meow",
+      "model": "dmadditions:block/magpie/doctor_dalek",
       "y": 90
     },
     "facing=north,on=true,channel=1": {
-      "model": "dmadditions:block/magpie/meow"
+      "model": "dmadditions:block/magpie/doctor_dalek"
     },
     "facing=south,on=true,channel=1": {
-      "model": "dmadditions:block/magpie/meow",
+      "model": "dmadditions:block/magpie/doctor_dalek",
       "y": 180
     },
     "facing=west,on=true,channel=1": {
-      "model": "dmadditions:block/magpie/meow",
+      "model": "dmadditions:block/magpie/doctor_dalek",
       "y": 270
     },
 
