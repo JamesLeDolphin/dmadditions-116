@@ -23,7 +23,7 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
-	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 1);
+	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 2);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
 	private boolean powered = false;
 	@Override
@@ -73,3 +73,6 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 //directory which parents from magpie_television.json and overrides the "channel"
 //texture, then copy the blockstates used for each channel but change what number
 //channel is at and set the model to your channel's model
+
+//For animated channels make an animated texture with each frame as 64x64. Keep in mind
+//you can only really go up to 20fps.

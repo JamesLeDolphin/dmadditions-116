@@ -46,6 +46,22 @@
     "facing=west,on=true,channel=1": {
       "model": "dmadditions:block/magpie/meow",
       "y": 270
+    },
+
+    "facing=east,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber",
+      "y": 90
+    },
+    "facing=north,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber"
+    },
+    "facing=south,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber",
+      "y": 180
+    },
+    "facing=west,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber",
+      "y": 270
     }
   }
 }
