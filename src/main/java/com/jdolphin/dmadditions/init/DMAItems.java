@@ -217,8 +217,10 @@ public class DMAItems {
 
 	public static RegistryObject<Item> RACNOSS_SPAWNER = registerAdventItem(11, "racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS::get, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = registerAdventItem(12, "christmas_creeper_spawner", 
-			() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0xda70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> SYCORAX_STAFF = registerAdventItem(14, "sycorax_staff", () -> new SycoraxStaffItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = registerAdventItem(12, "christmas_creeper_spawner",
+			() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0xda70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC).fireResistant().stacksTo(1)));
 
 	public static RegistryObject<Item> SHOPPING_CART = registerAdventItem(21, "shopping_cart",
 		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
