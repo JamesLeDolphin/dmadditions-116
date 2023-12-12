@@ -1,11 +1,10 @@
 package com.jdolphin.dmadditions.block.christmas;
 
-import com.jdolphin.dmadditions.init.DMASoundEvents;
-import com.swdteam.common.item.DataModuleItem;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
@@ -20,10 +19,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 public class MagpieTelevisionBlock extends HorizontalBlock {
 	public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 5, 16, 13, 16);
@@ -33,7 +29,7 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
-	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 2);
+	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 3);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
 	private boolean powered = false;
 
