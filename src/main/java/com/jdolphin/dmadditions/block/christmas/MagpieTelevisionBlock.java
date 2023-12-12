@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.block.christmas;
 
+import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.swdteam.common.item.DataModuleItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +13,8 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -69,6 +72,7 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 
 		if (!world.isClientSide && handIn == Hand.MAIN_HAND && player.getItemInHand(handIn).isEmpty() && state.getValue(ON)){
 			world.setBlockAndUpdate(pos, state.cycle(CHANNEL));
+			world.playSound(null, pos, SoundEvents.CAT_HISS, SoundCategory.BLOCKS, 0.2f, 20f);
 			return ActionResultType.SUCCESS;
 		}
 
