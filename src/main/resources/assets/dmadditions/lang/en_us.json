@@ -250,6 +250,9 @@
 	"entity.dmadditions.racnoss": "Racnoss",
 	"item.dmadditions.racnoss_spawner": "Racnoss Spawner",
 
+	"entity.dmaddiitons.whisperman": "Whisperman",
+	"item.dmadditions.whisperman_spawner": "Whisperman Spawner",
+
 	"block.dmadditions.christmas_cracker": "Christmas Cracker",
 	"tooltip.item.dmadditions.christmas_cracker": "Open to reveal a surprise!",
 	"item.dmadditions.christmas_hat" : "Christmas Hat",
