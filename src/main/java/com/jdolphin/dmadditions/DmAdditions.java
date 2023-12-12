@@ -1,34 +1,62 @@
 package com.jdolphin.dmadditions;
 
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.function.Supplier;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
-import com.jdolphin.dmadditions.block.christmas.MagpieTelevisionBlock;
-import com.jdolphin.dmadditions.client.DMAColorHandler;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
-import com.jdolphin.dmadditions.commands.*;
+import com.jdolphin.dmadditions.commands.CommandSit;
+import com.jdolphin.dmadditions.commands.GameModeCommand;
+import com.jdolphin.dmadditions.commands.GodCommand;
+import com.jdolphin.dmadditions.commands.TeleportCommand;
+import com.jdolphin.dmadditions.commands.ToggleModeCommand;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
-import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.entity.BessieEntity;
+import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
+import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
+import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
+import com.jdolphin.dmadditions.entity.PilotFishEntity;
+import com.jdolphin.dmadditions.entity.RacnossEntity;
+import com.jdolphin.dmadditions.entity.ShoppingCartEntity;
+import com.jdolphin.dmadditions.entity.SnowmanEntity;
+import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
+import com.jdolphin.dmadditions.entity.WhispermanEntity;
+import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
-import com.jdolphin.dmadditions.init.*;
+import com.jdolphin.dmadditions.init.DMABiomes;
+import com.jdolphin.dmadditions.init.DMABlockEntities;
+import com.jdolphin.dmadditions.init.DMABlocks;
+import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMAFluids;
+import com.jdolphin.dmadditions.init.DMAItems;
+import com.jdolphin.dmadditions.init.DMALootConditionManager;
+import com.jdolphin.dmadditions.init.DMAProjectiles;
+import com.jdolphin.dmadditions.init.DMASoundEvents;
+import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
+import com.jdolphin.dmadditions.init.DMAStructures;
+import com.jdolphin.dmadditions.init.DMAWorldCarvers;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.init.DMSonicRegistry;
+
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.RegistryKey;
@@ -42,6 +70,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.carver.WorldCarver;
+import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -69,14 +98,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import net.minecraft.world.gen.feature.StructureFeature;
-
-
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.function.Supplier;
 
 
 
@@ -166,8 +187,8 @@ public class DmAdditions {
 		if(DMAEntities.SHOPPING_CART != null)
 			event.put(DMAEntities.SHOPPING_CART.get(), ShoppingCartEntity.setCustomAttributes().build());
 
-		if(DMAEntities.ICE_GOVERNESS != null)
-			event.put(DMAEntities.ICE_GOVERNESS.get(), IceGovernessEntity.createAttributes().build());
+// 		if(DMAEntities.ICE_GOVERNESS != null)
+// 			event.put(DMAEntities.ICE_GOVERNESS.get(), IceGovernessEntity.createAttributes().build());
 
 		if(DMAEntities.CHRISTMAS_CREEPER != null)
 			event.put(DMAEntities.CHRISTMAS_CREEPER.get(), CreeperEntity.createAttributes().build());

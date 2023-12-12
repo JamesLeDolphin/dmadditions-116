@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.client.render.entity.BessieRenderer;
 import com.jdolphin.dmadditions.client.render.entity.ChristmasCreeperRenderer;
 import com.jdolphin.dmadditions.client.render.entity.ChristmasTreeRenderer;
 import com.jdolphin.dmadditions.client.render.entity.FlyingSharkRenderer;
-import com.jdolphin.dmadditions.client.render.entity.IceGovernessRenderer;
 import com.jdolphin.dmadditions.client.render.entity.JamesLeDolphinRenderer;
 import com.jdolphin.dmadditions.client.render.entity.RacnossRenderer;
 import com.jdolphin.dmadditions.client.render.entity.RenderPilotFish;
@@ -39,7 +38,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
 		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
 		registerRender(DMAEntities.SHOPPING_CART, ShoppingCartRenderer::new);
-		registerRender(DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
+// 		registerRender(DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
 		registerRender(DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
 		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
 	}
