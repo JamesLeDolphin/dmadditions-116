@@ -2,15 +2,15 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"channel": "dmadditions:block/advent/tv_channels/off",
 		"2": "dmadditions:block/advent/magpie_television",
-		"particle": "dmadditions:block/advent/magpie_television"
+		"particle": "dmadditions:block/advent/magpie_television",
+		"channel": "dmadditions:block/advent/tv_channels/off"
 	},
 	"elements": [
 		{
-			"from": [2, 2, 6],
-			"to": [14, 11, 6],
-			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 6]},
+			"from": [2, 2, 3.5],
+			"to": [14, 11, 3.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 5.5]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 12], "texture": "#channel"},
 				"east": {"uv": [0, 0, 0, 25.3125], "texture": "#channel"},
@@ -21,9 +21,9 @@
 			}
 		},
 		{
-			"from": [0, 0, 5],
-			"to": [2, 13, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 5]},
+			"from": [0, 0, 2.5],
+			"to": [2, 13, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 4.5]},
 			"faces": {
 				"north": {"uv": [11.5, 6.5, 12, 9.75], "texture": "#2"},
 				"east": {"uv": [6, 6.5, 8.5, 9.75], "texture": "#2"},
@@ -34,9 +34,9 @@
 			}
 		},
 		{
-			"from": [0, 0, 15],
-			"to": [16, 13, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 15]},
+			"from": [0, 0, 12.5],
+			"to": [16, 13, 13.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 14.5]},
 			"faces": {
 				"north": {"uv": [0.25, 3.25, 4.25, 6.5], "texture": "#2"},
 				"east": {"uv": [0, 3.25, 0.25, 6.5], "texture": "#2"},
@@ -47,9 +47,9 @@
 			}
 		},
 		{
-			"from": [14, 0, 5],
-			"to": [16, 13, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [14, 0, 5]},
+			"from": [14, 0, 2.5],
+			"to": [16, 13, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 0, 4.5]},
 			"faces": {
 				"north": {"uv": [8.5, 6.5, 9, 9.75], "texture": "#2"},
 				"east": {"uv": [6, 6.5, 8.5, 9.75], "texture": "#2"},
@@ -60,9 +60,9 @@
 			}
 		},
 		{
-			"from": [2, 0, 5],
-			"to": [14, 2, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [14, 0, 5]},
+			"from": [2, 0, 2.5],
+			"to": [14, 2, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 0, 4.5]},
 			"faces": {
 				"north": {"uv": [2.5, 2.5, 5.5, 3], "texture": "#2"},
 				"east": {"uv": [0, 2.5, 2.5, 3], "texture": "#2"},
@@ -73,9 +73,9 @@
 			}
 		},
 		{
-			"from": [2, 11, 5],
-			"to": [14, 13, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [14, 11, 5]},
+			"from": [2, 11, 2.5],
+			"to": [14, 13, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 11, 4.5]},
 			"faces": {
 				"north": {"uv": [8, 2.5, 11, 3], "texture": "#2"},
 				"east": {"uv": [0, 2.5, 2.5, 3], "texture": "#2"},
@@ -86,9 +86,9 @@
 			}
 		},
 		{
-			"from": [4.9, 12.9, 7.9],
-			"to": [5.1, 20.1, 10.1],
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [5, 13, 8]},
+			"from": [4.9, 12.9, 6.9],
+			"to": [5.1, 20.1, 9.1],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [5, 13, 7]},
 			"faces": {
 				"north": {"uv": [0.5, 0.5, 0.5, 2.25], "texture": "#2"},
 				"east": {"uv": [0, 0.5, 0.5, 2.25], "texture": "#2"},
@@ -99,9 +99,9 @@
 			}
 		},
 		{
-			"from": [10.9, 12.9, 7.9],
-			"to": [11.1, 20.1, 10.1],
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [11, 13, 8]},
+			"from": [10.9, 12.9, 6.9],
+			"to": [11.1, 20.1, 9.1],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [11, 13, 7]},
 			"faces": {
 				"north": {"uv": [0.5, 0.5, 0.5, 2.25], "texture": "#2"},
 				"east": {"uv": [0, 0.5, 0.5, 2.25], "texture": "#2"},
@@ -112,7 +112,6 @@
 			}
 		}
 	],
-	"display": {},
 	"groups": [
 		{
 			"name": "screen",

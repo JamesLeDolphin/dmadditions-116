@@ -22,10 +22,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class MagpieTelevisionBlock extends HorizontalBlock {
-	public static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 5, 16, 13, 16);
-	public static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 11, 13, 16);
-	public static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 13, 11);
-	public static final VoxelShape SHAPE_WEST = Block.box(5, 0, 0, 16, 13, 16);
+	public static final VoxelShape SHAPE_NS = Block.box(0, 0, 2.5, 16, 13, 13.5);
+	public static final VoxelShape SHAPE_EW = Block.box(2.5, 0, 0, 13.5, 13, 16);
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
@@ -37,13 +35,10 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
 		switch (state.getValue(HorizontalBlock.FACING)) {
             case EAST:
-				return SHAPE_EAST;
-			case SOUTH:
-				return SHAPE_SOUTH;
-			case WEST:
-				return SHAPE_WEST;
-			default:
-				return SHAPE_NORTH;
+            case WEST:
+                return SHAPE_EW;
+            default:
+				return SHAPE_NS;
 		}
 	}
 	@Override
