@@ -27,7 +27,7 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
-	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 3);
+	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 4);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
 	private boolean powered = false;
 
