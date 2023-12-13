@@ -1,11 +1,9 @@
 package com.jdolphin.dmadditions.item;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
@@ -15,10 +13,9 @@ public class SycoraxStaffItem extends Item {
 	}
 
 	@Override
-	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-		this.spawnParticles(world, playerEntity.getEyePosition(1).add(playerEntity.getForward().multiply(3, 1, 3)));
-
-		return super.use(world, playerEntity, hand);
+	public ActionResultType useOn(ItemUseContext context) {
+		this.spawnParticles(context.getPlayer().level, context.getClickLocation());
+		return super.useOn(context);
 	}
 
 	private void spawnParticles(World world, Vector3d position) {
