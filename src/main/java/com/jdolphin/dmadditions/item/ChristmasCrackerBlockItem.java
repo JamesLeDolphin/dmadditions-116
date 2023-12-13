@@ -33,7 +33,7 @@ public class ChristmasCrackerBlockItem extends BlockItem {
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-		if(!world.isClientSide) ChristmasCrackerBlock.openCracker(world, player.getEyePosition(1).add(player.getForward()));
+		if(!world.isClientSide) ChristmasCrackerBlock.openCracker(world, player.getEyePosition(1).add(player.getLookAngle()));
 		ItemStack item = player.getItemInHand(hand);
 		item.shrink(1);
 		return ActionResult.consume(item);
