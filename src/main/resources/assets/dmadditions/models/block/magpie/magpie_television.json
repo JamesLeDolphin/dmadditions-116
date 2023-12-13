@@ -3,7 +3,7 @@
 	"texture_size": [96, 96],
 	"textures": {
 		"2": "dmadditions:block/advent/magpie_television",
-		"particle": "dmadditions:block/advent/magpie_television",
+		"particle": "minecraft:block/barrel_bottom",
 		"channel": "dmadditions:block/advent/tv_channels/off"
 	},
 	"elements": [

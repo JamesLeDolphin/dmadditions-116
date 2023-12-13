@@ -29,7 +29,7 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 	}
 	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 4);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
-	private boolean powered = false;
+	public static final BooleanProperty POWERED = BooleanProperty.create("powered");
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
@@ -46,6 +46,7 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 		builder.add(FACING);
 		builder.add(CHANNEL);
 		builder.add(ON);
+		builder.add(POWERED);
 		super.createBlockStateDefinition(builder);
 	}
 
@@ -55,7 +56,8 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 		return this.defaultBlockState()
 			.setValue(FACING, context.getHorizontalDirection().getOpposite())
 			.setValue(CHANNEL, 0)
-			.setValue(ON, false);
+			.setValue(ON, false)
+			.setValue(POWERED, false);
 	}
 
 	@Override
@@ -74,11 +76,14 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 		if (!world.isClientSide) {
 			boolean nPower = world.hasNeighborSignal(blockPos);
 
-			if(powered != nPower && nPower){
-				world.setBlockAndUpdate(blockPos, state.cycle(ON));
+			if(state.getValue(POWERED) != nPower) {
+				if(nPower){
+					world.setBlockAndUpdate(blockPos, state.cycle(ON).setValue(POWERED, true));
+				}
+				else{
+					world.setBlockAndUpdate(blockPos, state.setValue(POWERED, false));
+				}
 			}
-
-			powered = nPower;
 		}
 	}
 
