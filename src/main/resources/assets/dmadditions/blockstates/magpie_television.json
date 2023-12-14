@@ -17,18 +17,18 @@
     },
 
     "facing=east,on=true,channel=0": {
-      "model": "dmadditions:block/magpie/doctor_who_60th",
+      "model": "dmadditions:block/magpie/intro",
       "y": 90
     },
     "facing=north,on=true,channel=0": {
-      "model": "dmadditions:block/magpie/doctor_who_60th"
+      "model": "dmadditions:block/magpie/intro"
     },
     "facing=south,on=true,channel=0": {
-      "model": "dmadditions:block/magpie/doctor_who_60th",
+      "model": "dmadditions:block/magpie/intro",
       "y": 180
     },
     "facing=west,on=true,channel=0": {
-      "model": "dmadditions:block/magpie/doctor_who_60th",
+      "model": "dmadditions:block/magpie/intro",
       "y": 270
     },
 
