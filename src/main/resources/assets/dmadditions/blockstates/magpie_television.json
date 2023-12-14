@@ -94,6 +94,22 @@
     "facing=west,on=true,channel=4": {
       "model": "dmadditions:block/magpie/stooky",
       "y": 270
+    },
+
+    "facing=east,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard",
+      "y": 90
+    },
+    "facing=north,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard"
+    },
+    "facing=south,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard",
+      "y": 180
+    },
+    "facing=west,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard",
+      "y": 270
     }
   }
 }

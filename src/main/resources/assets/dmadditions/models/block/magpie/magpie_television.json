@@ -3,8 +3,8 @@
 	"texture_size": [96, 96],
 	"textures": {
 		"2": "dmadditions:block/advent/magpie_television",
-		"particle": "minecraft:block/barrel_bottom",
-		"channel": "dmadditions:block/advent/tv_channels/off"
+		"channel": "dmadditions:block/advent/tv_channels/off",
+		"particle": "block/barrel_bottom"
 	},
 	"elements": [
 		{
@@ -112,6 +112,34 @@
 			}
 		}
 	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"firstperson_righthand": {
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"ground": {
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"gui": {
+			"rotation": [0, 180, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"head": {
+			"translation": [0, 1.25, 0.75],
+			"scale": [1.1, 1.1, 1.1]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
 	"groups": [
 		{
 			"name": "screen",
