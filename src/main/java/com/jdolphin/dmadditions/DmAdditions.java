@@ -186,6 +186,9 @@ public class DmAdditions {
 
 		if(DMAEntities.SHOPPING_CART != null)
 			event.put(DMAEntities.SHOPPING_CART.get(), ShoppingCartEntity.setCustomAttributes().build());
+		
+		if(DMAEntities.TWA_TANK != null)
+			event.put(DMAEntities.TWA_TANK.get(), ShoppingCartEntity.setCustomAttributes().build());
 
 // 		if(DMAEntities.ICE_GOVERNESS != null)
 // 			event.put(DMAEntities.ICE_GOVERNESS.get(), IceGovernessEntity.createAttributes().build());
