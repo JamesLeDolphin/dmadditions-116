@@ -86,9 +86,9 @@ public class DMAEntities {
 			() -> EntityType.Builder.of(ShoppingCartEntity::new, EntityClassification.MISC).sized(0.98F, 0.7F).clientTrackingRange(8)
 			.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
 
-	public static RegistryObject<EntityType<TankEntity>> TWA_TANK = registerAdventEntity(21, "twa_tank",
+	public static RegistryObject<EntityType<TankEntity>> TORCHWOOD_TANK = registerAdventEntity(21, "torchwood_tank",
 			() -> EntityType.Builder.of(TankEntity::new, EntityClassification.MISC).sized(1f, 1f).clientTrackingRange(8)
-			.build((new ResourceLocation(DmAdditions.MODID, "tank")).toString()));
+			.build((new ResourceLocation(DmAdditions.MODID, "torchwood_tank")).toString()));
 
 	public static RegistryObject<EntityType<ChristmasCreeperEntity>> CHRISTMAS_CREEPER = registerAdventEntity(12, "christmas_creeper",
 			() -> EntityType.Builder.of(ChristmasCreeperEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8)

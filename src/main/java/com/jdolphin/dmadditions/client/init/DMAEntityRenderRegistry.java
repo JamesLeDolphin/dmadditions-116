@@ -42,7 +42,7 @@ public class DMAEntityRenderRegistry {
 // 		registerRender(DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
 		registerRender(DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
 		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
-		registerRender(DMAEntities.TWA_TANK, TankRenderer::new);
+		registerRender(DMAEntities.TORCHWOOD_TANK, TankRenderer::new);
 	}
 
 

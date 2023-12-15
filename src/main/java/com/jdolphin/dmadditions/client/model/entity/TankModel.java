@@ -45,7 +45,7 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/twa_tank.json"));
+		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/torchwood_tank.json"));
 		ModelWrapper modelWrapper = model.getModelData().getModel();
 		this.upperBody = modelWrapper.getPart("Upperbody"); //TODO: maybe put all body parts into one group
 		this.lowerBody = modelWrapper.getPart("Lowerbody");
