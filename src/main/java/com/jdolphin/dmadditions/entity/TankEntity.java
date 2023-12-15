@@ -36,6 +36,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	private TankPartEntity[] subEntities;
 	public final double[][] positions = new double[64][3];
 	public int posPointer = -1;
+	public float turretRot;
 
 	@Deprecated
 	public Optional<TankPartEntity> getPart(String name){
@@ -57,6 +58,8 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 			@Override
 			public void tick() { }
 		};
+
+		this.turretRot = this.yHeadRot;
 	}
 
 	@Override
@@ -114,10 +117,11 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		if(this.isVehicle() && this.canBeSteered()){
 			LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
 //  			this.yRot = livingentity.yRot;
-// 			this.yRotO = this.yRot;
+ 			this.yRotO = this.yRot;
 			this.xRot = livingentity.xRot * 0.5F;
-// 			this.setRot(this.yRot, this.xRot);
-// 			this.yBodyRot = this.yRot;
+ 			this.setRot(this.yRot, this.xRot);
+ 			this.yBodyRot = this.yRot;
+			this.yHeadRot = this.yBodyRot;
 
 			float f1 = livingentity.zza;
 
@@ -134,13 +138,15 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 
 			if(f1 > 0.0F) {
 				this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, 0, 0.2F * f3));
-				if(livingentity.xxa != 0) this.yRot -= livingentity.xxa * 2;
-			}else if(f1 < 0.0f){
+			}
+			if(f1 < 0.0f){
 				this.setDeltaMovement(this.getDeltaMovement().add(0.2F * f2, 0, -0.2F * f3));
 				if(livingentity.xxa != 0) this.yRot += livingentity.xxa * 2;
+			}else{
+				if(livingentity.xxa != 0) this.yRot -= livingentity.xxa * 2;
 			}
 
- 			this.yHeadRot = (float) Math.toRadians(livingentity.yRot);
+ 			this.turretRot = (float) Math.toRadians(livingentity.yHeadRot);
 
 			// this.setDeltaMovement(this.getDeltaMovement().add(0, 0, f1));
 		}
@@ -176,14 +182,14 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	}
 
 	@Override
-	public void positionRider(Entity entity) {
+	public void positionRider(Entity entity) { //FIXME
 		if (this.hasPassenger(entity)) {
 			float forwardOffset = -1f;
 			float leftOffset = -1f;
 			float verticalOffset = 1f;
 
 			float f1 = (float) ((!this.isAlive() ? 0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset() + verticalOffset);
-			Vector3d vector3d = (new Vector3d(forwardOffset, 0.0D, leftOffset)).yRot(-this.yHeadRot * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
+			Vector3d vector3d = (new Vector3d(forwardOffset, 0.0D, leftOffset)).yRot(-this.turretRot * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
 			entity.setPos(this.getX() + vector3d.x, this.getY() + (double) f1, this.getZ() + vector3d.z);
 		}
 	}
@@ -237,7 +243,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		float tankYaw = this.yRot * ((float) Math.PI / 180F);
 		float tankPitch = this.xRot * ((float) Math.PI / 180F);
 
-		float turretYaw = this.yHeadRot;
+		float turretYaw = this.turretRot;
 
 		// Movement factors
 		float cosYaw = MathHelper.cos(tankYaw);

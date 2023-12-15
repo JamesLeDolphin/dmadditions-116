@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import static com.jdolphin.dmadditions.DmAdditions.MODID;
+
 import com.google.common.collect.ImmutableSet;
 import com.jdolphin.dmadditions.entity.TankEntity;
 import com.swdteam.client.model.IModelPartReloader;
@@ -12,7 +13,6 @@ import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
 
 public class TankModel<T extends TankEntity> extends SegmentedModel<T> implements IModelPartReloader{
 
@@ -74,14 +74,13 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 	}
 
 	@Override
-	public void setupAnim(TankEntity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_,
+	public void setupAnim(TankEntity entity, float p_225597_2_, float p_225597_3_, float p_225597_4_,
 			float p_225597_5_, float p_225597_6_) {
 
-		Vector3d deltaMovement = p_225597_1_.getDeltaMovement();
+		this.turret.yRot = entity.turretRot - (float) Math.toRadians(entity.yRot);
 
-		if(deltaMovement.x() == 0 && deltaMovement.z() == 0){
-			this.turret.yRot = p_225597_1_.yHeadRot;
-		}
+// 		Minecraft minecraft = Minecraft.getInstance();
+// 		ChatUtil.sendMessageToPlayer(minecraft.player, String.format("%s", entity.turretRot), MessageType.STATUS_BAR);
 
 	}
 
