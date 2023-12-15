@@ -69,7 +69,6 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 		return ImmutableSet.of(upperBody, lowerBody, mainBody, 
 				sideLadders, 
 				wheels, 
-				fence, 
 				turret);
 	}
 

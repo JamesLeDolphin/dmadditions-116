@@ -182,15 +182,15 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	}
 
 	@Override
-	public void positionRider(Entity entity) { //FIXME
+	public void positionRider(Entity entity) { 
 		if (this.hasPassenger(entity)) {
-			float forwardOffset = -1f;
-			float leftOffset = -1f;
-			float verticalOffset = 1f;
+			float forwardOffset = 1f;
+			float leftOffset = 0.5f;
+			float verticalOffset = -1f;
 
 			float f1 = (float) ((!this.isAlive() ? 0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset() + verticalOffset);
-			Vector3d vector3d = (new Vector3d(forwardOffset, 0.0D, leftOffset)).yRot(-this.turretRot * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
-			entity.setPos(this.getX() + vector3d.x, this.getY() + (double) f1, this.getZ() + vector3d.z);
+			Vector3d vector3d = (new Vector3d(forwardOffset, 0.0D, leftOffset)).yRot(-this.turretRot);
+			entity.setPos(this.turret.getX() + vector3d.x, this.turret.getY() + (double) f1, this.turret.getZ() + vector3d.z);
 		}
 	}
 
@@ -256,7 +256,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		float f15 = (float)(this.getLatencyPos(5, 1.0F)[1] - this.getLatencyPos(10, 1.0F)[1]) * 10.0F * ((float)Math.PI / 180F);
 
 		movePart(this.turretBarrel, -turretSinYaw, 3.5, turretCosYaw, 4.5f);
-		movePart(this.turret, turretSinYaw, 2, -turretCosYaw, 1.5f);
+		movePart(this.turret, -sinYaw, 2, cosYaw, -1.5f);
 		movePart(this.bodyFront, -sinYaw, 0, cosYaw, 1f);
 		movePart(this.bodyBack, sinYaw, 0, -cosYaw, 4f);
 
