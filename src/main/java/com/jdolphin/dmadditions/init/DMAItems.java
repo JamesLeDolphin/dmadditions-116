@@ -226,7 +226,10 @@ public class DMAItems {
 			() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN::get, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 
 	public static RegistryObject<Item> SHOPPING_CART = registerAdventItem(21, "shopping_cart",
-		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
+		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+
+	public static RegistryObject<Item> TORCHWOOD_TANK = registerAdventItem(21, "torchwood_tank",
+		() -> new DMASpawnerItem<>("torchwood_tank", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
