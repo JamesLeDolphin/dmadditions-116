@@ -201,10 +201,12 @@
 
 	"entity.dmadditions.bessie": "Bessie",
 	"entity.dmadditions.torchwood_suv": "Torchwood SUV",
+	"entity.dmadditions.torchwood_tank": "Torchwood Tank",
 	"entity.dmadditions.shopping_cart": "Shopping Cart",
 
 	"item.dmadditions.bessie": "Bessie",
 	"item.dmadditions.torchwood_suv": "Torchwood SUV",
+	"item.dmadditions.torchwood_tank": "Torchwood Tank",
 	"item.dmadditions.shopping_cart": "Shopping Cart",
 
 	"item.dmadditions.matts_pink_thong": "Matt's Pink Thong",
