@@ -5,6 +5,11 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import com.swdteam.common.entity.LaserEntity;
+import com.swdteam.common.init.DMProjectiles;
+import com.swdteam.common.init.DMProjectiles.Laser;
+import com.swdteam.common.init.DMSoundEvents;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.PointOfView;
 import net.minecraft.entity.Entity;
@@ -14,16 +19,20 @@ import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -37,6 +46,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	public final double[][] positions = new double[64][3];
 	public int posPointer = -1;
 	public float turretRot;
+	protected Laser laserType = DMProjectiles.EXPLOSIVE_LASER; //TODO make this changeable
 
 	@Deprecated
 	public Optional<TankPartEntity> getPart(String name){
@@ -210,16 +220,28 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	}
 
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void onPlayerJump(int p_110206_1_) {
 	}
 
 	@Override
 	public boolean canJump() {
-		return false;
+		return true; //TODO add cooldown or something
 	}
 
 	@Override
-	public void handleStartJump(int p_184775_1_) {
+	public void handleStartJump(int p_184775_1_) { //possible TODO: use mouse buttons or something instead of jumping lol
+		if(level instanceof ServerWorld){
+			level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), DMSoundEvents.ITEM_GUN_SHOOT.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+
+			LaserEntity laser = new LaserEntity(this.level, this, 0.0F, (float) this.getAttributes().getValue(Attributes.ATTACK_DAMAGE));
+			laser.setLaserType(this.laserType);
+			laser.setEmitsSmoke(true);
+			laser.setDamageSource(new EntityDamageSource("dalekgun", this.getControllingPassenger()));
+			laser.moveTo(turret.getPosition(1).add(0, 1, 0)); //FIXME positioning or something
+			laser.shoot(turret, this.turret.xRot /* TODO add x rotation */, (float) Math.toDegrees(turretRot), 0.0F, 2.5F, 0.0F);
+			this.level.addFreshEntity(laser);
+		}
 	}
 
 	@Override
