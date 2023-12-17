@@ -14,7 +14,7 @@ public class JoinServerEvent {
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerLoggedInEvent event) {
 		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-		if (player.connection.connection.getRemoteAddress().toString().equals("dmu.swdteam.co.uk:25565")) {
+		if (player.getServer().getLocalIp().equals("dmu.swdteam.co.uk:25565")) {
 			player.connection.disconnect(new StringTextComponent("Please remove DMA before joining DMU"));
 			player.connection.connection.handleDisconnection();
 			event.setCanceled(true);
