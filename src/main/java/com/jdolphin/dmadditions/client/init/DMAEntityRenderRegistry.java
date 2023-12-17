@@ -1,19 +1,7 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.client.render.entity.BessieRenderer;
-import com.jdolphin.dmadditions.client.render.entity.ChristmasCreeperRenderer;
-import com.jdolphin.dmadditions.client.render.entity.ChristmasTreeRenderer;
-import com.jdolphin.dmadditions.client.render.entity.FlyingSharkRenderer;
-import com.jdolphin.dmadditions.client.render.entity.JamesLeDolphinRenderer;
-import com.jdolphin.dmadditions.client.render.entity.RacnossRenderer;
-import com.jdolphin.dmadditions.client.render.entity.RenderPilotFish;
-import com.jdolphin.dmadditions.client.render.entity.RenderSnowman;
-import com.jdolphin.dmadditions.client.render.entity.ShoppingCartRenderer;
-import com.jdolphin.dmadditions.client.render.entity.TankRenderer;
-import com.jdolphin.dmadditions.client.render.entity.TorchwoodSuvRenderer;
-import com.jdolphin.dmadditions.client.render.entity.WhispermanRenderer;
-import com.jdolphin.dmadditions.client.render.entity.WoodenCybermanRenderer;
+import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.init.DMAEntities;
 
 import net.minecraft.entity.Entity;
@@ -43,6 +31,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
 		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
 		registerRender(DMAEntities.TORCHWOOD_TANK, TankRenderer::new);
+		registerRender(DMAEntities.KANTROFARRI, KantrofarriRenderer::new);
 	}
 
 

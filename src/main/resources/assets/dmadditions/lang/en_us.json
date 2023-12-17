@@ -273,5 +273,9 @@
 	"item.dalekmod.sesame_street_dalek_spawner": "Sesame Street Dalek Spawner",
 
 	"item.dmadditions.top_hat": "Top Hat",
-	"item.dmadditions.sycorax_staff": "Sycorax Staff"
+	"item.dmadditions.sycorax_staff": "Sycorax Staff",
+
+	"item.dmadditions.kantrofarri_spawner": "Kantrofarri Spawner",
+	"entity.dmadditions.kantrofarri": "Kantrofarri",
+	"death.attack.kantrofarri": "%1$s had a pleasant dream"
 }

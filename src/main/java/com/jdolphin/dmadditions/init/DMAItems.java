@@ -224,7 +224,8 @@ public class DMAItems {
 
 	public static RegistryObject<Item> WHISPERMAN_SPAWNER = registerAdventItem(15, "whisperman_spawner", 
 			() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN::get, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
-
+	public static RegistryObject<Item> KANTROFARRI_SPAWNER = registerAdventItem(23, "kantrofarri_spawner",
+		() -> new ForgeSpawnEggItem(DMAEntities.KANTROFARRI::get, 0x657fad, 0xd9cacd, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 	public static RegistryObject<Item> SHOPPING_CART = registerAdventItem(21, "shopping_cart",
 		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 

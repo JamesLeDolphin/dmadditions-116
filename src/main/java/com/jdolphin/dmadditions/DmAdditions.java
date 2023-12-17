@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.function.Supplier;
 
+import com.jdolphin.dmadditions.entity.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,17 +23,6 @@ import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
-import com.jdolphin.dmadditions.entity.BessieEntity;
-import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
-import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
-import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
-import com.jdolphin.dmadditions.entity.PilotFishEntity;
-import com.jdolphin.dmadditions.entity.RacnossEntity;
-import com.jdolphin.dmadditions.entity.ShoppingCartEntity;
-import com.jdolphin.dmadditions.entity.SnowmanEntity;
-import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
-import com.jdolphin.dmadditions.entity.WhispermanEntity;
-import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.DMABiomes;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
@@ -198,6 +188,9 @@ public class DmAdditions {
 
 		if(DMAEntities.WHISPERMAN != null)
 			event.put(DMAEntities.WHISPERMAN.get(), WhispermanEntity.createAttributes().build());
+
+		if(DMAEntities.KANTROFARRI != null)
+			event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {

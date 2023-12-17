@@ -2,24 +2,12 @@ package com.jdolphin.dmadditions.init;
 
 import java.util.Optional;
 
+import com.jdolphin.dmadditions.entity.*;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.entity.BessieEntity;
-import com.jdolphin.dmadditions.entity.ChristmasCreeperEntity;
-import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
-import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
-import com.jdolphin.dmadditions.entity.JamesLeDolphinEntity;
-import com.jdolphin.dmadditions.entity.PilotFishEntity;
-import com.jdolphin.dmadditions.entity.RacnossEntity;
-import com.jdolphin.dmadditions.entity.ShoppingCartEntity;
-import com.jdolphin.dmadditions.entity.SnowmanEntity;
-import com.jdolphin.dmadditions.entity.TankEntity;
-import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
-import com.jdolphin.dmadditions.entity.WhispermanEntity;
-import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -97,6 +85,10 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<WhispermanEntity>> WHISPERMAN = registerAdventEntity(15, "whisperman",
 			() -> EntityType.Builder.of(WhispermanEntity::new, EntityClassification.MONSTER).sized(0.6f, 1.8f)
 			.build((new ResourceLocation(DmAdditions.MODID, "whisperman").toString())));
+
+	public static RegistryObject<EntityType<KantrofarriEntity>> KANTROFARRI = registerAdventEntity(23, "kantrofarri",
+		() -> EntityType.Builder.of(KantrofarriEntity::new, EntityClassification.MONSTER).sized(1f, 0.4f)
+			.build((new ResourceLocation(DmAdditions.MODID, "kantrofarri").toString())));
 
 	@Nullable 
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){
