@@ -73,47 +73,40 @@ public class DMABlocks {
 		new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
 
 	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerAdventBlock(4,
-												() -> new AndrozaniminorDimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
+		() -> new AndrozaniminorDimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
 				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
 			() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 			new Item.Properties().tab(DMTabs.DM_TARDIS));
 
-	public static RegistryObject<Block> BLUE_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "blue_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> BLUE_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+	.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "blue_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> GREEN_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "green_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> GREEN_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "green_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> ORANGE_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "orange_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> ORANGE_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "orange_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> PINK_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "pink_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> PINK_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "pink_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> PURPLE_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "purple_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> PURPLE_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "purple_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> RED_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "red_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> RED_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "red_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block>YELLOW_CANDY_CANE_BLOCK = registerBlock(() -> {
-			return new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-				.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE));
-		}, "yellow_candy_cane_block", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block>YELLOW_CANDY_CANE_BLOCK = registerBlock(() ->
+		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
+		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "yellow_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
 			.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
@@ -132,8 +125,8 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
 
-		public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock( () -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
-		public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock( () -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock(() -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+		public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock(() -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> CHRISTMAS_TREE = registerBlock( () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
 			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
