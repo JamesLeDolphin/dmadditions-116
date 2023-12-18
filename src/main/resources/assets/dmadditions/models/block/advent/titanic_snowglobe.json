@@ -3,7 +3,7 @@
 	"textures": {
 		"2": "dmadditions:block/advent/titanic_snowglobe",
 		"3": "dalekmod:block/snowglobe",
-		"5": "glass",
+		"5": "minecraft:block/glass",
 		"particle": "dalekmod:block/snowglobe"
 	},
 	"elements": [

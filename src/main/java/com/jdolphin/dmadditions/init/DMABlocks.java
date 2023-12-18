@@ -135,6 +135,12 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> MAGPIE_TELEVISION = registerAdventBlock(16, () -> new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), "magpie_television", ItemGroup.TAB_DECORATIONS);
 
+	public static RegistryObject<Block> TITANIC_SNOWGLOBE = registerAdventBlock(19,
+		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
+		"titanic_snowglobe", ItemGroup.TAB_DECORATIONS);
+
+	public static RegistryObject<Block> SPECIMEN_JAR = registerAdventBlock(23, () -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion()), "specimen_jar");
+
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> WHITE_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "white_quartz_roundel_container", SoundType.STONE);
@@ -262,6 +268,14 @@ public class DMABlocks {
 
 		registerRenderTypes(RenderType.cutoutMipped(),
 			MAGPIE_TELEVISION
+		);
+
+		registerRenderTypes(RenderType.cutoutMipped(),
+			TITANIC_SNOWGLOBE
+		);
+
+		registerRenderTypes(RenderType.translucent(),
+			SPECIMEN_JAR
 		);
 
 		registerRenderTypes(RenderType.cutout(),

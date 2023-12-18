@@ -1,15 +1,16 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
-import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
-import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
-import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.tileentity.*;
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class DMABlockEntities {
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
@@ -17,7 +18,12 @@ public class DMABlockEntities {
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
 	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL;
+	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR;
 
+	protected static <T extends TileEntity> RegistryObject<TileEntityType<T>> registerAdventTileEntity(int day, String name, Supplier<TileEntityType<T>> supplier){
+		if (!AdventUnlock.unlockAt(day)) return null;
+		return TILE_ENTITY_TYPES.register(name, supplier);
+	}
 
 	static {
 
@@ -26,6 +32,9 @@ public class DMABlockEntities {
 
 		TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
 			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
+
+		TILE_SPECIMEN_JAR = registerAdventTileEntity(23, "specimen_jar", () ->
+			TileEntityType.Builder.of(SpecimenJarTileEntity::new, DMABlocks.SPECIMEN_JAR.get()).build(null));
 
 		TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
