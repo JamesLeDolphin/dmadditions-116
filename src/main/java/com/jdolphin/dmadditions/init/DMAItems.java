@@ -22,11 +22,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -226,6 +222,10 @@ public class DMAItems {
 			() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN::get, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 	public static RegistryObject<Item> KANTROFARRI_SPAWNER = registerAdventItem(23, "kantrofarri_spawner",
 		() -> new ForgeSpawnEggItem(DMAEntities.KANTROFARRI::get, 0x657fad, 0xd9cacd, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> KANTROFARRI = registerAdventItem(23,"kantrofarri",
+		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI).tab(ItemGroup.TAB_FOOD)));
+	public static RegistryObject<Item> KANTROFARRI_COOKED = registerAdventItem(23,"kantrofarri_cooked",
+		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
 	public static RegistryObject<Item> SHOPPING_CART = registerAdventItem(21, "shopping_cart",
 		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
