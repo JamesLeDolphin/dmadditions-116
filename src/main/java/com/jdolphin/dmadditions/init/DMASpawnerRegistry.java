@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
-import com.jdolphin.dmadditions.entity.ChristmasCreeperEntity;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
 
@@ -55,6 +54,11 @@ public class DMASpawnerRegistry {
 			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
 		}
 
+		if(DMAEntities.KANTROFARRI != null){
+			EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
+			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);
+		}
+
 	}
 
 	public static void initDalekSpawns() {
@@ -94,6 +98,7 @@ public class DMASpawnerRegistry {
 
 		while (var5.hasNext()) {
 			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry<RegistryKey<Biome>, Biome>) var5.next();
+			if(rl.getKey() == Biomes.THE_VOID) continue;
 			addSpawn(rl.getKey(), type, weight, min, max, entityType);
 		}
 
