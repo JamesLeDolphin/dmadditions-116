@@ -249,6 +249,13 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	} 
 
 	protected boolean hurt(TankPartEntity part, DamageSource source, float amount) {
+		if(this.hasPassenger(source.getEntity())) return false;
+
+		if(source.isCreativePlayer()) {
+			this.remove();
+			return false;
+		}
+
 		return this.hurt(source, amount);
 	}
 
@@ -360,8 +367,8 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 			return true;
 		}
 
-		public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-			return this.isInvulnerableTo(p_70097_1_) ? false : this.parentMob.hurt(this, p_70097_1_, p_70097_2_);
+		public boolean hurt(DamageSource source, float amount) {
+			return this.isInvulnerableTo(source) ? false : this.parentMob.hurt(this, source, amount);
 		}
 
 		public boolean is(Entity p_70028_1_) {
