@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"2": "dmadditions:block/advent/titanic_snowglobe",
-		"3": "dalekmod:block/snowglobe",
+		"3": "dmadditions:block/snowglobe",
 		"5": "minecraft:block/glass",
-		"particle": "dalekmod:block/snowglobe"
+		"particle": "minecraft:block/glass"
 	},
 	"elements": [
 		{

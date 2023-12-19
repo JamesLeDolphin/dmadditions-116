@@ -1,8 +1,5 @@
 {
-	"parent": "dalekmod:block/tardis_snowglobe",
-	"textures": {
-		"layer0": "dalekmod:block/tardis_snowglobe"
-	},
+	"parent": "dmadditions:block/tardis_snowglobe",
 	"display": {
 		"gui": {
 			"translation": [0, 5, 0],

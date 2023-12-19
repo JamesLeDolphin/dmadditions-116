@@ -3,9 +3,9 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "minecraft:block/glass",
-		"2": "dalekmod:block/snowglobe",
-		"3": "dalekmod:block/snowglobe_tardis",
-		"particle": "dalekmod:block/snowglobe_tardis"
+		"2": "dmadditions:block/snowglobe",
+		"3": "dmadditions:block/snowglobe_tardis",
+		"particle": "minecraft:block/glass"
 	},
 	"elements": [
 		{
