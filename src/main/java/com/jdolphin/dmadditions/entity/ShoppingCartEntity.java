@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.jdolphin.dmadditions.client.audio.ShoppingCartTickableSound;
+import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 
@@ -71,7 +72,15 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 		ItemStack itemstack = player.getItemInHand(hand);
 
-		if (itemstack.isEmpty() && !player.isCrouching()) { // FIXME: for some reason, itemstack.isEmpty() appears to be returning true when it shouldn't
+		if(itemstack.getItem().equals(DMABlocks.ENGINE.get().asItem()) && !this.hasEngine()){
+			this.setHasEngine(true);
+			itemstack.shrink(1);
+			this.playSound(SoundEvents.ARMOR_EQUIP_CHAIN, 1, 1);
+
+			return ActionResultType.CONSUME;
+		}
+
+		if (itemstack.isEmpty() && !player.isCrouching() && hand == Hand.MAIN_HAND) {
 			player.startRiding(this);
 			return ActionResultType.PASS;
 		}
@@ -81,12 +90,12 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 	@Override
 	public List<ItemStack> onSheared(PlayerEntity player, ItemStack item, World world, BlockPos pos, int fortune) {
-		if(!player.isCrouching()) return Collections.emptyList();
+		if(!this.hasEngine()) return Collections.emptyList();
 
 		this.setHasEngine(false);
 
 		world.playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, SoundCategory.PLAYERS, 1, 1);
-		return IForgeShearable.super.onSheared(player, item, world, pos, fortune);
+		return Collections.singletonList(new ItemStack(DMABlocks.ENGINE.get().asItem()));
 	}
 
 	@Override
