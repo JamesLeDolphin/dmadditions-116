@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"#@#",
+		"___"
+	],
+	"key": {
+		"#": {
+			"tag": "forge:glass_panes"
+		},
+		"@": {
+			"tag": "minecraft:boats"
+		},
+		"_": {
+			"tag": "minecraft:wooden_slabs"
+		}
+	},
+	"result": {
+		"item": "dmadditions:titanic_snowglobe"
+	}
+}
