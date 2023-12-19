@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "dmadditions:block/engine",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "dmadditions:block/engine"
+		},
+		"facing=south": {
+			"model": "dmadditions:block/engine",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "dmadditions:block/engine",
+			"y": 270
+		}
+	}
+}
