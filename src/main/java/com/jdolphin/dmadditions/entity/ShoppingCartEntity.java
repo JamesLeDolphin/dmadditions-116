@@ -219,6 +219,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 		if(entity instanceof PlayerEntity){
 			if(isEngineStarted()){
 				this.setEngineStarted(false);
+				this.playSound(SoundEvents.ITEM_BREAK, 1, 1);
 				return false;
 			}
 
