@@ -22,7 +22,8 @@
 		"DoubleDoorsTileEntityMixin",
 		"RoundelDoorTileEntityMixin",
 		"TardisTileEntityMixin",
-		"DataMixin"
+		"DataMixin",
+		"DMTardisRegistryMixin"
 	],
 	"client": [
 		"MainMenuScreenMixin",

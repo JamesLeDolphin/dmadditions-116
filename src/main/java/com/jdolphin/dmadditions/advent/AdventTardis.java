@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.advent;
 
 public enum AdventTardis{
 	CHRISTMAS_PRESENT("dmadditions.tardis.name.christmas_present", 17), 
+	CHRISTMAS_INTERIOR("dmadditions.interior.name.christmas", 24), 
 	;
 
 	public final String name;

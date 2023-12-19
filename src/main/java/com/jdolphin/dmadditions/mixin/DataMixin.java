@@ -23,14 +23,14 @@ public abstract class DataMixin {
 			String key = ((TranslationTextComponent) data.getExteriorName()).getKey();
 
 			Logger logger = LogManager.getLogger();
-			logger.info("Checking if tardis has advent unlock: {}", key);
+			logger.debug("Checking if tardis has advent unlock: {}", key);
 
 			AdventTardis adventTardis = AdventTardis.getByName(key);
 
 			if (adventTardis == null)
 				return;
 
-			logger.info("Tardis {} unlocks at advent day {}", key, adventTardis.date);
+			logger.debug("Tardis {} unlocks at advent day {}", key, adventTardis.date);
 
 			if (!AdventUnlock.unlockAt(adventTardis.date)) {
 				cir.setReturnValue(false);
