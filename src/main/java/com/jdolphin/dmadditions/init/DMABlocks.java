@@ -161,7 +161,7 @@ public class DMABlocks {
 		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
 		"titanic_snowglobe", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> SPECIMEN_JAR = registerAdventBlock(23, () -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).noOcclusion()), "specimen_jar");
+	public static RegistryObject<Block> SPECIMEN_JAR = registerAdventBlock(23, () -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);
