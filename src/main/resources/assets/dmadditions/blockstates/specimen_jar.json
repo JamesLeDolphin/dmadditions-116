@@ -1,7 +1,39 @@
 {
-  "variants": {
-    "": {
-      "model": "dmadditions:block/specimen_jar"
+  "multipart":[
+    {
+      "apply": {"model": "dmadditions:block/specimen_jar"}
+    },
+
+    {
+      "when": {"specimen": 1, "facing": "north"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 0}
+    },
+    {
+      "when": {"specimen": 1, "facing": "east"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 90}
+    },
+    {
+      "when": {"specimen": 1, "facing": "south"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 180}
+    },    {
+      "when": {"specimen": 1, "facing": "west"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 270}
+    },
+
+    {
+      "when": {"specimen": 2, "facing": "north"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 0}
+    },
+    {
+      "when": {"specimen": 2, "facing": "east"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 90}
+    },
+    {
+      "when": {"specimen": 2, "facing": "south"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 180}
+    },    {
+      "when": {"specimen": 2, "facing": "west"},
+      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 270}
     }
-  }
+  ]
 }

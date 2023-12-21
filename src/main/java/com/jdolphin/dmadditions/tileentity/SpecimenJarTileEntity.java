@@ -57,12 +57,12 @@ public class SpecimenJarTileEntity extends DMTileEntityBase {
 		return super.save(nbt);
 	}
 
-	public boolean hasSpecimen() { return specimen != ItemStack.EMPTY; }
+	public boolean hasSpecimen() { return !specimen.isEmpty(); }
 	public boolean acceptSpecimen(Item specimenIn){
 		return getAllowedSpecimens().contains(specimenIn);
 	}
 
-	public int getSpecimenIndex(Item specimenIn){
+	public static int getSpecimenIndex(Item specimenIn){
 		return getAllowedSpecimens().indexOf(specimenIn);
 	}
 
