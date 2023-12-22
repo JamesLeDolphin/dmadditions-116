@@ -285,5 +285,8 @@
 	"item.dmadditions.kantrofarri": "Kantrofarri",
 	"item.dmadditions.kantrofarri_cooked": "Cooked Kantrofarri",
 	"death.attack.kantrofarri": "%1$s had a pleasant dream",
-	"block.dmadditions.specimen_jar": "Specimen Jar"
+	"block.dmadditions.specimen_jar": "Specimen Jar",
+
+	"entity.dmadditions.jim": "Jim",
+	"item.dmadditions.jim_spawner": "Jim Spawner"
 }

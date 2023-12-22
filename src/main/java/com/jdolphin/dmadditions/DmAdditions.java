@@ -191,6 +191,9 @@ public class DmAdditions {
 
 		if(DMAEntities.KANTROFARRI != null)
 			event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
+
+		if(DMAEntities.JIM != null)
+			event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {

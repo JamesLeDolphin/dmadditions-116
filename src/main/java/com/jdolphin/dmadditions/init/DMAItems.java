@@ -218,6 +218,9 @@ public class DMAItems {
 	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = registerAdventItem(12, "christmas_creeper_spawner", 
 			() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0x0da70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); 
 
+	public static RegistryObject<Item> JIM_SPAWNER = registerAdventItem(25, "jim_spawner",
+			() -> new ForgeSpawnEggItem(DMAEntities.JIM::get, 0x864b0f, 0x624c37, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> WHISPERMAN_SPAWNER = registerAdventItem(15, "whisperman_spawner", 
 			() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN::get, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 	public static RegistryObject<Item> KANTROFARRI_SPAWNER = registerAdventItem(23, "kantrofarri_spawner",

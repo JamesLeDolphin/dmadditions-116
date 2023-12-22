@@ -72,23 +72,27 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<ShoppingCartEntity>> SHOPPING_CART = registerAdventEntity(21, "shopping_cart",
 			() -> EntityType.Builder.of(ShoppingCartEntity::new, EntityClassification.MISC).sized(0.98F, 0.7F).clientTrackingRange(8)
-			.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
+				.build((new ResourceLocation(DmAdditions.MODID, "shopping_cart")).toString()));
 
 	public static RegistryObject<EntityType<TankEntity>> TORCHWOOD_TANK = registerAdventEntity(21, "torchwood_tank",
 			() -> EntityType.Builder.of(TankEntity::new, EntityClassification.MISC).sized(1f, 1f).clientTrackingRange(8)
-			.build((new ResourceLocation(DmAdditions.MODID, "torchwood_tank")).toString()));
+				.build((new ResourceLocation(DmAdditions.MODID, "torchwood_tank")).toString()));
 
 	public static RegistryObject<EntityType<ChristmasCreeperEntity>> CHRISTMAS_CREEPER = registerAdventEntity(12, "christmas_creeper",
 			() -> EntityType.Builder.of(ChristmasCreeperEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8)
-			.build((new ResourceLocation(DmAdditions.MODID, "christmas_creeper").toString())));
+				.build((new ResourceLocation(DmAdditions.MODID, "christmas_creeper").toString())));
 
 	public static RegistryObject<EntityType<WhispermanEntity>> WHISPERMAN = registerAdventEntity(15, "whisperman",
 			() -> EntityType.Builder.of(WhispermanEntity::new, EntityClassification.MONSTER).sized(0.6f, 1.8f)
-			.build((new ResourceLocation(DmAdditions.MODID, "whisperman").toString())));
+				.build((new ResourceLocation(DmAdditions.MODID, "whisperman").toString())));
 
 	public static RegistryObject<EntityType<KantrofarriEntity>> KANTROFARRI = registerAdventEntity(23, "kantrofarri",
-		() -> EntityType.Builder.of(KantrofarriEntity::new, EntityClassification.MONSTER).sized(1f, 0.4f)
-			.build((new ResourceLocation(DmAdditions.MODID, "kantrofarri").toString())));
+			() -> EntityType.Builder.of(KantrofarriEntity::new, EntityClassification.MONSTER).sized(1f, 0.4f)
+				.build((new ResourceLocation(DmAdditions.MODID, "kantrofarri").toString())));
+
+	public static RegistryObject<EntityType<JimEntity>> JIM = registerAdventEntity(25, "jim",
+			() -> EntityType.Builder.of(JimEntity::new, EntityClassification.CREATURE).sized(0.6f, 1.8f)
+				.build((new ResourceLocation(DmAdditions.MODID, "jim").toString())));
 
 	@Nullable 
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){

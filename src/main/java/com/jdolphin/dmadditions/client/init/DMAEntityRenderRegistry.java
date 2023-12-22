@@ -32,6 +32,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
 		registerRender(DMAEntities.TORCHWOOD_TANK, TankRenderer::new);
 		registerRender(DMAEntities.KANTROFARRI, KantrofarriRenderer::new);
+		registerRender(DMAEntities.JIM, JimRenderer::new);
 	}
 
 
