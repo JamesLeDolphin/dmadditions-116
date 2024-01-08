@@ -78,24 +78,24 @@ public class DMABlocks {
 
 
 	//public static RegistryObject<Block> SANTA_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "santa_bauble");
-	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "blue_bauble");
-	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "gold_bauble");
-	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "green_bauble");
-	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "red_bauble");
+	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "blue_bauble");
+	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
+	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
+	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
 
-	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerAdventBlock(8, () ->
+	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
 		"christmas_lights", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> CLOAKING_PANEL = registerAdventBlock(22, () ->
+	public static RegistryObject<Block> CLOAKING_PANEL = registerBlock(() ->
 			new CloakPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
 		"cloak_panel", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> CHRISTMAS_PUDDING = registerAdventBlock(5, () ->
+	public static RegistryObject<Block> CHRISTMAS_PUDDING = registerBlock(() ->
 		new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
 
-	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerAdventBlock(4,
-		() -> new AndrozaniminorDimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
+	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerBlock(() ->
+		new AndrozaniminorDimensionTpBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
 				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
@@ -153,15 +153,15 @@ public class DMABlocks {
 	public static RegistryObject<Block> CHRISTMAS_TREE = registerBlock( () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
 			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> CHRISTMAS_CRACKER = registerAdventBlock (10, () -> new ChristmasCrackerBlock(AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion().dynamicShape().noCollission().sound(SoundType.WOOL)), "christmas_cracker");
+	public static RegistryObject<Block> CHRISTMAS_CRACKER = registerBlock(() -> new ChristmasCrackerBlock(AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion().dynamicShape().noCollission().sound(SoundType.WOOL)), "christmas_cracker");
 
-	public static RegistryObject<Block> MAGPIE_TELEVISION = registerAdventBlock(16, () -> new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), "magpie_television", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> MAGPIE_TELEVISION = registerBlock(() -> new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), "magpie_television", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> TITANIC_SNOWGLOBE = registerAdventBlock(19,
-		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
+	public static RegistryObject<Block> TITANIC_SNOWGLOBE = registerBlock(() ->
+			new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
 		"titanic_snowglobe", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> SPECIMEN_JAR = registerAdventBlock(23, () -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> SPECIMEN_JAR = registerBlock(() -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);
@@ -252,7 +252,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "red_plastic_shape_roundel_container");
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD,"black_plastic_shape_roundel_container");
 
-	public static RegistryObject<Block> ENGINE = registerAdventBlock(21, () -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
+	public static RegistryObject<Block> ENGINE = registerBlock(() -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, ItemGroup itemgroup) {
 		return registerBlock(block, name, (new Item.Properties()).tab(itemgroup), true);
