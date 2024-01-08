@@ -8,6 +8,7 @@
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
+		"BotiMixin",
 		"MainMenuScreenMixin",
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
