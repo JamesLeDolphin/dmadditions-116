@@ -35,20 +35,20 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class DMAItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
 
-	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
+	protected static RegistryObject<Item> addAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
 		return ITEMS.register(name, supplier);
 	}
 
-	//public static RegistryObject<Item> SANTA_BAUBLE = registerAdventItem(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
-	public static RegistryObject<Item> BLUE_BAUBLE = registerAdventItem(7, "blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
-	public static RegistryObject<Item> GOLD_BAUBLE = registerAdventItem(7, "gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
-	public static RegistryObject<Item> GREEN_BAUBLE = registerAdventItem(7, "green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
-	public static RegistryObject<Item> RED_BAUBLE = registerAdventItem(7, "red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
-	public static RegistryObject<Item> CHRISTMAS_CRACKER = registerAdventItem(10, "christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
+	//public static RegistryObject<Item> SANTA_BAUBLE = ITEMS.register(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
+	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
+	public static RegistryObject<Item> GOLD_BAUBLE = ITEMS.register("gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
+	public static RegistryObject<Item> GREEN_BAUBLE = ITEMS.register("green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
+	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
+	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
-	public static RegistryObject<Item> HANDLES = registerAdventItem(1, "handles",
+	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item>	BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",
@@ -88,13 +88,13 @@ public class DMAItems {
 	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
 
-	public static RegistryObject<Item> CHRISTMAS_HAT = registerAdventItem(10,"christmas_hat", ChristmasHatItem::new);
+	public static RegistryObject<Item> CHRISTMAS_HAT = ITEMS.register("christmas_hat", ChristmasHatItem::new);
 
-	public static RegistryObject<Item> JOKE = registerAdventItem(10, "joke", JokeItem::new);
+	public static RegistryObject<Item> JOKE = ITEMS.register("joke", JokeItem::new);
 
-	public static RegistryObject<Item> TOP_HAT = registerAdventItem(15, "top_hat", () -> new ClothesItem(EquipmentSlotType.HEAD));
+	public static RegistryObject<Item> TOP_HAT = ITEMS.register("top_hat", () -> new ClothesItem(EquipmentSlotType.HEAD));
 
-	public static RegistryObject<Item> WEDDING_DRESS = registerAdventItem(9, "wedding_dress",
+	public static RegistryObject<Item> WEDDING_DRESS = ITEMS.register("wedding_dress",
 		() -> new ArmorItem(DMAArmorMaterial.WEDDING_DRESS, EquipmentSlotType.LEGS, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
 			@Override
 			@OnlyIn(Dist.CLIENT)
@@ -115,7 +115,7 @@ public class DMAItems {
 		}
 	);
 
-	public static RegistryObject<Item> SCARF_RED = registerAdventItem(13, "scarf_red",
+	public static RegistryObject<Item> SCARF_RED = ITEMS.register("scarf_red",
 		() -> new ArmorItem(DMAArmorMaterial.SCARF, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
 			@Override
 			@OnlyIn(Dist.CLIENT)
@@ -136,7 +136,7 @@ public class DMAItems {
 		}
 	);
 
-	public static RegistryObject<Item> SCARF_BROWN = registerAdventItem(13, "scarf_brown",
+	public static RegistryObject<Item> SCARF_BROWN = ITEMS.register("scarf_brown",
 		() -> new ArmorItem(DMAArmorMaterial.SCARF, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
 			@Override
 			@OnlyIn(Dist.CLIENT)
@@ -209,30 +209,30 @@ public class DMAItems {
 							  DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 							  DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = registerAdventItem(3, "flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK::get, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
+	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = ITEMS.register("flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK::get, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
 
-	public static RegistryObject<Item> RACNOSS_SPAWNER = registerAdventItem(11, "racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS::get, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
+	public static RegistryObject<Item> RACNOSS_SPAWNER = ITEMS.register("racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS::get, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 
-	public static RegistryObject<Item> SYCORAX_STAFF = registerAdventItem(14, "sycorax_staff", () -> new SycoraxStaffItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1)));
+	public static RegistryObject<Item> SYCORAX_STAFF = ITEMS.register("sycorax_staff", () -> new SycoraxStaffItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1)));
 
-	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = registerAdventItem(12, "christmas_creeper_spawner", 
+	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = ITEMS.register("christmas_creeper_spawner",
 			() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0x0da70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); 
 
-	public static RegistryObject<Item> JIM_SPAWNER = registerAdventItem(25, "jim_spawner",
+	public static RegistryObject<Item> JIM_SPAWNER = ITEMS.register("jim_spawner",
 			() -> new ForgeSpawnEggItem(DMAEntities.JIM::get, 0x864b0f, 0x624c37, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> WHISPERMAN_SPAWNER = registerAdventItem(15, "whisperman_spawner", 
+	public static RegistryObject<Item> WHISPERMAN_SPAWNER = ITEMS.register("whisperman_spawner",
 			() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN::get, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
-	public static RegistryObject<Item> KANTROFARRI_SPAWNER = registerAdventItem(23, "kantrofarri_spawner",
+	public static RegistryObject<Item> KANTROFARRI_SPAWNER = ITEMS.register("kantrofarri_spawner",
 		() -> new ForgeSpawnEggItem(DMAEntities.KANTROFARRI::get, 0x657fad, 0xd9cacd, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-	public static RegistryObject<Item> KANTROFARRI = registerAdventItem(23,"kantrofarri",
+	public static RegistryObject<Item> KANTROFARRI = ITEMS.register("kantrofarri",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI).tab(ItemGroup.TAB_FOOD)));
-	public static RegistryObject<Item> KANTROFARRI_COOKED = registerAdventItem(23,"kantrofarri_cooked",
+	public static RegistryObject<Item> KANTROFARRI_COOKED = ITEMS.register("kantrofarri_cooked",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
-	public static RegistryObject<Item> SHOPPING_CART = registerAdventItem(21, "shopping_cart",
+	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
 		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
-	public static RegistryObject<Item> TORCHWOOD_TANK = registerAdventItem(21, "torchwood_tank",
+	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
 		() -> new DMASpawnerItem<>("torchwood_tank", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
