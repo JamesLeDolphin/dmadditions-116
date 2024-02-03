@@ -26,6 +26,7 @@
 		"DMTardisRegistryMixin"
 	],
 	"client": [
+		"BusClientEventsMixin",
 		"MainMenuScreenMixin",
 		"ClientProxyMixin",
 		"DalekEntityMixin",
