@@ -1,48 +1,25 @@
 package com.jdolphin.dmadditions;
 
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.function.Supplier;
-
-import com.jdolphin.dmadditions.entity.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
-import com.jdolphin.dmadditions.commands.CommandSit;
-import com.jdolphin.dmadditions.commands.GameModeCommand;
-import com.jdolphin.dmadditions.commands.GodCommand;
-import com.jdolphin.dmadditions.commands.TeleportCommand;
-import com.jdolphin.dmadditions.commands.ToggleModeCommand;
+import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
+import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
-import com.jdolphin.dmadditions.init.DMABiomes;
-import com.jdolphin.dmadditions.init.DMABlockEntities;
-import com.jdolphin.dmadditions.init.DMABlocks;
-import com.jdolphin.dmadditions.init.DMAEntities;
-import com.jdolphin.dmadditions.init.DMAFluids;
-import com.jdolphin.dmadditions.init.DMAItems;
-import com.jdolphin.dmadditions.init.DMALootConditionManager;
-import com.jdolphin.dmadditions.init.DMAProjectiles;
-import com.jdolphin.dmadditions.init.DMASoundEvents;
-import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
-import com.jdolphin.dmadditions.init.DMAStructures;
-import com.jdolphin.dmadditions.init.DMAWorldCarvers;
+import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.init.DMSonicRegistry;
-
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
@@ -88,6 +65,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.function.Supplier;
 
 
 

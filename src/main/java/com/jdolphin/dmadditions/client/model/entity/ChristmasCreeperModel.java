@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.jdolphin.dmadditions.entity.ChristmasCreeperEntity;
-
 import net.minecraft.client.renderer.entity.model.CreeperModel;
 import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.model.ModelRenderer;

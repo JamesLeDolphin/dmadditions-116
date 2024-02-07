@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.audio;
 
 import com.jdolphin.dmadditions.entity.ShoppingCartEntity;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.TickableSound;
 import net.minecraft.util.SoundCategory;

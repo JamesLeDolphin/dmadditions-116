@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.client.render.entity;
 import com.jdolphin.dmadditions.client.model.entity.WhispermanModel;
 import com.jdolphin.dmadditions.entity.WhispermanEntity;
 import com.swdteam.model.javajson.JSONModel.ModelInformation;
-
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

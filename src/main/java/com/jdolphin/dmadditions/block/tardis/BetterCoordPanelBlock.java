@@ -1,14 +1,5 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-
-import javax.annotation.Nonnull;
-
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.RotatableTileEntityBase;
@@ -23,7 +14,6 @@ import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.util.ChatUtil;
 import com.swdteam.util.SWDMathUtils;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,11 +21,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -48,6 +34,10 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.function.Supplier;
 
 public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPanel {
 	public static List<CoordPanelButtons> buttons = new ArrayList<>();

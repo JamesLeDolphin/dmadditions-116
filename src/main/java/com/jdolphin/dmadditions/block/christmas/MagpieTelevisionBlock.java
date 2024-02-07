@@ -1,7 +1,5 @@
 package com.jdolphin.dmadditions.block.christmas;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -20,6 +18,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class MagpieTelevisionBlock extends HorizontalBlock {
 	public static final VoxelShape SHAPE_NS = Block.box(0, 0, 2.5, 16, 13, 13.5);

@@ -1,10 +1,8 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.swdteam.client.init.ItemRenderingInit;
 import com.swdteam.client.init.ItemRenderingRegistry;
 import com.swdteam.client.init.ItemRenderingRegistry.ItemRenderInfo;
-
 import net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType;
 
 public class DMAItemRenderingInit{

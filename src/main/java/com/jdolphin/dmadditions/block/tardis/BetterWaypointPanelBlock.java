@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.block.tardis;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.jdolphin.dmadditions.init.DMATags;
 import com.swdteam.common.block.tardis.WaypointPanelBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

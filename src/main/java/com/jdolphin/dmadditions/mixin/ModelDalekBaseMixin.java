@@ -1,24 +1,22 @@
 package com.jdolphin.dmadditions.mixin;
 
-import java.lang.reflect.Field;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import com.google.common.base.Function;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
 import com.swdteam.client.model.ModelDalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import com.swdteam.model.javajson.JSONModel;
-
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.lang.reflect.Field;
 
 @Mixin(ModelDalekBase.class)
 public class ModelDalekBaseMixin {

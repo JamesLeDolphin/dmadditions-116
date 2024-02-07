@@ -1,9 +1,9 @@
 package com.jdolphin.dmadditions.config;
 
+import net.minecraftforge.common.ForgeConfigSpec;
+
 import java.util.Collections;
 import java.util.List;
-
-import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class DMACommonConfig {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();

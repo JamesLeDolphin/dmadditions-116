@@ -1,17 +1,15 @@
 package com.jdolphin.dmadditions.mixin;
 
+import com.jdolphin.dmadditions.advent.AdventTardis;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.swdteam.common.tardis.Data;
 import net.minecraft.util.text.TranslationTextComponent;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import com.jdolphin.dmadditions.advent.AdventTardis;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.swdteam.common.tardis.Data;
 
 @Mixin(Data.class)
 public abstract class DataMixin {

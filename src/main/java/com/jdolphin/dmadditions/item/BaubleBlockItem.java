@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
 import com.jdolphin.dmadditions.entity.projectile.BaubleEntity;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;

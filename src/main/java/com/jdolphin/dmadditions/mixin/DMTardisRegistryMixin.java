@@ -1,7 +1,10 @@
 package com.jdolphin.dmadditions.mixin;
 
-import java.util.List;
-
+import com.jdolphin.dmadditions.advent.AdventTardis;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.swdteam.common.init.DMTardisRegistry;
+import com.swdteam.common.tardis.TardisInterior;
+import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
@@ -9,12 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.jdolphin.dmadditions.advent.AdventTardis;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.swdteam.common.init.DMTardisRegistry;
-import com.swdteam.common.tardis.TardisInterior;
-
-import net.minecraft.util.text.TranslationTextComponent;
+import java.util.List;
 
 @Mixin(DMTardisRegistry.class)
 public class DMTardisRegistryMixin{

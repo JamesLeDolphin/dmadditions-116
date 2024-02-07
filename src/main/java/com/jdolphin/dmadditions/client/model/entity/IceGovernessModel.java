@@ -1,7 +1,5 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
-import static com.jdolphin.dmadditions.DmAdditions.MODID;
-
 import com.jdolphin.dmadditions.entity.IceGovernessEntity;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
@@ -9,9 +7,10 @@ import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.JSONModel.ModelInformation;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
-
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
+
+import static com.jdolphin.dmadditions.DmAdditions.MODID;
 
 public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements IModelPartReloader{
 

@@ -1,11 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
-import java.util.List;
-
-import org.jetbrains.annotations.Nullable;
-
 import com.jdolphin.dmadditions.block.christmas.ChristmasCrackerBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,6 +15,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ChristmasCrackerBlockItem extends BlockItem {
 

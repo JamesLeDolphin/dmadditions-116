@@ -23,20 +23,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class CloakPanel extends AbstractRotateableWaterLoggableBlock implements IBetterPanel {
-	public CloakPanel(Properties properties) {
+public class ForceFieldPanel extends AbstractRotateableWaterLoggableBlock implements IBetterPanel {
+	public ForceFieldPanel(Properties properties) {
 		super(properties);
 	}
 
 	public static final VoxelShape PANEL_SHAPE_BASE = Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
-	protected static final VoxelShape TEST = VoxelShapes.or(PANEL_SHAPE_BASE);
 
 
 	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
@@ -55,8 +53,8 @@ public class CloakPanel extends AbstractRotateableWaterLoggableBlock implements 
 				TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
 				if (tile instanceof TardisTileEntity) {
 					ITardisDMAActions invis = (ITardisDMAActions) tile;
-					invis.setInvisible(!invis.isInvisible());
-					ChatUtil.sendCompletedMsg(playerEntity, String.format("Invisible : %b", invis.isInvisible()), ChatUtil.MessageType.STATUS_BAR);
+					invis.setForcefieldActive(!invis.isForcefieldActive());
+					ChatUtil.sendCompletedMsg(playerEntity, String.format("Forcefields : %b", invis.isForcefieldActive()), ChatUtil.MessageType.STATUS_BAR);
 				}
 			}
 		}

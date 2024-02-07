@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.sonic;
 
 import com.jdolphin.dmadditions.block.christmas.MagpieTelevisionBlock;
 import com.jdolphin.dmadditions.init.DMABlocks;
-import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.sonic.SonicCategory;
 import net.minecraft.block.BlockState;

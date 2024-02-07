@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.tardis.ChameleonPanelBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;

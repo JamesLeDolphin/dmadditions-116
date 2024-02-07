@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.client.init;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.init.DMAEntities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;

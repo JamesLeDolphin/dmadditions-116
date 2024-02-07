@@ -1,18 +1,17 @@
 package com.jdolphin.dmadditions.mixin;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-
+import com.ibm.icu.util.Calendar;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.swdteam.client.data.Splashes;
 import org.apache.logging.log4j.LogManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.ibm.icu.util.Calendar;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.swdteam.client.data.Splashes;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 @Mixin(Splashes.class)
 public class SplashesMixin {

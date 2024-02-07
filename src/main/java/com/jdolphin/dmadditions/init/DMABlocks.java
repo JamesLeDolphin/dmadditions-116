@@ -1,43 +1,19 @@
 package com.jdolphin.dmadditions.init;
 
-import static com.swdteam.common.init.DMBlocks.registerRenderType;
-
-import java.util.function.Supplier;
-
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.EngineBlock;
-import com.jdolphin.dmadditions.block.christmas.AndrozaniminorDimensionTpBlock;
-import com.jdolphin.dmadditions.block.christmas.BaubleBlock;
-import com.jdolphin.dmadditions.block.christmas.CandyCaneBlock;
-import com.jdolphin.dmadditions.block.christmas.ChristmasCrackerBlock;
-import com.jdolphin.dmadditions.block.christmas.ChristmasLightsBlock;
-import com.jdolphin.dmadditions.block.christmas.ChristmasPuddingBlock;
-import com.jdolphin.dmadditions.block.christmas.ChristmasTreeBlock;
-import com.jdolphin.dmadditions.block.christmas.MagpieTelevisionBlock;
-import com.jdolphin.dmadditions.block.christmas.SnowGlobeBlock;
-import com.jdolphin.dmadditions.block.christmas.SpecimenJarBlock;
-import com.jdolphin.dmadditions.block.christmas.WreathBlock;
-import com.jdolphin.dmadditions.block.tardis.CloakPanel;
-import com.jdolphin.dmadditions.block.tardis.CopperHandbrake;
-import com.jdolphin.dmadditions.block.tardis.CoralHandbrake;
-import com.jdolphin.dmadditions.block.tardis.DoorPanelBlock;
-import com.jdolphin.dmadditions.block.tardis.RandomizerBlock;
-import com.jdolphin.dmadditions.block.tardis.RoundelContainerBlock;
+import com.jdolphin.dmadditions.block.christmas.*;
+import com.jdolphin.dmadditions.block.tardis.*;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.item.BaseBlockItem;
-
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
@@ -48,6 +24,10 @@ import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
+
+import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 public class DMABlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
@@ -90,6 +70,10 @@ public class DMABlocks {
 	public static RegistryObject<Block> CLOAKING_PANEL = registerBlock(() ->
 			new CloakPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
 		"cloak_panel", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> FORCEFIELD_PANEL = registerBlock(() ->
+			new ForceFieldPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
+		"forcefield_panel", ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> CHRISTMAS_PUDDING = registerBlock(() ->
 		new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);

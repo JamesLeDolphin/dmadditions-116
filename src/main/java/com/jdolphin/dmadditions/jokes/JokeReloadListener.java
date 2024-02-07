@@ -1,21 +1,19 @@
 package com.jdolphin.dmadditions.jokes;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.jdolphin.dmadditions.item.JokeItem;
 import com.swdteam.main.DalekMod;
-
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class JokeReloadListener extends JsonReloadListener {
 	List<Joke> loadedJokes = new ArrayList<Joke>();

@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.entity;
 
-import java.util.Collection;
-
 import com.jdolphin.dmadditions.block.christmas.ChristmasCrackerBlock;
 import com.jdolphin.dmadditions.init.DMAItems;
-
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
@@ -16,6 +13,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+
+import java.util.Collection;
 
 public class ChristmasCreeperEntity extends CreeperEntity{
 	private static final DataParameter<Integer> DATA_SWELL_DIR = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.INT);

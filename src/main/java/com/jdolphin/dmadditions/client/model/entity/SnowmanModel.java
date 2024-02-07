@@ -1,9 +1,5 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
-import static com.swdteam.main.DalekMod.MODID;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.entity.SnowmanEntity;
 import com.swdteam.client.model.IModelPartReloader;
@@ -11,11 +7,14 @@ import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
-
 import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nonnull;
+
+import static com.swdteam.main.DalekMod.MODID;
 
 public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IModelPartReloader, IHasHead {
 	public JSONModel model;

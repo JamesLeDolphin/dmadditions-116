@@ -3,12 +3,13 @@ package com.jdolphin.dmadditions.block.christmas;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.ChristmasHatItem;
 import com.jdolphin.dmadditions.item.JokeItem;
-import net.minecraft.block.*;
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer.Builder;
@@ -24,7 +25,6 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ChristmasCrackerBlock extends HorizontalBlock {
 	public static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 3.0D, 10.0D);

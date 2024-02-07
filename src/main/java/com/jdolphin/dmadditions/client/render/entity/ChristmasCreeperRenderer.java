@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.client.render.entity;
 import com.jdolphin.dmadditions.client.model.entity.ChristmasCreeperModel;
 import com.jdolphin.dmadditions.entity.ChristmasCreeperEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;

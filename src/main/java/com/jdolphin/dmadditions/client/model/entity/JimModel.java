@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.jdolphin.dmadditions.entity.JimEntity;
-
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 
 public class JimModel extends PlayerModel<JimEntity>{

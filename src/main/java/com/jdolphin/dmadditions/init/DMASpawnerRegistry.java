@@ -1,17 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
-
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -24,6 +16,9 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public class DMASpawnerRegistry {
 	public static Map<ResourceLocation, DMASpawnerRegistry.SpawnInfo> spawns = new HashMap<>();

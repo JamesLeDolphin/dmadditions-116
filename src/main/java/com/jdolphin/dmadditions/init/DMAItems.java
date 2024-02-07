@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
-import java.util.function.Supplier;
-
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.client.model.armor.ChristmasHatModel;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
@@ -17,7 +14,6 @@ import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
 import com.swdteam.common.item.GunItem;
-
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -30,6 +26,8 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 
 public class DMAItems {
