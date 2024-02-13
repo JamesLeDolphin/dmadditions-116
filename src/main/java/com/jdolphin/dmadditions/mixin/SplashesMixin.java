@@ -45,6 +45,7 @@ public class SplashesMixin {
 				add("James was here");
 				add("Torchwood is responsible for everything");
 				add("Don't trust Torchwood");
+				add("James blames Torchwood");
 			}
 		};
 
