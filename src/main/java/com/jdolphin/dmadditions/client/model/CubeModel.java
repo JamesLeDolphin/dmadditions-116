@@ -16,7 +16,12 @@ public class CubeModel extends Model {
 
 		bb_main = new ModelRenderer(this);
 		bb_main.setPos(0.0F, 24.0F, 0.0F);
-		bb_main.texOffs(-14, -14).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 16.0F, 0.0F, false);
+		bb_main.texOffs(2, 2).addBox(-8.0F, -16.0F, 8.0F, 16.0F, 16.0F, 0.0F, 0.0F, false);
+		bb_main.texOffs(2, 2).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 0.0F, 0.0F, false);
+		bb_main.texOffs(-14, -14).addBox(-8.0F, -16.0F, -8.0F, 0.0F, 16.0F, 16.0F, 0.0F, false);
+		bb_main.texOffs(-14, -14).addBox(8.0F, -16.0F, -8.0F, 0.0F, 16.0F, 16.0F, 0.0F, false);
+		bb_main.texOffs(-14, -14).addBox(-8.0F, 0.0F, -8.0F, 16.0F, 0.0F, 16.0F, 0.0F, false);
+		bb_main.texOffs(-14, -14).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 0.0F, 16.0F, 0.0F, false);
 	}
 
 	@Override
