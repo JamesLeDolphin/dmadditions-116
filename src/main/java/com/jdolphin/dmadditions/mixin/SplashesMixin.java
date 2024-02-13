@@ -25,8 +25,8 @@ public class SplashesMixin {
 				add("I blame James");
 				add("Bloody Torchwood!");
 
-				add("I'll ask bug");
-				add("I'll ask json");
+				add("I'll ask Bug");
+				add("I'll ask Json");
 
 				add("The secret is our public open-source technology!");
 
