@@ -103,6 +103,9 @@ dependencies {
     //Mantle
     implementation fg.deobf("curse.maven:mantle-74924:3631982")
 
+    //Shut up experimental settings
+    runtimeOnly fg.deobf("curse.maven:shutup-experimental-settings-407174:3188120")
+
 }
 mixin {
     add sourceSets.main, "dmadditions.mixin-refmap.json"
