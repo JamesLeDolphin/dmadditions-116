@@ -14,29 +14,28 @@ import java.util.function.Supplier;
 
 public class DMABlockEntities {
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
-	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER;
+
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
-	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
-	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL;
-	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR;
+
+
+
 
 	protected static <T extends TileEntity> RegistryObject<TileEntityType<T>> registerAdventTileEntity(int day, String name, Supplier<TileEntityType<T>> supplier){
 		if (!AdventUnlock.unlockAt(day)) return null;
 		return TILE_ENTITY_TYPES.register(name, supplier);
 	}
 
-	static {
 
-		TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
+	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
-		TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
+	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
 			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
-		TILE_SPECIMEN_JAR = registerAdventTileEntity(23, "specimen_jar", () ->
+	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR = TILE_ENTITY_TYPES.register("specimen_jar", () ->
 			TileEntityType.Builder.of(SpecimenJarTileEntity::new, DMABlocks.SPECIMEN_JAR.get()).build(null));
 
-		TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
+		public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
 				DMABlocks.BLACK_QUARTZ_ROUNDEL_CONTAINER.get(),
 				DMABlocks.YELLOW_QUARTZ_ROUNDEL_CONTAINER.get(),
@@ -127,5 +126,4 @@ public class DMABlockEntities {
 				DMABlocks.RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER.get(),
 				DMABlocks.BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER.get()
 			}).build(null));
-	}
 }

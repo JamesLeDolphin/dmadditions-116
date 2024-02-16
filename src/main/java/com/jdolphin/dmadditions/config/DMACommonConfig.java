@@ -25,7 +25,7 @@ public final class DMACommonConfig {
 		disable_cyberdrone_laser = BUILDER.comment("Disable cyber drones explosive laser. Default = false").define("disable_cyberdrone_laser", false);
 		disable_explosive_laser = BUILDER.comment("Disable all explosive lasers. Default = false").define("disable_explosive_laser", false);
 
-		disable_dma_commands = BUILDER.comment("Disable dma commands").defineList("disable_dma_commands", Collections.emptyList(), entry -> true);
+		disable_dma_commands = BUILDER.comment("Disable DMA commands").defineList("disable_dma_commands", Collections.emptyList(), entry -> true);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();
