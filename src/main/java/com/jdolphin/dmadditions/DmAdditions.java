@@ -60,7 +60,7 @@ public class DmAdditions {
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
 	// Directly reference a log4j logger.
-	private static final Logger LOGGER = LogManager.getLogger();
+	public static final Logger LOGGER = LogManager.getLogger();
 	public static final DMAServerProxy DMA_PROXY = DistExecutor.runForDist(() -> {
 		return DMAClientProxy::new;
 	}, () -> {
@@ -107,6 +107,7 @@ public class DmAdditions {
 		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
 		this.registerCommands(commandDispatcher);
 	}
+
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		IRustToo.addRustedVariants();

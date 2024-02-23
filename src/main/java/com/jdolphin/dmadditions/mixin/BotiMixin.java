@@ -4,174 +4,165 @@ import com.qouteall.immersive_portals.McHelper;
 import com.qouteall.immersive_portals.portal.Portal;
 import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.client.tardis.data.ExteriorModels;
-import com.swdteam.common.init.*;
-import com.swdteam.common.tardis.*;
-import com.swdteam.common.teleport.TeleportRequest;
+import com.swdteam.common.init.DMBlockEntities;
+import com.swdteam.common.init.DMTardis;
+import com.swdteam.common.tardis.TardisData;
+import com.swdteam.common.tardis.TardisState;
 import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelRendererWrapper;
 import com.swdteam.model.javajson.ModelWrapper;
 import com.swdteam.util.SWDMathUtils;
-import com.swdteam.util.TeleportUtil;
 import com.swdteam.util.math.Position;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Dimension;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
-
-import static com.swdteam.common.init.DMDimensions.TARDIS;
 
 @Mixin(TardisTileEntity.class)
-public abstract class BotiMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity  {
+public abstract class BotiMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity {
 
 	@Shadow
 	public TardisData tardisData;
-	@Shadow boolean demat;
-	boolean spawned = true;
-	boolean removed = true;
-	boolean canRemove = false;
 
-	public Portal portal = null;
+	@Shadow
+	boolean demat;
 
-	boolean isPortalSpawned = false;
+	@Unique
+	boolean dmadditions_116$isPortalSpawned = false;
 
-	private static AxisAlignedBB defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
-	public RegistryKey<World> TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
-	public RegistryKey<World> OVERWORLD = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("overworld"));
+	@Shadow
+	protected abstract void doorAnimation();
 
+	@Unique
+	public Portal dmadditions_116$portal = null;
+
+	@Unique
+	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
+
+	@Unique
+	public RegistryKey<World> dmadditions_116$TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
 
 	public BotiMixin() {
-		super((TileEntityType) DMBlockEntities.TILE_TARDIS.get());
+		super(DMBlockEntities.TILE_TARDIS.get());
 	}
 
 	/**
-	 * @author Made by BobDude, modified by JamesLeDolphin to actually make it work
+	 * @author Originally made by BobDude, finished by JamesLeDolphin
 	 * @reason BOTI
 	 */
 	@Overwrite
 	public void tick() {
-		TardisTileEntity t = (TardisTileEntity) ((Object) this);
-
+		TardisTileEntity tile = (TardisTileEntity) ((Object) this);
 		this.doorAnimation();
-		long tickTime = System.currentTimeMillis() - t.lastTickTime;
-		t.lastTickTime = System.currentTimeMillis();
-		if (t.state == TardisState.DEMAT) {
+		long tickTime = System.currentTimeMillis() - tile.lastTickTime;
+		tile.lastTickTime = System.currentTimeMillis();
+		if (tile.state == TardisState.DEMAT) {
 			this.demat = true;
-			if (t.animStartTime == 0L) {
-				t.animStartTime = System.currentTimeMillis();
+			if (tile.animStartTime == 0L) {
+				tile.animStartTime = System.currentTimeMillis();
 			}
-
 			if (tickTime > 100L) {
-				t.animStartTime += tickTime;
+				tile.animStartTime += tickTime;
 			}
-
-			t.dematTime = (float)((double)(System.currentTimeMillis() - t.animStartTime) / 10000.0);
-			if (t.dematTime >= 1.0F) {
-				t.dematTime = 1.0F;
+			tile.dematTime = (float) ((double) (System.currentTimeMillis() - tile.animStartTime) / 10000.0);
+			if (tile.dematTime >= 1.0F) {
+				tile.dematTime = 1.0F;
 			}
-
-			if (t.dematTime == 1.0F) {
-				this.level.setBlockAndUpdate(t.getBlockPos(), Blocks.AIR.defaultBlockState());
-				t.animStartTime = 0L;
+			if (tile.dematTime == 1.0F) {
+				this.getLevel().setBlockAndUpdate(tile.getBlockPos(), Blocks.AIR.defaultBlockState());
+				tile.animStartTime = 0L;
 			}
-		} else if (t.state == TardisState.REMAT) {
+		} else if (tile.state == TardisState.REMAT) {
 			this.demat = false;
-			if (t.animStartTime == 0L) {
-				t.animStartTime = System.currentTimeMillis();
+			if (tile.animStartTime == 0L) {
+				tile.animStartTime = System.currentTimeMillis();
 			}
-
 			if (tickTime > 100L) {
-				t.animStartTime += tickTime;
+				tile.animStartTime += tickTime;
 			}
-
-			if (System.currentTimeMillis() - t.animStartTime > 9000L) {
-				t.dematTime = 1.0F - (float)((double)(System.currentTimeMillis() - (t.animStartTime + 9000L)) / 10000.0);
+			if (System.currentTimeMillis() - tile.animStartTime > 9000L) {
+				tile.dematTime = 1.0F - (float) ((double) (System.currentTimeMillis() - (tile.animStartTime + 9000L)) / 10000.0);
 			}
-
-			if (t.dematTime <= 0.0F) {
-				t.dematTime = 0.0F;
+			if (tile.dematTime <= 0.0F) {
+				tile.dematTime = 0.0F;
 			}
-
-			if (t.dematTime == 0.0F) {
-				t.setState(TardisState.NEUTRAL);
-				t.animStartTime = 0L;
+			if (tile.dematTime == 0.0F) {
+				tile.setState(TardisState.NEUTRAL);
+				tile.animStartTime = 0L;
 			}
 		}
 
-		t.pulses = 1.0F - t.dematTime + MathHelper.cos(t.dematTime * 3.141592F * 10.0F) * 0.25F * MathHelper.sin(t.dematTime * 3.141592F);
-		if (this.getLevel().getBlockState(t.getBlockPos().offset(0, -1, 0)).getMaterial() == Material.AIR) {
-			++t.bobTime;
+		tile.pulses = 1.0F - tile.dematTime + MathHelper.cos(tile.dematTime * 3.141592F * 10.0F) * 0.25F * MathHelper.sin(tile.dematTime * 3.141592F);
+		if (this.getLevel().getBlockState(tile.getBlockPos().offset(0, -1, 0)).getMaterial() == Material.AIR) {
+			++tile.bobTime;
 			++this.rotation;
+			if (dmadditions_116$portal != null && dmadditions_116$portal.isAlive() && !level.isClientSide()) {
+				dmadditions_116$portal.reloadAndSyncToClient();
+				dmadditions_116$portal.kill();
+				dmadditions_116$portal.remove(false);
+				level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dmadditions_116$portal);
+				dmadditions_116$portal.onRemovedFromWorld();
+				dmadditions_116$portal = null;
+				dmadditions_116$isPortalSpawned = false;
+			}
 		} else {
-			t.bobTime = 0;
+			tile.bobTime = 0;
 			this.rotation = SWDMathUtils.SnapRotationToCardinal(this.rotation);
 		}
 
 
 		if (!this.level.isClientSide) {
-			t.tardisData = DMTardis.getTardis(t.globalID);
-                    /*
-                    TODO
-                    Change portal size based on exterior
-                    add SOTO
-                    //Sometimes you can walk through the door
-                    //The portal still bugs and doesn't update the position sometimes
-                     */
-			if (t.tardisData != null) {
+			tile.tardisData = DMTardis.getTardis(tile.globalID);
+			//TODO add SOTO
+			if (tile.tardisData != null) {
 
-				if (t.tardisData.getInteriorSpawnPosition() != null) {
-					Position vec = t.tardisData.getInteriorSpawnPosition();
+				if (tile.tardisData.getInteriorSpawnPosition() != null) {
+					Position vec = tile.tardisData.getInteriorSpawnPosition();
 					Vector3d pos = new Vector3d(vec.x(), vec.y() + 1.05, vec.z());
-					defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
+					dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
 					//size of the portal
-					AxisAlignedBB bounds = defaultAABB.move(this.getBlockPos()).inflate(-0.14200001192092896, 0.0, -0.14200001192092896);
 					//handles how far out the portal is from the tardis
-					bounds = bounds.move(Math.sin(Math.toRadians((double) this.rotation)) * 0.1, 0.0, -Math.cos(Math.toRadians((double) this.rotation)) * 0.1);
 
-					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(t.rotation));
-					if (!t.doorOpenLeft && !t.doorOpenRight) {
-						//System.out.println(SWDMathUtils.rotationToCardinal(flightData.getRotationAngle()));
-						if (((t.state == TardisState.DEMAT || t.state.equals(TardisState.REMAT)) || this.level.getBlockState(t.getBlockPos().below()).is(Blocks.AIR))
-							&& (portal != null && portal.isAlive())) {
-							portal.kill();
-							portal.remove(false);
-							level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(portal);
-							portal.onRemovedFromWorld();
-							portal = null;
-							isPortalSpawned = false;
-						}
+					ResourceLocation rl = tile.tardisData.getTardisExterior().getData().getModel(tile.tardisData.getSkinID());
+					JSONModel model = ExteriorModels.getModel(rl);
+					ModelWrapper modelWrapper = model.getModelData().getModel();
+					ModelRendererWrapper mdl = modelWrapper.getPart("portal");
+
+					AxisAlignedBB bounds = dmadditions_116$defaultAABB.move(this.getBlockPos()).inflate(mdl == null ? -0.14200001192092896 : mdl.x / 200,
+						mdl == null ? 0.0 : mdl.y / 10, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
+
+					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.1,
+						0.0, -Math.cos(Math.toRadians(this.rotation)) * 0.1);
+
+					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
+					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
+						&& (dmadditions_116$portal != null && dmadditions_116$portal.isAlive() && dmadditions_116$isPortalSpawned)) {
+						dmadditions_116$portal.reloadAndSyncToClient();
+						dmadditions_116$portal.kill();
+						dmadditions_116$portal.remove(false);
+						level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dmadditions_116$portal);
+						dmadditions_116$portal.onRemovedFromWorld();
+						dmadditions_116$portal = null;
+						dmadditions_116$isPortalSpawned = false;
 					}
-					/**
+
+					/*
 					 * List of exterior registry names
 					 * dalekmod:tardis_capsule
 					 * dalekmod:police_box
@@ -182,84 +173,44 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					 * dalekmod:dalek_mod_2013
 					 * dalekmod:sidrat_capsule
 					 */
+					if (tile != null && level != null) {
+						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dmadditions_116$isPortalSpawned && tDir != null) {
+							dmadditions_116$portal = PortalManipulation.createOrthodoxPortal(
+								Portal.entityType,
+								McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
+								McHelper.getServerWorld(dmadditions_116$TARDIS),
+								tDir,
+								bounds,
+								pos
+							);
+							if (tDir == Direction.NORTH) {
+								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
+							} else if (tDir == Direction.WEST) {
+								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
+							} else if (tDir == Direction.EAST) {
+								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
+							}
 
-					if((t.doorOpenLeft || t.doorOpenRight) && !isPortalSpawned && tDir != null) {
-						portal = PortalManipulation.createOrthodoxPortal(
-							Portal.entityType,
-							McHelper.getServerWorld(t.tardisData.getCurrentLocation().dimensionWorldKey()),
-							McHelper.getServerWorld(TARDIS),
-							tDir,
-							bounds,
-							pos
-						);
-						//portal.renderingMergable = true; //Recommended to check if overlapping portals, so doesn't have visual bugs
-						if(tDir == Direction.NORTH) {
-							portal.setRotationTransformation(new Quaternion(0, 1, 0, 0)); //flips it around
+							McHelper.spawnServerEntity(dmadditions_116$portal);
+							dmadditions_116$isPortalSpawned = true;
 						}
-						else if(tDir == Direction.WEST) {
-							portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0,  0.7071f)); //flips it around
-						}
-						else if(tDir == Direction.EAST) {
-							portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0,  0.7071f)); //flips it around
-						}
-						McHelper.spawnServerEntity(portal);
-						isPortalSpawned = true;
-					}
 
-					if(portal != null && portal.isAlive()) {
-						if (t.doorOpenLeft || t.doorOpenRight) {
-							portal.setDestination(pos);
-							if(!portal.level.isClientSide) {
-
+						if (dmadditions_116$portal != null && dmadditions_116$portal.isAlive()) {
+							Position position = tardisData.getInteriorSpawnPosition();
+							Vector3d vec3d = new Vector3d(position.x(), position.y(), position.z());
+							if (!Objects.equals(dmadditions_116$portal.destination, vec3d)) {
+								dmadditions_116$portal.setDestination(vec3d);
+							}
+							if (tile.doorOpenLeft || tile.doorOpenRight) {
+								dmadditions_116$portal.setDestination(pos);
+								if (dmadditions_116$portal.level.isClientSide) {
+									return;
+								}
 							}
 						}
-
 					}
 				}
-
-				return;
 			}
-
 		}
 	}
-
-
-	public Direction rotationToCardinal(float rotation) {
-		int a = Math.round(rotation / 45.0F);
-
-		while (a < 0 || a > 7) {
-			if (a < 0) {
-				a += 8;
-			}
-
-			if (a > 7) {
-				a -= 8;
-			}
-		}
-
-		switch (a) {
-			case 0:
-				return Direction.NORTH;
-			case 1:
-				//return "NORTHEAST";
-			case 2:
-				return Direction.EAST;
-			case 3:
-				//return "SOUTHEAST";
-			case 4:
-				return Direction.SOUTH;
-			case 5:
-				//return "SOUTHWEST";
-			case 6:
-				return Direction.WEST;
-			case 7:
-				//return "NORTHWEST";
-			default:
-				return Direction.NORTH;
-		}
-	}
-
-	@Shadow public abstract void doorAnimation();
-
-
 }

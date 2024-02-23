@@ -47,12 +47,9 @@ public class TardisRemoteKeyItem extends TardisKeyItem {
 			if (super.useOn(context).equals(ActionResultType.CONSUME)) return ActionResultType.CONSUME;
 
 			BlockPos posUp = context.getClickedPos().above();
-			boolean canContinue = false;
 			if (WorldUtils.canPlace(world, pos, false)) {
 				posUp = pos;
-				canContinue = true;
 			} else if (world.isEmptyBlock(posUp)) {
-				canContinue = true;
 			}
 
 			if (!world.getBlockState(posUp).canBeReplaced(new DirectionalPlaceContext(world, posUp, Direction.NORTH, context.getItemInHand(), Direction.NORTH))) {
