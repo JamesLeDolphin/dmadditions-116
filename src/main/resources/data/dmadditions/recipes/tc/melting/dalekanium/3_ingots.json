@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:damagable_melting",
+      "ingredient": [
+        {
+          "item": "dalekmod:dalekanium_pickaxe"
+        }
+      ],
+      "result": {
+        "fluid": "dmadditions:molten_dalekanium",
+        "amount": 432
+      },
+      "temperature": 1000,
+      "time": 100
+    }
+    }
+  ]
+}

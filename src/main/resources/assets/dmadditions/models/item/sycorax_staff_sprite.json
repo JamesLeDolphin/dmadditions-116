@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dmadditions:item/sycorax_staff_sprite"
+  }
+}

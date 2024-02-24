@@ -48,11 +48,11 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 
 				if (shootMode) {
 					ChatUtil.sendError(player,
-						new TranslationTextComponent("item.dalekmod.laser_screwdriver.mode.laser"),
+						new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.laser"),
 						ChatUtil.MessageType.STATUS_BAR);
 				} else {
 					ChatUtil.sendCompletedMsg(player,
-						new TranslationTextComponent("item.dalekmod.laser_screwdriver.mode.sonic"),
+						new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.sonic"),
 						ChatUtil.MessageType.STATUS_BAR);
 				}
 

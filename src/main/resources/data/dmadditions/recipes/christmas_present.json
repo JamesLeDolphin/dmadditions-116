@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:white_wool"
+    },
+    "B": {
+      "item": "minecraft:blue_wool"
+    }
+  },
+  "result": {
+    "item": "dmadditions:christmas_present",
+    "count": 1
+  }
+}

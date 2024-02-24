@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "X#X",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:brown_wool"
+    },
+    "X": {
+      "tag": "dmadditions:scarf_brown_materials"
+    }
+  },
+  "result": {
+    "item": "dmadditions:scarf_brown",
+    "count": 1
+  }
+}

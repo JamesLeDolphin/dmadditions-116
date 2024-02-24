@@ -1,0 +1,7 @@
+{
+	"_comment": "stealed from 1.12",
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "dmadditions:item/top_hat"
+	}
+}

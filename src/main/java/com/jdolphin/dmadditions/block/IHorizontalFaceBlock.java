@@ -53,7 +53,7 @@ public interface IHorizontalFaceBlock extends IForgeBlock {
 	}
 
 	default BlockState defaultBlockState() {
-		return this.defaultBlockState;
+		return IHorizontalFaceBlock.defaultBlockState;
 	}
 
 	default Direction getConnectedDirection(BlockState state) {

@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"dalekmod:sonic_screwdriver"
+		"dalekmod:sonic_screwdriver",
+		"dmadditions:laser_screwdriver"
 	]
 }

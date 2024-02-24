@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:entity",
+	"pools": [
+		{
+			"rolls": {
+				"min": 0,
+				"max": 1
+			},
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "dmadditions:top_hat"
+				}
+			]
+		}
+	]
+}
+

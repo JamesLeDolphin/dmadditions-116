@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "dmadditions:block/tardis_snowglobe",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "dmadditions:block/tardis_snowglobe"
+		},
+		"facing=south": {
+			"model": "dmadditions:block/tardis_snowglobe",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "dmadditions:block/tardis_snowglobe",
+			"y": 270
+		}
+	}
+}

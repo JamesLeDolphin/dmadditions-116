@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.init;
 
-import com.swdteam.common.init.DMItems;
 import com.swdteam.main.DalekMod;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -17,19 +16,18 @@ import java.util.function.Supplier;
 
 @MethodsReturnNonnullByDefault
 public enum DMAArmorMaterial implements IArmorMaterial {
-	STEEL("steel", 20, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-		() -> Ingredient.of(DMItems.STEEL_INGOT.get())),
-	DALEKANIUM("dalekanium", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-		() -> Ingredient.of(DMItems.DALEKANIUM_INGOT.get())),
-	REFINED_DALEKANIUM("refined_dalekanium", 20, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F,
-		() -> Ingredient.of(DMItems.DALEKANIUM_INGOT.get())),
-	PURE_DALEKANIUM("pure_dalekanium", 25, new int[]{2, 5, 6, 2}, 10, SoundEvents.ARMOR_EQUIP_IRON, 0.1F, 0.0F,
-		() -> Ingredient.of(DMItems.DALEKANIUM_INGOT.get())),
-	METALERT("metalert", 40, new int[]{3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F,
-		() -> Ingredient.of(DMItems.METALERT.get())),
 	MATTS_PINK_THONG("matts_pink_thong", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
 		() -> Ingredient.EMPTY),
 	SPACE_SUIT("space_suit", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
+		() -> Ingredient.EMPTY),
+
+	CHRISTMAS_HAT("christmas_hat", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
+		() -> Ingredient.EMPTY),
+
+	WEDDING_DRESS("wedding_dress", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
+		() -> Ingredient.EMPTY),
+
+	SCARF("scarf", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
 		() -> Ingredient.EMPTY);
 
 	private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};

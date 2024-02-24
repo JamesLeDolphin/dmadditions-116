@@ -33,10 +33,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.extensions.IForgeEntity;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttackMob, IForgeEntity {
+public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttackMob {
 	public static final DataParameter<Boolean> HAS_GUN;
 	private Goal meeleAttack;
 	private final ItemStack pickResult;
@@ -53,10 +52,10 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(3, new AvoidEntityGoal(this, PiglinEntity.class, 6.0F, 1.0, 1.2));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal(this, PiglinBruteEntity.class, 6.0F, 1.0, 1.2));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinEntity.class, 6.0F, 1.0, 1.2));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinBruteEntity.class, 6.0F, 1.0, 1.2));
 		if (this.hasGun()) {
-			this.goalSelector.addGoal(4, new RangedLaserAttack(this, 1.0, 20, 15.0F));
+			this.goalSelector.addGoal(4, new RangedLaserAttack<>(this, 1.0, 20, 15.0F));
 		} else {
 			this.goalSelector.addGoal(2, this.meeleAttack = new MeleeAttackGoal(this, 1.0, false));
 		}
@@ -64,14 +63,14 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 		this.goalSelector.addGoal(5, new LookAtGoalBetter(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.8));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, DalekEntity.class, true));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, VillagerEntity.class, true));
-		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieVillagerEntity.class, true));
-		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true));
-		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, HuskEntity.class, true));
-		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, SkeletonEntity.class, true));
-		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, StrayEntity.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
+		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, ZombieVillagerEntity.class, true));
+		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, HuskEntity.class, true));
+		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, SkeletonEntity.class, true));
+		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, StrayEntity.class, true));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 	}
 
@@ -147,7 +146,7 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 			}
 
 			VillagerEntity villagerentity = (VillagerEntity)target;
-			CybermanEntity woodenCybermanEntity = (CybermanEntity)villagerentity.convertTo((EntityType)DMEntities.CYBERMAN_ENTITY.get(), false);
+			CybermanEntity woodenCybermanEntity = (CybermanEntity)villagerentity.convertTo((EntityType<CybermanEntity>)DMEntities.CYBERMAN_ENTITY.get(), false);
 			woodenCybermanEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(woodenCybermanEntity.blockPosition()), SpawnReason.CONVERSION, new ZombieEntity.GroupData(false, true), null);
 			ForgeEventFactory.onLivingConvert(target, woodenCybermanEntity);
 			if (!this.isSilent()) {

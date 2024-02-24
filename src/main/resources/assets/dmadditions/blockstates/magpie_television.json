@@ -1,0 +1,115 @@
+{
+  "variants": {
+    "facing=east,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television",
+      "y": 90
+    },
+    "facing=north,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television"
+    },
+    "facing=south,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television",
+      "y": 180
+    },
+    "facing=west,on=false": {
+      "model": "dmadditions:block/magpie/magpie_television",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/intro",
+      "y": 90
+    },
+    "facing=north,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/intro"
+    },
+    "facing=south,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/intro",
+      "y": 180
+    },
+    "facing=west,on=true,channel=0": {
+      "model": "dmadditions:block/magpie/intro",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/doctor_dalek",
+      "y": 90
+    },
+    "facing=north,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/doctor_dalek"
+    },
+    "facing=south,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/doctor_dalek",
+      "y": 180
+    },
+    "facing=west,on=true,channel=1": {
+      "model": "dmadditions:block/magpie/doctor_dalek",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber",
+      "y": 90
+    },
+    "facing=north,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber"
+    },
+    "facing=south,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber",
+      "y": 180
+    },
+    "facing=west,on=true,channel=2": {
+      "model": "dmadditions:block/magpie/cyber",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=3": {
+      "model": "dmadditions:block/magpie/pfd",
+      "y": 90
+    },
+    "facing=north,on=true,channel=3": {
+      "model": "dmadditions:block/magpie/pfd"
+    },
+    "facing=south,on=true,channel=3": {
+      "model": "dmadditions:block/magpie/pfd",
+      "y": 180
+    },
+    "facing=west,on=true,channel=3": {
+      "model": "dmadditions:block/magpie/pfd",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=4": {
+      "model": "dmadditions:block/magpie/stooky",
+      "y": 90
+    },
+    "facing=north,on=true,channel=4": {
+      "model": "dmadditions:block/magpie/stooky"
+    },
+    "facing=south,on=true,channel=4": {
+      "model": "dmadditions:block/magpie/stooky",
+      "y": 180
+    },
+    "facing=west,on=true,channel=4": {
+      "model": "dmadditions:block/magpie/stooky",
+      "y": 270
+    },
+
+    "facing=east,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard",
+      "y": 90
+    },
+    "facing=north,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard"
+    },
+    "facing=south,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard",
+      "y": 180
+    },
+    "facing=west,on=true,channel=5": {
+      "model": "dmadditions:block/magpie/testcard",
+      "y": 270
+    }
+  }
+}

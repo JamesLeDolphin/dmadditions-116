@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"#@#",
+		"___"
+	],
+	"key": {
+		"#": {
+			"tag": "forge:glass_panes"
+		},
+		"@": {
+			"item": "minecraft:lapis_block"
+		},
+		"_": {
+			"tag": "minecraft:wooden_slabs"
+		}
+	},
+	"result": {
+		"item": "dmadditions:tardis_snowglobe"
+	}
+}

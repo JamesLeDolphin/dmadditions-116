@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+  "type": "tconstruct:damagable_melting",
+  "ingredient": {
+    "item": "dalekmod:metalert_leggings"
+  },
+  "result": {
+    "fluid": "dmadditions:molten_metalert",
+    "amount": 1008
+  },
+  "temperature": 1000,
+  "time": 209
+      }
+    }
+  ]
+}

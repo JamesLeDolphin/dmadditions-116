@@ -1,0 +1,6 @@
+{
+  "parent": "dmadditions:block/magpie/magpie_television",
+  "textures": {
+    "channel": "dmadditions:block/advent/tv_channels/doctor_dalek"
+  }
+}

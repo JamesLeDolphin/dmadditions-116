@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
+import com.jdolphin.dmadditions.init.DMACommands;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -12,7 +13,7 @@ import net.minecraft.world.GameType;
 public class ToggleModeCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("togglemode").requires(player -> player.hasPermission(2)).executes(context -> {
+		DMACommands.register(dispatcher, Commands.literal("togglemode").requires(player -> player.hasPermission(2)).executes(context -> {
 			CommandSource source = context.getSource();
 
 			if (!(source.getEntity() instanceof ServerPlayerEntity)) {

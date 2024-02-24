@@ -1,39 +1,36 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.RegistryHandler.DMARegistries;
-import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
-import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
-import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
-import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
-import com.swdteam.common.RegistryHandler;
+import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.tileentity.*;
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class DMABlockEntities {
-	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER;
+	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
+
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
-	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE;
-	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL;
 
-
-	static {
-//		if (AdventUnlock.unlockAt(23))
-//			TILE_SCANNER = RegistryHandler.TILE_ENTITY_TYPES.register("dma_scanner", () ->
-//				TileEntityType.Builder.of(BetterScannerTileEntity::new,
-//					DMBlocks.SCANNER.get(),
-//					DMABlocks.TARDIS_MONITOR_8.get(),
-//					DMABlocks.CORAL_TARDIS_MONITOR.get(),
-//					DMABlocks.TOYOTA_TARDIS_MONITOR.get()
-//				).build(null));
-
-		TILE_DOOR_PANEL = RegistryHandler.TILE_ENTITY_TYPES.register("door_panel",
+	protected static <T extends TileEntity> RegistryObject<TileEntityType<T>> registerAdventTileEntity(int day, String name, Supplier<TileEntityType<T>> supplier){
+		if (!AdventUnlock.unlockAt(day)) return null;
+		return TILE_ENTITY_TYPES.register(name, supplier);
+	}
+	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
-		TILE_REDDASH_STATUE = DMARegistries.TILE_ENTITY_TYPES.register("reddash_statue", () ->
+	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
 			TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
-		TILE_ROUNDEL_CONTAINER = RegistryHandler.TILE_ENTITY_TYPES.register("roundel_container", () ->
+	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR = TILE_ENTITY_TYPES.register("specimen_jar", () ->
+			TileEntityType.Builder.of(SpecimenJarTileEntity::new, DMABlocks.SPECIMEN_JAR.get()).build(null));
+
+		public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
 				DMABlocks.BLACK_QUARTZ_ROUNDEL_CONTAINER.get(),
 				DMABlocks.YELLOW_QUARTZ_ROUNDEL_CONTAINER.get(),
@@ -124,5 +121,4 @@ public class DMABlockEntities {
 				DMABlocks.RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER.get(),
 				DMABlocks.BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER.get()
 			}).build(null));
-	}
 }

@@ -9,6 +9,8 @@
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
+		"RenderBlockTardisMixin",
+		"DMProjectilesMixin",
 		"conditional.BotiMixin",
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
@@ -21,14 +23,19 @@
 		"SpecialWeaponsMixin",
 		"DoubleDoorsTileEntityMixin",
 		"RoundelDoorTileEntityMixin",
-		"TardisTileEntityMixin"
+		"TardisTileEntityMixin",
+		"DataMixin",
+		"DMTardisRegistryMixin"
 	],
 	"client": [
+		"BusClientEventsMixin",
 		"MainMenuScreenMixin",
 		"ClientProxyMixin",
 		"DalekEntityMixin",
 		"DMEntityRenderRegistryMixin",
 		"DMTileRenderRegistryMixin",
-		"ModelDalekBaseMixin"
+		"ModelDalekBaseMixin",
+		"SplashesMixin",
+		"ItemRenderingInitMixin"
 	]
 }

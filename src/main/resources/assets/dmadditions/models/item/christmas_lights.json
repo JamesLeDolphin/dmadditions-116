@@ -1,0 +1,156 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "dmadditions:block/advent/christmas_lights",
+		"particle": "dmadditions:block/advent/christmas_lights",
+		"lightmap":"dmadditions:block/advent/christmas_lights"
+	},
+	"elements": [
+		{
+			"from": [-8.75, 11.5, 15],
+			"to": [-2.75, 12.5, 16],
+			"rotation": {"angle": -45, "axis": "z", "origin": [0, 3, 1]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 1], "texture": "#1"},
+				"east": {"uv": [14, 4, 15, 5], "texture": "#1"},
+				"south": {"uv": [0, 1, 6, 2], "texture": "#1"},
+				"west": {"uv": [14, 5, 15, 6], "texture": "#1"},
+				"up": {"uv": [6, 3, 0, 2], "texture": "#1"},
+				"down": {"uv": [6, 3, 0, 4], "texture": "#1"}
+			}
+		},
+		{
+			"from": [1.75, 17, 15],
+			"to": [2.75, 23, 16],
+			"rotation": {"angle": -45, "axis": "z", "origin": [0, 3, 1]},
+			"faces": {
+				"north": {"uv": [0, 4, 1, 10], "texture": "#1"},
+				"east": {"uv": [1, 4, 2, 10], "texture": "#1"},
+				"south": {"uv": [2, 4, 3, 10], "texture": "#1"},
+				"west": {"uv": [3, 4, 4, 10], "texture": "#1"},
+				"up": {"uv": [7, 15, 6, 14], "texture": "#1"},
+				"down": {"uv": [15, 6, 14, 7], "texture": "#1"}
+			}
+		},
+		{
+			"from": [10, 5.75, 15],
+			"to": [14, 6.75, 16],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [0, 3, 1]},
+			"faces": {
+				"north": {"uv": [4, 8, 8, 9], "texture": "#1"},
+				"east": {"uv": [8, 14, 9, 15], "texture": "#1"},
+				"south": {"uv": [8, 4, 12, 5], "texture": "#1"},
+				"west": {"uv": [14, 8, 15, 9], "texture": "#1"},
+				"up": {"uv": [12, 6, 8, 5], "texture": "#1"},
+				"down": {"uv": [12, 6, 8, 7], "texture": "#1"}
+			}
+		},
+		{
+			"from": [1.8, 5.75, 15],
+			"to": [6.2, 6.75, 16],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [16, 3, 1]},
+			"faces": {
+				"north": {"uv": [8, 7, 12, 8], "texture": "#1"},
+				"east": {"uv": [9, 14, 10, 15], "texture": "#1"},
+				"south": {"uv": [8, 8, 12, 9], "texture": "#1"},
+				"west": {"uv": [14, 9, 15, 10], "texture": "#1"},
+				"up": {"uv": [8, 10, 4, 9], "texture": "#1"},
+				"down": {"uv": [12, 9, 8, 10], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 9, 14],
+			"to": [6, 11, 16],
+			"faces": {
+				"north": {"uv": [0, 10, 2, 12], "texture": "#1"},
+				"east": {"uv": [2, 10, 4, 12], "texture": "#1"},
+				"south": {"uv": [4, 10, 6, 12], "texture": "#1"},
+				"west": {"uv": [6, 10, 8, 12], "texture": "#1"},
+				"up": {"uv": [10, 12, 8, 10], "texture": "#1"},
+				"down": {"uv": [12, 10, 10, 12], "texture": "#1"}
+			}
+		},
+		{
+			"from": [1, 11, 14],
+			"to": [3, 13, 16],
+			"faces": {
+				"north": {"uv": [0, 12, 2, 14], "texture": "#1"},
+				"east": {"uv": [12, 0, 14, 2], "texture": "#1"},
+				"south": {"uv": [2, 12, 4, 14], "texture": "#1"},
+				"west": {"uv": [12, 2, 14, 4], "texture": "#1"},
+				"up": {"uv": [6, 14, 4, 12], "texture": "#1"},
+				"down": {"uv": [14, 4, 12, 6], "texture": "#1"}
+			}
+		},
+		{
+			"from": [10, 9, 14],
+			"to": [12, 11, 16],
+			"faces": {
+				"north": {"uv": [6, 12, 8, 14], "texture": "#1"},
+				"east": {"uv": [12, 6, 14, 8], "texture": "#1"},
+				"south": {"uv": [8, 12, 10, 14], "texture": "#1"},
+				"west": {"uv": [12, 8, 14, 10], "texture": "#1"},
+				"up": {"uv": [12, 14, 10, 12], "texture": "#1"},
+				"down": {"uv": [14, 10, 12, 12], "texture": "#1"}
+			}
+		},
+		{
+			"from": [7, 8, 14],
+			"to": [9, 10, 16],
+			"faces": {
+				"north": {"uv": [12, 12, 14, 14], "texture": "#1"},
+				"east": {"uv": [0, 14, 2, 16], "texture": "#1"},
+				"south": {"uv": [14, 0, 14, 2], "texture": "#1"},
+				"west": {"uv": [2, 14, 4, 16], "texture": "#1"},
+				"up": {"uv": [16, 4, 14, 2], "texture": "#1"},
+				"down": {"uv": [6, 14, 4, 16], "texture": "#1"}
+			}
+		},
+		{
+			"from": [13, 11, 14],
+			"to": [15, 13, 16],
+			"faces": {
+				"north": {"uv": [4, 4, 6, 6], "texture": "#1"},
+				"east": {"uv": [6, 0, 8, 2], "texture": "#1"},
+				"south": {"uv": [6, 2, 8, 4], "texture": "#1"},
+				"west": {"uv": [4, 6, 6, 8], "texture": "#1"},
+				"up": {"uv": [8, 6, 6, 4], "texture": "#1"},
+				"down": {"uv": [8, 6, 6, 8], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [79, -1, 0],
+			"translation": [0, 4.5, -2],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [82, 0, 0],
+			"translation": [0.5, 7.5, 1]
+		},
+		"firstperson_righthand": {
+			"translation": [-8.75, 0, -24.75]
+		},
+		"firstperson_lefthand": {
+			"translation": [-8, 0, -11.25]
+		},
+		"gui": {
+			"translation": [0, -6.25, 0]
+		},
+		"head": {
+			"translation": [0, 6, -8.5]
+		},
+		"fixed": {
+			"translation": [0, -3.5, -7]
+		}
+	},
+	"groups": [
+		{
+			"name": "christmas_lights",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+		}
+	]
+}

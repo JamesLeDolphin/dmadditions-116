@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
+import com.jdolphin.dmadditions.init.DMACommands;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -10,7 +11,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -21,11 +21,10 @@ import java.util.List;
 public class CommandSit {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("sit").executes(context -> {
+		DMACommands.register(dispatcher, Commands.literal("sit").executes(context -> {
 			Entity entity = context.getSource().getEntity();
 			if (entity instanceof PlayerEntity) {
 				PlayerEntity player = (PlayerEntity) entity;
-				MinecraftServer server = context.getSource().getServer();
 				World world = player.getEntity().getCommandSenderWorld();
 				Vector3d pos = player.position();
 				ArmorStandEntity armorStand = new ArmorStandEntity(world, pos.x, pos.y - 1.7, pos.z);
@@ -46,10 +45,12 @@ public class CommandSit {
 
 				world.addFreshEntity(armorStand);
 				player.startRiding(armorStand, true);
-				player.sendMessage(new StringTextComponent("You have sat down.").withStyle(TextFormatting.GREEN), player.getUUID());
+				player.sendMessage(new StringTextComponent("You have sat down.").withStyle(TextFormatting.GREEN),
+						player.getUUID());
 
 				// Find and kill unoccupied chairs
-				List<ArmorStandEntity> chairs = world.getEntitiesOfClass(ArmorStandEntity.class, armorStand.getBoundingBox().inflate(1.0));
+				List<ArmorStandEntity> chairs = world.getEntitiesOfClass(ArmorStandEntity.class,
+						armorStand.getBoundingBox().inflate(1.0));
 				for (ArmorStandEntity chair : chairs) {
 					if (chair.getPersistentData().contains("Tags")) {
 						CompoundNBT chairTags = chair.getPersistentData().getCompound("Tags");

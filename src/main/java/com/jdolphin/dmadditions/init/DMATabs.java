@@ -26,7 +26,7 @@ public class DMATabs {
 
 	public static final ItemGroup DMA_ROUNDEL_CONTAINERS = new ItemGroup("DMA_Roundel_Containers") {
 		public ItemStack makeIcon() {
-			return DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.isPresent() ? new ItemStack(DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.get()) : ItemStack.EMPTY;
+			return DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.isPresent() ? new ItemStack(DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.get()) : new ItemStack(DMItems.ROUNDEL_MOLD.get());
 		}
 
 		public void fillItemList(NonNullList<ItemStack> p_78018_1_) {

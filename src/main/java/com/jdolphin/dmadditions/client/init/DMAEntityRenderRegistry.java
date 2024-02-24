@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.init;
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.init.DMAEntities;
-import com.swdteam.main.DalekMod;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -14,7 +14,7 @@ public class DMAEntityRenderRegistry {
 	}
 
 	public static void registryEntityRenders() {
-		DalekMod.LOGGER.info("Registering DMA Entity Renders");
+		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);
@@ -23,6 +23,15 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
+		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
+		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
+		registerRender(DMAEntities.SHOPPING_CART, ShoppingCartRenderer::new);
+// 		registerRender(DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
+		registerRender(DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
+		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
+		registerRender(DMAEntities.TORCHWOOD_TANK, TankRenderer::new);
+		registerRender(DMAEntities.KANTROFARRI, KantrofarriRenderer::new);
+		registerRender(DMAEntities.JIM, JimRenderer::new);
 	}
 
 

@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+        "type": "tconstruct:casting_table",
+        "cast": {
+          "tag": "tconstruct:casts/multi_use/ingot"
+        },
+        "fluid": {
+          "tag": "dmadditions:molten_silicon",
+          "amount": 144
+        },
+        "result": "dalekmod:silicon",
+        "cooling_time": 60
+      }
+    }
+  ]
+}

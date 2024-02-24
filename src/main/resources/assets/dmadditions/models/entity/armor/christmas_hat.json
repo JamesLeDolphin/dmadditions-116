@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dmadditions:models/armor/christmas_hat",
+	"texture_width": 32,
+	"texture_height": 18,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "hat",
+			"pivot": [0,23.5,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,1],
+					"size": [8,8,8],
+					"origin": [-4,-8.5,-4],
+					"inflate": 0.55,
+					"mirror": false
+				}
+			]
+		}
+	]
+}

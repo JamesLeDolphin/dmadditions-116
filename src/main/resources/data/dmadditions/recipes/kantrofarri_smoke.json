@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "dmadditions:kantrofarri"
+  },
+  "result": "dmadditions:kantrofarri_cooked",
+  "experience": 0.35,
+  "cookingtime": 100
+}

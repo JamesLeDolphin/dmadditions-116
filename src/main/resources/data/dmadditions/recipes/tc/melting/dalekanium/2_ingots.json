@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+      "type": "tconstruct:damagable_melting",
+      "ingredient": [
+        {
+          "item": "dalekmod:dalekanium_sword"
+        },
+        {
+          "item": "dalekmod:dalekanium_hoe"
+        }
+      ],
+      "result": {
+        "fluid": "dmadditions:molten_dalekanium",
+        "amount": 288
+      },
+      "temperature": 1000,
+      "time": 100
+      }
+    }
+  ]
+}

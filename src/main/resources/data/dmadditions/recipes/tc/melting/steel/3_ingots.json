@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "tconstruct"
+        }
+      ],
+      "recipe": {
+  "type": "tconstruct:damagable_melting",
+  "ingredient": [
+    {
+      "item": "dalekmod:steel_pickaxe"
+    }
+  ],
+  "result": {
+    "fluid": "tconstruct:molten_steel",
+    "amount": 432
+  },
+  "temperature": 1000,
+  "time": 100
+      }
+    }
+  ]
+}

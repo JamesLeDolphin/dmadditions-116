@@ -25,7 +25,7 @@ import java.util.Random;
 
 public interface IRustToo {
 	BooleanProperty WAXED = BooleanProperty.create("waxed");
-	Map<Block, Block> rustedMap = new HashMap();
+	Map<Block, Block> rustedMap = new HashMap<>();
 	static void addRustedVariants() {
 		rustedMap.put(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());
 		rustedMap.put(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());

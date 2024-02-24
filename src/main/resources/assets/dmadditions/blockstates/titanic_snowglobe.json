@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "dmadditions:block/advent/titanic_snowglobe",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "dmadditions:block/advent/titanic_snowglobe"
+		},
+		"facing=south": {
+			"model": "dmadditions:block/advent/titanic_snowglobe",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "dmadditions:block/advent/titanic_snowglobe",
+			"y": 270
+		}
+	}
+}

@@ -25,15 +25,13 @@ public abstract class MainMenuScreenMixin extends Screen {
 	@Shadow
 	@Final private static ResourceLocation PANORAMA_OVERLAY;
 
-	@Shadow
-	public abstract boolean shouldCloseOnEsc();
-
 	@Unique
 	private static void dmadditions_116$getBg(String name) {
 		PANORAMA_OVERLAY = new ResourceLocation(DmAdditions.MODID, "textures/gui/main/background/" + name + ".png");
 	}
 
-	@Inject(method = "render", at = @At(value = "HEAD"), cancellable = true)
+
+	@Inject(method = "render", at = @At(value = "HEAD"))
 	public void render(MatrixStack stack, int width, int height, float scale, CallbackInfo ci) {
 		this.minecraft.getTextureManager().bind(PANORAMA_OVERLAY);
 	}
@@ -41,8 +39,8 @@ public abstract class MainMenuScreenMixin extends Screen {
 	@Inject(method = "init", at = @At(value = "TAIL"))
 	private void init(CallbackInfo ci) {
 		if (DMAClientConfig.dma_classic.get()) {
-			int j = new Random().nextInt(MenuBackGround.values().length);
-			dmadditions_116$getBg(MenuBackGround.values()[j].getName());
-		}
-	}
+			int i = new Random().nextInt(MenuBackGround.values().length);
+			dmadditions_116$getBg(MenuBackGround.values()[i].getName());
+    }
+  }
 }

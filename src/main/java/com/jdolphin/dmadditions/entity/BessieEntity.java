@@ -21,7 +21,6 @@ import javax.annotation.Nullable;
 
 public class BessieEntity extends AnimalEntity implements IJumpingMount {
 	protected float jumpPower;
-	private final boolean allowStandSliding = true;
 	protected boolean horseJumping;
 	private float deltaRotation;
 	private int engineRevTime = 0;
@@ -174,10 +173,10 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 					f1 = 0.5F;
 				}
 
-				if (this.onGround && this.jumpPower == 0.0F && this.isRearing() && !this.allowStandSliding) {
-					f = 0.0F;
-					f1 = 0.0F;
-				}
+// 				if (this.onGround && this.jumpPower == 0.0F && this.isRearing() && !this.allowStandSliding) {
+// 					f = 0.0F;
+// 					f1 = 0.0F;
+// 				}
 
 				double d3;
 				double d2;

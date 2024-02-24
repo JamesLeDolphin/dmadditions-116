@@ -1,0 +1,29 @@
+{
+	"type": "crafting_shaped",
+	"key": {
+		"*": {
+			"item": "minecraft:redstone_lamp"
+		},
+		"~": {
+			"item": "minecraft:string"
+		},
+		"y": {
+			"item": "minecraft:yellow_stained_glass"
+		},
+		"b": {
+			"item": "minecraft:light_blue_stained_glass"
+		},
+		"p": {
+			"item": "minecraft:pink_stained_glass"
+		}
+	},
+	"pattern": [
+		"~~~",
+		"ybp",
+		" * "
+	],
+	"result": {
+		"item": "dmadditions:christmas_lights",
+		"count": 3
+	}
+}

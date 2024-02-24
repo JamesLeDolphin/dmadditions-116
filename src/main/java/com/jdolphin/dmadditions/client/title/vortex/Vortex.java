@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class Vortex{
+public class Vortex {
 	private ResourceLocation TEXTURE_LOCATION;
 	private float distortionSpeed = 0.5f;
 	private final float distortionSeparationFactor = 32f;
@@ -165,7 +165,7 @@ public class Vortex{
 
 		builder.vertex(endScale * -0.0f, endScale * -1.0f + this.computeDistortionFactor(time, locationOffset + 1), -1 - locationOffset)
 			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + oneEight + textureDistanceOffset).endVertex();
-		
+
 		builder.vertex(startScale * -0.0f, startScale * -1.0f + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 		horizontalOffset = ((5.0f / 6.0f + textureRotationOffset > 1.0) ? -2 : 6);

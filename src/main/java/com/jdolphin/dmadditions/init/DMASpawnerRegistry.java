@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
@@ -13,12 +14,14 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class DMASpawnerRegistry {
-	public static Map<ResourceLocation, DMASpawnerRegistry.SpawnInfo> spawns = new HashMap();
+	public static Map<ResourceLocation, DMASpawnerRegistry.SpawnInfo> spawns = new HashMap<>();
 
 	public DMASpawnerRegistry() {
 	}
@@ -41,6 +44,16 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 		}
 
+		if(DMAEntities.CHRISTMAS_CREEPER != null && AdventUnlock.isDecember()){
+			EntitySpawnPlacementRegistry.register(DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
+			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
+		}
+
+		if(DMAEntities.KANTROFARRI != null){
+			EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
+			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);
+		}
+
 	}
 
 	public static void initDalekSpawns() {
@@ -50,6 +63,8 @@ public class DMASpawnerRegistry {
 			addDalekSpawn(DMADalekRegistry.PFD, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
 			addDalekSpawn(DMADalekRegistry.STORM, Biomes.DARK_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS,
 				Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU);
+		addDalekSpawn(DMADalekRegistry.GLASS, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
+			Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
 
 	}
 
@@ -72,16 +87,20 @@ public class DMASpawnerRegistry {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static void addSpawnToAllBiomes(EntityType<?> type, int weight, int min, int max, EntityClassification entityType) {
-		Iterator var5 = ForgeRegistries.BIOMES.getEntries().iterator();
+		Iterator<Entry<RegistryKey<Biome>, Biome>> var5 = ForgeRegistries.BIOMES.getEntries().iterator();
 
 		while (var5.hasNext()) {
-			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry) var5.next();
+			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry<RegistryKey<Biome>, Biome>) var5.next();
+			if(rl.getKey() == Biomes.THE_VOID) continue;
 			addSpawn(rl.getKey(), type, weight, min, max, entityType);
 		}
 
 	}
 
+	@SuppressWarnings("unused")
+	@SafeVarargs
 	private static void removeSpawn(EntityType<?> type, RegistryKey<Biome>... biome) {
 		for (int i = 0; i < biome.length; ++i) {
 			RegistryKey<Biome> bi = biome[i];
@@ -94,7 +113,7 @@ public class DMASpawnerRegistry {
 	}
 
 	public static class SpawnInfo {
-		private final List<DMASpawnerRegistry.SpawnInfo.Spawn> spawners = new ArrayList();
+		private final List<DMASpawnerRegistry.SpawnInfo.Spawn> spawners = new ArrayList<>();
 
 		public SpawnInfo() {
 		}

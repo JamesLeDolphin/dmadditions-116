@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dOd",
+    "dRd",
+    "FFF"
+  ],
+  "key": {
+    "d": {
+      "item": "dalekmod:stainless_steel_ingot"
+    },
+    "O": {
+      "item": "dalekmod:circuit"
+    },
+    "R": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "F": {
+      "item": "dalekmod:steel_ingot"
+    }
+  },
+  "result": {
+    "item": "dmadditions:handles",
+    "count": 1
+  }
+}

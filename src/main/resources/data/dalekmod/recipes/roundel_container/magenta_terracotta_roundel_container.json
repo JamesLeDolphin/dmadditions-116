@@ -8,14 +8,14 @@
 	],
 	"key": {
 		"#": {
-			"item": "dalekmod:terracotta_roundel_container"
+			"item": "dmadditions:terracotta_roundel_container"
 		},
 		"X": {
 			"tag": "forge:dyes/magenta"
 		}
 	},
 	"result": {
-		"item": "dalekmod:magenta_terracotta_roundel_container",
+		"item": "dmadditions:magenta_terracotta_roundel_container",
 		"count": 8
 	}
 }

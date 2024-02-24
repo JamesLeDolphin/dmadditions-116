@@ -29,7 +29,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraftforge.common.extensions.IForgeEntity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -39,7 +38,7 @@ import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_SPAWNER;
 import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
 
 // Robo Santa or something
-public class PilotFishEntity extends MonsterEntity implements IForgeEntity, IRangedAttackMob {
+public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 	public static final DataParameter<String> PILOT_FISH_TYPE = EntityDataManager.defineId(PilotFishEntity.class, DataSerializers.STRING);
 	private final RangedLasergunAttackGoal<PilotFishEntity> rangedAttackGoal = new RangedLasergunAttackGoal<>(this, 1.0D, 20, 15.0F);
 	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false);
