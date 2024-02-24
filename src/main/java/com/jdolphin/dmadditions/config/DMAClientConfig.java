@@ -1,10 +1,6 @@
 package com.jdolphin.dmadditions.config;
 
-import com.jdolphin.dmadditions.client.title.vortex.Vortex;
-import com.jdolphin.dmadditions.client.title.vortex.VortexType;
 import net.minecraftforge.common.ForgeConfigSpec;
-
-import java.util.Random;
 
 
 public final class DMAClientConfig {

@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.TileEntityBaseBlock;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMFlightMode;
@@ -10,14 +9,15 @@ import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.actions.TardisActionList;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.util.TeleportUtil;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;

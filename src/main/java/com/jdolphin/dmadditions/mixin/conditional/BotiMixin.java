@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.mixin.conditional;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.common.init.DMTardis;
@@ -25,15 +24,11 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.loading.LoadingModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.extensibility.IMixinConfig;
-import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 
-import java.lang.reflect.Field;
 import java.util.Objects;
 
 @Mixin(TardisTileEntity.class)

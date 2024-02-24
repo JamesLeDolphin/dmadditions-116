@@ -2,30 +2,17 @@ package com.jdolphin.dmadditions.mixin;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
-import com.jdolphin.dmadditions.client.title.vortex.VortexSkybox;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.swdteam.client.gui.GuiDMU;
-import com.swdteam.client.gui.util.GuiUtils;
-import com.swdteam.model.javajson.JSONModel;
-import com.swdteam.model.javajson.ModelLoader;
-import net.minecraft.client.gui.AccessibilityScreen;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.client.renderer.RenderSkybox;
-import net.minecraft.realms.RealmsBridgeScreen;
+import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.client.gui.NotificationModUpdateScreen;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 @Mixin(MainMenuScreen.class)

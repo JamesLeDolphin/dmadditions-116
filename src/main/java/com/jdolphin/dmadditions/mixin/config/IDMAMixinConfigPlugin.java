@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.mixin.config;
 
-import com.google.common.collect.Lists;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
