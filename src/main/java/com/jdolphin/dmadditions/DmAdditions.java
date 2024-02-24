@@ -87,7 +87,7 @@ public class DmAdditions {
 	// Directly reference a log4j logger.
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final DMAServerProxy DMA_PROXY = DistExecutor.safeRunForDist(() -> DMAClientProxy::new, () -> DMAServerProxy::new);
-
+	public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
