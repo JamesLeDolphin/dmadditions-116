@@ -97,12 +97,6 @@ dependencies {
     //Immersive portals
     implementation fg.deobf("curse.maven:immersiveportals-355440:3562072")
 
-    //WorldEdit
-    runtimeOnly fg.deobf("curse.maven:worldedit-225608:3283693")
-
-    //JEI
-    runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
-
     //Dalek Mod
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:4706185")
 
@@ -117,6 +111,12 @@ dependencies {
 
     //DMDev
     compileOnly fg.deobf("maven.modrinth:oXiCK31F:hyFkg06T")
+
+    //WorldEdit
+    runtimeOnly fg.deobf("curse.maven:worldedit-225608:3283693")
+
+    //JEI
+    runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
 
     //Shut up experimental settings
     runtimeOnly fg.deobf("curse.maven:shutup-experimental-settings-407174:3188120")
