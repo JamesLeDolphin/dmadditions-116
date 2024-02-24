@@ -1,8 +1,6 @@
 package com.jdolphin.dmadditions.mixin;
 
-import com.qouteall.immersive_portals.McHelper;
-import com.qouteall.immersive_portals.portal.Portal;
-import com.qouteall.immersive_portals.portal.PortalManipulation;
+import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.common.init.DMTardis;
@@ -27,11 +25,15 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.loading.LoadingModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.extensibility.IMixinConfig;
+import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 @Mixin(TardisTileEntity.class)
@@ -50,7 +52,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	protected abstract void doorAnimation();
 
 	@Unique
-	public Portal dmadditions_116$portal = null;
+	public com.qouteall.immersive_portals.portal.Portal dmadditions_116$portal = null;
 
 	@Unique
 	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
@@ -61,6 +63,8 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	public BotiMixin() {
 		super(DMBlockEntities.TILE_TARDIS.get());
 	}
+
+
 
 	/**
 	 * @author Originally made by BobDude, finished by JamesLeDolphin
@@ -145,10 +149,10 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					ModelRendererWrapper mdl = modelWrapper.getPart("portal");
 
 					AxisAlignedBB bounds = dmadditions_116$defaultAABB.move(this.getBlockPos()).inflate(mdl == null ? -0.14200001192092896 : mdl.x / 200,
-						mdl == null ? 0.0 : mdl.y / 10, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
+						mdl == null ? 0.0 : mdl.y / 200, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
 
 					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.1,
-						0.0, -Math.cos(Math.toRadians(this.rotation)) * 0.1);
+						0.142, -Math.cos(Math.toRadians(this.rotation)) * 0.1);
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
 					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
@@ -175,10 +179,10 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					 */
 					if (tile != null && level != null) {
 						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dmadditions_116$isPortalSpawned && tDir != null) {
-							dmadditions_116$portal = PortalManipulation.createOrthodoxPortal(
-								Portal.entityType,
-								McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
-								McHelper.getServerWorld(dmadditions_116$TARDIS),
+							dmadditions_116$portal = com.qouteall.immersive_portals.portal.PortalManipulation.createOrthodoxPortal(
+								com.qouteall.immersive_portals.portal.Portal.entityType,
+								com.qouteall.immersive_portals.McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
+								com.qouteall.immersive_portals.McHelper.getServerWorld(dmadditions_116$TARDIS),
 								tDir,
 								bounds,
 								pos
@@ -191,7 +195,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
 
-							McHelper.spawnServerEntity(dmadditions_116$portal);
+							com.qouteall.immersive_portals.McHelper.spawnServerEntity(dmadditions_116$portal);
 							dmadditions_116$isPortalSpawned = true;
 						}
 

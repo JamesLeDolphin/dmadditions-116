@@ -73,6 +73,10 @@ public class DmAdditions {
 	public static boolean hasTC() {
 		return ModList.get().isLoaded("tconstruct");
 	}
+	public static boolean hasIMMP() {
+		return ModList.get().isLoaded("imm_ptl");
+	}
+
 
 
 	public DmAdditions() {

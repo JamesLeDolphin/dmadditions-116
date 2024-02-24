@@ -3,13 +3,13 @@
 	"minVersion": "0.8",
 	"package": "com.jdolphin.dmadditions.mixin",
 	"compatibilityLevel": "JAVA_8",
+	"plugin": "com.jdolphin.dmadditions.mixin.IDMAMixinConfigPlugin",
 	"injectors": {
 		"defaultRequire": 1
 	},
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
 		"BotiMixin",
-		"MainMenuScreenMixin",
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
 		"DMBlocksMixin",
@@ -24,7 +24,6 @@
 		"TardisTileEntityMixin"
 	],
 	"client": [
-		"BusClientEventsMixin",
 		"MainMenuScreenMixin",
 		"ClientProxyMixin",
 		"DalekEntityMixin",
