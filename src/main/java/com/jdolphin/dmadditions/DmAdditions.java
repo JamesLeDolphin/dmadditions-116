@@ -88,6 +88,7 @@ public class DmAdditions {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final DMAServerProxy DMA_PROXY = DistExecutor.safeRunForDist(() -> DMAClientProxy::new, () -> DMAServerProxy::new);
 	public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
+
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
@@ -153,33 +154,14 @@ public class DmAdditions {
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
 		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
-
-		if(DMAEntities.FLYING_SHARK != null)
-			event.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
-
-		if(DMAEntities.RACNOSS != null)
-			event.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
-
-		if(DMAEntities.SHOPPING_CART != null)
-			event.put(DMAEntities.SHOPPING_CART.get(), ShoppingCartEntity.setCustomAttributes().build());
-
-		if(DMAEntities.TORCHWOOD_TANK != null)
-			event.put(DMAEntities.TORCHWOOD_TANK.get(), ShoppingCartEntity.setCustomAttributes().build());
-
-// 		if(DMAEntities.ICE_GOVERNESS != null)
-// 			event.put(DMAEntities.ICE_GOVERNESS.get(), IceGovernessEntity.createAttributes().build());
-
-		if(DMAEntities.CHRISTMAS_CREEPER != null)
-			event.put(DMAEntities.CHRISTMAS_CREEPER.get(), CreeperEntity.createAttributes().build());
-
-		if(DMAEntities.WHISPERMAN != null)
-			event.put(DMAEntities.WHISPERMAN.get(), WhispermanEntity.createAttributes().build());
-
-		if(DMAEntities.KANTROFARRI != null)
-			event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
-
-		if(DMAEntities.JIM != null)
-			event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
+		event.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
+		event.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
+		event.put(DMAEntities.SHOPPING_CART.get(), ShoppingCartEntity.setCustomAttributes().build());
+		event.put(DMAEntities.TORCHWOOD_TANK.get(), ShoppingCartEntity.setCustomAttributes().build());
+		event.put(DMAEntities.CHRISTMAS_CREEPER.get(), CreeperEntity.createAttributes().build());
+		event.put(DMAEntities.WHISPERMAN.get(), WhispermanEntity.createAttributes().build());
+		event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
+		event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
 	}
 
 
@@ -190,6 +172,7 @@ public class DmAdditions {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
 		});
+
 		if (hasNTM()) LOGGER.info("Enabling New Tardis Mod compatibility features");
 		if (hasTC()) LOGGER.info("Enabling Tinker's Construct compatibility features");
 		if (hasIMMP()) LOGGER.info("Enabling Immersive Portals compatibility features");
@@ -291,6 +274,7 @@ public class DmAdditions {
 	/* To specify a type of biome return category == Biome.Category.TAIGA, however if you want to specify a speficic
 	 biome like in the example below, use (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
 	 		-TW1 	*/
+	//Okay will do - Jam
 
 	private static boolean isBiomeValidForManor(Biome.Category category, ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
@@ -298,6 +282,19 @@ public class DmAdditions {
 
 	private static boolean isBiomeValidForCyberUnderground(Biome.Category category, ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
+	}
+
+	@SubscribeEvent
+	public void addReloadListeners(AddReloadListenerEvent event){
+		event.addListener(new JokeReloadListener(GSON, "cracker_jokes"));
+	}
+
+	private void runLater(ParallelDispatchEvent event) {
+		if(DMABlocks.MAGPIE_TELEVISION != null){
+			event.enqueueWork(() -> {
+				DMSonicRegistry.SONIC_LOOKUP.put(DMABlocks.MAGPIE_TELEVISION.get(), new SonicMagpieTelevision());
+			});
+		}
 	}
 
 	// Replaces all missing mappings if possible. Surely theres a better way but eh
@@ -350,19 +347,6 @@ public class DmAdditions {
 		for (RegistryEvent.MissingMappings.Mapping<WorldCarver<?>> mapping : event.getMappings("dalekmod")) {
 			mapping.remap(DMAWorldCarvers.CARVER.get());
 
-		}
-	}
-
-	@SubscribeEvent
-	public void addReloadListeners(AddReloadListenerEvent event){
-		event.addListener(new JokeReloadListener(GSON, "cracker_jokes"));
-	}
-
-	private void runLater(ParallelDispatchEvent event) {
-		if(DMABlocks.MAGPIE_TELEVISION != null){
-			event.enqueueWork(() -> {
-				DMSonicRegistry.SONIC_LOOKUP.put(DMABlocks.MAGPIE_TELEVISION.get(), new SonicMagpieTelevision());
-			});
 		}
 	}
 }
