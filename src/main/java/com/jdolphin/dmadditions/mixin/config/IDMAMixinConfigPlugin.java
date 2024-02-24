@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.config;
 
 import com.google.common.collect.Lists;
 import net.minecraftforge.fml.loading.LoadingModList;
@@ -22,7 +22,7 @@ public class IDMAMixinConfigPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.BotiMixin")) {
+		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.conditional.BotiMixin")) {
 			return LoadingModList.get().getModFileById("immersive_portals") != null;
 		} return true;
 	}

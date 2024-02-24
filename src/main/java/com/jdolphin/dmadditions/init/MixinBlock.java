@@ -1,13 +1,19 @@
 package com.jdolphin.dmadditions.init;
 
 
+import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.block.*;
+import com.swdteam.common.block.tardis.TardisDoorBlock;
+import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
+import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.Rarity;
 
 import java.util.function.Supplier;
 
@@ -35,6 +41,8 @@ public enum MixinBlock {
 
 	FLIGHT_PANEL(() -> new BetterFlightPanel(
 		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	TARDIS_DOOR_HITBOX(() -> new BetterTardisDoorHitbox(TardisDoorHitboxTileEntity::new,
+		AbstractBlock.Properties.of(Material.STONE).strength(2.8F).sound(SoundType.WOOD))),
 	;
 
 	public final Supplier<Block> supplier;

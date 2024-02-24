@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions;
 
-import com.google.gson.Gson;
 import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
@@ -37,19 +36,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarFile;
 
 
 @Mod("dmadditions")
@@ -61,11 +54,7 @@ public class DmAdditions {
 
 	// Directly reference a log4j logger.
 	public static final Logger LOGGER = LogManager.getLogger();
-	public static final DMAServerProxy DMA_PROXY = DistExecutor.runForDist(() -> {
-		return DMAClientProxy::new;
-	}, () -> {
-		return DMAServerProxy::new;
-	});
+	public static final DMAServerProxy DMA_PROXY = DistExecutor.safeRunForDist(() -> DMAClientProxy::new, () -> DMAServerProxy::new);
 
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
@@ -74,7 +63,7 @@ public class DmAdditions {
 		return ModList.get().isLoaded("tconstruct");
 	}
 	public static boolean hasIMMP() {
-		return ModList.get().isLoaded("imm_ptl");
+		return ModList.get().isLoaded("immersive_portals");
 	}
 
 
@@ -84,7 +73,6 @@ public class DmAdditions {
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::doClientStuff);
-		modEventBus.addListener(this::dataEvent);
 		// Register things
 		RegistryHandler.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
@@ -136,6 +124,9 @@ public class DmAdditions {
 			if (DMAEntities.PILOT_FISH != null)
 				GlobalEntityTypeAttributes.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 		});
+		if (hasNTM()) LOGGER.info("Enabling New Tardis Mod compatibility features");
+		if (hasTC()) LOGGER.info("Enabling Tinker's Construct compatibility features");
+		if (hasIMMP()) LOGGER.info("Enabling Immersive Portals compatibility features");
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -143,38 +134,12 @@ public class DmAdditions {
 		RenderTypeLookup.setRenderLayer(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(DMABlocks.STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), RenderType.cutout());
-		if(hasTC()) {
+		if (hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_metalert);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
-		}
-	}
-	public static List<Data> EXTERIORS = new ArrayList<>();
-
-	public void dataEvent(final FMLLoadCompleteEvent event) {
-		LOGGER.info("Bing bong this thing aint wrong");
-		Gson gson = new Gson();
-		List<ModFileInfo> files = ModList.get().getModFiles();
-		for (ModFileInfo file : files) {
-			File file1 = file.getFile().getFilePath().toFile();
-			try (JarFile jarFile = new JarFile(file1)) {
-				jarFile.stream()
-					.forEach(entry -> {
-						if (entry.getName().contains("data" + File.separator)
-						&& entry.getName().contains(File.separator + "tardis_exteriors" + File.separator) && entry.getName().contains(".json")) {
-							try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
-								LOGGER.info(entry.getName());
-								Data myObject = gson.fromJson(reader, Data.class);
-								EXTERIORS.add(myObject);
-							} catch (IOException e) {
-								e.fillInStackTrace();
-							}
-						} });}
-			 catch (IOException e) {
-				e.fillInStackTrace();
-			}
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.conditional;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.swdteam.client.tardis.data.ExteriorModels;
@@ -152,7 +152,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						mdl == null ? 0.0 : mdl.y / 200, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
 
 					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.1,
-						0.142, -Math.cos(Math.toRadians(this.rotation)) * 0.1);
+						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.1);
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
 					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
@@ -200,6 +200,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						}
 
 						if (dmadditions_116$portal != null && dmadditions_116$portal.isAlive()) {
+							dmadditions_116$portal.renderingMergable = true;
 							Position position = tardisData.getInteriorSpawnPosition();
 							Vector3d vec3d = new Vector3d(position.x(), position.y(), position.z());
 							if (!Objects.equals(dmadditions_116$portal.destination, vec3d)) {
