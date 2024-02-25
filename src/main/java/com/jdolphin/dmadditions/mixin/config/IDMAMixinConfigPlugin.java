@@ -21,7 +21,8 @@ public class IDMAMixinConfigPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.conditional.BotiMixin")) {
+		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.conditional.BotiMixin") ||
+			Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.conditional.SotoMixin")) {
 			return LoadingModList.get().getModFileById("immersive_portals") != null;
 		} return true;
 	}

@@ -36,6 +36,7 @@ public enum MixinBlock {
 
 	FLIGHT_PANEL(() -> new BetterFlightPanel(
 		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
+
 	TARDIS_DOOR_HITBOX(() -> new BetterTardisDoorHitbox(TardisDoorHitboxTileEntity::new,
 		AbstractBlock.Properties.of(Material.STONE).strength(2.8F).sound(SoundType.WOOD))),
 

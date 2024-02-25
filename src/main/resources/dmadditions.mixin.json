@@ -12,6 +12,7 @@
 		"RenderBlockTardisMixin",
 		"DMProjectilesMixin",
 		"conditional.BotiMixin",
+		"conditional.SotoMixin",
 		"CarvedPumpkinBlockMixin",
 		"DalekRegistryMixin",
 		"DMBlocksMixin",

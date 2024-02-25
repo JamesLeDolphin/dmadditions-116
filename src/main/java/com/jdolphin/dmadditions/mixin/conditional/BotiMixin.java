@@ -146,8 +146,8 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					AxisAlignedBB bounds = dmadditions_116$defaultAABB.move(this.getBlockPos()).inflate(mdl == null ? -0.14200001192092896 : mdl.x / 200,
 						mdl == null ? 0.0 : mdl.y / 200, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
 
-					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.1,
-						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.1);
+					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.05,
+						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.05);
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
 					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
@@ -203,9 +203,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							}
 							if (tile.doorOpenLeft || tile.doorOpenRight) {
 								dmadditions_116$portal.setDestination(pos);
-								if (dmadditions_116$portal.level.isClientSide) {
-									return;
-								}
 							}
 						}
 					}

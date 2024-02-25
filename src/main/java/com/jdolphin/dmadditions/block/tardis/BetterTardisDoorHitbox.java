@@ -40,7 +40,7 @@ import java.util.function.Supplier;
 
 public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public RegistryKey<World> TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
+
 
 	public BetterTardisDoorHitbox(Supplier<TileEntity> tileEntitySupplier, AbstractBlock.Properties properties) {
 		super(tileEntitySupplier, properties);
@@ -70,6 +70,7 @@ public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 		return this.defaultBlockState();
 	}
 
+
 	public @NotNull ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (handIn == Hand.MAIN_HAND && worldIn.dimension().equals(DMDimensions.TARDIS) && !worldIn.isClientSide()) {
 			TardisData data = DMTardis.getTardis(DMTardis.getIDForXZ(pos.getX(), pos.getZ()));
@@ -85,33 +86,10 @@ public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 					double dx = (double) tardisPosition.getX() + look.x * (double) distance;
 					double dy = tardisPosition.getY() > 0 ? (double) tardisPosition.getY() : 128.0;
 					double dz = (double) tardisPosition.getZ() + look.z * (double) distance;
-
-					if (DmAdditions.hasIMMP()) {
-						Direction tDir = Direction.fromYRot(data.getCurrentLocation().getFacing());
-
-						com.qouteall.immersive_portals.portal.Portal portal = com.qouteall.immersive_portals.portal.PortalManipulation.createOrthodoxPortal(
-							com.qouteall.immersive_portals.portal.Portal.entityType,
-							com.qouteall.immersive_portals.McHelper.getServerWorld(TARDIS),
-							com.qouteall.immersive_portals.McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
-							tDir,
-							new AxisAlignedBB(0, 0, 0, 16, 16, 2),
-							new Vector3d(dx + 0.5, dy, dz + 0.5)
-						);
-						portal.renderingMergable = false;
-						if (tDir == Direction.NORTH) {
-							portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
-						} else if (tDir == Direction.WEST) {
-							portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
-						} else if (tDir == Direction.EAST) {
-							portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
-						}
-					} else {
-						TeleportUtil.teleportPlayer(player, world.dimension(), new Vector3d(dx + 0.5, dy, dz + 0.5), tile.rotation + 180.0F);
-					}
+					TeleportUtil.teleportPlayer(player, world.dimension(), new Vector3d(dx + 0.5, dy, dz + 0.5), tile.rotation + 180.0F);
 				}
 			}
 		}
-
 		return ActionResultType.CONSUME;
 	}
 
