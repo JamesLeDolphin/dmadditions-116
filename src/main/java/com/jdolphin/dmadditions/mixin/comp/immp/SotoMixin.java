@@ -1,21 +1,18 @@
-package com.jdolphin.dmadditions.mixin.conditional;
+package com.jdolphin.dmadditions.mixin.comp.immp;
 
 import com.jdolphin.dmadditions.block.tardis.BetterTardisDoorHitbox;
-import com.swdteam.common.block.tardis.TardisDoorBlock;
-import com.swdteam.common.init.*;
+import com.swdteam.common.init.DMBlockEntities;
+import com.swdteam.common.init.DMDimensions;
+import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisState;
-import com.swdteam.common.tardis.actions.TardisActionList;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
 import com.swdteam.util.SWDMathUtils;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -28,13 +25,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
 
 @Mixin(TardisDoorHitboxTileEntity.class)
 public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {

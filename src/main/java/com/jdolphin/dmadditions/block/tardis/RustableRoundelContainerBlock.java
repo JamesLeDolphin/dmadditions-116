@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.tileentity.RoundelContainerTileEntity;
+import com.swdteam.common.block.IRust;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -35,7 +35,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class RustableRoundelContainerBlock extends RoundelContainerBlock implements IRustToo {
+public class RustableRoundelContainerBlock extends RoundelContainerBlock implements IRust {
 	public RustableRoundelContainerBlock(AbstractBlock.Properties properties) {
 		super(properties.randomTicks());
 		this.registerDefaultState(super.defaultBlockState().setValue(WAXED, false));

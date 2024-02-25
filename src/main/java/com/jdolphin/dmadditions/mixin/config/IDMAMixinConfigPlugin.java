@@ -21,9 +21,12 @@ public class IDMAMixinConfigPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.conditional.BotiMixin") ||
-			Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.conditional.SotoMixin")) {
+		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.comp.immp.BotiMixin") ||
+			Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.comp.immp.SotoMixin")) {
 			return LoadingModList.get().getModFileById("immersive_portals") != null;
+		}
+		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.comp.ntm.TardisActionListMixin")) {
+			return LoadingModList.get().getModFileById("tardis") != null;
 		} return true;
 	}
 

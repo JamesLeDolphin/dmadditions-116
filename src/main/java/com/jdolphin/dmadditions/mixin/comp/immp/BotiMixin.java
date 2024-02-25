@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin.conditional;
+package com.jdolphin.dmadditions.mixin.comp.immp;
 
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMBlockEntities;

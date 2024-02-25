@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.block.IRustToo;
 import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
 import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
 import com.jdolphin.dmadditions.commands.*;
@@ -19,10 +18,9 @@ import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
+import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMSonicRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
@@ -34,7 +32,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
@@ -167,7 +164,6 @@ public class DmAdditions {
 
 	private void setup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
-		IRustToo.addRustedVariants();
 		event.enqueueWork(() -> {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
@@ -293,6 +289,10 @@ public class DmAdditions {
 		if(DMABlocks.MAGPIE_TELEVISION != null){
 			event.enqueueWork(() -> {
 				DMSonicRegistry.SONIC_LOOKUP.put(DMABlocks.MAGPIE_TELEVISION.get(), new SonicMagpieTelevision());
+				IRust.rustedMap.put(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());
+				IRust.rustedMap.put(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());
+				IRust.rustedMap.put(DMABlocks.FILLED_STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.FILLED_RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());
+				IRust.rustedMap.put(DMABlocks.STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_REINFORCED_WALLING_ROUNDEL_CONTAINER.get());
 			});
 		}
 	}
