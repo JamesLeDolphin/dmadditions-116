@@ -80,8 +80,7 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 								bounds,
 								new Vector3d(dx + 0.5, dy, dz + 0.5));
 
-							dmadditions_116$portal.renderingMergable = true;
-
+							dmadditions_116$portal.renderingMergable = false;
 							if (tDir == Direction.NORTH) {
 								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							} else if (tDir == Direction.WEST) {
