@@ -41,7 +41,7 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 	public RegistryKey<World> dmadditions_116$TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
 
 	@Unique
-	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
+	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
 
 
 	/**
@@ -52,11 +52,11 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 	public void tick() {
 		if (!this.level.isClientSide && this.level.dimension().equals(DMDimensions.TARDIS)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(this.getBlockPos());
-				Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(data.getCurrentLocation().getFacing()));
+				Direction tDir = this.getBlockState().getValue(BetterTardisDoorHitbox.FACING);
 				TileEntity te = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey()).getBlockEntity(data.getCurrentLocation().getBlockPosition());
 				if (te instanceof TardisTileEntity) {
 					TardisTileEntity tile = (TardisTileEntity) te;
-					if ((tile.doorOpenRight || tile.doorOpenLeft) && tDir != null && dmadditions_116$portal == null) {
+					if ((tile.doorOpenRight || tile.doorOpenLeft) && dmadditions_116$portal == null) {
 						BlockPos tardisPosition = data.getCurrentLocation().getBlockPosition();
 						Vector3d look = Vector3d.directionFromRotation(new Vector2f(45.0F, tile.rotation + 180.0F));
 						float distance = 2.0F;
@@ -64,7 +64,11 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 						double dy = tardisPosition.getY() > 0 ? (double) tardisPosition.getY() : 128.0;
 						double dz = (double) tardisPosition.getZ() + look.z * (double) distance;
 							BlockState state = this.getBlockState();
-							AxisAlignedBB bounds = dmadditions_116$defaultAABB
+
+						AxisAlignedBB bounds = dmadditions_116$defaultAABB.move(this.getBlockPos()).inflate(0.14200001192092896,
+							0.0,0.14200001192092896);
+
+							 bounds = bounds
 								.move(Math.sin(Math.toRadians(state.getValue(BetterTardisDoorHitbox.FACING).toYRot())) * 0.1,
 								0.0, -Math.cos(Math.toRadians(state.getValue(BetterTardisDoorHitbox.FACING).toYRot())) * 0.1);
 
@@ -76,7 +80,8 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 								bounds,
 								new Vector3d(dx + 0.5, dy, dz + 0.5));
 
-							dmadditions_116$portal.renderingMergable = false;
+							dmadditions_116$portal.renderingMergable = true;
+
 							if (tDir == Direction.NORTH) {
 								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							} else if (tDir == Direction.WEST) {
@@ -93,6 +98,7 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 						dmadditions_116$portal.remove(false);
 						level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dmadditions_116$portal);
 						dmadditions_116$portal.onRemovedFromWorld();
+						dmadditions_116$portal = null;
 					}
 			}
 		}
