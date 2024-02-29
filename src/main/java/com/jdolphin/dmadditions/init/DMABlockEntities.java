@@ -30,7 +30,11 @@ public class DMABlockEntities {
 	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR = TILE_ENTITY_TYPES.register("specimen_jar", () ->
 			TileEntityType.Builder.of(SpecimenJarTileEntity::new, DMABlocks.SPECIMEN_JAR.get()).build(null));
 
-		public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
+	public static final RegistryObject<TileEntityType<ConsoleTileEntity>> TILE_CONSOLE = TILE_ENTITY_TYPES.register("console", () ->
+		TileEntityType.Builder.of(ConsoleTileEntity::new, DMABlocks.CONSOLE.get()).build(null));
+
+
+	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
 			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
 				DMABlocks.BLACK_QUARTZ_ROUNDEL_CONTAINER.get(),
 				DMABlocks.YELLOW_QUARTZ_ROUNDEL_CONTAINER.get(),

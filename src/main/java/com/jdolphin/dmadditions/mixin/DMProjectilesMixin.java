@@ -30,26 +30,26 @@ import java.util.List;
 
 @Mixin(DMProjectiles.class)
 public class DMProjectilesMixin {
-	@Shadow private static List<DMProjectiles.Laser> LASERS = new ArrayList<>();
-	@Shadow public static DMProjectiles.Laser BLUE_LASER;
-	@Shadow public static DMProjectiles.Laser RED_LASER;
-	@Shadow public static DMProjectiles.Laser GREEN_LASER;
-	@Shadow public static DMProjectiles.Laser ORANGE_LASER;
-	@Shadow public static DMProjectiles.Laser POISON;
-	@Shadow public static DMProjectiles.Laser FLASH;
-	@Shadow public static DMProjectiles.Laser SMOKE;
-	@Shadow public static DMProjectiles.Laser FIRE;
-	@Shadow public static DMProjectiles.Laser BULLET;
-	@Shadow public static DMProjectiles.Laser NAUSEA_LASER;
-	@Shadow public static DMProjectiles.Laser EXPLOSIVE_LASER;
+		@Shadow(remap = false) private static List<DMProjectiles.Laser> LASERS = new ArrayList<>();
+		@Shadow(remap = false) public static DMProjectiles.Laser BLUE_LASER;
+		@Shadow(remap = false) public static DMProjectiles.Laser RED_LASER;
+		@Shadow(remap = false) public static DMProjectiles.Laser GREEN_LASER;
+		@Shadow(remap = false) public static DMProjectiles.Laser ORANGE_LASER;
+		@Shadow(remap = false) public static DMProjectiles.Laser POISON;
+		@Shadow(remap = false) public static DMProjectiles.Laser FLASH;
+		@Shadow(remap = false) public static DMProjectiles.Laser SMOKE;
+		@Shadow(remap = false) public static DMProjectiles.Laser FIRE;
+		@Shadow(remap = false) public static DMProjectiles.Laser BULLET;
+		@Shadow(remap = false) public static DMProjectiles.Laser NAUSEA_LASER;
+		@Shadow(remap = false) public static DMProjectiles.Laser EXPLOSIVE_LASER;
 
-	@Shadow
+	@Shadow(remap = false)
 	private static DMProjectiles.Laser addLaser(int r, int g, int b) {
 		DMProjectiles.Laser l = new DMProjectiles.Laser(LASERS.size(), (float)r / 255.0F, (float)g / 255.0F, (float)b / 255.0F);
 		LASERS.add(l);
 		return l;
 	}
-	@Shadow
+	@Shadow(remap = false)
 	private static DMProjectiles.Laser addLaser(boolean renders) {
 		DMProjectiles.Laser l = new DMProjectiles.Laser(LASERS.size(), renders);
 		LASERS.add(l);
@@ -60,7 +60,7 @@ public class DMProjectilesMixin {
 	 * @author JamesLeDolphin
 	 * @reason Config
 	 */
-	@Overwrite
+	@Overwrite(remap = false)
 	public static void init() {
 		BLUE_LASER = addLaser(90, 200, 255);
 		RED_LASER = addLaser(255, 60, 50);

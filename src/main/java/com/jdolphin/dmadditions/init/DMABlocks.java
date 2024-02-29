@@ -7,6 +7,7 @@ import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.EngineBlock;
 import com.jdolphin.dmadditions.block.christmas.*;
 import com.jdolphin.dmadditions.block.tardis.*;
+import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.block.StatueBlock;
@@ -62,6 +63,9 @@ public class DMABlocks {
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
+
+	public static RegistryObject<Block> CONSOLE = registerBlockAndItem("console",
+		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),

@@ -244,7 +244,7 @@ public class DMAItems {
 				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 	public static RegistryObject<Item> PISTOL =  ITEMS.register("pistol", ()
-			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, null,
+			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, DMSoundEvents.ITEM_GUN_CLICK,
 			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
 
 	public static RegistryObject<Item> TARDIS_GOLD_KEY =  ITEMS.register("tardis_gold_key",

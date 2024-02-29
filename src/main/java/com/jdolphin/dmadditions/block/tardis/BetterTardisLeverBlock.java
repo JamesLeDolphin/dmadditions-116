@@ -9,7 +9,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BetterTardisLeverBlock extends LeverBlock{
+public class BetterTardisLeverBlock extends LeverBlock {
 	public BetterTardisLeverBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.FALSE).setValue(FACE, AttachFace.FLOOR));

@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
+import com.jdolphin.dmadditions.client.render.entity.control.TardisControlRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -26,7 +27,6 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
 		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);
 		registerRender(DMAEntities.SHOPPING_CART, ShoppingCartRenderer::new);
-// 		registerRender(DMAEntities.ICE_GOVERNESS, IceGovernessRenderer::new);
 		registerRender(DMAEntities.CHRISTMAS_CREEPER, ChristmasCreeperRenderer::new);
 		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
 		registerRender(DMAEntities.TORCHWOOD_TANK, TankRenderer::new);

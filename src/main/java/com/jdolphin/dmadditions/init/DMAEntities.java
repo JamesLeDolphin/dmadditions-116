@@ -4,6 +4,7 @@ import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.entity.control.TardisControl;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -61,6 +62,8 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<JimEntity>> JIM = registerHumanoidEntity("jim", JimEntity::new, EntityClassification.CREATURE);
 
+	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerControl("control", TardisControl::new);
+
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
 			.sized(2F, 1F)
@@ -86,6 +89,10 @@ public class DMAEntities {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
 																				   EntityClassification classification) {
 		return registerEntity(name, entityClass, classification, 0.6f, 1.8f);
+	}
+
+	private static <T extends Entity> RegistryObject<EntityType<T>> registerControl(String name, EntityType.IFactory<T> entityClass) {
+		return registerEntity(name, entityClass, EntityClassification.MISC, 1.0f, 1.0f);
 	}
 
 	@Nullable 

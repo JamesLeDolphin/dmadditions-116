@@ -32,6 +32,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -42,24 +43,27 @@ import java.util.List;
 @Mixin(TardisTileEntity.class)
 public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity, ITardisDMAActions {
 
-	@Shadow
-	private boolean demat;
+	@Shadow(remap = false)
+	boolean demat;
 
-	@Shadow
+	@Shadow(remap = false)
+
 	public abstract CompoundNBT save(CompoundNBT compound);
 
-	@Shadow
+	@Shadow(remap = false)
 	public abstract void sendUpdates();
 
-	@Shadow
+	@Shadow(remap = false)
 	public TardisData tardisData;
 
 	public TardisTileEntityMixin(TileEntityType<?> tileEntityTypeIn) { super(tileEntityTypeIn); }
 	private TardisTileEntity _this = ((TardisTileEntity)(Object)this);
-	private String FORCEFIELD = "Forcefield";
 	public boolean open = false;
-	private boolean invisible;
-	private boolean ff_active;
+
+	@Unique private String FORCEFIELD = "Forcefield";
+	@Unique private String INVISIBLE = "Invisible";
+	@Unique private boolean invisible;
+	@Unique private boolean ff_active;
 
 	@Inject(at = @At("TAIL"), method = "tick")
 	public void tick(CallbackInfo ci) {
@@ -97,25 +101,32 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 		this.ff_active = active;
 	}
 
+	@Override
+	public void setInvisible(boolean invisible) {
+		this.invisible = invisible;
+		CompoundNBT tag = this.getUpdateTag();
+		tag.putBoolean(INVISIBLE, invisible);
+		this.sendUpdates();
+	}
+
 	public boolean isInvisible() {
 		return invisible;
 	};
 
-	@Override
-	public void setInvisible(boolean invisible) {
-		this.invisible = invisible;
-	}
 
-	@Inject(at=@At("HEAD"), method = "save")
+
+	@Inject(at=@At("TAIL"), method = "save", cancellable = true)
 	public void save(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir){
-		compound.putBoolean("Invisible", invisible);
+		compound.putBoolean(INVISIBLE, invisible);
 		compound.putBoolean(FORCEFIELD, ff_active);
+		cir.setReturnValue(super.save(compound));
+
 	}
 
-	@Inject(at=@At("HEAD"), method = "load")
+	@Inject(at=@At("TAIL"), method = "load")
 	public void load(BlockState blockstate, CompoundNBT compound, CallbackInfo ci){
-		if (compound.contains("Invisible")) {
-			invisible = compound.getBoolean("Invisible");
+		if (compound.contains(INVISIBLE)) {
+			invisible = compound.getBoolean(INVISIBLE);
 		}
 		if (compound.contains(FORCEFIELD)) {
 			ff_active = compound.getBoolean(FORCEFIELD);

@@ -1,6 +1,8 @@
 package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.client.render.entity.control.TardisControlRenderer;
+import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.client.gui.GuiDMU;
 import com.swdteam.main.DMConfig;
 import com.swdteam.util.helpers.ReflectionHelper;
@@ -14,7 +16,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(
 	modid = DmAdditions.MODID,
@@ -22,6 +26,15 @@ import net.minecraftforge.fml.common.Mod;
 	value = {Dist.CLIENT}
 )
 public class ClientBusEvents {
+
+	@Mod.EventBusSubscriber(modid = DmAdditions.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class ClientModBusEvents {
+
+		@SubscribeEvent
+		public static void clientSetup(FMLClientSetupEvent event) {
+			RenderingRegistry.registerEntityRenderingHandler(DMAEntities.CONTROL.get(), TardisControlRenderer::new);
+		}
+	}
 
 	@SubscribeEvent(
 		priority = EventPriority.HIGHEST

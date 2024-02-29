@@ -34,16 +34,16 @@ import java.util.Objects;
 @Mixin(TardisTileEntity.class)
 public abstract class BotiMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity {
 
-	@Shadow
+	@Shadow(remap = false)
 	public TardisData tardisData;
 
-	@Shadow
+	@Shadow(remap = false)
 	boolean demat;
 
 	@Unique
 	boolean dmadditions_116$isPortalSpawned = false;
 
-	@Shadow
+	@Shadow(remap = false)
 	protected abstract void doorAnimation();
 
 	@Unique
@@ -59,6 +59,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 		super(DMBlockEntities.TILE_TARDIS.get());
 	}
 
+	@Unique private String PORTAL = "Portal";
 
 
 	/**
@@ -128,7 +129,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 		if (!this.level.isClientSide) {
 			tile.tardisData = DMTardis.getTardis(tile.globalID);
-			//TODO add SOTO
 			if (tile.tardisData != null) {
 
 				if (tile.tardisData.getInteriorSpawnPosition() != null) {
@@ -172,6 +172,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					 * dalekmod:dalek_mod_2013
 					 * dalekmod:sidrat_capsule
 					 */
+
 					if (tile != null && level != null) {
 						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dmadditions_116$isPortalSpawned && tDir != null) {
 							dmadditions_116$portal = com.qouteall.immersive_portals.portal.PortalManipulation.createOrthodoxPortal(

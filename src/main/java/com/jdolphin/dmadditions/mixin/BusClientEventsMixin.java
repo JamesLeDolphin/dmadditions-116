@@ -13,13 +13,13 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(BusClientEvents.class)
 public class BusClientEventsMixin {
 
-	@Shadow private static ISound sound;
+	@Shadow(remap = false) private static ISound sound;
 	/**
 	 * @author Jam
 	 * @reason prevent joining dmu w dma
 	 */
 
-	@Overwrite
+	@Overwrite(remap = false)
 	public static void guiEvent(GuiScreenEvent.InitGuiEvent event) {
 		if (sound == null) {
 			sound = SimpleSound.forMusic((net.minecraft.util.SoundEvent) DMSoundEvents.MUSIC_TITLE_SCREEN.get());

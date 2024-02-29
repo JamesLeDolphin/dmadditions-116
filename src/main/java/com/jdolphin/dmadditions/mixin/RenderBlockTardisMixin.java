@@ -27,8 +27,8 @@ import static com.swdteam.client.render.tileentity.RenderBlockTardis.MODEL_TARDI
 @Mixin(RenderBlockTardis.class)
 public abstract class RenderBlockTardisMixin {
 
-	@Shadow
-	public void renderTardis(IVertexBuilder ivertexbuilder, Tardis tardisData, TardisData data, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, TardisTileEntity tardis, float partialTicks, int combinedLightIn, int combinedOverlayIn, float tardisDematPulse) {
+	@Shadow(remap = false)
+	private void renderTardis(IVertexBuilder ivertexbuilder, Tardis tardisData, TardisData data, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, TardisTileEntity tardis, float partialTicks, int combinedLightIn, int combinedOverlayIn, float tardisDematPulse) {
 	}
 
 	@Unique
