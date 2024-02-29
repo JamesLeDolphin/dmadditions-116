@@ -75,11 +75,11 @@ public class DMAItems {
 		() -> new DMASpawnerItem<>("snowman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
-			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, null, DMASoundEvents.PISTOL_SHOOT,
+			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT)));
 
 	public static RegistryObject<Item> TORCHWOOD_PISTOL = ITEMS.register("torchwood_pistol",
-			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, null, DMASoundEvents.PISTOL_SHOOT,
+			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
 
 
