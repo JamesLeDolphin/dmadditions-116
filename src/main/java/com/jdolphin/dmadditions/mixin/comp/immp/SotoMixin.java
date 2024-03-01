@@ -9,7 +9,6 @@ import com.swdteam.common.tardis.TardisState;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
-import com.swdteam.util.SWDMathUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;

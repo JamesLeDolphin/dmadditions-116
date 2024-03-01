@@ -1,12 +1,9 @@
 package com.jdolphin.dmadditions.client.render.entity.control;
 
-import com.jdolphin.dmadditions.client.model.CubeModel;
 import com.jdolphin.dmadditions.client.model.entity.control.TardisControlModel;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
