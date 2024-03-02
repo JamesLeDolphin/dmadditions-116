@@ -220,15 +220,6 @@ public class DmAdditions {
 		});
 	}
 
-	@SubscribeEvent
-	public static void entityHitEvent(PlayerInteractEvent event) {
-		if (event.getEntity() instanceof TardisControl) {
-			TardisControl control = (TardisControl) event.getEntity();
-			control.interact(event.getPlayer(), event.getHand());
-
-		}
-	}
-
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		DMA_PROXY.doClientStuff(event);
 

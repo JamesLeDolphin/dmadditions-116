@@ -289,5 +289,6 @@
 	"block.dmadditions.specimen_jar": "Specimen Jar",
 
 	"entity.dmadditions.jim": "Jim",
-	"item.dmadditions.jim_spawner": "Jim Spawner"
+	"item.dmadditions.jim_spawner": "Jim Spawner",
+	"entity.dmadditions.console.fail.dim": "This can only be used in the TARDIS"
 }

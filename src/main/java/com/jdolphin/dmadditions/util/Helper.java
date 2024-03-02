@@ -31,4 +31,16 @@ public class Helper {
 	public static void playSound(World world, BlockPos pos, SoundEvent soundEvent, SoundCategory category) {
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, category, 1.0f, 1.0f);
 	}
+
+	public static void print(Object obj) {
+		System.out.println(obj);
+	}
+
+	public static void info(Object obj) {
+		DmAdditions.LOGGER.info(obj);
+	}
+
+	public static void warn(Object obj) {
+		DmAdditions.LOGGER.warn(obj);
+	}
 }

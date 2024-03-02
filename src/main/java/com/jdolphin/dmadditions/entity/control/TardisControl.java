@@ -28,13 +28,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
 	private static final DataParameter<Integer> DATA_ID_HURT = EntityDataManager.defineId(TardisControl.class, DataSerializers.INT);
+	private int cooldown;
 
 	public TardisControl(EntityType<?> type, World world) {
 		super(type, world);
 	}
 
 	public boolean canCollideWith(@NotNull Entity entity) {
-		return false;
+		return true;
 	}
 
 	public boolean canBeCollidedWith() {
@@ -46,72 +47,40 @@ public class TardisControl extends Entity {
 		return true;
 	}
 
-	public boolean hurt(DamageSource source, float f) {
-		if (!this.level.isClientSide() && source.isCreativePlayer()) {
-			World level = this.level;
-			PlayerEntity player = (PlayerEntity) source.getEntity();
-			System.out.print("awdawdawdawsdadaw");
-			BlockPos pos = Helper.vec3ToBlockPos(this.position());
-			if (!level.isClientSide()) {
-				if (Helper.isTardis(level)) {
-					TardisData data = DMTardis.getTardisFromInteriorPos(pos);
-					if (data.isInFlight()) {
-						if (data.timeLeft() == 0.0D) {
-							if (TardisActionList.remat(player, level, data)) {
-								Helper.playSound(level, pos, DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS);
-							}
-						} else {
-							int seconds = (int) data.timeLeft();
-							String s = seconds + "s";
-							ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.traveling", new StringTextComponent(s)), ChatUtil.MessageType.CHAT);
-
-						}
-					} else if (TardisActionList.demat(player, level, data)) {
-						Helper.playSound(level, pos, DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS);
-					}
-				}
-			}
-		}
-		return false;
-	}
-
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
 		World level = this.level;
-		System.out.print("awdawdawdawsdadaw");
 		BlockPos pos = Helper.vec3ToBlockPos(this.position());
-		if (!level.isClientSide()) {
+		if (!level.isClientSide() && cooldown == 0) {
 			if (Helper.isTardis(level)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 				if (data.isInFlight()) {
 					if (data.timeLeft() == 0.0D) {
 						if (TardisActionList.remat(player, level, data)) {
 							Helper.playSound(level, pos, DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS);
+							this.cooldown = 20;
 							return ActionResultType.SUCCESS;
 						}
 					} else {
 						int seconds = (int) data.timeLeft();
 						String s = seconds + "s";
 						ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.traveling", new StringTextComponent(s)), ChatUtil.MessageType.CHAT);
-						return ActionResultType.SUCCESS;
+						return ActionResultType.FAIL;
 					}
 				} else if (TardisActionList.demat(player, level, data)) {
 					Helper.playSound(level, pos, DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS);
+					this.cooldown = 20;
 					return ActionResultType.SUCCESS;
 				}
-			} System.out.print("not tardis dim :(");
+			} else ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
 			return ActionResultType.PASS;
 		}
 		return ActionResultType.PASS;
 	}
 
 	@Override
-	public @NotNull ActionResultType interactAt(@NotNull PlayerEntity player, Vector3d vector3d, @NotNull Hand hand) {
-		return this.interact(player, hand);
-	}
-
-	@Override
 	public void tick() {
 		super.tick();
+		if (cooldown > 0) cooldown--;
 		World world = this.level;
 	}
 
