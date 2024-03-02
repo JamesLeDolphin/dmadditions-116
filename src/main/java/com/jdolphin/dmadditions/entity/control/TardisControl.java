@@ -41,6 +41,11 @@ public class TardisControl extends Entity {
 		return true;
 	}
 
+	@Override
+	public boolean isPickable() {
+		return true;
+	}
+
 	public boolean hurt(DamageSource source, float f) {
 		if (!this.level.isClientSide() && source.isCreativePlayer()) {
 			World level = this.level;
