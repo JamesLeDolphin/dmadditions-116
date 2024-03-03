@@ -15,11 +15,10 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -28,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
 	private static final DataParameter<Integer> DATA_ID_HURT = EntityDataManager.defineId(TardisControl.class, DataSerializers.INT);
-	private int cooldown;
+	protected int cooldown;
 
 	public TardisControl(EntityType<?> type, World world) {
 		super(type, world);
@@ -48,33 +47,7 @@ public class TardisControl extends Entity {
 	}
 
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
-		World level = this.level;
-		BlockPos pos = Helper.vec3ToBlockPos(this.position());
-		if (!level.isClientSide() && cooldown == 0) {
-			if (Helper.isTardis(level)) {
-				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
-				if (data.isInFlight()) {
-					if (data.timeLeft() == 0.0D) {
-						if (TardisActionList.remat(player, level, data)) {
-							Helper.playSound(level, pos, DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS);
-							this.cooldown = 20;
-							return ActionResultType.SUCCESS;
-						}
-					} else {
-						int seconds = (int) data.timeLeft();
-						String s = seconds + "s";
-						ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.traveling", new StringTextComponent(s)), ChatUtil.MessageType.CHAT);
-						return ActionResultType.FAIL;
-					}
-				} else if (TardisActionList.demat(player, level, data)) {
-					Helper.playSound(level, pos, DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS);
-					this.cooldown = 20;
-					return ActionResultType.SUCCESS;
-				}
-			} else ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
-			return ActionResultType.PASS;
-		}
-		return ActionResultType.PASS;
+		return this.getEffect(player);
 	}
 
 	@Override
@@ -94,6 +67,7 @@ public class TardisControl extends Entity {
 
 	}
 
+
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT tag) {
 
@@ -102,5 +76,9 @@ public class TardisControl extends Entity {
 	@Override
 	public @NotNull IPacket<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	public ActionResultType getEffect(PlayerEntity player) {
+		return ActionResultType.PASS;
 	}
 }

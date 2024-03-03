@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.client.render.entity.control.TardisControlRenderer;
+import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.client.gui.GuiDMU;
 import com.swdteam.main.DMConfig;
@@ -33,6 +33,7 @@ public class ClientBusEvents {
 		@SubscribeEvent
 		public static void clientSetup(FMLClientSetupEvent event) {
 			RenderingRegistry.registerEntityRenderingHandler(DMAEntities.CONTROL.get(), TardisControlRenderer::new);
+			RenderingRegistry.registerEntityRenderingHandler(DMAEntities.FLIGHT_CONTROL.get(), TardisControlRenderer::new);
 		}
 	}
 

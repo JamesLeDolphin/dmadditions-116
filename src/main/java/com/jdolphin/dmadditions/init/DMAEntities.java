@@ -4,7 +4,9 @@ import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.entity.control.FlightControl;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -63,6 +65,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<JimEntity>> JIM = registerHumanoidEntity("jim", JimEntity::new, EntityClassification.CREATURE);
 
 	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerControl("control", TardisControl::new);
+	public static RegistryObject<EntityType<TardisControl>> FLIGHT_CONTROL = registerControl("flight_control", FlightControl::new);
 
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
@@ -70,7 +73,7 @@ public class DMAEntities {
 			.setTrackingRange(80)
 			.setUpdateInterval(3)
 			.setShouldReceiveVelocityUpdates(true)
-			.build(new ResourceLocation(DmAdditions.MODID, "flying_shark").toString()));
+			.build(Helper.createAdditionsRL("flying_shark").toString()));
 
 
 
@@ -83,7 +86,7 @@ public class DMAEntities {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
 																				   EntityClassification classification) {
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(entityClass, classification)
-			.clientTrackingRange(8).build(new ResourceLocation(DmAdditions.MODID, name).toString()));
+			.clientTrackingRange(8).build(Helper.createAdditionsRL(name).toString()));
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
@@ -92,7 +95,7 @@ public class DMAEntities {
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerControl(String name, EntityType.IFactory<T> entityClass) {
-		return registerEntity(name, entityClass, EntityClassification.MISC, 1.0f, 1.0f);
+		return registerEntity(name, entityClass, EntityClassification.MISC, 0.2f, 0.2f);
 	}
 
 	@Nullable 

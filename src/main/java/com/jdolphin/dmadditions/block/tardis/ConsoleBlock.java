@@ -29,8 +29,8 @@ public class ConsoleBlock extends TileEntityBaseBlock {
 	}
 
 	public void destroy(IWorld world, BlockPos pos, BlockState state) {
-		List<Entity> entities = world.getEntitiesOfClass(TardisControl.class, new AxisAlignedBB(0, 0, 0, 1, 1 , 1));
-		System.out.print("DELEJGEIAHFUNAI");
+		List<Entity> entities = world.getEntitiesOfClass(TardisControl.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1)
+			.move(pos).inflate(1));
 		for (Entity control : entities) {
 			control.remove(false);
 		}
