@@ -47,13 +47,13 @@ public class TardisControl extends Entity {
 	}
 
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
-		return this.getEffect(player);
+		return this.cooldown <= 0 ? this.getEffect(player) : ActionResultType.FAIL;
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		if (cooldown > 0) cooldown--;
+		cooldown--;
 		World world = this.level;
 	}
 

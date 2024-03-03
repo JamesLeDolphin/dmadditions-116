@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -25,7 +26,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
 		if (handIn == Hand.MAIN_HAND && !worldIn.isClientSide) {
-			if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
+			if (Helper.isTardis(worldIn)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 				if (data.isInFlight()) {
 					if (data.timeLeft() == 0.0D) {
@@ -42,7 +43,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 					worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
 					this.switchLever(state, worldIn, pos);
 				}
-			}
+			} else this.switchLever(state, worldIn, pos);
 
 			if (DmAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
@@ -72,8 +73,6 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 					this.switchLever(state, worldIn, pos);
 				}
 			}
-
-
 		}
 		this.updateNeighbours(state, worldIn, pos);
 		return ActionResultType.CONSUME;

@@ -22,20 +22,21 @@ public class FlightControl extends TardisControl {
 	}
 
 	public FlightControl(World world) {
-		super(DMAEntities.FLIGHT_CONTROL.get(), world);
+		this(DMAEntities.FLIGHT_CONTROL.get(), world);
 	}
 
 	@Override
 	public ActionResultType getEffect(PlayerEntity player) {
 		World level = this.level;
 		BlockPos pos = Helper.vec3ToBlockPos(this.position());
-		if (!level.isClientSide() && cooldown == 0) {
+		if (!level.isClientSide()) {
 			if (Helper.isTardis(level)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 				if (data.isInFlight()) {
 					if (data.timeLeft() == 0.0D) {
 						if (TardisActionList.remat(player, level, data)) {
 							Helper.playSound(level, pos, DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS);
+							Helper.playSound(level, pos, DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS);
 							this.cooldown = 20;
 							return ActionResultType.SUCCESS;
 						}
@@ -47,6 +48,7 @@ public class FlightControl extends TardisControl {
 					}
 				} else if (TardisActionList.demat(player, level, data)) {
 					Helper.playSound(level, pos, DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS);
+					Helper.playSound(level, pos, DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS);
 					this.cooldown = 20;
 					return ActionResultType.SUCCESS;
 				}

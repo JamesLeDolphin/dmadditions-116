@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -27,7 +28,7 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 		if (handIn == Hand.MAIN_HAND) {
 			worldIn.setBlockAndUpdate(pos, state.setValue(POWERED, !(Boolean) state.getValue(POWERED)));
 			worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (worldIn.dimension().equals(DMDimensions.TARDIS) && !worldIn.isClientSide) {
+			if (Helper.isTardis(worldIn) && !worldIn.isClientSide) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 				if (data != null && data.getPreviousLocation() != null) {
 					TardisFlightPool.updateFlight(data, data.getPreviousLocation());

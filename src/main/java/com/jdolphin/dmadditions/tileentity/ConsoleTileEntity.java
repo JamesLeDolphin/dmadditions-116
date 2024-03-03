@@ -1,9 +1,11 @@
 package com.jdolphin.dmadditions.tileentity;
 
+import com.jdolphin.dmadditions.entity.control.DoorControl;
 import com.jdolphin.dmadditions.entity.control.FlightControl;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntityType;
@@ -12,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeTileEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,9 +31,14 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 		World level = this.level;
 		BlockPos pos = this.worldPosition;
 		if (level != null && !level.isClientSide()) {
-			TardisControl control = new FlightControl(DMAEntities.FLIGHT_CONTROL.get(), level);
-			control.setPos(pos.getX(), pos.getY(), pos.getZ());
-			level.addFreshEntity(control);
+			TardisControl flight = new FlightControl(level);
+			TardisControl door = new DoorControl(level);
+
+			flight.setPos(pos.getX(), pos.getY() + 1.1, pos.getZ());
+			door.setPos(pos.getX() - 0.2, pos.getY() + 1.1, pos.getZ());
+
+
+			Helper.addEntities(level, flight, door);
 		}
 	}
 
