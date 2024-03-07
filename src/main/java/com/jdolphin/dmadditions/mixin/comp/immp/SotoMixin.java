@@ -1,6 +1,9 @@
 package com.jdolphin.dmadditions.mixin.comp.immp;
 
 import com.jdolphin.dmadditions.block.tardis.BetterTardisDoorHitbox;
+import com.qouteall.immersive_portals.McHelper;
+import com.qouteall.immersive_portals.portal.Portal;
+import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMTardis;
@@ -34,13 +37,13 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 	}
 
 	@Unique
-	public com.qouteall.immersive_portals.portal.Portal dmadditions_116$portal = null;
+	public Portal dma$portal = null;
 
 	@Unique
-	public RegistryKey<World> dmadditions_116$TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
+	public RegistryKey<World> dma$TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
 
 	@Unique
-	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
+	private static AxisAlignedBB dma$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
 
 
 	/**
@@ -52,10 +55,10 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 		if (!this.level.isClientSide && this.level.dimension().equals(DMDimensions.TARDIS)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(this.getBlockPos());
 				Direction tDir = this.getBlockState().getValue(BetterTardisDoorHitbox.FACING);
-				TileEntity te = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey()).getBlockEntity(data.getCurrentLocation().getBlockPosition());
+				TileEntity te = McHelper.getServerWorld(data.getCurrentLocation().dimensionWorldKey()).getBlockEntity(data.getCurrentLocation().getBlockPosition());
 				if (te instanceof TardisTileEntity) {
 					TardisTileEntity tile = (TardisTileEntity) te;
-					if ((tile.doorOpenRight || tile.doorOpenLeft) && dmadditions_116$portal == null) {
+					if ((tile.doorOpenRight || tile.doorOpenLeft) && dma$portal == null) {
 						BlockPos tardisPosition = data.getCurrentLocation().getBlockPosition();
 						Vector3d look = Vector3d.directionFromRotation(new Vector2f(45.0F, tile.rotation + 180.0F));
 						float distance = 2.0F;
@@ -64,39 +67,39 @@ public class SotoMixin extends DMTileEntityBase implements ITickableTileEntity {
 						double dz = (double) tardisPosition.getZ() + look.z * (double) distance;
 							BlockState state = this.getBlockState();
 
-						AxisAlignedBB bounds = dmadditions_116$defaultAABB.move(this.getBlockPos()).inflate(0.14200001192092896,
+						AxisAlignedBB bounds = dma$defaultAABB.move(this.getBlockPos()).inflate(0.14200001192092896,
 							0.0,0.14200001192092896);
 
 							 bounds = bounds
 								.move(Math.sin(Math.toRadians(state.getValue(BetterTardisDoorHitbox.FACING).toYRot())) * 0.1,
 								0.0, -Math.cos(Math.toRadians(state.getValue(BetterTardisDoorHitbox.FACING).toYRot())) * 0.1);
 
-							dmadditions_116$portal = com.qouteall.immersive_portals.portal.PortalManipulation.createOrthodoxPortal(
-								com.qouteall.immersive_portals.portal.Portal.entityType,
-								com.qouteall.immersive_portals.McHelper.getServerWorld(dmadditions_116$TARDIS),
-								com.qouteall.immersive_portals.McHelper.getServerWorld(data.getCurrentLocation().dimensionWorldKey()),
+							dma$portal = PortalManipulation.createOrthodoxPortal(
+								Portal.entityType,
+								McHelper.getServerWorld(dma$TARDIS),
+								McHelper.getServerWorld(data.getCurrentLocation().dimensionWorldKey()),
 								tDir,
 								bounds,
 								new Vector3d(dx + 0.5, dy, dz + 0.5));
 
-							dmadditions_116$portal.renderingMergable = false;
+							dma$portal.renderingMergable = false;
 							if (tDir == Direction.NORTH) {
-								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
+								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							} else if (tDir == Direction.WEST) {
-								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
 							} else if (tDir == Direction.EAST) {
-								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
+								dma$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
-							com.qouteall.immersive_portals.McHelper.spawnServerEntity(dmadditions_116$portal);
+							McHelper.spawnServerEntity(dma$portal);
 						}
 					if (((tile.state.equals(TardisState.DEMAT) || tile.state.equals(TardisState.REMAT)) || (!tile.doorOpenRight && !tile.doorOpenLeft))
-						&& (dmadditions_116$portal != null && dmadditions_116$portal.isAlive())) {
+						&& (dma$portal != null && dma$portal.isAlive())) {
 
-						dmadditions_116$portal.kill();
-						dmadditions_116$portal.remove(false);
-						level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dmadditions_116$portal);
-						dmadditions_116$portal.onRemovedFromWorld();
-						dmadditions_116$portal = null;
+						dma$portal.kill();
+						dma$portal.remove(false);
+						level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dma$portal);
+						dma$portal.onRemovedFromWorld();
+						dma$portal = null;
 					}
 			}
 		}

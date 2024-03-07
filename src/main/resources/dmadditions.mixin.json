@@ -3,7 +3,7 @@
 	"minVersion": "0.8",
 	"package": "com.jdolphin.dmadditions.mixin",
 	"compatibilityLevel": "JAVA_8",
-	"plugin": "com.jdolphin.dmadditions.mixin.config.IDMAMixinConfigPlugin",
+	"plugin": "com.jdolphin.dmadditions.mixin.config.DMAMixinConfigPlugin",
 	"injectors": {
 		"defaultRequire": 1
 	},

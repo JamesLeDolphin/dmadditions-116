@@ -1,15 +1,17 @@
 package com.jdolphin.dmadditions.mixin.config;
 
+import com.jdolphin.dmadditions.config.DMACommonConfig;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class IDMAMixinConfigPlugin implements IMixinConfigPlugin {
+public class DMAMixinConfigPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public void onLoad(String mixinPackage) {}
@@ -21,11 +23,17 @@ public class IDMAMixinConfigPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.comp.immp.BotiMixin") ||
-			Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.comp.immp.SotoMixin")) {
-			return LoadingModList.get().getModFileById("immersive_portals") != null;
+		List<String> immp = new ArrayList<>();
+		immp.add("com.jdolphin.dmadditions.mixin.comp.immp.BotiMixin");
+		immp.add("com.jdolphin.dmadditions.mixin.comp.immp.SotoMixin");
+
+		List<String> ntm = new ArrayList<>();
+		ntm.add("com.jdolphin.dmadditions.mixin.comp.ntm.TardisActionListMixin");
+
+		if (immp.contains(mixinClassName)) {
+			return LoadingModList.get().getModFileById("immersive_portals") != null && DMACommonConfig.isBotiEnabled();
 		}
-		if (Objects.equals(mixinClassName, "com.jdolphin.dmadditions.mixin.comp.ntm.TardisActionListMixin")) {
+		if (ntm.contains(mixinClassName)) {
 			return LoadingModList.get().getModFileById("tardis") != null;
 		} return true;
 	}
