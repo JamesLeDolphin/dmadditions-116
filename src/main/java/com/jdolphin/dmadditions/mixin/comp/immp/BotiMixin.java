@@ -7,19 +7,26 @@ import com.qouteall.immersive_portals.portal.PortalExtension;
 import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMBlockEntities;
+import com.swdteam.common.init.DMDimensions;
+import com.swdteam.common.init.DMFlightMode;
 import com.swdteam.common.init.DMTardis;
+import com.swdteam.common.tardis.Location;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisState;
+import com.swdteam.common.teleport.TeleportRequest;
 import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelRendererWrapper;
 import com.swdteam.model.javajson.ModelWrapper;
 import com.swdteam.util.SWDMathUtils;
+import com.swdteam.util.TeleportUtil;
 import com.swdteam.util.math.Position;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
@@ -42,7 +49,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 @Mixin(TardisTileEntity.class)
 public abstract class BotiMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity {
@@ -71,9 +80,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	public BotiMixin() {
 		super(DMBlockEntities.TILE_TARDIS.get());
 	}
-
-	@Unique
-	private final String PORTAL = "Portal";
 
 	/**
 	 * @author Originally made by BobDude, finished by JamesLeDolphin
@@ -127,7 +133,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 		if (this.getLevel().getBlockState(tile.getBlockPos().offset(0, -1, 0)).getMaterial() == Material.AIR) {
 			++tile.bobTime;
 			++this.rotation;
-			if (dma$portal != null && dma$portal.isAlive() && !level.isClientSide()) {
+			if (dma$portal != null && dma$portal.isAlive() && dma$portalSpawned) {
 				dma$portal.reloadAndSyncToClient();
 				dma$portal.kill();
 				dma$portal.remove(false);
@@ -142,7 +148,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 		}
 
 
-        if (!level.isClientSide) {
+		if (!level.isClientSide) {
 			tile.tardisData = DMTardis.getTardis(tile.globalID);
 			if (tile.tardisData != null) {
 
@@ -166,15 +172,33 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
 
+					if (dma$portal == null) {
+						List<Entity> entities = this.level.getEntitiesOfClass(Entity.class, bounds);
 
-						McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1.2).forEach(portal -> {
-							if (portal != null && portal != dma$portal) {
-								portal.remove(false);
-								portal.kill();
-								portal.onRemovedFromWorld();
-								dma$portalSpawned = false;
+						entities.removeIf((entity) -> entity instanceof PlayerEntity && DMFlightMode.isInFlight((PlayerEntity) entity));
+						entities.removeIf(Entity::isPassenger);
+						entities.removeIf(entity -> entity instanceof Portal);
+						entities.removeIf(entity -> entity.equals(dma$portal));
+
+						if (!entities.isEmpty()) {
+							Entity e = entities.get(0);
+							if (!TeleportUtil.TELEPORT_REQUESTS.containsKey(e)) {
+								Location loc = new Location(new Vector3d(vec.x(), vec.y(), vec.z()), DMDimensions.TARDIS);
+								loc.setFacing(this.tardisData.getInteriorSpawnRotation() + e.getYHeadRot() - this.rotation);
+								TeleportUtil.TELEPORT_REQUESTS.put(e, new TeleportRequest(loc));
 							}
-						});
+						}
+					}
+
+
+					McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1.2).forEach(portal -> {
+						if (portal != null && portal != dma$portal) {
+							portal.remove(false);
+							portal.kill();
+							portal.onRemovedFromWorld();
+							dma$portalSpawned = false;
+						}
+					});
 
 					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
 						&& (dma$portal != null && dma$portal.isAlive() && dma$portalSpawned)) {
@@ -203,7 +227,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					}
 
 					if (level != null) {
-						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dma$portalSpawned && tDir != null) {
+						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dma$portalSpawned && tDir != null && tile.bobTime == 0) {
 
 							dma$portal = PortalManipulation.createOrthodoxPortal(
 								Portal.entityType,
