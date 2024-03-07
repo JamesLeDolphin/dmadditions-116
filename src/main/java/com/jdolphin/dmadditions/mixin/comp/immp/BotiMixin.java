@@ -52,19 +52,19 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	boolean demat;
 
 	@Unique
-	boolean dmadditions_116$isPortalSpawned = false;
+	boolean dma$portalSpawned = false;
 
 	@Shadow(remap = false)
 	protected abstract void doorAnimation();
 
 	@Unique
-	public Portal dmadditions_116$portal = null;
+	public Portal dma$portal = null;
 
 	@Unique
-	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
+	private static AxisAlignedBB dma$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
 
 	@Unique
-	public RegistryKey<World> dmadditions_116$TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
+	public RegistryKey<World> dma$TARDIS = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod:tardis"));
 
 	public BotiMixin() {
 		super(DMBlockEntities.TILE_TARDIS.get());
@@ -125,14 +125,14 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 		if (this.getLevel().getBlockState(tile.getBlockPos().offset(0, -1, 0)).getMaterial() == Material.AIR) {
 			++tile.bobTime;
 			++this.rotation;
-			if (dmadditions_116$portal != null && dmadditions_116$portal.isAlive() && !level.isClientSide()) {
-				dmadditions_116$portal.reloadAndSyncToClient();
-				dmadditions_116$portal.kill();
-				dmadditions_116$portal.remove(false);
-				level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dmadditions_116$portal);
-				dmadditions_116$portal.onRemovedFromWorld();
-				dmadditions_116$portal = null;
-				dmadditions_116$isPortalSpawned = false;
+			if (dma$portal != null && dma$portal.isAlive() && !level.isClientSide()) {
+				dma$portal.reloadAndSyncToClient();
+				dma$portal.kill();
+				dma$portal.remove(false);
+				level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dma$portal);
+				dma$portal.onRemovedFromWorld();
+				dma$portal = null;
+				dma$portalSpawned = false;
 			}
 		} else {
 			tile.bobTime = 0;
@@ -140,14 +140,14 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 		}
 
 
-		if (!this.level.isClientSide) {
+        if (!level.isClientSide) {
 			tile.tardisData = DMTardis.getTardis(tile.globalID);
 			if (tile.tardisData != null) {
 
 				if (tile.tardisData.getInteriorSpawnPosition() != null) {
 					Position vec = tile.tardisData.getInteriorSpawnPosition();
 					Vector3d pos = new Vector3d(vec.x(), vec.y() + 1.05, vec.z());
-					dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
+					dma$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
 					//size of the portal
 					//handles how far out the portal is from the tardis
 
@@ -156,7 +156,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					ModelWrapper modelWrapper = model.getModelData().getModel();
 					ModelRendererWrapper mdl = modelWrapper.getPart("portal");
 
-					AxisAlignedBB bounds = dmadditions_116$defaultAABB.move(this.getBlockPos()).inflate(mdl == null ? -0.14200001192092896 : mdl.x / 200,
+					AxisAlignedBB bounds = dma$defaultAABB.move(this.getBlockPos()).inflate(mdl == null ? -0.14200001192092896 : mdl.x / 200,
 						mdl == null ? 0.0 : mdl.y / 200, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
 
 					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.05,
@@ -164,23 +164,23 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
 						McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1.2).forEach(portal -> {
-							if (portal != null && portal != dmadditions_116$portal) {
+							if (portal != null && portal != dma$portal) {
 								portal.remove(false);
 								portal.kill();
 								portal.onRemovedFromWorld();
-								dmadditions_116$isPortalSpawned = false;
+								dma$portalSpawned = false;
 							}
 						});
 
 					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
-						&& (dmadditions_116$portal != null && dmadditions_116$portal.isAlive() && dmadditions_116$isPortalSpawned)) {
-						dmadditions_116$portal.reloadAndSyncToClient();
-						dmadditions_116$portal.kill();
-						dmadditions_116$portal.remove(false);
-						level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dmadditions_116$portal);
-						dmadditions_116$portal.onRemovedFromWorld();
-						dmadditions_116$portal = null;
-						dmadditions_116$isPortalSpawned = false;
+						&& (dma$portal != null && dma$portal.isAlive() && dma$portalSpawned)) {
+						dma$portal.reloadAndSyncToClient();
+						dma$portal.kill();
+						dma$portal.remove(false);
+						level.getChunk(this.worldPosition.getX(), this.worldPosition.getZ()).removeEntity(dma$portal);
+						dma$portal.onRemovedFromWorld();
+						dma$portal = null;
+						dma$portalSpawned = false;
 					}
 
 					/*
@@ -194,44 +194,44 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					 * dalekmod:dalek_mod_2013
 					 * dalekmod:sidrat_capsule
 					 */
-					if (dmadditions_116$isPortalSpawned && (dmadditions_116$portal == null) || (dmadditions_116$portal != null && !dmadditions_116$portal.isAlive())) {
-						dmadditions_116$isPortalSpawned = false;
+					if (dma$portalSpawned && (dma$portal == null) || (dma$portal != null && !dma$portal.isAlive())) {
+						dma$portalSpawned = false;
 					}
 
 
-					if (tile != null && level != null) {
-						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dmadditions_116$isPortalSpawned && tDir != null) {
+					if (level != null) {
+						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dma$portalSpawned && tDir != null) {
 
-							dmadditions_116$portal = PortalManipulation.createOrthodoxPortal(
+							dma$portal = PortalManipulation.createOrthodoxPortal(
 								Portal.entityType,
 								McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
-								McHelper.getServerWorld(dmadditions_116$TARDIS),
+								McHelper.getServerWorld(dma$TARDIS),
 								tDir,
 								bounds,
 								pos
 							);
 							if (tDir == Direction.NORTH) {
-								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
+								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							} else if (tDir == Direction.WEST) {
-								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
 							} else if (tDir == Direction.EAST) {
-								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
+								dma$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
-							tag.putUUID(PORTAL, dmadditions_116$portal.getUUID());
+							tag.putUUID(PORTAL, dma$portal.getUUID());
 							this.sendUpdates();
 
-							McHelper.spawnServerEntity(dmadditions_116$portal);
-							dmadditions_116$isPortalSpawned = true;
+							McHelper.spawnServerEntity(dma$portal);
+							dma$portalSpawned = true;
 						}
-						if (dmadditions_116$portal != null && dmadditions_116$portal.isAlive()) {
-							dmadditions_116$portal.renderingMergable = true;
+						if (dma$portal != null && dma$portal.isAlive()) {
+							dma$portal.renderingMergable = true;
 							Position position = tardisData.getInteriorSpawnPosition();
 							Vector3d vec3d = new Vector3d(position.x(), position.y(), position.z());
-							if (!Objects.equals(dmadditions_116$portal.destination, vec3d)) {
-								dmadditions_116$portal.setDestination(vec3d);
+							if (!Objects.equals(dma$portal.destination, vec3d)) {
+								dma$portal.setDestination(vec3d);
 							}
 							if (tile.doorOpenLeft || tile.doorOpenRight) {
-								dmadditions_116$portal.setDestination(pos);
+								dma$portal.setDestination(pos);
 							}
 						}
 					}
