@@ -28,6 +28,10 @@ public class Helper {
 		return world.dimension().equals(DMDimensions.TARDIS);
 	}
 
+	public static Vector3d blockPosToVec3(BlockPos pos) {
+		return new Vector3d(pos.getX(), pos.getY(), pos.getZ());
+	}
+
 	public static BlockPos vec3ToBlockPos(Vector3d vec) {
 		return new BlockPos(vec.x, vec.y, vec.z);
 	}

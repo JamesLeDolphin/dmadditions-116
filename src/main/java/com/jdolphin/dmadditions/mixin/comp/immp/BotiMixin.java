@@ -1,5 +1,9 @@
 package com.jdolphin.dmadditions.mixin.comp.immp;
 
+import com.jdolphin.dmadditions.util.Helper;
+import com.qouteall.immersive_portals.McHelper;
+import com.qouteall.immersive_portals.portal.Portal;
+import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.common.init.DMTardis;
@@ -12,8 +16,10 @@ import com.swdteam.model.javajson.ModelRendererWrapper;
 import com.swdteam.model.javajson.ModelWrapper;
 import com.swdteam.util.SWDMathUtils;
 import com.swdteam.util.math.Position;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
@@ -24,10 +30,15 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
@@ -47,7 +58,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	protected abstract void doorAnimation();
 
 	@Unique
-	public com.qouteall.immersive_portals.portal.Portal dmadditions_116$portal = null;
+	public Portal dmadditions_116$portal = null;
 
 	@Unique
 	private static AxisAlignedBB dmadditions_116$defaultAABB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0, 1.0);
@@ -59,8 +70,8 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 		super(DMBlockEntities.TILE_TARDIS.get());
 	}
 
-	@Unique private String PORTAL = "Portal";
-
+	@Unique
+	private final String PORTAL = "Portal";
 
 	/**
 	 * @author Originally made by BobDude, finished by JamesLeDolphin
@@ -69,6 +80,8 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	@Overwrite
 	public void tick() {
 		TardisTileEntity tile = (TardisTileEntity) ((Object) this);
+		CompoundNBT tag = this.getUpdateTag();
+
 		this.doorAnimation();
 		long tickTime = System.currentTimeMillis() - tile.lastTickTime;
 		tile.lastTickTime = System.currentTimeMillis();
@@ -150,6 +163,15 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.05);
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
+						McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1.2).forEach(portal -> {
+							if (portal != null && portal != dmadditions_116$portal) {
+								portal.remove(false);
+								portal.kill();
+								portal.onRemovedFromWorld();
+								dmadditions_116$isPortalSpawned = false;
+							}
+						});
+
 					if (((tile.state == TardisState.DEMAT || tile.state.equals(TardisState.REMAT)) || (tile.bobTime != 0) || (!tile.doorOpenRight))
 						&& (dmadditions_116$portal != null && dmadditions_116$portal.isAlive() && dmadditions_116$isPortalSpawned)) {
 						dmadditions_116$portal.reloadAndSyncToClient();
@@ -172,13 +194,18 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					 * dalekmod:dalek_mod_2013
 					 * dalekmod:sidrat_capsule
 					 */
+					if (dmadditions_116$isPortalSpawned && (dmadditions_116$portal == null) || (dmadditions_116$portal != null && !dmadditions_116$portal.isAlive())) {
+						dmadditions_116$isPortalSpawned = false;
+					}
+
 
 					if (tile != null && level != null) {
 						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dmadditions_116$isPortalSpawned && tDir != null) {
-							dmadditions_116$portal = com.qouteall.immersive_portals.portal.PortalManipulation.createOrthodoxPortal(
-								com.qouteall.immersive_portals.portal.Portal.entityType,
-								com.qouteall.immersive_portals.McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
-								com.qouteall.immersive_portals.McHelper.getServerWorld(dmadditions_116$TARDIS),
+
+							dmadditions_116$portal = PortalManipulation.createOrthodoxPortal(
+								Portal.entityType,
+								McHelper.getServerWorld(tile.tardisData.getCurrentLocation().dimensionWorldKey()),
+								McHelper.getServerWorld(dmadditions_116$TARDIS),
 								tDir,
 								bounds,
 								pos
@@ -190,11 +217,12 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							} else if (tDir == Direction.EAST) {
 								dmadditions_116$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
+							tag.putUUID(PORTAL, dmadditions_116$portal.getUUID());
+							this.sendUpdates();
 
-							com.qouteall.immersive_portals.McHelper.spawnServerEntity(dmadditions_116$portal);
+							McHelper.spawnServerEntity(dmadditions_116$portal);
 							dmadditions_116$isPortalSpawned = true;
 						}
-
 						if (dmadditions_116$portal != null && dmadditions_116$portal.isAlive()) {
 							dmadditions_116$portal.renderingMergable = true;
 							Position position = tardisData.getInteriorSpawnPosition();

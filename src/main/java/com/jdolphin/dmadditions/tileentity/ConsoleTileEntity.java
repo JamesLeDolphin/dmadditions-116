@@ -27,6 +27,7 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 		this(DMABlockEntities.TILE_CONSOLE.get());
 	}
 
+
 	public void onLoad() {
 		World level = this.level;
 		BlockPos pos = this.worldPosition;
