@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.mixin.comp.immp;
 import com.jdolphin.dmadditions.util.Helper;
 import com.qouteall.immersive_portals.McHelper;
 import com.qouteall.immersive_portals.portal.Portal;
+import com.qouteall.immersive_portals.portal.PortalExtension;
 import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.common.init.DMBlockEntities;
@@ -24,6 +25,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Quaternion;
@@ -163,6 +165,8 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.05);
 
 					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
+
+
 						McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1.2).forEach(portal -> {
 							if (portal != null && portal != dma$portal) {
 								portal.remove(false);
@@ -198,7 +202,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						dma$portalSpawned = false;
 					}
 
-
 					if (level != null) {
 						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dma$portalSpawned && tDir != null) {
 
@@ -210,6 +213,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 								bounds,
 								pos
 							);
+
 							if (tDir == Direction.NORTH) {
 								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							} else if (tDir == Direction.WEST) {
@@ -217,8 +221,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							} else if (tDir == Direction.EAST) {
 								dma$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
-							tag.putUUID(PORTAL, dma$portal.getUUID());
-							this.sendUpdates();
 
 							McHelper.spawnServerEntity(dma$portal);
 							dma$portalSpawned = true;
