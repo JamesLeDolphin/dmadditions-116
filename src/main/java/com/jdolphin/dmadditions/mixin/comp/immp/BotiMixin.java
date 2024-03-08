@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.mixin.comp.immp;
 
 import com.jdolphin.dmadditions.util.Helper;
 import com.qouteall.immersive_portals.McHelper;
+import com.qouteall.immersive_portals.my_util.DQuaternion;
 import com.qouteall.immersive_portals.portal.Portal;
 import com.qouteall.immersive_portals.portal.PortalExtension;
 import com.qouteall.immersive_portals.portal.PortalManipulation;
@@ -34,9 +35,12 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -170,8 +174,9 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.05,
 						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.05);
 
-					Direction tDir = Direction.byName(SWDMathUtils.rotationToCardinal(tile.rotation));
+					Direction tDir = Direction.fromYRot(this.rotation);
 
+					//Dont lock em out
 					if (dma$portal == null) {
 						List<Entity> entities = this.level.getEntitiesOfClass(Entity.class, bounds);
 
@@ -190,8 +195,8 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						}
 					}
 
-
-					McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1.2).forEach(portal -> {
+					//Fixes portals remaining after exiting and re-entering the world
+					McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1).forEach(portal -> {
 						if (portal != null && portal != dma$portal) {
 							portal.remove(false);
 							portal.kill();
@@ -227,7 +232,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					}
 
 					if (level != null) {
-						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dma$portalSpawned && tDir != null && tile.bobTime == 0) {
+						if ((tile.doorOpenLeft || tile.doorOpenRight) && !dma$portalSpawned && tile.bobTime == 0) {
 
 							dma$portal = PortalManipulation.createOrthodoxPortal(
 								Portal.entityType,
@@ -237,12 +242,31 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 								bounds,
 								pos
 							);
+							float tileRot = tile.rotation;
+							float portalRot = 0;
 
-							if (tDir == Direction.NORTH) {
+							if (tileRot == 0 || tileRot == 90 || tileRot == 180 || tileRot == 270) portalRot = 180f;
+							if (tileRot == 45 || tileRot == 135 || tileRot == 225 || tileRot == 315) portalRot = 225f;
+
+							Quaternion quater = new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F),
+								portalRot, true);
+							if (portalRot != 0f) PortalManipulation.rotatePortalBody(dma$portal, quater);
+
+							Vector3d look = Vector3d.directionFromRotation(new Vector2f(45.0F, tile.rotation + 180.0F));
+							BlockPos tardisPosition = tardisData.getCurrentLocation().getBlockPosition();
+
+							float distance = 0.5f;
+							double dx = (double) tardisPosition.getX() + look.x;
+							double dy = tardisPosition.getY() > 0 ? (double) tardisPosition.getY() : 128.0;
+							double dz = (double) tardisPosition.getZ() + look.z;
+
+							dma$portal.setPosRaw(dx, dy + 1, dz);
+
+							if (tDir == Direction.SOUTH) {
 								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
-							} else if (tDir == Direction.WEST) {
-								dma$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
 							} else if (tDir == Direction.EAST) {
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
+							} else if (tDir == Direction.WEST) {
 								dma$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
 
