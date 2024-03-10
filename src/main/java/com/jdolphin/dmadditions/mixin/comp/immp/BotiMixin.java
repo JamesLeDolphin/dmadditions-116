@@ -37,10 +37,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector2f;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.math.vector.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -244,23 +241,29 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							);
 							float tileRot = tile.rotation;
 							float portalRot = 0;
-
-							if (tileRot == 0 || tileRot == 90 || tileRot == 180 || tileRot == 270) portalRot = 180f;
+							BlockPos newPos = worldPosition;
+							if (tileRot == 0) {
+								//newPos.offset(offset);
+							}
+							if (tileRot == 90) {
+								//newPos.offset(offset);
+							}
+							if (tileRot == 180) {
+								newPos = new BlockPos(newPos.getX() + 0.5, newPos.getY() + 1,newPos.getZ() + 1.25);
+							}
+							if (tileRot == 270) {
+								//newPos.offset(offset);
+							}
+							dma$portal.setPos(newPos.getX(), newPos.getY(), newPos.getZ());
+								portalRot = 180f;
 							if (tileRot == 45 || tileRot == 135 || tileRot == 225 || tileRot == 315) portalRot = 225f;
 
 							Quaternion quater = new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F),
 								portalRot, true);
 							if (portalRot != 0f) PortalManipulation.rotatePortalBody(dma$portal, quater);
 
-							Vector3d look = Vector3d.directionFromRotation(new Vector2f(45.0F, tile.rotation + 180.0F));
-							BlockPos tardisPosition = tardisData.getCurrentLocation().getBlockPosition();
 
-							float distance = 0.5f;
-							double dx = (double) tardisPosition.getX() + look.x;
-							double dy = tardisPosition.getY() > 0 ? (double) tardisPosition.getY() : 128.0;
-							double dz = (double) tardisPosition.getZ() + look.z;
 
-							dma$portal.setPosRaw(dx, dy + 1, dz);
 
 							if (tDir == Direction.SOUTH) {
 								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
