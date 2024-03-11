@@ -6,6 +6,7 @@ import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.item.*;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.*;
 import com.swdteam.common.item.BulletItem;
 import com.swdteam.common.item.ClothesItem;
@@ -100,7 +101,7 @@ public class DMAItems {
 
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/wedding_dress.png").toString();
+				return Helper.createAdditionsRL("textures/models/armor/wedding_dress.png").toString();
 			}
 
 			@Override
@@ -121,7 +122,7 @@ public class DMAItems {
 
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/scarf_red.png").toString();
+				return Helper.createAdditionsRL("textures/models/armor/scarf_red.png").toString();
 			}
 
 			@Override
@@ -142,7 +143,7 @@ public class DMAItems {
 
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/scarf_brown.png").toString();
+				return Helper.createAdditionsRL("textures/models/armor/scarf_brown.png").toString();
 			}
 
 			@Override
@@ -163,7 +164,7 @@ public class DMAItems {
 
 				@Override
 				public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-					return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/matts_pink_thong.png").toString();
+					return Helper.createAdditionsRL("textures/models/armor/matts_pink_thong.png").toString();
 				}
 
 				@Override

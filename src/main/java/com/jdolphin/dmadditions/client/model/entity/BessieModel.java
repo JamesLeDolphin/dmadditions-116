@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.client.model.entity;
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.BessieEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -24,7 +25,7 @@ public class BessieModel extends SegmentedModel<BessieEntity> implements IModelP
 	}
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/bessie.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/bessie.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 		this.wheels = modelWrapper.getPart("wheels");
 		this.body = modelWrapper.getPart("body");

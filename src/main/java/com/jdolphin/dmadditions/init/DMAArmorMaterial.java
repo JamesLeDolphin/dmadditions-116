@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.main.DalekMod;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -73,7 +74,7 @@ public enum DMAArmorMaterial implements IArmorMaterial {
 
 	@OnlyIn(Dist.CLIENT)
 	public String getName() {
-		return new ResourceLocation(DalekMod.MODID, this.name).toString();
+		return Helper.createDMRL(this.name).toString();
 	}
 
 	public float getToughness() {

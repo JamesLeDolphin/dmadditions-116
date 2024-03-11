@@ -82,7 +82,7 @@ public class DMAEntities {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
 																				   EntityClassification classification, float width, float height) {
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(entityClass, classification).sized(width, height)
-			.clientTrackingRange(8).build(new ResourceLocation(DmAdditions.MODID, name).toString()));
+			.clientTrackingRange(8).build(Helper.createAdditionsRL(name).toString()));
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,

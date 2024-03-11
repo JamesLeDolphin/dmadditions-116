@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity.dalek;
 
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.ai.DestroyTargetBlock;
 import com.swdteam.common.entity.ai.NearestAttackableTargetGoalForDalek;
@@ -329,7 +330,7 @@ public class IronsideDalekEntity extends DalekEntity {
 	}
 
 	public ItemStack getPickedResult(RayTraceResult target) {
-		Item i = (Item)ForgeRegistries.ITEMS.getValue(new ResourceLocation("dalekmod", this.getDalekData().getType().getRegistryName() + "_spawner"));
+		Item i = (Item)ForgeRegistries.ITEMS.getValue(Helper.createDMRL(this.getDalekData().getType().getRegistryName() + "_spawner"));
 		return i != null ? new ItemStack(i) : new ItemStack((IItemProvider)DMItems.DALEK_SPAWNER[0].get());
 	}
 

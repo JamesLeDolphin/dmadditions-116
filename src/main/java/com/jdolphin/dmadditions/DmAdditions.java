@@ -73,10 +73,10 @@ import java.util.function.Supplier;
 
 
 
-@Mod("dmadditions")
+@Mod(DmAdditions.MODID)
 public class DmAdditions {
 	public static final String MODID = "dmadditions";
-	public static final String VERSION = "1.3.4";
+	public static final String VERSION = "1.3.9";
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 

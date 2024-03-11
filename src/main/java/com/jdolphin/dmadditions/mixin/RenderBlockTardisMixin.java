@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.mixin;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.block.tardis.ITardisDMAActions;
 import com.jdolphin.dmadditions.client.model.CubeModel;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.swdteam.client.render.tileentity.RenderBlockTardis;
@@ -32,7 +33,7 @@ public abstract class RenderBlockTardisMixin {
 	}
 
 	@Unique
-	private static ResourceLocation FORCEFIELD = new ResourceLocation(DmAdditions.MODID, "textures/forcefield.png");
+	private static ResourceLocation FORCEFIELD = Helper.createAdditionsRL("textures/forcefield.png");
 
 	@Unique private static CubeModel cube;
 

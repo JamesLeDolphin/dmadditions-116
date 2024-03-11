@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.model.armor;
 
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.swdteam.client.model.IModelPartReloader;
@@ -28,7 +29,7 @@ public class ChristmasHatModel extends BipedModel<LivingEntity> implements IMode
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/armor/christmas_hat.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/armor/christmas_hat.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 
 		this.head = modelWrapper.getPart("hat");

@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.item;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.model.armor.ChristmasHatModel;
 import com.jdolphin.dmadditions.init.DMAArmorMaterial;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMTabs;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -49,7 +50,7 @@ public class ChristmasHatItem extends DyeableArmorItem {
 	@Nullable
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-		return new ResourceLocation(DmAdditions.MODID, "textures/models/armor/christmas_hat.png").toString();
+		return Helper.createAdditionsRL("textures/models/armor/christmas_hat.png").toString();
 	}
 
 	@Override

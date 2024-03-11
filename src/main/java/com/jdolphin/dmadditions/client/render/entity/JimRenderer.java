@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.client.render.entity;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.model.entity.JimModel;
 import com.jdolphin.dmadditions.entity.JimEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
@@ -28,7 +29,7 @@ public class JimRenderer extends BipedRenderer<JimEntity, BipedModel<JimEntity>>
 
 	@Override
 	public ResourceLocation getTextureLocation(JimEntity entity) {
-		return new ResourceLocation(DmAdditions.MODID, "textures/entity/jim.png");
+		return Helper.createAdditionsRL("textures/entity/jim.png");
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.jdolphin.dmadditions.entity.WoodenCybermanEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -30,7 +31,7 @@ public class WoodenCybermanModel extends BipedModel<WoodenCybermanEntity> implem
 	}
 
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation("dalekmod", "models/entity/cyber/wooden_cyberman.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/wooden_cyberman.json"));
 		if (this.model != null) {
 			this.head = this.model.getModelData().getModel().getPart("Head");
 			this.body = this.model.getModelData().getModel().getPart("Body");

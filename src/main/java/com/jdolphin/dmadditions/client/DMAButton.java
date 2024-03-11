@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -15,8 +16,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class DMAButton extends AbstractButton {
-	public static final ResourceLocation BUTTON_BACK = new ResourceLocation(DmAdditions.MODID, "textures/gui/main/icons/button_back.png");
-	public static final ResourceLocation BUTTON_BACK_HOVER = new ResourceLocation(DmAdditions.MODID, "textures/gui/main/icons/button_back.png");
+	public static final ResourceLocation BUTTON_BACK = Helper.createAdditionsRL("textures/gui/main/icons/button_back.png");
+	public static final ResourceLocation BUTTON_BACK_HOVER = Helper.createAdditionsRL("textures/gui/main/icons/button_back.png");
 	private static Minecraft minecraft = Minecraft.getInstance();
 	public static final Button.ITooltip NO_TOOLTIP = (p_238488_0_, p_238488_1_, p_238488_2_, p_238488_3_) -> {};
 	protected final DMAButton.IPressable onPress;

@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -34,7 +35,7 @@ public class JamesLeDolphinModel<T extends DolphinEntity> extends DolphinModel<T
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/jamesledolphin.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/jamesledolphin.json"));
 
 		if (this.model != null) {
 			ModelWrapper modelWrapper = this.model.getModelData().getModel();

@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.entity.PilotFishEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -26,7 +27,7 @@ public class PilotFishModel extends BipedModel<PilotFishEntity> implements IMode
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/pilot_fish/santa.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/pilot_fish/santa.json"));
 
 		if (this.model != null) {
 			this.head = this.model.getModelData().getModel().getPart("Head");

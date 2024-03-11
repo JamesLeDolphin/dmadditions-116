@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.client.dimension.sky;
 
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -18,7 +19,7 @@ import net.minecraftforge.client.ISkyRenderHandler;
 public class SkyRendererMoon implements ISkyRenderHandler {
 	public static SkyRendererMoon INSTANCE = new SkyRendererMoon();
 	public static MatrixStack matrixStackIn = new MatrixStack();
-	public static ResourceLocation SKY = new ResourceLocation("dalekmod", "textures/sky/moon.png");
+	public static ResourceLocation SKY = Helper.createDMRL("textures/sky/moon.png");
 
 	public SkyRendererMoon() {
 	}

@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
 
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.swdteam.client.model.IModelPartReloader;
@@ -72,6 +73,6 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 	}
 
 	public void init() {
-		SCREEN_MODEL = ModelLoader.loadModel(new ResourceLocation("dalekmod", "models/mesh/plane_16.json"));
+		SCREEN_MODEL = ModelLoader.loadModel(Helper.createDMRL("models/mesh/plane_16.json"));
 	}
 }

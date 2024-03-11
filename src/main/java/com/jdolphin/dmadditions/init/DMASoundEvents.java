@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.RegistryHandler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -25,6 +26,6 @@ public class DMASoundEvents {
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
 		return register.register(registryName,
-			() -> new SoundEvent(new ResourceLocation(DmAdditions.MODID, registryName)));
+			() -> new SoundEvent(Helper.createAdditionsRL(registryName)));
 	}
 }

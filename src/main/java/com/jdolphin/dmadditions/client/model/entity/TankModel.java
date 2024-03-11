@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableSet;
 import com.jdolphin.dmadditions.entity.TankEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -44,7 +45,7 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/torchwood_tank.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/torchwood_tank.json"));
 		ModelWrapper modelWrapper = model.getModelData().getModel();
 		this.upperBody = modelWrapper.getPart("Upperbody"); //TODO: maybe put all body parts into one group
 		this.lowerBody = modelWrapper.getPart("Lowerbody");

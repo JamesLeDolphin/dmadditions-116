@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -59,7 +60,7 @@ public class CyberUndergroundStructure extends Structure<NoFeatureConfig> {
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
 			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(DmAdditions.MODID, "cyber_underground/start_pool"));
+				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(Helper.createAdditionsRL("cyber_underground/start_pool"));
 			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 			this.pieces.forEach((piece) -> {
 				piece.move(0, -50, 0);

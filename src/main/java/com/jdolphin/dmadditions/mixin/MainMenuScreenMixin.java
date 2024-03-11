@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.mixin;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -27,7 +28,7 @@ public abstract class MainMenuScreenMixin extends Screen {
 
 	@Unique
 	private static void dmadditions_116$getBg(String name) {
-		PANORAMA_OVERLAY = new ResourceLocation(DmAdditions.MODID, "textures/gui/main/background/" + name + ".png");
+		PANORAMA_OVERLAY = Helper.createAdditionsRL("textures/gui/main/background/" + name + ".png");
 	}
 
 

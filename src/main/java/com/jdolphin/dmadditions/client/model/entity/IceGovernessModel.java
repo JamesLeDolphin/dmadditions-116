@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.jdolphin.dmadditions.entity.IceGovernessEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -34,7 +35,7 @@ public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/ice_governess.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/ice_governess.json"));
 
 		ModelWrapper modelwrapper = model.getModelData().getModel();
 		this.head = modelwrapper.getPart("Head");

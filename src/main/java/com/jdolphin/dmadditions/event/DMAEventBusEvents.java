@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.ChristmasHatItem;
 import com.jdolphin.dmadditions.loot.modifiers.AddItemLootModifier;
+import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,7 +21,7 @@ public class DMAEventBusEvents {
 	@SubscribeEvent
 	public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event){
 		event.getRegistry().registerAll(
-			new AddItemLootModifier.Serializer().setRegistryName(new ResourceLocation(DmAdditions.MODID, "add_item"))
+			new AddItemLootModifier.Serializer().setRegistryName(Helper.createAdditionsRL("add_item"))
 		);
 	}
 

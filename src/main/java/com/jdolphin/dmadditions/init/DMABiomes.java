@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -20,6 +21,6 @@ public class DMABiomes {
 	public static RegistryKey<Biome> ANDROZANIMINOR;
 
 	private static RegistryKey<Biome> makeKey(String name) {
-		return RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DmAdditions.MODID, name));
+		return RegistryKey.create(Registry.BIOME_REGISTRY, Helper.createAdditionsRL(name));
 	}
 }

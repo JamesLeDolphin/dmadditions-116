@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.client.title.vortex;
 
 import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -27,7 +28,7 @@ public class Vortex {
 	}
 
 	public Vortex(String name) {
-		TEXTURE_LOCATION = new ResourceLocation(DmAdditions.MODID, "textures/vortex/" + name + ".png");
+		TEXTURE_LOCATION = Helper.createAdditionsRL("textures/vortex/" + name + ".png");
 	}
 
 	public void render() {

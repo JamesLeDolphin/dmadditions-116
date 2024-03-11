@@ -20,7 +20,7 @@ public class DMTileRenderRegistryMixin {
 	@Inject(method = "registerModel(Lnet/minecraft/tileentity/TileEntityType;Ljava/util/function/Function;)V", at = @At("HEAD"), cancellable = true, remap = false)
 	private static <T extends TileEntity> void registerModel(TileEntityType<T> tileEntityType, Function<? super TileEntityRendererDispatcher, ? extends TileEntityRenderer<? super T>> rendererFactory, CallbackInfo ci) {
 		if (DMATileRenderRegistry.MIXIN_RENDERERS.contains(tileEntityType)) {
-			LogManager.getLogger(DmAdditions.MODID)
+			DmAdditions.LOGGER
 				.info(String.format("Cancelling tile entity renderer: %s", tileEntityType.getRegistryName()));
 
 			ci.cancel();

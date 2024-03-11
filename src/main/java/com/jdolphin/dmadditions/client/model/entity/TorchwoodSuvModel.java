@@ -4,6 +4,7 @@ package com.jdolphin.dmadditions.client.model.entity;
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.entity.TorchwoodSuvEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -38,7 +39,7 @@ public class TorchwoodSuvModel extends SegmentedModel<TorchwoodSuvEntity> implem
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(DmAdditions.MODID, "models/entity/torchwood_suv.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/torchwood_suv.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 
 //		this.floor = modelWrapper.getPart("Floor");

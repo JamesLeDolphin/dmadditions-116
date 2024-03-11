@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.entity.ChristmasTreeEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
@@ -27,7 +28,7 @@ public class ChristmasTreeModel extends SegmentedModel<ChristmasTreeEntity> impl
 
 	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(new ResourceLocation(MODID, "models/entity/christmas_tree.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/christmas_tree.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 
 		this.bottom = modelWrapper.getPart("bottom");

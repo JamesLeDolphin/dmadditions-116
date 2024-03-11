@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.render.tileentity;
 
 import com.jdolphin.dmadditions.block.tardis.BetterScannerBlock;
 import com.jdolphin.dmadditions.tileentity.BetterScannerTileEntity;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
@@ -85,7 +86,7 @@ public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEnt
 	}
 	//TODO: Fix this thingymabob
 	public void init() {
-			MODEL_SCANNER = ModelLoader.loadModel(new ResourceLocation(DalekMod.MODID,
+			MODEL_SCANNER = ModelLoader.loadModel(Helper.createDMRL(
 				String.format("models/tileentity/%s.json"/*, registryName.getPath()*/)));
 	}
 }
