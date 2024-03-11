@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -13,7 +14,7 @@ public class DMADimensions {
 	}
 
 	static {
-		MOON = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod", "moon"));
-		ANDROZANIMINOR = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dalekmod", "androzaniminor"));
+		MOON = RegistryKey.create(Registry.DIMENSION_REGISTRY, Helper.createDMRL("moon"));
+		ANDROZANIMINOR = RegistryKey.create(Registry.DIMENSION_REGISTRY,Helper.createDMRL("androzaniminor"));
 	}
 }

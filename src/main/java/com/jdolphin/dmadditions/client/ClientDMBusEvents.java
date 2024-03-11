@@ -1,7 +1,8 @@
-package com.jdolphin.dmadditions.client.init;
+package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMoon;
 import com.jdolphin.dmadditions.init.DMADimensions;
+import com.swdteam.main.DalekMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -10,13 +11,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(
-	modid = "dalekmod",
+	modid = DalekMod.MODID,
 	bus = Mod.EventBusSubscriber.Bus.FORGE,
 	value = {Dist.CLIENT}
 )
-public class ClientRenderer {
-	public ClientRenderer() {
-	}
+public class ClientDMBusEvents {
+
+	public ClientDMBusEvents() {}
+
 	@SubscribeEvent
 	public static void skyRenderer(RenderWorldLastEvent event) {
 		ClientWorld world;

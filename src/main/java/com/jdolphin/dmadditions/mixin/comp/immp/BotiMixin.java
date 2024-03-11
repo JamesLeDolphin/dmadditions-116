@@ -173,25 +173,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 					Direction tDir = Direction.fromYRot(this.rotation);
 
-					//Dont lock em out
-					if (dma$portal == null) {
-						List<Entity> entities = this.level.getEntitiesOfClass(Entity.class, bounds);
-
-						entities.removeIf((entity) -> entity instanceof PlayerEntity && DMFlightMode.isInFlight((PlayerEntity) entity));
-						entities.removeIf(Entity::isPassenger);
-						entities.removeIf(entity -> entity instanceof Portal);
-						entities.removeIf(entity -> entity.equals(dma$portal));
-
-						if (!entities.isEmpty()) {
-							Entity e = entities.get(0);
-							if (!TeleportUtil.TELEPORT_REQUESTS.containsKey(e)) {
-								Location loc = new Location(new Vector3d(vec.x(), vec.y(), vec.z()), DMDimensions.TARDIS);
-								loc.setFacing(this.tardisData.getInteriorSpawnRotation() + e.getYHeadRot() - this.rotation);
-								TeleportUtil.TELEPORT_REQUESTS.put(e, new TeleportRequest(loc));
-							}
-						}
-					}
-
 					//Fixes portals remaining after exiting and re-entering the world
 					McHelper.getNearbyPortals(level, Helper.blockPosToVec3(worldPosition), 1).forEach(portal -> {
 						if (portal != null && portal != dma$portal) {
@@ -226,6 +207,25 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 					 */
 					if (dma$portalSpawned && (dma$portal == null) || (dma$portal != null && !dma$portal.isAlive())) {
 						dma$portalSpawned = false;
+					}
+
+					//Dont lock em out
+					if (dma$portal == null && (tile.doorOpenLeft || tile.doorOpenRight)) {
+						List<Entity> entities = this.level.getEntitiesOfClass(Entity.class, bounds);
+
+						entities.removeIf((entity) -> entity instanceof PlayerEntity && DMFlightMode.isInFlight((PlayerEntity) entity));
+						entities.removeIf(Entity::isPassenger);
+						entities.removeIf(entity -> entity instanceof Portal);
+						entities.removeIf(entity -> entity.equals(dma$portal));
+
+						if (!entities.isEmpty()) {
+							Entity e = entities.get(0);
+							if (!TeleportUtil.TELEPORT_REQUESTS.containsKey(e)) {
+								Location loc = new Location(new Vector3d(vec.x(), vec.y(), vec.z()), DMDimensions.TARDIS);
+								loc.setFacing(this.tardisData.getInteriorSpawnRotation() + e.getYHeadRot() - this.rotation);
+								TeleportUtil.TELEPORT_REQUESTS.put(e, new TeleportRequest(loc));
+							}
+						}
 					}
 
 					if (level != null) {

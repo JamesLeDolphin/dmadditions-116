@@ -3,15 +3,13 @@ package com.jdolphin.dmadditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.client.proxy.DMAClientProxy;
-import com.jdolphin.dmadditions.client.proxy.DMAServerProxy;
+import com.jdolphin.dmadditions.client.ClientDMBusEvents;
 import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
@@ -31,6 +29,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
@@ -50,13 +49,11 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -85,7 +82,6 @@ public class DmAdditions {
 
 	// Directly reference a log4j logger.
 	public static final Logger LOGGER = LogManager.getLogger();
-	public static final DMAServerProxy DMA_PROXY = DistExecutor.safeRunForDist(() -> DMAClientProxy::new, () -> DMAServerProxy::new);
 	public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 
 	public static boolean hasNTM() {
@@ -221,10 +217,8 @@ public class DmAdditions {
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
-		DMA_PROXY.doClientStuff(event);
-
 		DMABlocks.registerRenderTypes();
-
+		MinecraftForge.EVENT_BUS.register(ClientDMBusEvents.class);
 		if(hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
