@@ -7,7 +7,7 @@ import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.init.DMItems;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
-import com.swdteam.common.item.GunItem;
+import com.swdteam.common.item.gun.GunItem;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;

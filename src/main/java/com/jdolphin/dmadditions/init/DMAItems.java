@@ -6,14 +6,12 @@ import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.item.*;
-import com.swdteam.common.init.DMItemTiers;
-import com.swdteam.common.init.DMProjectiles;
-import com.swdteam.common.init.DMSoundEvents;
-import com.swdteam.common.init.DMTabs;
+import com.swdteam.common.init.*;
+import com.swdteam.common.item.BulletItem;
 import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
-import com.swdteam.common.item.GunItem;
+import com.swdteam.common.item.gun.GunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -75,12 +73,12 @@ public class DMAItems {
 		() -> new DMASpawnerItem<>("snowman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
-			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.BULLET, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
-				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT)));
+			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, 5, DMAProjectiles.BULLET, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
+				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
 
 	public static RegistryObject<Item> TORCHWOOD_PISTOL = ITEMS.register("torchwood_pistol",
-			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
-				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
+			() -> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, 5, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
+				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
 
 
 	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
@@ -189,6 +187,7 @@ public class DMAItems {
 	public static RegistryObject<Item> SPACE_SUIT_BOOTS = ITEMS.register("space_suit_boots",
 			() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()));
 
+	public static RegistryObject<Item> ROCKET = ITEMS.register("rocket", () -> new BulletItem((new Item.Properties()).tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> LASER_SCREWDRIVER = ITEMS.register("laser_screwdriver",
 			() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
@@ -199,13 +198,14 @@ public class DMAItems {
 		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("wooden_cyberman_spawner",
 			() -> new DMASpawnerItem<>("wooden_cyberman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+
 	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
 		() -> new DMASpawnerItem<>("pilot_fish", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
-			() -> new GunItem(DMItemTiers.DALEK_CANNON, 2.0F,
+			() -> new GunItem(DMItemTiers.DALEK_CANNON, 2.0F, 3.0f,
 							  DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
-							  DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
+							  DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT), ROCKET));
 
 	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = ITEMS.register("flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK::get, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
 
@@ -240,12 +240,12 @@ public class DMAItems {
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
 	public static RegistryObject<Item> RPG = ITEMS.register("rpg",
-			() -> new GunItem(DMItemTiers.DALEK_CANNON, 0.1F, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
-				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT)));
+			() -> new GunItem(DMItemTiers.DALEK_CANNON, 0.1F, 5, DMAProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
+				DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT), ROCKET));
 
 	public static RegistryObject<Item> PISTOL =  ITEMS.register("pistol", ()
-			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, DMAProjectiles.PURPLE_LASER, DMSoundEvents.ITEM_GUN_CLICK,
-			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
+			-> new GunItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, 5, DMAProjectiles.PURPLE_LASER, DMSoundEvents.ITEM_GUN_CLICK,
+			DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT), ROCKET));
 
 	public static RegistryObject<Item> TARDIS_GOLD_KEY =  ITEMS.register("tardis_gold_key",
 			() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));

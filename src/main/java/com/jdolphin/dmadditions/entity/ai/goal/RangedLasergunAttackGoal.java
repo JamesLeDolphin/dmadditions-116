@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.entity.ai.goal;
 
-import com.swdteam.common.item.GunItem;
+import com.swdteam.common.item.gun.GunItem;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;

@@ -19,7 +19,6 @@ public class DMADalekRegistry {
 	public static IDalek DALEK_SANTA;
 	public static IDalek IRONSIDE;
 	public static IDalek CANDYCANE;
-	public static IDalek PFD;
 	public static IDalek STORM;
 	public static IDalek WAFFLE;
 	public static IDalek GINGERBREAD;
@@ -34,7 +33,6 @@ public class DMADalekRegistry {
 		CANDYCANE.addChild("blue_candycane_dalek");
 		CANDYCANE.addChild("red_candycane_dalek");
 		CANDYCANE.addChild("orange_candycane_dalek");
-		PFD = addDalek(DMADalekType.PFD, new PFDDalekBase("Pink Fluffy Dalek"), "pink_fluffy_dalek");
 		STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
 		IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
