@@ -57,8 +57,6 @@ public class DMABlocks {
 		return registerBlock(supplier, name, tab);
 	}
 
-
-	//public static RegistryObject<Block> SANTA_BAUBLE_BLOCK = registerAdventBlock(7, BaubleBlock::new, "santa_bauble");
 	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "blue_bauble");
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");

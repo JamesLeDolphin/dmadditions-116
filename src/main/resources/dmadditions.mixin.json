@@ -26,7 +26,6 @@
 		"other.TardisKeyMixin",
 		"other.TardisTileEntityMixin",
 		"comp.immp.BotiMixin",
-		"comp.immp.SotoMixin",
 		"comp.ntm.TardisActionListMixin"
 	],
 	"client": [

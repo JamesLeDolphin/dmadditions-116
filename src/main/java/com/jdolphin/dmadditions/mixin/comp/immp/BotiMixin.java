@@ -349,13 +349,20 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 								portalRot, true);
 							if (portalRot != 0f) PortalManipulation.rotatePortalBody(dma$portal, quater);
 
+
 							if (tileRot == 0) { //S
 								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							}
 							if (tileRot == 45) { //NE
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.5f, 0, -0.75f));
+							}
+							if (tileRot == 135) {
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.5f, 0, -0.5f));
+							}
+							if (tileRot == 225) {
 								dma$portal.setRotationTransformation(new Quaternion(0, 0.25f, 0, -0.5f));
 							}
-							if (tileRot == 135) { //NE
+							if (tileRot == 315) {
 								dma$portal.setRotationTransformation(new Quaternion(0, 0.25f, 0, -0.5f));
 							}
 							if (tileRot == 270) { //E
