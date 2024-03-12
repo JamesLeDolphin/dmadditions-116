@@ -10,9 +10,6 @@ import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.ResourceLocation;
-
-import static com.jdolphin.dmadditions.DmAdditions.MODID;
 
 public class TankModel<T extends TankEntity> extends SegmentedModel<T> implements IModelPartReloader{
 

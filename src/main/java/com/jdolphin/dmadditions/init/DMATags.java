@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
@@ -8,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 public class DMATags {

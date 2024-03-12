@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.util.Helper;
-import com.swdteam.main.DalekMod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 

@@ -24,8 +24,6 @@ public class Gravity {
 			return;
 		}
 
-		if (!DIMENSION_GRAVITY.containsKey(newDim)) return;
-
 		gravity.setBaseValue(DIMENSION_GRAVITY.get(newDim));
 	}
 }

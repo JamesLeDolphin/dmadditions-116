@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class DMAMixinConfigPlugin implements IMixinConfigPlugin {

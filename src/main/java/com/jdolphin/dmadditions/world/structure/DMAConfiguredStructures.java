@@ -1,9 +1,7 @@
 package com.jdolphin.dmadditions.world.structure;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.init.DMAStructures;
 import com.jdolphin.dmadditions.util.Helper;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.FlatGenerationSettings;

@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.model.armor.ChristmasHatModel;
 import com.jdolphin.dmadditions.init.DMAArmorMaterial;
 import com.jdolphin.dmadditions.util.Helper;
@@ -11,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;

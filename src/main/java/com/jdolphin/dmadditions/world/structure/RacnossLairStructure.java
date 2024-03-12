@@ -1,10 +1,8 @@
 package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.serialization.Codec;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;

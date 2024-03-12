@@ -1,27 +1,25 @@
 package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMoon;
-import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
-import com.jdolphin.dmadditions.init.DMADimensions;
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMAPackets;
+import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.gui.GuiDMU;
+import com.swdteam.client.init.DMKeybinds;
 import com.swdteam.main.DMConfig;
 import com.swdteam.util.helpers.ReflectionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -31,6 +29,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 	value = {Dist.CLIENT}
 )
 public class ClientBusEvents {
+
+	@SubscribeEvent
+	public static void keyEvent(InputEvent.KeyInputEvent event) {
+		if (DMKeybinds.GUN_CHANGE_BULLET.consumeClick()) {
+			SBToggleLaserScrewdriverMode packet = new SBToggleLaserScrewdriverMode();
+			DMAPackets.INSTANCE.sendToServer(packet);
+		}
+	}
 
 	@Mod.EventBusSubscriber(modid = DmAdditions.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 	public static class ClientModBusEvents {

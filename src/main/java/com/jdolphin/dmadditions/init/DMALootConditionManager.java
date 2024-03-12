@@ -1,12 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.loot.conditions.DalekIDLootCondition;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.loot.ILootSerializer;
 import net.minecraft.loot.LootConditionType;
 import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 public class DMALootConditionManager{

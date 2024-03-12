@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.client.title.vortex;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;

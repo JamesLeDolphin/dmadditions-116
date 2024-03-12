@@ -10,9 +10,6 @@ import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.ResourceLocation;
-
-import static com.swdteam.main.DalekMod.MODID;
 
 public class ChristmasTreeModel extends SegmentedModel<ChristmasTreeEntity> implements IModelPartReloader {
 

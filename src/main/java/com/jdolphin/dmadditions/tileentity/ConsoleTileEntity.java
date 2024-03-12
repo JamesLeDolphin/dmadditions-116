@@ -4,17 +4,14 @@ import com.jdolphin.dmadditions.entity.control.DoorControl;
 import com.jdolphin.dmadditions.entity.control.FlightControl;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
-import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeTileEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

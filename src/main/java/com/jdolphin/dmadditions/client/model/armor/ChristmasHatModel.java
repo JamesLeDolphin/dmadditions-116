@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.model.armor;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -13,7 +12,6 @@ import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
 
 public class ChristmasHatModel extends BipedModel<LivingEntity> implements IModelPartReloader {
 	public JSONModel model;

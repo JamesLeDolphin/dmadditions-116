@@ -7,7 +7,6 @@ import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.util.ResourceLocation;
 
 public class WoodenCybermanModel extends BipedModel<WoodenCybermanEntity> implements IModelPartReloader {
 	public JSONModel model;

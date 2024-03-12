@@ -2,17 +2,18 @@ package com.jdolphin.dmadditions.mixin.comp.immp;
 
 import com.jdolphin.dmadditions.util.Helper;
 import com.qouteall.immersive_portals.McHelper;
-import com.qouteall.immersive_portals.my_util.DQuaternion;
 import com.qouteall.immersive_portals.portal.Portal;
-import com.qouteall.immersive_portals.portal.PortalExtension;
 import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.client.tardis.data.ExteriorModels;
+import com.swdteam.common.entity.rift.RiftEntity;
+import com.swdteam.common.event.custom.tardis.TardisEvent;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMFlightMode;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
 import com.swdteam.common.tardis.TardisData;
+import com.swdteam.common.tardis.TardisFlightData;
 import com.swdteam.common.tardis.TardisState;
 import com.swdteam.common.teleport.TeleportRequest;
 import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
@@ -23,36 +24,32 @@ import com.swdteam.model.javajson.ModelWrapper;
 import com.swdteam.util.SWDMathUtils;
 import com.swdteam.util.TeleportUtil;
 import com.swdteam.util.math.Position;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.*;
+import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 @Mixin(TardisTileEntity.class)
 public abstract class BotiMixin extends ExtraRotationTileEntityBase implements ITickableTileEntity {
@@ -68,6 +65,33 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 	@Shadow(remap = false)
 	protected abstract void doorAnimation();
+
+	@Shadow(remap = false)
+	public long animStartTime;
+
+	@Shadow(remap = false)
+	public float dematTime;
+
+	@Shadow(remap = false)
+	public abstract void removeLight();
+
+	@Shadow(remap = false)
+	public int globalID;
+
+	@Shadow(remap = false)
+	public abstract void setState(TardisState state);
+
+	@Shadow(remap = false)
+	public TardisState state;
+
+	@Shadow(remap = false)
+	public abstract void pulseLight();
+
+	@Shadow(remap = false)
+	public long lastTickTime;
+
+	@Shadow(remap = false)
+	public abstract void snowCheck();
 
 	@Unique
 	public Portal dma$portal = null;
@@ -89,47 +113,89 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 	@Overwrite
 	public void tick() {
 		TardisTileEntity tile = (TardisTileEntity) ((Object) this);
-		CompoundNBT tag = this.getUpdateTag();
+		if (this.level.isClientSide) {
+			if (this.level.random.nextInt(100) == 50) {
+				this.snowCheck();
+			}
+		} else {
+			this.tardisData = DMTardis.getTardis(this.globalID);
+		}
 
 		this.doorAnimation();
-		long tickTime = System.currentTimeMillis() - tile.lastTickTime;
-		tile.lastTickTime = System.currentTimeMillis();
-		if (tile.state == TardisState.DEMAT) {
-			this.demat = true;
-			if (tile.animStartTime == 0L) {
-				tile.animStartTime = System.currentTimeMillis();
-			}
-			if (tickTime > 100L) {
-				tile.animStartTime += tickTime;
-			}
-			tile.dematTime = (float) ((double) (System.currentTimeMillis() - tile.animStartTime) / 10000.0);
-			if (tile.dematTime >= 1.0F) {
-				tile.dematTime = 1.0F;
-			}
-			if (tile.dematTime == 1.0F) {
-				this.getLevel().setBlockAndUpdate(tile.getBlockPos(), Blocks.AIR.defaultBlockState());
-				tile.animStartTime = 0L;
-			}
-		} else if (tile.state == TardisState.REMAT) {
-			this.demat = false;
-			if (tile.animStartTime == 0L) {
-				tile.animStartTime = System.currentTimeMillis();
-			}
-			if (tickTime > 100L) {
-				tile.animStartTime += tickTime;
-			}
-			if (System.currentTimeMillis() - tile.animStartTime > 9000L) {
-				tile.dematTime = 1.0F - (float) ((double) (System.currentTimeMillis() - (tile.animStartTime + 9000L)) / 10000.0);
-			}
-			if (tile.dematTime <= 0.0F) {
-				tile.dematTime = 0.0F;
-			}
-			if (tile.dematTime == 0.0F) {
-				tile.setState(TardisState.NEUTRAL);
-				tile.animStartTime = 0L;
+		long tickTime = System.currentTimeMillis() - this.lastTickTime;
+		this.lastTickTime = System.currentTimeMillis();
+		if (this.tardisData != null) {
+			this.tardisData.getRiftData().setType("");
+		}
+
+		Iterator var3;
+		if (this.level.getDayTime() % 20L == 0L) {
+			var3 = this.level.getEntitiesOfClass(RiftEntity.class, new AxisAlignedBB((double)(this.worldPosition.getX() - 16), (double)(this.worldPosition.getY() - 4), (double)(this.worldPosition.getZ() - 16), (double)(this.worldPosition.getX() + 16), (double)(this.worldPosition.getY() + 4), (double)(this.worldPosition.getZ() + 16)), Entity::isAlive).iterator();
+
+			while(var3.hasNext()) {
+				RiftEntity rift = (RiftEntity)var3.next();
+				if (rift.getRiftData() != null) {
+					rift.getRiftData().tardisUseRiftTick((((TardisTileEntity) (Object) this)), (PlayerEntity)null, this.tardisData, rift);
+				}
 			}
 		}
 
+		this.pulseLight();
+		if (this.state == TardisState.DEMAT) {
+			this.demat = true;
+			if (this.animStartTime == 0L) {
+				this.animStartTime = System.currentTimeMillis();
+			}
+
+			if (tickTime > 100L) {
+				this.animStartTime += tickTime;
+			}
+
+			this.dematTime = (float)((double)(System.currentTimeMillis() - this.animStartTime) / 10000.0);
+			if (this.dematTime >= 1.0F) {
+				this.dematTime = 1.0F;
+			}
+
+			if (this.dematTime == 1.0F) {
+				MinecraftForge.EVENT_BUS.post(new TardisEvent.DeMatFinish(this.tardisData, (PlayerEntity)null, this.level, false, (TardisFlightData)null, this.worldPosition));
+				this.removeLight();
+				this.level.setBlockAndUpdate(this.getBlockPos(), Blocks.AIR.defaultBlockState());
+				this.animStartTime = 0L;
+			}
+		} else if (this.state == TardisState.REMAT) {
+			this.demat = false;
+			if (this.animStartTime == 0L) {
+				this.animStartTime = System.currentTimeMillis();
+			}
+
+			if (tickTime > 100L) {
+				this.animStartTime += tickTime;
+			}
+
+			if (System.currentTimeMillis() - this.animStartTime > 9000L) {
+				this.dematTime = 1.0F - (float)((double)(System.currentTimeMillis() - (this.animStartTime + 9000L)) / 10000.0);
+			}
+
+			if (this.dematTime <= 0.0F) {
+				this.dematTime = 0.0F;
+			}
+
+			if (this.dematTime == 0.0F) {
+				MinecraftForge.EVENT_BUS.post(new TardisEvent.MatFinish(this.tardisData, (PlayerEntity)null, this.level, (TardisFlightData)null, this.worldPosition));
+				this.tardisData = DMTardis.getTardis(this.globalID);
+				if (this.tardisData != null) {
+					var3 = this.level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(this.worldPosition)).iterator();
+
+					while(var3.hasNext()) {
+						LivingEntity livingEntity = (LivingEntity)var3.next();
+						TeleportUtil.teleportPlayer(livingEntity, DMDimensions.TARDIS, new Vector3d(this.tardisData.getInteriorSpawnPosition().x(), this.tardisData.getInteriorSpawnPosition().y(), this.tardisData.getInteriorSpawnPosition().z()), 90.0F);
+					}
+				}
+
+				this.setState(TardisState.NEUTRAL);
+				this.animStartTime = 0L;
+			}
+		}
 		tile.pulses = 1.0F - tile.dematTime + MathHelper.cos(tile.dematTime * 3.141592F * 10.0F) * 0.25F * MathHelper.sin(tile.dematTime * 3.141592F);
 		if (this.getLevel().getBlockState(tile.getBlockPos().offset(0, -1, 0)).getMaterial() == Material.AIR) {
 			++tile.bobTime;

@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.ChristmasHatItem;
 import com.jdolphin.dmadditions.loot.modifiers.AddItemLootModifier;
 import com.jdolphin.dmadditions.util.Helper;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;

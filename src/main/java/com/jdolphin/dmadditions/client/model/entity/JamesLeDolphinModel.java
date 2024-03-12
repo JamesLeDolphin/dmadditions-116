@@ -12,12 +12,9 @@ import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.DolphinEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nonnull;
-
-import static com.jdolphin.dmadditions.DmAdditions.MODID;
 
 public class JamesLeDolphinModel<T extends DolphinEntity> extends DolphinModel<T> implements IModelPartReloader, IHasHead {
 	public JSONModel model;

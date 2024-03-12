@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.util.Helper;
-import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.init.DMTranslationKeys;

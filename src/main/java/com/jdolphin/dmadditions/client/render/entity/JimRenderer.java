@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.model.entity.JimModel;
 import com.jdolphin.dmadditions.entity.JimEntity;
 import com.jdolphin.dmadditions.util.Helper;

@@ -11,8 +11,6 @@ import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 
-import static com.jdolphin.dmadditions.DmAdditions.MODID;
-
 public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements IModelPartReloader{
 
 	private JSONModel model;

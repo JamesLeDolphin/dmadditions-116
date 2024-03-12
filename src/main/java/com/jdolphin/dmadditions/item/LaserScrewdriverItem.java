@@ -5,13 +5,11 @@ import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.item.sonics.SonicScrewdriverItem;
-import com.swdteam.util.ChatUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -23,8 +21,13 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 	protected boolean shootMode = false;
 	public float attackDamage = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ? 4.5f : 3; // torchwood_one says 3 or 4.5 on a good day :)
 // if tw1 said that then sure ig
+
 	public boolean shootMode() {
 		return shootMode;
+	}
+
+	public boolean toggleShootMode() {
+		return shootMode = !shootMode;
 	}
 
 
@@ -43,24 +46,9 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 		ItemStack stack = player.getItemInHand(hand);
 
 		if (!world.isClientSide) {
-			if (player.isCrouching()) {
-				shootMode = !shootMode();
 
-				if (shootMode) {
-					ChatUtil.sendError(player,
-						new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.laser"),
-						ChatUtil.MessageType.STATUS_BAR);
-				} else {
-					ChatUtil.sendCompletedMsg(player,
-						new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.sonic"),
-						ChatUtil.MessageType.STATUS_BAR);
-				}
-
-				world.playSound(null, player, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(),
-					SoundCategory.PLAYERS, 1, 1);
-
-				return ActionResult.consume(stack);
-			}
+			world.playSound(null, player, DMSoundEvents.TARDIS_CONTROLS_BUTTON_CLICK.get(),
+				SoundCategory.PLAYERS, 1, 1);
 
 			if (!shootMode()) {
 				return super.use(world, player, hand);

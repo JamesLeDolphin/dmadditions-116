@@ -19,8 +19,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-import static com.jdolphin.dmadditions.DmAdditions.MODID;
-
 
 public class DMATileRenderRegistry {
 	public static void init() {

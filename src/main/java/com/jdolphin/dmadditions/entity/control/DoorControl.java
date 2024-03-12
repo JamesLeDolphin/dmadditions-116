@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.entity.control;
 
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.util.Helper;
-import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.init.DMTranslationKeys;
 import com.swdteam.common.tardis.Location;

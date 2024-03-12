@@ -14,6 +14,7 @@ import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
+import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
@@ -29,7 +30,6 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.Dimension;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
@@ -99,7 +99,7 @@ public class DmAdditions {
 	public DmAdditions() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
-		modEventBus.addListener(this::setup);
+		modEventBus.addListener(this::commonSetup);
 		modEventBus.addListener(this::doClientStuff);
 		modEventBus.addListener(this::entityAttributeEvent);
 		modEventBus.addListener(this::runLater);
@@ -160,16 +160,18 @@ public class DmAdditions {
 	}
 
 
-	private void setup(FMLCommonSetupEvent event) {
+	private void commonSetup(FMLCommonSetupEvent event) {
 		DMASpawnerRegistry.init();
 		event.enqueueWork(() -> {
+			DMAPackets.init();
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
 		});
 
-		if (hasNTM()) LOGGER.info("Enabling New Tardis Mod compatibility features");
-		if (hasTC()) LOGGER.info("Enabling Tinker's Construct compatibility features");
-		if (hasIMMP()) LOGGER.info("Enabling Immersive Portals compatibility features");
+		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
+		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
+		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");
+		if (hasIMMP() && hasNTM()) Helper.warn("New Tardis Mod and Immersive Portals may not work well together! You've been warned!");
 	}
 
 

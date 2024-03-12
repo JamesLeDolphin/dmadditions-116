@@ -9,9 +9,6 @@ import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.HandSide;
-import net.minecraft.util.ResourceLocation;
-
-import static com.jdolphin.dmadditions.DmAdditions.MODID;
 
 public class WhispermanModel extends BipedModel<WhispermanEntity> implements IModelPartReloader{
 

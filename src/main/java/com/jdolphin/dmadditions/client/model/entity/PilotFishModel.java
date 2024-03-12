@@ -10,12 +10,9 @@ import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nonnull;
-
-import static com.swdteam.main.DalekMod.MODID;
 
 public class PilotFishModel extends BipedModel<PilotFishEntity> implements IModelPartReloader {
 	public JSONModel model;
