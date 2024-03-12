@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.swdteam.client.init.BusClientEvents;
 import com.swdteam.common.init.DMSoundEvents;

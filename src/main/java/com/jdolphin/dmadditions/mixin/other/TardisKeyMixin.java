@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.swdteam.common.item.TardisKeyItem;
 import net.minecraft.item.Item;

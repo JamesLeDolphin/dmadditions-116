@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.jdolphin.dmadditions.init.DMADalekRegistry;
 import com.swdteam.common.entity.dalek.IDalek;

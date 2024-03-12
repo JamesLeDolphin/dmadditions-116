@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

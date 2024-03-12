@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
 import com.jdolphin.dmadditions.config.DMAClientConfig;

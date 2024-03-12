@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.google.gson.JsonElement;
 import com.jdolphin.dmadditions.kerblam.IKerblamItemMixin;

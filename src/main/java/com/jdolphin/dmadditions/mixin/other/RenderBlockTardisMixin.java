@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.jdolphin.dmadditions.block.tardis.ITardisDMAActions;
 import com.jdolphin.dmadditions.client.model.CubeModel;

@@ -307,35 +307,61 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							);
 							float tileRot = tile.rotation;
 							float portalRot = 0;
-							BlockPos newPos = worldPosition;
+							BlockPos wPos = worldPosition;
 							if (tileRot == 0) {
-								//newPos.offset(offset);
+								dma$portal.setPos(wPos.getX() + 0.5, wPos.getY() + 1, wPos.getZ() + 0.01);
+								portalRot = 180f;
 							}
 							if (tileRot == 90) {
-								//newPos.offset(offset);
+								dma$portal.setPos(wPos.getX() + 0.99, wPos.getY() + 1, wPos.getZ() + 0.5);
+								portalRot = 180f;
 							}
 							if (tileRot == 180) {
-								newPos = new BlockPos(newPos.getX() + 0.5, newPos.getY() + 1,newPos.getZ() + 1.25);
+								dma$portal.setPos(wPos.getX() + 0.5, wPos.getY() + 1, wPos.getZ() + 0.99);
+								portalRot = 180f;
 							}
 							if (tileRot == 270) {
-								//newPos.offset(offset);
-							}
-							dma$portal.setPos(newPos.getX(), newPos.getY(), newPos.getZ());
+								dma$portal.setPos(wPos.getX() + 0.01, wPos.getY() + 1, wPos.getZ() + 0.5);
 								portalRot = 180f;
-							if (tileRot == 45 || tileRot == 135 || tileRot == 225 || tileRot == 315) portalRot = 225f;
+							}
+
+
+							//Diagonal
+							float f = 225;
+							if (tileRot == 45) {
+								dma$portal.setPos(wPos.getX() + 0.78, wPos.getY() + 1, wPos.getZ() + 0.22);
+								portalRot = f;
+							}
+							if (tileRot == 135) {
+								dma$portal.setPos(wPos.getX() + 0.78, wPos.getY() + 1, wPos.getZ() + 0.78);
+								portalRot = f;
+							}
+							if (tileRot == 225) {
+								dma$portal.setPos(wPos.getX() + 0.22, wPos.getY() + 1, wPos.getZ() + 0.78);
+								portalRot = f;
+							}
+							if (tileRot == 315) {
+								dma$portal.setPos(wPos.getX() + 0.22, wPos.getY() + 1, wPos.getZ() + 0.22);
+								portalRot = f;
+							}
 
 							Quaternion quater = new Quaternion(new Vector3f(0.0F, 1.0F, 0.0F),
 								portalRot, true);
 							if (portalRot != 0f) PortalManipulation.rotatePortalBody(dma$portal, quater);
 
-
-
-
-							if (tDir == Direction.SOUTH) {
+							if (tileRot == 0) { //S
 								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
-							} else if (tDir == Direction.EAST) {
+							}
+							if (tileRot == 45) { //NE
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.25f, 0, -0.5f));
+							}
+							if (tileRot == 135) { //NE
+								dma$portal.setRotationTransformation(new Quaternion(0, 0.25f, 0, -0.5f));
+							}
+							if (tileRot == 270) { //E
 								dma$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
-							} else if (tDir == Direction.WEST) {
+							}
+							if (tileRot == 90) { //W
 								dma$portal.setRotationTransformation(new Quaternion(0, -0.7071f, 0, 0.7071f));
 							}
 

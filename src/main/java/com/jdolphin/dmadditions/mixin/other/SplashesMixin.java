@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.ibm.icu.util.Calendar;
 import com.jdolphin.dmadditions.advent.AdventUnlock;

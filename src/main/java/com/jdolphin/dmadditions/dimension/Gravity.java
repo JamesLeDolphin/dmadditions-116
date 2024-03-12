@@ -20,10 +20,10 @@ public class Gravity {
 		if (gravity == null) return;
 
 		if (!DIMENSION_GRAVITY.containsKey(newDim) && DIMENSION_GRAVITY.containsKey(oldDim)) {
-			gravity.setBaseValue(ForgeMod.ENTITY_GRAVITY.get().getDefaultValue());
+			gravity.setBaseValue(8.0);
 			return;
 		}
-
-		gravity.setBaseValue(DIMENSION_GRAVITY.get(newDim));
+		double value = DIMENSION_GRAVITY.get(newDim) == null ? 0.08 : DIMENSION_GRAVITY.get(newDim);
+		gravity.setBaseValue(value);
 	}
 }

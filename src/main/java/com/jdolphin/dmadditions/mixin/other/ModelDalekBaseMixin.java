@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.google.common.base.Function;
 import com.jdolphin.dmadditions.DmAdditions;

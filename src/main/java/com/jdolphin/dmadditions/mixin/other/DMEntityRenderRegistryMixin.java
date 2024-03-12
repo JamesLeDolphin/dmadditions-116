@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin;
+package com.jdolphin.dmadditions.mixin.other;
 
 import com.jdolphin.dmadditions.client.init.DMAEntityRenderRegistry;
 import com.swdteam.client.init.DMEntityRenderRegistry;
