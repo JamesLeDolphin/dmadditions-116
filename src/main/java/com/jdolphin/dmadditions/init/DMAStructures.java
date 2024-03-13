@@ -17,8 +17,7 @@ import java.util.function.Supplier;
 
 public class DMAStructures {
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DmAdditions.MODID);
-	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> { return new ManorStructure(NoFeatureConfig.CODEC);
-	});
+	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> new ManorStructure(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_UNDERGROUND = registerStructure("cyber_underground",
 		() -> { return new CyberUndergroundStructure(NoFeatureConfig.CODEC);
 	});

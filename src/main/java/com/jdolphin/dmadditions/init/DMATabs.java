@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -25,12 +26,13 @@ public class DMATabs {
 	}
 
 	public static final ItemGroup DMA_ROUNDEL_CONTAINERS = new ItemGroup("DMA_Roundel_Containers") {
-		public ItemStack makeIcon() {
-			return DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.isPresent() ? new ItemStack(DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.get()) : new ItemStack(DMItems.ROUNDEL_MOLD.get());
+		public @NotNull ItemStack makeIcon() {
+			return DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.isPresent() ? new ItemStack(DMABlocks.DALEKANIUM_ROUNDEL_CONTAINER.get()) :
+				new ItemStack(DMItems.ROUNDEL_MOLD.get());
 		}
 
-		public void fillItemList(NonNullList<ItemStack> p_78018_1_) {
-			super.fillItemList(p_78018_1_);
+		public void fillItemList(NonNullList<ItemStack> stacks) {
+			super.fillItemList(stacks);
 		}
 	};
 

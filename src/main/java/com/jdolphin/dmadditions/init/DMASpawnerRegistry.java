@@ -17,7 +17,10 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.Heightmap.Type;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class DMASpawnerRegistry {
@@ -88,26 +91,22 @@ public class DMASpawnerRegistry {
 
 	@SuppressWarnings("unused")
 	private static void addSpawnToAllBiomes(EntityType<?> type, int weight, int min, int max, EntityClassification entityType) {
-		Iterator<Entry<RegistryKey<Biome>, Biome>> var5 = ForgeRegistries.BIOMES.getEntries().iterator();
-
-		while (var5.hasNext()) {
-			Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry<RegistryKey<Biome>, Biome>) var5.next();
-			if(rl.getKey() == Biomes.THE_VOID) continue;
-			addSpawn(rl.getKey(), type, weight, min, max, entityType);
-		}
+        for (Entry<RegistryKey<Biome>, Biome> rl : ForgeRegistries.BIOMES.getEntries()) {
+            if (rl.getKey() == Biomes.THE_VOID) continue;
+            addSpawn(rl.getKey(), type, weight, min, max, entityType);
+        }
 
 	}
 
 	@SuppressWarnings("unused")
 	@SafeVarargs
 	private static void removeSpawn(EntityType<?> type, RegistryKey<Biome>... biome) {
-		for (int i = 0; i < biome.length; ++i) {
-			RegistryKey<Biome> bi = biome[i];
-			if (spawns.containsKey(bi.location())) {
-				DMASpawnerRegistry.SpawnInfo info = spawns.get(bi.location());
-				info.removeSpawn(type);
-			}
-		}
+        for (RegistryKey<Biome> bi : biome) {
+            if (spawns.containsKey(bi.location())) {
+                SpawnInfo info = spawns.get(bi.location());
+                info.removeSpawn(type);
+            }
+        }
 
 	}
 

@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 public class DMALootConditionManager{
 	public static final LootConditionType DALEK_TYPE = register("dalek_type", new DalekIDLootCondition.Serializer());
 
-	private static LootConditionType register(String p_237475_0_, ILootSerializer<? extends ILootCondition> p_237475_1_) {
-		return Registry.register(Registry.LOOT_CONDITION_TYPE, Helper.createAdditionsRL(p_237475_0_), new LootConditionType(p_237475_1_));
+	private static LootConditionType register(String name, ILootSerializer<? extends ILootCondition> p_237475_1_) {
+		return Registry.register(Registry.LOOT_CONDITION_TYPE, Helper.createAdditionsRL(name), new LootConditionType(p_237475_1_));
 	}
 }

@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import static com.swdteam.common.init.DMSpawnerRegistry.spawns;
@@ -30,12 +29,10 @@ public class SpawnRegistryMixin {
 		at = @At("HEAD"), remap = false, cancellable = true)
 	private static void addSpawnToAllBiomes(EntityType<?> type, int weight, int min, int max, EntityClassification entityType, CallbackInfo ci) {
 		if (!DMACommonConfig.disable_spawns.get()) {
-			Iterator var5 = ForgeRegistries.BIOMES.getEntries().iterator();
 
-			while (var5.hasNext()) {
-				Map.Entry<RegistryKey<Biome>, Biome> rl = (Map.Entry) var5.next();
-				addSpawn(rl.getKey(), type, weight, min, max, entityType, ci);
-			}
+            for (Map.Entry<RegistryKey<Biome>, Biome> registryKeyBiomeEntry : ForgeRegistries.BIOMES.getEntries()) {
+                addSpawn(registryKeyBiomeEntry.getKey(), type, weight, min, max, entityType, ci);
+            }
 		}
 	}
 

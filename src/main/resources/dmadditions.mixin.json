@@ -30,9 +30,7 @@
 	],
 	"client": [
 		"other.BusClientEventsMixin",
-		"other.ClientProxyMixin",
 		"other.DalekEntityMixin",
-		"other.DMEntityRenderRegistryMixin",
 		"other.DMTileRenderRegistryMixin",
 		"other.ItemRenderingInitMixin",
 		"other.MainMenuScreenMixin",

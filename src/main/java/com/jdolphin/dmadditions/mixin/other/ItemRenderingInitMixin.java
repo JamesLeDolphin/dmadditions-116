@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemRenderingInit.class)
 public class ItemRenderingInitMixin{
 	@Inject(method = "addRegistries", at=@At("TAIL"), remap=false)
-	private static void addRegistries(CallbackInfo ci){
+	private static void addRegistries(CallbackInfo ci) {
 		DMAItemRenderingInit.addRegisties();
 	}
 }

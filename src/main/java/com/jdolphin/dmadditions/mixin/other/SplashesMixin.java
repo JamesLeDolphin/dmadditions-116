@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.ibm.icu.util.Calendar;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.swdteam.client.data.Splashes;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Random;
 
 @Mixin(Splashes.class)
@@ -29,6 +29,7 @@ public class SplashesMixin {
 				add("I'll ask Json");
 
 				add("The secret is our public open-source technology!");
+				add("James blames Torchwood");
 
 				add("Sam secretly did all the work");
 				add(":3");
@@ -41,11 +42,12 @@ public class SplashesMixin {
 
 				add("Soon™");
 				add("We do a little hacking");
+
 				add("JAMES DID NOTHING WRONG!!!");
 				add("James was here");
+
 				add("Torchwood is responsible for everything");
 				add("Don't trust Torchwood");
-				add("James blames Torchwood");
 			}
 		};
 
@@ -65,7 +67,7 @@ public class SplashesMixin {
 			}
 		}
 
-		Splashes.SPLASHES = splashes.stream().toArray(String[]::new);
+		Splashes.SPLASHES = splashes.toArray(new String[0]);
 
 	}
 }

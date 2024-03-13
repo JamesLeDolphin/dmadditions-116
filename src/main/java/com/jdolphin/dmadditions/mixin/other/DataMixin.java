@@ -35,9 +35,8 @@ public abstract class DataMixin {
 				cir.cancel();
 			}
 
-		} catch (ClassCastException e) {
-			return;
-		}
+		} catch (ClassCastException ignored) {
+        }
 	}
 
 }

@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
+@SuppressWarnings("unused")
 public class DMABlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
 

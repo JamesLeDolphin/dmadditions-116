@@ -6,6 +6,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class DMASoundEvents {
 	public static final RegistryObject<SoundEvent> PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
 	public static final RegistryObject<SoundEvent> COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copper_hand_brake");

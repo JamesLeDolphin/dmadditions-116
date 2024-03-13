@@ -33,7 +33,6 @@ public class DMADalekRegistry {
 		CANDYCANE.addChild("blue_candycane_dalek");
 		CANDYCANE.addChild("red_candycane_dalek");
 		CANDYCANE.addChild("orange_candycane_dalek");
-		STORM = addDalek(DMADalekType.STORM, new StormDalekBase("Dalek Storm"), "dalek_storm");
 		IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
 		SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
 		SWD = addDalek(DMADalekType.SWD, new CustomDalekBase("SWD Team Dalek"), "1wtc_dalek");

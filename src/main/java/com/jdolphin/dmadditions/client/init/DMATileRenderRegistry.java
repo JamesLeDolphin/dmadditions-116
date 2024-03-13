@@ -21,14 +21,11 @@ import java.util.function.Function;
 
 
 public class DMATileRenderRegistry {
+
 	public static void init() {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
 		registerModel(DMABlockEntities.TILE_REDDASH_STATUE.get(), Helper.createAdditionsRL("models/tileentity/reddash_statue.json"));
-
-//		if(AdventUnlock.unlockAt(23)){
-//			registerModel(DMABlockEntities.TILE_SCANNER.get(), RenderTardisMonitor::new);
-//		}
 	}
 
 	public static final ArrayList<TileEntityType<?>> MIXIN_RENDERERS = new ArrayList<TileEntityType<?>>() {{
@@ -43,9 +40,7 @@ public class DMATileRenderRegistry {
 	public static <T extends TileEntity> void registerModel(TileEntityType<T> tileEntityType, ResourceLocation location) {
 		JSONModel model = ModelLoader.loadModel(location);
 		if (model != null) {
-			registerModel(tileEntityType, (s) -> {
-				return new RenderTileEntityBase(s, giveWrapper(location));
-			});
+			registerModel(tileEntityType, (s) -> new RenderTileEntityBase(s, giveWrapper(location)));
 		}
 	}
 

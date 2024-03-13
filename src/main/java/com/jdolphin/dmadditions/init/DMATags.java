@@ -9,6 +9,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 
+@SuppressWarnings("unused")
 public class DMATags {
 	public static class Blocks {
 		public static final Tags.IOptionalNamedTag<Block> ROUNDEL_CONTAINERS = createTag("roundel_containers");

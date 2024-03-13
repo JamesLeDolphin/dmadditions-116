@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.ClientDMBusEvents;
+import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
@@ -221,6 +222,7 @@ public class DmAdditions {
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		DMABlocks.registerRenderTypes();
 		MinecraftForge.EVENT_BUS.register(ClientDMBusEvents.class);
+		DMATileRenderRegistry.init();
 		if(hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
