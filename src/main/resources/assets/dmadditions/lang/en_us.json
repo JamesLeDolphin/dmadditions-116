@@ -11,6 +11,7 @@
 	"item.dmadditions.tardis_gold_key": "Gold TARDIS Key",
 	"block.dmadditions.cloak_panel": "Cloaking Panel",
 	"block.dmadditions.forcefield_panel": "Forcefield Panel",
+	"block.dmadditions.player_locator": "Player Locator",
 
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 
@@ -290,5 +291,8 @@
 
 	"entity.dmadditions.jim": "Jim",
 	"item.dmadditions.jim_spawner": "Jim Spawner",
-	"entity.dmadditions.console.fail.dim": "This can only be used in the TARDIS"
+	"entity.dmadditions.console.fail.dim": "This can only be used in the TARDIS",
+	"dmadditions.gui.player_locator": "Player Locator",
+	"dmadditions.button.cancel": "Cancel",
+	"dmadditions.button.player_locator.select": "Locate Player"
 }

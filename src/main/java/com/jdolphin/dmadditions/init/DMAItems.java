@@ -44,6 +44,9 @@ public class DMAItems {
 	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
+	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
+		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

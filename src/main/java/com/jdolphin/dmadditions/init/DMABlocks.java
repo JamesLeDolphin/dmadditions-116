@@ -74,6 +74,10 @@ public class DMABlocks {
 			new CloakPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
 		"cloak_panel", ItemGroup.TAB_BUILDING_BLOCKS);
 
+	public static RegistryObject<Block> PLAYER_LOCATOR = registerBlock(() ->
+			new PlayerLocatorBlock(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
+		"player_locator", ItemGroup.TAB_BUILDING_BLOCKS);
+
 	public static RegistryObject<Block> FORCEFIELD_PANEL = registerBlock(() ->
 			new ForceFieldPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
 		"forcefield_panel", ItemGroup.TAB_BUILDING_BLOCKS);
