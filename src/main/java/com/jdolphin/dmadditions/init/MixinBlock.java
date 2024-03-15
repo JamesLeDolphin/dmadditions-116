@@ -103,16 +103,6 @@ public enum MixinBlock {
 	SPRUCE_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
 	WARPED_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
 	ACACIA_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-
-	WOODEN_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	ACACIA_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	BIRCH_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	CRIMSON_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	DARK_OAK_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	JUNGLE_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	SPRUCE_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	THALMA_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
-	WARPED_SCANNER(() -> new BetterScannerBlock(WoodenScannerTileEntity::new, AbstractBlock.Properties.of(Material.METAL).strength(2.0F, 2.0F).dynamicShape().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.WOOD))),
 	;
 
 	public final Supplier<Block> supplier;
