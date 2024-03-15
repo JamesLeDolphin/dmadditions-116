@@ -20,8 +20,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.ToolType;
@@ -52,22 +55,27 @@ public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock imp
 	}
 
 	@Override
+	public BlockState updateShape(BlockState state1, Direction dir, BlockState state2, IWorld world, BlockPos pos1, BlockPos pos2) {
+		return IBetterPanel.super.updateShape(state1, dir, state2, world, pos1, pos2);
+	}
+
+	@Override
+	public boolean canSurvive(BlockState state, IWorldReader reader, BlockPos pos) {
+		return IBetterPanel.super.canSurvive(state, reader, pos);
+	}
+
+	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return IBetterPanel.super.getStateForPlacement(context, defaultBlockState());
 	}
 
 	@Override
-	public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
-		return false;
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return IBetterPanel.super.getShape(state, worldIn, pos, context);
 	}
 
 	@Override
-	public ToolType getHarvestTool(BlockState state) {
-		return ToolType.PICKAXE;
-	}
-
-	@Override
-	public int getHarvestLevel(BlockState state) {
-		return 0;
+	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return IBetterPanel.super.getCollisionShape(state, worldIn, pos, context);
 	}
 }
