@@ -1,0 +1,95 @@
+{
+	"variants": {
+		"face=floor,facing=north,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 0, "x": 0},
+		"face=floor,facing=south,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 180, "x": 0},
+		"face=floor,facing=west,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 270, "x": 0},
+		"face=floor,facing=east,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 90, "x": 0},
+
+		"face=floor,facing=north,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 0, "x": 0},
+		"face=floor,facing=south,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 180, "x": 0},
+		"face=floor,facing=west,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 270, "x": 0},
+		"face=floor,facing=east,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 90, "x": 0},
+
+		"face=floor,facing=north,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 0, "x": 0},
+		"face=floor,facing=south,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 180, "x": 0},
+		"face=floor,facing=west,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 270, "x": 0},
+		"face=floor,facing=east,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 90, "x": 0},
+
+		"face=floor,facing=north,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 0, "x": 0},
+		"face=floor,facing=south,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 180, "x": 0},
+		"face=floor,facing=west,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 270, "x": 0},
+		"face=floor,facing=east,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 90, "x": 0},
+
+		"face=floor,facing=north,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 0, "x": 0},
+		"face=floor,facing=south,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 180, "x": 0},
+		"face=floor,facing=west,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 270, "x": 0},
+		"face=floor,facing=east,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 90, "x": 0},
+
+		"face=floor,facing=north,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 0, "x": 0},
+		"face=floor,facing=south,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 180, "x": 0},
+		"face=floor,facing=west,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 270, "x": 0},
+		"face=floor,facing=east,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 90, "x": 0},
+
+
+		"face=ceiling,facing=north,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 0, "x": 180},
+		"face=ceiling,facing=south,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 180, "x": 180},
+		"face=ceiling,facing=west,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 270, "x": 180},
+		"face=ceiling,facing=east,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 90, "x": 180},
+
+		"face=ceiling,facing=north,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 0, "x": 180},
+		"face=ceiling,facing=south,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 180, "x": 180},
+		"face=ceiling,facing=west,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 270, "x": 180},
+		"face=ceiling,facing=east,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 90, "x": 180},
+
+		"face=ceiling,facing=north,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 0, "x": 180},
+		"face=ceiling,facing=south,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 180, "x": 180},
+		"face=ceiling,facing=west,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 270, "x": 180},
+		"face=ceiling,facing=east,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 90, "x": 180},
+
+		"face=ceiling,facing=north,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 0, "x": 180},
+		"face=ceiling,facing=south,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 180, "x": 180},
+		"face=ceiling,facing=west,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 270, "x": 180},
+		"face=ceiling,facing=east,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 90, "x": 180},
+
+		"face=ceiling,facing=north,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 0, "x": 180},
+		"face=ceiling,facing=south,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 180, "x": 180},
+		"face=ceiling,facing=west,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 270, "x": 180},
+		"face=ceiling,facing=east,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 90, "x": 180},
+
+		"face=ceiling,facing=north,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 0, "x": 180},
+		"face=ceiling,facing=south,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 180, "x": 180},
+		"face=ceiling,facing=west,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 270, "x": 180},
+		"face=ceiling,facing=east,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 90, "x": 180},
+
+
+		"face=wall,facing=north,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 0, "x": 90},
+		"face=wall,facing=south,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 180, "x": 90},
+		"face=wall,facing=west,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 270, "x": 90},
+		"face=wall,facing=east,btn_pressed=false,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_unpressed", "y": 90, "x": 90},
+
+		"face=wall,facing=north,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 0, "x": 90},
+		"face=wall,facing=south,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 180, "x": 90},
+		"face=wall,facing=west,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 270, "x": 90},
+		"face=wall,facing=east,btn_pressed=true,cartridge=0": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_pressed", "y": 90, "x": 90},
+
+		"face=wall,facing=north,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 0, "x": 90},
+		"face=wall,facing=south,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 180, "x": 90},
+		"face=wall,facing=west,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 270, "x": 90},
+		"face=wall,facing=east,btn_pressed=false,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed", "y": 90, "x": 90},
+
+		"face=wall,facing=north,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 0, "x": 90},
+		"face=wall,facing=south,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 180, "x": 90},
+		"face=wall,facing=west,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 270, "x": 90},
+		"face=wall,facing=east,btn_pressed=true,cartridge=1": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed", "y": 90, "x": 90},
+
+		"face=wall,facing=north,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 0, "x": 90},
+		"face=wall,facing=south,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 180, "x": 90},
+		"face=wall,facing=west,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 270, "x": 90},
+		"face=wall,facing=east,btn_pressed=false,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_unpressed_gold", "y": 90, "x": 90},
+
+		"face=wall,facing=north,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 0, "x": 90},
+		"face=wall,facing=south,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 180, "x": 90},
+		"face=wall,facing=west,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 270, "x": 90},
+		"face=wall,facing=east,btn_pressed=true,cartridge=2": { "model": "dalekmod:block/waypoint_panel/oak_planks/waypoint_panel_filled_pressed_gold", "y": 90, "x": 90}
+	}
+}
