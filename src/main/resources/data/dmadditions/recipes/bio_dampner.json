@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " K ",
+    "KCK",
+    " K "
+  ],
+  "key": {
+    "K": {
+      "tag": "forge:ingots/gold"
+    },
+    "C": {
+      "tag": "forge:circuits/basic"
+    }
+  },
+  "result": {
+    "item": "dmadditions:bio_dampner",
+    "count": 1
+  }
+}
