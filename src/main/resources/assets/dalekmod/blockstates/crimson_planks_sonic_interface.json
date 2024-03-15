@@ -1,55 +1,55 @@
 {
 	"variants": {
 		"face=ceiling,facing=east": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 180,
 			"y": 270
 		},
 		"face=ceiling,facing=north": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 180,
 			"y": 180
 		},
 		"face=ceiling,facing=south": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 180
 		},
 		"face=ceiling,facing=west": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 180,
 			"y": 90
 		},
 		"face=floor,facing=east": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"y": 90
 		},
 		"face=floor,facing=north": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface"
+			"model": "dalekmod:block/sonic_interface/crimson_planks"
 		},
 		"face=floor,facing=south": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"y": 180
 		},
 		"face=floor,facing=west": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"y": 270
 		},
 		"face=wall,facing=east": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 90,
 			"y": 90
 		},
 		"face=wall,facing=north": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 90
 		},
 		"face=wall,facing=south": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 90,
 			"y": 180
 		},
 		"face=wall,facing=west": {
-			"model": "dalekmod:block/crimson_planks_sonic_interface",
+			"model": "dalekmod:block/sonic_interface/crimson_planks",
 			"x": 90,
 			"y": 270
 		}

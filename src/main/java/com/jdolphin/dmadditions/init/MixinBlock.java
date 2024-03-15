@@ -77,15 +77,15 @@ public enum MixinBlock {
 	WARPED_PLANKS_SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
 	FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	THALMA_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	OAK_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	BIRCH_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	CRIMSON_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	DARK_OAK_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	JUNGLE_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	SPRUCE_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	WARPED_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
-	ACACIA_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	THALMA_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	OAK_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	BIRCH_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	CRIMSON_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	DARK_OAK_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	JUNGLE_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	SPRUCE_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	WARPED_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
+	ACACIA_PLANKS_FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
 	;
 
 	public final Supplier<Block> supplier;
