@@ -3,9 +3,6 @@ package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.block.tardis.*;
 import com.swdteam.common.block.tardis.FlightPanelBlock;
-import com.swdteam.common.block.tardis.ScannerBlock;
-import com.swdteam.common.init.DMTabs;
-import com.swdteam.common.tileentity.WoodenScannerTileEntity;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
