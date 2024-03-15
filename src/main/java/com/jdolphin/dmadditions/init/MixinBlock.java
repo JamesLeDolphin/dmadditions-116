@@ -14,33 +14,14 @@ import net.minecraft.block.material.Material;
 import java.util.function.Supplier;
 
 public enum MixinBlock {
-	FAST_RETURN_LEVER(() -> new BetterFastReturnLeverBlock(
-		AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE))),
 
-	FLIGHT_LEVER(() -> new BetterFlightLeverBlock(
-		AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE))),
 
-	CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(
-		AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	FAST_RETURN_LEVER(() -> new BetterFastReturnLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE))),
+	FLIGHT_LEVER(() -> new BetterFlightLeverBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE))),
 
-	DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new,
-		AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	TARDIS_DOOR_HITBOX(() -> new BetterTardisDoorHitbox(TardisDoorHitboxTileEntity::new, AbstractBlock.Properties.of(Material.STONE).strength(2.8F).sound(SoundType.WOOD))),
 
-	COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new,
-		AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-
-	SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(
-		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
-
-	WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(
-		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
-
-	FLIGHT_PANEL(() -> new BetterFlightPanel(
-		AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
-
-	TARDIS_DOOR_HITBOX(() -> new BetterTardisDoorHitbox(TardisDoorHitboxTileEntity::new,
-		AbstractBlock.Properties.of(Material.STONE).strength(2.8F).sound(SoundType.WOOD))),
-
+	COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	OAK_PLANKS_COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	BIRCH_PLANKS_COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	ACACIA_PLANKS_COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
@@ -51,16 +32,18 @@ public enum MixinBlock {
 	JUNGLE_PLANKS_COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	THALMA_PLANKS_COORD_PANEL(() -> new BetterCoordPanelBlock(CoordPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
-	OAK_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	ACACIA_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	BIRCH_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	CRIMSON_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	DARK_OAK_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	JUNGLE_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	SPRUCE_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	THALMA_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
-	WARPED_PLANKS_DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	DIMENSION_SELECTOR_PANEL(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	ACACIA_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	BIRCH_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	CRIMSON_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	DARK_OAK_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	JUNGLE_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	OAK_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	SPRUCE_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	THALMA_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
+	WARPED_PLANKS_DIMENSION_SELECTOR(() -> new BetterDimensionSelector(DimensionSelectorTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
+	WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	OAK_PLANKS_WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	ACACIA_PLANKS_WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	BIRCH_PLANKS_WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
@@ -71,6 +54,7 @@ public enum MixinBlock {
 	THALMA_PLANKS_WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	WARPED_PLANKS_WAYPOINT_PANEL(() -> new BetterWaypointPanelBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
+	CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	OAK_PLANKS_CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	BIRCH_PLANKS_CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	ACACIA_PLANKS_CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
@@ -81,6 +65,7 @@ public enum MixinBlock {
 	JUNGLE_PLANKS_CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	THALMA_PLANKS_CHAMELEON_PANEL(() -> new BetterChameleonPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
+	SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	ACACIA_PLANKS_SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	BIRCH_PLANKS_SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	CRIMSON_PLANKS_SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
@@ -91,6 +76,7 @@ public enum MixinBlock {
 	THALMA_PLANKS_SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	WARPED_PLANKS_SONIC_INTERFACE(() -> new BetterSonicInterfaceBlock(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 
+	FLIGHT_PANEL(() -> new BetterFlightPanel(AbstractBlock.Properties.of(Material.WOOD).instabreak().noOcclusion().sound(SoundType.WOOD))),
 	THALMA_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
 	OAK_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
 	BIRCH_PLANKS_FLIGHT_PANEL(() -> new FlightPanelBlock(AbstractBlock.Properties.of(Material.METAL).strength(3.5F).sound(SoundType.METAL))),
