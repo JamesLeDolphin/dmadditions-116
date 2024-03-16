@@ -29,8 +29,8 @@ import java.util.List;
 public class ChristmasCrackerBlock extends HorizontalBlock {
 	public static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 3.0D, 10.0D);
 	public static final VoxelShape SHAPE_EAST = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 3.0D, 16.0D);
-	public ChristmasCrackerBlock(Properties p_i48377_1_) {
-		super(p_i48377_1_);
+	public ChristmasCrackerBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-		return this.defaultBlockState().setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite());
+	public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
+		return this.defaultBlockState().setValue(FACING, blockItemUseContext.getHorizontalDirection().getOpposite());
 	}
 
 	@Override

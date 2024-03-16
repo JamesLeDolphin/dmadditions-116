@@ -38,8 +38,8 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	@OnlyIn(Dist.CLIENT)
 	ShoppingCartTickableSound sound;
 
-	public ShoppingCartEntity(EntityType<? extends MobEntity> p_i48576_1_, World p_i48576_2_) {
-		super(p_i48576_1_, p_i48576_2_);
+	public ShoppingCartEntity(EntityType<? extends MobEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	protected void defineSynchedData() {
@@ -108,7 +108,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	}
 
 	@Override
-	public void travel(Vector3d p_213352_1_) {
+	public void travel(Vector3d vector3d) {
 		if (this.isAlive()) {
 
 			if (this.isVehicle() && this.canBeSteered()) {
@@ -163,7 +163,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 				}
 			}
 
-			super.travel(p_213352_1_);
+			super.travel(vector3d);
 		}
 	}
 
@@ -181,12 +181,12 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	}
 
 	@Override
-	public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+	public boolean causeFallDamage(float v, float v1) {
 		return false;
 	}
 
 	@Override
-	public void onPlayerJump(int p_110206_1_) {
+	public void onPlayerJump(int i) {
 		this.setDeltaMovement(this.getDeltaMovement().add(0, 1, 0));
 	}
 
@@ -196,7 +196,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	}
 
 	@Override
-	public void handleStartJump(int p_184775_1_) {
+	public void handleStartJump(int i) {
 
 	}
 
@@ -205,7 +205,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	}
 
 	@Override
-	public boolean hurt(DamageSource source, float p_70097_2_) {
+	public boolean hurt(DamageSource source, float v) {
 		Entity entity = source.getEntity();
 		if(entity instanceof PlayerEntity){
 			if(isEngineStarted()){
@@ -221,11 +221,11 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 			}
 		}
 
-		return super.hurt(source, p_70097_2_);
+		return super.hurt(source, v);
 	}
 
 	@Override
-	public void die(DamageSource p_70645_1_) {
+	public void die(DamageSource damageSource) {
 		this.remove();
 		if (this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
 			ItemStack itemstack = new ItemStack(DMAItems.SHOPPING_CART.get());

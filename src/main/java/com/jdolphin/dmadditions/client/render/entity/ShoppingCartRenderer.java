@@ -8,12 +8,12 @@ import net.minecraft.util.ResourceLocation;
 
 public class ShoppingCartRenderer extends MobRenderer<ShoppingCartEntity, ShoppingCartModel> {
 
-	public ShoppingCartRenderer(EntityRendererManager p_i50961_1_, ShoppingCartModel p_i50961_2_, float p_i50961_3_) {
-		super(p_i50961_1_, p_i50961_2_, p_i50961_3_);
+	public ShoppingCartRenderer(EntityRendererManager entityRendererManager, ShoppingCartModel shoppingCartModel, float v) {
+		super(entityRendererManager, shoppingCartModel, v);
 	}
 
-	public ShoppingCartRenderer(EntityRendererManager p_i50961_1_) {
-		super(p_i50961_1_, new ShoppingCartModel(), 1f);
+	public ShoppingCartRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new ShoppingCartModel(), 1f);
 	}
 
 	@Override

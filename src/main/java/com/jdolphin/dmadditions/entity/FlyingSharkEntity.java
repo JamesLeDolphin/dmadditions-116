@@ -122,7 +122,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	}
 
 	@Override
-	protected int calculateFallDamage(float p_225508_1_, float p_225508_2_) {
+	protected int calculateFallDamage(float v, float v1) {
 		return 0;
 	}
 
@@ -147,7 +147,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 
 	@Nullable
 	@Override
-	public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+	public AgeableEntity getBreedOffspring(ServerWorld serverWorld, AgeableEntity ageableEntity) {
 		return null;
 	}
 
@@ -155,8 +155,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 		return this.entityData.get(DATA_REMAINING_ANGER_TIME);
 	}
 
-	public void setRemainingPersistentAngerTime(int p_230260_1_) {
-		this.entityData.set(DATA_REMAINING_ANGER_TIME, p_230260_1_);
+	public void setRemainingPersistentAngerTime(int i) {
+		this.entityData.set(DATA_REMAINING_ANGER_TIME, i);
 	}
 
 	public void startPersistentAngerTimer() {
@@ -168,12 +168,12 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 		return this.persistentAngerTarget;
 	}
 
-	public void setPersistentAngerTarget(@Nullable UUID p_230259_1_) {
-		this.persistentAngerTarget = p_230259_1_;
+	public void setPersistentAngerTarget(@Nullable UUID uuid) {
+		this.persistentAngerTarget = uuid;
 	}
 
 	@Override
-	public void travel(Vector3d p_213352_1_) {
+	public void travel(Vector3d vector3d) {
 		if (this.isAlive()) {
 			if (this.isVehicle() && this.canBeSteered() && this.isSaddled()) {
 				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
@@ -211,7 +211,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 
 			}
 
-			super.travel(p_213352_1_);
+			super.travel(vector3d);
 		}
 	}
 
@@ -233,8 +233,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	}
 
 	@Override
-	protected void dropAllDeathLoot(DamageSource p_213345_1_) {
-		super.dropAllDeathLoot(p_213345_1_);
+	protected void dropAllDeathLoot(DamageSource damageSource) {
+		super.dropAllDeathLoot(damageSource);
 		if (this.getEntity().level.isClientSide) return;
 
 		this.removeSaddle();
@@ -253,7 +253,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	}
 
 	@Override
-	public void onPlayerJump(int p_110206_1_) {
+	public void onPlayerJump(int i) {
 	}
 
 	@Override
@@ -262,7 +262,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	}
 
 	@Override
-	public void handleStartJump(int p_184775_1_) {
+	public void handleStartJump(int i) {
 	}
 
 	@Override
@@ -272,8 +272,8 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	static class LookAroundGoal extends Goal {
 		private final FlyingSharkEntity shark;
 
-		public LookAroundGoal(FlyingSharkEntity p_i45839_1_) {
-			this.shark = p_i45839_1_;
+		public LookAroundGoal(FlyingSharkEntity flyingSharkEntity) {
+			this.shark = flyingSharkEntity;
 			this.setFlags(EnumSet.of(Goal.Flag.LOOK));
 		}
 
@@ -400,24 +400,24 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 		}
 	}
 
-	public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-		if (this.isInvulnerableTo(p_70097_1_)) {
+	public boolean hurt(DamageSource damageSource, float v) {
+		if (this.isInvulnerableTo(damageSource)) {
 			return false;
 		} else {
-			Entity entity = p_70097_1_.getEntity();
+			Entity entity = damageSource.getEntity();
 			this.setOrderedToSit(false);
 			if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof AbstractArrowEntity)) {
-				p_70097_2_ = (p_70097_2_ + 1.0F) / 2.0F;
+				v = (v + 1.0F) / 2.0F;
 			}
 
-			return super.hurt(p_70097_1_, p_70097_2_);
+			return super.hurt(damageSource, v);
 		}
 	}
 
-	public boolean doHurtTarget(Entity p_70652_1_) {
-		boolean flag = p_70652_1_.hurt(DamageSource.mobAttack(this), (float) ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+	public boolean doHurtTarget(Entity entity) {
+		boolean flag = entity.hurt(DamageSource.mobAttack(this), (float) ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
 		if (flag) {
-			this.doEnchantDamageEffects(this, p_70652_1_);
+			this.doEnchantDamageEffects(this, entity);
 		}
 
 		return flag;
@@ -513,18 +513,18 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
 	}
 
-	public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-		super.addAdditionalSaveData(p_213281_1_);
+	public void addAdditionalSaveData(CompoundNBT compoundNBT) {
+		super.addAdditionalSaveData(compoundNBT);
 
-		p_213281_1_.put("Inventory", this.inventory.createTag());
-		p_213281_1_.putBoolean("Saddled", this.isSaddled());
+		compoundNBT.put("Inventory", this.inventory.createTag());
+		compoundNBT.putBoolean("Saddled", this.isSaddled());
 	}
 
-	public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-		super.readAdditionalSaveData(p_70037_1_);
+	public void readAdditionalSaveData(CompoundNBT compoundNBT) {
+		super.readAdditionalSaveData(compoundNBT);
 
-		this.inventory.fromTag(p_70037_1_.getList("Inventory", 10));
-		this.setSaddled(p_70037_1_.getBoolean("Saddled"));
+		this.inventory.fromTag(compoundNBT.getList("Inventory", 10));
+		this.setSaddled(compoundNBT.getBoolean("Saddled"));
 	}
 
 	public void aiStep() {
@@ -540,13 +540,13 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 	}
 
 	@Override
-	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
+	protected void playStepSound(BlockPos blockPos, BlockState blockState) {
 		this.playSound(SoundEvents.TROPICAL_FISH_FLOP, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 	}
 
 	@Nullable
 	@Override
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SoundEvents.TROPICAL_FISH_HURT;
 	}
 

@@ -17,8 +17,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ChristmasTreeEntity extends MonsterEntity {
-	public ChristmasTreeEntity(EntityType<? extends MonsterEntity> p_i48553_1_, World p_i48553_2_) {
-		super(p_i48553_1_, p_i48553_2_);
+	public ChristmasTreeEntity(EntityType<? extends MonsterEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {

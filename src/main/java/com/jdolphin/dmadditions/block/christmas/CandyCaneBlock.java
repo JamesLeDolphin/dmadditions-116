@@ -8,14 +8,14 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 
 public class CandyCaneBlock extends DirectionalBlock {
-	public CandyCaneBlock(Properties p_i48415_1_) {
-		super(p_i48415_1_);
+	public CandyCaneBlock(Properties properties) {
+		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.add(FACING);
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> blockBlockStateBuilder) {
+		blockBlockStateBuilder.add(FACING);
 	}
-	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-		return this.defaultBlockState().setValue(FACING, p_196258_1_.getNearestLookingDirection().getOpposite());
+	public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
+		return this.defaultBlockState().setValue(FACING, blockItemUseContext.getNearestLookingDirection().getOpposite());
 	}
 }

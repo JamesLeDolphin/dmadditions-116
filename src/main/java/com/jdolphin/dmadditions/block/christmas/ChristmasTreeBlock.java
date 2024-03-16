@@ -27,14 +27,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class ChristmasTreeBlock extends Block {
 
-	public ChristmasTreeBlock(Properties p_i48440_1_) {
-		super(p_i48440_1_);
+	public ChristmasTreeBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
-	public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
-		return p_196271_2_ == Direction.DOWN && !this.canSurvive(p_196271_1_, p_196271_4_, p_196271_5_)
-			? Blocks.AIR.defaultBlockState() : super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, IWorld iWorld, BlockPos blockPos, BlockPos blockPos1) {
+		return direction == Direction.DOWN && !this.canSurvive(blockState, iWorld, blockPos)
+			? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockState1, iWorld, blockPos, blockPos1);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class ChristmasTreeBlock extends Block {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
+	public VoxelShape getShape(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, ISelectionContext iSelectionContext) {
 		return VoxelShapes.or(VoxelShapes.box(0.1d, 0d, 0.1d, 0.9d, 1d, 0.9d),
 			VoxelShapes.box(0.3d, 1d, 0.3d, 0.7d, 1.8d, 0.7d));
 	}

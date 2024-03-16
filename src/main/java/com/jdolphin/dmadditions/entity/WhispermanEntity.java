@@ -78,12 +78,12 @@ public class WhispermanEntity extends MonsterEntity{
 			}
 		}
 		
-		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-			double d0 = this.getAttackReachSqr(p_190102_1_);
-			if(p_190102_2_ <= d0){
+		protected void checkAndPerformAttack(LivingEntity livingEntity, double v) {
+			double d0 = this.getAttackReachSqr(livingEntity);
+			if(v <= d0){
 				this.resetAttackCooldown();
 				// this.mob.swing(Hand.MAIN_HAND);
-				this.mob.doHurtTarget(p_190102_1_);
+				this.mob.doHurtTarget(livingEntity);
 			}else if(!this.canContinueToUse()){
 				this.mob.setAggressive(false);
 			}

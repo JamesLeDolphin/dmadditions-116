@@ -25,43 +25,43 @@ public class CarvedDalekPumpkinBlock extends CarvedPumpkinBlock {
 	@Nullable
 	private BlockPattern snowGolemFull;
 
-	private static final Predicate<BlockState> PUMPKINS_PREDICATE = (p_210301_0_) ->
-		p_210301_0_ != null && (p_210301_0_.is(DMABlocks.CARVED_DALEK_PUMPKIN.get()));
+	private static final Predicate<BlockState> PUMPKINS_PREDICATE = (blockState) ->
+		blockState != null && (blockState.is(DMABlocks.CARVED_DALEK_PUMPKIN.get()));
 
-	public CarvedDalekPumpkinBlock(Properties p_i48432_1_) {
-		super(p_i48432_1_);
+	public CarvedDalekPumpkinBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
-	public void onPlace(BlockState p_220082_1_, World p_220082_2_, BlockPos p_220082_3_, BlockState p_220082_4_, boolean p_220082_5_) {
-		if (!p_220082_4_.is(p_220082_1_.getBlock())) {
-			this.trySpawnGolem(p_220082_2_, p_220082_3_);
+	public void onPlace(BlockState blockState, World world, BlockPos blockPos, BlockState blockState1, boolean b) {
+		if (!blockState1.is(blockState.getBlock())) {
+			this.trySpawnGolem(world, blockPos);
 		}
 	}
 
-	private void trySpawnGolem(World p_196358_1_, BlockPos p_196358_2_) {
-		BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreateSnowDalekFull().find(p_196358_1_, p_196358_2_);
+	private void trySpawnGolem(World world, BlockPos blockPos) {
+		BlockPattern.PatternHelper blockpattern$patternhelper = this.getOrCreateSnowDalekFull().find(world, blockPos);
 		if (blockpattern$patternhelper != null) {
 			for (int i = 0; i < this.getOrCreateSnowDalekFull().getHeight(); ++i) {
 				CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.getBlock(0, i, 0);
-				p_196358_1_.setBlock(cachedblockinfo.getPos(), Blocks.AIR.defaultBlockState(), 2);
-				p_196358_1_.levelEvent(2001, cachedblockinfo.getPos(), Block.getId(cachedblockinfo.getState()));
+				world.setBlock(cachedblockinfo.getPos(), Blocks.AIR.defaultBlockState(), 2);
+				world.levelEvent(2001, cachedblockinfo.getPos(), Block.getId(cachedblockinfo.getState()));
 			}
 
-			DalekEntity snowDalekEntity = new DalekEntity(DMEntities.DALEK_ENTITY.get(), p_196358_1_);
+			DalekEntity snowDalekEntity = new DalekEntity(DMEntities.DALEK_ENTITY.get(), world);
 			snowDalekEntity.setID("snow_dalek");
 
 			BlockPos blockpos1 = blockpattern$patternhelper.getBlock(0, 2, 0).getPos();
 			snowDalekEntity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
-			p_196358_1_.addFreshEntity(snowDalekEntity);
+			world.addFreshEntity(snowDalekEntity);
 
-			for (ServerPlayerEntity serverplayerentity : p_196358_1_.getEntitiesOfClass(ServerPlayerEntity.class, snowDalekEntity.getBoundingBox().inflate(5.0D))) {
+			for (ServerPlayerEntity serverplayerentity : world.getEntitiesOfClass(ServerPlayerEntity.class, snowDalekEntity.getBoundingBox().inflate(5.0D))) {
 				CriteriaTriggers.SUMMONED_ENTITY.trigger(serverplayerentity, snowDalekEntity);
 			}
 
 			for (int l = 0; l < this.getOrCreateSnowDalekFull().getHeight(); ++l) {
 				CachedBlockInfo cachedblockinfo3 = blockpattern$patternhelper.getBlock(0, l, 0);
-				p_196358_1_.blockUpdated(cachedblockinfo3.getPos(), Blocks.AIR);
+				world.blockUpdated(cachedblockinfo3.getPos(), Blocks.AIR);
 			}
 		}
 	}

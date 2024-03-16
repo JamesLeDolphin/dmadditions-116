@@ -55,7 +55,7 @@ public class KantrofarriModel extends SegmentedModel<KantrofarriEntity> implemen
 	}
 
 	@Override
-	public void setupAnim(KantrofarriEntity entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+	public void setupAnim(KantrofarriEntity entity, float v, float v1, float v2, float v3, float v4) {
 		if(!entity.isAggressive()){
 			this.body.zRot = (float)(Math.PI);
 			this.body.y = 24;

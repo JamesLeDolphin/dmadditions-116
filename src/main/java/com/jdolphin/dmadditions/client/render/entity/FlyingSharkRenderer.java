@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 
 public class FlyingSharkRenderer extends MobRenderer<FlyingSharkEntity, FlyingSharkModel> {
 
-	public FlyingSharkRenderer(EntityRendererManager p_i46179_1_) {
-		super(p_i46179_1_, new FlyingSharkModel(), 1.0f);
+	public FlyingSharkRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new FlyingSharkModel(), 1.0f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(FlyingSharkEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(FlyingSharkEntity flyingSharkEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 }

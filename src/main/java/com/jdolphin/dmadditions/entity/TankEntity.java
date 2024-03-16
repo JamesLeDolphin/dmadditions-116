@@ -41,8 +41,8 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		return Stream.of(subEntities).filter(part -> part.name.equals(name)).findFirst();
 	}
 
-	public TankEntity(EntityType<? extends MobEntity> p_i48576_1_, World p_i48576_2_) {
-		super(p_i48576_1_, p_i48576_2_);
+	public TankEntity(EntityType<? extends MobEntity> entityType, World world) {
+		super(entityType, world);
 
 		this.bodyFront = new TankPartEntity(this, "bodyFront", 7f, 2f);
 		this.bodyBack = new TankPartEntity(this, "bodyBack", 7f, 2.5f);
@@ -65,17 +65,17 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		super.tick();
 	}
 
-	protected float rotlerp(float p_75639_1_, float p_75639_2_, float p_75639_3_) {
-		float f = MathHelper.wrapDegrees(p_75639_2_ - p_75639_1_);
-		if (f > p_75639_3_) {
-			f = p_75639_3_;
+	protected float rotlerp(float v, float v1, float v2) {
+		float f = MathHelper.wrapDegrees(v1 - v);
+		if (f > v2) {
+			f = v2;
 		}
 
-		if (f < -p_75639_3_) {
-			f = -p_75639_3_;
+		if (f < -v2) {
+			f = -v2;
 		}
 
-		float f1 = p_75639_1_ + f;
+		float f1 = v + f;
 		if (f1 < 0.0F) {
 			f1 += 360.0F;
 		} else if (f1 > 360.0F) {
@@ -86,11 +86,11 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	}
 
 	@Override
-	public void setId(int p_145769_1_) {
-		super.setId(p_145769_1_);
+	public void setId(int i1) {
+		super.setId(i1);
 
 		for(int i = 0; i < subEntities.length; ++i) 
-			subEntities[i].setId(p_145769_1_ + i + 1);
+			subEntities[i].setId(i1 + i + 1);
 	}
 
 	@Override
@@ -193,7 +193,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	}
 
 	@Override
-	public Vector3d getDismountLocationForPassenger(LivingEntity p_230268_1_) {
+	public Vector3d getDismountLocationForPassenger(LivingEntity livingEntity) {
 		return new Vector3d(this.getX(), this.turret.getBoundingBox().maxY, this.getZ());
 	}
 
@@ -209,7 +209,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void onPlayerJump(int p_110206_1_) {
+	public void onPlayerJump(int i) {
 	}
 
 	@Override
@@ -218,7 +218,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	}
 
 	@Override
-	public void handleStartJump(int p_184775_1_) { //possible TODO: use mouse buttons or something instead of jumping lol
+	public void handleStartJump(int i) { //possible TODO: use mouse buttons or something instead of jumping lol
 		if(level instanceof ServerWorld){
 			level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), DMSoundEvents.ITEM_GUN_SHOOT.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 
@@ -345,10 +345,10 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		protected void defineSynchedData() {
 		}
 
-		protected void readAdditionalSaveData(CompoundNBT p_70037_1_) {
+		protected void readAdditionalSaveData(CompoundNBT compoundNBT) {
 		}
 
-		protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
+		protected void addAdditionalSaveData(CompoundNBT compoundNBT) {
 		}
 
 		public boolean isPickable() {
@@ -359,15 +359,15 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 			return this.isInvulnerableTo(source) ? false : this.parentMob.hurt(this, source, amount);
 		}
 
-		public boolean is(Entity p_70028_1_) {
-			return this == p_70028_1_ || this.parentMob == p_70028_1_;
+		public boolean is(Entity entity) {
+			return this == entity || this.parentMob == entity;
 		}
 
 		public IPacket<?> getAddEntityPacket() {
 			throw new UnsupportedOperationException();
 		}
 
-		public EntitySize getDimensions(Pose p_213305_1_) {
+		public EntitySize getDimensions(Pose pose) {
 			return this.size;
 		}
 	}

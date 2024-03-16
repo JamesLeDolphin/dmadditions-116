@@ -100,7 +100,7 @@ public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 		return BlockRenderType.MODEL;
 	}
 
-	public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
+	public boolean isPathfindable(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, PathType pathType) {
 		return true;
 	}
 }

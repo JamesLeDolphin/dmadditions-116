@@ -63,21 +63,21 @@ public class RoundelContainerBlock extends ContainerBlock {
 	}
 
 	@Override
-	public void setPlacedBy(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, @javax.annotation.Nullable LivingEntity p_180633_4_, ItemStack p_180633_5_) {
-		if (p_180633_5_.hasCustomHoverName()) {
-			TileEntity tileentity = p_180633_1_.getBlockEntity(p_180633_2_);
+	public void setPlacedBy(World world, BlockPos blockPos, BlockState blockState, @javax.annotation.Nullable LivingEntity livingEntity, ItemStack itemStack) {
+		if (itemStack.hasCustomHoverName()) {
+			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof BarrelTileEntity) {
-				((BarrelTileEntity)tileentity).setCustomName(p_180633_5_.getHoverName());
+				((BarrelTileEntity)tileentity).setCustomName(itemStack.getHoverName());
 			}
 		}
 	}
 
-	public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+	public boolean hasAnalogOutputSignal(BlockState blockState) {
 		return true;
 	}
 
-	public int getAnalogOutputSignal(BlockState p_180641_1_, World p_180641_2_, BlockPos p_180641_3_) {
-		return Container.getRedstoneSignalFromBlockEntity(p_180641_2_.getBlockEntity(p_180641_3_));
+	public int getAnalogOutputSignal(BlockState blockState, World world, BlockPos blockPos) {
+		return Container.getRedstoneSignalFromBlockEntity(world.getBlockEntity(blockPos));
 	}
 
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
@@ -135,8 +135,8 @@ public class RoundelContainerBlock extends ContainerBlock {
 		}
 
 		@OnlyIn(Dist.CLIENT)
-		public boolean skipRendering(BlockState p_200122_1_, BlockState p_200122_2_, Direction p_200122_3_) {
-			return p_200122_2_.is(this) || super.skipRendering(p_200122_1_, p_200122_2_, p_200122_3_);
+		public boolean skipRendering(BlockState blockState, BlockState blockState1, Direction direction) {
+			return blockState1.is(this) || super.skipRendering(blockState, blockState1, direction);
 		}
 
 		public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -149,12 +149,12 @@ public class RoundelContainerBlock extends ContainerBlock {
 			return super.getStateForPlacement(context).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 		}
 
-		public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
+		public BlockState updateShape(BlockState p_196271_1_, Direction direction, BlockState blockState, IWorld iWorld, BlockPos blockPos, BlockPos blockPos1) {
 			if ((Boolean)p_196271_1_.getValue(WATERLOGGED)) {
-				p_196271_4_.getLiquidTicks().scheduleTick(p_196271_5_, Fluids.WATER, Fluids.WATER.getTickDelay(p_196271_4_));
+				iWorld.getLiquidTicks().scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(iWorld));
 			}
 
-			return super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+			return super.updateShape(p_196271_1_, direction, blockState, iWorld, blockPos, blockPos1);
 		}
 
 		public FluidState getFluidState(BlockState state) {

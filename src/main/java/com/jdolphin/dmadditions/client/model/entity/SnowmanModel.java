@@ -28,10 +28,10 @@ public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IMode
 	}
 
 	@Override
-	public void setupAnim(SnowmanEntity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-		this.head.yRot = p_225597_5_ * ((float)Math.PI / 180F);
-		this.head.xRot = p_225597_6_ * ((float)Math.PI / 180F);
-		this.skirt.yRot = p_225597_5_ * ((float)Math.PI / 180F) * 0.25F;
+	public void setupAnim(SnowmanEntity snowmanEntity, float v, float v1, float v2, float v3, float v4) {
+		this.head.yRot = v3 * ((float)Math.PI / 180F);
+		this.head.xRot = v4 * ((float)Math.PI / 180F);
+		this.skirt.yRot = v3 * ((float)Math.PI / 180F) * 0.25F;
 	}
 
 	@Override

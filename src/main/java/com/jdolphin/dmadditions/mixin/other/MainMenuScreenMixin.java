@@ -17,8 +17,8 @@ import java.util.Random;
 
 @Mixin(MainMenuScreen.class)
 public abstract class MainMenuScreenMixin extends Screen {
-	protected MainMenuScreenMixin(ITextComponent p_i51108_1_) {
-		super(p_i51108_1_);
+	protected MainMenuScreenMixin(ITextComponent iTextComponent) {
+		super(iTextComponent);
 	}
 
 	@Mutable

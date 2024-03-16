@@ -44,12 +44,12 @@ public class ChristmasTreeModel extends SegmentedModel<ChristmasTreeEntity> impl
 	}
 
 	@Override
-	public void setupAnim(ChristmasTreeEntity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-		boolean flag = p_225597_1_.getFallFlyingTicks() > 4;
+	public void setupAnim(ChristmasTreeEntity christmasTreeEntity, float v, float v1, float v2, float v3, float v4) {
+		boolean flag = christmasTreeEntity.getFallFlyingTicks() > 4;
 
 		float f = 1.0F;
 		if (flag) {
-			f = (float) p_225597_1_.getDeltaMovement().lengthSqr();
+			f = (float) christmasTreeEntity.getDeltaMovement().lengthSqr();
 			f = f / 0.2F;
 			f = f * f * f;
 		}
@@ -58,8 +58,8 @@ public class ChristmasTreeModel extends SegmentedModel<ChristmasTreeEntity> impl
 			f = 1.0F;
 		}
 
-		this.bottom.yRot = p_225597_2_ * 0.75f;
-		this.middle.yRot = -p_225597_2_;
-		this.top.yRot = p_225597_2_;
+		this.bottom.yRot = v * 0.75f;
+		this.middle.yRot = -v;
+		this.top.yRot = v;
 	}
 }

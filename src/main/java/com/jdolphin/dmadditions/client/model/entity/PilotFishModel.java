@@ -55,10 +55,10 @@ public class PilotFishModel extends BipedModel<PilotFishEntity> implements IMode
 	}
 
 	@Override
-	public void setupAnim(PilotFishEntity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-		super.setupAnim(p_225597_1_, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
+	public void setupAnim(PilotFishEntity pilotFishEntity, float v, float v1, float v2, float v3, float v4) {
+		super.setupAnim(pilotFishEntity, v, v1, v2, v3, v4);
 
-		if (p_225597_1_.isUsingItem()) {
+		if (pilotFishEntity.isUsingItem()) {
 			float f = MathHelper.sin(this.attackTime * (float)Math.PI);
 			float f1 = MathHelper.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float)Math.PI);
 			this.rightArm.zRot = 0.0F;
@@ -69,7 +69,7 @@ public class PilotFishModel extends BipedModel<PilotFishEntity> implements IMode
 			this.leftArm.xRot = (-(float)Math.PI / 2F);
 			this.rightArm.xRot -= f * 1.2F - f1 * 0.4F;
 			this.leftArm.xRot -= f * 1.2F - f1 * 0.4F;
-			ModelHelper.bobArms(this.rightArm, this.leftArm, p_225597_4_);
+			ModelHelper.bobArms(this.rightArm, this.leftArm, v2);
 		}
 	}
 }

@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.init;
 
 
 import com.jdolphin.dmadditions.block.tardis.*;
-import com.swdteam.common.block.tardis.FlightPanelBlock;
 import com.swdteam.common.tileentity.tardis.CoordPanelTileEntity;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;

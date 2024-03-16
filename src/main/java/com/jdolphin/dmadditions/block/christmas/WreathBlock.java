@@ -22,8 +22,8 @@ public class WreathBlock extends HorizontalFaceBlock {
 	VoxelShape UP_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D);
 	VoxelShape DOWN_AABB = Block.box(0.0D, 13.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
-	public WreathBlock(Properties p_i48402_1_) {
-		super(p_i48402_1_);
+	public WreathBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override

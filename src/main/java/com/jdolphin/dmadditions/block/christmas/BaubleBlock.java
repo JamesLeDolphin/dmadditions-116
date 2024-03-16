@@ -15,8 +15,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
 public class BaubleBlock extends Block {
-	public BaubleBlock(Properties p_i48440_1_) {
-		super(p_i48440_1_);
+	public BaubleBlock(Properties properties) {
+		super(properties);
 	}
 
 	public BaubleBlock(){

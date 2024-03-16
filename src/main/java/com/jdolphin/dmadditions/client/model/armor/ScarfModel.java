@@ -14,8 +14,8 @@ import net.minecraft.entity.LivingEntity;
 public class ScarfModel extends BipedModel<LivingEntity> implements IModelPartReloader {
 	public JSONModel model;
 
-	public ScarfModel(float p_i1148_1_) {
-		super(p_i1148_1_);
+	public ScarfModel(float v) {
+		super(v);
 		ModelReloaderRegistry.register(this);
 	}
 

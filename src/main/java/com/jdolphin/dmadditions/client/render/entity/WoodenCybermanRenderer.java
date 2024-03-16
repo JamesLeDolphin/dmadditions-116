@@ -15,7 +15,7 @@ public class WoodenCybermanRenderer extends LivingRenderer<WoodenCybermanEntity,
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(WoodenCybermanEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(WoodenCybermanEntity woodenCybermanEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 

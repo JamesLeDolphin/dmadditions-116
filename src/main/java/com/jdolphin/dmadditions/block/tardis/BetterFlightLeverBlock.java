@@ -23,7 +23,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 		super(properties);
 	}
 
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult blockRayTraceResult) {
 		if (handIn == Hand.MAIN_HAND && !worldIn.isClientSide) {
 			if (Helper.isTardis(worldIn)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(pos);

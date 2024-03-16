@@ -8,16 +8,16 @@ import net.minecraft.util.ResourceLocation;
 
 public class IceGovernessRenderer extends BipedRenderer<IceGovernessEntity, IceGovernessModel>{
 
-	public IceGovernessRenderer(EntityRendererManager p_i46168_1_, IceGovernessModel p_i46168_2_, float p_i46168_3_) {
-		super(p_i46168_1_, p_i46168_2_, p_i46168_3_);
+	public IceGovernessRenderer(EntityRendererManager entityRendererManager, IceGovernessModel iceGovernessModel, float v) {
+		super(entityRendererManager, iceGovernessModel, v);
 	}
 
-	public IceGovernessRenderer(EntityRendererManager p_i50961_1_) {
-		super(p_i50961_1_, new IceGovernessModel(1), 1f);
+	public IceGovernessRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new IceGovernessModel(1), 1f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(IceGovernessEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(IceGovernessEntity iceGovernessEntity) {
 		return model.getTexture();
 	}
 

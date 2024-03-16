@@ -14,8 +14,8 @@ import net.minecraft.entity.LivingEntity;
 public class MattsPinkThongModel extends BipedModel<LivingEntity> implements IModelPartReloader {
 	public JSONModel model;
 
-	public MattsPinkThongModel(float p_i1148_1_) {
-		super(p_i1148_1_);
+	public MattsPinkThongModel(float v) {
+		super(v);
 		ModelReloaderRegistry.register(this);
 	}
 

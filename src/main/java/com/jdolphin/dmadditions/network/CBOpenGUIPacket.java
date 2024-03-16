@@ -1,17 +1,10 @@
 package com.jdolphin.dmadditions.network;
 
-import com.jdolphin.dmadditions.item.LaserScrewdriverItem;
 import com.jdolphin.dmadditions.util.GuiHandler;
-import com.swdteam.client.init.DMGuiHandler;
-import com.swdteam.util.ChatUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.PacketDirection;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkEvent;

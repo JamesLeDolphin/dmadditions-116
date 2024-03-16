@@ -8,12 +8,12 @@ import net.minecraft.util.ResourceLocation;
 
 public class BessieRenderer extends MobRenderer<BessieEntity, BessieModel> {
 
-	public BessieRenderer(EntityRendererManager p_i46179_1_) {
-		super(p_i46179_1_, new BessieModel(), 1.0f);
+	public BessieRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new BessieModel(), 1.0f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(BessieEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(BessieEntity bessieEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 }

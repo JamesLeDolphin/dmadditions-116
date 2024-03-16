@@ -18,8 +18,8 @@ public class ChristmasHatModel extends BipedModel<LivingEntity> implements IMode
 
 	protected int color;
 
-	public ChristmasHatModel(float p_i1148_1_, int color) {
-		super(p_i1148_1_);
+	public ChristmasHatModel(float v, int color) {
+		super(v);
 
 		this.color = color;
 		ModelReloaderRegistry.register(this);

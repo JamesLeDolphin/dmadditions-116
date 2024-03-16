@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class JimRenderer extends BipedRenderer<JimEntity, BipedModel<JimEntity>>{
 
-	public JimRenderer(EntityRendererManager erm, BipedModel<JimEntity> model, float p_i46168_3_) {
-		super(erm, model, p_i46168_3_);
+	public JimRenderer(EntityRendererManager erm, BipedModel<JimEntity> model, float v) {
+		super(erm, model, v);
       this.addLayer(new BipedArmorLayer<>(this, new BipedModel<>(0.5F), new BipedModel<>(1.0F)));
       this.addLayer(new HeldItemLayer<>(this));
       this.addLayer(new HeadLayer<>(this));

@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 
 public class WhispermanRenderer extends BipedRenderer<WhispermanEntity, WhispermanModel>{
 
-	public WhispermanRenderer(EntityRendererManager p_i46168_1_) {
-		super(p_i46168_1_, new WhispermanModel(), 0.5f);
+	public WhispermanRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new WhispermanModel(), 0.5f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(WhispermanEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(WhispermanEntity whispermanEntity) {
 		ModelInformation modelData = model.getModel().getModelData();
 		return modelData.getTexture();
 	}

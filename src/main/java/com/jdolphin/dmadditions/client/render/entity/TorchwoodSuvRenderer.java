@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 
 public class TorchwoodSuvRenderer extends MobRenderer<TorchwoodSuvEntity, TorchwoodSuvModel> {
 
-	public TorchwoodSuvRenderer(EntityRendererManager p_i46179_1_) {
-		super(p_i46179_1_, new TorchwoodSuvModel(), 1.0f);
+	public TorchwoodSuvRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new TorchwoodSuvModel(), 1.0f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(TorchwoodSuvEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(TorchwoodSuvEntity torchwoodSuvEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 }

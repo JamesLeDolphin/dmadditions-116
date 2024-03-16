@@ -105,8 +105,8 @@ public class RustableRoundelContainerBlock extends RoundelContainerBlock impleme
 		}
 
 		@OnlyIn(Dist.CLIENT)
-		public boolean skipRendering(BlockState p_200122_1_, BlockState p_200122_2_, Direction p_200122_3_) {
-			return p_200122_2_.is(this) ? true : super.skipRendering(p_200122_1_, p_200122_2_, p_200122_3_);
+		public boolean skipRendering(BlockState blockState, BlockState blockState1, Direction direction) {
+			return blockState1.is(this) ? true : super.skipRendering(blockState, blockState1, direction);
 		}
 
 		public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -119,12 +119,12 @@ public class RustableRoundelContainerBlock extends RoundelContainerBlock impleme
 			return super.getStateForPlacement(context).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 		}
 
-		public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
-			if (p_196271_1_.getValue(WATERLOGGED)) {
-				p_196271_4_.getLiquidTicks().scheduleTick(p_196271_5_, Fluids.WATER, Fluids.WATER.getTickDelay(p_196271_4_));
+		public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, IWorld iWorld, BlockPos blockPos, BlockPos blockPos1) {
+			if (blockState.getValue(WATERLOGGED)) {
+				iWorld.getLiquidTicks().scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(iWorld));
 			}
 
-			return super.updateShape(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+			return super.updateShape(blockState, direction, blockState1, iWorld, blockPos, blockPos1);
 		}
 
 		public FluidState getFluidState(BlockState state) {

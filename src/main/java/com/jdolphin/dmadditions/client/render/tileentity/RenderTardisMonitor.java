@@ -27,8 +27,8 @@ import net.minecraft.world.LightType;
 
 public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEntity> implements IModelPartReloader {
 	public static JSONModel MODEL_SCANNER;
-	public RenderTardisMonitor(TileEntityRendererDispatcher p_i226006_1_) {
-		super(p_i226006_1_);
+	public RenderTardisMonitor(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+		super(tileEntityRendererDispatcher);
 		ModelReloaderRegistry.register(this);
 	}
 	@Override

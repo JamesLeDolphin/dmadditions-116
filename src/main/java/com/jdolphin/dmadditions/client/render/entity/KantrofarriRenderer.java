@@ -8,12 +8,12 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
 public class KantrofarriRenderer extends MobRenderer<KantrofarriEntity, KantrofarriModel> {
-	public KantrofarriRenderer(EntityRendererManager p_i46168_1_) {
-		super(p_i46168_1_, new KantrofarriModel(), 0.5f);
+	public KantrofarriRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new KantrofarriModel(), 0.5f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(KantrofarriEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(KantrofarriEntity kantrofarriEntity) {
 		JSONModel.ModelInformation modelData = model.getModel().getModelData();
 		return modelData.getTexture();
 	}

@@ -18,8 +18,8 @@ public abstract class DalekEntityMixin extends LivingEntity implements IDalekEnt
 	private boolean party;
 	private BlockPos jukebox;
 
-	protected DalekEntityMixin(EntityType<? extends LivingEntity> p_i48577_1_, World p_i48577_2_) {
-		super(p_i48577_1_, p_i48577_2_);
+	protected DalekEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	@Inject(method = "aiStep", at = @At("TAIL"))
@@ -36,9 +36,9 @@ public abstract class DalekEntityMixin extends LivingEntity implements IDalekEnt
 	}
 
 	@Override
-	public void setRecordPlayingNearby(BlockPos p_191987_1_, boolean p_191987_2_) {
-		this.jukebox = p_191987_1_;
-		this.party = p_191987_2_;
+	public void setRecordPlayingNearby(BlockPos blockPos, boolean b) {
+		this.jukebox = blockPos;
+		this.party = b;
 	}
 
 	public boolean isPartyDalek() {

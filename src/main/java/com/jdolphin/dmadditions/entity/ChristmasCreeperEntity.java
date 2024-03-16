@@ -26,8 +26,8 @@ public class ChristmasCreeperEntity extends CreeperEntity{
 	private int explosionRadius = 3;
 	private int droppedSkulls;
 
-	public ChristmasCreeperEntity(EntityType<? extends CreeperEntity> p_i50213_1_, World p_i50213_2_) {
-		super(p_i50213_1_, p_i50213_2_);
+	public ChristmasCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
+		super(entityType, world);
 
 		this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 	}

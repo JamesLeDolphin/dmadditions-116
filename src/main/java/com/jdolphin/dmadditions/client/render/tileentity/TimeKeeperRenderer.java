@@ -9,12 +9,12 @@ import net.minecraft.tileentity.TileEntity;
 public class TimeKeeperRenderer extends TileEntityRenderer {
 
 
-	public TimeKeeperRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-		super(p_i226006_1_);
+	public TimeKeeperRenderer(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+		super(tileEntityRendererDispatcher);
 	}
 
 	@Override
-	public void render(TileEntity p_225616_1_, float p_225616_2_, MatrixStack p_225616_3_, IRenderTypeBuffer p_225616_4_, int p_225616_5_, int p_225616_6_) {
+	public void render(TileEntity tileEntity, float v, MatrixStack p_225616_3_, IRenderTypeBuffer iRenderTypeBuffer, int i, int i1) {
 
 	}
 }

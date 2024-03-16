@@ -9,13 +9,13 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 
 public class ChristmasTreeRenderer extends MobRenderer<ChristmasTreeEntity, ChristmasTreeModel> {
-	public ChristmasTreeRenderer(EntityRendererManager p_i50961_1_) {
-		super(p_i50961_1_, new ChristmasTreeModel(), 0.6f);
+	public ChristmasTreeRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new ChristmasTreeModel(), 0.6f);
 	}
 
 	@Override
 	@Nonnull
-	public ResourceLocation getTextureLocation(ChristmasTreeEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(ChristmasTreeEntity christmasTreeEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 }

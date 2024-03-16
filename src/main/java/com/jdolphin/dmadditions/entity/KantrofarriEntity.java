@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 public class KantrofarriEntity extends MonsterEntity {
 
 	public static final DamageSource KANTROFFARI_ATTACK = new DamageSource("kantrofarri").bypassArmor();
-	public KantrofarriEntity(EntityType<? extends MonsterEntity> p_i48553_1_, World p_i48553_2_) {
-		super(p_i48553_1_, p_i48553_2_);
+	public KantrofarriEntity(EntityType<? extends MonsterEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -74,12 +74,12 @@ public class KantrofarriEntity extends MonsterEntity {
 			}
 		}
 
-		protected void checkAndPerformAttack(LivingEntity p_190102_1_, double p_190102_2_) {
-			double d0 = this.getAttackReachSqr(p_190102_1_);
-			if(p_190102_2_ <= d0){
+		protected void checkAndPerformAttack(LivingEntity livingEntity, double v) {
+			double d0 = this.getAttackReachSqr(livingEntity);
+			if(v <= d0){
 				this.resetAttackCooldown();
 				// this.mob.swing(Hand.MAIN_HAND);
-				this.mob.doHurtTarget(p_190102_1_);
+				this.mob.doHurtTarget(livingEntity);
 			}else if(!this.canContinueToUse()){
 				this.mob.setAggressive(false);
 			}

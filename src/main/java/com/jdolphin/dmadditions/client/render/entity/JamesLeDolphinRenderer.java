@@ -11,8 +11,8 @@ import javax.annotation.Nonnull;
 
 public class JamesLeDolphinRenderer extends MobRenderer<JamesLeDolphinEntity, JamesLeDolphinModel<JamesLeDolphinEntity>> {
 
-	public JamesLeDolphinRenderer(EntityRendererManager p_i50961_1_) {
-		super(p_i50961_1_, new JamesLeDolphinModel<>(), 0.6f);
+	public JamesLeDolphinRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new JamesLeDolphinModel<>(), 0.6f);
 		this.addLayer(new HeadLayer<>(this));
 	}
 

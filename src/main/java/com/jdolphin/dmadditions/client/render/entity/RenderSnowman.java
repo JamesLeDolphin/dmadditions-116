@@ -8,13 +8,13 @@ import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderSnowman extends MobRenderer<SnowmanEntity, SnowmanModel> {
-	public RenderSnowman(EntityRendererManager p_i50961_1_) {
-		super(p_i50961_1_, new SnowmanModel(), 0.5f);
+	public RenderSnowman(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new SnowmanModel(), 0.5f);
 		this.addLayer(new HeadLayer<>(this));
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(SnowmanEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(SnowmanEntity snowmanEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 }

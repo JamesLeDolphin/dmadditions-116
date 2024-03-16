@@ -37,7 +37,7 @@ public class ForceFieldPanel extends AbstractRotateableWaterLoggableBlock implem
 	public static final VoxelShape PANEL_SHAPE_BASE = Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
 
 
-	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
+	public BlockRenderType getRenderShape(BlockState blockState) {
 		return BlockRenderType.MODEL;
 	}
 

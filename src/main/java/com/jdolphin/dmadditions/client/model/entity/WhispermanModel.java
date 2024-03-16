@@ -14,8 +14,8 @@ public class WhispermanModel extends BipedModel<WhispermanEntity> implements IMo
 
 	private JSONModel model;
 
-	public WhispermanModel(float p_i1148_1_) {
-		super(p_i1148_1_);
+	public WhispermanModel(float v) {
+		super(v);
 		ModelReloaderRegistry.register(this);
 	}
 

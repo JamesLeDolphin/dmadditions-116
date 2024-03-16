@@ -15,15 +15,15 @@ public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements
 
 	private JSONModel model;
 
-	public IceGovernessModel(float p_i1148_1_) {
-		super(p_i1148_1_);
+	public IceGovernessModel(float v) {
+		super(v);
 		ModelReloaderRegistry.register(this);
 	}
 
 	@Override
-	public void setupAnim(IceGovernessEntity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_,
-			float p_225597_5_, float p_225597_6_) {
-		super.setupAnim(p_225597_1_, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
+	public void setupAnim(IceGovernessEntity iceGovernessEntity, float v, float v1, float v2,
+			float v3, float v4) {
+		super.setupAnim(iceGovernessEntity, v, v1, v2, v3, v4);
 	}
 
 	@Override

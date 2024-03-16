@@ -15,13 +15,13 @@ public class RenderPilotFish extends BipedRenderer<PilotFishEntity, PilotFishMod
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(PilotFishEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(PilotFishEntity pilotFishEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 
 	@Override
-	public void render(PilotFishEntity entity, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
+	public void render(PilotFishEntity entity, float v, float v1, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i) {
 		this.model.model = ModelLoader.loadModel(entity.getPilotFishType().getModelLocation());
-		super.render(entity, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
+		super.render(entity, v, v1, matrixStack, iRenderTypeBuffer, i);
 	}
 }

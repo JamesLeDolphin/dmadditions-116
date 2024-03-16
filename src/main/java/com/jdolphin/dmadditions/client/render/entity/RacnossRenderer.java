@@ -8,12 +8,12 @@ import net.minecraft.util.ResourceLocation;
 
 public class RacnossRenderer extends MobRenderer<RacnossEntity, RacnossModel> {
 
-	public RacnossRenderer(EntityRendererManager p_i46179_1_) {
-		super(p_i46179_1_, new RacnossModel(), 1.0f);
+	public RacnossRenderer(EntityRendererManager entityRendererManager) {
+		super(entityRendererManager, new RacnossModel(), 1.0f);
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(RacnossEntity p_110775_1_) {
+	public ResourceLocation getTextureLocation(RacnossEntity racnossEntity) {
 		return this.model.model.getModelData().getTexture();
 	}
 }

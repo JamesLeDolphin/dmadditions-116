@@ -18,8 +18,8 @@ import java.util.Map;
 public class JokeReloadListener extends JsonReloadListener {
 	List<Joke> loadedJokes = new ArrayList<Joke>();
 
-	public JokeReloadListener(Gson p_i51536_1_, String p_i51536_2_) {
-		super(p_i51536_1_, p_i51536_2_);
+	public JokeReloadListener(Gson gson, String s) {
+		super(gson, s);
 	}
 
 	@Override

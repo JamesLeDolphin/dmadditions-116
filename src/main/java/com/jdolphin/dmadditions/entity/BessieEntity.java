@@ -27,8 +27,8 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 	boolean deathExplosion = false;
 	public boolean driving = false;
 
-	public BessieEntity(EntityType<? extends AnimalEntity> p_i48568_1_, World p_i48568_2_) {
-		super(p_i48568_1_, p_i48568_2_);
+	public BessieEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+		super(entityType, world);
 		this.maxUpStep = 1.0F;
 	}
 
@@ -61,7 +61,7 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 
 	@Nullable
 	@Override
-	public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+	public AgeableEntity getBreedOffspring(ServerWorld serverWorld, AgeableEntity ageableEntity) {
 		return null;
 	}
 
@@ -74,7 +74,7 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 		return super.shouldRiderSit();
 	}
 
-	public boolean canMate(AnimalEntity p_70878_1_) {
+	public boolean canMate(AnimalEntity animalEntity) {
 		return false;
 	}
 
@@ -87,32 +87,32 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
 	}
 
-	public void positionRider(Entity p_184232_1_) {
-		if (this.hasPassenger(p_184232_1_)) {
+	public void positionRider(Entity entity) {
+		if (this.hasPassenger(entity)) {
 			float f = 0.0F;
-			float f1 = (float) ((!this.isAlive() ? (double) 0.01F : this.getPassengersRidingOffset()) + p_184232_1_.getMyRidingOffset());
+			float f1 = (float) ((!this.isAlive() ? (double) 0.01F : this.getPassengersRidingOffset()) + entity.getMyRidingOffset());
 			if (this.getPassengers().size() > 1) {
-				int i = this.getPassengers().indexOf(p_184232_1_);
+				int i = this.getPassengers().indexOf(entity);
 				if (i == 0) {
 					f = 0.2F;
 				} else {
 					f = -0.6F;
 				}
 
-				if (p_184232_1_ instanceof AnimalEntity) {
+				if (entity instanceof AnimalEntity) {
 					f = (float) ((double) f + 0.2D);
 				}
 			}
 
 			Vector3d vector3d = (new Vector3d(f, 0.0D, 0.0D)).yRot(-this.yRot * ((float) Math.PI / 180F) - ((float) Math.PI / 2F));
-			p_184232_1_.setPos(this.getX() + vector3d.x, this.getY() + (double) f1, this.getZ() + vector3d.z);
-			p_184232_1_.yRot += this.deltaRotation;
-			p_184232_1_.setYHeadRot(p_184232_1_.getYHeadRot() + this.deltaRotation);
+			entity.setPos(this.getX() + vector3d.x, this.getY() + (double) f1, this.getZ() + vector3d.z);
+			entity.yRot += this.deltaRotation;
+			entity.setYHeadRot(entity.getYHeadRot() + this.deltaRotation);
 //			this.clampRotation(p_184232_1_);
-			if (p_184232_1_ instanceof AnimalEntity && this.getPassengers().size() > 1) {
-				int j = p_184232_1_.getId() % 2 == 0 ? 90 : 270;
-				p_184232_1_.setYBodyRot(((AnimalEntity) p_184232_1_).yBodyRot + (float) j);
-				p_184232_1_.setYHeadRot(p_184232_1_.getYHeadRot() + (float) j);
+			if (entity instanceof AnimalEntity && this.getPassengers().size() > 1) {
+				int j = entity.getId() % 2 == 0 ? 90 : 270;
+				entity.setYBodyRot(((AnimalEntity) entity).yBodyRot + (float) j);
+				entity.setYHeadRot(entity.getYHeadRot() + (float) j);
 			}
 
 		}
@@ -123,11 +123,11 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 		return -0.02;
 	}
 
-	protected boolean canAddPassenger(Entity p_184219_1_) {
+	protected boolean canAddPassenger(Entity entity) {
 		return this.getPassengers().size() < 2 && !this.isEyeInFluid(FluidTags.WATER);
 	}
 
-	public void travel(Vector3d p_213352_1_) {
+	public void travel(Vector3d vector3d) {
 		if (this.isAlive()) {
 			if (this.isVehicle() && this.canBeSteered() && this.isSaddled()) {
 				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
@@ -204,7 +204,7 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 				this.flyingSpeed = this.getSpeed() * 0.1F;
 				if (this.isControlledByLocalInstance()) {
 					this.setSpeed((float) this.getAttribute(Attributes.MOVEMENT_SPEED).getValue());
-					super.travel(new Vector3d(f, p_213352_1_.y, f1));
+					super.travel(new Vector3d(f, vector3d.y, f1));
 				} else if (livingentity instanceof PlayerEntity) {
 					this.setDeltaMovement(Vector3d.ZERO);
 				}
@@ -226,7 +226,7 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 				this.animationPosition += this.animationSpeed;
 			} else {
 				this.flyingSpeed = 0.02F;
-				super.travel(p_213352_1_);
+				super.travel(vector3d);
 			}
 		}
 	}
@@ -287,26 +287,26 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 	}
 
 	@Override
-	public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-		doPlayerRide(p_230254_1_);
+	public ActionResultType mobInteract(PlayerEntity playerEntity, Hand hand) {
+		doPlayerRide(playerEntity);
 
-		return super.mobInteract(p_230254_1_, p_230254_2_);
+		return super.mobInteract(playerEntity, hand);
 	}
 
-	public Vector3d getDismountLocationForPassenger(LivingEntity p_230268_1_) {
-		Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
-		Vector3d vector3d1 = this.getDismountLocationInDirection(vector3d, p_230268_1_);
+	public Vector3d getDismountLocationForPassenger(LivingEntity livingEntity) {
+		Vector3d vector3d = getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), this.yRot + (livingEntity.getMainArm() == HandSide.RIGHT ? 90.0F : -90.0F));
+		Vector3d vector3d1 = this.getDismountLocationInDirection(vector3d, livingEntity);
 		if (vector3d1 != null) {
 			return vector3d1;
 		} else {
-			Vector3d vector3d2 = getCollisionHorizontalEscapeVector(this.getBbWidth(), p_230268_1_.getBbWidth(), this.yRot + (p_230268_1_.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
-			Vector3d vector3d3 = this.getDismountLocationInDirection(vector3d2, p_230268_1_);
+			Vector3d vector3d2 = getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), this.yRot + (livingEntity.getMainArm() == HandSide.LEFT ? 90.0F : -90.0F));
+			Vector3d vector3d3 = this.getDismountLocationInDirection(vector3d2, livingEntity);
 			return vector3d3 != null ? vector3d3 : this.position();
 		}
 	}
 
 	@Override
-	public void onPlayerJump(int p_110206_1_) {
+	public void onPlayerJump(int i) {
 	}
 
 	@Override
@@ -315,9 +315,9 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 	}
 
 	@Override
-	public void handleStartJump(int p_184775_1_) {
+	public void handleStartJump(int l) {
 		this.level.playSound(null, this, DMASoundEvents.BESSIE_HORN.get(),
-			SoundCategory.NEUTRAL, p_184775_1_ / 100f, 1f);
+			SoundCategory.NEUTRAL, l / 100f, 1f);
 	}
 
 	@Override

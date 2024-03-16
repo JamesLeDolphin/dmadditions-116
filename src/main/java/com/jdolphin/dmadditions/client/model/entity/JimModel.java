@@ -9,9 +9,9 @@ public class JimModel extends PlayerModel<JimEntity>{
 	}
 
 	@Override
-	public void setupAnim(JimEntity p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_,
-			float p_225597_5_, float p_225597_6_) {
-		super.setupAnim(p_225597_1_, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
+	public void setupAnim(JimEntity jimEntity, float v, float v1, float v2,
+			float v3, float v4) {
+		super.setupAnim(jimEntity, v, v1, v2, v3, v4);
 	}
 
 }

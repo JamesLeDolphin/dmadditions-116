@@ -1,17 +1,10 @@
 package com.jdolphin.dmadditions.util;
 
 import com.jdolphin.dmadditions.client.gui.PlayerLocatorScreen;
-import com.swdteam.client.gui.*;
-import com.swdteam.client.gui.panel_interface.GuiPanelInterfaceCategory;
-import com.swdteam.client.gui.tardis_computer.GuiTarDOS;
-import com.swdteam.common.tileentity.HologramTileEntity;
-import com.swdteam.common.tileentity.TardisHologramTileEntity;
-import com.swdteam.common.tileentity.tardis.SonicInterfaceTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

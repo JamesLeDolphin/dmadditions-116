@@ -65,16 +65,16 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 	}
 
 	@Override
-	public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
-		super.setItemSlot(p_184201_1_, p_184201_2_);
+	public void setItemSlot(EquipmentSlotType equipmentSlotType, ItemStack itemStack) {
+		super.setItemSlot(equipmentSlotType, itemStack);
 		if (!this.level.isClientSide) {
 			this.reassessWeaponGoal();
 		}
 	}
 
 	@Override
-	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
-		super.populateDefaultEquipmentSlots(p_180481_1_);
+	protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyInstance) {
+		super.populateDefaultEquipmentSlots(difficultyInstance);
 		List<ItemStack> inventory = this.getPilotFishType().getInventory.apply(this.random);
 		if (inventory != null) {
 			inventory.forEach(this::equipItemIfPossible);
@@ -83,15 +83,15 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 	@Nullable
 	@Override
-	public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
+	public ILivingEntityData finalizeSpawn(IServerWorld iServerWorld, DifficultyInstance difficultyInstance, SpawnReason spawnReason, @Nullable ILivingEntityData iLivingEntityData, @Nullable CompoundNBT compoundNBT) {
 
-		p_213386_4_ = super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
-		this.populateDefaultEquipmentSlots(p_213386_2_);
-		this.populateDefaultEquipmentEnchantments(p_213386_2_);
+		iLivingEntityData = super.finalizeSpawn(iServerWorld, difficultyInstance, spawnReason, iLivingEntityData, compoundNBT);
+		this.populateDefaultEquipmentSlots(difficultyInstance);
+		this.populateDefaultEquipmentEnchantments(difficultyInstance);
 		this.reassessWeaponGoal();
-		this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * p_213386_2_.getSpecialMultiplier());
+		this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * difficultyInstance.getSpecialMultiplier());
 
-		return p_213386_4_;
+		return iLivingEntityData;
 	}
 
 	public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
@@ -146,7 +146,7 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 
 	@Override
-	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
+	public void performRangedAttack(LivingEntity livingEntity, float v) {
 		Hand hand = ProjectileHelper.getWeaponHoldingHand(this, item -> item instanceof GunItem);
 		int damage = 2;
 		ItemStack itemstack = this.getItemInHand(hand);
@@ -155,9 +155,9 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 		if (PILOT_FISH_TRUMPET != null && itemstack.getItem().equals(PILOT_FISH_TRUMPET.get()))
 			laser.setLaserType(DMProjectiles.EXPLOSIVE_LASER);
 
-		double d0 = p_82196_1_.getX() - this.getX();
-		double d1 = p_82196_1_.getY(0.3333333333333333D) - laser.getY();
-		double d2 = p_82196_1_.getZ() - this.getZ();
+		double d0 = livingEntity.getX() - this.getX();
+		double d1 = livingEntity.getY(0.3333333333333333D) - laser.getY();
+		double d2 = livingEntity.getZ() - this.getZ();
 		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 		laser.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F, (float) (14 - this.level.getDifficulty().getId() * 4));
 		this.playSound(DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));

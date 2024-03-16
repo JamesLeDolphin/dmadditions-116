@@ -15,30 +15,30 @@ import net.minecraft.world.World;
 import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
 
 public class DalekPumpkinBlock extends PumpkinBlock {
-	public DalekPumpkinBlock(Properties p_i48347_1_) {
-		super(p_i48347_1_);
+	public DalekPumpkinBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override
-	public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		ItemStack itemstack = p_225533_4_.getItemInHand(p_225533_5_);
+	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
+		ItemStack itemstack = playerEntity.getItemInHand(hand);
 		if (itemstack.getItem() == Items.SHEARS) {
-			if (!p_225533_2_.isClientSide) {
-				Direction direction = p_225533_6_.getDirection();
-				Direction direction1 = direction.getAxis() == Direction.Axis.Y ? p_225533_4_.getDirection().getOpposite() : direction;
-				p_225533_2_.playSound((PlayerEntity) null, p_225533_3_, SoundEvents.PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				p_225533_2_.setBlock(p_225533_3_, CARVED_DALEK_PUMPKIN.get().defaultBlockState().setValue(CarvedPumpkinBlock.FACING, direction1), 11);
-				ItemEntity itementity = new ItemEntity(p_225533_2_, (double) p_225533_3_.getX() + 0.5D + (double) direction1.getStepX() * 0.65D, (double) p_225533_3_.getY() + 0.1D, (double) p_225533_3_.getZ() + 0.5D + (double) direction1.getStepZ() * 0.65D, new ItemStack(Items.PUMPKIN_SEEDS, 4));
-				itementity.setDeltaMovement(0.05D * (double) direction1.getStepX() + p_225533_2_.random.nextDouble() * 0.02D, 0.05D, 0.05D * (double) direction1.getStepZ() + p_225533_2_.random.nextDouble() * 0.02D);
-				p_225533_2_.addFreshEntity(itementity);
-				itemstack.hurtAndBreak(1, p_225533_4_, (p_220282_1_) -> {
-					p_220282_1_.broadcastBreakEvent(p_225533_5_);
+			if (!world.isClientSide) {
+				Direction direction = blockRayTraceResult.getDirection();
+				Direction direction1 = direction.getAxis() == Direction.Axis.Y ? playerEntity.getDirection().getOpposite() : direction;
+				world.playSound((PlayerEntity) null, blockPos, SoundEvents.PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				world.setBlock(blockPos, CARVED_DALEK_PUMPKIN.get().defaultBlockState().setValue(CarvedPumpkinBlock.FACING, direction1), 11);
+				ItemEntity itementity = new ItemEntity(world, (double) blockPos.getX() + 0.5D + (double) direction1.getStepX() * 0.65D, (double) blockPos.getY() + 0.1D, (double) blockPos.getZ() + 0.5D + (double) direction1.getStepZ() * 0.65D, new ItemStack(Items.PUMPKIN_SEEDS, 4));
+				itementity.setDeltaMovement(0.05D * (double) direction1.getStepX() + world.random.nextDouble() * 0.02D, 0.05D, 0.05D * (double) direction1.getStepZ() + world.random.nextDouble() * 0.02D);
+				world.addFreshEntity(itementity);
+				itemstack.hurtAndBreak(1, playerEntity, (p_220282_1_) -> {
+					p_220282_1_.broadcastBreakEvent(hand);
 				});
 			}
 
-			return ActionResultType.sidedSuccess(p_225533_2_.isClientSide);
+			return ActionResultType.sidedSuccess(world.isClientSide);
 		} else {
-			return super.use(p_225533_1_, p_225533_2_, p_225533_3_, p_225533_4_, p_225533_5_, p_225533_6_);
+			return super.use(blockState, world, blockPos, playerEntity, hand, blockRayTraceResult);
 		}
 	}
 }

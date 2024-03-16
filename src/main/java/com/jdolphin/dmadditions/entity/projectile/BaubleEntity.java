@@ -8,16 +8,16 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class BaubleEntity extends SnowballEntity {
-	public BaubleEntity(EntityType<? extends SnowballEntity> p_i50159_1_, World p_i50159_2_) {
-		super(p_i50159_1_, p_i50159_2_);
+	public BaubleEntity(EntityType<? extends SnowballEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
-	public BaubleEntity(World p_i1775_1_, double p_i1775_2_, double p_i1775_4_, double p_i1775_6_) {
-		super(p_i1775_1_, p_i1775_2_, p_i1775_4_, p_i1775_6_);
+	public BaubleEntity(World world, double v, double v1, double v2) {
+		super(world, v, v1, v2);
 	}
 
-	public BaubleEntity(World p_i1774_1_, LivingEntity p_i1774_2_) {
-		super(p_i1774_1_, p_i1774_2_);
+	public BaubleEntity(World world, LivingEntity livingEntity) {
+		super(world, livingEntity);
 	}
 
 

@@ -51,7 +51,7 @@ public class ShoppingCartModel extends SegmentedModel<ShoppingCartEntity> implem
 	}
 
 	@Override
-	public void setupAnim(ShoppingCartEntity entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+	public void setupAnim(ShoppingCartEntity entity, float v, float v1, float v2, float v3, float v4) {
 		this.engine.visible = entity.hasEngine();
 	}
 }

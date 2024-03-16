@@ -13,8 +13,8 @@ import net.minecraft.world.IBlockReader;
 
 public class EngineBlock extends HorizontalBlock{
 
-	public EngineBlock(Properties p_i48377_1_) {
-		super(p_i48377_1_);
+	public EngineBlock(Properties properties) {
+		super(properties);
 	}
 
 	@Override

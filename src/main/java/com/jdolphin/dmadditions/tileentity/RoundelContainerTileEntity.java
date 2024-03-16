@@ -30,24 +30,24 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 		this(TILE_ROUNDEL_CONTAINER.get());
 	}
 
-	private RoundelContainerTileEntity(TileEntityType<?> p_i48284_1_) {
-		super(p_i48284_1_);
+	private RoundelContainerTileEntity(TileEntityType<?> tileEntityType) {
+		super(tileEntityType);
 	}
 
-	public CompoundNBT save(CompoundNBT p_189515_1_) {
-		super.save(p_189515_1_);
-		if (!this.trySaveLootTable(p_189515_1_)) {
-			ItemStackHelper.saveAllItems(p_189515_1_, this.items);
+	public CompoundNBT save(CompoundNBT compoundNBT) {
+		super.save(compoundNBT);
+		if (!this.trySaveLootTable(compoundNBT)) {
+			ItemStackHelper.saveAllItems(compoundNBT, this.items);
 		}
 
-		return p_189515_1_;
+		return compoundNBT;
 	}
 
-	public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
-		super.load(p_230337_1_, p_230337_2_);
+	public void load(BlockState blockState, CompoundNBT compoundNBT) {
+		super.load(blockState, compoundNBT);
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		if (!this.tryLoadLootTable(p_230337_2_)) {
-			ItemStackHelper.loadAllItems(p_230337_2_, this.items);
+		if (!this.tryLoadLootTable(compoundNBT)) {
+			ItemStackHelper.loadAllItems(compoundNBT, this.items);
 		}
 
 	}
@@ -60,20 +60,20 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 		return this.items;
 	}
 
-	protected void setItems(NonNullList<ItemStack> p_199721_1_) {
-		this.items = p_199721_1_;
+	protected void setItems(NonNullList<ItemStack> itemStacks) {
+		this.items = itemStacks;
 	}
 
 	protected ITextComponent getDefaultName() {
 		return new TranslationTextComponent("container.dmadditions.roundel_storage");
 	}
 
-	protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
-		return ChestContainer.threeRows(p_213906_1_, p_213906_2_, this);
+	protected Container createMenu(int i, PlayerInventory playerInventory) {
+		return ChestContainer.threeRows(i, playerInventory, this);
 	}
 
-	public void startOpen(PlayerEntity p_174889_1_) {
-		if (!p_174889_1_.isSpectator()) {
+	public void startOpen(PlayerEntity playerEntity) {
+		if (!playerEntity.isSpectator()) {
 			if (this.openCount < 0) {
 				this.openCount = 0;
 			}
@@ -106,22 +106,22 @@ public class RoundelContainerTileEntity extends LockableLootTileEntity {
 
 	}
 
-	public void stopOpen(PlayerEntity p_174886_1_) {
-		if (!p_174886_1_.isSpectator()) {
+	public void stopOpen(PlayerEntity playerEntity) {
+		if (!playerEntity.isSpectator()) {
 			--this.openCount;
 		}
 
 	}
 
-	private void updateBlockState(BlockState p_213963_1_, boolean p_213963_2_) {
-		this.level.setBlock(this.getBlockPos(), p_213963_1_.setValue(BarrelBlock.OPEN, Boolean.valueOf(p_213963_2_)), 3);
+	private void updateBlockState(BlockState blockState, boolean b) {
+		this.level.setBlock(this.getBlockPos(), blockState.setValue(BarrelBlock.OPEN, Boolean.valueOf(b)), 3);
 	}
 
-	private void playSound(BlockState p_213965_1_, SoundEvent p_213965_2_) {
-		Vector3i vector3i = p_213965_1_.getValue(BarrelBlock.FACING).getNormal();
+	private void playSound(BlockState blockState, SoundEvent soundEvent) {
+		Vector3i vector3i = blockState.getValue(BarrelBlock.FACING).getNormal();
 		double d0 = (double) this.worldPosition.getX() + 0.5D + (double) vector3i.getX() / 2.0D;
 		double d1 = (double) this.worldPosition.getY() + 0.5D + (double) vector3i.getY() / 2.0D;
 		double d2 = (double) this.worldPosition.getZ() + 0.5D + (double) vector3i.getZ() / 2.0D;
-		this.level.playSound((PlayerEntity) null, d0, d1, d2, p_213965_2_, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+		this.level.playSound((PlayerEntity) null, d0, d1, d2, soundEvent, SoundCategory.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
 	}
 }

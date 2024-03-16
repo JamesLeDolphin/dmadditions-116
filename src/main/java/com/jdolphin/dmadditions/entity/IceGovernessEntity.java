@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 
 public class IceGovernessEntity extends MonsterEntity{
 
-	public IceGovernessEntity(EntityType<? extends MonsterEntity> p_i48553_1_, World p_i48553_2_) {
-		super(p_i48553_1_, p_i48553_2_);
+	public IceGovernessEntity(EntityType<? extends MonsterEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {

@@ -70,8 +70,8 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 	}
 
 	@Override
-	public void setupAnim(TankEntity entity, float p_225597_2_, float p_225597_3_, float p_225597_4_,
-			float p_225597_5_, float p_225597_6_) {
+	public void setupAnim(TankEntity entity, float v, float v1, float v2,
+			float v3, float v4) {
 
 		this.turret.yRot = entity.turretRot - (float) Math.toRadians(entity.yRot);
 

@@ -8,8 +8,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class TankRenderer<T extends TankEntity> extends MobRenderer<T, TankModel<T>>{
 
-	public TankRenderer(EntityRendererManager p_i50961_1_, TankModel<T> p_i50961_2_, float p_i50961_3_) {
-		super(p_i50961_1_, p_i50961_2_, p_i50961_3_);
+	public TankRenderer(EntityRendererManager entityRendererManager, TankModel<T> tTankModel, float v) {
+		super(entityRendererManager, tTankModel, v);
 	}
 
 	public TankRenderer(EntityRendererManager rendererManager){

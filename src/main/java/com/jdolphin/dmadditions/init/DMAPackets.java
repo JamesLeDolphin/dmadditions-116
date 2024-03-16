@@ -4,7 +4,6 @@ import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.network.SBLocatePlayerPacket;
 import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
 import com.jdolphin.dmadditions.util.Helper;
-import com.swdteam.network.packets.PacketOpenGui;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;

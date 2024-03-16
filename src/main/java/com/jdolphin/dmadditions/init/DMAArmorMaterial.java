@@ -50,12 +50,12 @@ public enum DMAArmorMaterial implements IArmorMaterial {
 		this.repairIngredient = new LazyValue<>(pRepairIngredient);
 	}
 
-	public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
-		return HEALTH_PER_SLOT[p_200896_1_.getIndex()] * this.durabilityMultiplier;
+	public int getDurabilityForSlot(EquipmentSlotType equipmentSlotType) {
+		return HEALTH_PER_SLOT[equipmentSlotType.getIndex()] * this.durabilityMultiplier;
 	}
 
-	public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
-		return this.slotProtections[p_200902_1_.getIndex()];
+	public int getDefenseForSlot(EquipmentSlotType equipmentSlotType) {
+		return this.slotProtections[equipmentSlotType.getIndex()];
 	}
 
 	public int getEnchantmentValue() {

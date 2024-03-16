@@ -14,8 +14,8 @@ import net.minecraft.entity.LivingEntity;
 public class WeddingDressModel extends BipedModel<LivingEntity> implements IModelPartReloader {
 	public JSONModel model;
 
-	public WeddingDressModel(float p_i1148_1_) {
-		super(p_i1148_1_);
+	public WeddingDressModel(float v) {
+		super(v);
 		ModelReloaderRegistry.register(this);
 	}
 

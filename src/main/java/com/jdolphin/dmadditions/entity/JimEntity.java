@@ -45,6 +45,7 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 		UUID.fromString("f5e247ad-8bcc-49e7-8da8-ff960d6a3766"), // jim
 		UUID.fromString("a75ea8dd-efc8-45dd-b724-bac7a9c14d6f")  // leo
 		//why no James
+		//because it's a list of people who know JIM IRL
 	));
 
 	private final RangedAttackGoal rangedAttackGoal = new RangedAttackGoal(this, 1.0D, 20, 15.0F);
@@ -137,14 +138,14 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	}
 
 	@Override
-	public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_,
-			SpawnReason p_213386_3_, ILivingEntityData p_213386_4_, CompoundNBT p_213386_5_) {
+	public ILivingEntityData finalizeSpawn(IServerWorld iServerWorld, DifficultyInstance difficultyInstance,
+			SpawnReason spawnReason, ILivingEntityData iLivingEntityData, CompoundNBT compoundNBT) {
 
-		this.populateDefaultEquipmentSlots(p_213386_2_);
+		this.populateDefaultEquipmentSlots(difficultyInstance);
 		reassessWeaponGoal();
 		this.setCanPickUpLoot(true);
 
-		return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+		return super.finalizeSpawn(iServerWorld, difficultyInstance, spawnReason, iLivingEntityData, compoundNBT);
 	}
 
 	public void reassessWeaponGoal() {
@@ -163,7 +164,7 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	}
 
 	@Override
-	public void performRangedAttack(LivingEntity target, float p_82196_2_) {
+	public void performRangedAttack(LivingEntity target, float v) {
       double d0 = 0.0;
       double d1 = 0.0;
       double d2 = 0.0;
@@ -181,8 +182,8 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-		super.readAdditionalSaveData(p_70037_1_);
+	public void readAdditionalSaveData(CompoundNBT compoundNBT) {
+		super.readAdditionalSaveData(compoundNBT);
 
 		reassessWeaponGoal();
 	}
@@ -205,8 +206,8 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	}
 
 	public static class JimNearestAttackableTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T>{
-		public JimNearestAttackableTargetGoal(MobEntity entity, Class<T> clazz, boolean p_i50313_3_) {
-			super(entity, clazz, p_i50313_3_);
+		public JimNearestAttackableTargetGoal(MobEntity entity, Class<T> clazz, boolean aSuper) {
+			super(entity, clazz, aSuper);
 		}
 
 		@Override

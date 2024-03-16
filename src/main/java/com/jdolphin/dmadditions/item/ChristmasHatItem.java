@@ -30,8 +30,8 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		0xF497B3
 	};
 
-	public ChristmasHatItem(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
-		super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
+	public ChristmasHatItem(IArmorMaterial iArmorMaterial, EquipmentSlotType equipmentSlotType, Properties properties) {
+		super(iArmorMaterial, equipmentSlotType, properties);
 	}
 
 	public ChristmasHatItem(){

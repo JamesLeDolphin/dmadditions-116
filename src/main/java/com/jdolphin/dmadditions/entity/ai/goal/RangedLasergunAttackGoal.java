@@ -23,18 +23,18 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 	protected boolean strafingBackwards;
 	protected int strafingTime = -1;
 
-	public RangedLasergunAttackGoal(T p_i47515_1_, double p_i47515_2_, int p_i47515_4_, float p_i47515_5_) {
-		super(p_i47515_1_, p_i47515_2_, p_i47515_4_, p_i47515_5_);
+	public RangedLasergunAttackGoal(T t, double v, int i, float v1) {
+		super(t, v, i, v1);
 
-		this.mob = p_i47515_1_;
-		this.speedModifier = p_i47515_2_;
-		this.attackIntervalMin = p_i47515_4_;
-		this.attackRadiusSqr = p_i47515_5_ * p_i47515_5_;
+		this.mob = t;
+		this.speedModifier = v;
+		this.attackIntervalMin = i;
+		this.attackRadiusSqr = v1 * v1;
 		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 
-	public void setMinAttackInterval(int p_189428_1_) {
-		this.attackIntervalMin = p_189428_1_;
+	public void setMinAttackInterval(int i) {
+		this.attackIntervalMin = i;
 	}
 
 	@Override

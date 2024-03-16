@@ -6,8 +6,6 @@ import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.util.GuiHandler;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
-import com.swdteam.common.init.DMDimensions;
-import com.swdteam.network.NetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -26,9 +24,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock implements IBetterPanel {
 
@@ -44,7 +39,7 @@ public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock imp
 		} return super.use(state, world, pos, player, hand, hit);
 	}
 
-	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
+	public BlockRenderType getRenderShape(BlockState blockState) {
 		return BlockRenderType.MODEL;
 	}
 

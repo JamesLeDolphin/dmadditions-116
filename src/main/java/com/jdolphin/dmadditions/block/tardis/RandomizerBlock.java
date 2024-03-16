@@ -59,15 +59,15 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 
 	@Override
 	@Nullable
-	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-		return IBetterPanel.super.getStateForPlacement(p_196258_1_, defaultBlockState());
+	public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
+		return IBetterPanel.super.getStateForPlacement(blockItemUseContext, defaultBlockState());
 	}
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_,
-			ISelectionContext p_220071_4_) {
+	public VoxelShape getCollisionShape(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos,
+			ISelectionContext iSelectionContext) {
 
-		return this.getShape(p_220071_1_, p_220071_2_, p_220071_3_, p_220071_4_);
+		return this.getShape(blockState, iBlockReader, blockPos, iSelectionContext);
 	}
 
 	@Override

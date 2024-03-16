@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 
 public class ConsoleRenderer extends TileEntityRenderer<ConsoleTileEntity> {
-	public ConsoleRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-		super(p_i226006_1_);
+	public ConsoleRenderer(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+		super(tileEntityRendererDispatcher);
 	}
 
 	@Override

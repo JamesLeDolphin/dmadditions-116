@@ -67,10 +67,10 @@ public class ClientBusEvents {
 					Button b = new Button(gui.width / 2 + 2, gui.height / 4 + 72, 98, 20,
 						new StringTextComponent("Dalek Mod Server"), (button) -> {
 						Minecraft.getInstance().setScreen(new GuiDMU(gui));
-					}, (p_238659_1_, p_238659_2_, p_238659_3_, p_238659_4_) -> {
-						if (!p_238659_1_.active) {
-							gui.renderTooltip(p_238659_2_, gui.getMinecraft().font.split(new StringTextComponent("Please remove Dalek Mod: Additions before joining DMU"),
-								Math.max(gui.width / 2 - 43, 170)), p_238659_3_, p_238659_4_); }});
+					}, (button, matrixStack, i1, i2) -> {
+						if (!button.active) {
+							gui.renderTooltip(matrixStack, gui.getMinecraft().font.split(new StringTextComponent("Please remove Dalek Mod: Additions before joining DMU"),
+								Math.max(gui.width / 2 - 43, 170)), i1, i2); }});
 					b.active = false;
 					gui.children.add(b);
 					gui.buttons.add(b);

@@ -17,8 +17,8 @@ import static com.jdolphin.dmadditions.init.DMAEntities.JAMESLEDOLPHIN;
 @Mixin(DolphinEntity.class)
 public abstract class DolphinEntityMixin extends LivingEntity {
 
-	protected DolphinEntityMixin(EntityType<? extends LivingEntity> p_i48577_1_, World p_i48577_2_) {
-		super(p_i48577_1_, p_i48577_2_);
+	protected DolphinEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	protected void checkName(ITextComponent name) {

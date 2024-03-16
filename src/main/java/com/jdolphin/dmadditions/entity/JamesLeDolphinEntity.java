@@ -16,12 +16,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class JamesLeDolphinEntity extends DolphinEntity {
-	public JamesLeDolphinEntity(EntityType<? extends DolphinEntity> p_i50275_1_, World p_i50275_2_) {
-		super(p_i50275_1_, p_i50275_2_);
+	public JamesLeDolphinEntity(EntityType<? extends DolphinEntity> entityType, World world) {
+		super(entityType, world);
 	}
 
 	@Override
-	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+	protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyInstance) {
 		if (AdventUnlock.isDecember() && random.nextBoolean() && DMAItems.SANTA_HAT != null) {
 			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 			this.setDropChance(EquipmentSlotType.HEAD, 0.25f);
@@ -30,8 +30,8 @@ public class JamesLeDolphinEntity extends DolphinEntity {
 
 	@Nullable
 	@Override
-	public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-		populateDefaultEquipmentSlots(p_213386_2_);
-		return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+	public ILivingEntityData finalizeSpawn(IServerWorld iServerWorld, DifficultyInstance difficultyInstance, SpawnReason spawnReason, @Nullable ILivingEntityData iLivingEntityData, @Nullable CompoundNBT compoundNBT) {
+		populateDefaultEquipmentSlots(difficultyInstance);
+		return super.finalizeSpawn(iServerWorld, difficultyInstance, spawnReason, iLivingEntityData, compoundNBT);
 	}
 }

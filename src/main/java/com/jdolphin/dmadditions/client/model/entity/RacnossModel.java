@@ -81,12 +81,12 @@ public class RacnossModel extends SegmentedModel<RacnossEntity> implements IMode
 		entity.setupAnim(this, entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 	}
 
-	public HandSide getAttackArm(RacnossEntity p_217147_1_) {
-		HandSide handside = p_217147_1_.getMainArm();
-		return p_217147_1_.swingingArm == Hand.MAIN_HAND ? handside : handside.getOpposite();
+	public HandSide getAttackArm(RacnossEntity racnossEntity) {
+		HandSide handside = racnossEntity.getMainArm();
+		return racnossEntity.swingingArm == Hand.MAIN_HAND ? handside : handside.getOpposite();
 	}
-	public ModelRenderer getArm(HandSide p_187074_1_) {
-		return p_187074_1_ == HandSide.LEFT ? this.leftArm : this.rightArm;
+	public ModelRenderer getArm(HandSide handSide) {
+		return handSide == HandSide.LEFT ? this.leftArm : this.rightArm;
 	}
 
 	public void poseRightArm(RacnossEntity entity) {
