@@ -260,17 +260,6 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						dma$portalSpawned = false;
 					}
 
-					/*
-					 * List of exterior registry names
-					 * dalekmod:tardis_capsule
-					 * dalekmod:police_box
-					 * dalekmod:fridge
-					 * dalekmod:block_stack
-					 * dalekmod:phone_booth
-					 * dalekmod:pagoda
-					 * dalekmod:dalek_mod_2013
-					 * dalekmod:sidrat_capsule
-					 */
 					if (dma$portalSpawned && (dma$portal == null) || (dma$portal != null && !dma$portal.isAlive())) {
 						dma$portalSpawned = false;
 					}
@@ -308,6 +297,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							float tileRot = tile.rotation;
 							float portalRot = 0;
 							BlockPos wPos = worldPosition;
+
 							if (tileRot == 0) {
 								dma$portal.setPos(wPos.getX() + 0.5, wPos.getY() + 1, wPos.getZ() + 0.01);
 								portalRot = 180f;
@@ -350,20 +340,21 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 							if (portalRot != 0f) PortalManipulation.rotatePortalBody(dma$portal, quater);
 
 
+							Vector3f f3 = new Vector3f(0, 1, 0);
 							if (tileRot == 0) { //S
 								dma$portal.setRotationTransformation(new Quaternion(0, 1, 0, 0));
 							}
 							if (tileRot == 45) { //NE
-								dma$portal.setRotationTransformation(new Quaternion(0, 0.5f, 0, -0.75f));
+								dma$portal.setRotationTransformation(new Quaternion(f3, 225, true));
 							}
-							if (tileRot == 135) {
-								dma$portal.setRotationTransformation(new Quaternion(0, 0.5f, 0, -0.5f));
+							if (tileRot == 135) { //SE
+								dma$portal.setRotationTransformation(new Quaternion(f3, -45, true));
 							}
-							if (tileRot == 225) {
-								dma$portal.setRotationTransformation(new Quaternion(0, 0.25f, 0, -0.5f));
+							if (tileRot == 225) { //SW
+								dma$portal.setRotationTransformation(new Quaternion(f3, 45, true));
 							}
-							if (tileRot == 315) {
-								dma$portal.setRotationTransformation(new Quaternion(0, 0.25f, 0, -0.5f));
+							if (tileRot == 315) { //NW
+								dma$portal.setRotationTransformation(new Quaternion(f3, -225, true));
 							}
 							if (tileRot == 270) { //E
 								dma$portal.setRotationTransformation(new Quaternion(0, 0.7071f, 0, 0.7071f));
