@@ -35,7 +35,7 @@ public class DMABlockEntities {
 
 
 	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->
-			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[]{
+			TileEntityType.Builder.of(RoundelContainerTileEntity::new, new Block[] {
 				DMABlocks.BLACK_QUARTZ_ROUNDEL_CONTAINER.get(),
 				DMABlocks.YELLOW_QUARTZ_ROUNDEL_CONTAINER.get(),
 				DMABlocks.WHITE_QUARTZ_ROUNDEL_CONTAINER.get(),
