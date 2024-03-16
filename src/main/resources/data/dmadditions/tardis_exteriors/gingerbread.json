@@ -1,9 +1,0 @@
-{
-	"name": "dmadditions.tardis.name.gingerbread",
-	"models": [
-		"dmadditions:models/tileentity/tardis/gingerbread_tardis.json"
-	],
-	"cost": 100,
-	"unlockable": true,
-	"desc": "dmadditions.tardis.description.gingerbread"
-}
