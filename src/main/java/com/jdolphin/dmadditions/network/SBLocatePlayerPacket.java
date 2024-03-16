@@ -49,7 +49,7 @@ public class SBLocatePlayerPacket {
 		try {
 			ServerPlayerEntity pl1 = server.getPlayerList().getPlayerByName(this.name);
 			if (pl1 != null) {
-				if (!Helper.isTardis(pl1.getLevel()) || !pl1.inventory.contains(DMAItems.BIO_DAMPNER.get().getDefaultInstance())) {
+				if (!Helper.isTardis(pl1.getLevel()) && !pl1.inventory.contains(DMAItems.BIO_DAMPNER.get().getDefaultInstance())) {
 					TardisData data = DMTardis.getTardisFromInteriorPos(this.pos);
 					TardisFlightData flight = TardisFlightPool.getFlightData(data);
 					flight.setPos(this.pos);
