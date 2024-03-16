@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    "BCK",
+    "SSS"
+  ],
+  "key": {
+    "K": {
+      "item": "minecraft:shield"
+    },
+    "O": {
+      "item": "dalekmod:refined_sonic_crystal"
+    },
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "C": {
+      "tag": "forge:circuits/basic"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "dmadditions:forcefield_panel",
+    "count": 1
+  }
+}

@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import org.jetbrains.annotations.NotNull;
 
 public class CubeModel extends Model {
 	private final ModelRenderer bb_main;
@@ -25,11 +26,11 @@ public class CubeModel extends Model {
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(MatrixStack matrixStack, @NotNull IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		matrixStack.pushPose();
-		float scale = 5.4f;
+		float scale = 5.0f;
 		matrixStack.scale(scale, scale, scale);
-		matrixStack.translate(0.15, -0.6, 0.15);
+		matrixStack.translate(0.1001, -0.6, 0.1001);
 		bb_main.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		matrixStack.popPose();
 	}
