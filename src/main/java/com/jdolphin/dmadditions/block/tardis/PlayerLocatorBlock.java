@@ -1,11 +1,13 @@
 package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.block.IBetterPanel;
+import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.util.GuiHandler;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
+import com.swdteam.util.ChatUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -20,11 +22,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-
+import org.jetbrains.annotations.NotNull;
+@SuppressWarnings({"deprecation"})
 public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock implements IBetterPanel {
 
 	public PlayerLocatorBlock(Properties properties) {
@@ -34,12 +38,14 @@ public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock imp
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if (world.isClientSide || hand.equals(Hand.OFF_HAND))
 			return super.use(state, world, pos, player, hand, hit);
-		if (Helper.isTardis(world)) {
+		if (Helper.isTardis(world) && DMACommonConfig.canPlayerLocate()) {
 			DMAPackets.sendTo(((ServerPlayerEntity) player), new CBOpenGUIPacket(pos, GuiHandler.PLAYER_LOCATOR));
-		} return super.use(state, world, pos, player, hand, hit);
+		} else if (!DMACommonConfig.canPlayerLocate()) ChatUtil.sendMessageToPlayer(player,
+			new TranslationTextComponent("block.dmadditions.player_locator.disabled"), ChatUtil.MessageType.STATUS_BAR);
+		return super.use(state, world, pos, player, hand, hit);
 	}
 
-	public BlockRenderType getRenderShape(BlockState blockState) {
+	public @NotNull BlockRenderType getRenderShape(BlockState blockState) {
 		return BlockRenderType.MODEL;
 	}
 

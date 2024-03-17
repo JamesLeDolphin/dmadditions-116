@@ -107,7 +107,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:tinkers-construct-74072:3695126")
 
     //Mantle
-    compileOnly fg.deobf("curse.maven:mantle-74924:3631982")
+    implementation fg.deobf("curse.maven:mantle-74924:3631982")
 
     //DMDev
     compileOnly fg.deobf("maven.modrinth:oXiCK31F:hyFkg06T")

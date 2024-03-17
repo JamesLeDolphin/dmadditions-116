@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "dmadditions:door_panel"
+    "dmadditions:door_panel",
+    "dmadditions:cloak_panel",
+    "dmadditions:forcefield_panel",
+    "dmadditions:player_locator"
   ]
 }

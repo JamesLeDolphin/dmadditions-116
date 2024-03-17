@@ -24,6 +24,7 @@ import net.minecraft.state.properties.AttachFace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -114,19 +115,15 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 				Location currentLocation = tardis.getCurrentLocation();
 				BlockPos currentPos = currentLocation.getBlockPosition();
 
-				double maxDistance = DMACommonConfig.randomizer_max.get();
+				double i = DMACommonConfig.randomizer_max.get();
 
-				double maxX = Math.min(border.getMaxX(), currentPos.getX() + maxDistance);
-				double minX = Math.max(border.getMinX(), currentPos.getX() - maxDistance);
+				Random rand = DmAdditions.RANDOM;
+				int xCoord = MathHelper.nextInt(rand, (int) Math.max(border.getMinX(), i), (int) Math.min(border.getMaxX(), i));
+				int yCoord = MathHelper.nextInt(rand,5, level.getMaxBuildHeight());
+				int zCoord = MathHelper.nextInt(rand,(int) Math.max(border.getMinZ(), i), (int) Math.min(border.getMaxZ(), i));
 
-				double maxZ = Math.min(border.getMaxZ(), currentPos.getZ() + maxDistance);
-				double minZ = Math.max(border.getMinZ(), currentPos.getZ() - maxDistance);
 
-				double xPos = Math.floor(Math.random() * (maxX - minX + 1) + minX);
-				double zPos = Math.floor(Math.random() * (maxZ - minZ + 1) + minZ);
-				double yPos = currentPos.getY();
-
-				BlockPos newPos = new BlockPos(xPos, yPos, zPos);
+				BlockPos newPos = new BlockPos(xCoord, yCoord, zCoord);
 
 				TardisFlightData flight = TardisFlightPool.getFlightData(tardis);
 

@@ -19,6 +19,7 @@ updateJSONURL="https://api.modrinth.com/updates/6XJWjUK9/forge_updates.json"
     versionRange="[36,)"
     ordering="NONE"
     side="BOTH"
+
 [[dependencies.dmadditions]]
     modId="minecraft"
     mandatory=true
@@ -44,6 +45,14 @@ updateJSONURL="https://api.modrinth.com/updates/6XJWjUK9/forge_updates.json"
     modId="immersive_portals"
     mandatory=false
     versionRange="[0.14, 0.18)"
+    ordering="BEFORE"
+    side="BOTH"
+
+
+[[dependencies.dmadditions]]
+    modId="tconstruct"
+    mandatory=false
+    versionRange="[3.3.4.335,)"
     ordering="BEFORE"
     side="BOTH"
 

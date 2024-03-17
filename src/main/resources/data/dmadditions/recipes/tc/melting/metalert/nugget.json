@@ -11,11 +11,11 @@
       "recipe": {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "dalekmod:metalert_scrap"
+    "item": "dalekmod:metalert_nugget"
   },
   "result": {
     "fluid": "dmadditions:molten_metalert",
-    "amount": 144
+    "amount": 16
   },
   "temperature": 1000,
   "time": 50

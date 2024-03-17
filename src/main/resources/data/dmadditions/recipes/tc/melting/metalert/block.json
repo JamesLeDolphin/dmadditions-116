@@ -10,9 +10,17 @@
       ],
       "recipe": {
         "type": "tconstruct:melting",
-        "ingredient": {
-          "item": "dalekmod:metalert_block"
-        },
+        "ingredient": [
+          {
+            "item": "dalekmod:metalert_block"
+          },
+          {
+            "item": "dalekmod:emblemized_metalert_block"
+          },
+          {
+            "item": "dalekmod:metalert_sheetwall"
+          }
+        ],
         "result": {
           "fluid": "dmadditions:molten_metalert",
           "amount": 1296

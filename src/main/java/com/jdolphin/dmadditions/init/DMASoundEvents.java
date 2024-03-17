@@ -8,20 +8,35 @@ import net.minecraftforge.registries.DeferredRegister;
 
 @SuppressWarnings("unused")
 public class DMASoundEvents {
-	public static final RegistryObject<SoundEvent> PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
-	public static final RegistryObject<SoundEvent> COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copper_hand_brake");
-	public static final RegistryObject<SoundEvent> CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coral_hand_brake");
-	public static final RegistryObject<SoundEvent> MUSIC_DISC_PFD = buildSound(RegistryHandler.SOUNDS, "music_disc.pfd");
-	public static final RegistryObject<SoundEvent> CHRISTMAS_TREE_JINGLE_BELLS = buildSound(RegistryHandler.SOUNDS, "entity.christmas_tree.jingle_bells");
-	public static final RegistryObject<SoundEvent> DALEK_STORM_DEATH = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.death");
-	public static final RegistryObject<SoundEvent> DALEK_STORM_EXTERMINATE = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.exterminate");
-	public static final RegistryObject<SoundEvent> LASER_SONIC_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.sonic.laser.shoot");
-	public static final RegistryObject<SoundEvent> BESSIE_HORN = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.horn");
-	public static final RegistryObject<SoundEvent> BESSIE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.drive");
-	public static final RegistryObject<SoundEvent> RICKROLL = buildSound(RegistryHandler.SOUNDS, "music_disc.rick_roll");
-	public static final RegistryObject<SoundEvent> V8_IDLE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_idle");
-	public static final RegistryObject<SoundEvent> V8_REVVING = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_revving");
+	public static RegistryObject<SoundEvent> PISTOL_SHOOT;
+	public static RegistryObject<SoundEvent> COPPER_HANDBRAKE;
+	public static RegistryObject<SoundEvent> CORAL_HANDBRAKE;
+	public static RegistryObject<SoundEvent> MUSIC_DISC_PFD;
+	public static RegistryObject<SoundEvent> CHRISTMAS_TREE_JINGLE_BELLS;
+	public static RegistryObject<SoundEvent> DALEK_STORM_DEATH;
+	public static RegistryObject<SoundEvent> DALEK_STORM_EXTERMINATE;
+	public static RegistryObject<SoundEvent> LASER_SONIC_SHOOT;
+	public static RegistryObject<SoundEvent> BESSIE_HORN;
+	public static RegistryObject<SoundEvent> BESSIE;
+	public static RegistryObject<SoundEvent> RICKROLL;
+	public static RegistryObject<SoundEvent> V8_IDLE;
+	public static RegistryObject<SoundEvent> V8_REVVING;
 
+	public static void init() {
+		PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
+		COPPER_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.copper_hand_brake");
+		CORAL_HANDBRAKE = buildSound(RegistryHandler.SOUNDS, "block.handbrake.coral_hand_brake");
+		MUSIC_DISC_PFD = buildSound(RegistryHandler.SOUNDS, "music_disc.pfd");
+		CHRISTMAS_TREE_JINGLE_BELLS = buildSound(RegistryHandler.SOUNDS, "entity.christmas_tree.jingle_bells");
+		DALEK_STORM_DEATH = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.death");
+		DALEK_STORM_EXTERMINATE = buildSound(RegistryHandler.SOUNDS, "entity.dalek.storm.exterminate");
+		LASER_SONIC_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.sonic.laser.shoot");
+		BESSIE_HORN = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.horn");
+		BESSIE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.drive");
+		RICKROLL = buildSound(RegistryHandler.SOUNDS, "music_disc.rick_roll");
+		V8_IDLE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_idle");
+		V8_REVVING = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_revving");
+	}
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {
 		return register.register(registryName,

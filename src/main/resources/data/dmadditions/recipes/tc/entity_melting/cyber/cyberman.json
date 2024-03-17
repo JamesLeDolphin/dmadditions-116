@@ -16,8 +16,9 @@
             "dalekmod:cybermat",
             "dalekmod:cyberdrone",
             "dalekmod:cybervillager",
-            "dalekmod:pilot_fish",
-            "dalekmod:kerblam_man"
+            "dmadditions:pilot_fish",
+            "dalekmod:kerblam_man",
+            "dalekmod:dalek_magnodon"
           ]
         },
         "result": {

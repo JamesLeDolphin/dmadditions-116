@@ -15,10 +15,15 @@ public final class DMACommonConfig {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_cyberdrone_laser;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_explosive_laser;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_boti;
+	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_player_loc;
 	public static final ForgeConfigSpec.ConfigValue<List<? extends String>> disable_dma_commands;
 
 	public static boolean isBotiEnabled() {
 		return !disable_boti.get();
+	}
+
+	public static boolean canPlayerLocate() {
+		return !disable_player_loc.get();
 	}
 
 	static {
@@ -32,6 +37,8 @@ public final class DMACommonConfig {
 
 		disable_boti = BUILDER.comment("Disable BOTI effect. This only applies if Immersive Portals is installed. Default = false")
 			.define("disable_boti", false);
+		disable_player_loc = BUILDER.comment("Disable player locating. Default = false")
+			.define("disable_player_locating", false);
 
 		disable_dma_commands = BUILDER.comment("Disable DMA commands").defineList("disable_dma_commands", Collections.emptyList(), entry -> true);
 

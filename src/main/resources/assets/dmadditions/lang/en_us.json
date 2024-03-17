@@ -295,5 +295,6 @@
 	"entity.dmadditions.console.fail.dim": "This can only be used in the TARDIS",
 	"dmadditions.gui.player_locator": "Player Locator",
 	"dmadditions.button.cancel": "Cancel",
-	"dmadditions.button.player_locator.select": "Locate Player"
+	"dmadditions.button.player_locator.select": "Locate Player",
+	"block.dmadditions.player_locator.disabled": "Player locator is disabled on this server!"
 }

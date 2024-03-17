@@ -70,6 +70,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 
@@ -81,9 +82,9 @@ public class DmAdditions {
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
-	// Directly reference a log4j logger.
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
+	public static final Random RANDOM = new Random();
 
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
@@ -98,23 +99,24 @@ public class DmAdditions {
 
 
 	public DmAdditions() {
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
-		modEventBus.addListener(this::commonSetup);
-		modEventBus.addListener(this::doClientStuff);
-		modEventBus.addListener(this::entityAttributeEvent);
-		modEventBus.addListener(this::runLater);
-		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+		bus.addListener(this::commonSetup);
+		bus.addListener(this::doClientStuff);
+		bus.addListener(this::entityAttributeEvent);
+		bus.addListener(this::runLater);
+
 		// Register things
-		DMABlocks.BLOCKS.register(modEventBus);
-		DMAEntities.ENTITY_TYPES.register(modEventBus);
-		DMABlockEntities.TILE_ENTITY_TYPES.register(modEventBus);
-		DMAItems.ITEMS.register(modEventBus);
-		DMAWorldCarvers.WORLD_CARVERS.register(modEventBus);
-		DMABiomes.BIOMES.register(modEventBus);
+		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
+		DMABlocks.BLOCKS.register(bus);
+		DMAEntities.ENTITY_TYPES.register(bus);
+		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
+		DMAItems.ITEMS.register(bus);
+		DMAWorldCarvers.WORLD_CARVERS.register(bus);
+		DMABiomes.BIOMES.register(bus);
 		DMAProjectiles.init();
-		new DMALootConditionManager();
-		new DMASoundEvents();
+		DMALootConditionManager.init();
+		DMASoundEvents.init();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 		// Register ourselves for server and other game events we are interested in
@@ -124,7 +126,7 @@ public class DmAdditions {
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) {
-			DMAFluids.FLUIDS.register(modEventBus);
+			DMAFluids.FLUIDS.register(bus);
 		}
 	}
 
@@ -138,8 +140,7 @@ public class DmAdditions {
 
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
-		CommandDispatcher<CommandSource> commandDispatcher = event.getDispatcher();
-		this.registerCommands(commandDispatcher);
+		this.registerCommands(event.getDispatcher());
 	}
 
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
@@ -177,6 +178,8 @@ public class DmAdditions {
 
 
 	private static Method GETCODEC_METHOD;
+
+	@SuppressWarnings("unchecked")
 	public void addDimensionalSpacing(WorldEvent.Load event) {
 		if (event.getWorld() instanceof ServerWorld) {
 			ServerWorld world = (ServerWorld) event.getWorld();
@@ -200,13 +203,11 @@ public class DmAdditions {
 			if (world.isFlat()) {
 				return;
 			}
-			if (AdventUnlock.unlockAt(2)) {
-				chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
-			}
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 
-			if (AdventUnlock.unlockAt(9)) {
-				chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(), DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
-			}
 
 		}
 
