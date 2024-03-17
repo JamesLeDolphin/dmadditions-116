@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
+import com.jdolphin.dmadditions.client.render.tileentity.ConsoleRenderer;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderCoordPanel;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderDimensionSelectorPanel;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
@@ -25,6 +26,7 @@ public class DMATileRenderRegistry {
 	public static void init() {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
+		registerModel(DMABlockEntities.TILE_CONSOLE.get(), ConsoleRenderer::new);
 		registerModel(DMABlockEntities.TILE_REDDASH_STATUE.get(), Helper.createAdditionsRL("models/tileentity/reddash_statue.json"));
 	}
 
