@@ -118,9 +118,9 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 				double i = DMACommonConfig.randomizer_max.get();
 
 				Random rand = DmAdditions.RANDOM;
-				int xCoord = MathHelper.nextInt(rand, (int) Math.max(border.getMinX(), i), (int) Math.min(border.getMaxX(), i));
+				int xCoord = MathHelper.nextInt(rand, (int) Math.max(border.getMinX(), -i), (int) Math.min(border.getMaxX(), i));
 				int yCoord = MathHelper.nextInt(rand,5, level.getMaxBuildHeight());
-				int zCoord = MathHelper.nextInt(rand,(int) Math.max(border.getMinZ(), i), (int) Math.min(border.getMaxZ(), i));
+				int zCoord = MathHelper.nextInt(rand,(int) Math.max(border.getMinZ(), -i), (int) Math.min(border.getMaxZ(), i));
 
 
 				BlockPos newPos = new BlockPos(xCoord, yCoord, zCoord);
