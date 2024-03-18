@@ -2,8 +2,6 @@ package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.init.DMAEntityRenderRegistry;
-import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
-import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
@@ -23,8 +21,6 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
