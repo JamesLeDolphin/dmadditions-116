@@ -20,7 +20,7 @@ public class Gravity {
 		if (gravity == null) return;
 
 		if (!DIMENSION_GRAVITY.containsKey(newDim) && DIMENSION_GRAVITY.containsKey(oldDim)) {
-			gravity.setBaseValue(8.0);
+			gravity.setBaseValue(0.08);
 			return;
 		}
 		double value = DIMENSION_GRAVITY.get(newDim) == null ? 0.08 : DIMENSION_GRAVITY.get(newDim);

@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client;
 
-import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMondas;
+import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMoon;
 import com.jdolphin.dmadditions.init.DMADimensions;
 import com.swdteam.main.DalekMod;
@@ -28,14 +28,10 @@ public class ClientDMBusEvents {
 		assert minecraft.level != null;
 		if (minecraft.level.dimension().equals(DMADimensions.MOON)) {
 			world = minecraft.level;
-			if (world.effects().getSkyRenderHandler() == null) {
+			ISkyRenderHandler handler = world.effects().getSkyRenderHandler();
+			if (handler == null) {
 				world.effects().setSkyRenderHandler(SkyRendererMoon.INSTANCE);
-			}
-		}
-		if (minecraft.level.dimension().equals(DMADimensions.MOON)) {
-			world = minecraft.level;
-			if (world.effects().getSkyRenderHandler() == null) {
-				world.effects().setSkyRenderHandler((ISkyRenderHandler) SkyRendererMondas.INSTANCE);
+				world.effects().setCloudRenderHandler(EmptyCloudRenderer.INSTANCE);
 			}
 		}
 	}
