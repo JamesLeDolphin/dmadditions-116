@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.event;
 
 import com.jdolphin.dmadditions.commands.HandlesCommands;
-import com.jdolphin.dmadditions.dimension.Gravity;
+import com.jdolphin.dmadditions.world.dimension.Gravity;
 import com.jdolphin.dmadditions.init.DMAItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

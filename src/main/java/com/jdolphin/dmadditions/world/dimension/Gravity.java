@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.dimension;
+package com.jdolphin.dmadditions.world.dimension;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
