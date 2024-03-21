@@ -62,8 +62,8 @@ public class ClientForgeEvents {
 	public static void guiEvent(GuiScreenEvent.InitGuiEvent event) {
 		if (event.getGui() instanceof MainMenuScreen && (Boolean) DMConfig.CLIENT.customTitleScreen.get()) {
 			MainMenuScreen gui = (MainMenuScreen) event.getGui();
-			ReflectionHelper.setValuePrivateDeclaredField("splash", MainMenuScreen.class, gui, (Object) null);
-			ReflectionHelper.setValuePrivateDeclaredField("field_73975_c", MainMenuScreen.class, gui, (Object) null);
+			ReflectionHelper.setValuePrivateDeclaredField("splash", MainMenuScreen.class, gui, null);
+			ReflectionHelper.setValuePrivateDeclaredField("field_73975_c", MainMenuScreen.class, gui, null);
 
 			for (int i = 0; i < gui.buttons.size(); ++i) {
 				Widget w = (Widget) gui.buttons.get(i);
