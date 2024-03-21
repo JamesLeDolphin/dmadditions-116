@@ -5,8 +5,58 @@
     "seed": -1645085827,
     "settings": "minecraft:overworld",
     "biome_source": {
-      "type": "minecraft:fixed",
-      "biome": "dmadditions:mondas"
+      "type": "minecraft:multi_noise",
+      "seed": 0,
+      "altitude_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "temperature_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "humidity_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "weirdness_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "biomes": [
+        {
+          "biome": "dmadditions:mondas",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "dmadditions:mondas_frozen",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 0,
+            "offset": 0
+          }
+        }
+      ]
     }
   }
 }
