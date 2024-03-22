@@ -94,11 +94,11 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
+    //Dalek Mod
+    implementation fg.deobf("maven.modrinth:TJq90ggr:lTjj90fi")
+
     //Immersive portals
     implementation fg.deobf("curse.maven:immersiveportals-355440:3562072")
-
-    //Dalek Mod
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5172167")
 
     //New Tardis Mod
     compileOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")

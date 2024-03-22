@@ -107,6 +107,7 @@ public class DmAdditions {
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::entityAttributeEvent);
 		bus.addListener(this::runLater);
+		//This one line fixes joinging servers that dont have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);

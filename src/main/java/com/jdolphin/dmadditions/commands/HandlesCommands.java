@@ -42,23 +42,25 @@ public class HandlesCommands {
 	});
 
 	public static HandlesCommand LOCATE_TARDIS = HandlesCommand.create("(locate|find|where|wher).*(tardis|tardus|ship)\\??", (player, handles, matcher, query) -> {
-		List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
-		if (!ids.isEmpty()) {
-			for (int id : ids) {
-				BlockPos loc = DMTardis.getTardis(id).getCurrentLocation().getBlockPosition();
-				ResourceLocation dim = DMTardis.getTardis(id).getCurrentLocation().dimensionWorldKey().location();
-				sendHandlesMessage(player, handles, String.format("Your TARDIS (%s) is at %d %d %d; Dimension: %s", id, loc.getX(), loc.getY(), loc.getZ(), dim));
+		if (player.getServer() != null) {
+			List<Integer> ids = DMTardis.getUserTardises(player.getServer(), player.getUUID()).getTardises();
+			if (!ids.isEmpty()) {
+				for (int id : ids) {
+					BlockPos loc = DMTardis.getTardis(id).getCurrentLocation().getBlockPosition();
+					ResourceLocation dim = DMTardis.getTardis(id).getCurrentLocation().dimensionWorldKey().location();
+					sendHandlesMessage(player, handles, String.format("Your TARDIS (%s) is at %d %d %d; Dimension: %s", id, loc.getX(), loc.getY(), loc.getZ(), dim));
+				}
+			} else {
+				sendHandlesMessage(player, handles, "Unable to find your TARDIS");
+				return false;
 			}
-		} else {
-			sendHandlesMessage(player, handles, "Unable to find your TARDIS");
-			return false;
 		}
-
 		return true;
 	});
 
 	public static HandlesCommand TARDIS_DISGUISE = HandlesCommand.create("(whats|wuh|what|wah).*(tardis|tardus|ship)\\??", (player, handles, matcher, query) -> {
-		List<Integer> ids = DMTardis.getUserTardises(player.getUUID()).getTardises();
+		if (player.getServer() != null) {
+		List<Integer> ids = DMTardis.getUserTardises(player.getServer(), player.getUUID()).getTardises();
 		if (!ids.isEmpty()) {
 			for (int id : ids) {
 				int tardis = DMTardis.getTardis(id).getGlobalID();
@@ -70,7 +72,7 @@ public class HandlesCommands {
 			sendHandlesMessage(player, handles, "Unable to find your TARDIS");
 			return false;
 		}
-
+	}
 		return true;
 	});
 

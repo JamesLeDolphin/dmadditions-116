@@ -24,10 +24,11 @@
   "starts": [],
   "spawners": {
     "monster": [
-      {"type":"dalekmod:cyberman",
+      {
+        "type": "dalekmod:cyberman",
         "weight": 12,
-        "mincount": 4,
-        "maxcount": 12
+        "minCount": 4,
+        "maxCount": 12
       }
     ],
     "creature": [
