@@ -7,6 +7,7 @@
   "precipitation": "snow",
   "temperature_modifier": "frozen",
   "category": "plains",
+  "player_spawn_friendly": true,
   "effects": {
     "sky_color": 7907327,
     "fog_color": 12638463,
@@ -16,7 +17,76 @@
     "foliage_color": 5854411
   },
   "starts": [],
-  "spawners": {},
+  "spawners": {  "monster": [
+    {
+      "type": "dalekmod:cyberman",
+      "weight": 12,
+      "minCount": 4,
+      "maxCount": 12
+    }
+  ],
+    "creature": [
+      {
+        "type": "minecraft:cow",
+        "weight": 8,
+        "minCount": 4,
+        "maxCount": 4
+      }
+    ],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    [
+      "minecraft:lake_water"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite",
+      "minecraft:ore_diorite",
+      "minecraft:ore_andesite",
+      "minecraft:ore_coal",
+      "minecraft:ore_iron",
+      "minecraft:ore_gold",
+      "minecraft:ore_redstone",
+      "minecraft:ore_diamond",
+      "minecraft:ore_lapis",
+      "minecraft:disk_sand",
+      "minecraft:disk_clay",
+      "minecraft:disk_gravel"
+    ],
+    [],
+    [
+      "minecraft:patch_tall_grass_2",
+      "minecraft:plain_vegetation",
+      "minecraft:flower_plain_decorated",
+      "minecraft:patch_grass_plain",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin",
+      "minecraft:spring_water",
+      "minecraft:pile_snow",
+      "minecraft:spruce_snowy"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ],
   "spawn_costs": {},
   "carvers": {},
   "features": []
