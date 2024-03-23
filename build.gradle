@@ -118,6 +118,9 @@ dependencies {
     //JEI
     runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
 
+    //JourneyMap
+    runtimeOnly fg.deobf("curse.maven:journeymap-32274:5157944")
+
     //Shut up experimental settings
     runtimeOnly fg.deobf("curse.maven:shutup-experimental-settings-407174:3188120")
 
