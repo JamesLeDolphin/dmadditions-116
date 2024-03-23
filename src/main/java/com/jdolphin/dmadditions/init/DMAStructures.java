@@ -35,8 +35,8 @@ public class DMAStructures {
 	public static void setupStructures() {
 		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
-		setupMapSpacingAndLand(DEAD_TREE_1.get(), new StructureSeparationSettings(20, 10, 23512), false);
-		setupMapSpacingAndLand(DEAD_TREE_2.get(), new StructureSeparationSettings(20, 10, 23512), false);
+		setupMapSpacingAndLand(DEAD_TREE_1.get(), new StructureSeparationSettings(5, 5, 5), false);
+		setupMapSpacingAndLand(DEAD_TREE_2.get(), new StructureSeparationSettings(5, 5, 5), false);
 
 	}
 
