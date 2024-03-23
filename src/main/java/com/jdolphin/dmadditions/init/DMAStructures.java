@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.world.structure.CyberUndergroundStructure;
+import com.jdolphin.dmadditions.world.structure.DeadTree1Structure;
 import com.jdolphin.dmadditions.world.structure.ManorStructure;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -20,7 +21,10 @@ public class DMAStructures {
 	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> new ManorStructure(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_UNDERGROUND = registerStructure("cyber_underground",
 		() -> { return new CyberUndergroundStructure(NoFeatureConfig.CODEC);
-	});
+		});
+	public static final RegistryObject<Structure<NoFeatureConfig>> DEAD_TREE_1 = registerStructure("dead_tree_1", () -> new DeadTree1Structure(NoFeatureConfig.CODEC));
+	public static final RegistryObject<Structure<NoFeatureConfig>> DEAD_TREE_2 = registerStructure("dead_tree_2", () -> new DeadTree1Structure(NoFeatureConfig.CODEC));
+
 	public DMAStructures() {
 	}
 
@@ -31,6 +35,9 @@ public class DMAStructures {
 	public static void setupStructures() {
 		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
+		setupMapSpacingAndLand(DEAD_TREE_1.get(), new StructureSeparationSettings(20, 10, 23512), false);
+		setupMapSpacingAndLand(DEAD_TREE_2.get(), new StructureSeparationSettings(20, 10, 23512), false);
+
 	}
 
 	public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
