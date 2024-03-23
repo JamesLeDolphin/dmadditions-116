@@ -2,11 +2,11 @@
   "type": "minecraft:overworld",
   "generator": {
     "type": "minecraft:noise",
-    "seed": -1645085827,
+    "seed": -2004105357,
     "settings": "minecraft:overworld",
     "biome_source": {
       "type": "minecraft:multi_noise",
-      "seed": 0,
+      "seed": -2004105357,
       "altitude_noise": {
         "firstOctave": -7,
         "amplitudes": [
@@ -50,7 +50,7 @@
           "biome": "dmadditions:mondas_frozen",
           "parameters": {
             "altitude": 0,
-            "temperature": 0,
+            "temperature": 1,
             "humidity": 0,
             "weirdness": 0,
             "offset": 0
