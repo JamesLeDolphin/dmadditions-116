@@ -19,8 +19,9 @@ public class DMABiomes {
 	public static RegistryKey<Biome> MOON;
 	public static final RegistryObject<Biome> ANDROZANIMINOR_BIOME = BIOMES.register("androzaniminor", BiomeMaker::theVoidBiome);
 	public static RegistryKey<Biome> ANDROZANIMINOR;
-	public static final RegistryObject<Biome> MONDAS_BIOME = BIOMES.register("mondas", BiomeMaker::theVoidBiome);
+	public static final RegistryObject<Biome> MONDAS_BIOME = BIOMES.register("bluelands", BiomeMaker::theVoidBiome);
 	public static final RegistryObject<Biome> MONDAS_FROZEN = BIOMES.register("mondas_frozen", BiomeMaker::theVoidBiome);
+	public static final RegistryObject<Biome> MONDAS_DEAD_FOREST = BIOMES.register("dead_forest", BiomeMaker::theVoidBiome);
 	public static RegistryKey<Biome> MONDAS;
 
 	private static RegistryKey<Biome> makeKey(String name) {

@@ -76,17 +76,9 @@
     ],
     [],
     [
-      "minecraft:patch_tall_grass_2",
-      "minecraft:plain_vegetation",
-      "minecraft:flower_plain_decorated",
       "minecraft:patch_grass_plain",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
       "minecraft:spring_water",
-      "minecraft:pile_snow",
-      "minecraft:spruce_snowy"
+      "minecraft:pile_snow"
     ],
     [
       "minecraft:freeze_top_layer"

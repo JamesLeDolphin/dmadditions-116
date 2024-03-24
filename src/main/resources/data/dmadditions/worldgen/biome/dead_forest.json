@@ -2,29 +2,34 @@
   "surface_builder": "minecraft:grass",
   "depth": 0.125,
   "scale": 0.05,
-  "temperature": 0,
-  "downfall": 0.6,
+  "temperature": -2,
+  "downfall": 1,
   "precipitation": "snow",
   "temperature_modifier": "frozen",
-  "category": "plains",
-  "player_spawn_friendly": true,
+  "category": "taiga",
   "effects": {
     "sky_color": 7907327,
-    "fog_color": 12638463,
+    "fog_color": 11060981,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "grass_color": 28315,
-    "foliage_color": 5854411
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2
+    }
   },
   "starts": [],
-  "spawners": {  "monster": [
-    {
-      "type": "dalekmod:cyberman",
-      "weight": 12,
-      "minCount": 4,
-      "maxCount": 12
-    }
-  ],
+  "spawners": {
+    "monster": [
+      {
+        "type": "dalekmod:cyberman",
+        "weight": 12,
+        "minCount": 4,
+        "maxCount": 12
+      }
+    ],
     "creature": [
       {
         "type": "minecraft:cow",
@@ -71,23 +76,13 @@
     ],
     [],
     [
-      "minecraft:patch_tall_grass_2",
-      "minecraft:plain_vegetation",
-      "minecraft:flower_plain_decorated",
-      "minecraft:patch_grass_plain",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
       "minecraft:spring_water",
-      "minecraft:pile_snow",
-      "minecraft:spruce_snowy"
+      "minecraft:pile_snow"
     ],
     [
       "minecraft:freeze_top_layer"
     ]
-  ],
-  "spawn_costs": {},
-  "carvers": {},
-  "features": []
+  ]
 }

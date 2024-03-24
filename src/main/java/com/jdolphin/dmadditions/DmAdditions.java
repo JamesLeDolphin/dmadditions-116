@@ -211,6 +211,11 @@ public class DmAdditions {
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.DEAD_TREE_1.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.DEAD_TREE_1.get()));
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.DEAD_TREE_2.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.DEAD_TREE_2.get()));
+
 
 		}
 
@@ -267,11 +272,11 @@ public class DmAdditions {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
 			}
-			if (isBiomeValidForDeadTree1(category, biomeRegistryKey)) {
+			if (isBiomeValidForDeadTree(category, biomeRegistryKey)) {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_DEAD_TREE_1);
 			}
-			if (isBiomeValidForDeadTree2(category, biomeRegistryKey)) {
+			if (isBiomeValidForDeadTree(category, biomeRegistryKey)) {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_DEAD_TREE_2);
 			}
@@ -287,13 +292,9 @@ public class DmAdditions {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
 	}
 
-	private static boolean isBiomeValidForDeadTree1(Biome.Category category, ResourceLocation biomeRegistryKey) {
+	private static boolean isBiomeValidForDeadTree(Biome.Category category, ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:mondas_dead_forest"));
 	}
-	private static boolean isBiomeValidForDeadTree2(Biome.Category category, ResourceLocation biomeRegistryKey) {
-		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:mondas_dead_forest"));
-	}
-
 	private static boolean isBiomeValidForCyberUnderground(Biome.Category category, ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
 	}

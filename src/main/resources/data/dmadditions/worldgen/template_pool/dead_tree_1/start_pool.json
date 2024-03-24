@@ -3,7 +3,7 @@
   "fallback": "dmadditions:dead_tree_1/empty_pool",
   "elements": [
     {
-      "weight": 1,
+      "weight": 10,
       "element": {
         "location": "dmadditions:dead_tree_1",
         "processors": "minecraft:empty",
