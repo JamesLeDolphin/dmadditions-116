@@ -2,6 +2,8 @@ package com.jdolphin.dmadditions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jdolphin.dmadditions.cap.IPlayerDataCap;
+import com.jdolphin.dmadditions.cap.PlayerDataCapability;
 import com.jdolphin.dmadditions.client.ClientDMBusEvents;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.jdolphin.dmadditions.commands.*;
@@ -25,6 +27,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -44,6 +47,7 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -172,7 +176,7 @@ public class DmAdditions {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
 		});
-
+		CapabilityManager.INSTANCE.register(IPlayerDataCap.class, new IPlayerDataCap.Storage(), () -> new PlayerDataCapability((PlayerEntity)null));
 		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
 		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
 		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");
