@@ -47,6 +47,9 @@ public class DMAItems {
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> ELIXIR_OF_LIFE = ITEMS.register("elixir_of_life",
+		() -> new ElixirOfLifeItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

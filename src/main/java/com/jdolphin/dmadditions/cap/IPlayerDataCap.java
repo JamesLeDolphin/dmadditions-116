@@ -15,7 +15,17 @@ import org.jetbrains.annotations.Nullable;
 
 public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 
-	void tick();
+	boolean regen();
+
+	boolean hasRegens();
+
+	int getRegens();
+
+	int getMaxRegens();
+
+	void addRegens(int add);
+
+	void setRegens(int regens);
 
 	class Provider implements ICapabilitySerializable<CompoundNBT> {
 		IPlayerDataCap data;

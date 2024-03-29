@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.event;
 import com.jdolphin.dmadditions.cap.IPlayerDataCap;
 import com.jdolphin.dmadditions.cap.PlayerDataCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
+import com.jdolphin.dmadditions.init.ModCapabilities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
 import com.jdolphin.dmadditions.init.DMAItems;
@@ -17,6 +18,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class DMAEventHandlerGeneral {
@@ -61,7 +63,17 @@ public class DMAEventHandlerGeneral {
 		if (event.getObject() instanceof PlayerEntity) {
 			event.addCapability(PLAYER_DATA_CAP, new IPlayerDataCap.Provider(new PlayerDataCapability((PlayerEntity)event.getObject())));
 		}
+	}
 
+	@SubscribeEvent
+	public static void playerDamageEvent(LivingDamageEvent event) {
+		Entity entity = event.getEntity();
+		if (entity instanceof PlayerEntity) {
+			PlayerEntity player = ((PlayerEntity) entity);
+			player.getCapability(ModCapabilities.PLAYER_DATA).ifPresent(cap -> {
+				event.setCanceled(cap.regen());
+			});
+		}
 	}
 
 	@SubscribeEvent
