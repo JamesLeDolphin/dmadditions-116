@@ -71,7 +71,7 @@ public class DMAEventHandlerGeneral {
 		if (entity instanceof PlayerEntity) {
 			PlayerEntity player = ((PlayerEntity) entity);
 			player.getCapability(ModCapabilities.PLAYER_DATA).ifPresent(cap -> {
-				event.setCanceled(cap.regen());
+				if (player.getHealth() - event.getAmount() <= 0.0) event.setCanceled(cap.regen());
 			});
 		}
 	}

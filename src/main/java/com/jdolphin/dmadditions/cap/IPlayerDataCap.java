@@ -27,6 +27,10 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 
 	void setRegens(int regens);
 
+	void setRegenTicks(int ticks);
+
+	int getRegenTicks();
+
 	class Provider implements ICapabilitySerializable<CompoundNBT> {
 		IPlayerDataCap data;
 

@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.cap;
 
-import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
@@ -11,6 +10,8 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	private PlayerEntity player;
 	private final int maxRegens = 12;
 	private final int minRegens = 0;
+	private int regenTicks;
+
 	private int currentRegens;
 
 	public PlayerDataCapability(PlayerEntity player) {
@@ -45,6 +46,16 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	@Override
 	public void setRegens(int regens) {
 		this.currentRegens = regens;
+	}
+
+	@Override
+	public void setRegenTicks(int ticks) {
+		this.regenTicks = ticks;
+	}
+
+	@Override
+	public int getRegenTicks() {
+		return this.regenTicks;
 	}
 
 	@Override
