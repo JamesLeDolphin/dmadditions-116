@@ -1,17 +1,21 @@
 package com.jdolphin.dmadditions.cap;
 
+import com.jdolphin.dmadditions.util.Helper;
+import com.swdteam.util.ChatUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class PlayerDataCapability implements IPlayerDataCap {
 	private final String TAG_REGEN_AMOUNT = "regens";
+	private final String TAG_POSTPONE = "postponedFor";
 	private PlayerEntity player;
 	private final int maxRegens = 12;
 	private final int minRegens = 0;
+	private int postponeTime = 0;
 	private int regenTicks;
-
+	private boolean preRegen;
 	private int currentRegens;
 
 	public PlayerDataCapability(PlayerEntity player) {
@@ -19,13 +23,31 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	}
 
 	@Override
-	public boolean regen() {
-		if (hasRegens()) {
-			player.addEffect(new EffectInstance(Effects.ABSORPTION, 20 * 3, 0));
-			this.addRegens(-1);
-			return true;
-		}
-		else return false;
+	public void tick() {
+		if (postponed()) postponeTime--;
+		Helper.print(postponeTime);
+	}
+
+	@Override
+	public boolean postponed() {
+		return postponeTime > 0;
+	}
+
+	@Override
+	public int getPostponeTime() {
+		return this.postponeTime;
+	}
+
+	@Override
+	public boolean canPostpone() {
+		return this.hasRegens() && !postponed();
+	}
+
+	@Override
+	public void postpone() {
+		ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You've postponed your regeneration for 5 minutes").withStyle(TextFormatting.GREEN),
+			ChatUtil.MessageType.CHAT);
+		this.postponeTime = 20 * 60 * 5; //5 Mins
 	}
 
 	@Override
@@ -37,6 +59,16 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	public boolean hasRegens() {
         return currentRegens > minRegens;
     }
+
+	@Override
+	public void setPreRegen(boolean preRegen) {
+		this.preRegen = preRegen;
+	}
+
+	@Override
+	public boolean isPreRegen() {
+		return this.preRegen;
+	}
 
 	@Override
 	public int getRegens() {
@@ -67,13 +99,17 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	public CompoundNBT serializeNBT() {
 		CompoundNBT tag = new CompoundNBT();
 		tag.putInt(TAG_REGEN_AMOUNT, this.currentRegens);
+		tag.putInt(TAG_POSTPONE, this.postponeTime);
 		return tag;
 	}
 
 	@Override
 	public void deserializeNBT(CompoundNBT nbt) {
 		if (nbt.contains(TAG_REGEN_AMOUNT)) {
-			nbt.getInt(TAG_REGEN_AMOUNT);
+			this.currentRegens = nbt.getInt(TAG_REGEN_AMOUNT);
+		}
+		if (nbt.contains(TAG_POSTPONE)) {
+			this.postponeTime = nbt.getInt(TAG_POSTPONE);
 		}
 	}
 }

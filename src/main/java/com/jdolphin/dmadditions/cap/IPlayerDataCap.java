@@ -15,9 +15,21 @@ import org.jetbrains.annotations.Nullable;
 
 public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 
-	boolean regen();
+	void tick();
+
+	boolean postponed();
+
+	int getPostponeTime();
+
+	boolean canPostpone();
+
+	void postpone();
 
 	boolean hasRegens();
+
+	void setPreRegen(boolean b);
+
+	boolean isPreRegen();
 
 	int getRegens();
 

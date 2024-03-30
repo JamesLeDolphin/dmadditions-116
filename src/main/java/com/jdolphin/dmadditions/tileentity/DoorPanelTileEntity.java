@@ -27,6 +27,7 @@ import com.swdteam.common.tardis.TardisDoor;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.common.tileentity.TardisTileEntity.DoorSource;
+import com.swdteam.common.tileentity.tardis.TardisPanelTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -35,7 +36,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
-public class DoorPanelTileEntity extends DMTileEntityBase implements ITickableTileEntity {
+public class DoorPanelTileEntity extends TardisPanelTileEntity implements ITickableTileEntity {
 
 	public DoorPanelTileEntity() {
 		super(DMABlockEntities.TILE_DOOR_PANEL.get());

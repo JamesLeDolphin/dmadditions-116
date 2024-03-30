@@ -66,17 +66,6 @@ public class DMAEventHandlerGeneral {
 	}
 
 	@SubscribeEvent
-	public static void playerDamageEvent(LivingDamageEvent event) {
-		Entity entity = event.getEntity();
-		if (entity instanceof PlayerEntity) {
-			PlayerEntity player = ((PlayerEntity) entity);
-			player.getCapability(ModCapabilities.PLAYER_DATA).ifPresent(cap -> {
-				if (player.getHealth() - event.getAmount() <= 0.0) event.setCanceled(cap.regen());
-			});
-		}
-	}
-
-	@SubscribeEvent
 	public static void onEntityTravelToDimension(EntityTravelToDimensionEvent event) {
 		Entity entity = event.getEntity();
 		if (!(entity instanceof LivingEntity)) return;
