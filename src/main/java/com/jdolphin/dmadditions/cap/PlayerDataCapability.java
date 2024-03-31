@@ -24,8 +24,10 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 	@Override
 	public void tick() {
-		if (postponed()) postponeTime--;
-		Helper.print(postponeTime);
+		if (postponed()) {
+			postponeTime--;
+			Helper.print(postponeTime);
+		}
 	}
 
 	@Override

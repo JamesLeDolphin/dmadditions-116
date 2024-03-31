@@ -3,10 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.world.structure.CyberUndergroundStructure;
-import com.jdolphin.dmadditions.world.structure.DeadTree1Structure;
-import com.jdolphin.dmadditions.world.structure.DeadTree2Structure;
-import com.jdolphin.dmadditions.world.structure.ManorStructure;
+import com.jdolphin.dmadditions.world.structure.*;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
@@ -19,11 +16,15 @@ import java.util.function.Supplier;
 
 public class DMAStructures {
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DmAdditions.MODID);
+
 	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> new ManorStructure(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_UNDERGROUND = registerStructure("cyber_underground",
 		() -> new CyberUndergroundStructure(NoFeatureConfig.CODEC));
+
 	public static final RegistryObject<Structure<NoFeatureConfig>> DEAD_TREE_1 = registerStructure("dead_tree_1", () -> new DeadTree1Structure(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Structure<NoFeatureConfig>> DEAD_TREE_2 = registerStructure("dead_tree_2", () -> new DeadTree2Structure(NoFeatureConfig.CODEC));
+	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_MONDAS = registerStructure("mondas_bases",
+		() -> new MondasCyberBase(NoFeatureConfig.CODEC));
 
 	public DMAStructures() {
 	}

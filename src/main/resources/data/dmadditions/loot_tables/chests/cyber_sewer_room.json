@@ -25,7 +25,7 @@
         {
           "type": "minecraft:item",
           "weight": 8,
-          "name": "dalekmod:wrench"
+          "name": "dalekmod:roundel_wrench"
         },
         {
           "type": "minecraft:item",

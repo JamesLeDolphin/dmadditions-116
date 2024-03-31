@@ -18,7 +18,7 @@ import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.util.Helper;
-import com.jdolphin.dmadditions.world.structure.DMAConfiguredStructures;
+import com.jdolphin.dmadditions.init.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.block.IRust;
@@ -178,7 +178,7 @@ public class DmAdditions {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
 		});
-		CapabilityManager.INSTANCE.register(IPlayerDataCap.class, new IPlayerDataCap.Storage(), () -> new PlayerDataCapability((PlayerEntity)null));
+		CapabilityManager.INSTANCE.register(IPlayerDataCap.class, new IPlayerDataCap.Storage(), () -> new PlayerDataCapability(null));
 		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
 		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
 		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");
