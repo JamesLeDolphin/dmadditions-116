@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.event;
 import com.jdolphin.dmadditions.cap.IPlayerDataCap;
 import com.jdolphin.dmadditions.cap.PlayerDataCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
-import com.jdolphin.dmadditions.init.ModCapabilities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
 import com.jdolphin.dmadditions.init.DMAItems;
@@ -18,7 +17,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class DMAEventHandlerGeneral {

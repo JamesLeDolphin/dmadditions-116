@@ -1,10 +1,9 @@
 package com.jdolphin.dmadditions.cap;
 
-import com.jdolphin.dmadditions.init.ModCapabilities;
+import com.jdolphin.dmadditions.init.DMACapabilities;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -29,6 +28,7 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 
 	void setPreRegen(boolean b);
 
+	void update();
 	boolean isPreRegen();
 
 	int getRegens();
@@ -62,7 +62,7 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 		@Override
 		@SuppressWarnings("unchecked")
 		public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-			return cap.equals(ModCapabilities.PLAYER_DATA) ? (LazyOptional<T>) LazyOptional.of(() -> this.data) : LazyOptional.empty();
+			return cap.equals(DMACapabilities.PLAYER_DATA) ? (LazyOptional<T>) LazyOptional.of(() -> this.data) : LazyOptional.empty();
 		}
 	}
 

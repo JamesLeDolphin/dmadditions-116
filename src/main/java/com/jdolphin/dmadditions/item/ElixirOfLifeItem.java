@@ -1,9 +1,7 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.init.ModCapabilities;
+import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.swdteam.util.ChatUtil;
-import com.swdteam.util.PlayerUtil;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +22,7 @@ public class ElixirOfLifeItem extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		if (!world.isClientSide()) {
-			player.getCapability(ModCapabilities.PLAYER_DATA).ifPresent(cap -> {
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
 				cap.setRegens(cap.getMaxRegens());
 				ChatUtil.sendMessageToPlayer(player, "You've gained 12 regenerations", ChatUtil.MessageType.CHAT);
 			});

@@ -1,8 +1,11 @@
 package com.jdolphin.dmadditions.cap;
 
+import com.jdolphin.dmadditions.init.DMAPackets;
+import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -65,6 +68,11 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	@Override
 	public void setPreRegen(boolean preRegen) {
 		this.preRegen = preRegen;
+	}
+
+	@Override
+	public void update() {
+		DMAPackets.sendTo((ServerPlayerEntity) this.player, new CBSyncPlayerPacket(player.getId(), this.serializeNBT()));
 	}
 
 	@Override
