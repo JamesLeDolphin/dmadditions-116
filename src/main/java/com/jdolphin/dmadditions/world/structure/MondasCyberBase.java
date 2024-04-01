@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.world.structure;
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.serialization.Codec;
+import com.swdteam.common.init.DMEntities;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
@@ -23,7 +24,10 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.List;
 
 public class MondasCyberBase extends Structure<NoFeatureConfig> {
-	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of();
+	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
+		new MobSpawnInfo.Spawners(DMEntities.CYBERMAN_ENTITY.get(), 100, 4, 9),
+		new MobSpawnInfo.Spawners(DMEntities.CYBERDRONE.get(), 10, 2, 3)
+	);
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of();
 
 	public MondasCyberBase(Codec<NoFeatureConfig> codec) {
@@ -57,7 +61,7 @@ public class MondasCyberBase extends Structure<NoFeatureConfig> {
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
 			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(Helper.createAdditionsRL("monsas_bases/start_pool"));
+				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(Helper.createAdditionsRL("mondas_bases/start_pool"));
 			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
 			this.pieces.forEach((piece) -> {
 				piece.move(0, -50, 0);
