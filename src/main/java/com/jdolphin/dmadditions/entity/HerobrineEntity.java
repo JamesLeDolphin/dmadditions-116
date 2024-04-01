@@ -36,7 +36,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
@@ -53,6 +52,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
 public class HerobrineEntity extends MonsterEntity {
 
@@ -117,9 +117,6 @@ public class HerobrineEntity extends MonsterEntity {
 
 	public boolean switchMainHandItem(int slot){
 		ItemStack mainHandItem = this.getMainHandItem();
-
-		if(!this.inventory.canAddItem(mainHandItem)) 
-			return false;
 
 		ItemStack item = inventory.getItem(slot);
 
@@ -230,6 +227,7 @@ public class HerobrineEntity extends MonsterEntity {
 			item.remove();
 		}
 	}
+
 	@Override
 	public boolean canPickUpLoot() {
 		return true;
@@ -328,6 +326,9 @@ public class HerobrineEntity extends MonsterEntity {
 	static class TakeBlockGoal extends Goal {
 		private final HerobrineEntity herobrine;
 		protected final int interval;
+		protected BlockState blockstate;
+		protected BlockPos blockpos;
+		protected ItemStack itemStack;
 
 		public TakeBlockGoal(HerobrineEntity entity, int interval) {
 			this.herobrine = entity;
@@ -339,37 +340,48 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 
 		public boolean canUse() {
-			if (this.herobrine.isInventoryFull()) {
+			if (!ForgeEventFactory.getMobGriefingEvent(this.herobrine.level, this.herobrine)) 
 				return false;
-			} else if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.herobrine.level,
-					this.herobrine)) {
+
+			if(!findBlock())
 				return false;
-			} else {
-				return this.herobrine.getRandom().nextInt(interval) == 0;
-			}
+
+			if(!herobrine.inventory.canAddItem(itemStack))
+				return false;
+			
+			return this.herobrine.getRandom().nextInt(interval) == 0;
 		}
 
-		public void tick() {
+		protected boolean findBlock(){
 			Random random = this.herobrine.getRandom();
 			World world = this.herobrine.level;
 			int i = MathHelper.floor(this.herobrine.getX() - 2.0D + random.nextDouble() * 4.0D);
 			int j = MathHelper.floor(this.herobrine.getY() + random.nextDouble() * 3.0D);
 			int k = MathHelper.floor(this.herobrine.getZ() - 2.0D + random.nextDouble() * 4.0D);
-			BlockPos blockpos = new BlockPos(i, j, k);
-			BlockState blockstate = world.getBlockState(blockpos);
-			Block block = blockstate.getBlock();
+			blockpos = new BlockPos(i, j, k);
+			blockstate = world.getBlockState(blockpos);
 			Vector3d vector3d = new Vector3d((double) MathHelper.floor(this.herobrine.getX()) + 0.5D, (double) j + 0.5D,
 					(double) MathHelper.floor(this.herobrine.getZ()) + 0.5D);
 			Vector3d vector3d1 = new Vector3d((double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D);
 			BlockRayTraceResult blockraytraceresult = world.clip(new RayTraceContext(vector3d, vector3d1,
 					RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, this.herobrine));
-			boolean flag = blockraytraceresult.getBlockPos().equals(blockpos);
+
+			itemStack = new ItemStack(blockstate.getBlock().asItem());
+			return blockraytraceresult.getBlockPos().equals(blockpos);
+		}
+
+		public void tick() {
+			boolean flag = findBlock();
+			Block block = blockstate.getBlock();
+
+			World world = this.herobrine.level;
+
 			if (!block.asItem().equals(Items.AIR) && flag) {
 				herobrine.lookAt(EntityAnchorArgument.Type.EYES, Helper.blockPosToVec3(blockpos));
 				herobrine.swing(Hand.MAIN_HAND);
 
 				world.removeBlock(blockpos, false);
-				this.herobrine.getInventory().addItem(new ItemStack(blockstate.getBlock().asItem()));
+				this.herobrine.getInventory().addItem(itemStack);
 			}
 
 		}
