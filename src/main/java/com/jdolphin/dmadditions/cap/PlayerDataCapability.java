@@ -7,18 +7,20 @@ import com.swdteam.util.ChatUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class PlayerDataCapability implements IPlayerDataCap {
 	private final String TAG_REGEN_AMOUNT = "regens";
 	private final String TAG_POSTPONE = "postponedFor";
-	private PlayerEntity player;
+	private final PlayerEntity player;
 	private final int maxRegens = 12;
 	private final int minRegens = 0;
 	private int postponeTime = 0;
+	private int preRegenTime = Helper.minutes(1);
 	private int regenTicks;
-	private boolean preRegen;
 	private int currentRegens;
 
 	public PlayerDataCapability(PlayerEntity player) {
@@ -30,6 +32,10 @@ public class PlayerDataCapability implements IPlayerDataCap {
 		if (postponed()) {
 			postponeTime--;
 			Helper.print(postponeTime);
+		}
+		if (isPreRegen()) preRegenTime--;
+		if (!isPreRegen() && !postponed() && hasRegens()) {
+			this.regenerate();
 		}
 	}
 
@@ -52,7 +58,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	public void postpone() {
 		ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You've postponed your regeneration for 5 minutes").withStyle(TextFormatting.GREEN),
 			ChatUtil.MessageType.CHAT);
-		this.postponeTime = 20 * 60 * 5; //5 Mins
+		this.postponeTime = Helper.minutes(5);
 	}
 
 	@Override
@@ -66,8 +72,15 @@ public class PlayerDataCapability implements IPlayerDataCap {
     }
 
 	@Override
-	public void setPreRegen(boolean preRegen) {
-		this.preRegen = preRegen;
+	public void setPreRegen () {
+		this.preRegenTime = Helper.minutes(1);
+	}
+
+	@Override
+	public void regenerate() {
+		 this.regenTicks++;
+		 ChatUtil.sendMessageToPlayer(player, new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
+		 player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(10), 0, false, false, false));
 	}
 
 	@Override
@@ -77,7 +90,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 	@Override
 	public boolean isPreRegen() {
-		return this.preRegen;
+		return this.preRegenTime >= 5;
 	}
 
 	@Override

@@ -3,7 +3,7 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 100,
+      "weight": 1,
       "element": {
         "location": "dmadditions:mondas/hallway/cyber_hallway",
         "processors": "minecraft:empty",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 90,
+      "weight": 1,
       "element": {
         "location": "dmadditions:mondas/hallway/damaged_cyber_hallway",
         "processors": "minecraft:empty",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 2,
       "element": {
         "location": "dmadditions:mondas/rooms/cyber_puzzle_room",
         "processors": "minecraft:empty",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "weight": 70,
+      "weight": 2,
       "element": {
         "location": "dmadditions:mondas/rooms/cyber_villager_death_room",
         "processors": "minecraft:empty",
@@ -39,7 +39,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 2,
       "element": {
         "location": "dmadditions:mondas/rooms/cyber_city_slums",
         "processors": "minecraft:empty",
@@ -48,7 +48,7 @@
       }
     },
     {
-      "weight": 50,
+      "weight": 2,
       "element": {
         "location": "dmadditions:mondas/rooms/abandoned_cyber_conversion_chamber",
         "processors": "minecraft:empty",
@@ -57,7 +57,7 @@
       }
     },
     {
-      "weight": 40,
+      "weight": 2,
       "element": {
         "location": "dmadditions:mondas/rooms/cyber_conversion_chamber",
         "processors": "minecraft:empty",
@@ -66,7 +66,7 @@
       }
     },
     {
-      "weight": 30,
+      "weight": 2,
       "element": {
         "location": "dmadditions:mondas/rooms/cyber_gold_incinerator_room",
         "processors": "minecraft:empty",

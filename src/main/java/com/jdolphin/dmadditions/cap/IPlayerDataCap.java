@@ -26,7 +26,9 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 
 	boolean hasRegens();
 
-	void setPreRegen(boolean b);
+	void setPreRegen();
+
+	void regenerate();
 
 	void update();
 	boolean isPreRegen();

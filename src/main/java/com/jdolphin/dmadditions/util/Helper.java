@@ -40,6 +40,14 @@ public class Helper {
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, category, 1.0f, 1.0f);
 	}
 
+	public static int minutes(int min) {
+		return seconds(60) * min;
+	}
+
+	public static int seconds(int s) {
+		return 20 * s;
+	}
+
 	public static void print(Object obj) {
 		System.out.println(obj);
 	}

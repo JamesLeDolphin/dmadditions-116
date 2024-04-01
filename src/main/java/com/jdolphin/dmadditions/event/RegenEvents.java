@@ -4,8 +4,10 @@ import com.jdolphin.dmadditions.cap.IPlayerDataCap;
 import com.jdolphin.dmadditions.init.DMACapabilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -19,11 +21,29 @@ public class RegenEvents {
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
 				if (player.getHealth() - event.getAmount() <= 0.0 && cap.hasRegens() && !cap.isPreRegen()) {
 					event.setCanceled(!event.getSource().isBypassInvul());
-					cap.setPreRegen(true);
+					cap.setPreRegen();
 					cap.update();
 				}
 			});
 		}
+	}
+
+	@SubscribeEvent
+	public static void playerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
+		PlayerEntity player = event.getPlayer();
+		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+	}
+
+	@SubscribeEvent
+	public static void playerChangeDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
+		PlayerEntity player = event.getPlayer();
+		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+	}
+
+	@SubscribeEvent
+	public static void playerCloneEvent(PlayerEvent.Clone event) {
+		PlayerEntity player = event.getPlayer();
+		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
 	}
 
 	@SubscribeEvent

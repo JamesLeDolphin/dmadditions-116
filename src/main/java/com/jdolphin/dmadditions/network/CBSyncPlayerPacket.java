@@ -6,8 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.tardis.mod.cap.Capabilities;
-import net.tardis.mod.network.packets.SyncPlayerMessage;
 
 import java.util.function.Supplier;
 
@@ -33,7 +31,7 @@ public class CBSyncPlayerPacket {
 		cont.get().enqueueWork(() -> {
 			Entity result = Minecraft.getInstance().level.getEntity(mes.id);
 			if(result != null)
-				result.getCapability(Capabilities.PLAYER_DATA).ifPresent(cap -> cap.deserializeNBT(mes.data));
+				result.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> cap.deserializeNBT(mes.data));
 		});
 		cont.get().setPacketHandled(true);
 	}
