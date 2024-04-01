@@ -5,8 +5,8 @@
 		32
 	],
 	"textures": {
-		"0": "dalekmod:item/pistol",
-		"particle": "dalekmod:item/pistol"
+		"0": "dmadditions:item/pistol",
+		"particle": "dmadditions:item/pistol"
 	},
 	"elements": [
 		{
