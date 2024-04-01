@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.entity.dalek.IDalek;
+import com.swdteam.common.init.DMBiomes;
 import com.swdteam.common.init.DMDalekRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -56,6 +57,10 @@ public class DMASpawnerRegistry {
 			EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
 			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);
 		}
+
+
+		EntitySpawnPlacementRegistry.register(DMAEntities.HEROBRINE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkAnyLightMonsterSpawnRules);
+		addSpawn(DMBiomes.CLASSIC, DMAEntities.HEROBRINE.get(), 1, 1, 1, EntityClassification.CREATURE);
 
 	}
 

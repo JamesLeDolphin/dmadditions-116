@@ -64,6 +64,12 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<JimEntity>> JIM = registerHumanoidEntity("jim", JimEntity::new, EntityClassification.CREATURE);
 
+
+	public static RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = ENTITY_TYPES.register("herobrine", () -> EntityType.Builder.of(HerobrineEntity::new, EntityClassification.MONSTER)
+		.clientTrackingRange(64)
+		.setTrackingRange(64)
+		.build(Helper.createAdditionsRL("herobrine").toString()));
+
 	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerControl("control", TardisControl::new);
 	public static RegistryObject<EntityType<TardisControl>> FLIGHT_CONTROL = registerControl("flight_control", FlightControl::new);
 	public static RegistryObject<EntityType<TardisControl>> DOOR_CONTROL = registerControl("door_control", DoorControl::new);
