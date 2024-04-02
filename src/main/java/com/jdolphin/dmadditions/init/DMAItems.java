@@ -50,6 +50,9 @@ public class DMAItems {
 	public static RegistryObject<Item> ELIXIR_OF_LIFE = ITEMS.register("elixir_of_life",
 		() -> new ElixirOfLifeItem(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
 
+	public static RegistryObject<Item> FOB_WATCH = ITEMS.register("fob_watch",
+		() -> new FobWatchItem(new Item.Properties().tab(ItemGroup.TAB_MISC).durability(12)));
+
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

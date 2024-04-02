@@ -33,7 +33,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 			postponeTime--;
 			Helper.print(postponeTime);
 		}
-		if (isPreRegen()) preRegenTime--;
+		if (preRegenTime > 0) preRegenTime--;
 		if (!isPreRegen() && !postponed() && hasRegens()) {
 			this.regenerate();
 		}
@@ -72,7 +72,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
     }
 
 	@Override
-	public void setPreRegen () {
+	public void setPreRegen() {
 		this.preRegenTime = Helper.minutes(1);
 	}
 
@@ -90,7 +90,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 	@Override
 	public boolean isPreRegen() {
-		return this.preRegenTime >= 5;
+		return this.preRegenTime > 0;
 	}
 
 	@Override
