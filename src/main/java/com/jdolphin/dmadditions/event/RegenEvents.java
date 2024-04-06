@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.cap.IPlayerDataCap;
 import com.jdolphin.dmadditions.init.DMACapabilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -49,9 +50,10 @@ public class RegenEvents {
 	@SubscribeEvent
 	public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
 		PlayerEntity player = event.player;
-		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::tick);
+		if (player instanceof ServerPlayerEntity) {
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::tick);
+		}
 	}
-
 	@SubscribeEvent
 	public static void playerDestroyEvent(PlayerInteractEvent.LeftClickBlock event) {
 		PlayerEntity player = event.getPlayer();

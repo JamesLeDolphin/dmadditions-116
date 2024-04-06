@@ -39,6 +39,8 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 
 	void addRegens(int add);
 
+	void removeRegens(int remove);
+
 	void setRegens(int regens);
 
 	void setRegenTicks(int ticks);

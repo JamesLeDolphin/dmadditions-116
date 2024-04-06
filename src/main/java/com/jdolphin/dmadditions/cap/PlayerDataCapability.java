@@ -33,8 +33,10 @@ public class PlayerDataCapability implements IPlayerDataCap {
 			postponeTime--;
 			Helper.print(postponeTime);
 		}
+		if (!this.player.isCreative()) Helper.print(this.currentRegens);
+
 		if (preRegenTime > 0) preRegenTime--;
-		if (!isPreRegen() && !postponed() && hasRegens()) {
+		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
 			this.regenerate();
 		}
 	}
@@ -81,6 +83,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 		 this.regenTicks++;
 		 ChatUtil.sendMessageToPlayer(player, new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
 		 player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(10), 0, false, false, false));
+		this.update();
 	}
 
 	@Override
@@ -116,6 +119,13 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	@Override
 	public void addRegens(int add) {
 		this.currentRegens = Math.min(this.getRegens() + add, maxRegens);
+		this.update();
+	}
+
+	@Override
+	public void removeRegens(int remove) {
+		this.currentRegens = Math.max(this.getRegens() - remove, 0);
+		this.update();
 	}
 
 	@Override

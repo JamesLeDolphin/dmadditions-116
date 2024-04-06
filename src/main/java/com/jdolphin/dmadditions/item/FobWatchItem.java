@@ -12,6 +12,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import java.awt.*;
+
 public class FobWatchItem extends Item {
 
 	public FobWatchItem(Properties properties) {
@@ -29,20 +31,30 @@ public class FobWatchItem extends Item {
 		if (!world.isClientSide()) {
 			Helper.print("interacted");
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
-				if (player.isShiftKeyDown() && stack.getDamageValue() < 12) {
-					if (cap.hasRegens()) {
-						cap.addRegens(-1);
-						stack.setDamageValue(stack.getDamageValue() + 1);
+				if (player.isSecondaryUseActive()) {
+					if (cap.hasRegens() && stack.isDamaged()) {
+						cap.removeRegens(1);
+						int i = stack.getDamageValue();
+						stack.setDamageValue(i - 1);
 						Helper.print("took a regen");
 					}
 				}
-				if (!player.isShiftKeyDown() && stack.getDamageValue() > 0) {
+				if (!player.isSecondaryUseActive() && stack.getDamageValue() < stack.getMaxDamage() && cap.getRegens() < 12) {
 					cap.addRegens(1);
 					Helper.print("gave a regen");
-					stack.setDamageValue(stack.getDamageValue() - 1);
+					stack.hurt(1, world.random, (ServerPlayerEntity) player);
 				}
 			});
 		}
 		return ActionResult.success(stack);
+	}
+
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
+
+
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return new Color(255,215,0).getRGB();
 	}
 }
