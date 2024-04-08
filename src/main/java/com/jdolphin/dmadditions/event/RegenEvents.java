@@ -17,7 +17,7 @@ public class RegenEvents {
 	@SubscribeEvent
 	public static void playerDamageEvent(LivingDamageEvent event) {
 		Entity entity = event.getEntity();
-		if (entity instanceof PlayerEntity) {
+		if (entity instanceof ServerPlayerEntity) {
 			PlayerEntity player = ((PlayerEntity) entity);
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
 				if (player.getHealth() - event.getAmount() <= 0.0 && cap.hasRegens() && !cap.isPreRegen()) {
@@ -32,19 +32,25 @@ public class RegenEvents {
 	@SubscribeEvent
 	public static void playerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
 		PlayerEntity player = event.getPlayer();
-		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+		if (player instanceof ServerPlayerEntity) {
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+		}
 	}
 
 	@SubscribeEvent
 	public static void playerChangeDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
 		PlayerEntity player = event.getPlayer();
-		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+		if (player instanceof ServerPlayerEntity) {
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+		}
 	}
 
 	@SubscribeEvent
 	public static void playerCloneEvent(PlayerEvent.Clone event) {
 		PlayerEntity player = event.getPlayer();
-		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+		if (player instanceof ServerPlayerEntity) {
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+		}
 	}
 
 	@SubscribeEvent
@@ -54,14 +60,17 @@ public class RegenEvents {
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::tick);
 		}
 	}
+
 	@SubscribeEvent
 	public static void playerDestroyEvent(PlayerInteractEvent.LeftClickBlock event) {
 		PlayerEntity player = event.getPlayer();
-		player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
-			if (cap.canPostpone() && cap.isPreRegen()) {
-				cap.postpone();
-				cap.update();
-			}
-		});
+		if (player instanceof ServerPlayerEntity) {
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
+				if (cap.canPostpone() && cap.isPreRegen()) {
+					cap.postpone();
+					cap.update();
+				}
+			});
+		}
 	}
 }

@@ -51,7 +51,7 @@ public class DMAItems {
 		() -> new ElixirOfLifeItem(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
 
 	public static RegistryObject<Item> FOB_WATCH = ITEMS.register("fob_watch",
-		() -> new FobWatchItem(new Item.Properties().tab(ItemGroup.TAB_MISC).durability(12)));
+		() -> new FobWatchItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
