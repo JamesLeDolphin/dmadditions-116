@@ -21,9 +21,7 @@ public class DMAStructures {
 	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_UNDERGROUND = registerStructure("cyber_underground",
 		() -> new CyberUndergroundStructure(NoFeatureConfig.CODEC));
 
-//	public static final RegistryObject<Structure<NoFeatureConfig>> DEAD_TREE_1 = registerStructure("dead_tree_1", () -> new DeadTree1Structure(NoFeatureConfig.CODEC));
-//	public static final RegistryObject<Structure<NoFeatureConfig>> DEAD_TREE_2 = registerStructure("dead_tree_2", () -> new DeadTree2Structure(NoFeatureConfig.CODEC));
-	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_MONDAS = registerStructure("mondas_bases",
+	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_MONDAS = registerStructure("mondas_base",
 		() -> new MondasCyberBase(NoFeatureConfig.CODEC));
 
 	public DMAStructures() {
@@ -36,8 +34,7 @@ public class DMAStructures {
 	public static void setupStructures() {
 		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
-//		setupMapSpacingAndLand(DEAD_TREE_1.get(), new StructureSeparationSettings(5, 5, 5), false);
-//		setupMapSpacingAndLand(DEAD_TREE_2.get(), new StructureSeparationSettings(5, 5, 5), false);
+
 		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(30, 10, 23578), false);
 
 	}

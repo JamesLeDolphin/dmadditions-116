@@ -39,13 +39,19 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -77,6 +83,7 @@ import org.apache.logging.log4j.Logger;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Supplier;
 
 
@@ -84,7 +91,7 @@ import java.util.function.Supplier;
 @Mod(DmAdditions.MODID)
 public class DmAdditions {
 	public static final String MODID = "dmadditions";
-	public static final String VERSION = "1.3.9";
+	public static final String VERSION = "1.3.11";
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
@@ -221,10 +228,6 @@ public class DmAdditions {
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 
-//			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.DEAD_TREE_1.get(),
-//				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.DEAD_TREE_1.get()));
-//			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.DEAD_TREE_2.get(),
-//				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.DEAD_TREE_2.get()));
 		}
 	}
 
@@ -282,14 +285,15 @@ public class DmAdditions {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
 			}
-//			if (isBiomeValidForDeadTree(category, biomeRegistryKey)) {
-//				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-//				structures.add(() -> DMAConfiguredStructures.CONFIGURED_DEAD_TREE_1);
-//			}
-//			if (isBiomeValidForDeadTree(category, biomeRegistryKey)) {
-//				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-//				structures.add(() -> DMAConfiguredStructures.CONFIGURED_DEAD_TREE_2);
-//			}
+			if (isBiomeValidForDeadTree(category, biomeRegistryKey)) {
+				List<Supplier<ConfiguredFeature<?, ?>>> base =
+					event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
+
+				base.add(() -> DMAConfiguredStructures.DEAD_TREE
+					.decorated(Features.Placements.HEIGHTMAP)
+					.decorated(Placement.COUNT_EXTRA.configured(
+						new AtSurfaceWithExtraConfig(3, 0.75f, 2))));
+			}
 		}
 	}
 
@@ -302,9 +306,9 @@ public class DmAdditions {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
 	}
 
-//	private static boolean isBiomeValidForDeadTree(Biome.Category category, ResourceLocation biomeRegistryKey) {
-//		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:dead_forest"));
-//	}
+	private static boolean isBiomeValidForDeadTree(Biome.Category category, ResourceLocation biomeRegistryKey) {
+		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:dead_forest"));
+	}
 
 	private static boolean isBiomeValidForCyberUnderground(Biome.Category category, ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
