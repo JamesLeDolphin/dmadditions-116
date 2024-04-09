@@ -4,6 +4,8 @@ import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,6 +17,7 @@ import net.minecraft.util.text.TextFormatting;
 public class PlayerDataCapability implements IPlayerDataCap {
 	private final String TAG_REGEN_AMOUNT = "regens";
 	private final String TAG_POSTPONE = "postponedFor";
+	private final String TAG_PRE_REGEN = "preRegenTime";
 	private final PlayerEntity player;
 	private final int maxRegens = 12;
 	private final int minRegens = 0;
@@ -33,11 +36,16 @@ public class PlayerDataCapability implements IPlayerDataCap {
 			postponeTime--;
 			Helper.print(postponeTime);
 		}
-		if (!this.player.isCreative()) Helper.print(this.currentRegens);
+		if (!this.player.isSpectator() && !player.isCreative()) Helper.print(this.currentRegens);
 
-		if (preRegenTime > 0) preRegenTime--;
+		if (isPreRegen()) preRegenTime--;
 		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
 			this.regenerate();
+		}
+
+		if (regenTicks == Helper.seconds(30)) {
+			regenTicks = 0;
+			player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.7);
 		}
 	}
 
@@ -53,7 +61,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 	@Override
 	public boolean canPostpone() {
-		return this.hasRegens() && !postponed();
+		return this.hasRegens() && !postponed() && isPreRegen();
 	}
 
 	@Override
@@ -80,9 +88,12 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 	@Override
 	public void regenerate() {
-		 this.regenTicks++;
-		 ChatUtil.sendMessageToPlayer(player, new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
-		 player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(10), 0, false, false, false));
+		this.regenTicks++;
+		ChatUtil.sendMessageToPlayer(player, new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
+		this.removeRegens(1);
+		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
+		player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+		player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, Helper.seconds(20), 10, true, true, true));
 		this.update();
 	}
 
@@ -133,6 +144,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 		CompoundNBT tag = new CompoundNBT();
 		tag.putInt(TAG_REGEN_AMOUNT, this.currentRegens);
 		tag.putInt(TAG_POSTPONE, this.postponeTime);
+		tag.putInt(TAG_PRE_REGEN, this.preRegenTime);
 		return tag;
 	}
 
@@ -143,6 +155,9 @@ public class PlayerDataCapability implements IPlayerDataCap {
 		}
 		if (nbt.contains(TAG_POSTPONE)) {
 			this.postponeTime = nbt.getInt(TAG_POSTPONE);
+		}
+		if (nbt.contains(TAG_PRE_REGEN)) {
+			this.preRegenTime = nbt.getInt(TAG_PRE_REGEN);
 		}
 	}
 }

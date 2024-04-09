@@ -2,9 +2,11 @@ package com.jdolphin.dmadditions.event;
 
 import com.jdolphin.dmadditions.cap.IPlayerDataCap;
 import com.jdolphin.dmadditions.init.DMACapabilities;
+import com.swdteam.util.ChatUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -22,6 +24,8 @@ public class RegenEvents {
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
 				if (player.getHealth() - event.getAmount() <= 0.0 && cap.hasRegens() && !cap.isPreRegen()) {
 					event.setCanceled(!event.getSource().isBypassInvul());
+					ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You're about to regenerate. Punch a block to hold back"),
+						ChatUtil.MessageType.CHAT);
 					cap.setPreRegen();
 					cap.update();
 				}
@@ -66,7 +70,7 @@ public class RegenEvents {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity) {
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
-				if (cap.canPostpone() && cap.isPreRegen()) {
+				if (cap.canPostpone()) {
 					cap.postpone();
 					cap.update();
 				}
