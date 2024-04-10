@@ -1,14 +1,17 @@
 package com.jdolphin.dmadditions.block.tardis;
 
+import com.jdolphin.dmadditions.block.IBetterBlockTooltip;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.SonicInterfaceBlock;
+import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.item.sonics.SonicScrewdriverCustomizedItem;
 import com.swdteam.common.tileentity.tardis.SonicInterfaceTileEntity;
 import com.swdteam.network.NetworkHandler;
 import com.swdteam.network.packets.PacketOpenGui;
 import com.swdteam.network.packets.PacketXPSync;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -131,7 +134,7 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 	}
 
 	public ITextComponent getName(BlockState state, BlockPos pos, Vector3d hitVec, PlayerEntity player) {
-		return IBetterPanel.super.getName(state, pos, hitVec, player);
+		return IBetterBlockTooltip.getName(DMBlocks.SONIC_INTERFACE.get(), getTooltipTranslationKey(state, pos, hitVec, player));
 	}
 
 	@Override
