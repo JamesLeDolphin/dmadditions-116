@@ -24,12 +24,12 @@ import javax.annotation.Nullable;
 public class MagpieTelevisionBlock extends HorizontalBlock {
 	public static final VoxelShape SHAPE_NS = Block.box(0, 0, 2.5, 16, 13, 13.5);
 	public static final VoxelShape SHAPE_EW = Block.box(2.5, 0, 0, 13.5, 13, 16);
+
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
 	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 5);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
-	public static final BooleanProperty POWERED = BooleanProperty.create("powered");
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
@@ -46,7 +46,6 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 		builder.add(FACING);
 		builder.add(CHANNEL);
 		builder.add(ON);
-		builder.add(POWERED);
 		super.createBlockStateDefinition(builder);
 	}
 
@@ -56,32 +55,35 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 		return this.defaultBlockState()
 			.setValue(FACING, context.getHorizontalDirection().getOpposite())
 			.setValue(CHANNEL, 0)
-			.setValue(ON, false)
-			.setValue(POWERED, false);
+			.setValue(ON, false);
 	}
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-
-		if (!world.isClientSide && handIn == Hand.MAIN_HAND && player.getItemInHand(handIn).isEmpty() && state.getValue(ON)){
-			world.setBlockAndUpdate(pos, state.cycle(CHANNEL));
-			world.playSound(null, pos, SoundEvents.CAT_HISS, SoundCategory.BLOCKS, 0.2f, 20f);
-			return ActionResultType.SUCCESS;
-		}
-
+		if (!world.isClientSide) {
+			if (player.isCrouching()) {
+				world.setBlockAndUpdate(pos, state.setValue(ON, !state.getValue(ON)));
+				world.playSound(null, pos, SoundEvents.CAT_HISS, SoundCategory.BLOCKS, 0.2f, 20f);
+			}
+			if (state.getValue(ON) && !player.isCrouching()) {
+				int current = state.getValue(CHANNEL);
+				world.setBlockAndUpdate(pos, state.setValue(CHANNEL, current == 5 ? 0 : current + 1));
+				world.playSound(null, pos, SoundEvents.CAT_HISS, SoundCategory.BLOCKS, 0.2f, 20f);
+            }
+            return ActionResultType.SUCCESS;
+        }
 		return ActionResultType.FAIL;
 	}
 
 	public void neighborChanged(BlockState state, World world, BlockPos blockPos, Block block, BlockPos blockPos1, boolean isMoving) {
 		if (!world.isClientSide) {
-			boolean nPower = world.hasNeighborSignal(blockPos);
-
-			if(state.getValue(POWERED) != nPower) {
-				if(nPower){
-					world.setBlockAndUpdate(blockPos, state.cycle(ON).setValue(POWERED, true));
-				}
-				else{
-					world.setBlockAndUpdate(blockPos, state.setValue(POWERED, false));
+			boolean on = state.getValue(ON);
+			boolean hasSignal = world.hasNeighborSignal(blockPos);
+			if (on != hasSignal) {
+				if (on) {
+					world.setBlockAndUpdate(blockPos, state.setValue(ON, true));
+				} else {
+					world.setBlockAndUpdate(blockPos, state.setValue(ON, false));
 				}
 			}
 		}

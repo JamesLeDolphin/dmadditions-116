@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:overworld",
+  "type": "dmadditions:mondas",
   "generator": {
     "type": "minecraft:noise",
     "seed": 419117565,

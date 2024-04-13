@@ -81,6 +81,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -269,23 +270,23 @@ public class DmAdditions {
 				List<MobSpawnInfo.Spawners> spawns = event.getSpawns().getSpawner(spawn.entityType);
 				spawns.add(spawn.spawner);
 			}
-
+		}
 			Biome.Category category = event.getCategory();
 			ResourceLocation biomeRegistryKey = event.getName();
 
-			if (isBiomeValidForManor(category, biomeRegistryKey)) {
+			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
 			}
-			if (isBiomeValidForCyberUnderground(category, biomeRegistryKey)) {
+			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
 			}
-			if (isBiomeValidForMondasCyberBase(category, biomeRegistryKey)) {
+			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
 			}
-			if (isBiomeValidForDeadTree(category, biomeRegistryKey)) {
+			if (isBiomeValidForDeadTree(biomeRegistryKey)) {
 				List<Supplier<ConfiguredFeature<?, ?>>> base =
 					event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
@@ -293,32 +294,24 @@ public class DmAdditions {
 					.decorated(Features.Placements.HEIGHTMAP)
 					.decorated(Placement.COUNT_EXTRA.configured(
 						new AtSurfaceWithExtraConfig(3, 0.75f, 2))));
-			}
 		}
 	}
 
-	/* To specify a type of biome return category == Biome.Category.TAIGA, however if you want to specify a speficic
-	 biome like in the example below, use (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
-	 		-TW1 	*/
-	//Okay will do - Jam
-
-	private static boolean isBiomeValidForManor(Biome.Category category, ResourceLocation biomeRegistryKey) {
-		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
-	}
-
-	private static boolean isBiomeValidForDeadTree(Biome.Category category, ResourceLocation biomeRegistryKey) {
+	private static boolean isBiomeValidForDeadTree(ResourceLocation biomeRegistryKey) {
 		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:dead_forest"));
 	}
 
-	private static boolean isBiomeValidForCyberUnderground(Biome.Category category, ResourceLocation biomeRegistryKey) {
-		return (biomeRegistryKey != null && biomeRegistryKey.toString().equals("minecraft:snowy_taiga"));
-	}
-	private static boolean isBiomeValidForMondasCyberBase(Biome.Category category, ResourceLocation biomeRegistryKey) {
-		return (biomeRegistryKey != null &&
-			biomeRegistryKey.toString().equals("dmadditions:bluelands") ||
-			biomeRegistryKey.toString().equals("dmadditions:dead_forest") ||
-			biomeRegistryKey.toString().equals("dmadditions:mondas_frozen"));
-	}
+	public static boolean isValidForStructure(ResourceLocation biomeRegistryKey, StructureFeature<?, ?> structure) {
+		if (biomeRegistryKey != null) {
+			String registryKey = biomeRegistryKey.toString();
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR)) return registryKey.equals("minecraft:snowy_taiga");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
+				registryKey.equals("dmadditions:dead_forest");
+			if (structure.equals(DMAConfiguredStructures.DEAD_TREE)) return registryKey.equals("dmadditions:dead_forest");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
+		}
+		return false;
+    }
 
 	@SubscribeEvent
 	public void addReloadListeners(AddReloadListenerEvent event){
@@ -326,7 +319,7 @@ public class DmAdditions {
 	}
 
 	private void runLater(ParallelDispatchEvent event) {
-		if(DMABlocks.MAGPIE_TELEVISION != null){
+		if (DMABlocks.MAGPIE_TELEVISION.isPresent()) {
 			event.enqueueWork(() -> {
 				DMSonicRegistry.SONIC_LOOKUP.put(DMABlocks.MAGPIE_TELEVISION.get(), new SonicMagpieTelevision());
 				IRust.rustedMap.put(DMABlocks.STEEL_BEAMS_ROUNDEL_CONTAINER.get(), DMABlocks.RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER.get());

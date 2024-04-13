@@ -245,6 +245,12 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> ENGINE = registerBlock(() -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
 
+	public static RegistryObject<Block> CROCITE = registerBlockAndItem("crocoite", () -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)),
+		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+
+	public static RegistryObject<Block> COBBLED_CROCITE = registerBlockAndItem("cobbled_crocoite", () -> new Block(AbstractBlock.Properties.copy(Blocks.COBBLESTONE)),
+		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, ItemGroup itemgroup) {
 		return registerBlock(block, name, (new Item.Properties()).tab(itemgroup), true);
 	}
@@ -278,7 +284,6 @@ public class DMABlocks {
 			GOLD_BAUBLE_BLOCK,
 			GREEN_BAUBLE_BLOCK,
 			RED_BAUBLE_BLOCK
-			//SANTA_BAUBLE_BLOCK
 		);
 
 		registerRenderTypes(RenderType.cutoutMipped(),
