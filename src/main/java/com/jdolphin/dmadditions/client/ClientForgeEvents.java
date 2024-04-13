@@ -55,32 +55,4 @@ public class ClientForgeEvents {
 			DMAPackets.INSTANCE.sendToServer(packet);
 		}
 	}
-
-	@SubscribeEvent(
-		priority = EventPriority.HIGHEST
-	)
-	public static void guiEvent(GuiScreenEvent.InitGuiEvent event) {
-		if (event.getGui() instanceof MainMenuScreen && (Boolean) DMConfig.CLIENT.customTitleScreen.get()) {
-			MainMenuScreen gui = (MainMenuScreen) event.getGui();
-			ReflectionHelper.setValuePrivateDeclaredField("splash", MainMenuScreen.class, gui, null);
-			ReflectionHelper.setValuePrivateDeclaredField("field_73975_c", MainMenuScreen.class, gui, null);
-
-			for (int i = 0; i < gui.buttons.size(); ++i) {
-				Widget w = (Widget) gui.buttons.get(i);
-				if (w.getMessage() instanceof TranslationTextComponent && ((TranslationTextComponent) w.getMessage()).getKey().equalsIgnoreCase("menu.multiplayer")) {
-					w.setWidth(98);
-					Button b = new Button(gui.width / 2 + 2, gui.height / 4 + 72, 98, 20,
-						new StringTextComponent("Dalek Mod Server"), (button) -> {
-						Minecraft.getInstance().setScreen(new GuiDMU(gui));
-					}, (button, matrixStack, i1, i2) -> {
-						if (!button.active) {
-							gui.renderTooltip(matrixStack, gui.getMinecraft().font.split(new StringTextComponent("Please remove Dalek Mod: Additions before joining DMU"),
-								Math.max(gui.width / 2 - 43, 170)), i1, i2); }});
-					b.active = false;
-					gui.children.add(b);
-					gui.buttons.add(b);
-				}
-			}
-		}
-	}
 }

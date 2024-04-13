@@ -29,7 +29,6 @@
 		"comp.ntm.TardisActionListMixin"
 	],
 	"client": [
-		"other.BusClientEventsMixin",
 		"other.DalekEntityMixin",
 		"other.DMTileRenderRegistryMixin",
 		"other.ItemRenderingInitMixin",
