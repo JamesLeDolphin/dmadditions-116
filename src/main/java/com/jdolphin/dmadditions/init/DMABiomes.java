@@ -24,6 +24,13 @@ public class DMABiomes {
 	public static final RegistryObject<Biome> MONDAS_DEAD_FOREST = BIOMES.register("dead_forest", BiomeMaker::theVoidBiome);
 	public static RegistryKey<Biome> MONDAS;
 
+	public static RegistryKey<Biome> GALIFREY;
+	public static final RegistryObject<Biome> GALIFREY_PLAINS = BIOMES.register("galifrey_plains", BiomeMaker::theVoidBiome);
+	public static final RegistryObject<Biome> GALIFREY_DESERT = BIOMES.register("galifrey_desert", BiomeMaker::theVoidBiome);
+	public static final RegistryObject<Biome> GALIFREY_MOUNTAINS = BIOMES.register("galifrey_mountains", BiomeMaker::theVoidBiome);
+	public static final RegistryObject<Biome> GALIFREY_FOREST = BIOMES.register("galifrey_forest", BiomeMaker::theVoidBiome);
+
+
 	private static RegistryKey<Biome> makeKey(String name) {
 		return RegistryKey.create(Registry.BIOME_REGISTRY, Helper.createAdditionsRL(name));
 	}
