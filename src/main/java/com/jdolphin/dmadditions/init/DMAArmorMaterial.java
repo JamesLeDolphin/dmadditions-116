@@ -1,10 +1,12 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.util.Helper;
+import com.swdteam.common.init.DMItems;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -19,6 +21,9 @@ public enum DMAArmorMaterial implements IArmorMaterial {
 		() -> Ingredient.EMPTY),
 	SPACE_SUIT("space_suit", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
 		() -> Ingredient.EMPTY),
+	CYBERMAN_ARMOUR("cyberman_armour", 28, new int[]{ 3, 6, 7}, 9, SoundEvents.ARMOR_EQUIP_CHAIN, 2.0F, 0.3F, () -> {
+		return Ingredient.of(new IItemProvider[]{(IItemProvider)DMItems.STEEL_INGOT.get()});
+	}),
 
 	CHRISTMAS_HAT("christmas_hat", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
 		() -> Ingredient.EMPTY),
