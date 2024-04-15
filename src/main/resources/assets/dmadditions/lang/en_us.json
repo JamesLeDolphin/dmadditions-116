@@ -299,5 +299,7 @@
 	"dmadditions.gui.player_locator": "Player Locator",
 	"dmadditions.button.cancel": "Cancel",
 	"dmadditions.button.player_locator.select": "Locate Player",
-	"block.dmadditions.player_locator.disabled": "Player locator is disabled on this server!"
+	"block.dmadditions.player_locator.disabled": "Player locator is disabled on this server!",
+	"block.dmadditions.crocoite": "Crocoite",
+	"block.dmadditions.cobbled_crocoite": "Cobbled Crocoite"
 }
