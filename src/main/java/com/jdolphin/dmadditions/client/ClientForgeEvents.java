@@ -38,7 +38,7 @@ public class ClientForgeEvents {
 		ClientWorld world;
 		Minecraft minecraft = Minecraft.getInstance();
 		assert minecraft.level != null;
-		if (minecraft.level.dimension().equals(DMADimensions.MONDAS)) {
+		if (minecraft.level.dimension().equals(DMADimensions.MONDAS) || minecraft.level.dimension().equals(DMADimensions.GALIFREY)) {
 			world = minecraft.level;
 			DimensionRenderInfo info = world.effects();
 			if (info.getSkyRenderHandler() == null) {
