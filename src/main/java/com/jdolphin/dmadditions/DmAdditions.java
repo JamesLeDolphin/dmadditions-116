@@ -231,7 +231,7 @@ public class DmAdditions {
 
 		}
 	}
-
+	//TODO Remove this? doesnt seem to do anything
 	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
 		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
 			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
