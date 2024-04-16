@@ -10,7 +10,7 @@ public class DMADimensions {
 	public static RegistryKey<World> ANDROZANIMINOR = RegistryKey.create(Registry.DIMENSION_REGISTRY,Helper.createDMRL("androzaniminor"));
 	public static RegistryKey<World> MONDAS = RegistryKey.create(Registry.DIMENSION_REGISTRY, Helper.createAdditionsRL("mondas"));
 
-	public static RegistryKey<World> GALIFREY = RegistryKey.create(Registry.DIMENSION_REGISTRY, Helper.createAdditionsRL("galifrey"));
+	public static RegistryKey<World> GALLIFREY = RegistryKey.create(Registry.DIMENSION_REGISTRY, Helper.createAdditionsRL("gallifrey"));
 
 	public DMADimensions() {}
 }

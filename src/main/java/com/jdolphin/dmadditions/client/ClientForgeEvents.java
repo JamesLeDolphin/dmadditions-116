@@ -38,13 +38,16 @@ public class ClientForgeEvents {
 		ClientWorld world;
 		Minecraft minecraft = Minecraft.getInstance();
 		assert minecraft.level != null;
-		if (minecraft.level.dimension().equals(DMADimensions.MONDAS) || minecraft.level.dimension().equals(DMADimensions.GALIFREY)) {
-			world = minecraft.level;
-			DimensionRenderInfo info = world.effects();
-			if (info.getSkyRenderHandler() == null) {
+		world = minecraft.level;
+		DimensionRenderInfo info = world.effects();
+		if (info.getSkyRenderHandler() == null) {
+			if (minecraft.level.dimension().equals(DMADimensions.MONDAS)) {
 				info.setSkyRenderHandler(SkyRendererMondas.INSTANCE);
-				info.setCloudRenderHandler(EmptyCloudRenderer.INSTANCE);
 			}
+			if (minecraft.level.dimension().equals(DMADimensions.GALLIFREY)) {
+				//TODO?
+			}
+			info.setCloudRenderHandler(EmptyCloudRenderer.INSTANCE);
 		}
 	}
 
