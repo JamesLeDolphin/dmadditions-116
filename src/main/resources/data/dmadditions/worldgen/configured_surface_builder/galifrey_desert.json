@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:default",
+  "config": {
+    "top_material": {
+      "Name": "minecraft:red_sand",
+      "Properties": {
+        "snowy": "true"
+      }
+    },
+    "under_material": {
+      "Name": "minecraft:red_sand"
+    },
+    "underwater_material": {
+      "Name": "minecraft:gravel"
+    }
+  }
+}

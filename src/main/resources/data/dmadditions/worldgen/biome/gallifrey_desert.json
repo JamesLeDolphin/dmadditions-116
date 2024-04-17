@@ -1,5 +1,5 @@
 {
-  "surface_builder": "minecraft:desert",
+  "surface_builder": "dmadditions:galifrey_desert",
   "depth": 0.125,
   "scale": 0.05,
   "temperature": 0.8,
