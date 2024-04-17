@@ -1,16 +1,16 @@
 {
-  "surface_builder": "minecraft:mountain",
-  "depth": 0.125,
-  "scale": 0.05,
+  "surface_builder": "dmadditions:gallifrey",
+  "depth": 0.45,
+  "scale": 0.3,
   "temperature": 0.8,
   "downfall": 0.4,
-  "precipitation": "rain",
+  "precipitation": "snow",
   "category": "extreme_hills",
   "player_spawn_friendly": true,
   "effects": {
     "sky_color": 16742403,
     "fog_color": 12638463,
-    "water_color": 14982975,
+    "water_color": 1639557,
     "water_fog_color": 329011,
     "grass_color": 8465959,
     "foliage_color": 10248001
@@ -18,6 +18,10 @@
   "starts": [],
   "spawners": {},
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave"
+    ]
+  },
   "features": []
 }

@@ -35,6 +35,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
@@ -52,6 +53,7 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -128,7 +130,6 @@ public class DmAdditions {
 		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
 		DMAItems.ITEMS.register(bus);
 		DMAWorldCarvers.WORLD_CARVERS.register(bus);
-		DMABiomes.BIOMES.register(bus);
 		DMAProjectiles.init();
 		DMALootConditionManager.init();
 		DMASoundEvents.init();
@@ -271,7 +272,6 @@ public class DmAdditions {
 				spawns.add(spawn.spawner);
 			}
 		}
-			Biome.Category category = event.getCategory();
 			ResourceLocation biomeRegistryKey = event.getName();
 
 			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
@@ -366,20 +366,6 @@ public class DmAdditions {
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(block -> blockMapping.remap(block.get()));
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public void missingBiomes(RegistryEvent.MissingMappings<Biome> event) {
-		for (RegistryEvent.MissingMappings.Mapping<Biome> mapping : event.getMappings("dalekmod")) {
-			mapping.remap(DMABiomes.MOON_BIOME.get());
-		}
-	}
-	@SubscribeEvent
-	public void missingCarvers(RegistryEvent.MissingMappings<WorldCarver<?>> event) {
-		for (RegistryEvent.MissingMappings.Mapping<WorldCarver<?>> mapping : event.getMappings("dalekmod")) {
-			mapping.remap(DMAWorldCarvers.CARVER.get());
-
 		}
 	}
 }

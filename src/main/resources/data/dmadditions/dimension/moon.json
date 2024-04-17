@@ -58,7 +58,7 @@
         ]
       }
     },
-    "settings": "dalekmod:moon_noise"
+    "settings": "dmadditions:moon_noise"
   },
-  "type": "dalekmod:moon"
+  "type": "dmadditions:moon"
 }

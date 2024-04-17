@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:default",
+  "config": {
+    "top_material": {
+      "Name": "dalekmod:anorthosite",
+      "Properties": {
+        "snowy": "false"
+      }
+    },
+    "under_material": {
+      "Name": "dalekmod:anorthosite"
+    },
+    "underwater_material": {
+      "Name": "minecraft:gravel"
+    }
+  }
+}

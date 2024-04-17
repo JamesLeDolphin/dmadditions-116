@@ -1,6 +1,6 @@
 {
-  "type": "dmadditions:moon_carver",
+  "type": "minecraft:cave",
   "config": {
-    "probability": 0.14285715
+    "probability": 0.01
   }
 }

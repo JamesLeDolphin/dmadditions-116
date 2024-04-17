@@ -12,5 +12,4 @@ public class DMADimensions {
 
 	public static RegistryKey<World> GALLIFREY = RegistryKey.create(Registry.DIMENSION_REGISTRY, Helper.createAdditionsRL("gallifrey"));
 
-	public DMADimensions() {}
 }

@@ -1,6 +1,6 @@
 {
 	"dimension": "dalekmod:moon",
-	"icon": "dalekmod:textures/item/moon.png",
+	"icon": "dmadditions:textures/planets/moon.png",
 	"coordinate": [
 		0,
 		0
