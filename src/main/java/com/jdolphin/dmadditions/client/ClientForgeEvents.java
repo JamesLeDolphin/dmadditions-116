@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
+import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererGallifrey;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMondas;
 import com.jdolphin.dmadditions.init.DMADimensions;
 import com.jdolphin.dmadditions.init.DMAPackets;
@@ -43,11 +44,11 @@ public class ClientForgeEvents {
 		if (info.getSkyRenderHandler() == null) {
 			if (minecraft.level.dimension().equals(DMADimensions.MONDAS)) {
 				info.setSkyRenderHandler(SkyRendererMondas.INSTANCE);
+				info.setCloudRenderHandler(EmptyCloudRenderer.INSTANCE);
 			}
 			if (minecraft.level.dimension().equals(DMADimensions.GALLIFREY)) {
-				//TODO?
+				info.setSkyRenderHandler(SkyRendererGallifrey.INSTANCE);
 			}
-			info.setCloudRenderHandler(EmptyCloudRenderer.INSTANCE);
 		}
 	}
 

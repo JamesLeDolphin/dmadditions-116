@@ -230,6 +230,9 @@ public class DmAdditions {
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MONDAS_RUIN.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
+
 		}
 	}
 	//TODO Remove this? doesnt seem to do anything
@@ -285,6 +288,7 @@ public class DmAdditions {
 			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
 				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
+				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 			}
 			if (isBiomeValidForDeadTree(biomeRegistryKey)) {
 				List<Supplier<ConfiguredFeature<?, ?>>> base =
@@ -307,7 +311,6 @@ public class DmAdditions {
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR)) return registryKey.equals("minecraft:snowy_taiga");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
 				registryKey.equals("dmadditions:dead_forest");
-			if (structure.equals(DMAConfiguredStructures.DEAD_TREE)) return registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
 		}
 		return false;

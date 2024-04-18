@@ -15,6 +15,7 @@ public class DMAConfiguredStructures {
 	public static StructureFeature<?, ?> CONFIGURED_MANOR = DMAStructures.MANOR.get().configured(IFeatureConfig.NONE);
 	public static StructureFeature<?, ?> CONFIGURED_CYBER_UNDERGROUND = DMAStructures.CYBER_UNDERGROUND.get().configured(IFeatureConfig.NONE);
 	public static StructureFeature<?, ?> CONFIGURED_CYBER_MONDAS = DMAStructures.CYBER_MONDAS.get().configured(IFeatureConfig.NONE);
+	public static StructureFeature<?, ?> CONFIGURED_MONDAS_RUIN = DMAStructures.MONDAS_RUIN.get().configured(IFeatureConfig.NONE);
 
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> DEAD_TREE =
 		register("dead_tree", Feature.TREE.configured((
@@ -25,17 +26,17 @@ public class DMAConfiguredStructures {
 				new StraightTrunkPlacer(2, 4, 3),
 				new TwoLayerFeature(1, 0, 1))).ignoreVines().build()));
 
-	public DMAConfiguredStructures() {
-	}
 
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
 		Registry.register(registry, Helper.createAdditionsRL("configured_manor"), CONFIGURED_MANOR);
 		Registry.register(registry,Helper.createAdditionsRL("configured_cyber_underground"), CONFIGURED_CYBER_UNDERGROUND);
 		Registry.register(registry,Helper.createAdditionsRL("configured_mondas_base"), CONFIGURED_CYBER_MONDAS);
+		Registry.register(registry,Helper.createAdditionsRL("configured_mondas_ruin"), CONFIGURED_MONDAS_RUIN);
 		FlatGenerationSettings.STRUCTURE_FEATURES.put(DMAStructures.MANOR.get(), CONFIGURED_MANOR);
 		FlatGenerationSettings.STRUCTURE_FEATURES.put(DMAStructures.CYBER_MONDAS.get(), CONFIGURED_CYBER_MONDAS);
 		FlatGenerationSettings.STRUCTURE_FEATURES.put(DMAStructures.CYBER_UNDERGROUND.get(), CONFIGURED_CYBER_UNDERGROUND);
+		FlatGenerationSettings.STRUCTURE_FEATURES.put(DMAStructures.MONDAS_RUIN.get(), CONFIGURED_MONDAS_RUIN);
 
 	}
 
