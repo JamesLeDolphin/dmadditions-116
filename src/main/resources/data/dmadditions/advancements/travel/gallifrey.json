@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "dmadditions:crocite"
+    },
+    "title": "Gallifrey",
+    "description": "Welcome to Gallifrey",
+    "background": "dmadditions:textures/block/cobbled_crocoite.png",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "dalekmod:travel/root",
+  "criteria": {
+    "visit_gallifrey": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "dmadditions:gallifrey"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "visit_gallifrey"
+    ]
+  ]
+}
