@@ -43,7 +43,7 @@
             "temperature": 2,
             "humidity": 0,
             "weirdness": 0,
-            "offset": 1
+            "offset": 1.4
           }
         },
         {
@@ -52,17 +52,7 @@
             "altitude": 1,
             "temperature": 1,
             "humidity": 1,
-            "weirdness": 1,
-            "offset": 1
-          }
-        },
-        {
-          "biome": "dmadditions:gallifrey_mountains",
-          "parameters": {
-            "altitude": 1,
-            "temperature": 0,
-            "humidity": 2,
-            "weirdness": 1,
+            "weirdness": 0.7,
             "offset": 1
           }
         },
@@ -72,8 +62,18 @@
             "altitude": 1,
             "temperature": 1,
             "humidity": 0,
-            "weirdness": 0,
-            "offset": 1
+            "weirdness": 0.5,
+            "offset": 1.4
+          }
+        },
+        {
+          "biome": "dmadditions:gallifrey_mountains",
+          "parameters": {
+            "altitude": 1,
+            "temperature": 0.5,
+            "humidity": 2,
+            "weirdness": 0.7,
+            "offset": 0.3
           }
         }
       ]

@@ -1,10 +1,10 @@
 {
   "surface_builder": "dmadditions:gallifrey",
-  "depth": 0.45,
+  "depth": 1.0,
   "scale": 0.3,
   "temperature": 0.8,
   "downfall": 0.4,
-  "precipitation": "snow",
+  "precipitation": "rain",
   "category": "extreme_hills",
   "player_spawn_friendly": true,
   "effects": {
