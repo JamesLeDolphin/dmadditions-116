@@ -32,6 +32,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.KANTROFARRI, KantrofarriRenderer::new);
 		registerRender(DMAEntities.JIM, JimRenderer::new);
 		registerRender(DMAEntities.HEROBRINE, HerobrineRenderer::new);
+		registerRender(DMAEntities.TIMELORD, TimeLordRenderer::new);
 	}
 
 

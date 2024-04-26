@@ -46,6 +46,7 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 		UUID.fromString("a75ea8dd-efc8-45dd-b724-bac7a9c14d6f")  // leo
 		//why no James
 		//because it's a list of people who know JIM IRL
+		//smh
 	));
 
 	private final RangedAttackGoal rangedAttackGoal = new RangedAttackGoal(this, 1.0D, 20, 15.0F);

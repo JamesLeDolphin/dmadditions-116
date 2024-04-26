@@ -2,37 +2,46 @@ package com.jdolphin.dmadditions.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.HandSide;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-public class TimeLordEntity extends LivingEntity {
-	protected TimeLordEntity(EntityType<? extends LivingEntity> p_i48577_1_, World p_i48577_2_) {
-		super(p_i48577_1_, p_i48577_2_);
+public class TimeLordEntity extends RegeneratingEntity {
+	public static final DataParameter<String> TIMELORD_TYPE = EntityDataManager.defineId(TimeLordEntity.class, DataSerializers.STRING);
+	public TimeLordEntity(EntityType<? extends RegeneratingEntity> type, World world) {
+		super(type, world);
 	}
 
-	@Override
-	public Iterable<ItemStack> getArmorSlots() {
-		return null;
+	protected void defineSynchedData() {
+		TimeLordType[] types = TimeLordType.values();
+		this.getEntityData().define(TIMELORD_TYPE, types[this.random.nextInt(types.length)].getName());
+		super.defineSynchedData();
 	}
 
-	@Override
-	public ItemStack getItemBySlot(EquipmentSlotType slotType) {
-		if (slotType.equals(EquipmentSlotType.MAINHAND)) return this.getMainHandItem();
-		else return this.getOffhandItem();
+	public TimeLordType getTimelordType() {
+		return TimeLordType.get(this.entityData.get(TIMELORD_TYPE));
 	}
 
-	@Override
-	public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
-
+	public void setTimelordType(String type) {
+		setTimelordType(TimeLordType.get(type));
 	}
 
-	@Override
-	public HandSide getMainArm() {
-		return Math.random() == 0.1 ? HandSide.LEFT : HandSide.RIGHT;
+	public static AttributeModifierMap.MutableAttribute createAttributes() {
+		return LivingEntity.createLivingAttributes()
+			.add(Attributes.ATTACK_DAMAGE, 1.0D)
+			.add(Attributes.MOVEMENT_SPEED, (double) 0.2F)
+			.add(Attributes.ATTACK_SPEED, 1.0f)
+			.add(Attributes.LUCK)
+			.add(Attributes.ATTACK_KNOCKBACK)
+			.add(Attributes.FOLLOW_RANGE, 30.0D);
+	}
+
+	public void setTimelordType(TimeLordType type) {
+		if (this.entityData != null) {
+			this.entityData.set(TIMELORD_TYPE, type.getName());
+		}
 	}
 }

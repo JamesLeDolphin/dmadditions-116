@@ -1,0 +1,135 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dmadditions:entity/timelord/ari",
+	"texture_width": 64,
+	"texture_height": 64,
+	"scale": 1,
+	"groups": [
+		{
+			"group_name": "head",
+			"pivot": [0,0,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,28],
+					"size": [8,8,8],
+					"origin": [-4,-8,-4],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,16],
+					"size": [18,12,0],
+					"origin": [-9,-12.575,4.25],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,0],
+					"size": [8,8,8],
+					"origin": [-4,-8,-4],
+					"inflate": 0.25,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "right_leg",
+			"pivot": [0,12,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,44],
+					"size": [4,12,4],
+					"origin": [-4,0,-2],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "left_leg",
+			"pivot": [0,12,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,44],
+					"size": [4,12,4],
+					"origin": [0,0,-2],
+					"inflate": 0,
+					"mirror": true
+				}
+			]
+		},
+		{
+			"group_name": "right_arm",
+			"pivot": [-4,2,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [17,44],
+					"size": [4,12,4],
+					"origin": [-4,-2,-2],
+					"inflate": 0,
+					"mirror": true
+				},
+				{
+					"uv": [48,0],
+					"size": [4,4,4],
+					"origin": [-4,-2,-2],
+					"inflate": 0.4,
+					"mirror": true
+				},
+				{
+					"uv": [34,44],
+					"size": [3,12,4],
+					"origin": [-3,-2,-2],
+					"inflate": 0,
+					"mirror": true
+				}
+			]
+		},
+		{
+			"group_name": "left_arm",
+			"pivot": [4,2,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [17,44],
+					"size": [4,12,4],
+					"origin": [0,-2,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [48,0],
+					"size": [4,4,4],
+					"origin": [0,-2,-2],
+					"inflate": 0.4,
+					"mirror": false
+				},
+				{
+					"uv": [34,44],
+					"size": [3,12,4],
+					"origin": [0,-2,-2],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "body",
+			"pivot": [0,6,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [32,24],
+					"size": [8,12,4],
+					"origin": [-4,-6,-2],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		}
+	]
+}
