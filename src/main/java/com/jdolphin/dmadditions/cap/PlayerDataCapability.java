@@ -17,11 +17,13 @@ import net.minecraft.util.text.TextFormatting;
 public class PlayerDataCapability implements IPlayerDataCap {
 	private final String TAG_REGEN_AMOUNT = "regens";
 	private final String TAG_POSTPONE = "postponedFor";
+	private final String TAG_CAN_POSTPONE = "canPostpone";
 	private final String TAG_PRE_REGEN = "preRegenTime";
 	private final PlayerEntity player;
 	private final int maxRegens = 12;
 	private final int minRegens = 0;
 	private int postponeTime = 0;
+	private boolean canPostpone = true;
 	private int preRegenTime = Helper.minutes(1);
 	private int regenTicks;
 	private int currentRegens;
@@ -45,13 +47,12 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 		if (regenTicks == Helper.seconds(30)) {
 			regenTicks = 0;
-			player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.7);
 		}
 	}
 
 	@Override
 	public boolean postponed() {
-		return postponeTime > 0;
+		return this.postponeTime > 0;
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 
 	@Override
 	public boolean canPostpone() {
-		return this.hasRegens() && !postponed() && isPreRegen();
+		return this.hasRegens() && !postponed() && isPreRegen() && this.canPostpone;
 	}
 
 	@Override
@@ -69,6 +70,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 		ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You've postponed your regeneration for 5 minutes").withStyle(TextFormatting.GREEN),
 			ChatUtil.MessageType.CHAT);
 		this.postponeTime = Helper.minutes(5);
+		this.canPostpone = false;
 	}
 
 	@Override
@@ -89,10 +91,13 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	@Override
 	public void regenerate() {
 		this.regenTicks++;
-		ChatUtil.sendMessageToPlayer(player, new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
+		if (regenTicks == 5) ChatUtil.sendMessageToPlayer(player,
+			new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
+
 		this.removeRegens(1);
 		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
-		player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0);
+		player.setSpeed(0);
+
 		player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, Helper.seconds(20), 10, true, true, true));
 		this.update();
 	}

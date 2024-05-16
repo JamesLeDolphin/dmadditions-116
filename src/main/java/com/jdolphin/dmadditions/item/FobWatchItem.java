@@ -36,6 +36,13 @@ public class FobWatchItem extends Item {
 		return false;
 	}
 
+	public ItemStack getDefaultInstance() {
+		FobWatchItem watch = this;
+		ItemStack stack = new ItemStack(this);
+		watch.addRegen(stack, 12);
+		return new ItemStack(watch);
+	}
+
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getItemInHand(hand);
@@ -72,7 +79,7 @@ public class FobWatchItem extends Item {
 	public void addRegen(ItemStack stack, int i) {
 		CompoundNBT tag = stack.getOrCreateTag();
 		int j = tag.contains(REGEN_TAG) ? tag.getInt(REGEN_TAG) : 0;
-		tag.putInt(REGEN_TAG, j + i);
+		tag.putInt(REGEN_TAG, Math.min(12, j + i));
 	}
 
 	public boolean showDurabilityBar(ItemStack stack) {
