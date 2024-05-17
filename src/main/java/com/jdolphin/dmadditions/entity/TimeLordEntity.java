@@ -4,12 +4,16 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class TimeLordEntity extends RegeneratingEntity {
+	public static String TYPE_TIMELORD = "TimelordType";
 	public static final DataParameter<String> TIMELORD_TYPE = EntityDataManager.defineId(TimeLordEntity.class, DataSerializers.STRING);
 	public TimeLordEntity(EntityType<? extends RegeneratingEntity> type, World world) {
 		super(type, world);
@@ -43,5 +47,21 @@ public class TimeLordEntity extends RegeneratingEntity {
 		if (this.entityData != null) {
 			this.entityData.set(TIMELORD_TYPE, type.getName());
 		}
+	}
+
+	public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
+		if (this.entityData != null) {
+			compound.putString(TYPE_TIMELORD, this.entityData.get(TIMELORD_TYPE));
+		}
+
+		super.addAdditionalSaveData(compound);
+	}
+
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		if (compound.contains(TYPE_TIMELORD)) {
+			this.setTimelordType(compound.getString(TYPE_TIMELORD));
+		}
+
+		super.readAdditionalSaveData(compound);
 	}
 }

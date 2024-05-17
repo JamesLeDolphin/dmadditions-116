@@ -7,10 +7,11 @@ import com.jdolphin.dmadditions.entity.TimeLordEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class TimeLordRenderer extends RegeneratingEntityRenderer<TimeLordEntity, TimeLordModel> {
+public class TimeLordRenderer extends BipedRenderer<TimeLordEntity, TimeLordModel> {
 
 	public TimeLordRenderer(EntityRendererManager rendererManager){
 		super(rendererManager, new TimeLordModel(1.0f), 0.5f);

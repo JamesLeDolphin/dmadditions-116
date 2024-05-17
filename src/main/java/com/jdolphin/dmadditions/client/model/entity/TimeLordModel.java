@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.entity.TimeLordEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
+import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.renderer.entity.model.BipedModel;
@@ -15,6 +16,7 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> implements IModelP
 	public JSONModel model;
 	public TimeLordModel(float size) {
 		super(size);
+		ModelReloaderRegistry.register(this);
 	}
 
 	@Override
@@ -32,6 +34,7 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> implements IModelP
 	@Override
 	public void init() {
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/timelord/ari.json"));
+
 		if (this.model != null) {
 			this.head = this.model.getModelData().getModel().getPart("head");
 			this.body = this.model.getModelData().getModel().getPart("body");

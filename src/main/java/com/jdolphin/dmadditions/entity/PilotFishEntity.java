@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.entity.ai.goal.RangedLasergunAttackGoal;
-import com.jdolphin.dmadditions.init.DMANBTKeys;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.init.DMProjectiles;
@@ -39,6 +38,8 @@ import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
 
 // Robo Santa or something
 public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
+	public static String TYPE_PILOT_FISH = "PilotFishType";
+
 	public static final DataParameter<String> PILOT_FISH_TYPE = EntityDataManager.defineId(PilotFishEntity.class, DataSerializers.STRING);
 	private final RangedLasergunAttackGoal<PilotFishEntity> rangedAttackGoal = new RangedLasergunAttackGoal<>(this, 1.0D, 20, 15.0F);
 	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false);
@@ -96,15 +97,15 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 	public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
 		if (this.entityData != null) {
-			compound.putString(DMANBTKeys.TYPE_PILOT_FISH, this.entityData.get(PILOT_FISH_TYPE));
+			compound.putString(TYPE_PILOT_FISH, this.entityData.get(PILOT_FISH_TYPE));
 		}
 
 		super.addAdditionalSaveData(compound);
 	}
 
 	public void readAdditionalSaveData(CompoundNBT compound) {
-		if (compound.contains(DMANBTKeys.TYPE_PILOT_FISH)) {
-			this.setPilotFishType(compound.getString(DMANBTKeys.TYPE_PILOT_FISH));
+		if (compound.contains(TYPE_PILOT_FISH)) {
+			this.setPilotFishType(compound.getString(TYPE_PILOT_FISH));
 		}
 
 		super.readAdditionalSaveData(compound);

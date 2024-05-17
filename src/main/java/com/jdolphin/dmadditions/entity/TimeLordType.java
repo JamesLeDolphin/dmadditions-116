@@ -39,7 +39,7 @@ public enum TimeLordType {
 
 	public static TimeLordType get(String name) {
 		return Arrays.stream(values())
-			.filter(pilotFishType -> pilotFishType.name.equals(name)).findFirst()
+			.filter(timeLordType -> timeLordType.name.equals(name)).findFirst()
 			.orElse(ARI);
 	}
 }
