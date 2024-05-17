@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.event;
 
-import com.jdolphin.dmadditions.cap.IPlayerDataCap;
-import com.jdolphin.dmadditions.cap.PlayerDataCapability;
+import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
+import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
@@ -59,7 +59,7 @@ public class DMAEventHandlerGeneral {
 	@SubscribeEvent
 	public static void attachPlayerCap(AttachCapabilitiesEvent<Entity> event) {
 		if (event.getObject() instanceof PlayerEntity) {
-			event.addCapability(PLAYER_DATA_CAP, new IPlayerDataCap.Provider(new PlayerDataCapability((PlayerEntity)event.getObject())));
+			event.addCapability(PLAYER_DATA_CAP, new IPlayerRegenCap.Provider(new PlayerRegenCapability((PlayerEntity)event.getObject())));
 		}
 	}
 

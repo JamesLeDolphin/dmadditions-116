@@ -2,8 +2,8 @@ package com.jdolphin.dmadditions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jdolphin.dmadditions.cap.IPlayerDataCap;
-import com.jdolphin.dmadditions.cap.PlayerDataCapability;
+import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
+import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.client.ClientDMBusEvents;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.jdolphin.dmadditions.commands.*;
@@ -34,14 +34,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.StructureFeature;
@@ -52,8 +49,6 @@ import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -83,10 +78,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.function.Supplier;
 
 
@@ -188,7 +181,7 @@ public class DmAdditions {
 			DMAStructures.setupStructures();
 			DMAConfiguredStructures.registerConfiguredStructures();
 		});
-		CapabilityManager.INSTANCE.register(IPlayerDataCap.class, new IPlayerDataCap.Storage(), () -> new PlayerDataCapability(null));
+		CapabilityManager.INSTANCE.register(IPlayerRegenCap.class, new IPlayerRegenCap.Storage(), () -> new PlayerRegenCapability(null));
 		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
 		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
 		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");

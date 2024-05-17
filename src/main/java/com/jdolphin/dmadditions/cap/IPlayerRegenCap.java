@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
+public interface IPlayerRegenCap extends INBTSerializable<CompoundNBT> {
 
 	void tick();
 
@@ -48,9 +48,9 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 	int getRegenTicks();
 
 	class Provider implements ICapabilitySerializable<CompoundNBT> {
-		IPlayerDataCap data;
+		IPlayerRegenCap data;
 
-		public Provider(IPlayerDataCap data) {
+		public Provider(IPlayerRegenCap data) {
 			this.data = data;
 		}
 
@@ -70,15 +70,15 @@ public interface IPlayerDataCap extends INBTSerializable<CompoundNBT> {
 		}
 	}
 
-	class Storage implements Capability.IStorage<IPlayerDataCap> {
+	class Storage implements Capability.IStorage<IPlayerRegenCap> {
 		public Storage() {
 		}
 
-		public INBT writeNBT(Capability<IPlayerDataCap> capability, IPlayerDataCap instance, Direction side) {
+		public INBT writeNBT(Capability<IPlayerRegenCap> capability, IPlayerRegenCap instance, Direction side) {
 			return instance.serializeNBT();
 		}
 
-		public void readNBT(Capability<IPlayerDataCap> capability, IPlayerDataCap instance, Direction side, INBT nbt) {
+		public void readNBT(Capability<IPlayerRegenCap> capability, IPlayerRegenCap instance, Direction side, INBT nbt) {
 			if (nbt instanceof CompoundNBT) {
 				instance.deserializeNBT((CompoundNBT)nbt);
 			}

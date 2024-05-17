@@ -1,13 +1,12 @@
 package com.jdolphin.dmadditions.event;
 
-import com.jdolphin.dmadditions.cap.IPlayerDataCap;
+import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -37,7 +36,7 @@ public class RegenEvents {
 	public static void playerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::update);
 		}
 	}
 
@@ -45,7 +44,7 @@ public class RegenEvents {
 	public static void playerChangeDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::update);
 		}
 	}
 
@@ -53,7 +52,7 @@ public class RegenEvents {
 	public static void playerCloneEvent(PlayerEvent.Clone event) {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::update);
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::update);
 		}
 	}
 
@@ -61,7 +60,7 @@ public class RegenEvents {
 	public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
 		PlayerEntity player = event.player;
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerDataCap::tick);
+			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::tick);
 		}
 	}
 

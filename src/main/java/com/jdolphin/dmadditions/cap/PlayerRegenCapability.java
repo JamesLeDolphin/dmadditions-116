@@ -4,8 +4,6 @@ import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -14,7 +12,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-public class PlayerDataCapability implements IPlayerDataCap {
+public class PlayerRegenCapability implements IPlayerRegenCap {
 	private final String TAG_REGEN_AMOUNT = "regens";
 	private final String TAG_POSTPONE = "postponedFor";
 	private final String TAG_CAN_POSTPONE = "canPostpone";
@@ -28,7 +26,7 @@ public class PlayerDataCapability implements IPlayerDataCap {
 	private int regenTicks;
 	private int currentRegens;
 
-	public PlayerDataCapability(PlayerEntity player) {
+	public PlayerRegenCapability(PlayerEntity player) {
 	this.player = player;
 	}
 
