@@ -9,6 +9,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -22,7 +23,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	private final int minRegens = 0;
 	private int postponeTime = 0;
 	private boolean canPostpone = true;
-	private int preRegenTime = Helper.minutes(1);
+	private int preRegenTime = Helper.seconds(15);
 	private int regenTicks;
 	private int currentRegens;
 
@@ -89,14 +90,12 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	@Override
 	public void regenerate() {
 		this.regenTicks++;
-		if (regenTicks == 5) ChatUtil.sendMessageToPlayer(player,
+		if (regenTicks == 1) ChatUtil.sendMessageToPlayer(player,
 			new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
 
 		this.removeRegens(1);
 		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
-		player.setSpeed(0);
-
-		player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, Helper.seconds(20), 10, true, true, true));
+		player.setDeltaMovement(new Vector3d(0, 0, 0));
 		this.update();
 	}
 
@@ -108,6 +107,11 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	@Override
 	public boolean isPreRegen() {
 		return this.preRegenTime > 0;
+	}
+
+	@Override
+	public boolean isRegenerating() {
+		return this.regenTicks > 0;
 	}
 
 	@Override

@@ -33,6 +33,8 @@ public interface IPlayerRegenCap extends INBTSerializable<CompoundNBT> {
 	void update();
 	boolean isPreRegen();
 
+	boolean isRegenerating();
+
 	int getRegens();
 
 	int getMaxRegens();

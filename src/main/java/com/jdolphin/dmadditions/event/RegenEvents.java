@@ -21,7 +21,7 @@ public class RegenEvents {
 		if (entity instanceof ServerPlayerEntity) {
 			PlayerEntity player = ((PlayerEntity) entity);
 			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
-				if (player.getHealth() - event.getAmount() <= 0.0 && cap.hasRegens() && !cap.isPreRegen()) {
+				if (player.getHealth() - event.getAmount() <= 0.0 && cap.hasRegens() && !cap.isPreRegen() && !cap.postponed() && !cap.isRegenerating()) {
 					event.setCanceled(!event.getSource().isBypassInvul());
 					ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You're about to regenerate. Punch a block to hold back"),
 						ChatUtil.MessageType.CHAT);
