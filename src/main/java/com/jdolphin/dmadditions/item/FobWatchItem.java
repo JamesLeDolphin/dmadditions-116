@@ -4,13 +4,19 @@ import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -26,21 +32,28 @@ import java.util.Objects;
 
 public class FobWatchItem extends Item {
 	public static final String REGEN_TAG = "Regenerations";
+	private int regens;
 
 	public FobWatchItem(Properties properties) {
+		this(properties, 12);
+	}
+
+	public FobWatchItem(Properties properties, int regenerations) {
 		super(properties);
+		this.regens = regenerations;
+	}
+
+	public boolean canBeDepleted() {
+		return this.regens > 0;
+	}
+
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return false;
 	}
 
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return false;
-	}
-
-	public ItemStack getDefaultInstance() {
-		FobWatchItem watch = this;
-		ItemStack stack = new ItemStack(this);
-		watch.addRegen(stack, 12);
-		return new ItemStack(watch);
 	}
 
 	@Override
@@ -66,6 +79,14 @@ public class FobWatchItem extends Item {
 		return ActionResult.success(stack);
 	}
 
+	public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> list) {
+		if (group.equals(ItemGroup.TAB_SEARCH) || group.equals(ItemGroup.TAB_MISC)) {
+			ItemStack stack = new ItemStack(this);
+			stack.getOrCreateTag().putInt(REGEN_TAG, 12);
+			list.add(stack);
+		}
+	}
+
 	public boolean hasRegens(ItemStack stack) {
 		CompoundNBT tag = stack.getOrCreateTag();
 		return tag.contains(REGEN_TAG) && tag.getInt(REGEN_TAG) > 0;
@@ -79,7 +100,7 @@ public class FobWatchItem extends Item {
 	public void addRegen(ItemStack stack, int i) {
 		CompoundNBT tag = stack.getOrCreateTag();
 		int j = tag.contains(REGEN_TAG) ? tag.getInt(REGEN_TAG) : 0;
-		tag.putInt(REGEN_TAG, Math.min(12, j + i));
+		tag.putInt(REGEN_TAG, MathHelper.clamp(0, j + i ,12));
 	}
 
 	public boolean showDurabilityBar(ItemStack stack) {
