@@ -1,0 +1,27 @@
+{
+  "multipart": [
+    { "when":{ "button1_pressed":"true" }, "apply": { "model": "dmadditions:block/combat_panel/combat_panel_buttons", "x": 0, "y": 0, "z": 0} },
+    { "when":{ "button2_pressed":"true" }, "apply": { "model": "dmadditions:block/combat_panel/combat_panel_buttons", "x": 4, "y": 0, "z": 0} },
+    { "when":{ "button3_pressed":"true" }, "apply": { "model": "dmadditions:block/combat_panel/combat_panel_buttons", "x": 8, "y": 0, "z": 0} },
+    {
+      "when": { "facing": "north" },
+      "apply": { "model": "dmadditions:block/combat_panel/combat_panel", "y": 0, "x": 0, "z": 0 }
+    },
+    {
+      "when": { "facing": "south" },
+      "apply": { "model": "dmadditions:block/combat_panel/combat_panel", "y": 180, "x": 0, "z": 0 }
+    },
+    {
+      "when": { "facing": "east" },
+      "apply": { "model": "dmadditions:block/combat_panel/combat_panel", "y": 90, "x": 0, "z": 0 }
+    },
+    {
+      "when": { "facing": "west" },
+      "apply": { "model": "dmadditions:block/combat_panel/combat_panel", "y": 270, "x": 0, "z": 0 }
+    },
+    {
+      "when": { "waterlogged": "true" },
+      "apply": { "model": "dmadditions:block/combat_panel/combat_panel_waterlogged" }
+    }
+  ]
+}

@@ -136,9 +136,9 @@ public class DMABlocks {
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> COMBAT_PANEL = DMBlocks.registerBlock(
+	public static RegistryObject<Block> COMBAT_PANEL = registerBlock(
 		() -> new CombatPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"combat_block", DMTabs.DM_TARDIS);
+		"combat_panel", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
 
