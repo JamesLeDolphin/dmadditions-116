@@ -60,7 +60,7 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		if(PILOT_FISH_SPAWNER == null) return null;
+		if (PILOT_FISH_SPAWNER == null) return null;
 
 		return new ItemStack(PILOT_FISH_SPAWNER.get());
 	}
@@ -143,6 +143,7 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Entity.class));
+		this.targetSelector.addGoal(6, new SwimGoal(this));
 	}
 
 
@@ -187,14 +188,14 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 	@Override
 	public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
-		if(!reason.equals(SpawnReason.NATURAL))
+		if (!reason.equals(SpawnReason.NATURAL))
 			return super.checkSpawnRules(world, reason);
 
 		BlockPos blockPos = blockPosition();
 		IChunk chunk = world.getChunk(blockPos);
 
 		boolean noVillages = chunk.getReferencesForFeature(Structure.VILLAGE).isEmpty();
-		if(noVillages) return false;
+		if (noVillages) return false;
 
 		return super.checkSpawnRules(world, reason);
 	}

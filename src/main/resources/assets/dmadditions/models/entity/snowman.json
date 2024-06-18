@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dalekmod:entity/snowman",
+	"texture": "dmadditions:entity/snowman",
 	"texture_width": 64,
 	"texture_height": 64,
 	"scale": 1,

@@ -7,6 +7,8 @@ import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.DoorControl;
 import com.jdolphin.dmadditions.entity.control.FlightControl;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -40,6 +42,9 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN = registerHumanoidEntity("wooden_cyberman",
 		WoodenCybermanEntity::new, EntityClassification.MONSTER);
+
+	public static RegistryObject<EntityType<MondasCybermanEntity>> MONDAS_CYBERMAN = registerHumanoidEntity("mondas_cyberman",
+		MondasCybermanEntity::new, EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<BessieEntity>> BESSIE = registerEntity("bessie", BessieEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
 

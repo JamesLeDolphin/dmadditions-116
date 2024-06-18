@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dmadditions:entity/cybercow",
+	"texture": "dmadditions:entity/cyber/cybercow",
 	"texture_width": 64,
 	"texture_height": 64,
 	"scale": 1,
