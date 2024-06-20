@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dalekmod:entity/pilot_fish/cloaked",
+	"texture": "dmadditions:entity/pilot_fish/cloaked",
 	"texture_width": 128,
 	"texture_height": 128,
 	"scale": 1,

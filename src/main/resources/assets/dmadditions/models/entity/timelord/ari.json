@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"texture": "dmadditions:entity/timelord/ari",
-	"texture_width": 64,
-	"texture_height": 64,
+	"texture_width": 128,
+	"texture_height": 128,
 	"scale": 1,
 	"groups": [
 		{
@@ -39,7 +39,7 @@
 			"rotation": [0,0,0],
 			"cubes": [
 				{
-					"uv": [0,44],
+					"uv": [44,36],
 					"size": [4,12,4],
 					"origin": [-4,0,-2],
 					"inflate": 0,
@@ -57,7 +57,7 @@
 					"size": [4,12,4],
 					"origin": [0,0,-2],
 					"inflate": 0,
-					"mirror": true
+					"mirror": false
 				}
 			]
 		},
@@ -67,25 +67,25 @@
 			"rotation": [0,0,0],
 			"cubes": [
 				{
-					"uv": [17,44],
+					"uv": [28,40],
 					"size": [4,12,4],
 					"origin": [-4,-2,-2],
 					"inflate": 0,
-					"mirror": true
+					"mirror": false
 				},
 				{
-					"uv": [48,0],
+					"uv": [56,0],
 					"size": [4,4,4],
 					"origin": [-4,-2,-2],
 					"inflate": 0.4,
-					"mirror": true
+					"mirror": false
 				},
 				{
-					"uv": [34,44],
+					"uv": [16,52],
 					"size": [3,12,4],
 					"origin": [-3,-2,-2],
 					"inflate": 0,
-					"mirror": true
+					"mirror": false
 				}
 			]
 		},
@@ -95,21 +95,21 @@
 			"rotation": [0,0,0],
 			"cubes": [
 				{
-					"uv": [17,44],
+					"uv": [32,24],
 					"size": [4,12,4],
 					"origin": [0,-2,-2],
 					"inflate": 0,
 					"mirror": false
 				},
 				{
-					"uv": [48,0],
+					"uv": [40,52],
 					"size": [4,4,4],
 					"origin": [0,-2,-2],
 					"inflate": 0.4,
 					"mirror": false
 				},
 				{
-					"uv": [34,44],
+					"uv": [48,16],
 					"size": [3,12,4],
 					"origin": [0,-2,-2],
 					"inflate": 0,
@@ -123,7 +123,7 @@
 			"rotation": [0,0,0],
 			"cubes": [
 				{
-					"uv": [32,24],
+					"uv": [32,0],
 					"size": [8,12,4],
 					"origin": [-4,-6,-2],
 					"inflate": 0,

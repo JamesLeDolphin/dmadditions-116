@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "dalekmod:entity/christmas_tree",
+	"texture": "dmadditions:entity/christmas_tree",
 	"texture_width": 128,
 	"texture_height": 128,
 	"scale": 1,

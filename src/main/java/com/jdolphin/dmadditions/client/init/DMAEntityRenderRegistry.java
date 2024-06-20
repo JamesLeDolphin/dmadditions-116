@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
+import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -18,6 +19,7 @@ public class DMAEntityRenderRegistry {
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);
+		registerRender(DMAEntities.MONDAS_CYBERMAN, MondasCybermanRenderer::new);
 		registerRender(DMAEntities.PILOT_FISH, RenderPilotFish::new);
 		registerRender(DMAEntities.SNOWMAN, RenderSnowman::new);
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);

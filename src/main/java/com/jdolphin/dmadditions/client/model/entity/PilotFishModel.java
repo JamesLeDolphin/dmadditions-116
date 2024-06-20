@@ -7,6 +7,7 @@ import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;
 import com.swdteam.model.javajson.ModelLoader;
+import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -17,7 +18,7 @@ import javax.annotation.Nonnull;
 public class PilotFishModel extends BipedModel<PilotFishEntity> implements IModelPartReloader {
 	public JSONModel model;
 
-	public PilotFishModel(float modelSize){
+	public PilotFishModel(float modelSize) {
 		super(modelSize);
 		ModelReloaderRegistry.register(this);
 	}
@@ -27,12 +28,13 @@ public class PilotFishModel extends BipedModel<PilotFishEntity> implements IMode
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/pilot_fish/santa.json"));
 
 		if (this.model != null) {
-			this.head = this.model.getModelData().getModel().getPart("Head");
-			this.body = this.model.getModelData().getModel().getPart("Body");
-			this.leftArm = this.model.getModelData().getModel().getPart("LeftArm");
-			this.rightArm = this.model.getModelData().getModel().getPart("RightArm");
-			this.leftLeg = this.model.getModelData().getModel().getPart("LeftLeg");
-			this.rightLeg = this.model.getModelData().getModel().getPart("RightLeg");
+			ModelWrapper wrapper = this.model.getModelData().getModel();
+			this.head = wrapper.getPart("Head");
+			this.body = wrapper.getPart("Body");
+			this.leftArm = wrapper.getPart("LeftArm");
+			this.rightArm = wrapper.getPart("RightArm");
+			this.leftLeg = wrapper.getPart("LeftLeg");
+			this.rightLeg = wrapper.getPart("RightLeg");
 		}
 
 	}

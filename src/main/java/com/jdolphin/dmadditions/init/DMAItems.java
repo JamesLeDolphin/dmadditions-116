@@ -205,6 +205,8 @@ public class DMAItems {
 		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("wooden_cyberman_spawner",
 			() -> new DMASpawnerItem<>("wooden_cyberman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> MONDAS_CYBERMAN_SPAWNER = ITEMS.register("mondas_cyberman_spawner",
+		() -> new DMASpawnerItem<>("mondas_cyberman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
 		() -> new DMASpawnerItem<>("pilot_fish", new Item.Properties().tab(ItemGroup.TAB_MISC)));

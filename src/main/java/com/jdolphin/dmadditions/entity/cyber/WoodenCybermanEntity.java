@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.entity;
+package com.jdolphin.dmadditions.entity.cyber;
 
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
@@ -38,11 +38,9 @@ import net.minecraftforge.event.ForgeEventFactory;
 public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttackMob {
 	public static final DataParameter<Boolean> HAS_GUN;
 	private Goal meeleAttack;
-	private final ItemStack pickResult;
 
 	public WoodenCybermanEntity(EntityType<? extends MonsterEntity> entityType, World world) {
 		super(entityType, world);
-		this.pickResult = new ItemStack(DMAItems.WOODEN_CYBERMAN_SPAWNER.get());
 	}
 
 
@@ -157,7 +155,7 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 	}
 
 	public ItemStack getPickedResult(RayTraceResult target) {
-		return this.pickResult;
+		return new ItemStack(DMAItems.WOODEN_CYBERMAN_SPAWNER.get());
 	}
 
 	static {
