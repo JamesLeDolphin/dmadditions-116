@@ -41,15 +41,16 @@ public class DMADalekRegistry {
 		STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
 		STEAMPUNK.addChild("gray_steampunk_dalek");
 		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
-		if (AdventUnlock.unlockAt(6)) {
-			GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
-			GLASS.addChild("glass_dalek_without_mutant");
-		}
-		if (AdventUnlock.unlockAt(20)) {
-			SESAME_STREET = addDalek(DMADalekType.SESAME_STREET, new CustomDalekBase("Sesame Street Dalek"), "sesame_street_dalek_red");
-			SESAME_STREET.addChild("sesame_street_dalek_yellow");
-			SESAME_STREET.addChild("sesame_street_dalek_emperor");
-		}
+		GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
+		GLASS.addChild("glass_dalek_without_mutant");
+		SESAME_STREET = addDalek(DMADalekType.SESAME_STREET, new CustomDalekBase("Sesame Street Dalek"), "sesame_street_dalek_red");
+		SESAME_STREET.addChild("sesame_street_dalek_yellow");
+		SESAME_STREET.addChild("sesame_street_dalek_emperor");
+
+// 		how to advent unlock daleks
+//		if (AdventUnlock.unlockAt(20)) {
+//		}
+
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
 	}
