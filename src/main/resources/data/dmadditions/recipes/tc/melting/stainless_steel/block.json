@@ -9,16 +9,16 @@
         }
       ],
       "recipe": {
-  "type": "tconstruct:melting",
-  "ingredient": {
-    "item": "dalekmod:stainless_steel_block"
-  },
-  "result": {
-    "fluid": "dmadditions:molten_stainless_steel",
-    "amount": 1296
-  },
-  "temperature": 1000,
-  "time": 75
+        "type": "tconstruct:melting",
+        "ingredient": {
+          "item": "dalekmod:stainless_steel_block"
+        },
+        "result": {
+          "fluid": "dmadditions:molten_stainless_steel",
+          "amount": 1296
+        },
+        "temperature": 1000,
+        "time": 75
       }
     }
   ]

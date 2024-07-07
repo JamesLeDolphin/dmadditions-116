@@ -9,16 +9,16 @@
         }
       ],
       "recipe": {
-      "type": "tconstruct:melting",
-      "ingredient": {
-        "item": "dalekmod:dalekanium_block"
-      },
-      "result": {
-        "fluid": "dmadditions:molten_dalekanium",
-        "amount": 1296
-      },
-      "temperature": 1000,
-      "time": 150
+        "type": "tconstruct:melting",
+        "ingredient": {
+          "item": "dalekmod:dalekanium_block"
+        },
+        "result": {
+          "fluid": "dmadditions:molten_dalekanium",
+          "amount": 1296
+        },
+        "temperature": 1000,
+        "time": 150
       }
     }
   ]

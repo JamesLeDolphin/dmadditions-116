@@ -1,4 +1,3 @@
-
 {
   "type": "forge:conditional",
   "recipes": [
@@ -18,7 +17,9 @@
           "name": "dmadditions:molten_dalekanium",
           "amount": 144
         },
-        "result": "dalekmod:dalekanium_ingot",
+        "result": {
+          "item": "dalekmod:dalekanium_ingot"
+        },
         "cooling_time": 79
       }
     }

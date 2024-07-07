@@ -9,18 +9,18 @@
         }
       ],
       "recipe": {
-      "type": "tconstruct:damagable_melting",
-      "ingredient": [
-        {
-          "item": "dalekmod:metalert_shovel"
-        }
-      ],
-      "result": {
-        "fluid": "dmadditions:molten_metalert",
-        "amount": 144
-      },
-      "temperature": 1000,
-      "time": 100
+        "type": "tconstruct:damagable_melting",
+        "ingredient": [
+          {
+            "item": "dalekmod:metalert_shovel"
+          }
+        ],
+        "result": {
+          "fluid": "dmadditions:molten_metalert",
+          "amount": 144
+        },
+        "temperature": 1000,
+        "time": 100
       }
     }
   ]

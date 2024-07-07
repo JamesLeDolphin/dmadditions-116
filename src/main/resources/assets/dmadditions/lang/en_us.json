@@ -303,5 +303,11 @@
 	"dmadditions.button.player_locator.select": "Locate Player",
 	"block.dmadditions.player_locator.disabled": "Player locator is disabled on this server!",
 	"block.dmadditions.crocoite": "Crocoite",
-	"block.dmadditions.cobbled_crocoite": "Cobbled Crocoite"
+	"block.dmadditions.cobbled_crocoite": "Cobbled Crocoite",
+
+	"item.dmadditions.motlen_dalekanium_bucket": "Molten Dalekanium Bucket",
+	"item.dmadditions.motlen_steel_bucket": "Molten Steel Bucket",
+	"item.dmadditions.motlen_stainless_steel_bucket": "Molten Stainless Steel Bucket",
+	"item.dmadditions.motlen_metalert_bucket": "Molten Metalert Bucket",
+	"item.dmadditions.motlen_silicon_bucket": "Molten Silicon Bucket"
 }
