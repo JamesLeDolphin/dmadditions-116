@@ -20,12 +20,12 @@ public class RegenEvents {
 		Entity entity = event.getEntity();
 		if (entity instanceof ServerPlayerEntity) {
 			PlayerEntity player = ((PlayerEntity) entity);
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
+			player.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(cap -> {
 				if (player.getHealth() - event.getAmount() <= 0.0 && cap.hasRegens() && !cap.isPreRegen() && !cap.postponed() && !cap.isRegenerating()) {
 					event.setCanceled(!event.getSource().isBypassInvul());
+					cap.setPreRegen(true);
 					ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You're about to regenerate. Punch a block to hold back"),
 						ChatUtil.MessageType.CHAT);
-					cap.setPreRegen();
 					cap.update();
 				}
 			});
@@ -35,8 +35,14 @@ public class RegenEvents {
 	@SubscribeEvent
 	public static void playerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
 		PlayerEntity player = event.getPlayer();
+
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::update);
+			player.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(cap -> {
+				cap.setPreRegen(false);
+				cap.setPreRegen(false);
+				cap.setRegenTicks(0);
+				cap.update();
+			});
 		}
 	}
 
@@ -44,15 +50,17 @@ public class RegenEvents {
 	public static void playerChangeDimensionEvent(PlayerEvent.PlayerChangedDimensionEvent event) {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::update);
+			player.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(IPlayerRegenCap::update);
 		}
 	}
 
 	@SubscribeEvent
 	public static void playerCloneEvent(PlayerEvent.Clone event) {
-		PlayerEntity player = event.getPlayer();
-		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::update);
+		PlayerEntity newPlayer = event.getPlayer();
+		PlayerEntity oldPlayer = event.getOriginal();
+		if (newPlayer instanceof ServerPlayerEntity) {
+			IPlayerRegenCap cap = oldPlayer.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).resolve().get();
+			newPlayer.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(iPlayerRegenCap -> iPlayerRegenCap.deserializeNBT(cap.serializeNBT()));
 		}
 	}
 
@@ -60,7 +68,7 @@ public class RegenEvents {
 	public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
 		PlayerEntity player = event.player;
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(IPlayerRegenCap::tick);
+			player.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(IPlayerRegenCap::tick);
 		}
 	}
 
@@ -68,9 +76,9 @@ public class RegenEvents {
 	public static void playerDestroyEvent(PlayerInteractEvent.LeftClickBlock event) {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity) {
-			player.getCapability(DMACapabilities.PLAYER_DATA).ifPresent(cap -> {
+			player.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(cap -> {
 				if (cap.canPostpone()) {
-					cap.postpone();
+					cap.postpone(true);
 					cap.update();
 				}
 			});

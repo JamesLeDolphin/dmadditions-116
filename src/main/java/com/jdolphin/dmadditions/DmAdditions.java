@@ -24,6 +24,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMSonicRegistry;
+import com.swdteam.common.tardis.Data;
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
@@ -73,16 +74,23 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.LoadingModList;
+import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
+import net.minecraftforge.forgespi.language.IModInfo;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
-
+import java.util.jar.JarFile;
 
 
 @Mod(DmAdditions.MODID)
@@ -106,6 +114,7 @@ public class DmAdditions {
 		return ModList.get().isLoaded("immersive_portals");
 	}
 
+	public static List<Data> exteriors = new ArrayList<>();
 
 
 	public DmAdditions() {
@@ -187,7 +196,38 @@ public class DmAdditions {
 		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
 		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
 		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");
-		if (hasIMMP() && hasNTM()) Helper.warn("New Tardis Mod and Immersive Portals may not work well together! You've been warned!");
+		if (hasIMMP() && hasNTM())
+			Helper.warn("New Tardis Mod and Immersive Portals may not work well together! You've been warned!");
+
+//		List<ModFileInfo> files = LoadingModList.get().getModFiles();
+//		for (ModFileInfo fileInfo : files) {
+//
+//			System.out.println("File path: " + fileInfo.getFile().getFilePath().getFileName());
+//			try (JarFile jarFile = new JarFile(fileInfo.getFile().getFilePath().toFile())) {
+//				jarFile.stream()
+//					.filter(entry -> {
+//						String name = entry.getName();
+//						System.out.println("Name: " + name);
+//						System.out.println("Entry: " + entry);
+//						if (name.startsWith("data" + File.separator) && name.contains(File.separator + "tardis_exteriors" + File.separator)
+//							&& entry.getName().contains(".json")) {
+//
+//							return true;
+//						}
+//						return true;
+//					})
+//					.forEach(entry -> {
+//						try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
+//							Data myObject = GSON.fromJson(reader, Data.class);
+//							exteriors.add(myObject);
+//						} catch (IOException e) {
+//							LOGGER.warn(e.getLocalizedMessage());
+//						}
+//					});
+//			} catch (IOException e) {
+//				LOGGER.warn(e.getLocalizedMessage());
+//			}
+//		}
 	}
 
 

@@ -8,6 +8,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.potion.EffectUtils;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
@@ -65,11 +67,17 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	}
 
 	@Override
-	public void postpone() {
-		ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You've postponed your regeneration for 5 minutes").withStyle(TextFormatting.GREEN),
-			ChatUtil.MessageType.CHAT);
-		this.postponeTime = Helper.minutes(5);
-		this.canPostpone = false;
+	public void postpone(boolean postpone) {
+		if (postpone) {
+			ChatUtil.sendMessageToPlayer(player, new StringTextComponent("You've postponed your regeneration for 5 minutes").withStyle(TextFormatting.GREEN),
+				ChatUtil.MessageType.CHAT);
+			this.postponeTime = Helper.minutes(5);
+			this.canPostpone = false;
+		}
+		else {
+			this.postponeTime = 0;
+			this.canPostpone = true;
+		}
 	}
 
 	@Override
@@ -83,8 +91,14 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
     }
 
 	@Override
-	public void setPreRegen() {
-		this.preRegenTime = Helper.minutes(1);
+	public void setPreRegen(boolean preRegen) {
+		if (preRegen) {
+			this.player.setRemainingFireTicks(0);
+			this.player.getActiveEffects().stream().filter(effect -> !effect.getEffect().isBeneficial()).forEach(effectInstance -> {
+				player.removeEffect(effectInstance.getEffect());
+			});
+			this.preRegenTime = Helper.seconds(30);
+		} else this.preRegenTime = 0;
 	}
 
 	@Override
@@ -92,10 +106,11 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 		this.regenTicks++;
 		if (regenTicks == 1) ChatUtil.sendMessageToPlayer(player,
 			new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
-
+		player.setSpeed(0);
 		this.removeRegens(1);
 		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
 		player.setDeltaMovement(new Vector3d(0, 0, 0));
+
 		this.update();
 	}
 
