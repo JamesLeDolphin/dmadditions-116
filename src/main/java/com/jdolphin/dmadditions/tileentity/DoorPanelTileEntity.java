@@ -24,7 +24,6 @@ import com.swdteam.common.init.DMTranslationKeys;
 import com.swdteam.common.tardis.Location;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisDoor;
-import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.common.tileentity.TardisTileEntity.DoorSource;
 import com.swdteam.common.tileentity.tardis.TardisPanelTileEntity;

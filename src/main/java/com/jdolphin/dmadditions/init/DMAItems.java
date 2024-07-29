@@ -11,7 +11,6 @@ import com.swdteam.common.init.*;
 import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.item.DiscItem;
 import com.swdteam.common.item.FoodItem;
-import com.swdteam.common.item.gun.GunItem;
 import com.swdteam.common.item.gun.SingleShotGunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;

@@ -10,9 +10,8 @@ import com.swdteam.common.tileentity.tardis.FlightPanelTileEntity;
 import com.swdteam.common.tileentity.tardis.PanelHealthUpgrade;
 import com.swdteam.common.tileentity.tardis.TardisPanelTileEntity;
 import com.swdteam.util.ChatUtil;
-import com.swdteam.util.TeleportUtil;
 import com.swdteam.util.ChatUtil.MessageType;
-import javax.annotation.Nullable;
+import com.swdteam.util.TeleportUtil;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -33,6 +32,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+
+import javax.annotation.Nullable;
 
 public class CombatPanelBlock extends AbstractRotateableWaterLoggableBlock {
 	protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);

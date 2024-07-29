@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions.block;
 
-import org.jetbrains.annotations.Nullable;
-
 import com.swdteam.common.block.IBlockTooltip;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import org.jetbrains.annotations.Nullable;
 
 public interface IBetterBlockTooltip extends IBlockTooltip {
 

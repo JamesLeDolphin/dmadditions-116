@@ -2,17 +2,12 @@ package com.jdolphin.dmadditions.tileentity;
 
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
-import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.tileentity.DMTileEntityBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.extensions.IForgeTileEntity;
 

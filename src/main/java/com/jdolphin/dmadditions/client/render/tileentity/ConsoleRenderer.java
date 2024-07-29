@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.client.render.tileentity;
 
 import com.jdolphin.dmadditions.client.model.tileentity.ConsoleModel;
 import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
-import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;

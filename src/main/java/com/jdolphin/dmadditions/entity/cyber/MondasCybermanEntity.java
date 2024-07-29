@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.swdteam.common.entity.LaserEntity;
-import com.swdteam.common.init.DMProjectiles;
-import com.swdteam.common.init.DMSoundEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;

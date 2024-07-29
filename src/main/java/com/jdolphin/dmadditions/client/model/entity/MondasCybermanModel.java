@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;

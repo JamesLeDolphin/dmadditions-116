@@ -5,12 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
-
-import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
 
 public enum TimeLordType {
 	ARI("ari"),

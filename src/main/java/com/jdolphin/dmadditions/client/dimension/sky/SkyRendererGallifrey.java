@@ -2,22 +2,21 @@ package com.jdolphin.dmadditions.client.dimension.sky;
 
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.swdteam.client.init.ModClientEvents.ClientPlayerData;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.*;
+import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.Vector2f;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.client.ISkyRenderHandler;
 import org.lwjgl.opengl.GL11;
-
-import java.util.logging.Level;
 
 public class SkyRendererGallifrey implements ISkyRenderHandler {
 	public static SkyRendererGallifrey INSTANCE = new SkyRendererGallifrey();

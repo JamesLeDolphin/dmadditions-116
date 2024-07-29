@@ -1,8 +1,6 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import com.jdolphin.dmadditions.client.model.entity.PilotFishModel;
 import com.jdolphin.dmadditions.client.model.entity.TimeLordModel;
-import com.jdolphin.dmadditions.entity.PilotFishEntity;
 import com.jdolphin.dmadditions.entity.TimeLordEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.model.javajson.ModelLoader;

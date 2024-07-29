@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import com.jdolphin.dmadditions.client.model.entity.PilotFishModel;
 import com.jdolphin.dmadditions.entity.RegeneratingEntity;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

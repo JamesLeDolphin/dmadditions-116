@@ -19,7 +19,6 @@ import com.jdolphin.dmadditions.init.*;
 import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.util.Helper;
-import com.jdolphin.dmadditions.init.DMAConfiguredStructures;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.block.IRust;

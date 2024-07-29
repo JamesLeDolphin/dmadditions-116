@@ -11,7 +11,6 @@ import com.swdteam.common.tileentity.tardis.SonicInterfaceTileEntity;
 import com.swdteam.network.NetworkHandler;
 import com.swdteam.network.packets.PacketOpenGui;
 import com.swdteam.network.packets.PacketXPSync;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

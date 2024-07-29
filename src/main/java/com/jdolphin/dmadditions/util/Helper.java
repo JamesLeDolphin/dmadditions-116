@@ -1,18 +1,15 @@
 package com.jdolphin.dmadditions.util;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class Helper {
 
