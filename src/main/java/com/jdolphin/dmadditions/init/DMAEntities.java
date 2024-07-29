@@ -4,8 +4,6 @@ import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.control.DoorControl;
-import com.jdolphin.dmadditions.entity.control.FlightControl;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
@@ -78,8 +76,6 @@ public class DMAEntities {
 		.build(Helper.createAdditionsRL("herobrine").toString()));
 
 	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerControl("control", TardisControl::new);
-	public static RegistryObject<EntityType<TardisControl>> FLIGHT_CONTROL = registerControl("flight_control", FlightControl::new);
-	public static RegistryObject<EntityType<TardisControl>> DOOR_CONTROL = registerControl("door_control", DoorControl::new);
 
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)

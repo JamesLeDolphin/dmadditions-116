@@ -65,10 +65,4 @@ public class Helper {
 			world.addFreshEntity(entity);
 		}
 	}
-
-	public static void registerControlRenderers(EntityType<?>... entities) {
-		for (EntityType entity : entities) {
-			RenderingRegistry.registerEntityRenderingHandler(entity, TardisControlRenderer::new);
-		}
-	}
 }

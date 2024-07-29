@@ -18,8 +18,6 @@ public class SplashesMixin {
 	@Inject(method = "load", at = @At("TAIL"), remap = false)
 	private static void load(CallbackInfo ci) {
 
-		LogManager.getLogger().info("Hello world from SplashesMixin");
-
 		ArrayList<String> splashes = new ArrayList<String>(Arrays.asList(Splashes.SPLASHES)) {
 			{
 				add("I blame James");

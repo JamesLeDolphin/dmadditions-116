@@ -1,21 +1,29 @@
 package com.jdolphin.dmadditions.tileentity;
 
-import com.jdolphin.dmadditions.entity.control.DoorControl;
-import com.jdolphin.dmadditions.entity.control.FlightControl;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.extensions.IForgeTileEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEntity {
+public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEntity, ITickableTileEntity {
+	public final List<TardisControl> controls = new ArrayList<>();
+	private static final AxisAlignedBB HITBOX = new AxisAlignedBB(-1, 0, -1, 2, 2, 2);
+
 	public ConsoleTileEntity(TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn);
 	}
@@ -24,29 +32,67 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 		this(DMABlockEntities.TILE_CONSOLE.get());
 	}
 
-
 	public void onLoad() {
-		World level = this.level;
-		BlockPos pos = this.worldPosition;
-		if (level != null && !level.isClientSide()) {
-			TardisControl flight = new FlightControl(level);
-			TardisControl door = new DoorControl(level);
+		makeControls();
+	}
 
-			flight.setPos(pos.getX(), pos.getY() + 1.1, pos.getZ());
-			door.setPos(pos.getX() - 0.2, pos.getY() + 1.1, pos.getZ());
+	public void makeControls() {
+		if (this.level instanceof ServerWorld) {
+			ServerWorld world = (ServerWorld) level;
+			this.getOldControls();
+			if (controls.size() < TardisControl.ControlType.values().length) {
+				this.removeControls();
 
+				TardisControl.ControlType[] types = TardisControl.ControlType.values();
 
-			Helper.addEntities(level, flight, door);
+				for (TardisControl.ControlType type : types) {
+					TardisControl control = new TardisControl(world, type, this);
+
+					Vector3d offset = control.position();
+					BlockPos pos = this.getBlockPos();
+
+					control.setPos(pos.getX() + 0.5 + offset.x(),
+						pos.getY() + 0.5 + offset.y(),
+						pos.getZ() + 0.5 + offset.z());
+
+					world.addFreshEntity(control);
+					control.setMaster(this);
+					this.controls.add(control);
+				}
+			}
 		}
 	}
 
-	public boolean isRemoved() {
-		if (this.level != null && !level.isClientSide()) {
-			List<Entity> entities = level.getEntitiesOfClass(TardisControl.class, this.getRenderBoundingBox().move(this.worldPosition).inflate(1));
-			for (Entity control : entities) {
-				control.remove(false);
+	private void getOldControls() {
+		this.controls.clear();
+		if (level != null) {
+		for (TardisControl control : level.getEntitiesOfClass(TardisControl.class, HITBOX.move(this.worldPosition).inflate(2))) {
+			if (control != null) {
+				control.setMaster(this);
+				this.controls.add(control);
 			}
 		}
-		return this.remove;
+		}
+	}
+
+	public void removeControls() {
+		if (level != null) {
+			for (TardisControl control : level.getEntitiesOfClass(TardisControl.class, HITBOX.move(this.worldPosition).inflate(5))) {
+				control.remove();
+			}
+			this.controls.clear();
+		}
+	}
+
+	public void setRemoved() {
+		removeControls();
+		super.setRemoved();
+	}
+
+	@Override
+	public void tick() {
+		if (this.controls.isEmpty()) {
+			this.makeControls();
+		}
 	}
 }

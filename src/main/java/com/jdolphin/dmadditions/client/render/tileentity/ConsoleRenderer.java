@@ -19,9 +19,10 @@ public class ConsoleRenderer extends TileEntityRenderer<ConsoleTileEntity> {
 	@Override
 	public void render(ConsoleTileEntity tile, float v, MatrixStack stack, IRenderTypeBuffer buffer, int i, int j) {
 		stack.pushPose();
-		stack.mulPose(new Quaternion(1, 0, 0, 1));
+		stack.mulPose(new Quaternion(0, 1, 0, 1));
+
 		stack.popPose();
 
-		model.renderToBuffer(stack, buffer.getBuffer(model.renderType(Helper.createAdditionsRL("textures/block/console.png"))), i, j, 1.0f, 1.0f, 1.0f, 1.0f);
+		//model.renderToBuffer(stack, buffer.getBuffer(model.renderType(Helper.createAdditionsRL("textures/block/console.png"))), i, j, 1.0f, 1.0f, 1.0f, 1.0f);
 	}
 }

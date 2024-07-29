@@ -98,7 +98,7 @@ dependencies {
     implementation fg.deobf("curse.maven:the-dalek-mod-59654:5334493")
 
     //Immersive portals
-    implementation fg.deobf("curse.maven:immersiveportals-355440:3562072")
+    compileOnly fg.deobf("curse.maven:immersiveportals-355440:3562072")
 
     //New Tardis Mod
     compileOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
