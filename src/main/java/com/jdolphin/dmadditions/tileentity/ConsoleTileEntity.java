@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.tileentity;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.common.tileentity.DMTileEntityBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEntity, ITickableTileEntity {
 	public final List<TardisControl> controls = new ArrayList<>();
+	private int controlSpawnCooldown;
 	private static final AxisAlignedBB HITBOX = new AxisAlignedBB(-1, 0, -1, 2, 2, 2);
 
 	public ConsoleTileEntity(TileEntityType<?> tileEntityTypeIn) {
@@ -27,56 +29,37 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 		this(DMABlockEntities.TILE_CONSOLE.get());
 	}
 
+	@Override
 	public void onLoad() {
-		makeControls();
+		super.onLoad();
+		this.controlSpawnCooldown = 10;
 	}
 
 	public void makeControls() {
 		if (this.level instanceof ServerWorld) {
 			ServerWorld world = (ServerWorld) level;
-			this.getOldControls();
-			if (controls.size() < TardisControl.ControlType.values().length) {
-				this.removeControls();
+			TardisControl.ControlType[] types = TardisControl.ControlType.values();
 
-				TardisControl.ControlType[] types = TardisControl.ControlType.values();
+			for (TardisControl.ControlType type : types) {
+				TardisControl control = new TardisControl(world, type, this);
 
-				for (TardisControl.ControlType type : types) {
-					TardisControl control = new TardisControl(world, type, this);
+				Vector3d offset = control.position();
+				BlockPos pos = this.getBlockPos();
 
-					Vector3d offset = control.position();
-					BlockPos pos = this.getBlockPos();
+				control.setPos(pos.getX() + 0.5 + offset.x(),
+					pos.getY() + 0.5 + offset.y(),
+					pos.getZ() + 0.5 + offset.z());
 
-					control.setPos(pos.getX() + 0.5 + offset.x(),
-						pos.getY() + 0.5 + offset.y(),
-						pos.getZ() + 0.5 + offset.z());
-
-					world.addFreshEntity(control);
-					control.setMaster(this);
-					this.controls.add(control);
-				}
-			}
-		}
-	}
-
-	private void getOldControls() {
-		this.controls.clear();
-		if (level != null) {
-		for (TardisControl control : level.getEntitiesOfClass(TardisControl.class, HITBOX.move(this.worldPosition).inflate(2))) {
-			if (control != null) {
+				world.addFreshEntity(control);
 				control.setMaster(this);
 				this.controls.add(control);
 			}
 		}
-		}
 	}
 
 	public void removeControls() {
-		if (level != null) {
-			for (TardisControl control : level.getEntitiesOfClass(TardisControl.class, HITBOX.move(this.worldPosition).inflate(5))) {
-				control.remove();
-			}
-			this.controls.clear();
-		}
+		this.controls.forEach(Entity::remove);
+		this.controls.clear();
 	}
 
 	public void setRemoved() {
@@ -86,8 +69,7 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 
 	@Override
 	public void tick() {
-		if (this.controls.isEmpty()) {
-			this.makeControls();
-		}
+		if (controlSpawnCooldown > 0) controlSpawnCooldown--;
+		if (controlSpawnCooldown == 0) this.makeControls();
 	}
 }

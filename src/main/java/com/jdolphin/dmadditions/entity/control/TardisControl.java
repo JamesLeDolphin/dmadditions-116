@@ -38,13 +38,13 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
-	private static final DataParameter<Integer> DATA_ID_HURT = EntityDataManager.defineId(TardisControl.class, DataSerializers.INT);
 	private static final DataParameter<String> DATA_TYPE = EntityDataManager.defineId(TardisControl.class, DataSerializers.STRING);
 	private static final DataParameter<BlockPos> DATA_MASTER_POS = EntityDataManager.defineId(TardisControl.class, DataSerializers.BLOCK_POS);
 
 	public static final String TAG_TYPE = "ControlType";
 	public static final String TAG_MASTER_POS = "MasterPos";
 	protected int cooldown;
+	private ConsoleTileEntity master;
 
 	public TardisControl(EntityType<?> type, World world) {
 		super(type, world);
@@ -63,15 +63,17 @@ public class TardisControl extends Entity {
 	}
 
 	public void setMaster(ConsoleTileEntity tile) {
-		this.entityData.set(DATA_MASTER_POS, tile.getBlockPos());
+		this.master = tile;
+		//this.entityData.set(DATA_MASTER_POS, tile.getBlockPos());
 	}
 
 	public ConsoleTileEntity getMaster() {
-		TileEntity tile = level.getBlockEntity(this.entityData.get(DATA_MASTER_POS));
-		if (tile instanceof ConsoleTileEntity) {
-			return (ConsoleTileEntity) tile;
-		}
-		return null;
+		return this.master;
+		//TileEntity tile = level.getBlockEntity(this.entityData.get(DATA_MASTER_POS));
+		//if (tile instanceof ConsoleTileEntity) {
+		//	return (ConsoleTileEntity) tile;
+		//}
+		//return null;
     }
 
 	public boolean canCollideWith(@NotNull Entity entity) {
@@ -99,10 +101,8 @@ public class TardisControl extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (getMaster() != null) {
-			if (!getMaster().controls.contains(this)) getMaster().controls.add(this);
-		} else this.remove();
-		cooldown--;
+		if (cooldown > 0) cooldown--;
+		if (getMaster() == null) this.remove();
 	}
 
 	public void setType(ControlType type) {
@@ -117,10 +117,8 @@ public class TardisControl extends Entity {
 		return ControlType.getByName(this.entityData.get(DATA_TYPE));
 	}
 
-
 	@Override
 	protected void defineSynchedData() {
-		this.entityData.define(DATA_ID_HURT, 0);
 		this.entityData.define(DATA_TYPE, ControlType.FLIGHT.getName());
 		this.entityData.define(DATA_MASTER_POS, BlockPos.ZERO);
 	}
@@ -128,7 +126,7 @@ public class TardisControl extends Entity {
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT tag) {
 		setType(tag.getString(TAG_TYPE));
-		setMaster((ConsoleTileEntity) level.getBlockEntity(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS))));
+		if (tag.contains(TAG_MASTER_POS)) setMaster((ConsoleTileEntity) level.getBlockEntity(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS))));
 	}
 
 
@@ -246,7 +244,7 @@ public class TardisControl extends Entity {
 	public enum ControlType {
 		DOOR("door", new Vector3d(0.5, 0.5, 0)),
 		LOCK("lock", new Vector3d(0.5, 0, 0.5)),
-		FLIGHT("flight", new Vector3d(0, 0, 0)),
+		FLIGHT("flight", new Vector3d(0, 0.5, 0)),
 		COORD_MODIFIER("coord_modifier", new Vector3d(0, 0, 0)),
 		X_POSITIVE("x_positive", new Vector3d(0, 0, 0)),
 		X_NEGATIVE("x_negative", new Vector3d(0, 0, 0)),

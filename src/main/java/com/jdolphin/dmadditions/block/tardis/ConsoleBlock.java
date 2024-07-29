@@ -26,7 +26,7 @@ public class ConsoleBlock extends TileEntityBaseBlock {
 		TileEntity tile = world.getBlockEntity(pos);
 		if (tile instanceof ConsoleTileEntity) {
 			ConsoleTileEntity console = (ConsoleTileEntity) tile;
-			console.onLoad();
+			//console.onLoad();
 		}
 		return this.defaultBlockState();
 	}
