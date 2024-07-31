@@ -91,7 +91,7 @@ repositories {
 
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.42'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //Dalek Mod

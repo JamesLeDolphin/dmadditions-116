@@ -63,17 +63,15 @@ public class TardisControl extends Entity {
 	}
 
 	public void setMaster(ConsoleTileEntity tile) {
-		this.master = tile;
-		//this.entityData.set(DATA_MASTER_POS, tile.getBlockPos());
+		this.entityData.set(DATA_MASTER_POS, tile.getBlockPos());
 	}
 
 	public ConsoleTileEntity getMaster() {
-		return this.master;
-		//TileEntity tile = level.getBlockEntity(this.entityData.get(DATA_MASTER_POS));
-		//if (tile instanceof ConsoleTileEntity) {
-		//	return (ConsoleTileEntity) tile;
-		//}
-		//return null;
+		TileEntity tile = level.getBlockEntity(this.entityData.get(DATA_MASTER_POS));
+		if (tile instanceof ConsoleTileEntity) {
+			return (ConsoleTileEntity) tile;
+		}
+		return null;
     }
 
 	public boolean canCollideWith(@NotNull Entity entity) {
@@ -109,6 +107,11 @@ public class TardisControl extends Entity {
 		setType(type.getName());
 	}
 
+	public void remove() {
+		this.master.removeControls();
+		this.remove(false);
+	}
+
 	public void setType(String type) {
 		this.entityData.set(DATA_TYPE, type);
 	}
@@ -125,8 +128,8 @@ public class TardisControl extends Entity {
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT tag) {
-		setType(tag.getString(TAG_TYPE));
-		if (tag.contains(TAG_MASTER_POS)) setMaster((ConsoleTileEntity) level.getBlockEntity(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS))));
+		if (tag.contains(TAG_TYPE)) setType(tag.getString(TAG_TYPE)); else this.remove();
+		if (tag.contains(TAG_MASTER_POS)) setMaster((ConsoleTileEntity) level.getBlockEntity(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS)))); else this.remove();
 	}
 
 
