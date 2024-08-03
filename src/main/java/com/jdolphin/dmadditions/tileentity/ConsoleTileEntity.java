@@ -54,12 +54,12 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 	}
 
 	public void makeControls() {
-		if (this.level instanceof ServerWorld) {
+		if (level != null && this.level instanceof ServerWorld) {
 			ServerWorld world = (ServerWorld) level;
 			TardisControl.ControlType[] types = TardisControl.ControlType.values();
-
+			this.hasControls = true;
 			for (TardisControl.ControlType type : types) {
-				TardisControl control = new TardisControl(world, type, this);
+				TardisControl control = new TardisControl(world, type, this.worldPosition);
 
 				Vector3d offset = control.position();
 				BlockPos pos = this.getBlockPos();
@@ -68,11 +68,10 @@ public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEnt
 					pos.getY() + 0.5 + offset.y(),
 					pos.getZ() + 0.5 + offset.z());
 
+				control.setMaster(this.worldPosition);
 				world.addFreshEntity(control);
-				control.setMaster(this);
 				this.controls.add(control);
 			}
-			this.hasControls = true;
 		}
 	}
 

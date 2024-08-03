@@ -75,7 +75,7 @@ public class DMAEntities {
 		.setTrackingRange(64)
 		.build(Helper.createAdditionsRL("herobrine").toString()));
 
-	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerControl("control", TardisControl::new);
+	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerEntity("control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
 
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
@@ -102,10 +102,6 @@ public class DMAEntities {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
 																				   EntityClassification classification) {
 		return registerEntity(name, entityClass, classification, 0.6f, 1.8f);
-	}
-
-	private static <T extends Entity> RegistryObject<EntityType<T>> registerControl(String name, EntityType.IFactory<T> entityClass) {
-		return registerEntity(name, entityClass, EntityClassification.MISC, 0.2f, 0.2f);
 	}
 
 	@Nullable 

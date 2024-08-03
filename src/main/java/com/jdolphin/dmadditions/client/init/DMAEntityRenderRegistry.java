@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
+import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,7 +14,7 @@ public class DMAEntityRenderRegistry {
 	public DMAEntityRenderRegistry() {
 	}
 
-	public static void registryEntityRenders() {
+	public static void registerEntityRenderers() {
 		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
@@ -34,6 +35,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.JIM, JimRenderer::new);
 		registerRender(DMAEntities.HEROBRINE, HerobrineRenderer::new);
 		registerRender(DMAEntities.TIMELORD, TimeLordRenderer::new);
+		registerRender(DMAEntities.CONTROL, TardisControlRenderer::new);
 	}
 
 

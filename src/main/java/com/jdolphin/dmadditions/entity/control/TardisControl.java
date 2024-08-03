@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.entity.control;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.util.Helper;
+import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.init.DMTranslationKeys;
@@ -44,7 +45,6 @@ public class TardisControl extends Entity {
 	public static final String TAG_TYPE = "ControlType";
 	public static final String TAG_MASTER_POS = "MasterPos";
 	protected int cooldown;
-	private ConsoleTileEntity master;
 
 	public TardisControl(EntityType<?> type, World world) {
 		super(type, world);
@@ -55,15 +55,15 @@ public class TardisControl extends Entity {
 		return true;
 	}
 
-	public TardisControl(World world, ControlType type, ConsoleTileEntity master) {
+	public TardisControl(World world, ControlType type, BlockPos master) {
 		super(DMAEntities.CONTROL.get(), world);
 		setType(type);
 		setMaster(master);
 
 	}
 
-	public void setMaster(ConsoleTileEntity tile) {
-		this.entityData.set(DATA_MASTER_POS, tile.getBlockPos());
+	public void setMaster(BlockPos tile) {
+		this.entityData.set(DATA_MASTER_POS, tile);
 	}
 
 	public ConsoleTileEntity getMaster() {
@@ -88,7 +88,11 @@ public class TardisControl extends Entity {
 	}
 
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
-		return (hand == Hand.MAIN_HAND && cooldown == 0) ? this.getAction(player) : ActionResultType.FAIL;
+		World world = player.level;
+		if (!world.isClientSide()) {
+			return cooldown == 0 ? this.getAction(player.level, player) : ActionResultType.PASS;
+		} System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		return ActionResultType.PASS;
 	}
 
 	@Override
@@ -99,17 +103,16 @@ public class TardisControl extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (cooldown > 0) cooldown--;
+
+		if (cooldown > 0) {
+			System.out.println(cooldown);
+			cooldown--;
+		}
 		if (getMaster() == null) this.remove();
 	}
 
 	public void setType(ControlType type) {
 		setType(type.getName());
-	}
-
-	public void remove() {
-		this.master.removeControls();
-		this.remove(false);
 	}
 
 	public void setType(String type) {
@@ -129,14 +132,14 @@ public class TardisControl extends Entity {
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT tag) {
 		if (tag.contains(TAG_TYPE)) setType(tag.getString(TAG_TYPE)); else this.remove();
-		if (tag.contains(TAG_MASTER_POS)) setMaster((ConsoleTileEntity) level.getBlockEntity(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS)))); else this.remove();
+		if (tag.contains(TAG_MASTER_POS)) setMaster(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS))); else this.remove();
 	}
 
 
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT tag) {
 		tag.putString(TAG_TYPE, getControlType().getName());
-		tag.put(TAG_MASTER_POS, NBTUtil.writeBlockPos(getMaster() == null ? BlockPos.ZERO : getMaster().getBlockPos()));
+		if (getMaster() != null) tag.put(TAG_MASTER_POS, NBTUtil.writeBlockPos(getMaster().getBlockPos()));
 	}
 
 	@Override
@@ -153,13 +156,15 @@ public class TardisControl extends Entity {
 		this.cooldown = 20;
 	}
 
-	public ActionResultType getAction(PlayerEntity player) {
-		if (!level.isClientSide() && Helper.isTardis(level)) {
-			TardisData data = DMTardis.getTardisFromInteriorPos(this.blockPosition());
-			if (data != null) {
-				Location location = data.getCurrentLocation();
-				switch (this.getControlType()) {
-					case DOOR: {
+	public ActionResultType getAction(World level, PlayerEntity player) {
+		if (level.getServer() != null) {
+			if (level.dimension().equals(DMDimensions.TARDIS)) {
+				TardisData data = DMTardis.getTardisFromInteriorPos(getMaster().getBlockPos());
+				if (data != null) {
+					Location location = data.getCurrentLocation();
+					System.out.println(this.getControlType());
+					switch (this.getControlType()) {
+						case DOOR: {
 							if (data.isLocked()) {
 								setCooldown();
 								player.displayClientMessage(new StringTextComponent(TextFormatting.YELLOW + DMTranslationKeys.TARDIS_IS_LOCKED.getString()), true);
@@ -189,59 +194,62 @@ public class TardisControl extends Entity {
 									}
 								}
 							}
-					}
-					case FLIGHT: {
-						BlockPos pos = Helper.vec3ToBlockPos(this.position());
-						if (data.isInFlight()) {
-							if (data.timeLeft() == 0.0D) {
-								if (TardisActionList.remat(player, level, data)) {
-									Helper.playSound(level, pos, DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS);
-									Helper.playSound(level, pos, DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS);
-									setCooldown();
-									return ActionResultType.SUCCESS;
-								}
-							} else {
-								int seconds = (int) data.timeLeft();
-								String s = seconds + "s";
-								ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.traveling", new StringTextComponent(s)), ChatUtil.MessageType.CHAT);
-								return ActionResultType.FAIL;
-							}
-						} else if (TardisActionList.demat(player, level, data)) {
-							Helper.playSound(level, pos, DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS);
-							Helper.playSound(level, pos, DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS);
-							setCooldown();
-							return ActionResultType.SUCCESS;
 						}
-					}
-					case LOCK: {
-						data.setLocked(!data.isLocked());
-						data.save();
-						if (data.isLocked()) {
-							if (level.getServer() != null) {
-								ServerWorld serverWorld = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
-								if (serverWorld != null) {
-									TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
-
-									if (tile instanceof TardisTileEntity) {
-										TardisTileEntity tardis = (TardisTileEntity) tile;
+						case FLIGHT: {
+							System.out.println("a");
+							BlockPos pos = Helper.vec3ToBlockPos(this.position());
+							if (data.isInFlight()) {
+								if (data.timeLeft() == 0.0D) {
+									if (TardisActionList.remat(player, level, data)) {
+										Helper.playSound(level, pos, DMSoundEvents.TARDIS_REMAT.get(), SoundCategory.BLOCKS);
+										Helper.playSound(level, pos, DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS);
 										setCooldown();
-										setDoors(tardis, false);
-										player.displayClientMessage(new TranslationTextComponent(data.isLocked() ?
-											"notice.dmadditions.lock" : "notice.dmadditions.unlock").withStyle(TextFormatting.GREEN), true);
 										return ActionResultType.SUCCESS;
+									}
+								} else {
+									int seconds = (int) data.timeLeft();
+									String s = seconds + "s";
+									ChatUtil.sendError(player, new TranslationTextComponent("notice.dalekmod.tardis.traveling", new StringTextComponent(s)), ChatUtil.MessageType.CHAT);
+									return ActionResultType.FAIL;
+								}
+							} else if (TardisActionList.demat(player, level, data)) {
+								Helper.playSound(level, pos, DMSoundEvents.TARDIS_DEMAT.get(), SoundCategory.BLOCKS);
+								Helper.playSound(level, pos, DMSoundEvents.TARDIS_CONTROLS_LEVER.get(), SoundCategory.BLOCKS);
+								setCooldown();
+								return ActionResultType.SUCCESS;
+							}
+						}
+						case LOCK: {
+							data.setLocked(!data.isLocked());
+							data.save();
+							if (data.isLocked()) {
+								if (level.getServer() != null) {
+									ServerWorld serverWorld = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
+									if (serverWorld != null) {
+										TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
+
+										if (tile instanceof TardisTileEntity) {
+											TardisTileEntity tardis = (TardisTileEntity) tile;
+											setCooldown();
+											setDoors(tardis, false);
+											player.displayClientMessage(new TranslationTextComponent(data.isLocked() ?
+												"notice.dmadditions.lock" : "notice.dmadditions.unlock").withStyle(TextFormatting.GREEN), true);
+											return ActionResultType.SUCCESS;
+										}
 									}
 								}
 							}
 						}
 					}
-					default: {
-						ChatUtil.sendMessageToPlayer(player, "Not yet implemented", ChatUtil.MessageType.CHAT);
-					}
-				}
-				return ActionResultType.PASS;
+					setCooldown();
+					return ActionResultType.PASS;
+				} else System.out.println("Data null");
+			} else if (!Helper.isTardis(level)) {
+				setCooldown();
+				ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
 			}
-		} else if (!Helper.isTardis(level)) ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
-        return ActionResultType.FAIL;
+		} System.out.println("what");
+        return ActionResultType.PASS;
     }
 
 	public enum ControlType {
