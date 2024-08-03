@@ -275,7 +275,7 @@ public class DmAdditions {
 		DMABlocks.registerRenderTypes();
 		MinecraftForge.EVENT_BUS.register(ClientDMBusEvents.class);
 		DMATileRenderRegistry.init();
-		if(hasTC()) {
+		if (hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);

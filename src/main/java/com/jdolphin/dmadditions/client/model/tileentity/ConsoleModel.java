@@ -66,7 +66,7 @@ public class ConsoleModel extends Model {
 	private final ModelRenderer cube_r46;
 
 	public ConsoleModel() {
-		super(RenderType::entitySolid);
+		super(RenderType::entityTranslucent);
 		texWidth = 256;
 		texHeight = 256;
 
