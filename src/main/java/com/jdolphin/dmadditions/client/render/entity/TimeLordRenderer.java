@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.TimeLordModel;
-import com.jdolphin.dmadditions.entity.TimeLordEntity;
+import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.model.javajson.ModelLoader;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

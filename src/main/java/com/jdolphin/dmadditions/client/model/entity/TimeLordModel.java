@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.entity.TimeLordEntity;
+import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
