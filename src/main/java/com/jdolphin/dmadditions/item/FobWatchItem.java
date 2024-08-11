@@ -53,18 +53,15 @@ public class FobWatchItem extends Item {
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		if (!world.isClientSide()) {
-			Helper.print("interacted");
 			player.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(cap -> {
 				if (player.isSecondaryUseActive()) {
 					if (cap.hasRegens() && !isFull(stack)) {
 						cap.removeRegens(1);
 						addRegen(stack, 1);
-						Helper.print("took a regen");
 					}
 				}
 				if (!player.isSecondaryUseActive() && hasRegens(stack)) {
 					cap.addRegens(1);
-					Helper.print("gave a regen");
 					addRegen(stack, -1);
 				}
 			});

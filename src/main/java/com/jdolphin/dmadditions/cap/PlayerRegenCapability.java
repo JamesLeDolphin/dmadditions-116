@@ -35,9 +35,8 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	public void tick() {
 		if (postponed()) {
 			postponeTime--;
-			Helper.print(postponeTime);
 		}
-		if (!this.player.isSpectator() && !player.isCreative()) Helper.print(this.currentRegens);
+		if (!this.player.isSpectator() && !player.isCreative());
 
 		if (isPreRegen()) preRegenTime--;
 		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
