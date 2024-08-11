@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.entity;
+package com.jdolphin.dmadditions.entity.timelord;
 
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.item.ItemStack;

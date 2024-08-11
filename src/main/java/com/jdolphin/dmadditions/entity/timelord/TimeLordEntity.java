@@ -1,5 +1,6 @@
-package com.jdolphin.dmadditions.entity;
+package com.jdolphin.dmadditions.entity.timelord;
 
+import com.jdolphin.dmadditions.entity.RegeneratingEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
