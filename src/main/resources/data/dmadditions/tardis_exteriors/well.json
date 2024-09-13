@@ -1,9 +1,0 @@
-{
-	"name": "dmadditions.tardis.name.well",
-	"models": [
-		"dmadditions:models/tileentity/tardis/well.json"
-	],
-	"cost": 100,
-	"unlockable": true,
-	"desc": "dmadditions.tardis.description.well"
-}
