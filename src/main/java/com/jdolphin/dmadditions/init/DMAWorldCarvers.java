@@ -13,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class DMAWorldCarvers {
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DmAdditions.MODID);
 
-	public static final RegistryObject<MoonCarver> CARVER = WORLD_CARVERS.register("moon_carver",
+	public static final RegistryObject<MoonCarver> MOON_CARVER = WORLD_CARVERS.register("moon_carver",
 		() -> new MoonCarver(ProbabilityConfig.CODEC));
 
 	public static final RegistryObject<AndrozaniminorCarver> ANDROZANIMINOR_CARVER = WORLD_CARVERS.register("androzaniminor_carver",

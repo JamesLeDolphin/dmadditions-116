@@ -32,8 +32,6 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<PilotFishEntity>> PILOT_FISH = registerHumanoidEntity("pilot_fish", PilotFishEntity::new, EntityClassification.MONSTER);
 
-	public static RegistryObject<EntityType<TimeLordEntity>> TIMELORD = registerHumanoidEntity("timelord", TimeLordEntity::new, EntityClassification.AMBIENT);
-
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN = registerEntity("snowman", SnowmanEntity::new, EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE = registerEntity("christmas_tree",

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class MondasCybermanEntity extends WoodenCybermanEntity {
 
-	public MondasCybermanEntity(EntityType<? extends MonsterEntity> entityType, World world) {
+	public MondasCybermanEntity(EntityType<? extends MondasCybermanEntity> entityType, World world) {
 		super(entityType, world);
 	}
 

@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
 import com.jdolphin.dmadditions.init.DMACapabilities;
-import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
