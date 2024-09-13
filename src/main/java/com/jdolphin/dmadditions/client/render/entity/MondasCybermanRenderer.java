@@ -14,23 +14,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-public class MondasCybermanRenderer extends EntityRenderer<MondasCybermanEntity> {
-	private MondasCybermanModel model;
+public class MondasCybermanRenderer extends BipedRenderer<MondasCybermanEntity, MondasCybermanModel> {
 	protected static final ResourceLocation CYBER_TEXTURE = Helper.createAdditionsRL("textures/entity/cyber/mondas_cyberman.png");
 
 	public MondasCybermanRenderer(EntityRendererManager renderManager) {
-		super(renderManager);
-		this.model = new MondasCybermanModel(1.0f);
-	}
-
-	@Override
-	public void render(MondasCybermanEntity entity, float v, float v1, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i) {
-		matrixStack.pushPose();
-
-		this.model.renderToBuffer(matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(CYBER_TEXTURE)),
-			i, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
-		matrixStack.popPose();
-		super.render(entity, v, v1, matrixStack, iRenderTypeBuffer, i);
+		super(renderManager, new MondasCybermanModel(1.0f), 0.5f);
 	}
 
 	@Override
