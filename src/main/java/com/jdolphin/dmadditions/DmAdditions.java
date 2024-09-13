@@ -12,6 +12,7 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
@@ -159,7 +160,7 @@ public class DmAdditions {
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
 		event.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
 		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
-		event.put(DMAEntities.MONDAS_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.MONDAS_CYBERMAN.get(), MondasCybermanEntity.createAttributes().build());
 		event.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
 		event.put(DMAEntities.TW_SUV.get(), TorchwoodSuvEntity.setCustomAttributes().build());
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
