@@ -1,32 +1,43 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
+import com.jdolphin.dmadditions.init.DMADamageSources;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTTypes;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.Objects;
+import java.util.Random;
 import java.util.function.Predicate;
 
-public class MondasCybermanEntity extends WoodenCybermanEntity {
+public class MondasCybermanEntity extends MonsterEntity {
 	private static final DataParameter<Integer> DATA_ID_ATTACK_TARGET = EntityDataManager.defineId(MondasCybermanEntity.class, DataSerializers.INT);
 	private LivingEntity clientSideCachedAttackTarget;
 	private int clientSideAttackTime;
@@ -40,9 +51,11 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MonsterEntity.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 6.0D)
-			.add(Attributes.MOVEMENT_SPEED, 0.5D)
-			.add(Attributes.FOLLOW_RANGE, 16.0D)
+		return MobEntity.createMobAttributes()
+			.add(Attributes.ATTACK_DAMAGE, 6.0D)
+			.add(Attributes.ARMOR, 3.0D)
+			.add(Attributes.MOVEMENT_SPEED, 0.17)
+			.add(Attributes.FOLLOW_RANGE, 30)
 			.add(Attributes.MAX_HEALTH, 30.0D);
 	}
 
@@ -51,36 +64,35 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 		this.entityData.define(DATA_ID_ATTACK_TARGET, 0);
 	}
 
+	@Override
+	public void onAddedToWorld() {
+		super.onAddedToWorld();
+		if (this.level.getRandom().nextInt(10) == 0) { //We do a funny
+			this.setCustomName(new StringTextComponent("Bill Potts"));
+		}
+	}
+
+	@Nullable
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficultyInstance, SpawnReason spawnReason, @Nullable ILivingEntityData data, @Nullable CompoundNBT tag) {
+
+		return super.finalizeSpawn(world, difficultyInstance, spawnReason, data, tag);
+	}
+
 	protected void registerGoals() {
+		RandomWalkingGoal randomStrollGoal = new RandomWalkingGoal(this, 1.0D, 80);
 		this.goalSelector.addGoal(4, new MondasCybermanEntity.AttackGoal(this));
-		this.goalSelector.addGoal(5, new MoveTowardsRestrictionGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D, 80));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, CybermanEntity.class, 12.0F, 0.01F));
 		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this,
-			LivingEntity.class, 10, true, false, new MondasCybermanEntity.TargetPredicate(this)));
+		this.targetSelector.addGoal(5, new MoveTowardsTargetGoal(this, 0.4, 0.5F));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+		randomStrollGoal.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
 	}
 
-	@Override
-	public void performRangedAttack(LivingEntity target, float distanceFactor) {
-		if (target.isAlive()) {
-			if (this.hasGun()) super.performRangedAttack(target, distanceFactor);
-			else if (distanceFactor <= 5) {
-				this.lookAt(target, 10.0f, 10.0f);
-				float f = 1.0F;
-				if (this.level.getDifficulty() == Difficulty.NORMAL) {
-					f = 2.0F;
-				}
-				if (this.level.getDifficulty() == Difficulty.NORMAL) {
-					f = 3.0F;
-				}
-				target.hurt(DamageSource.indirectMagic(this, this), f);
-				target.hurt(DamageSource.mobAttack(this), (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE));
-				this.setTarget((LivingEntity)null);
-			}
-		}
-	}
 
 	public void aiStep() {
 		if (this.isAlive()) {
@@ -89,6 +101,10 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 				if (this.hasActiveAttackTarget()) {
 					if (this.clientSideAttackTime < this.getAttackDuration()) {
 						++this.clientSideAttackTime;
+						double d = this.distanceToSqr(Objects.requireNonNull(this.getActiveAttackTarget()));
+						if (d > 5) {
+							this.getNavigation().moveTo(this.getActiveAttackTarget(), this.getMoveControl().getSpeedModifier());
+						}
 					}
 
 					LivingEntity livingentity = this.getActiveAttackTarget();
@@ -105,8 +121,8 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 						double d4 = this.random.nextDouble();
 
 						while(d4 < d3) {
-							d4 += 1.8D + this.random.nextDouble() * 1.7D;
-							this.level.addParticle(ParticleTypes.FLAME, this.getX() + d0 * d4, this.getEyeY() + d1 * d4, this.getZ() + d2 * d4, 0.0D, 0.0D, 0.0D);
+							d4 += this.random.nextDouble() * 1.7D;
+							this.level.addParticle(ParticleTypes.FLAME, this.getX() + d0 * d4, this.getEyeY() + 0.5 + d1 * d4, this.getZ() + d2 * d4, 0.0D, 0.0D, 0.0D);
 						}
 					}
 				}
@@ -116,7 +132,6 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 				this.yRot = this.yHeadRot;
 			}
 		}
-
 		super.aiStep();
 	}
 
@@ -128,7 +143,7 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 		}
 
 		public boolean test(@Nullable LivingEntity entity) {
-			return (entity instanceof PlayerEntity || entity instanceof DalekEntity) && entity.distanceToSqr(this.cyberman) > 9.0D;
+			return (entity instanceof PlayerEntity || entity instanceof DalekEntity || entity instanceof VillagerEntity) && entity.distanceTo(this.cyberman) <= 5;
 		}
 	}
 
@@ -147,24 +162,28 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 		}
 
 		public boolean canContinueToUse() {
-			return super.canContinueToUse() && (this.cyber.distanceToSqr(this.cyber.getTarget()) > 5.0D);
+			LivingEntity entity = this.cyber.getTarget();
+			if (entity != null) {
+				double d = this.cyber.distanceTo(entity);
+				return super.canContinueToUse() && (d <= 5.0D);
+			}
+			return false;
 		}
 
 		public void start() {
 			this.attackTime = -10;
-			this.cyber.getNavigation().stop();
 			this.cyber.getLookControl().setLookAt(this.cyber.getTarget(), 90.0F, 90.0F);
 			this.cyber.hasImpulse = true;
 		}
 
 		public void stop() {
+			this.cyber.setAggressive(false);
 			this.cyber.setActiveAttackTarget(0);
 			this.cyber.setTarget((LivingEntity)null);
 		}
 
 		public void tick() {
 			LivingEntity livingentity = this.cyber.getTarget();
-			this.cyber.getNavigation().stop();
 			this.cyber.getLookControl().setLookAt(livingentity, 90.0F, 90.0F);
 			if (!this.cyber.canSee(livingentity)) {
 				this.cyber.setTarget((LivingEntity)null);
@@ -178,8 +197,7 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 						f += 2.0F;
 					}
 
-					livingentity.hurt(DamageSource.indirectMagic(this.cyber, this.cyber), f);
-					livingentity.hurt(DamageSource.mobAttack(this.cyber), (float)this.cyber.getAttributeValue(Attributes.ATTACK_DAMAGE));
+					livingentity.hurt(DMADamageSources.CYBER_BEAM, (float)this.cyber.getAttributeValue(Attributes.ATTACK_DAMAGE) + f);
 					this.cyber.setTarget((LivingEntity)null);
 				}
 
@@ -189,11 +207,11 @@ public class MondasCybermanEntity extends WoodenCybermanEntity {
 	}
 
 	public ItemStack getPickedResult(RayTraceResult target) {
-		return new ItemStack(DMAItems.WOODEN_CYBERMAN_SPAWNER.get());
+		return new ItemStack(DMAItems.MONDAS_CYBERMAN_SPAWNER.get());
 	}
 
 	public int getAttackDuration() {
-		return 80;
+		return 40;
 	}
 
 	private void setActiveAttackTarget(int p_175463_1_) {

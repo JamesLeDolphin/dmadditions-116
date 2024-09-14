@@ -16,6 +16,8 @@
 	"item.dmadditions.elixir_of_life": "Elixir of Life",
 	"item.dmadditions.fob_watch": "Fob Watch",
 	"entity.dmadditions.mondas_cyberman": "Mondasian Cyberman",
+	"death.attack.cyberBeam": "%1$s was blasted by a Cyberman",
+	"item.dmadditions.mondas_cyberman_spawner": "Mondasian Cyberman Spawner",
 	"advancements.dmadditions.visit_gallifrey.title": "The Shining World of the Seven Systems!",
 	"advancements.dmadditions.visit_gallifrey.description": "Visit Gallifrey!",
 

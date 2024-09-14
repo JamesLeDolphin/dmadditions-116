@@ -45,7 +45,11 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-		return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.17).add(Attributes.MAX_HEALTH, 20.0).add(Attributes.ATTACK_DAMAGE, 2.0).add(Attributes.FOLLOW_RANGE, 20.0);
+		return MobEntity.createMobAttributes()
+			.add(Attributes.MOVEMENT_SPEED, 0.17).
+			add(Attributes.MAX_HEALTH, 20.0)
+			.add(Attributes.ATTACK_DAMAGE, 2.0)
+			.add(Attributes.FOLLOW_RANGE, 20.0);
 	}
 
 	protected void registerGoals() {
