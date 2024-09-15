@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
+import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.init.DMEntities;
@@ -26,6 +27,8 @@ import java.util.List;
 public class MondasCyberBase extends Structure<NoFeatureConfig> {
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
 		new MobSpawnInfo.Spawners(DMEntities.CYBERMAN_ENTITY.get(), 100, 4, 9),
+		new MobSpawnInfo.Spawners(DMAEntities.MONDASIAN.get(), 100, 4, 9),
+		new MobSpawnInfo.Spawners(DMAEntities.MONDAS_CYBERMAN.get(), 100, 4, 9),
 		new MobSpawnInfo.Spawners(DMEntities.CYBERMANVILLAGER_ENTITY.get(), 10, 2, 3)
 	);
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of();
@@ -60,15 +63,12 @@ public class MondasCyberBase extends Structure<NoFeatureConfig> {
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
-			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern)dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(Helper.createAdditionsRL("mondas_base/start_pool"));
-			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
-			this.pieces.forEach((piece) -> {
-				piece.move(0, -50, 0);
-			});
-			this.pieces.forEach((piece) -> {
-				--piece.getBoundingBox().y0;
-			});
+			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() ->
+                            dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+                                .get(Helper.createAdditionsRL("mondas_base/start_pool")), 10), AbstractVillagePiece::new,
+				chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+			this.pieces.forEach((piece) -> piece.move(0, -50, 0));
+			this.pieces.forEach((piece) -> --piece.getBoundingBox().y0);
 			this.calculateBoundingBox();
 		}
 	}
