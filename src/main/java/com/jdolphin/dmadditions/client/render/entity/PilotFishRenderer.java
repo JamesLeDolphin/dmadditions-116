@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderPilotFish extends BipedRenderer<PilotFishEntity, PilotFishModel> {
-	public RenderPilotFish(EntityRendererManager rendererManager){
+public class PilotFishRenderer extends BipedRenderer<PilotFishEntity, PilotFishModel> {
+	public PilotFishRenderer(EntityRendererManager rendererManager){
 		super(rendererManager, new PilotFishModel(1.0f), 0.5f);
 	}
 

@@ -18,10 +18,11 @@ public class DMAEntityRenderRegistry {
 		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
+		registerRender(DMAEntities.MONDASIAN, MondasianRenderer::new);
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);
 		registerRender(DMAEntities.MONDAS_CYBERMAN, MondasCybermanRenderer::new);
-		registerRender(DMAEntities.PILOT_FISH, RenderPilotFish::new);
-		registerRender(DMAEntities.SNOWMAN, RenderSnowman::new);
+		registerRender(DMAEntities.PILOT_FISH, PilotFishRenderer::new);
+		registerRender(DMAEntities.SNOWMAN, SnowmanRenderer::new);
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);

@@ -6,6 +6,7 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.util.Helper;
@@ -42,6 +43,9 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<MondasCybermanEntity>> MONDAS_CYBERMAN = registerHumanoidEntity("mondas_cyberman",
 		MondasCybermanEntity::new, EntityClassification.MONSTER);
+
+	public static RegistryObject<EntityType<MondasianEntity>> MONDASIAN = registerHumanoidEntity("mondasian",
+		MondasianEntity::new, EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<BessieEntity>> BESSIE = registerEntity("bessie", BessieEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
 

@@ -13,6 +13,7 @@ import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
@@ -144,7 +145,9 @@ public class DmAdditions {
 		}
 	}
 
-	public void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
+	@SubscribeEvent
+	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
+		CommandDispatcher<CommandSource> dispatcher = event.getDispatcher();
 		GameModeCommand.register(dispatcher);
 		TeleportCommand.register(dispatcher);
 		CommandSit.register(dispatcher);
@@ -152,15 +155,11 @@ public class DmAdditions {
 		GodCommand.register(dispatcher);
 	}
 
-	@SubscribeEvent
-	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
-		this.registerCommands(event.getDispatcher());
-	}
-
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
 		event.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
 		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.MONDAS_CYBERMAN.get(), MondasCybermanEntity.createAttributes().build());
+		event.put(DMAEntities.MONDASIAN.get(), MondasianEntity.createAttributes().build());
 		event.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
 		event.put(DMAEntities.TW_SUV.get(), TorchwoodSuvEntity.setCustomAttributes().build());
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());

@@ -54,8 +54,8 @@ public class MondasCybermanEntity extends MonsterEntity {
 		return MobEntity.createMobAttributes()
 			.add(Attributes.ATTACK_DAMAGE, 6.0D)
 			.add(Attributes.ARMOR, 3.0D)
-			.add(Attributes.MOVEMENT_SPEED, 0.17)
-			.add(Attributes.FOLLOW_RANGE, 30)
+			.add(Attributes.MOVEMENT_SPEED, 0.2)
+			.add(Attributes.FOLLOW_RANGE, 32)
 			.add(Attributes.MAX_HEALTH, 30.0D);
 	}
 
@@ -72,20 +72,15 @@ public class MondasCybermanEntity extends MonsterEntity {
 		}
 	}
 
-	@Nullable
-	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficultyInstance, SpawnReason spawnReason, @Nullable ILivingEntityData data, @Nullable CompoundNBT tag) {
-
-		return super.finalizeSpawn(world, difficultyInstance, spawnReason, data, tag);
-	}
-
 	protected void registerGoals() {
+		super.registerGoals();
 		RandomWalkingGoal randomStrollGoal = new RandomWalkingGoal(this, 1.0D, 80);
 		this.goalSelector.addGoal(4, new MondasCybermanEntity.AttackGoal(this));
 		this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D, 80));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, CybermanEntity.class, 12.0F, 0.01F));
 		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(5, new MoveTowardsTargetGoal(this, 0.4, 0.5F));
+		this.targetSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.4, 0.5F));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		randomStrollGoal.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
@@ -173,21 +168,22 @@ public class MondasCybermanEntity extends MonsterEntity {
 		public void start() {
 			this.attackTime = -10;
 			this.cyber.getLookControl().setLookAt(this.cyber.getTarget(), 90.0F, 90.0F);
-			this.cyber.hasImpulse = true;
 		}
 
 		public void stop() {
 			this.cyber.setAggressive(false);
 			this.cyber.setActiveAttackTarget(0);
-			this.cyber.setTarget((LivingEntity)null);
+			this.cyber.setTarget((LivingEntity) null);
 		}
 
 		public void tick() {
 			LivingEntity livingentity = this.cyber.getTarget();
 			this.cyber.getLookControl().setLookAt(livingentity, 90.0F, 90.0F);
+			double d = this.cyber.distanceTo(livingentity);
 			if (!this.cyber.canSee(livingentity)) {
-				this.cyber.setTarget((LivingEntity)null);
-			} else {
+				this.cyber.setTarget((LivingEntity) null);
+			} else if (d > 1 && d <= this.cyber.getAttributeValue(Attributes.FOLLOW_RANGE)) {
+				this.cyber.getNavigation().createPath(livingentity, 0);
 				++this.attackTime;
 				if (this.attackTime == 0) {
 					this.cyber.setActiveAttackTarget(this.cyber.getTarget().getId());
@@ -197,8 +193,8 @@ public class MondasCybermanEntity extends MonsterEntity {
 						f += 2.0F;
 					}
 
-					livingentity.hurt(DMADamageSources.CYBER_BEAM, (float)this.cyber.getAttributeValue(Attributes.ATTACK_DAMAGE) + f);
-					this.cyber.setTarget((LivingEntity)null);
+					livingentity.hurt(DMADamageSources.CYBER_BEAM, (float) this.cyber.getAttributeValue(Attributes.ATTACK_DAMAGE) + f);
+					this.cyber.setTarget((LivingEntity) null);
 				}
 
 				super.tick();

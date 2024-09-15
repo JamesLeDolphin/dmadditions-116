@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderSnowman extends MobRenderer<SnowmanEntity, SnowmanModel> {
-	public RenderSnowman(EntityRendererManager entityRendererManager) {
+public class SnowmanRenderer extends MobRenderer<SnowmanEntity, SnowmanModel> {
+	public SnowmanRenderer(EntityRendererManager entityRendererManager) {
 		super(entityRendererManager, new SnowmanModel(), 0.5f);
 		this.addLayer(new HeadLayer<>(this));
 	}

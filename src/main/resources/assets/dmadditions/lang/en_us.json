@@ -20,7 +20,8 @@
 	"item.dmadditions.mondas_cyberman_spawner": "Mondasian Cyberman Spawner",
 	"advancements.dmadditions.visit_gallifrey.title": "The Shining World of the Seven Systems!",
 	"advancements.dmadditions.visit_gallifrey.description": "Visit Gallifrey!",
-
+	"entity.dmadditions.mondasian": "Mondasian",
+	"item.dmadditions.mondasian_spawner": "Mondasian Spawner",
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",

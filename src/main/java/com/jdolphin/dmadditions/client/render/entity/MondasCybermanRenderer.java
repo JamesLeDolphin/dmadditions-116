@@ -27,6 +27,6 @@ public class MondasCybermanRenderer extends BipedRenderer<MondasCybermanEntity, 
 	}
 
 	protected boolean shouldShowName(MondasCybermanEntity entity) {
-		return super.shouldShowName(entity) && (entity.shouldShowName() || entity.hasCustomName() && entity == this.entityRenderDispatcher.crosshairPickEntity);
+		return super.shouldShowName(entity) && (entity.shouldShowName() || (entity.hasCustomName() && entity == this.entityRenderDispatcher.crosshairPickEntity));
 	}
 }

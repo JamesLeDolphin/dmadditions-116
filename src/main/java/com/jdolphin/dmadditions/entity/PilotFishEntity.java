@@ -36,7 +36,6 @@ import java.util.List;
 import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_SPAWNER;
 import static com.jdolphin.dmadditions.init.DMAItems.PILOT_FISH_TRUMPET;
 
-// Robo Santa or something
 public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 	public static String TYPE_PILOT_FISH = "PilotFishType";
 
@@ -135,9 +134,6 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinEntity.class, 6.0F, 1.0, 1.2));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinBruteEntity.class, 6.0F, 1.0, 1.2));
-
 		this.goalSelector.addGoal(5, new LookAtGoalBetter(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.8));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
