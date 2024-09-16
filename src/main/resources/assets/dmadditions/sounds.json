@@ -32,6 +32,20 @@
 			"dmadditions:entity/dalek/storm_death"
 		]
 	},
+	"entity.cyberman.mondas.ambient": {
+		"subtitle": "subtitles.entity.cyberman.mondas.ambient",
+		"sounds": [
+			"dmadditions:entity/cyber/mondas/ambient_1",
+			"dmadditions:entity/cyber/mondas/ambient_2",
+			"dmadditions:entity/cyber/mondas/ambient_3"
+		]
+	},
+	"entity.cyberman.mondas.laser_attack": {
+		"subtitle": "subtitles.entity.cyberman.mondas.laser_attack",
+		"sounds": [
+			"dmadditions:entity/cyber/mondas/laser_attack"
+		]
+	},
 	"entity.dalek.storm.exterminate": {
 		"subtitle": "subtitles.entity.dalek.storm.exterminate",
 		"sounds": [

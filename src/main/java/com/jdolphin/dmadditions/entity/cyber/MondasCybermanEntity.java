@@ -3,6 +3,8 @@ package com.jdolphin.dmadditions.entity.cyber;
 import com.jdolphin.dmadditions.init.DMADamageSources;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
+import com.jdolphin.dmadditions.init.DMASoundEvents;
+import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.entity.*;
@@ -22,6 +24,9 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.Difficulty;
@@ -57,6 +62,10 @@ public class MondasCybermanEntity extends MonsterEntity {
 			.add(Attributes.MOVEMENT_SPEED, 0.2)
 			.add(Attributes.FOLLOW_RANGE, 32)
 			.add(Attributes.MAX_HEALTH, 30.0D);
+	}
+
+	protected SoundEvent getAmbientSound() {
+		return DMASoundEvents.MONDAS_CYBER_AMBIENT.get();
 	}
 
 	protected void defineSynchedData() {
@@ -179,6 +188,7 @@ public class MondasCybermanEntity extends MonsterEntity {
 		public void tick() {
 			LivingEntity livingentity = this.cyber.getTarget();
 			this.cyber.getLookControl().setLookAt(livingentity, 90.0F, 90.0F);
+			Helper.playSound(cyber.level, cyber.blockPosition(), DMASoundEvents.MONDAS_CYBER_LASER_ATTACK.get(), SoundCategory.HOSTILE);
 			double d = this.cyber.distanceTo(livingentity);
 			if (!this.cyber.canSee(livingentity)) {
 				this.cyber.setTarget((LivingEntity) null);

@@ -28,7 +28,8 @@
 	"item.dmadditions.frying_pan": "Frying Pan",
 	"block.dmadditions.randomizer": "Randomizer",
 	"subtitles.item.frying_pan.hit": "Hit by Frying Pan",
-
+	"subtitles.entity.cyberman.mondas.ambient": "Cyberman Speaks",
+	"subtitles.entity.cyberman.mondas.laser_attack": "Laser Shoots",
 	"container.dmadditions.roundel_storage": "Roundel Storage",
 
 	"tooltip.block.dalekmod.sonic_interface.insert_sonic": "Insert Sonic",

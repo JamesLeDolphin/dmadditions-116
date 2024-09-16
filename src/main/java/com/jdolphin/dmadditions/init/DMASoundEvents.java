@@ -22,6 +22,8 @@ public class DMASoundEvents {
 	public static RegistryObject<SoundEvent> RICKROLL;
 	public static RegistryObject<SoundEvent> V8_IDLE;
 	public static RegistryObject<SoundEvent> V8_REVVING;
+	public static RegistryObject<SoundEvent> MONDAS_CYBER_AMBIENT;
+	public static RegistryObject<SoundEvent> MONDAS_CYBER_LASER_ATTACK;
 
 	public static void init() {
 		PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
@@ -38,6 +40,8 @@ public class DMASoundEvents {
 		RICKROLL = buildSound(RegistryHandler.SOUNDS, "music_disc.rick_roll");
 		V8_IDLE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_idle");
 		V8_REVVING = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_revving");
+		MONDAS_CYBER_AMBIENT = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.mondas.ambient");
+		MONDAS_CYBER_LASER_ATTACK = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.mondas.laser_attack");
 	}
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {

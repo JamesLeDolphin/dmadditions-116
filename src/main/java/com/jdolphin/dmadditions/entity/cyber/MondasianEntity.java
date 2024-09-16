@@ -104,6 +104,7 @@ public class MondasianEntity extends MonsterEntity implements IForgeEntity {
 		ALEX("alex"),
 		CYB4("cyb4"),
 		JAMES("james"),
+		CYB5("cyb5"),
 		;
 
 		private final String name;
