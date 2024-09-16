@@ -24,6 +24,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"unchecked", "unused"})
@@ -82,6 +84,8 @@ public class DMAItems {
 			() -> new SingleShotGunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, 5, DMAProjectiles.METALLIC_GOLD_LASER, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
 
+	public static RegistryObject<Item> FRYING_PAN = ITEMS.register("frying_pan",
+		() -> new ToolItem( 2, -2.6f, ItemTier.NETHERITE, new HashSet<>(), new Item.Properties().tab(ItemGroup.TAB_COMBAT).rarity(Rarity.UNCOMMON)));
 
 	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
