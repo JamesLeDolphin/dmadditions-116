@@ -18,6 +18,7 @@ public class DMASoundEvents {
 	public static RegistryObject<SoundEvent> LASER_SONIC_SHOOT;
 	public static RegistryObject<SoundEvent> BESSIE_HORN;
 	public static RegistryObject<SoundEvent> BESSIE;
+	public static RegistryObject<SoundEvent> PAN;
 	public static RegistryObject<SoundEvent> RICKROLL;
 	public static RegistryObject<SoundEvent> V8_IDLE;
 	public static RegistryObject<SoundEvent> V8_REVVING;
@@ -33,6 +34,7 @@ public class DMASoundEvents {
 		LASER_SONIC_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.sonic.laser.shoot");
 		BESSIE_HORN = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.horn");
 		BESSIE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.bessie.drive");
+		PAN = buildSound(RegistryHandler.SOUNDS, "item.frying_pan.hit");
 		RICKROLL = buildSound(RegistryHandler.SOUNDS, "music_disc.rick_roll");
 		V8_IDLE = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_idle");
 		V8_REVVING = buildSound(RegistryHandler.SOUNDS, "entity.vehicle.shopping_cart.v8_revving");

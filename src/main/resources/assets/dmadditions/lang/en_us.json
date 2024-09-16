@@ -27,6 +27,7 @@
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",
 	"block.dmadditions.randomizer": "Randomizer",
+	"subtitles.item.frying_pan.hit": "Hit by Frying Pan",
 
 	"container.dmadditions.roundel_storage": "Roundel Storage",
 

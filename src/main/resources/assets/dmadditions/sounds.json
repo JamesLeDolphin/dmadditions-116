@@ -5,6 +5,15 @@
 			"dmadditions:item/pistol/shoot"
 		]
 	},
+	"item.frying_pan.hit": {
+		"subtitle": "subtitles.item.frying_pan.hit",
+		"sounds":[
+			{ "name":"dmadditions:item/frying_pan/hit1", "stream":false },
+			{ "name":"dmadditions:item/frying_pan/hit2", "stream":false },
+			{ "name":"dmadditions:item/frying_pan/hit3", "stream":false },
+			{ "name":"dmadditions:item/frying_pan/hit4", "stream":false }
+		]
+	},
 	"block.handbrake.copper_hand_brake": {
 		"subtitle": "subtitles.block.handbrake.copper_hand_brake",
 		"sounds": [

@@ -85,7 +85,7 @@ public class DMAItems {
 				(new Item.Properties().durability(1000)).tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
 
 	public static RegistryObject<Item> FRYING_PAN = ITEMS.register("frying_pan",
-		() -> new ToolItem( 2, -2.6f, ItemTier.NETHERITE, new HashSet<>(), new Item.Properties().tab(ItemGroup.TAB_COMBAT).rarity(Rarity.UNCOMMON)));
+		() -> new FryingPanItem( 2, -2.6f, ItemTier.NETHERITE, new HashSet<>(), new Item.Properties().tab(ItemGroup.TAB_COMBAT).rarity(Rarity.UNCOMMON)));
 
 	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
 			() -> new ClothesItem(EquipmentSlotType.HEAD));
