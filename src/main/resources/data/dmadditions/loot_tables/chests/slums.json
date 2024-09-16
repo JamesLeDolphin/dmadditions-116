@@ -9,8 +9,67 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "name": "dmadditions:unit_gun",
+          "weight": 34,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              },
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dalekmod:steel_sword",
+          "weight": 34,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dalekmod:steel_battleaxe",
+          "weight": 43,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dalekmod:gold_bullet",
+          "weight": 99,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 23
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:string",
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -23,13 +82,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
-          "name": "dmadditions:santa_hat"
+          "name": "dmadditions:santa_hat",
+          "weight": 5
         },
         {
           "type": "minecraft:item",
-          "weight": 15,
           "name": "minecraft:paper",
+          "weight": 15,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -42,22 +101,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 8,
           "name": "dalekmod:bullet_casing",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "weight": 8,
-          "name": "dalekmod:circuit",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -70,13 +115,27 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
-          "name": "dalekmod:banana_peel"
+          "name": "dalekmod:circuit",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "weight": 12,
+          "name": "dalekmod:banana_peel",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
           "name": "dmadditions:green_candy_cane",
+          "weight": 12,
           "functions": [
             {
               "function": "minecraft:set_count",
