@@ -318,15 +318,7 @@ public class DmAdditions {
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
 				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 			}
-			if (isBiomeValidForDeadTree(biomeRegistryKey)) {
-				List<Supplier<ConfiguredFeature<?, ?>>> base =
-					event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
-				base.add(() -> DMAConfiguredStructures.DEAD_TREE
-					.decorated(Features.Placements.HEIGHTMAP)
-					.decorated(Placement.COUNT_EXTRA.configured(
-						new AtSurfaceWithExtraConfig(3, 0.75f, 2))));
-		}
 	}
 
 	private static boolean isBiomeValidForDeadTree(ResourceLocation biomeRegistryKey) {

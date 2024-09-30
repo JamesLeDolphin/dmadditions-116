@@ -54,7 +54,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "dalekmod:gold_bullet",
+          "name": "dalekmod:golden_bullet",
           "weight": 99,
           "functions": [
             {

@@ -32,6 +32,10 @@
 	"subtitles.entity.cyberman.mondas.laser_attack": "Laser Shoots",
 	"container.dmadditions.roundel_storage": "Roundel Storage",
 
+	"biome.dmadditions.mondas_frozen": "Mondas Frozen Plains",
+	"biome.dmadditions.bluelands": "Mondas Bluelands",
+	"biome.dmadditions.dead_forest": "Mondas Dead Forest",
+
 	"tooltip.block.dalekmod.sonic_interface.insert_sonic": "Insert Sonic",
 	"tooltip.block.dalekmod.sonic_interface.remove_sonic": "Remove Sonic",
 	"tooltip.block.dalekmod.sonic_interface.open_interface": "Open Interface",

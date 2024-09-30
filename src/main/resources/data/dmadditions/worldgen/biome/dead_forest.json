@@ -6,7 +6,8 @@
   "downfall": 1,
   "precipitation": "snow",
   "temperature_modifier": "frozen",
-  "category": "taiga",
+  "category": "icy",
+  "player_spawn_friendly": true,
   "effects": {
     "sky_color": 7907327,
     "fog_color": 11060981,
@@ -24,10 +25,16 @@
   "spawners": {
     "monster": [
       {
+        "type": "dmadditions:mondas_cyberman",
+        "weight": 8,
+        "minCount": 2,
+        "maxCount": 8
+      },
+      {
         "type": "dalekmod:cyberman",
-        "weight": 12,
-        "minCount": 4,
-        "maxCount": 12
+        "weight": 6,
+        "minCount": 1,
+        "maxCount": 6
       }
     ],
     "creature": [
@@ -39,8 +46,7 @@
       }
     ],
     "water_creature": [],
-    "water_ambient": [],
-    "misc": []
+    "water_ambient": []
   },
   "spawn_costs": {},
   "carvers": {
@@ -51,12 +57,10 @@
   },
   "features": [
     [],
-    [
-      "minecraft:lake_water"
-    ],
+    ["minecraft:lake_water"],
     [],
     [],
-    [],
+    ["dmadditions:dead_tree"],
     [],
     [
       "minecraft:ore_dirt",
@@ -76,6 +80,7 @@
     ],
     [],
     [
+
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:spring_water",

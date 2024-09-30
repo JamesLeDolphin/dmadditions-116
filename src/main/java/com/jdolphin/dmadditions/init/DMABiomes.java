@@ -4,7 +4,7 @@ import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-
+//Really these are here just for refrence as we make the actual biomes with jsons
 public class DMABiomes {
 
 	//Moon

@@ -88,8 +88,7 @@ public class TardisControl extends Entity {
 	}
 
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
-		World world = player.level;
-		if (!world.isClientSide()) {
+		if (!this.level.isClientSide()) {
 			return cooldown == 0 ? this.getAction(player.level, player) : ActionResultType.PASS;
 		} System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		return ActionResultType.PASS;

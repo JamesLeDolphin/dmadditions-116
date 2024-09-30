@@ -19,9 +19,6 @@ public class DMAWorldCarvers {
 	public static final RegistryObject<AndrozaniminorCarver> ANDROZANIMINOR_CARVER = WORLD_CARVERS.register("androzaniminor_carver",
 		() -> new AndrozaniminorCarver(ProbabilityConfig.CODEC));
 
-	public static final RegistryObject<AndrozaniminorCarver> MONDAS_CARVER = WORLD_CARVERS.register("mondas_carver",
-		() -> new AndrozaniminorCarver(ProbabilityConfig.CODEC));
-
 	public static final RegistryObject<GallifreyCarver> GALLIFREY_CARVER = WORLD_CARVERS.register("gallifrey_carver",
 		() -> new GallifreyCarver(ProbabilityConfig.CODEC));
 
