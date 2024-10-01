@@ -303,22 +303,31 @@ public class DmAdditions {
 				spawns.add(spawn.spawner);
 			}
 		}
-			ResourceLocation biomeRegistryKey = event.getName();
+		ResourceLocation biomeRegistryKey = event.getName();
 
-			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
-				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
-			}
-			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) {
-				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
-			}
-			if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
-				final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-				structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
-				structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
-			}
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
+		}
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
+		}
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
+		}
 
+		if (isBiomeValidForDeadTree(biomeRegistryKey)) {
+			List<Supplier<ConfiguredFeature<?, ?>>> base =
+				event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
+
+			base.add(() -> DMAConfiguredStructures.DEAD_TREE
+				.squared().decorated(Features.Placements.HEIGHTMAP)
+				.decorated(Placement.COUNT_EXTRA.configured(
+					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));
+		}
 	}
 
 	private static boolean isBiomeValidForDeadTree(ResourceLocation biomeRegistryKey) {
@@ -332,6 +341,7 @@ public class DmAdditions {
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
 				registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
+
 		}
 		return false;
     }
