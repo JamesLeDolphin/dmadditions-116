@@ -39,10 +39,10 @@
     ],
     "creature": [
       {
-        "type": "minecraft:cow",
-        "weight": 8,
-        "minCount": 4,
-        "maxCount": 4
+        "type": "dmadditions:cybercow",
+        "weight": 3,
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
     "water_creature": [],
@@ -57,7 +57,9 @@
   },
   "features": [
     [],
-    ["minecraft:lake_water"],
+    [
+      "minecraft:lake_water"
+    ],
     [],
     [],
     [],
@@ -80,7 +82,6 @@
     ],
     [],
     [
-
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:spring_water",

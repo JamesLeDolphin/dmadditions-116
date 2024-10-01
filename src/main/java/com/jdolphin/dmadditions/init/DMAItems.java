@@ -76,6 +76,9 @@ public class DMAItems {
 	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
 		() -> new DMASpawnerItem<>("snowman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> CYBERCOW_SPAWNER = ITEMS.register("cybercow_spawner",
+		() -> new DMASpawnerItem<>("cybercow", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
 			() -> new SingleShotGunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, 5, DMAProjectiles.BULLET, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
 				(new Item.Properties().durability(500)).tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));

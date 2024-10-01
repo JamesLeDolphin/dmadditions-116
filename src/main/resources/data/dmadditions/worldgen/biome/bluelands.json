@@ -6,7 +6,7 @@
   "downfall": 0.6,
   "precipitation": "snow",
   "temperature_modifier": "frozen",
-  "category": "plains",
+  "category": "extreme_hills",
   "player_spawn_friendly": true,
   "effects": {
     "sky_color": 7907327,
@@ -17,17 +17,18 @@
     "foliage_color": 5854411
   },
   "starts": [],
-  "spawners": {  "monster": [
-    {
-      "type": "dalekmod:cyberman",
-      "weight": 12,
-      "minCount": 4,
-      "maxCount": 12
-    }
-  ],
+  "spawners": {
+    "monster": [
+      {
+        "type": "dalekmod:cyberman",
+        "weight": 12,
+        "minCount": 4,
+        "maxCount": 12
+      }
+    ],
     "creature": [
       {
-        "type": "minecraft:cow",
+        "type": "dmadditions:cybercow",
         "weight": 8,
         "minCount": 4,
         "maxCount": 4
@@ -79,8 +80,5 @@
     [
       "minecraft:freeze_top_layer"
     ]
-  ],
-  "spawn_costs": {},
-  "carvers": {},
-  "features": []
+  ]
 }

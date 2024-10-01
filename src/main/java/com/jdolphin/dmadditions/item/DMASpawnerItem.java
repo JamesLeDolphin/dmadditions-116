@@ -152,7 +152,7 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 
 	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		if (this.entityType != null && worldIn != null && this.entityType == "dalek") {
+		if (this.entityType != null && worldIn != null && this.entityType.equals("dalek")) {
 			((IDalek) DMDalekRegistry.getDaleks().get(this.variants.get(0))).getTooltips(tooltip);
 		}
 

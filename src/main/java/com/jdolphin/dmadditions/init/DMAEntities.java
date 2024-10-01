@@ -5,6 +5,7 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
@@ -54,6 +55,9 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = registerEntity("racnoss",
 		RacnossEntity::new, EntityClassification.MONSTER, 3f, 2f);
+
+	public static RegistryObject<EntityType<CyberCowEntity>> CYBERCOW = registerEntity("cybercow",
+		CyberCowEntity::new, EntityClassification.MONSTER, 0.9f, 1.4f);
 
 	public static RegistryObject<EntityType<ShoppingCartEntity>> SHOPPING_CART = registerEntity("shopping_cart",
 		ShoppingCartEntity::new, EntityClassification.MISC, 0.98f, 0.7f);

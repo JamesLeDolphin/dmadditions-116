@@ -12,6 +12,7 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
@@ -174,6 +175,7 @@ public class DmAdditions {
 		event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
 		event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
 		event.put(DMAEntities.HEROBRINE.get(), HerobrineEntity.createAttributes().build());
+		event.put(DMAEntities.CYBERCOW.get(), CyberCowEntity.createAttributes().build());
 	}
 
 
