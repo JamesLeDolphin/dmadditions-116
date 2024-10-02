@@ -17,7 +17,7 @@ import java.util.Random;
 public class GallifreyCarver extends CaveWorldCarver {
 	public GallifreyCarver(Codec<ProbabilityConfig> codec) {
 		super(codec, 256);
-		//this.replaceableBlocks = ImmutableSet.of(DMABlocks.CROCITE.get(), Blocks.GRASS_BLOCK, Blocks.RED_SAND);
+		this.replaceableBlocks = ImmutableSet.of(DMABlocks.CROCITE.get(), Blocks.GRASS_BLOCK, Blocks.RED_SAND);
 	}
 
 	public void apply(Random p_205610_1_, IChunk p_205610_2_, Biome p_205610_3_, int p_205610_4_, int p_205610_5_, int p_205610_6_, double p_205610_7_, BlockState p_205610_9_, BlockState p_205610_10_, int p_205610_11_, long p_205610_12_, SurfaceBuilderConfig p_205610_14_) {

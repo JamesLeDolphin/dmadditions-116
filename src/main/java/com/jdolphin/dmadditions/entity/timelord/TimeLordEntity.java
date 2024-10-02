@@ -21,6 +21,7 @@ import java.util.function.Function;
 public class TimeLordEntity extends RegeneratingEntity {
 	public static String TYPE_TIMELORD = "TimelordType";
 	public static final DataParameter<String> TIMELORD_TYPE = EntityDataManager.defineId(TimeLordEntity.class, DataSerializers.STRING);
+
 	public TimeLordEntity(EntityType<? extends RegeneratingEntity> type, World world) {
 		super(type, world);
 	}

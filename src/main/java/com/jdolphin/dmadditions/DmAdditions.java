@@ -176,6 +176,7 @@ public class DmAdditions {
 		event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
 		event.put(DMAEntities.HEROBRINE.get(), HerobrineEntity.createAttributes().build());
 		event.put(DMAEntities.CYBERCOW.get(), CyberCowEntity.createAttributes().build());
+		event.put(DMAEntities.TIMELORD.get(), TimeLordEntity.createAttributes().build());
 	}
 
 

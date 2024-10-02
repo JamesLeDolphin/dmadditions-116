@@ -19,6 +19,7 @@ public class DMAEntityRenderRegistry {
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.MONDASIAN, MondasianRenderer::new);
+		registerRender(DMAEntities.TIMELORD, TimeLordRenderer::new);
 		registerRender(DMAEntities.CYBERCOW, CybercowRenderer::new);
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);
 		registerRender(DMAEntities.MONDAS_CYBERMAN, MondasCybermanRenderer::new);

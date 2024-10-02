@@ -8,12 +8,27 @@
 	"item.frying_pan.hit": {
 		"subtitle": "subtitles.item.frying_pan.hit",
 		"sounds":[
-			{ "name":"dmadditions:item/frying_pan/hit1", "stream":false },
-			{ "name":"dmadditions:item/frying_pan/hit2", "stream":false },
-			{ "name":"dmadditions:item/frying_pan/hit3", "stream":false },
-			{ "name":"dmadditions:item/frying_pan/hit4", "stream":false }
+			{ "name":"dmadditions:item/frying_pan/hit1", "stream": false },
+			{ "name":"dmadditions:item/frying_pan/hit2", "stream": false },
+			{ "name":"dmadditions:item/frying_pan/hit3", "stream": false },
+			{ "name":"dmadditions:item/frying_pan/hit4", "stream": false }
 		]
 	},
+
+	"entity.player.regen.pre": {
+		"subtitle": "subtitles.entity.player.regen.pre",
+		"sounds": [
+			"dmadditions:regen/preregen"
+		]
+	},
+
+	"entity.player.regen.start": {
+		"subtitle": "subtitles.entity.player.regen.start",
+		"sounds": [
+			"dmadditions:regen/regen_start"
+		]
+	},
+
 	"block.handbrake.copper_hand_brake": {
 		"subtitle": "subtitles.block.handbrake.copper_hand_brake",
 		"sounds": [
