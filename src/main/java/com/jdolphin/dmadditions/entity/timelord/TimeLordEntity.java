@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -12,6 +13,10 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
 
 public class TimeLordEntity extends RegeneratingEntity {
 	public static String TYPE_TIMELORD = "TimelordType";
@@ -64,5 +69,33 @@ public class TimeLordEntity extends RegeneratingEntity {
 		}
 
 		super.readAdditionalSaveData(compound);
+	}
+
+	public enum TimeLordType {
+		ARI("ari"),
+		ZURI("zuri");
+
+		private final String name;
+		public final Function<Random, List<ItemStack>> getInventory;
+
+		public String getName() {
+			return this.name;
+		}
+
+		TimeLordType(String name) {
+			this.name = name;
+			this.getInventory = (random) -> null;
+		}
+
+		TimeLordType(String name, Function<Random, List<ItemStack>> getInventory) {
+			this.name = name;
+			this.getInventory = getInventory;
+		}
+
+		public static TimeLordType get(String name) {
+			return Arrays.stream(values())
+				.filter(timeLordType -> timeLordType.name.equals(name)).findFirst()
+				.orElse(ARI);
+		}
 	}
 }
