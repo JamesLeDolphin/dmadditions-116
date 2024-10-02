@@ -24,6 +24,9 @@
 	"item.dmadditions.mondasian_spawner": "Mondasian Spawner",
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 
+	"death.attack.sheared": "%1$s was sheared to death",
+	"death.attack.electrocution": "%1$s was electrocuted to death",
+
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",
 	"block.dmadditions.randomizer": "Randomizer",

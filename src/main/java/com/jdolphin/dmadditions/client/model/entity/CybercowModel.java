@@ -9,6 +9,8 @@ import net.minecraft.client.renderer.entity.model.CowModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class CybercowModel extends QuadrupedModel<CyberCowEntity> {
 	private final ModelRenderer body;
@@ -56,13 +58,23 @@ public class CybercowModel extends QuadrupedModel<CyberCowEntity> {
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(@NotNull MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg0.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg1.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg2.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg3.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+
+	public void setupAnim(@NotNull CyberCowEntity cow, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+		this.head.xRot = p_225597_6_ * 0.017453292F;
+		this.head.yRot = p_225597_5_ * 0.017453292F;
+		this.body.xRot = 1.5707964F;
+		this.leg0.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_;
+		this.leg1.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + 3.1415927F) * 1.4F * p_225597_3_;
+		this.leg2.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + 3.1415927F) * 1.4F * p_225597_3_;
+		this.leg3.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_;
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
