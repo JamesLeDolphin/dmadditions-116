@@ -99,7 +99,7 @@ public class MondasianEntity extends MonsterEntity implements IForgeEntity {
 		this.targetSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true));
 	}
 	public enum MondasianType {
-		BLONE("blonde"),
+		BLONDE("blonde"),
 		COP("cop"),
 		ALEX("alex"),
 		CYB4("cyb4"),
@@ -120,7 +120,7 @@ public class MondasianEntity extends MonsterEntity implements IForgeEntity {
 		public static MondasianType get(String name) {
 			return Arrays.stream(values())
 				.filter(type -> type.name.equals(name)).findFirst()
-				.orElse(BLONE);
+				.orElse(BLONDE);
 		}
 	}
 }
