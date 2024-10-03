@@ -4,10 +4,12 @@ import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.util.Helper;
+import com.swdteam.mixins.MovementInputMixin;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.settings.PointOfView;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -17,10 +19,12 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.MovementInput;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.client.ClientHooks;
 
 public class PlayerRegenCapability implements IPlayerRegenCap {
 	private final String TAG_REGEN_AMOUNT = "regens";
@@ -56,7 +60,12 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 			this.regenerate();
 		}
 
-		if (regenTicks == Helper.seconds(30)) {
+		if (regenTicks > 0) {
+			if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
+			player.teleportTo(player.getX(), player.getY(), player.getZ());
+		}
+
+		if (regenTicks == Helper.seconds(8)) {
 			regenTicks = 0;
 		}
 	}
@@ -121,7 +130,6 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 			ChatUtil.sendMessageToPlayer(player,
 				new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
 		}
-		if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
 
 		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
 		player.setDeltaMovement(new Vector3d(0, 0, 0));
