@@ -16,9 +16,9 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class AndrozaniminorDimensionTpBlock extends Block {
+public class PresentBlock extends Block {
 
-	public AndrozaniminorDimensionTpBlock(AbstractBlock.Properties properties) {
+	public PresentBlock(AbstractBlock.Properties properties) {
 		super(properties);
 	}
 	//TODO: Fix hitbox, its supposed to get bigger but atm removes it completely
