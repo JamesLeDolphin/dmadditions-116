@@ -31,7 +31,7 @@ public class CBSyncPlayerPacket {
 		cont.get().enqueueWork(() -> {
 			Entity result = Minecraft.getInstance().level.getEntity(mes.id);
 			if(result != null)
-				result.getCapability(DMACapabilities.REGEN_CAP_CAPABILITY).ifPresent(cap -> cap.deserializeNBT(mes.data));
+				result.getCapability(DMACapabilities.REGEN_CAPABILITY).ifPresent(cap -> cap.deserializeNBT(mes.data));
 		});
 		cont.get().setPacketHandled(true);
 	}

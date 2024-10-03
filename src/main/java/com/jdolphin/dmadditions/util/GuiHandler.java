@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.util;
 
-import com.jdolphin.dmadditions.client.gui.PlayerLocatorScreen;
+import com.jdolphin.dmadditions.client.gui.screen.PlayerLocatorScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;

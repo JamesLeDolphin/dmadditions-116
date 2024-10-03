@@ -68,7 +68,7 @@ public interface IPlayerRegenCap extends INBTSerializable<CompoundNBT> {
 		@Override
 		@SuppressWarnings("unchecked")
 		public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-			return cap.equals(DMACapabilities.REGEN_CAP_CAPABILITY) ? (LazyOptional<T>) LazyOptional.of(() -> this.data) : LazyOptional.empty();
+			return cap.equals(DMACapabilities.REGEN_CAPABILITY) ? (LazyOptional<T>) LazyOptional.of(() -> this.data) : LazyOptional.empty();
 		}
 	}
 

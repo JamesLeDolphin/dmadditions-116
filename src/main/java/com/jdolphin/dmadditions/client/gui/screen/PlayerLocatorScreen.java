@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.gui;
+package com.jdolphin.dmadditions.client.gui.screen;
 
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBLocatePlayerPacket;

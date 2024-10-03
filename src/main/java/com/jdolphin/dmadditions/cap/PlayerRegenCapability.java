@@ -5,6 +5,13 @@ import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.settings.PointOfView;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -41,7 +48,10 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 		if (preRegenTime == Helper.seconds(30)) Helper.playSound(player.level, player.blockPosition(),
 			DMASoundEvents.PRE_REGEN.get(), SoundCategory.PLAYERS);
 
-		if (isPreRegen()) preRegenTime--;
+		if (isPreRegen()) {
+			Helper.info("Pre");
+			preRegenTime--;
+		}
 		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
 			this.regenerate();
 		}
@@ -73,6 +83,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 				ChatUtil.MessageType.CHAT);
 			this.postponeTime = Helper.minutes(5);
 			this.canPostpone = false;
+			this.update();
 		}
 		else {
 			this.postponeTime = 0;
@@ -98,6 +109,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 				!effect.getEffect().isBeneficial()).forEach(effectInstance ->
 				player.removeEffect(effectInstance.getEffect()));
 			this.preRegenTime = Helper.seconds(30);
+			this.update();
 		} else this.preRegenTime = 0;
 	}
 
@@ -109,11 +121,10 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 			ChatUtil.sendMessageToPlayer(player,
 				new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
 		}
-		player.setSpeed(0);
-		this.removeRegens(1);
+		if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
+
 		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
 		player.setDeltaMovement(new Vector3d(0, 0, 0));
-
 		this.update();
 	}
 
@@ -124,7 +135,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 
 	@Override
 	public boolean isPreRegen() {
-		return this.preRegenTime > 0;
+		return this.preRegenTime > 0 && !postponed();
 	}
 
 	@Override

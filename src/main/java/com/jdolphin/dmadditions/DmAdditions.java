@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.client.ClientDMBusEvents;
+import com.jdolphin.dmadditions.client.gui.overlay.PreRegenOverlay;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
@@ -25,6 +26,8 @@ import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
+import com.swdteam.client.init.BusClientEvents;
+import com.swdteam.client.overlay.OverlayMCClassic;
 import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
@@ -278,6 +281,7 @@ public class DmAdditions {
 		DMABlocks.registerRenderTypes();
 		MinecraftForge.EVENT_BUS.register(ClientDMBusEvents.class);
 		DMATileRenderRegistry.init();
+		BusClientEvents.overlays.add(new PreRegenOverlay());
 		if (hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
 			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
