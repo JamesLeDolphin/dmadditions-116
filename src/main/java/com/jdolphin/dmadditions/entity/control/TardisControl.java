@@ -36,6 +36,8 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+
+import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
@@ -72,7 +74,7 @@ public class TardisControl extends Entity {
 			return (ConsoleTileEntity) tile;
 		}
 		return null;
-    }
+	}
 
 	public boolean canCollideWith(@NotNull Entity entity) {
 		return true;
@@ -239,6 +241,8 @@ public class TardisControl extends Entity {
 								}
 							}
 						}
+						default:
+							break;
 					}
 					setCooldown();
 					return ActionResultType.PASS;
@@ -247,9 +251,10 @@ public class TardisControl extends Entity {
 				setCooldown();
 				ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
 			}
-		} System.out.println("what");
-        return ActionResultType.PASS;
-    }
+		} 
+		LogManager.getLogger().warn("what");
+		return ActionResultType.PASS;
+	}
 
 	public enum ControlType {
 		DOOR("door", new Vector3d(0.5, 0.5, 0)),

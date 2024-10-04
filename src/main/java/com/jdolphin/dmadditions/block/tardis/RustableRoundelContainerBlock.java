@@ -104,6 +104,7 @@ public class RustableRoundelContainerBlock extends RoundelContainerBlock impleme
 			return super.getRustedState(state).setValue(WATERLOGGED, state.getValue(WATERLOGGED));
 		}
 
+		@SuppressWarnings("deprecation")
 		@OnlyIn(Dist.CLIENT)
 		public boolean skipRendering(BlockState blockState, BlockState blockState1, Direction direction) {
 			return blockState1.is(this) ? true : super.skipRendering(blockState, blockState1, direction);
@@ -119,6 +120,7 @@ public class RustableRoundelContainerBlock extends RoundelContainerBlock impleme
 			return super.getStateForPlacement(context).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 		}
 
+		@SuppressWarnings("deprecation")
 		public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, IWorld iWorld, BlockPos blockPos, BlockPos blockPos1) {
 			if (blockState.getValue(WATERLOGGED)) {
 				iWorld.getLiquidTicks().scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(iWorld));
@@ -127,6 +129,7 @@ public class RustableRoundelContainerBlock extends RoundelContainerBlock impleme
 			return super.updateShape(blockState, direction, blockState1, iWorld, blockPos, blockPos1);
 		}
 
+		@SuppressWarnings("deprecation")
 		public FluidState getFluidState(BlockState state) {
 			return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 		}

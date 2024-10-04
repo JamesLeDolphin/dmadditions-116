@@ -1,8 +1,14 @@
 package com.jdolphin.dmadditions.tileentity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.common.tileentity.DMTileEntityBase;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
@@ -12,14 +18,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.extensions.IForgeTileEntity;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class ConsoleTileEntity extends DMTileEntityBase implements IForgeTileEntity, ITickableTileEntity {
+public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTileEntity {
 	public final List<TardisControl> controls = new ArrayList<>();
 	private int controlSpawnCooldown;
 	private boolean hasControls = false;

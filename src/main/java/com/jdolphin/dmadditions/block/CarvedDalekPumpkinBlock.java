@@ -66,15 +66,6 @@ public class CarvedDalekPumpkinBlock extends CarvedPumpkinBlock {
 		}
 	}
 
-	private BlockPattern getOrCreateSnowGolemBase() {
-		if (this.snowGolemBase == null) {
-			this.snowGolemBase = BlockPatternBuilder.start().aisle(" ", "#", "#").where('#',
-				CachedBlockInfo.hasState(BlockStateMatcher.forBlock(Blocks.SNOW_BLOCK))).build();
-		}
-
-		return this.snowGolemBase;
-	}
-
 	private BlockPattern getOrCreateSnowDalekFull() {
 		if (this.snowGolemFull == null) {
 			this.snowGolemFull = BlockPatternBuilder.start().aisle("^", "#", "#")

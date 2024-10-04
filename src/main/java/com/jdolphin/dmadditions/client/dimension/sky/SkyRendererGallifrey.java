@@ -25,6 +25,7 @@ public class SkyRendererGallifrey implements ISkyRenderHandler {
 	public SkyRendererGallifrey() {
 	}
 
+	@SuppressWarnings("resource")
 	public void render(int ticks, float partialTicks, MatrixStack matrixStack, ClientWorld world, Minecraft mc) {
 		if (ClientPlayerData.inCustomLava) {
 			RenderSystem.enableFog();

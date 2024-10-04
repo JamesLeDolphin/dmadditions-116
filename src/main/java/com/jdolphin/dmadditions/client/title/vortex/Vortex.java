@@ -30,6 +30,7 @@ public class Vortex {
 		TEXTURE_LOCATION = Helper.createAdditionsRL("textures/vortex/" + name + ".png");
 	}
 
+	@SuppressWarnings({ "deprecation", "resource" })
 	public void render() {
 		int width = Minecraft.getInstance().screen.width;
 		int height = Minecraft.getInstance().screen.height;
@@ -47,6 +48,7 @@ public class Vortex {
 		GlStateManager._popMatrix();
 	}
 
+	@SuppressWarnings({ "deprecation", "resource" })
 	public void renderVortex() {
 		GlStateManager._pushMatrix();
 		GlStateManager._enableCull();

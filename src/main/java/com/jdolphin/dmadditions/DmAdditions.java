@@ -1,5 +1,15 @@
 package com.jdolphin.dmadditions;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
@@ -12,11 +22,7 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
-import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
-import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
+import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
@@ -28,6 +34,7 @@ import com.mojang.serialization.Codec;
 import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
+
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
@@ -78,15 +85,6 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Supplier;
 
 
 @Mod(DmAdditions.MODID)
@@ -115,12 +113,13 @@ public class DmAdditions {
 
 	public DmAdditions() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus eventBus = MinecraftForge.EVENT_BUS;
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::entityAttributeEvent);
 		bus.addListener(this::runLater);
-		//This one line fixes joinging servers that dont have dma
+		//This one line fixes joining servers that don't have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
@@ -135,12 +134,11 @@ public class DmAdditions {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 
-		MinecraftForge.EVENT_BUS.register(this);
-		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
-		MinecraftForge.EVENT_BUS.register(RegenEvents.class);
-		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
-		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
-		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
+		eventBus.register(this);
+		eventBus.register(DMAEventHandlerGeneral.class);
+		eventBus.register(RegenEvents.class);
+		eventBus.addListener(EventPriority.HIGH, this::biomeModification);
+		eventBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) {
 			DMAFluids.FLUIDS.register(bus);
 		}
@@ -225,7 +223,7 @@ public class DmAdditions {
 	}
 
 
-	private static Method GETCODEC_METHOD;
+	private static Method GET_CODEC_METHOD;
 
 	@SuppressWarnings("unchecked")
 	public void addDimensionalSpacing(WorldEvent.Load event) {
@@ -236,9 +234,9 @@ public class DmAdditions {
 			}
 			ServerChunkProvider chunkSource = world.getChunkSource();
 			try {
-				if (GETCODEC_METHOD == null)
-					GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(chunkSource.generator));
+				if (GET_CODEC_METHOD == null)
+					GET_CODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GET_CODEC_METHOD.invoke(chunkSource.generator));
 				if (cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
 			} catch (Exception e) {
 				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
@@ -265,7 +263,7 @@ public class DmAdditions {
 
 		}
 	}
-	//TODO Remove this? doesnt seem to do anything
+	//TODO Remove this? doesn't seem to do anything
 	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
 		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
 			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
@@ -346,7 +344,7 @@ public class DmAdditions {
 
 		}
 		return false;
-    }
+	}
 
 	@SubscribeEvent
 	public void addReloadListeners(AddReloadListenerEvent event){

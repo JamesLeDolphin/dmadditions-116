@@ -85,6 +85,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 
 	protected PathNavigator createNavigation(World world) {
 		FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, world) {
+			@SuppressWarnings("deprecation")
 			public boolean isStableDestination(BlockPos p_188555_1_) {
 				return !this.level.getBlockState(p_188555_1_.below()).isAir();
 			}
@@ -137,6 +138,7 @@ public class FlyingSharkEntity extends TameableEntity implements IAngerable, IJu
 
 	// Getter and Setter for tamed state
 	public boolean isTamed() {
+		// spellchecker:ignore owneruuid
 		return this.entityData.get(DATA_OWNERUUID_ID).isPresent();
 	}
 

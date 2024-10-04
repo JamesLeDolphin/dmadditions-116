@@ -32,6 +32,7 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 		return SCREEN_MODEL;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void render(DimensionSelectorTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int combinedLightIn, int combinedOverlayIn) {
 		if (SCREEN_MODEL != null && tileEntity.getLevel().dimension().equals(DMDimensions.TARDIS)) {
 			ResourceLocation rl = tileEntity.getTexturePath();
@@ -42,7 +43,7 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 			float rotation = tileEntity.getBlockState().getValue(DimensionSelectorPanelBlock.FACING).toYRot();
 			AttachFace face = tileEntity.getBlockState().getValue(BlockStateProperties.ATTACH_FACE);
 
-			IVertexBuilder ivertexbuilder = iRenderTypeBuffer.getBuffer(RenderType.entityCutout(rl));
+			IVertexBuilder vertexBuilder = iRenderTypeBuffer.getBuffer(RenderType.entityCutout(rl));
 			matrixStack.pushPose();
 
 			matrixStack.translate(0.5D, 0.0D, 0.5D);
@@ -66,7 +67,7 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 					break;
 			}
 
-			SCREEN_MODEL.getModelData().getModel().renderToBuffer(matrixStack, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+			SCREEN_MODEL.getModelData().getModel().renderToBuffer(matrixStack, vertexBuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
 			matrixStack.popPose();
 		}
 

@@ -49,6 +49,7 @@ public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 
+	@SuppressWarnings("deprecation")
 	public BlockState mirror(BlockState state, Mirror mirror) {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
