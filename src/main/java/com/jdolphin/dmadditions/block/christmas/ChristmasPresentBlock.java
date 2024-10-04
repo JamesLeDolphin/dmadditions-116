@@ -16,9 +16,9 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class AndrozaniminorDimensionTpBlock extends Block {
+public class ChristmasPresentBlock extends Block {
 
-	public AndrozaniminorDimensionTpBlock(AbstractBlock.Properties properties) {
+	public ChristmasPresentBlock(AbstractBlock.Properties properties) {
 		super(properties);
 	}
 	//TODO: Fix hitbox, its supposed to get bigger but atm removes it completely
@@ -31,7 +31,7 @@ public class AndrozaniminorDimensionTpBlock extends Block {
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide() && player instanceof ServerPlayerEntity) {
 			ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
-			RegistryKey<World> key = worldIn.dimension() == DMADimensions.ANDROZANIMINOR ? World.OVERWORLD : DMADimensions.ANDROZANIMINOR;
+			RegistryKey<World> key = worldIn.dimension() == DMADimensions.WINTER_PLANET ? World.OVERWORLD : DMADimensions.WINTER_PLANET;
 			ServerWorld destinationWorld = worldIn.getServer().getLevel(key);
 			if (destinationWorld != null && destinationWorld != worldIn) {
 				BlockPos headPos = player.blockPosition().above();
