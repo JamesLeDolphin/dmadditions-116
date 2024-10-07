@@ -33,7 +33,6 @@ import java.util.Random;
 public class SpecimenJarBlock extends FallingBlock {
 
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	public static final IntegerProperty SPECIMEN = IntegerProperty.create("specimen", 0, 3);
 	public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 16, 13);
 	public SpecimenJarBlock(Properties p_i48377_1_) {
 		super(p_i48377_1_);
@@ -44,7 +43,6 @@ public class SpecimenJarBlock extends FallingBlock {
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
-		builder.add(SPECIMEN);
 		super.createBlockStateDefinition(builder);
 	}
 
@@ -52,8 +50,7 @@ public class SpecimenJarBlock extends FallingBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.defaultBlockState()
-			.setValue(FACING, Direction.NORTH)
-			.setValue(SPECIMEN, 0);
+			.setValue(FACING, Direction.NORTH);
 	}
 
 	@Override
@@ -111,23 +108,24 @@ public class SpecimenJarBlock extends FallingBlock {
 			ItemStack held = player.getItemInHand(hand);
 			// take
 			if (jar.hasSpecimen()) {
-				if(!held.isEmpty()) return ActionResultType.PASS;
+				if (!held.isEmpty()) return ActionResultType.PASS;
 				ActionResultType give = giveSpecimen(jar.getSpecimen(), held, player, blockPos, world);
 
-				if(give != ActionResultType.FAIL && give != ActionResultType.PASS) {
+				if (give != ActionResultType.FAIL && give != ActionResultType.PASS) {
 					jar.setSpecimen(ItemStack.EMPTY);
-					world.setBlockAndUpdate(blockPos, state.setValue(SPECIMEN, 0));
 				}
 
 				return give;
 			}
 			// put
-			else if (jar.acceptSpecimen(held.getItem())) {
-				jar.setSpecimen(held);
-				if (!player.isCreative()) held.shrink(1);
-				if (held.getCount() == 0) player.setItemInHand(hand, ItemStack.EMPTY);
-				world.setBlockAndUpdate(blockPos, state.setValue(SPECIMEN, jar.getSpecimenIndex() + 1).setValue(FACING, player.getDirection().getOpposite()));
-				return ActionResultType.SUCCESS;
+			else {
+				System.out.println("Had no specimen");
+				if (jar.acceptSpecimen(held.getItem())) {
+					jar.setSpecimen(held);
+					if (!player.isCreative()) held.shrink(1);
+					if (held.getCount() == 0) player.setItemInHand(hand, ItemStack.EMPTY);
+					return ActionResultType.SUCCESS;
+				} System.out.println("No accepty");
 			}
 		}
 
@@ -158,34 +156,30 @@ public class SpecimenJarBlock extends FallingBlock {
 	}
 
 	private void dropSpecimen(ItemStack specimen, BlockPos pos, World world) {
-		if (specimen == null || specimen.isEmpty()) return;
-		switch (SpecimenJarTileEntity.getSpecimenIndex(specimen.getItem())) {
-			case 0:		// Special case for kantrofarri
-				KantrofarriEntity kantrofarri = new KantrofarriEntity(DMAEntities.KANTROFARRI.get(), world);
+		if (specimen != null && !specimen.isEmpty()) {
+			if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
+				KantrofarriEntity kantrofarri = new KantrofarriEntity(world);
 				kantrofarri.moveTo(pos, 0, 0);
 				world.addFreshEntity(kantrofarri);
-				break;
-
-			default:	// Generic case
+			} else {
 				ItemEntity entity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), specimen);
 				world.addFreshEntity(entity);
-				break;
+			}
 		}
 	}
 
-	private ActionResultType giveSpecimen(ItemStack specimen, ItemStack held, PlayerEntity player, BlockPos pos, World world){
-		switch (SpecimenJarTileEntity.getSpecimenIndex(specimen.getItem())) {
-			case 0:		// Special case for kantrofarri
-				KantrofarriEntity kantrofarri = new KantrofarriEntity(DMAEntities.KANTROFARRI.get(), world);
-				kantrofarri.moveTo(player.position());
-				world.addFreshEntity(kantrofarri);
-				return ActionResultType.SUCCESS;
-
-			default:	// Generic case
-				if (held.isEmpty()) player.setItemInHand(Hand.MAIN_HAND, specimen);
-				else if (held.sameItem(specimen) && ItemStack.tagMatches(held, specimen)) held.grow(1);
-				else return ActionResultType.PASS;
-				return ActionResultType.CONSUME;
+	private ActionResultType giveSpecimen(ItemStack specimen, ItemStack held, PlayerEntity player, BlockPos pos, World world) {
+		if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
+			KantrofarriEntity kantrofarri = new KantrofarriEntity(world); // Special case for kantrofarri
+			kantrofarri.moveTo(player.position());
+			world.addFreshEntity(kantrofarri);
+			return ActionResultType.SUCCESS;
+		} else {
+			if (held.isEmpty() && !player.isCreative()) player.setItemInHand(Hand.MAIN_HAND, specimen);
+			else if (held.sameItem(specimen) && ItemStack.tagMatches(held, specimen) && !player.isCreative())
+				held.grow(1);
+			else return ActionResultType.PASS;
+			return ActionResultType.CONSUME;
 		}
 	}
 }
