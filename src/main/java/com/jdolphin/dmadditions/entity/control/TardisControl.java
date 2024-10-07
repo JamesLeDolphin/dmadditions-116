@@ -22,6 +22,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -36,6 +37,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
@@ -88,9 +90,12 @@ public class TardisControl extends Entity {
 	}
 
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
-		if (!this.level.isClientSide()) {
-			return cooldown == 0 ? this.getAction(player.level, player) : ActionResultType.PASS;
-		} System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+		if (server != null) {
+			ServerWorld serverWorld = server.getLevel(player.level.dimension());
+			if (serverWorld != null) return cooldown == 0 ? this.getAction(serverWorld, player) : ActionResultType.PASS;
+			else System.out.println("Serverworld null");
+		}
 		return ActionResultType.PASS;
 	}
 
@@ -155,8 +160,8 @@ public class TardisControl extends Entity {
 		this.cooldown = 20;
 	}
 
-	public ActionResultType getAction(World level, PlayerEntity player) {
-		if (level.getServer() != null) {
+	public ActionResultType getAction(ServerWorld level, PlayerEntity player) {
+		if (level != null && player != null) {
 			if (level.dimension().equals(DMDimensions.TARDIS)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(getMaster().getBlockPos());
 				if (data != null) {
@@ -176,26 +181,24 @@ public class TardisControl extends Entity {
 								return ActionResultType.FAIL;
 							}
 
-							if (level.getServer() != null) {
-								ServerWorld serverWorld = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
-								if (serverWorld != null) {
-									TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
+							level.getServer();
+							ServerWorld serverWorld = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
+							if (serverWorld != null) {
+								TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
 
-									if (tile instanceof TardisTileEntity) {
-										TardisTileEntity tardis = (TardisTileEntity) tile;
-										boolean isOpen = tardis.doorOpenLeft || tardis.doorOpenRight;
-										TranslationTextComponent text = new TranslationTextComponent(isOpen ? "notice.dmadditions.close" : "notice.dmadditions.open");
-										setCooldown();
-										setDoors(tardis, !isOpen);
-										data.setDoorOpen(!isOpen);
-										player.displayClientMessage(new StringTextComponent(TextFormatting.GREEN + text.getString()), true);
-										return ActionResultType.SUCCESS;
-									}
+								if (tile instanceof TardisTileEntity) {
+									TardisTileEntity tardis = (TardisTileEntity) tile;
+									boolean isOpen = tardis.doorOpenLeft || tardis.doorOpenRight;
+									TranslationTextComponent text = new TranslationTextComponent(isOpen ? "notice.dmadditions.close" : "notice.dmadditions.open");
+									setCooldown();
+									setDoors(tardis, !isOpen);
+									data.setDoorOpen(!isOpen);
+									player.displayClientMessage(new StringTextComponent(TextFormatting.GREEN + text.getString()), true);
+									return ActionResultType.SUCCESS;
 								}
 							}
 						}
 						case FLIGHT: {
-							System.out.println("a");
 							BlockPos pos = Helper.vec3ToBlockPos(this.position());
 							if (data.isInFlight()) {
 								if (data.timeLeft() == 0.0D) {
@@ -222,32 +225,35 @@ public class TardisControl extends Entity {
 							data.setLocked(!data.isLocked());
 							data.save();
 							if (data.isLocked()) {
-								if (level.getServer() != null) {
-									ServerWorld serverWorld = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
-									if (serverWorld != null) {
-										TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
+								level.getServer();
+								ServerWorld serverWorld = level.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
+								if (serverWorld != null) {
+									TileEntity tile = serverWorld.getBlockEntity(location.getPosition().toBlockPos());
 
-										if (tile instanceof TardisTileEntity) {
-											TardisTileEntity tardis = (TardisTileEntity) tile;
-											setCooldown();
-											setDoors(tardis, false);
-											player.displayClientMessage(new TranslationTextComponent(data.isLocked() ?
-												"notice.dmadditions.lock" : "notice.dmadditions.unlock").withStyle(TextFormatting.GREEN), true);
-											return ActionResultType.SUCCESS;
-										}
+									if (tile instanceof TardisTileEntity) {
+										TardisTileEntity tardis = (TardisTileEntity) tile;
+										setCooldown();
+										setDoors(tardis, false);
+										player.displayClientMessage(new TranslationTextComponent(data.isLocked() ?
+											"notice.dmadditions.lock" : "notice.dmadditions.unlock").withStyle(TextFormatting.GREEN), true);
+										return ActionResultType.SUCCESS;
 									}
 								}
 							}
 						}
+						default: {
+							player.displayClientMessage(new StringTextComponent("Not yet implemented"), false);
+						}
 					}
 					setCooldown();
 					return ActionResultType.PASS;
-				} else System.out.println("Data null");
+				}
 			} else if (!Helper.isTardis(level)) {
 				setCooldown();
 				ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
 			}
-		} System.out.println("what");
+		}
+		System.out.println("what");
         return ActionResultType.PASS;
     }
 
