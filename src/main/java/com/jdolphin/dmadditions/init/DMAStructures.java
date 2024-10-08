@@ -38,7 +38,7 @@ public class DMAStructures {
 		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
 		setupMapSpacingAndLand(MONDAS_RUIN.get(), new StructureSeparationSettings(30, 10, 23478), true);
-		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(10, 11, 5988732), false);
+		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(30, 10, 23578), false);
 
 	}
 
