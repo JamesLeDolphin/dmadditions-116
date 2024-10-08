@@ -27,7 +27,6 @@ import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.client.init.BusClientEvents;
-import com.swdteam.client.overlay.OverlayMCClassic;
 import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;

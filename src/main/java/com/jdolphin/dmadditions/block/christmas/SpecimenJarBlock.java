@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.block.christmas;
 
 import com.jdolphin.dmadditions.entity.KantrofarriEntity;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
-import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.tileentity.SpecimenJarTileEntity;
 import net.minecraft.block.*;
@@ -14,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;

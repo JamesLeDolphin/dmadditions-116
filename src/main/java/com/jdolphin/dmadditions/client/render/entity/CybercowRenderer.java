@@ -3,11 +3,8 @@ package com.jdolphin.dmadditions.client.render.entity;
 import com.jdolphin.dmadditions.client.model.entity.CybercowModel;
 import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.jdolphin.dmadditions.util.Helper;
-import net.minecraft.client.renderer.entity.CowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class CybercowRenderer extends MobRenderer<CyberCowEntity, CybercowModel> {

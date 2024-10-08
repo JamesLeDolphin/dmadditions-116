@@ -4,7 +4,6 @@ import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
