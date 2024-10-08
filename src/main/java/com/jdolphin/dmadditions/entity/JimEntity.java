@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.LaserEntity;
@@ -116,7 +116,7 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
 		super.populateDefaultEquipmentSlots(difficulty);
 
-		if(AdventUnlock.isDecember() && random.nextBoolean()){
+		if(TimedUnlock.isDecember() && random.nextBoolean()){
 			equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 		}
 

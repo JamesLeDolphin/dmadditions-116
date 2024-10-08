@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.client.data.Splashes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -48,11 +48,11 @@ public class SplashesMixin {
 			}
 		};
 
-		if (AdventUnlock.isDecember()) {
+		if (TimedUnlock.isDecember()) {
 			splashes.add("DM Advent Calandar!?");
 		}
 
-		if (AdventUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && AdventUnlock.getDate() == 1) {
+		if (TimedUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && TimedUnlock.getDate() == 1) {
 			Random random = new Random();
 
 			if (random.nextBoolean()) {

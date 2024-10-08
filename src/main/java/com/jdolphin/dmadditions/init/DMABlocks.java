@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.EngineBlock;
@@ -45,14 +45,14 @@ public class DMABlocks {
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
-		if (!AdventUnlock.unlockAt(day))
+		if (!TimedUnlock.advent(day))
 			return null;
 
 		return registerBlock(supplier, name);
 	}
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
-		if (!AdventUnlock.unlockAt(day))
+		if (!TimedUnlock.advent(day))
 			return null;
 
 		return registerBlock(supplier, name, tab);

@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
@@ -112,7 +112,7 @@ public class DMAEntities {
 
 	@Nullable 
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){
-		if (AdventUnlock.unlockAt(date)) {
+		if (TimedUnlock.advent(date)) {
 			return ENTITY_TYPES.register(name, supplier);
 		}
 
