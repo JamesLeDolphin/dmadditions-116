@@ -1,25 +1,49 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
-import com.swdteam.common.entity.dalek.DalekEntity;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
+import com.swdteam.common.entity.dalek.DalekEntity;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.World;
+
 
 @Mixin(DalekEntity.class)
-public abstract class DalekEntityMixin extends LivingEntity implements IDalekEntityMixin {
+public abstract class DalekEntityMixin extends MobEntity implements IDalekEntityMixin {
+	protected DalekEntityMixin(EntityType<? extends MobEntity> p_i48576_1_, World p_i48576_2_) {
+		super(p_i48576_1_, p_i48576_2_);
+	}
+
 	private boolean party;
 	private BlockPos jukebox;
 
-	protected DalekEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
-		super(entityType, world);
+
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
+			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
+
+		if (TimedUnlock.isHalloween() && random.nextBoolean()) {
+			this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(this.random.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
+			this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
+		}
+
+		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
 	}
 
 	@Inject(method = "aiStep", at = @At("TAIL"))
