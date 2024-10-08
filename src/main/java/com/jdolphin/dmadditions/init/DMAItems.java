@@ -31,18 +31,30 @@ import java.util.function.Supplier;
 public class DMAItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DMAdditions.MODID);
 
-	protected static RegistryObject<Item> addAdventItem(int day, String name, Supplier<Item> supplier) {
+	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;
 
 		return ITEMS.register(name, supplier);
 	}
 
+
+
+	public static final RegistryObject<Item> SONIC_BLASTER = registerAdventItem(1, "sonic_blaster",
+		() -> new SonicBlasterItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, 5, DMAProjectiles.BLUE_LASER, DMSoundEvents.ITEM_GUN_CLICK,
+			DMASoundEvents.PISTOL_SHOOT, new Item.Properties().tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
+
 	//public static RegistryObject<Item> SANTA_BAUBLE = ITEMS.register(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
-	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble", () -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
-	public static RegistryObject<Item> GOLD_BAUBLE = ITEMS.register("gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
-	public static RegistryObject<Item> GREEN_BAUBLE = ITEMS.register("green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
-	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
-	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
+	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble",
+		() -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
+	public static RegistryObject<Item> GOLD_BAUBLE = ITEMS.register("gold_bauble",
+		() -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
+	public static RegistryObject<Item> GREEN_BAUBLE = ITEMS.register("green_bauble",
+		() -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
+	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble",
+		() -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
+
+	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker",
+		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));

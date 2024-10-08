@@ -13,7 +13,8 @@ public class SycoraxStaffItem extends Item {
 	}
 
 	@Override
-	public ActionResultType useOn(ItemUseContext context) {
+	public ActionResultType useOn
+		(ItemUseContext context) {
 		this.spawnParticles(context.getPlayer().level, context.getClickLocation());
 		return super.useOn(context);
 	}
