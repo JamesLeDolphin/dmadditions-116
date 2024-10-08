@@ -12,6 +12,7 @@ import net.minecraftforge.fml.client.gui.widget.Slider;
 import java.awt.*;
 
 //Copied from portal gun mod code, credit: JamesLeDolphin (me)
+@SuppressWarnings("resource")
 public class GuiHelper {
 
 	public static void renderWidgets(MatrixStack stack, int pMouseX, int pMouseY, float pPartialTick, Widget... widgets) {

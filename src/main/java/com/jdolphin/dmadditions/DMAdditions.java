@@ -1,5 +1,15 @@
 package com.jdolphin.dmadditions;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
@@ -12,10 +22,7 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
-import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
@@ -77,15 +84,6 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Supplier;
 
 
 @Mod(DMAdditions.MODID)
@@ -119,7 +117,7 @@ public class DMAdditions {
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::entityAttributeEvent);
 		bus.addListener(this::runLater);
-		//This one line fixes joining servers that dont have dma
+		//This one line fixes joining servers that don't have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);

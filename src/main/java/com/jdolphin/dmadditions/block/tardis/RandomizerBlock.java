@@ -100,7 +100,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	}
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
-	                            BlockRayTraceResult rayTraceResult) {
+			BlockRayTraceResult rayTraceResult) {
 		if (worldIn.isClientSide)
 			return ActionResultType.PASS;
 

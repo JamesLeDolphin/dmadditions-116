@@ -43,6 +43,7 @@ public class CloakPanel extends AbstractRotateableWaterLoggableBlock implements 
 		return BlockRenderType.MODEL;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
 		if (world.isClientSide || hand.equals(Hand.OFF_HAND))

@@ -10,8 +10,8 @@ public class DMABiomes {
 	//Moon
 	public static final RegistryKey<Biome> MOON_BIOME = RegistryKey.create(Registry.BIOME_REGISTRY, Helper.createAdditionsRL("moon"));
 
-	//Androzani Minor
-	public static final RegistryKey<Biome> ANDROZANIMINOR_BIOME = RegistryKey.create(Registry.BIOME_REGISTRY, Helper.createAdditionsRL("androzaniminor"));
+	//Christmas present planet thing
+	public static final RegistryKey<Biome> WINTER_BIOME = RegistryKey.create(Registry.BIOME_REGISTRY, Helper.createAdditionsRL("tree_farm_457"));
 
 	//Mondas
 	public static final RegistryKey<Biome> MONDAS_BIOME = RegistryKey.create(Registry.BIOME_REGISTRY, Helper.createAdditionsRL("bluelands"));

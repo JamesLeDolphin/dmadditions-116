@@ -42,17 +42,17 @@ public abstract class CarvedPumpkinBlockMixin {
 				world.levelEvent(2001, cachedblockinfo.getPos(), Block.getId(cachedblockinfo.getState()));
 			}
 
-			LivingEntity snowgolementity;
+			LivingEntity entity;
 			BlockPos blockpos1 = blockpattern$patternhelper.getBlock(0, 2, 0).getPos();
 			if (new Random().nextBoolean()) {
-				snowgolementity = EntityType.SNOW_GOLEM.create(world);
-				snowgolementity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
-				world.addFreshEntity(snowgolementity);
+				entity = EntityType.SNOW_GOLEM.create(world);
+				entity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
+				world.addFreshEntity(entity);
 			} else {
-				snowgolementity = new SnowmanEntity(DMAEntities.SNOWMAN.get(), world);
-				snowgolementity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
+				entity = new SnowmanEntity(DMAEntities.SNOWMAN.get(), world);
+				entity.moveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.05D, (double) blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
 
-				SnowmanEntity snowman = (SnowmanEntity) snowgolementity;
+				SnowmanEntity snowman = (SnowmanEntity) entity;
 
 				snowman.finalizeSpawn((IServerWorld) world,
 					world.getCurrentDifficultyAt(snowman.blockPosition()), SpawnReason.SPAWN_EGG, null, null);
@@ -64,12 +64,12 @@ public abstract class CarvedPumpkinBlockMixin {
 							new ItemStack(Items.CARVED_PUMPKIN)));
 				}
 
-				world.addFreshEntity(snowgolementity);
+				world.addFreshEntity(entity);
 			}
 
 
-			for (ServerPlayerEntity serverplayerentity : world.getEntitiesOfClass(ServerPlayerEntity.class, snowgolementity.getBoundingBox().inflate(5.0D))) {
-				CriteriaTriggers.SUMMONED_ENTITY.trigger(serverplayerentity, snowgolementity);
+			for (ServerPlayerEntity serverplayerentity : world.getEntitiesOfClass(ServerPlayerEntity.class, entity.getBoundingBox().inflate(5.0D))) {
+				CriteriaTriggers.SUMMONED_ENTITY.trigger(serverplayerentity, entity);
 			}
 
 			for (int l = 0; l < this.getOrCreateSnowGolemFull().getHeight(); ++l) {

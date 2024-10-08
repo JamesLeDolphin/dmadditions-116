@@ -36,6 +36,7 @@ public class CBOpenGUIPacket {
 
 		}
 
+		@SuppressWarnings("resource")
 		@OnlyIn(Dist.CLIENT)
 		public static void clientCode(CBOpenGUIPacket msg, Supplier<NetworkEvent.Context> ctx) {
 			ctx.get().enqueueWork(() -> {

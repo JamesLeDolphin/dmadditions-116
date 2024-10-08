@@ -79,6 +79,7 @@ public class SpecimenJarBlock extends FallingBlock {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState state, World world, BlockPos pos, BlockState state1, boolean harvest) {
 		if(state1.getBlock() != this && world.getBlockState(pos.below()).getBlock() != Blocks.AIR){

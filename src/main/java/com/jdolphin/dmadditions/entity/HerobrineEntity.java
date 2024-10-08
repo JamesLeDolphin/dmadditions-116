@@ -196,6 +196,7 @@ public class HerobrineEntity extends MonsterEntity {
 		return list;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void pickUpItem(ItemEntity item) {
 		super.pickUpItem(item);
@@ -301,6 +302,7 @@ public class HerobrineEntity extends MonsterEntity {
 			}
 		}
 
+		@SuppressWarnings("deprecation")
 		private boolean canPlaceBlock(World p_220836_1_, BlockPos p_220836_2_, BlockState p_220836_3_, BlockState p_220836_4_, BlockState p_220836_5_, BlockPos p_220836_6_) {
 			return p_220836_4_.isAir(p_220836_1_, p_220836_2_) && !p_220836_5_.isAir(p_220836_1_, p_220836_6_) && !p_220836_5_.is(Blocks.BEDROCK) && !p_220836_5_.is(net.minecraftforge.common.Tags.Blocks.ENDERMAN_PLACE_ON_BLACKLIST) && p_220836_5_.isCollisionShapeFullBlock(p_220836_1_, p_220836_6_) && p_220836_3_.canSurvive(p_220836_1_, p_220836_2_) && p_220836_1_.getEntities(this.herobrine, AxisAlignedBB.unitCubeFromLowerCorner(Vector3d.atLowerCornerOf(p_220836_2_))).isEmpty();
 		}
@@ -406,12 +408,12 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 	}
 
-	static class RandomScaryNoiseGoal extends Goal{
+	static class RandomScaryNoiseGoal extends Goal {
 		protected int interval;
 		MobEntity mob;
 		SoundEvent[] sounds;
 
-		public RandomScaryNoiseGoal(MobEntity mobEntity, int interval, SoundEvent[] sounds){
+		public RandomScaryNoiseGoal(MobEntity mobEntity, int interval, SoundEvent[] sounds) {
 			this.interval = interval;
 			this.mob = mobEntity;
 			this.sounds = sounds;
@@ -419,9 +421,9 @@ public class HerobrineEntity extends MonsterEntity {
 
 		@Override
 		public boolean canUse() {
-            if (this.mob.getRandom().nextInt(this.interval) != 0) {
-               return false;
-            }
+			if (this.mob.getRandom().nextInt(this.interval) != 0) {
+				return false;
+			}
 
 			return true;
 		}

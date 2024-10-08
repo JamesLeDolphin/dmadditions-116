@@ -94,19 +94,19 @@ public class DMAEntities {
 
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
-																				   EntityClassification classification, float width, float height) {
+		EntityClassification classification, float width, float height) {
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(entityClass, classification).sized(width, height)
 			.clientTrackingRange(8).build(Helper.createAdditionsRL(name).toString()));
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
-																				   EntityClassification classification) {
+		EntityClassification classification) {
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(entityClass, classification)
 			.clientTrackingRange(8).build(Helper.createAdditionsRL(name).toString()));
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
-																				   EntityClassification classification) {
+		EntityClassification classification) {
 		return registerEntity(name, entityClass, classification, 0.6f, 1.8f);
 	}
 

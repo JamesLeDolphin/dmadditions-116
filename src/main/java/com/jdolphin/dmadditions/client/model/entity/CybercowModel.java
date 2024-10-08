@@ -1,16 +1,14 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.swdteam.client.model.IModelPartReloader;
-import com.swdteam.model.javajson.JSONModel;
-import net.minecraft.client.renderer.entity.model.CowModel;
-import net.minecraft.client.renderer.entity.model.EntityModel;
+
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.jetbrains.annotations.NotNull;
 
 public class CybercowModel extends QuadrupedModel<CyberCowEntity> {
 	private final ModelRenderer body;
