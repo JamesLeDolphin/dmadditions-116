@@ -11,8 +11,6 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class DMAEntityRenderRegistry {
-	public DMAEntityRenderRegistry() {
-	}
 
 	public static void registerEntityRenderers() {
 		DMAdditions.LOGGER.info("Registering DMA Entity Renders");

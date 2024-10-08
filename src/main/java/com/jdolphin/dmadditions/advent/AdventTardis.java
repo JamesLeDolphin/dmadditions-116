@@ -11,9 +11,9 @@ public enum AdventTardis {
 		this.date = date;
 	}
 
-	public static AdventTardis getByName(String name){
-		for(AdventTardis a : AdventTardis.values()){
-			if(a.name.equals(name)){
+	public static AdventTardis getByName(String name) {
+		for (AdventTardis a : AdventTardis.values()) {
+			if (a.name.equals(name)) {
 				return a;
 			}
 		}

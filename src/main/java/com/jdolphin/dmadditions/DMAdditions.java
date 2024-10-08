@@ -250,7 +250,7 @@ public class DMAdditions {
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_MONDAS.get(),
-				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_MONDAS.get()));
 
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
