@@ -1,9 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.carver.AndrozaniminorCarver;
 import com.jdolphin.dmadditions.carver.GallifreyCarver;
 import com.jdolphin.dmadditions.carver.MoonCarver;
+import com.jdolphin.dmadditions.carver.WinterPlanetCarver;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraftforge.fml.RegistryObject;

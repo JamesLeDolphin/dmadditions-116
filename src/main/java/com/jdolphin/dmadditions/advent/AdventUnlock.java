@@ -26,7 +26,7 @@ public class AdventUnlock {
 	public static boolean unlockAt(int day) {
 		if (IS_DEBUG || FORCE_FAKE_DATE) calendar.set(FAKE_YEAR, FAKE_MONTH, FAKE_DATE);
 
-		if (!is2023())
+		if (!is2024())
 			return true;
 
 		if (!isDecember())
@@ -39,8 +39,8 @@ public class AdventUnlock {
 		return calendar.get(Calendar.DATE);
 	}
 
-	public static boolean is2023() {
+	public static boolean is2024() {
 		int year = calendar.get(Calendar.YEAR);
-		return (year == 2023);
+		return (year == 2024);
 	}
 }

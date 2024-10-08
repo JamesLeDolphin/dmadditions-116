@@ -112,7 +112,7 @@ public class DMAEntities {
 
 	@Nullable 
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){
-		if(AdventUnlock.unlockAt(date)){
+		if (AdventUnlock.unlockAt(date)) {
 			return ENTITY_TYPES.register(name, supplier);
 		}
 
