@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.RotatableTileEntityBase;
 import com.swdteam.common.block.tardis.CoordPanelBlock;
@@ -139,7 +139,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 						}
 					}
 
-					if (DmAdditions.hasNTM()) {
+					if (DMAdditions.hasNTM()) {
 							if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 								net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 									switch (buttonClicked) {

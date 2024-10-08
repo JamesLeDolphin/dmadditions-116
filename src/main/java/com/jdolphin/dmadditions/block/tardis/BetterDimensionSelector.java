@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.block.tardis.DimensionSelectorPanelBlock;
@@ -156,7 +156,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 				}
 			}
 
-			if (DmAdditions.hasNTM()) {
+			if (DMAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 						switch (buttonClicked) {
@@ -213,7 +213,7 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 		return ActionResultType.CONSUME;
 	}
 	private void createDimListIfEmpty(){
-		if (DmAdditions.hasNTM()) {
+		if (DMAdditions.hasNTM()) {
 			if (this.dimList.isEmpty()) {
 				ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(world -> {
 					if (net.tardis.mod.helper.WorldHelper.canTravelToDimension(world))

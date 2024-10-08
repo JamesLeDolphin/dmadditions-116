@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.world.structure.CyberUndergroundStructure;
 import com.jdolphin.dmadditions.world.structure.ManorStructure;
 import com.jdolphin.dmadditions.world.structure.MondasCyberBase;
@@ -18,7 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Supplier;
 
 public class DMAStructures {
-	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DmAdditions.MODID);
+	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DMAdditions.MODID);
 
 	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> new ManorStructure(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Structure<NoFeatureConfig>> CYBER_UNDERGROUND = registerStructure("cyber_underground",

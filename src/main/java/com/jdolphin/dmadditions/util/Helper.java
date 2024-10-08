@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.util;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.main.DalekMod;
 import net.minecraft.entity.Entity;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class Helper {
 
 	public static ResourceLocation createAdditionsRL(String string) {
-		return new ResourceLocation(DmAdditions.MODID, string);
+		return new ResourceLocation(DMAdditions.MODID, string);
 	}
 
 	public static ResourceLocation createDMRL(String string) {
@@ -50,11 +50,11 @@ public class Helper {
 	}
 
 	public static void info(Object obj) {
-		DmAdditions.LOGGER.info(obj);
+		DMAdditions.LOGGER.info(obj);
 	}
 
 	public static void warn(Object obj) {
-		DmAdditions.LOGGER.warn(obj);
+		DMAdditions.LOGGER.warn(obj);
 	}
 
 	public static void addEntities(World world, Entity... entities) {

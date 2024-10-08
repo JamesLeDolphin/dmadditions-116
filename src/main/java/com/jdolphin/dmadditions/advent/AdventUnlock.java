@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.advent;
 
 import java.util.Calendar;
 
-import static com.jdolphin.dmadditions.DmAdditions.IS_DEBUG;
+import static com.jdolphin.dmadditions.DMAdditions.IS_DEBUG;
 
 
 public class AdventUnlock {

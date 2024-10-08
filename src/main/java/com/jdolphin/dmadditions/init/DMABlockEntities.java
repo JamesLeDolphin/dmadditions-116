@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.tileentity.*;
 import net.minecraft.block.Block;
@@ -13,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Supplier;
 
 public class DMABlockEntities {
-	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DmAdditions.MODID);
+	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DMAdditions.MODID);
 
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 

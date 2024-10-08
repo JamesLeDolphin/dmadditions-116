@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.title.MenuBackGround;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.util.Helper;
@@ -40,7 +40,7 @@ public abstract class MainMenuScreenMixin extends Screen {
 
 	@Inject(method = "init", at = @At(value = "TAIL"))
 	private void init(CallbackInfo ci) {
-		System.out.println(DmAdditions.exteriors);
+		System.out.println(DMAdditions.exteriors);
 		if (DMAClientConfig.dma_classic.get()) {
 			int i = new Random().nextInt(MenuBackGround.values().length);
 			dmadditions_116$getBg(MenuBackGround.values()[i].getName());

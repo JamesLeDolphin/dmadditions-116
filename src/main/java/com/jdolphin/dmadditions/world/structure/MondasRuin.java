@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
+import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.init.DMEntities;
@@ -25,6 +26,7 @@ import java.util.List;
 public class MondasRuin extends Structure<NoFeatureConfig> {
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
 		new MobSpawnInfo.Spawners(DMEntities.CYBERMAN_ENTITY.get(), 1, 1, 3),
+		new MobSpawnInfo.Spawners(DMAEntities.MONDASIAN.get(), 2, 2, 4),
 		new MobSpawnInfo.Spawners(DMEntities.CYBERMANVILLAGER_ENTITY.get(), 10, 2, 3)
 	);
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of();

@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -11,7 +11,7 @@ import slimeknights.mantle.registration.deferred.FluidDeferredRegister;
 import slimeknights.mantle.registration.object.FluidObject;
 
 public class DMAFluids {
-	public static final FluidDeferredRegister FLUIDS = new FluidDeferredRegister(DmAdditions.MODID);
+	public static final FluidDeferredRegister FLUIDS = new FluidDeferredRegister(DMAdditions.MODID);
 
 	public static final FluidObject<ForgeFlowingFluid> molten_dalekanium = FLUIDS.register("molten_dalekanium", hotBuilder().temperature(1234), Material.LAVA,  9);
 	public static final FluidObject<ForgeFlowingFluid> molten_steel = FLUIDS.register("molten_steel", hotBuilder().temperature(1234), Material.LAVA,  9);

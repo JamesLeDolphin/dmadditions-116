@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.client.tardis.data.ClientTardisCache;
 import com.swdteam.client.tardis.data.ClientTardisFlightCache;
@@ -103,7 +103,7 @@ public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
 			}
 		}
 
-		if (DmAdditions.hasNTM() && net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(te.getLevel(), net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+		if (DMAdditions.hasNTM() && net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(te.getLevel(), net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 			if (net.tardis.mod.helper.TardisHelper.getConsoleInWorld(te.getLevel()).isPresent()) {
 				net.tardis.mod.helper.TardisHelper.getConsoleInWorld(te.getLevel()).ifPresent(tile -> {
 					BlockPos dest = tile.getDestinationPosition();

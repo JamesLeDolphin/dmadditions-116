@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.event;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.ChristmasHatItem;
 import com.jdolphin.dmadditions.loot.modifiers.AddItemLootModifier;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
 
-@Mod.EventBusSubscriber(modid = DmAdditions.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DMAdditions.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DMAEventBusEvents {
 	@SubscribeEvent
 	public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event){

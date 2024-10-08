@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
@@ -25,12 +25,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"unchecked", "unused"})
 public class DMAItems {
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DmAdditions.MODID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DMAdditions.MODID);
 
 	protected static RegistryObject<Item> addAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!AdventUnlock.unlockAt(day)) return null;

@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.carver.AndrozaniminorCarver;
 import com.jdolphin.dmadditions.carver.GallifreyCarver;
 import com.jdolphin.dmadditions.carver.MoonCarver;
@@ -11,7 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class DMAWorldCarvers {
-	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DmAdditions.MODID);
+	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVERS = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DMAdditions.MODID);
 
 	public static final RegistryObject<MoonCarver> MOON_CARVER = WORLD_CARVERS.register("moon_carver",
 		() -> new MoonCarver(ProbabilityConfig.CODEC));

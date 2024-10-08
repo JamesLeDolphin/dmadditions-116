@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.google.common.base.Supplier;
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
@@ -9,7 +9,6 @@ import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
-import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class DMAEntities {
-	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DMAdditions.MODID);
 
 	public static EntityType<?> getEntityTypeFromString(String s) {
 		Optional<EntityType<?>> ty = EntityType.byString("dmadditions:" + s);

@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
@@ -32,7 +32,7 @@ import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 @SuppressWarnings("unused")
 public class DMABlocks {
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DMAdditions.MODID);
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
 		() -> new CoralHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)

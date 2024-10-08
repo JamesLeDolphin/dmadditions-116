@@ -16,7 +16,6 @@ import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
-import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
@@ -89,10 +88,10 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 
-@Mod(DmAdditions.MODID)
-public class DmAdditions {
+@Mod(DMAdditions.MODID)
+public class DMAdditions {
 	public static final String MODID = "dmadditions";
-	public static final String VERSION = "1.3.11";
+	public static final String VERSION = "1.3.13";
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
@@ -113,14 +112,14 @@ public class DmAdditions {
 	public static List<Data> exteriors = new ArrayList<>();
 
 
-	public DmAdditions() {
+	public DMAdditions() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::entityAttributeEvent);
 		bus.addListener(this::runLater);
-		//This one line fixes joinging servers that dont have dma
+		//This one line fixes joining servers that dont have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
@@ -141,9 +140,7 @@ public class DmAdditions {
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
-		if (hasTC()) {
-			DMAFluids.FLUIDS.register(bus);
-		}
+		if (hasTC()) DMAFluids.FLUIDS.register(bus);
 	}
 
 	@SubscribeEvent
@@ -264,13 +261,6 @@ public class DmAdditions {
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
 
 		}
-	}
-	//TODO Remove this? doesnt seem to do anything
-	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
-		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
-			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
-			structuresSettings.structureConfig.put(structure, separationSettings);
-		});
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
