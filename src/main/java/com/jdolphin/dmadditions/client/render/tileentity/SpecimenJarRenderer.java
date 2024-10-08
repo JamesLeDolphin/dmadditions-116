@@ -29,10 +29,9 @@ public class SpecimenJarRenderer extends TileEntityRenderer<SpecimenJarTileEntit
 		stack.pushPose();
 
 		ItemStack itemstack = tile.getSpecimen();
-		System.out.println(itemstack.getItem());
 		if (!itemstack.isEmpty()) {
 			stack.mulPose(Vector3f.ZP.rotationDegrees((float) i * 360.0F / 8.0F));
-			stack.translate(0.5, 0.5, 0.5);
+			stack.translate(0.52, 0.5, 0.5);
 			stack.scale(0.5F, 0.5F, 0.5F);
 			Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemCameraTransforms.TransformType.FIXED, i, OverlayTexture.NO_OVERLAY, stack, iRenderTypeBuffer);
 		}

@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -33,7 +34,8 @@ import java.util.Random;
 public class SpecimenJarBlock extends FallingBlock {
 
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 16, 13);
+	public static final BooleanProperty HAS_SPECIMEN = BooleanProperty.create("has_specimen")
+;	public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 16, 13);
 	public SpecimenJarBlock(Properties p_i48377_1_) {
 		super(p_i48377_1_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -42,7 +44,7 @@ public class SpecimenJarBlock extends FallingBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING).add(HAS_SPECIMEN);
 		super.createBlockStateDefinition(builder);
 	}
 
@@ -50,7 +52,8 @@ public class SpecimenJarBlock extends FallingBlock {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.defaultBlockState()
-			.setValue(FACING, Direction.NORTH);
+			.setValue(FACING, Direction.NORTH)
+			.setValue(HAS_SPECIMEN, false);
 	}
 
 	@Override
@@ -76,6 +79,10 @@ public class SpecimenJarBlock extends FallingBlock {
 			}
 			world.destroyBlock(pos, false);
 		}
+	}
+
+	protected void falling(FallingBlockEntity entity) {
+		entity.setHurtsEntities(true);
 	}
 
 	@Override
@@ -109,23 +116,17 @@ public class SpecimenJarBlock extends FallingBlock {
 			// take
 			if (jar.hasSpecimen()) {
 				if (!held.isEmpty()) return ActionResultType.PASS;
-				ActionResultType give = giveSpecimen(jar.getSpecimen(), held, player, blockPos, world);
-
-				if (give != ActionResultType.FAIL && give != ActionResultType.PASS) {
-					jar.setSpecimen(ItemStack.EMPTY);
-				}
-
-				return give;
+				return giveSpecimen(jar, held, player, blockPos, world, state);
 			}
 			// put
 			else {
-				System.out.println("Had no specimen");
 				if (jar.acceptSpecimen(held.getItem())) {
 					jar.setSpecimen(held);
 					if (!player.isCreative()) held.shrink(1);
 					if (held.getCount() == 0) player.setItemInHand(hand, ItemStack.EMPTY);
+					world.setBlockAndUpdate(blockPos, state.setValue(HAS_SPECIMEN, true));
 					return ActionResultType.SUCCESS;
-				} System.out.println("No accepty");
+				}
 			}
 		}
 
@@ -168,18 +169,31 @@ public class SpecimenJarBlock extends FallingBlock {
 		}
 	}
 
-	private ActionResultType giveSpecimen(ItemStack specimen, ItemStack held, PlayerEntity player, BlockPos pos, World world) {
-		if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
-			KantrofarriEntity kantrofarri = new KantrofarriEntity(world); // Special case for kantrofarri
-			kantrofarri.moveTo(player.position());
-			world.addFreshEntity(kantrofarri);
-			return ActionResultType.SUCCESS;
-		} else {
-			if (held.isEmpty() && !player.isCreative()) player.setItemInHand(Hand.MAIN_HAND, specimen);
-			else if (held.sameItem(specimen) && ItemStack.tagMatches(held, specimen) && !player.isCreative())
-				held.grow(1);
-			else return ActionResultType.PASS;
-			return ActionResultType.CONSUME;
+	private ActionResultType giveSpecimen(SpecimenJarTileEntity jar, ItemStack held, PlayerEntity player, BlockPos pos, World world, BlockState state) {
+		if (jar != null) {
+			ItemStack specimen = jar.getSpecimen();
+			if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
+				KantrofarriEntity kantrofarri = new KantrofarriEntity(world);
+				kantrofarri.moveTo(player.position());
+				world.addFreshEntity(kantrofarri);
+				jar.emptySpecimen();
+				world.setBlockAndUpdate(pos, state.setValue(HAS_SPECIMEN, false));
+				return ActionResultType.SUCCESS;
+			} else {
+				boolean bl = player.isCreative();
+				if (held.isEmpty()) {
+					if (!bl) player.setItemInHand(Hand.MAIN_HAND, specimen);
+					jar.emptySpecimen();
+					world.setBlockAndUpdate(pos, state.setValue(HAS_SPECIMEN, false));
+					return ActionResultType.SUCCESS;
+				} else if (held.sameItem(specimen) && ItemStack.tagMatches(held, specimen)) {
+					if (!bl) held.grow(1);
+					jar.emptySpecimen();
+					world.setBlockAndUpdate(pos, state.setValue(HAS_SPECIMEN, false));
+					return ActionResultType.SUCCESS;
+				} else return ActionResultType.PASS;
+			}
 		}
+		return ActionResultType.FAIL;
 	}
 }

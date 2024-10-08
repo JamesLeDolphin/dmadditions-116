@@ -1,20 +1,12 @@
 package com.jdolphin.dmadditions.tileentity;
 
-import com.google.common.collect.Lists;
-import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMATags;
-import com.swdteam.common.init.DMItems;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.NonNullList;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.jdolphin.dmadditions.init.DMABlockEntities.TILE_SPECIMEN_JAR;
 
@@ -27,7 +19,7 @@ public class SpecimenJarTileEntity extends DMTileEntityBase {
 		this(TILE_SPECIMEN_JAR.get());
 	}
 
-	private ItemStack specimen = ItemStack.EMPTY;
+	private ItemStack specimen;
 
 
 	@Override
@@ -54,17 +46,20 @@ public class SpecimenJarTileEntity extends DMTileEntityBase {
 		return DMATags.Items.SPECIMEN_JAR_ACCEPTS.contains(specimenIn);
 	}
 
+	public void emptySpecimen() {
+		this.specimen = ItemStack.EMPTY;
+		this.setChanged();
+	}
+
 	public void setSpecimen(ItemStack specimenIn) {
-		if (hasSpecimen()) return;
 		if (acceptSpecimen(specimenIn.getItem())) {
 			specimen = specimenIn;
 			specimen.setCount(1);
 			this.setChanged();
 		}
-		else specimen = ItemStack.EMPTY;
 	}
 
 	public ItemStack getSpecimen() {
-		return this.specimen;
+		return this.specimen == null ? ItemStack.EMPTY : this.specimen;
 	}
 }
