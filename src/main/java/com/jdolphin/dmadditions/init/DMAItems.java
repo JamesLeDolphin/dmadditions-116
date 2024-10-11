@@ -43,7 +43,8 @@ public class DMAItems {
 		() -> new SonicBlasterItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, 5, DMAProjectiles.BLUE_LASER, DMSoundEvents.ITEM_GUN_CLICK,
 			DMASoundEvents.PISTOL_SHOOT, new Item.Properties().tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
 
-	//public static RegistryObject<Item> SANTA_BAUBLE = ITEMS.register(7, "santa_bauble", () -> new BaubleBlockItem(DMABlocks.SANTA_BAUBLE_BLOCK));
+	public static final RegistryObject<Item> TWODIS = registerAdventItem(1, "twodis", () -> new TwoDizItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble",
 		() -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
 	public static RegistryObject<Item> GOLD_BAUBLE = ITEMS.register("gold_bauble",

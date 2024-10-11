@@ -5,18 +5,22 @@ import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.SonicBlasterItem;
+import com.jdolphin.dmadditions.item.TwoDizItem;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -57,6 +61,21 @@ public class DMAEventHandlerGeneral {
 
 				event.setCanceled(true);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void sizeEvent(EntityEvent.Size event) {
+		Entity entity = event.getEntity();
+		EntitySize size = event.getNewSize();
+		if (entity instanceof LivingEntity) {
+			CompoundNBT tag = entity.getPersistentData();
+			float width = 1.0f;
+			if (tag.contains(TwoDizItem.ENTITY_WIDTH)) {
+				System.out.println("Contains width");
+				width = tag.getFloat(TwoDizItem.ENTITY_WIDTH);
+			}
+			event.setNewSize(new EntitySize(size.width * width, size.height, size.fixed));
 		}
 	}
 

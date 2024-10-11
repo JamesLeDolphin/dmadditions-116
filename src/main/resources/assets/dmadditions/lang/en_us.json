@@ -26,9 +26,11 @@
 
 	"death.attack.sheared": "%1$s was sheared to death",
 	"death.attack.electrocution": "%1$s was electrocuted to death",
+	"notice.dmadditions.size_reset": "You've reset your size",
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",
+	"item.dmadditions.twodis": "2-Dis",
 	"block.dmadditions.randomizer": "Randomizer",
 	"subtitles.item.frying_pan.hit": "Hit by Frying Pan",
 	"subtitles.entity.cyberman.mondas.ambient": "Cyberman Speaks",
