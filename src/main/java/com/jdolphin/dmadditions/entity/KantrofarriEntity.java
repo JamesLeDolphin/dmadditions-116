@@ -1,5 +1,7 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.init.DMADamageSources;
+import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -11,15 +13,17 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.world.World;
 
 public class KantrofarriEntity extends MonsterEntity {
 
-	public static final DamageSource KANTROFFARI_ATTACK = new DamageSource("kantrofarri").bypassArmor();
 	public KantrofarriEntity(EntityType<? extends MonsterEntity> entityType, World world) {
 		super(entityType, world);
+	}
+
+	public KantrofarriEntity(World world) {
+		super(DMAEntities.KANTROFARRI.get(), world);
 	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -108,7 +112,7 @@ public class KantrofarriEntity extends MonsterEntity {
 
 	@Override
 	public boolean doHurtTarget(Entity entity) {
-		return entity.hurt(KANTROFFARI_ATTACK, (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+		return entity.hurt(DMADamageSources.KANTROFFARI_ATTACK, (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
 	}
 
 }
