@@ -309,6 +309,7 @@
 
 	"entity.dmadditions.jim": "Jim",
 	"item.dmadditions.jim_spawner": "Jim Spawner",
+	"entity.dmadditions.clock_work_droid": "ClockWorkDroid",
 	"entity.dmadditions.console.fail.dim": "This can only be used in the TARDIS",
 	"dmadditions.gui.player_locator": "Player Locator",
 	"dmadditions.button.cancel": "Cancel",
