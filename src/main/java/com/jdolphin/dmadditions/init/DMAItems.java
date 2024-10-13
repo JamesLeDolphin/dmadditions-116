@@ -47,6 +47,12 @@ public class DMAItems {
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> LASER_CHARGE = ITEMS.register("laser_charge",
+		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> EARTHSHOCK_GUN = ITEMS.register("earthshock_gun",
+		() -> new SingleShotGunItem(DMItemTiers.STEEL, 1, 7, DMProjectiles.BLUE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE, DMASoundEvents.EARTHSHOCK_GUN_SHOOT, new Item.Properties().tab(ItemGroup.TAB_COMBAT), LASER_CHARGE));
+
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

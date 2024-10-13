@@ -76,6 +76,12 @@
 			"dmadditions:entity/shopping_cart/v8_revving"
 		]
 	},
+	"item.earthshock_gun.shoot": {
+		"subtitle": "subtitles.item.earthshock_gun.shoot",
+		"sounds": [
+			"dmadditions:item/earthshock_gun"
+		]
+	},
 	"item.sonic.laser.shoot": {
 		"subtitle": "subtitles.item.sonic.laser.shoot",
 		"sounds": [

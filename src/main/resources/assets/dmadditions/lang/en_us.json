@@ -25,6 +25,9 @@
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 
 	"death.attack.sheared": "%1$s was sheared to death",
+	"subtitles.item.earthshock_gun.shoot": "Earthshock gun shoots",
+	"item.dmadditions.laser_charge": "Laser Charge",
+	"item.dmadditions.earthshock_gun": "Earthshock Gun",
 	"death.attack.electrocution": "%1$s was electrocuted to death",
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
