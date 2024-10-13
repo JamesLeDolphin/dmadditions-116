@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
+import com.jdolphin.dmadditions.block.SpecimenJarBlock;
 import com.jdolphin.dmadditions.tileentity.SpecimenJarTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -24,10 +25,10 @@ public class SpecimenJarRenderer extends TileEntityRenderer<SpecimenJarTileEntit
 
 		ItemStack itemstack = tile.getSpecimen();
 		if (!itemstack.isEmpty()) {
-			stack.mulPose(Vector3f.ZP.rotationDegrees((float) i * 360.0F / 8.0F));
-			stack.translate(0.52, 0.5, 0.5);
-			stack.scale(0.5F, 0.5F, 0.5F);
-			Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemCameraTransforms.TransformType.FIXED, i, OverlayTexture.NO_OVERLAY, stack, iRenderTypeBuffer);
+			stack.translate(0.5, 0.5, 0.5);
+			stack.scale(0.4F, 0.4F, 0.4F);
+			stack.mulPose(Vector3f.YN.rotationDegrees(tile.getBlockState().getValue(SpecimenJarBlock.FACING).toYRot()));
+			Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemCameraTransforms.TransformType.NONE, i, OverlayTexture.NO_OVERLAY, stack, iRenderTypeBuffer);
 		}
 
 		stack.popPose();

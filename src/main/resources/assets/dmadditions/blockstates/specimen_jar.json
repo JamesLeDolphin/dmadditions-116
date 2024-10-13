@@ -22,7 +22,7 @@
     "facing=north,has_specimen=true": {
       "model": "dmadditions:block/specimen_jar_filled"
     },
-    "facing=south, has_specimen=true": {
+    "facing=south,has_specimen=true": {
       "model": "dmadditions:block/specimen_jar_filled",
       "y": 180
     },

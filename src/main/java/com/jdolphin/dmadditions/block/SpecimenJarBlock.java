@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.block.christmas;
+package com.jdolphin.dmadditions.block;
 
 import com.jdolphin.dmadditions.entity.KantrofarriEntity;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
@@ -46,11 +46,12 @@ public class SpecimenJarBlock extends FallingBlock {
 		super.createBlockStateDefinition(builder);
 	}
 
+
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.defaultBlockState()
-			.setValue(FACING, Direction.NORTH)
+			.setValue(FACING, context.getHorizontalDirection().getOpposite())
 			.setValue(HAS_SPECIMEN, false);
 	}
 

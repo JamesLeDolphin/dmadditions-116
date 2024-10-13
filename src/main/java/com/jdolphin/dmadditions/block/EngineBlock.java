@@ -11,7 +11,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
-public class EngineBlock extends HorizontalBlock{
+public class EngineBlock extends HorizontalBlock {
 
 	public EngineBlock(Properties properties) {
 		super(properties);
