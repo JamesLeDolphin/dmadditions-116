@@ -1,6 +1,11 @@
 package com.jdolphin.dmadditions.entity.control;
 
+import org.apache.logging.log4j.LogManager;
+import org.jetbrains.annotations.NotNull;
+
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMAPackets;
+import com.jdolphin.dmadditions.network.SBTardisConsoleActionPacket;
 import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMDimensions;
@@ -13,6 +18,8 @@ import com.swdteam.common.tardis.TardisDoor;
 import com.swdteam.common.tardis.actions.TardisActionList;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.util.ChatUtil;
+
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +29,6 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -37,8 +43,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
 	private static final DataParameter<String> DATA_TYPE = EntityDataManager.defineId(TardisControl.class, DataSerializers.STRING);
@@ -68,13 +72,13 @@ public class TardisControl extends Entity {
 		this.entityData.set(DATA_MASTER_POS, tile);
 	}
 
-	public ConsoleTileEntity getMaster() {
+	public ConsoleTileEntity getConsole() {
 		TileEntity tile = level.getBlockEntity(this.entityData.get(DATA_MASTER_POS));
 		if (tile instanceof ConsoleTileEntity) {
 			return (ConsoleTileEntity) tile;
 		}
 		return null;
-    }
+	}
 
 	public boolean canCollideWith(@NotNull Entity entity) {
 		return true;
@@ -90,13 +94,13 @@ public class TardisControl extends Entity {
 	}
 
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
-		MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-		if (server != null) {
-			ServerWorld serverWorld = server.getLevel(player.level.dimension());
-			if (serverWorld != null) return cooldown == 0 ? this.getAction(serverWorld, player) : ActionResultType.PASS;
-			else System.out.println("Serverworld null");
+		if(!player.level.isClientSide()) {
+			LogManager.getLogger().fatal("this in theory shouldn't ever happen");
+			return ActionResultType.FAIL;
 		}
-		return ActionResultType.PASS;
+		if(hand != Hand.MAIN_HAND) return ActionResultType.FAIL;
+
+		return this.getAction((ClientWorld) level, player);
 	}
 
 	@Override
@@ -112,7 +116,7 @@ public class TardisControl extends Entity {
 			System.out.println(cooldown);
 			cooldown--;
 		}
-		if (getMaster() == null) this.remove();
+		if (getConsole() == null) this.remove();
 	}
 
 	public void setType(ControlType type) {
@@ -143,7 +147,7 @@ public class TardisControl extends Entity {
 	@Override
 	protected void addAdditionalSaveData(CompoundNBT tag) {
 		tag.putString(TAG_TYPE, getControlType().getName());
-		if (getMaster() != null) tag.put(TAG_MASTER_POS, NBTUtil.writeBlockPos(getMaster().getBlockPos()));
+		if (getConsole() != null) tag.put(TAG_MASTER_POS, NBTUtil.writeBlockPos(getConsole().getBlockPos()));
 	}
 
 	@Override
@@ -160,10 +164,16 @@ public class TardisControl extends Entity {
 		this.cooldown = 20;
 	}
 
+	public ActionResultType getAction(ClientWorld level, PlayerEntity player) {
+		SBTardisConsoleActionPacket packet = new SBTardisConsoleActionPacket(this);
+		DMAPackets.INSTANCE.sendToServer(packet);
+		return ActionResultType.SUCCESS;
+	}
+
 	public ActionResultType getAction(ServerWorld level, PlayerEntity player) {
 		if (level != null && player != null) {
 			if (level.dimension().equals(DMDimensions.TARDIS)) {
-				TardisData data = DMTardis.getTardisFromInteriorPos(getMaster().getBlockPos());
+				TardisData data = DMTardis.getTardisFromInteriorPos(getConsole().getBlockPos());
 				if (data != null) {
 					Location location = data.getCurrentLocation();
 					System.out.println(this.getControlType());
@@ -253,9 +263,9 @@ public class TardisControl extends Entity {
 				ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
 			}
 		}
-		System.out.println("what");
-        return ActionResultType.PASS;
-    }
+		LogManager.getLogger().warn("what");
+		return ActionResultType.PASS;
+	}
 
 	public enum ControlType {
 		DOOR("door", new Vector3d(0.5, 0.5, 0)),

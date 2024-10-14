@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.network.SBLocatePlayerPacket;
+import com.jdolphin.dmadditions.network.SBTardisConsoleActionPacket;
 import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -32,6 +33,11 @@ public class DMAPackets {
 			.add();
 		INSTANCE.registerMessage(index++, CBOpenGUIPacket.class, CBOpenGUIPacket::encode, CBOpenGUIPacket::decode, CBOpenGUIPacket::handle);
 		INSTANCE.registerMessage(index++, CBSyncPlayerPacket.class, CBSyncPlayerPacket::encode, CBSyncPlayerPacket::decode, CBSyncPlayerPacket::handle);
+		INSTANCE.messageBuilder(SBTardisConsoleActionPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
+			.encoder(SBTardisConsoleActionPacket::encode)
+			.decoder(SBTardisConsoleActionPacket::new)
+			.consumer(SBTardisConsoleActionPacket::handle)
+			.add();
 	}
 
 	public static void sendTo(ServerPlayerEntity playerEntity, Object packet) {
