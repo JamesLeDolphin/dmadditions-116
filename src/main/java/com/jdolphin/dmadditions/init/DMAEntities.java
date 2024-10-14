@@ -91,11 +91,11 @@ public class DMAEntities {
 			.setShouldReceiveVelocityUpdates(true)
 			.build(Helper.createAdditionsRL("flying_shark").toString()));
 
-	public static final RegistryObject<EntityType<ClockWorkDroidEntity>> CLOCKWORK_DROID_ENTITY =
-		registerAdventEntity(1, "clock_work_droid", () ->
-			EntityType.Builder.of(ClockWorkDroidEntity::new, EntityClassification.MONSTER)
+	public static final RegistryObject<EntityType<ClockworkDroidEntity>> CLOCKWORK_DROID =
+		registerAdventEntity(1, "clockwork_droid", () ->
+			EntityType.Builder.<ClockworkDroidEntity>of(ClockworkDroidEntity::new, EntityClassification.MONSTER)
 				.sized(0.5f, 1.8f)
-				.build("clock_work_droid")
+				.build(Helper.createAdditionsRL("clockwork_droid").toString())
 		);
 
 
@@ -122,7 +122,6 @@ public class DMAEntities {
 		if (AdventUnlock.unlockAt(date)) {
 			return ENTITY_TYPES.register(name, supplier);
 		}
-
 		return null;
 	}
 }

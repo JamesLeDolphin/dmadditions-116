@@ -35,6 +35,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.JIM, JimRenderer::new);
 		registerRender(DMAEntities.HEROBRINE, HerobrineRenderer::new);
 		registerRender(DMAEntities.CONTROL, TardisControlRenderer::new);
+		registerRender(DMAEntities.CLOCKWORK_DROID, ClockworkDroidRenderer::new);
 	}
 
 
