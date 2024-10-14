@@ -91,6 +91,13 @@ public class DMAEntities {
 			.setShouldReceiveVelocityUpdates(true)
 			.build(Helper.createAdditionsRL("flying_shark").toString()));
 
+	public static final RegistryObject<EntityType<ClockWorkDroidEntity>> CLOCKWORK_DROID_ENTITY =
+		registerAdventEntity(1, "clock_work_droid", () ->
+			EntityType.Builder.of(ClockWorkDroidEntity::new, EntityClassification.MONSTER)
+				.sized(0.5f, 1.8f)
+				.build("clock_work_droid")
+		);
+
 
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
