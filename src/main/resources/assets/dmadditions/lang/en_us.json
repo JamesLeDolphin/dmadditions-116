@@ -327,5 +327,8 @@
 	"item.dmadditions.motlen_silicon_bucket": "Molten Silicon Bucket",
 
 	"key.dmadditions.restore_mode": "Restore Mode",
-	"item.dmadditions.sonic_blaster": "Sonic Blaster"
+	"item.dmadditions.sonic_blaster": "Sonic Blaster",
+
+	"entity.dmadditions.ice_warrior": "Ice Warrior",
+
 }
