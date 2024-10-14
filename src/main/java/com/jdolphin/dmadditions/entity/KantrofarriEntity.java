@@ -39,18 +39,17 @@ public class KantrofarriEntity extends MonsterEntity {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0f));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, AbstractVillagerEntity.class, 6.0f));
-		this.addBehaviourGoals();
-	}
-
-	protected void addBehaviourGoals() {
+		this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
 		this.goalSelector.addGoal(3, new KantrofarriAttackGoal(this, 1.0, false));
 		this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.5f));
 		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
 	}
 
-	static class KantrofarriAttackGoal extends MeleeAttackGoal{
+
+	static class KantrofarriAttackGoal extends MeleeAttackGoal {
 		public KantrofarriAttackGoal(CreatureEntity entity, double speedModifier, boolean followEvenIfNotSeen) {
 			super(entity, speedModifier, followEvenIfNotSeen);
 		}
@@ -84,12 +83,12 @@ public class KantrofarriEntity extends MonsterEntity {
 				this.resetAttackCooldown();
 				// this.mob.swing(Hand.MAIN_HAND);
 				this.mob.doHurtTarget(livingEntity);
-			}else if(!this.canContinueToUse()){
+			}else if (!this.canContinueToUse()) {
 				this.mob.setAggressive(false);
 			}
 		}
 
-		public boolean canContinueToUse(LivingEntity entity){
+		public boolean canContinueToUse(LivingEntity entity) {
 			LivingEntity livingentity = this.mob.getTarget();
 			if (livingentity == null) {
 				return false;

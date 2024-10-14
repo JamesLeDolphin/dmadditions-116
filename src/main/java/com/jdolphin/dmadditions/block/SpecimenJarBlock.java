@@ -6,11 +6,14 @@ import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.tileentity.SpecimenJarTileEntity;
 import com.swdteam.common.block.IBlockTooltip;
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -162,10 +165,14 @@ public class SpecimenJarBlock extends FallingBlock implements IBlockTooltip {
 
 	private void dropSpecimen(ItemStack specimen, BlockPos pos, World world) {
 		if (specimen != null && !specimen.isEmpty()) {
-			if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
-				KantrofarriEntity kantrofarri = new KantrofarriEntity(world);
-				kantrofarri.moveTo(pos, 0, 0);
-				world.addFreshEntity(kantrofarri);
+			if (specimen.getItem() instanceof SpawnEggItem) {
+				SpawnEggItem spawnEgg = (SpawnEggItem) specimen.getItem();
+				EntityType<?> type = spawnEgg.getType(specimen.getOrCreateTag());
+				Entity entity = type.create(world);
+				if (entity != null) {
+					entity.setPos(pos.getX(), pos.getY(), pos.getZ());
+					world.addFreshEntity(entity);
+				}
 			} else {
 				ItemEntity entity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), specimen);
 				world.addFreshEntity(entity);
@@ -176,10 +183,14 @@ public class SpecimenJarBlock extends FallingBlock implements IBlockTooltip {
 	private ActionResultType giveSpecimen(SpecimenJarTileEntity jar, ItemStack held, PlayerEntity player, BlockPos pos, World world, BlockState state) {
 		if (jar != null) {
 			ItemStack specimen = jar.getSpecimen();
-			if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
-				KantrofarriEntity kantrofarri = new KantrofarriEntity(world);
-				kantrofarri.moveTo(player.position());
-				world.addFreshEntity(kantrofarri);
+			if (specimen.getItem() instanceof SpawnEggItem) {
+				SpawnEggItem spawnEgg = (SpawnEggItem) specimen.getItem();
+				EntityType<?> type = spawnEgg.getType(specimen.getOrCreateTag());
+				Entity entity = type.create(world);
+				if (entity != null) {
+					entity.setPos(pos.getX(), pos.getY(), pos.getZ());
+					world.addFreshEntity(entity);
+				}
 				jar.emptySpecimen();
 				world.setBlockAndUpdate(pos, state.setValue(HAS_SPECIMEN, false));
 				return ActionResultType.SUCCESS;
@@ -206,7 +217,15 @@ public class SpecimenJarBlock extends FallingBlock implements IBlockTooltip {
 		TileEntity tile = playerEntity.level.getBlockEntity(blockPos);
 		if (tile instanceof SpecimenJarTileEntity) {
 			SpecimenJarTileEntity specimenJar = (SpecimenJarTileEntity) tile;
-			if (specimenJar.hasSpecimen()) return specimenJar.getSpecimen().getHoverName();
+			if (specimenJar.hasSpecimen()) {
+				ItemStack stack = specimenJar.getSpecimen();
+				if (stack.getItem() instanceof SpawnEggItem) {
+					SpawnEggItem eggItem = (SpawnEggItem) stack.getItem();
+					EntityType<?> type = eggItem.getType(stack.getOrCreateTag());
+					Entity entity = type.create(playerEntity.level);
+					if (entity != null) return entity.getName();
+				} return stack.getHoverName();
+			}
 		}
 		return null;
 	}
