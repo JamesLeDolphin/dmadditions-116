@@ -169,6 +169,7 @@ public class DMAdditions {
 		event.put(DMAEntities.HEROBRINE.get(), HerobrineEntity.createAttributes().build());
 		event.put(DMAEntities.CYBERCOW.get(), CyberCowEntity.createAttributes().build());
 		if (DMAEntities.CLOCKWORK_DROID != null) event.put(DMAEntities.CLOCKWORK_DROID.get(), ClockworkDroidEntity.createAttributes().build());
+		if (DMAEntities.ICE_WARRIOR != null) event.put(DMAEntities.ICE_WARRIOR.get(), ClockworkDroidEntity.createAttributes().build());
 	}
 
 
