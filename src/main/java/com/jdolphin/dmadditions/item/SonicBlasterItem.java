@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -24,9 +25,9 @@ import java.util.*;
 
 public class SonicBlasterItem extends GunItem {
 	private static Map<BlockPos, BlockState> removedBlocks = new HashMap<>();
-	private static Map<UUID, BlockPos> lastRemovedPos = new HashMap<>();
-	private static Map<UUID, Long> lastRemovedTime = new HashMap<>();
-	private static Map<UUID, Boolean> isRestoreMode = new HashMap<>();
+	private static BlockPos lastRemovedPos = BlockPos.ZERO;
+	private static Long lastRemovedTime = 0L;
+	private static boolean isRestoreMode = false;
 
 	protected RegistryObject<SoundEvent> chargeSound;
 	protected RegistryObject<SoundEvent> shootSound;
@@ -44,38 +45,34 @@ public class SonicBlasterItem extends GunItem {
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-		if (isRestoreMode.getOrDefault(player.getUUID(), false)) {
-			// Restore the blocks
-			restoreBlockChunk(world, lastRemovedPos.get(player.getUUID()));
-			isRestoreMode.put(player.getUUID(), false);
-			player.displayClientMessage(new StringTextComponent("Mode changed to: Break Mode").withStyle(TextFormatting.GREEN), true);
-		} else {
 			// Check if the player is not in the process of breaking blocks
+			ItemStack stack = new ItemStack(this);
 			if (!isBreakingBlocks(player)) {
 				// Get the block in front of the player
 				RayTraceResult result = getPlayerLookBlock(world, player, 10);
 				BlockPos targetPos = new BlockPos(result.getLocation());
 
+				CompoundNBT tag = stack.getOrCreateTag(); //Use this to save stuff
+
 				// Remove the block chunk
 				removeBlockChunk(world, targetPos, player);
 
 				// Store the last removed position and time
-				lastRemovedPos.put(player.getUUID(), targetPos);
-				lastRemovedTime.put(player.getUUID(), System.currentTimeMillis());
+				lastRemovedPos = targetPos;
+				lastRemovedTime = System.currentTimeMillis();
 			}/* else {
 				// Toggle restore mode
 				toggleRestoreMode(player);
 				player.displayClientMessage(new StringTextComponent("Mode changed to: Restore Mode").withStyle(TextFormatting.GREEN), true);
 			}
 			*/
-		}
 
 		// Return the item stack
 		return new ActionResult<>(ActionResultType.SUCCESS, player.getItemInHand(hand));
 	}
 
 	private boolean isBreakingBlocks(PlayerEntity player) {
-		return lastRemovedTime.containsKey(player.getUUID()) && System.currentTimeMillis() - lastRemovedTime.get(player.getUUID()) < 1000; // 1 second cooldown
+		return lastRemovedTime - System.currentTimeMillis() < 1000; // 1 second cooldown
 	}
 
 	private RayTraceResult getPlayerLookBlock(World world, PlayerEntity player, int distance) {
@@ -123,7 +120,7 @@ public class SonicBlasterItem extends GunItem {
 	}
 
 	public static void toggleRestoreMode(PlayerEntity player) {
-		isRestoreMode.put(player.getUUID(), !isRestoreMode.getOrDefault(player.getUUID(), false));
-		player.displayClientMessage(new StringTextComponent("Mode changed to: Restore Mode").withStyle(TextFormatting.GREEN), true);
+		isRestoreMode = !isRestoreMode;
+		player.displayClientMessage(new StringTextComponent("Mode changed to: " + (isRestoreMode ? "Restore Mode" : "Break Mode")).withStyle(TextFormatting.GREEN), true);
 	}
 }
