@@ -34,7 +34,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class JimEntity extends AnimalEntity implements IRangedAttackMob{
+public class JimEntity extends AnimalEntity implements IRangedAttackMob {
 
 	public final static Set<UUID> DONT_ATTACK = new HashSet<>(Arrays.asList(
 		UUID.fromString("f54da43a-eedc-43cc-bccd-3337334e9a66"), // torchwood_one
@@ -50,18 +50,18 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	));
 
 	private final RangedAttackGoal rangedAttackGoal = new RangedAttackGoal(this, 1.0D, 20, 15.0F);
-	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false){
-      public void stop() {
-         super.stop();
-         JimEntity.this.setAggressive(false);
-      }
+	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+		public void stop() {
+			super.stop();
+			JimEntity.this.setAggressive(false);
+		}
 
-      public void start() {
-         super.start();
-         JimEntity.this.setAggressive(true);
-      }
-   };
- 
+		public void start() {
+			super.start();
+			JimEntity.this.setAggressive(true);
+		}
+	};
+
 
 	public JimEntity(EntityType<? extends AnimalEntity> type, World world) {
 		super(type, world);
@@ -76,7 +76,7 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 		this.goalSelector.addGoal(5, new RandomWalkingGoal((CreatureEntity) this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, FoxEntity.class, 10, true, true, (Predicate<LivingEntity>)null));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, FoxEntity.class, 10, true, true, (Predicate<LivingEntity>) null));
 		this.targetSelector.addGoal(4, new JimNearestAttackableTargetGoal<LivingEntity>(this, LivingEntity.class, false));
 	}
 
@@ -92,19 +92,19 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	public AgeableEntity getBreedOffspring(ServerWorld world, AgeableEntity partner) {
 		Entity offspring = partner.getType().create(world);
 
-		if(offspring instanceof AgeableEntity){
+		if (offspring instanceof AgeableEntity) {
 			return (AgeableEntity) offspring;
 		}
 
 		return null;
 	}
 
-	protected boolean addItemToEmptyHand(ItemStack stack){
+	protected boolean addItemToEmptyHand(ItemStack stack) {
 		boolean mainHandEmpty = getMainHandItem().isEmpty();
 		boolean offhandEmpty = getOffhandItem().isEmpty();
 
 		Hand emptyHand = mainHandEmpty ? Hand.MAIN_HAND : offhandEmpty ? Hand.OFF_HAND : null;
-		if(emptyHand != null){
+		if (emptyHand != null) {
 			this.setItemInHand(emptyHand, stack);
 			return true;
 		}
@@ -116,23 +116,23 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
 		super.populateDefaultEquipmentSlots(difficulty);
 
-		if(AdventUnlock.isDecember() && random.nextBoolean()){
+		if (AdventUnlock.isDecember() && random.nextBoolean()) {
 			equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 		}
 
-		if(random.nextFloat() <= 0.95){
+		if (random.nextFloat() <= 0.95) {
 			equipItemIfPossible(new ItemStack(DMAItems.TOP_HAT.get()));
 		}
 
 
-		if(!difficulty.isHarderThan(Difficulty.EASY.getId()))
+		if (!difficulty.isHarderThan(Difficulty.EASY.getId()))
 			return;
 
-		if(random.nextFloat() <= 0.75){
+		if (random.nextFloat() <= 0.75) {
 			addItemToEmptyHand(new ItemStack(DMItems.METALERT_SWORD.get()));
 		}
 
-		if(random.nextFloat() <= 0.75){
+		if (random.nextFloat() <= 0.75) {
 			addItemToEmptyHand(new ItemStack(DMAItems.PISTOL.get()));
 		}
 
@@ -140,7 +140,7 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld iServerWorld, DifficultyInstance difficultyInstance,
-			SpawnReason spawnReason, ILivingEntityData iLivingEntityData, CompoundNBT compoundNBT) {
+										   SpawnReason spawnReason, ILivingEntityData iLivingEntityData, CompoundNBT compoundNBT) {
 
 		this.populateDefaultEquipmentSlots(difficultyInstance);
 		reassessWeaponGoal();
@@ -166,20 +166,20 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 
 	@Override
 	public void performRangedAttack(LivingEntity target, float v) {
-      double d0 = 0.0;
-      double d1 = 0.0;
-      double d2 = 0.0;
-      if (target.isAlive()) {
-         d0 = target.getX() - this.getX();
-         d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
-         d2 = target.getZ() - this.getZ();
-         LaserEntity laser = new LaserEntity(this.level, this, 0.2F, (float)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
-         laser.setDamageSource(new EntityDamageSource("dalekgun", this));
-         laser.setLaserType(DMProjectiles.BULLET);
-         laser.shoot(d0, d1, d2, 2.5F, 0.0F);
-         this.playSound((SoundEvent)DMSoundEvents.ENTITY_AUTON_SHOOT.get(), 1.0F, 1.0F);
-         this.level.addFreshEntity(laser);
-      }
+		double d0 = 0.0;
+		double d1 = 0.0;
+		double d2 = 0.0;
+		if (target.isAlive()) {
+			d0 = target.getX() - this.getX();
+			d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
+			d2 = target.getZ() - this.getZ();
+			LaserEntity laser = new LaserEntity(this.level, this, 0.2F, (float) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
+			laser.setDamageSource(new EntityDamageSource("dalekgun", this));
+			laser.setLaserType(DMProjectiles.BULLET);
+			laser.shoot(d0, d1, d2, 2.5F, 0.0F);
+			this.playSound((SoundEvent) DMSoundEvents.ENTITY_AUTON_SHOOT.get(), 1.0F, 1.0F);
+			this.level.addFreshEntity(laser);
+		}
 	}
 
 	@Override
@@ -198,24 +198,24 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 
 	@Override
 	public boolean equipItemIfPossible(ItemStack stack) {
-		if(super.equipItemIfPossible(stack)) return true;
+		if (super.equipItemIfPossible(stack)) return true;
 
-		if(stack.getEquipmentSlot() == null)
+		if (stack.getEquipmentSlot() == null)
 			return addItemToEmptyHand(stack);
 
 		return false;
 	}
 
-	public static class JimNearestAttackableTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T>{
+	public static class JimNearestAttackableTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
 		public JimNearestAttackableTargetGoal(MobEntity entity, Class<T> clazz, boolean aSuper) {
 			super(entity, clazz, aSuper);
 		}
 
 		@Override
 		public boolean canContinueToUse() {
-			if(! super.canContinueToUse()) return false;
+			if (!super.canContinueToUse()) return false;
 
-			if(target != null && target.getType().equals(DMAEntities.JIM.get())) return false;
+			if (target != null && target.getType().equals(DMAEntities.JIM.get())) return false;
 
 			return true;
 		}
@@ -223,15 +223,15 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 		@Override
 		public boolean canUse() {
 			boolean canUse = super.canUse();
-			if(!canUse) return false;
+			if (!canUse) return false;
 
-			if(target.getType().equals(DMAEntities.JIM.get())) return false;
+			if (target.getType().equals(DMAEntities.JIM.get())) return false;
 
-			if(target instanceof PlayerEntity){
-				if(target.getUUID() == UUID.fromString("380df991-f603-344c-a090-369bad2a924a")) // Dev
+			if (target instanceof PlayerEntity) {
+				if (target.getUUID() == UUID.fromString("380df991-f603-344c-a090-369bad2a924a")) // Dev
 					return false;
 
-				if(DONT_ATTACK.contains(target.getUUID())) return false;
+				if (DONT_ATTACK.contains(target.getUUID())) return false;
 			}
 
 			return canUse;

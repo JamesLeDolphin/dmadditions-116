@@ -20,6 +20,7 @@ public class DMATags {
 			}
 			return BlockTags.createOptional(Helper.createDMRL(name));
 		}
+
 		private static Tags.IOptionalNamedTag<Block> createTag(String name) {
 			return createTag(name, true);
 		}
@@ -28,10 +29,12 @@ public class DMATags {
 	public static class Items {
 		public static final Tags.IOptionalNamedTag<Item> DATA_MODULES = createTag("data_modules");
 		public static final Tags.IOptionalNamedTag<Item> TARDIS_KEYS = createTag("tardis_keys");
+
 		private static Tags.IOptionalNamedTag<Item> createTag(String name) {
 			return ItemTags.createOptional(Helper.createDMRL(name));
 		}
 	}
+
 	public static class Fluids {
 		public static final Tags.IOptionalNamedTag<Fluid> METALERT = createTag("metalert");
 		public static final Tags.IOptionalNamedTag<Fluid> DALEKANIUM = createTag("dalekanium");

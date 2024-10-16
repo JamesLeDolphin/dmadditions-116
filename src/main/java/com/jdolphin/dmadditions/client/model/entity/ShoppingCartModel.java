@@ -23,10 +23,12 @@ public class ShoppingCartModel extends SegmentedModel<ShoppingCartEntity> implem
 	protected ModelRendererWrapper chair;
 
 	public JSONModel model;
+
 	public ShoppingCartModel() {
 		super();
 		ModelReloaderRegistry.register(this);
 	}
+
 	@Override
 	public void init() {
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/shopping_cart.json"));

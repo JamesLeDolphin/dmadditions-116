@@ -55,10 +55,10 @@ import java.util.function.Supplier;
 
 public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implements IBlockTooltip {
 
-	protected static final VoxelShape SHAPE_N = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2/16D, 1), VoxelShapes.box(5.5/16D, 2/16D, 9/16D, 10.5/16D, 3/16D, 13/16D), VoxelShapes.box(6.5/16D, 3/16D, 9/16D, 9.5/16D, 7/16D, 12/16D), VoxelShapes.box(2/16D, 2/16D, 3/16D, 14/16D, 3/16D, 7/16D));
-	protected static final VoxelShape SHAPE_E = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2/16D, 1), VoxelShapes.box(3/16D, 2/16D, 5.5/16D, 7/16D, 3/16D, 10.5/16D), VoxelShapes.box(4/16D, 3/16D, 6.5/16D, 7/16D, 7/16D, 9.5/16D), VoxelShapes.box(9/16D, 2/16D, 2/16D, 13/16D, 3/16D, 14/16D));
-	protected static final VoxelShape SHAPE_S = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2/16D, 1), VoxelShapes.box(5.5/16D, 2/16D, 3/16D, 10.5/16D, 3/16D, 7/16D), VoxelShapes.box(6.5/16D, 3/16D, 4/16D, 9.5/16D, 7/16D, 7/16D), VoxelShapes.box(2/16D, 2/16D, 9/16D, 14/16D, 3/16D, 13/16D));
-	protected static final VoxelShape SHAPE_W = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2/16D, 1), VoxelShapes.box(9/16D, 2/16D, 5.5/16D, 13/16D, 3/16D, 10.5/16D), VoxelShapes.box(9/16D, 3/16D, 6.5/16D, 12/16D, 7/16D, 9.5/16D), VoxelShapes.box(3/16D, 2/16D, 2/16D, 7/16D, 3/16D, 14/16D));
+	protected static final VoxelShape SHAPE_N = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2 / 16D, 1), VoxelShapes.box(5.5 / 16D, 2 / 16D, 9 / 16D, 10.5 / 16D, 3 / 16D, 13 / 16D), VoxelShapes.box(6.5 / 16D, 3 / 16D, 9 / 16D, 9.5 / 16D, 7 / 16D, 12 / 16D), VoxelShapes.box(2 / 16D, 2 / 16D, 3 / 16D, 14 / 16D, 3 / 16D, 7 / 16D));
+	protected static final VoxelShape SHAPE_E = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2 / 16D, 1), VoxelShapes.box(3 / 16D, 2 / 16D, 5.5 / 16D, 7 / 16D, 3 / 16D, 10.5 / 16D), VoxelShapes.box(4 / 16D, 3 / 16D, 6.5 / 16D, 7 / 16D, 7 / 16D, 9.5 / 16D), VoxelShapes.box(9 / 16D, 2 / 16D, 2 / 16D, 13 / 16D, 3 / 16D, 14 / 16D));
+	protected static final VoxelShape SHAPE_S = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2 / 16D, 1), VoxelShapes.box(5.5 / 16D, 2 / 16D, 3 / 16D, 10.5 / 16D, 3 / 16D, 7 / 16D), VoxelShapes.box(6.5 / 16D, 3 / 16D, 4 / 16D, 9.5 / 16D, 7 / 16D, 7 / 16D), VoxelShapes.box(2 / 16D, 2 / 16D, 9 / 16D, 14 / 16D, 3 / 16D, 13 / 16D));
+	protected static final VoxelShape SHAPE_W = VoxelShapes.or(VoxelShapes.box(0, 0, 0, 1, 2 / 16D, 1), VoxelShapes.box(9 / 16D, 2 / 16D, 5.5 / 16D, 13 / 16D, 3 / 16D, 10.5 / 16D), VoxelShapes.box(9 / 16D, 3 / 16D, 6.5 / 16D, 12 / 16D, 7 / 16D, 9.5 / 16D), VoxelShapes.box(3 / 16D, 2 / 16D, 2 / 16D, 7 / 16D, 3 / 16D, 14 / 16D));
 
 	public static final BooleanProperty LOCKED = BooleanProperty.create("locked");
 	public static final BooleanProperty OPENED = BooleanProperty.create("open");
@@ -84,10 +84,15 @@ public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implem
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
 		Direction facing = state.getValue(FACING);
 		switch (facing) {
-			case NORTH: default: return SHAPE_N;
-			case EAST: return SHAPE_E;
-			case SOUTH: return SHAPE_S;
-			case WEST: return SHAPE_W;
+			case NORTH:
+			default:
+				return SHAPE_N;
+			case EAST:
+				return SHAPE_E;
+			case SOUTH:
+				return SHAPE_S;
+			case WEST:
+				return SHAPE_W;
 		}
 	}
 
@@ -150,9 +155,12 @@ public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implem
 		if (button == null) return null;
 
 		switch (button) {
-			case DOOR: return state.getValue(OPENED) ? new TranslationTextComponent("tooltip.dmadditions.door_panel.close") : new TranslationTextComponent("tooltip.dmadditions.door_panel.open");
-			case LOCK: return state.getValue(LOCKED) ? new TranslationTextComponent("tooltip.dmadditions.door_panel.unlock") : new TranslationTextComponent("tooltip.dmadditions.door_panel.lock");
-			default: return null;
+			case DOOR:
+				return state.getValue(OPENED) ? new TranslationTextComponent("tooltip.dmadditions.door_panel.close") : new TranslationTextComponent("tooltip.dmadditions.door_panel.open");
+			case LOCK:
+				return state.getValue(LOCKED) ? new TranslationTextComponent("tooltip.dmadditions.door_panel.unlock") : new TranslationTextComponent("tooltip.dmadditions.door_panel.lock");
+			default:
+				return null;
 		}
 
 	}
@@ -196,10 +204,10 @@ public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implem
 			this.width = width * f;
 			this.height = height * f;
 
-			areas.put(Direction.NORTH, new Vector3d(invertLeft * f, 0, invertTop  * f));
-			areas.put(Direction.EAST,  new Vector3d(top        * f, 0, invertLeft * f));
-			areas.put(Direction.SOUTH, new Vector3d(left       * f, 0, top        * f));
-			areas.put(Direction.WEST,  new Vector3d(invertTop  * f, 0, left       * f));
+			areas.put(Direction.NORTH, new Vector3d(invertLeft * f, 0, invertTop * f));
+			areas.put(Direction.EAST, new Vector3d(top * f, 0, invertLeft * f));
+			areas.put(Direction.SOUTH, new Vector3d(left * f, 0, top * f));
+			areas.put(Direction.WEST, new Vector3d(invertTop * f, 0, left * f));
 
 			buttons.add(this);
 		}

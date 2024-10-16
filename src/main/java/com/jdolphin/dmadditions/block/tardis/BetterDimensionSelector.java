@@ -168,8 +168,8 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 										ServerWorld type = (ServerWorld) this.dimList.get(this.index);
 										tile.setDestination(type.dimension(), tile.getDestinationPosition());
 										player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
-												.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
-													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
+											.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
+												.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 										if (tile != null) {
 											tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());
 										}
@@ -189,10 +189,11 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 											ServerWorld type = (ServerWorld) this.dimList.get(this.index);
 											tile.setDestination(type.dimension(), tile.getDestinationPosition());
 											player.displayClientMessage((new TranslationTextComponent("message.tardis.control.dimchange"))
-													.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
-														.withStyle(TextFormatting.LIGHT_PURPLE)), true);
+												.append((new StringTextComponent(net.tardis.mod.helper.WorldHelper.formatDimName(type.dimension())))
+													.withStyle(TextFormatting.LIGHT_PURPLE)), true);
 											if (tile != null) {
-												tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());											}
+												tile.setDestination(this.dimList.get(this.index).dimension(), tile.getDestinationPosition());
+											}
 										} else {
 											this.index = 0;
 										}
@@ -212,7 +213,8 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 
 		return ActionResultType.CONSUME;
 	}
-	private void createDimListIfEmpty(){
+
+	private void createDimListIfEmpty() {
 		if (DMAdditions.hasNTM()) {
 			if (this.dimList.isEmpty()) {
 				ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(world -> {

@@ -48,7 +48,7 @@ public class RustableRoundelContainerBlock extends RoundelContainerBlock impleme
 		} else {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof RoundelContainerTileEntity) {
-				playerEntity.openMenu((RoundelContainerTileEntity)tileentity);
+				playerEntity.openMenu((RoundelContainerTileEntity) tileentity);
 				PiglinTasks.angerNearbyPiglins(playerEntity, true);
 			}
 

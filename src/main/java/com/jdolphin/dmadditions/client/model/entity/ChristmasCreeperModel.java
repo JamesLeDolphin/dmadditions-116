@@ -5,8 +5,9 @@ import net.minecraft.client.renderer.entity.model.CreeperModel;
 import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-public class ChristmasCreeperModel extends CreeperModel<ChristmasCreeperEntity> implements IHasHead{
+public class ChristmasCreeperModel extends CreeperModel<ChristmasCreeperEntity> implements IHasHead {
 	private final ModelRenderer head;
+
 	public ChristmasCreeperModel() {
 		this(0f);
 	}

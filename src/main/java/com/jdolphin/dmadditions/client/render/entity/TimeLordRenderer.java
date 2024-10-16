@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class TimeLordRenderer extends BipedRenderer<TimeLordEntity, TimeLordModel> {
 
-	public TimeLordRenderer(EntityRendererManager rendererManager){
+	public TimeLordRenderer(EntityRendererManager rendererManager) {
 		super(rendererManager, new TimeLordModel(), 0.5f);
 	}
 

@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+
 public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 	public BetterFastReturnLeverBlock(Properties properties) {
 		super(properties);
@@ -50,6 +51,7 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 
 			this.updateNeighbours(state, worldIn, pos);
 
-		} return ActionResultType.CONSUME;
+		}
+		return ActionResultType.CONSUME;
 	}
 }

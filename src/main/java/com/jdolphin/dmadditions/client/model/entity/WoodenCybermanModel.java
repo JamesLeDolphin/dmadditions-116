@@ -20,7 +20,7 @@ public class WoodenCybermanModel extends BipedModel<WoodenCybermanEntity> implem
 	public void setupAnim(WoodenCybermanEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		if (entityIn.hasGun()) {
-			this.rightArm.xRot = -((float)Math.toRadians(90.0));
+			this.rightArm.xRot = -((float) Math.toRadians(90.0));
 		}
 
 	}

@@ -49,8 +49,8 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 		if (!worldIn.isClientSide) {
 			boolean insertSonic = false;
 			Vector3d hitVec = hit.getLocation();
-			float mouseX = (float)((int)(100.0F * (float)(hitVec.x() - (double)pos.getX()))) / 100.0F;
-			float mouseZ = (float)((int)(100.0F * (float)(hitVec.z() - (double)pos.getZ()))) / 100.0F;
+			float mouseX = (float) ((int) (100.0F * (float) (hitVec.x() - (double) pos.getX()))) / 100.0F;
+			float mouseZ = (float) ((int) (100.0F * (float) (hitVec.z() - (double) pos.getZ()))) / 100.0F;
 
 			AttachFace face = state.getValue(BlockStateProperties.ATTACH_FACE);
 			Direction direction = state.getValue(AbstractRotateableWaterLoggableBlock.FACING);
@@ -74,7 +74,7 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 				}
 			}
 
-			switch(direction) {
+			switch (direction) {
 				case EAST:
 					if (mouseX <= 0.97F && mouseX >= 0.79F && mouseZ >= 0.4F && mouseZ <= 0.59F) {
 						insertSonic = true;
@@ -105,7 +105,7 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 
 			TileEntity te = worldIn.getBlockEntity(pos);
 			if (te instanceof SonicInterfaceTileEntity) {
-				SonicInterfaceTileEntity sonic = (SonicInterfaceTileEntity)te;
+				SonicInterfaceTileEntity sonic = (SonicInterfaceTileEntity) te;
 				if (insertSonic) {
 					if (sonic.getScrewdriver() != null && (sonic.getScrewdriver() == null || sonic.getScrewdriver().getItem() instanceof SonicScrewdriverCustomizedItem)) {
 						if (sonic.getScrewdriver() != null && player.getItemInHand(handIn).isEmpty()) {
@@ -116,15 +116,15 @@ public class BetterSonicInterfaceBlock extends SonicInterfaceBlock implements IB
 						}
 					} else if (player.getItemInHand(handIn).getItem() instanceof SonicScrewdriverCustomizedItem) {
 						sonic.setScrewdriver(player.getItemInHand(handIn));
-						((SonicScrewdriverCustomizedItem)sonic.getScrewdriver().getItem()).checkIsSetup(sonic.getScrewdriver());
+						((SonicScrewdriverCustomizedItem) sonic.getScrewdriver().getItem()).checkIsSetup(sonic.getScrewdriver());
 						player.setItemInHand(handIn, ItemStack.EMPTY);
 						sonic.sendUpdates();
 						worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), DMSoundEvents.TARDIS_SONIC_WORKBENCH_INSERT.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
 						return ActionResultType.CONSUME;
 					}
 				} else if (sonic.getScrewdriver() != null && sonic.getScrewdriver().getItem() instanceof SonicScrewdriverCustomizedItem) {
-					NetworkHandler.sendTo((ServerPlayerEntity)player, new PacketXPSync(player.totalExperience, false));
-					NetworkHandler.sendTo((ServerPlayerEntity)player, new PacketOpenGui(pos, 4));
+					NetworkHandler.sendTo((ServerPlayerEntity) player, new PacketXPSync(player.totalExperience, false));
+					NetworkHandler.sendTo((ServerPlayerEntity) player, new PacketOpenGui(pos, 4));
 				}
 			}
 		}

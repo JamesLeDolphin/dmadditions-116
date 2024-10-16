@@ -25,18 +25,18 @@ public class ChristmasCrackerBlockItem extends BlockItem {
 		super(type, properties);
 	}
 
-	public ChristmasCrackerBlockItem(RegistryObject<Block> type){
+	public ChristmasCrackerBlockItem(RegistryObject<Block> type) {
 		super(type.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS));
 	}
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-		if(!world.isClientSide) ChristmasCrackerBlock.openCracker(world, player.getEyePosition(1).add(player.getLookAngle()));
+		if (!world.isClientSide)
+			ChristmasCrackerBlock.openCracker(world, player.getEyePosition(1).add(player.getLookAngle()));
 		ItemStack item = player.getItemInHand(hand);
 		item.shrink(1);
 		return ActionResult.consume(item);
 	}
-
 
 
 	@Override

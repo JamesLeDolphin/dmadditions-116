@@ -19,7 +19,8 @@ import net.minecraftforge.fml.common.Mod;
 )
 public class ClientDMBusEvents {
 
-	public ClientDMBusEvents() {}
+	public ClientDMBusEvents() {
+	}
 
 	@SubscribeEvent
 	public static void skyRenderer(RenderWorldLastEvent event) {

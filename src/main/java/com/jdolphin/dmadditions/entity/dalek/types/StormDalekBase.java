@@ -9,38 +9,38 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 
 public class StormDalekBase extends DalekBase {
-		public StormDalekBase(String dalekName) {
-			super(dalekName);
-		}
+	public StormDalekBase(String dalekName) {
+		super(dalekName);
+	}
 
-		public float getMaxHealth() {
-			return 50.0F;
-		}
+	public float getMaxHealth() {
+		return 50.0F;
+	}
 
-		public boolean canFly() {
+	public boolean canFly() {
 		return true;
 	}
 
-		public SoundEvent getLivingSound(Entity e) {
-			return null;
-		}
+	public SoundEvent getLivingSound(Entity e) {
+		return null;
+	}
 
-		public DMProjectiles.Laser getLaser(DalekEntity dalek) {
-			return DMProjectiles.EXPLOSIVE_LASER;
-		}
+	public DMProjectiles.Laser getLaser(DalekEntity dalek) {
+		return DMProjectiles.EXPLOSIVE_LASER;
+	}
 
-		public SoundEvent getDeathSound(Entity e) {
+	public SoundEvent getDeathSound(Entity e) {
 		return DMASoundEvents.DALEK_STORM_DEATH.get();
 	}
 
-		public SoundEvent getAttackSound(Entity e) {
-			return (SoundEvent) DMASoundEvents.DALEK_STORM_EXTERMINATE.get();
-		}
-
-		public SoundEvent getShootSound(Entity e) {
-			return (SoundEvent)DMSoundEvents.ENTITY_DALEK_SWD_SHOOT.get();
-		}
-
-		protected void aiStep() {
-		}
+	public SoundEvent getAttackSound(Entity e) {
+		return (SoundEvent) DMASoundEvents.DALEK_STORM_EXTERMINATE.get();
 	}
+
+	public SoundEvent getShootSound(Entity e) {
+		return (SoundEvent) DMSoundEvents.ENTITY_DALEK_SWD_SHOOT.get();
+	}
+
+	protected void aiStep() {
+	}
+}

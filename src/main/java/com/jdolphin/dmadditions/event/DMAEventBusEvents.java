@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 @Mod.EventBusSubscriber(modid = DMAdditions.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DMAEventBusEvents {
 	@SubscribeEvent
-	public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event){
+	public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
 		event.getRegistry().registerAll(
 			new AddItemLootModifier.Serializer().setRegistryName(Helper.createAdditionsRL("add_item"))
 		);
@@ -27,6 +27,7 @@ public class DMAEventBusEvents {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public static void registerItemColor(ColorHandlerEvent.Item event) {
-		if(DMAItems.CHRISTMAS_HAT != null) event.getItemColors().register(ChristmasHatItem::itemColor, DMAItems.CHRISTMAS_HAT.get());
+		if (DMAItems.CHRISTMAS_HAT != null)
+			event.getItemColors().register(ChristmasHatItem::itemColor, DMAItems.CHRISTMAS_HAT.get());
 	}
 }

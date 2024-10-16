@@ -40,7 +40,6 @@ public class DMAEntityRenderRegistry {
 	}
 
 
-
 	public static <T extends Entity> void registerRender(RegistryObject<EntityType<T>> entityClass, IRenderFactory<? super T> renderFactory) {
 		if (entityClass == null) return;
 		RenderingRegistry.registerEntityRenderingHandler(entityClass.get(), renderFactory);

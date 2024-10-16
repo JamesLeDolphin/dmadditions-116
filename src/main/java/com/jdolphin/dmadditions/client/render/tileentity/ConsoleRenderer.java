@@ -11,6 +11,7 @@ import net.minecraft.util.math.vector.Vector3f;
 
 public class ConsoleRenderer extends TileEntityRenderer<ConsoleTileEntity> {
 	private static ConsoleModel model;
+
 	public ConsoleRenderer(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
 		super(tileEntityRendererDispatcher);
 		model = new ConsoleModel();

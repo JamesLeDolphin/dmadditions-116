@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class TankEntity extends MobEntity implements IJumpingMount{
+public class TankEntity extends MobEntity implements IJumpingMount {
 
 	private TankPartEntity bodyFront;
 	private TankPartEntity bodyBack;
@@ -37,7 +37,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	protected Laser laserType = DMProjectiles.EXPLOSIVE_LASER; //TODO make this changeable
 
 	@Deprecated
-	public Optional<TankPartEntity> getPart(String name){
+	public Optional<TankPartEntity> getPart(String name) {
 		return Stream.of(subEntities).filter(part -> part.name.equals(name)).findFirst();
 	}
 
@@ -48,13 +48,14 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		this.bodyBack = new TankPartEntity(this, "bodyBack", 7f, 2.5f);
 		this.turret = new TankPartEntity(this, "turret", 6f, 2f);
 		this.turretBarrel = new TankPartEntity(this, "turretBarrel", 6f, 0.5f);
-		this.subEntities = new TankPartEntity[]{ bodyFront, bodyBack, turret, turretBarrel };
+		this.subEntities = new TankPartEntity[]{bodyFront, bodyBack, turret, turretBarrel};
 
-		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1); 
+		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1);
 
-		this.lookControl = new LookController(this){
+		this.lookControl = new LookController(this) {
 			@Override
-			public void tick() { }
+			public void tick() {
+			}
 		};
 
 		this.turretRot = this.yHeadRot;
@@ -89,7 +90,7 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	public void setId(int i1) {
 		super.setId(i1);
 
-		for(int i = 0; i < subEntities.length; ++i) 
+		for (int i = 0; i < subEntities.length; ++i)
 			subEntities[i].setId(i1 + i + 1);
 	}
 
@@ -109,16 +110,16 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 
 	@Override
 	public void travel(Vector3d vec) {
-		if(!this.isAlive()) return;
-		
+		if (!this.isAlive()) return;
 
-		if(this.isVehicle() && this.canBeSteered()){
+
+		if (this.isVehicle() && this.canBeSteered()) {
 			LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
 //  			this.yRot = livingentity.yRot;
- 			this.yRotO = this.yRot;
+			this.yRotO = this.yRot;
 			this.xRot = livingentity.xRot * 0.5F;
- 			this.setRot(this.yRot, this.xRot);
- 			this.yBodyRot = this.yRot;
+			this.setRot(this.yRot, this.xRot);
+			this.yBodyRot = this.yRot;
 			this.yHeadRot = this.yBodyRot;
 
 			float f1 = livingentity.zza;
@@ -134,17 +135,17 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 			float f2 = MathHelper.sin(this.yRot * 0.017453292F);
 			float f3 = MathHelper.cos(this.yRot * 0.017453292F);
 
-			if(f1 > 0.0F) {
+			if (f1 > 0.0F) {
 				this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, 0, 0.2F * f3));
 			}
-			if(f1 < 0.0f){
+			if (f1 < 0.0f) {
 				this.setDeltaMovement(this.getDeltaMovement().add(0.2F * f2, 0, -0.2F * f3));
-				if(livingentity.xxa != 0) this.yRot += livingentity.xxa * 2;
-			}else{
-				if(livingentity.xxa != 0) this.yRot -= livingentity.xxa * 2;
+				if (livingentity.xxa != 0) this.yRot += livingentity.xxa * 2;
+			} else {
+				if (livingentity.xxa != 0) this.yRot -= livingentity.xxa * 2;
 			}
 
- 			this.turretRot = (float) Math.toRadians(livingentity.yHeadRot);
+			this.turretRot = (float) Math.toRadians(livingentity.yHeadRot);
 
 			// this.setDeltaMovement(this.getDeltaMovement().add(0, 0, f1));
 		}
@@ -164,23 +165,23 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 
 	@Override
 	protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		if(player.getItemInHand(hand).isEmpty()){
+		if (player.getItemInHand(hand).isEmpty()) {
 			player.startRiding(this);
 
-			if(player.level.isClientSide)
+			if (player.level.isClientSide)
 				setThirdPerson();
 		}
 		return super.mobInteract(player, hand);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	protected void setThirdPerson(){
+	protected void setThirdPerson() {
 		Minecraft instance = Minecraft.getInstance();
 		instance.options.setCameraType(PointOfView.THIRD_PERSON_BACK);
 	}
 
 	@Override
-	public void positionRider(Entity entity) { 
+	public void positionRider(Entity entity) {
 		if (this.hasPassenger(entity)) {
 			float forwardOffset = 1f;
 			float leftOffset = 0.5f;
@@ -219,8 +220,8 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 
 	@Override
 	public void handleStartJump(int i) { //possible TODO: use mouse buttons or something instead of jumping lol
-		if(level instanceof ServerWorld){
-			level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), DMSoundEvents.ITEM_GUN_SHOOT.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		if (level instanceof ServerWorld) {
+			level.playSound((PlayerEntity) null, this.getX(), this.getY(), this.getZ(), DMSoundEvents.ITEM_GUN_SHOOT.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 
 			LaserEntity laser = new LaserEntity(this.level, this, 0.0F, (float) this.getAttributes().getValue(Attributes.ATTACK_DAMAGE));
 			laser.setLaserType(this.laserType);
@@ -234,12 +235,12 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 
 	@Override
 	public void handleStopJump() {
-	} 
+	}
 
 	protected boolean hurt(TankPartEntity part, DamageSource source, float amount) {
-		if(this.hasPassenger(source.getEntity())) return false;
+		if (this.hasPassenger(source.getEntity())) return false;
 
-		if(source.isCreativePlayer()) {
+		if (source.isCreativePlayer()) {
 			this.remove();
 			return false;
 		}
@@ -251,9 +252,9 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 	public void aiStep() {
 		super.aiStep();
 
-		
+
 		Vector3d[] avector3d = new Vector3d[this.subEntities.length];
-		for(int j = 0; j < this.subEntities.length; ++j) {
+		for (int j = 0; j < this.subEntities.length; ++j) {
 			avector3d[j] = new Vector3d(this.subEntities[j].getX(), this.subEntities[j].getY(), this.subEntities[j].getZ());
 		}
 
@@ -270,14 +271,14 @@ public class TankEntity extends MobEntity implements IJumpingMount{
 		float cosPitch = MathHelper.cos(tankPitch);
 		float sinPitch = MathHelper.sin(tankPitch);
 
-		float f15 = (float)(this.getLatencyPos(5, 1.0F)[1] - this.getLatencyPos(10, 1.0F)[1]) * 10.0F * ((float)Math.PI / 180F);
+		float f15 = (float) (this.getLatencyPos(5, 1.0F)[1] - this.getLatencyPos(10, 1.0F)[1]) * 10.0F * ((float) Math.PI / 180F);
 
 		movePart(this.turretBarrel, -turretSinYaw, 3.5, turretCosYaw, 4.5f);
 		movePart(this.turret, -sinYaw, 2, cosYaw, -1.5f);
 		movePart(this.bodyFront, -sinYaw, 0, cosYaw, 1f);
 		movePart(this.bodyBack, sinYaw, 0, -cosYaw, 4f);
 
-		for(int l = 0; l < this.subEntities.length; ++l) {
+		for (int l = 0; l < this.subEntities.length; ++l) {
 			this.subEntities[l].xo = avector3d[l].x;
 			this.subEntities[l].yo = avector3d[l].y;
 			this.subEntities[l].zo = avector3d[l].z;

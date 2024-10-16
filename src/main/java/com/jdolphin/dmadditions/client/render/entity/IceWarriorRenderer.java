@@ -11,12 +11,12 @@ public class IceWarriorRenderer extends BipedRenderer<IceWarriorEntity, IceWarri
 
 	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(DMAdditions.MODID, "textures/entity/ice_warrior.png");
 
-    public IceWarriorRenderer(EntityRendererManager entityRendererManager){
+	public IceWarriorRenderer(EntityRendererManager entityRendererManager) {
 		super(entityRendererManager, new IceWarriorModel(), 1);
 	}
 
 	@Override
-	public  ResourceLocation getTextureLocation(IceWarriorEntity iceWarriorEntity) {
+	public ResourceLocation getTextureLocation(IceWarriorEntity iceWarriorEntity) {
 		return TEXTURE_LOCATION;
 	}
 }

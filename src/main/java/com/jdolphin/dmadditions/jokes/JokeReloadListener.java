@@ -27,9 +27,9 @@ public class JokeReloadListener extends JsonReloadListener {
 		JokeItem.jokes.clear();
 		Iterator<Map.Entry<ResourceLocation, JsonElement>> i = objectIn.entrySet().iterator();
 
-		while(i.hasNext()) {
-			Map.Entry<ResourceLocation, JsonElement> entry = (Map.Entry<ResourceLocation, JsonElement>)i.next();
-			ResourceLocation resourcelocation = (ResourceLocation)entry.getKey();
+		while (i.hasNext()) {
+			Map.Entry<ResourceLocation, JsonElement> entry = (Map.Entry<ResourceLocation, JsonElement>) i.next();
+			ResourceLocation resourcelocation = (ResourceLocation) entry.getKey();
 
 			addJokeFromJson(entry.getValue(), resourcelocation);
 		}
@@ -37,18 +37,18 @@ public class JokeReloadListener extends JsonReloadListener {
 		JokeItem.jokes = loadedJokes;
 	}
 
-	public static Joke getJokeFromJSON(JsonElement json){
+	public static Joke getJokeFromJSON(JsonElement json) {
 		return DalekMod.GSON.fromJson(json, Joke.class);
 	}
 
-	public void addJokeFromJson(JsonElement json, ResourceLocation resourceLocation){
-		if(json.isJsonArray()){
+	public void addJokeFromJson(JsonElement json, ResourceLocation resourceLocation) {
+		if (json.isJsonArray()) {
 			json.getAsJsonArray().forEach(j -> addJokeFromJson(j, resourceLocation));
 			return;
 		}
 
 		Joke joke = getJokeFromJSON(json);
-		if(joke.question == null || joke.answer == null){
+		if (joke.question == null || joke.answer == null) {
 			LogManager.getLogger().error("Unable to load joke from {} in {}", json.toString(), resourceLocation);
 			return;
 		}

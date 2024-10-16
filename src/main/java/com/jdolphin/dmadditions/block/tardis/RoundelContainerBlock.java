@@ -44,6 +44,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
+
 	@Override
 	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
 		return BlockRenderType.MODEL;
@@ -54,7 +55,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		if (!state.is(state1.getBlock())) {
 			TileEntity tileentity = world.getBlockEntity(pos);
 			if (tileentity instanceof IInventory) {
-				InventoryHelper.dropContents(world, pos, (IInventory)tileentity);
+				InventoryHelper.dropContents(world, pos, (IInventory) tileentity);
 				world.updateNeighbourForOutputSignal(pos, this);
 			}
 
@@ -67,7 +68,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		if (itemStack.hasCustomHoverName()) {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof BarrelTileEntity) {
-				((BarrelTileEntity)tileentity).setCustomName(itemStack.getHoverName());
+				((BarrelTileEntity) tileentity).setCustomName(itemStack.getHoverName());
 			}
 		}
 	}
@@ -87,7 +88,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 			TileEntity tileentity = world.getBlockEntity(blockPos);
 			if (tileentity instanceof RoundelContainerTileEntity) {
 				playerEntity.playSound(SoundEvents.BARREL_OPEN, 1, 1);
-				playerEntity.openMenu((RoundelContainerTileEntity)tileentity);
+				playerEntity.openMenu((RoundelContainerTileEntity) tileentity);
 				playerEntity.awardStat(Stats.OPEN_BARREL);
 				PiglinTasks.angerNearbyPiglins(playerEntity, true);
 			}
@@ -126,12 +127,13 @@ public class RoundelContainerBlock extends ContainerBlock {
 			((RoundelContainerTileEntity) tileentity).recheckOpen();
 		}
 	}
+
 	public static class WaterLoggable extends RoundelContainerBlock implements IWaterLoggable {
 		public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 		public WaterLoggable(AbstractBlock.Properties properties) {
 			super(properties);
-			this.registerDefaultState((BlockState)super.defaultBlockState().setValue(WATERLOGGED, false));
+			this.registerDefaultState((BlockState) super.defaultBlockState().setValue(WATERLOGGED, false));
 		}
 
 		@OnlyIn(Dist.CLIENT)
@@ -150,7 +152,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		}
 
 		public BlockState updateShape(BlockState p_196271_1_, Direction direction, BlockState blockState, IWorld iWorld, BlockPos blockPos, BlockPos blockPos1) {
-			if ((Boolean)p_196271_1_.getValue(WATERLOGGED)) {
+			if ((Boolean) p_196271_1_.getValue(WATERLOGGED)) {
 				iWorld.getLiquidTicks().scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(iWorld));
 			}
 
@@ -158,7 +160,7 @@ public class RoundelContainerBlock extends ContainerBlock {
 		}
 
 		public FluidState getFluidState(BlockState state) {
-			return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+			return (Boolean) state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 		}
 
 		protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> state) {

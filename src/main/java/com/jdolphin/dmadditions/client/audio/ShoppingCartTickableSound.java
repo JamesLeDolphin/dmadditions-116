@@ -7,20 +7,20 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 
-public class ShoppingCartTickableSound extends TickableSound{
-   private final ShoppingCartEntity shoppingCart;
+public class ShoppingCartTickableSound extends TickableSound {
+	private final ShoppingCartEntity shoppingCart;
 
 	public ShoppingCartTickableSound(ShoppingCartEntity entity, SoundEvent event) {
-      super(event, SoundCategory.NEUTRAL);
-      this.shoppingCart = entity;
-      this.looping = true;
-      this.delay = 0;
-      this.volume = 1F;
-	  if(entity != null){
-		  this.x = (double)((float)entity.getX());
-		  this.y = (double)((float)entity.getY());
-		  this.z = (double)((float)entity.getZ());
-	  }
+		super(event, SoundCategory.NEUTRAL);
+		this.shoppingCart = entity;
+		this.looping = true;
+		this.delay = 0;
+		this.volume = 1F;
+		if (entity != null) {
+			this.x = (double) ((float) entity.getX());
+			this.y = (double) ((float) entity.getY());
+			this.z = (double) ((float) entity.getZ());
+		}
 	}
 
 	public void tick() {

@@ -11,7 +11,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
-public class EngineBlock extends HorizontalBlock{
+public class EngineBlock extends HorizontalBlock {
 
 	public EngineBlock(Properties properties) {
 		super(properties);
@@ -30,8 +30,8 @@ public class EngineBlock extends HorizontalBlock{
 
 	@Override
 	public VoxelShape getShape(BlockState blockstate, IBlockReader reader, BlockPos pos,
-			ISelectionContext context) {
-		switch(blockstate.getValue(FACING)){
+							   ISelectionContext context) {
+		switch (blockstate.getValue(FACING)) {
 			case NORTH:
 			case SOUTH:
 				return VoxelShapes.or(Block.box(4, 0, 2, 12, 3, 14), Block.box(5, 3, 2, 11, 5, 14));

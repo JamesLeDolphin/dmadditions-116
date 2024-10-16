@@ -52,12 +52,12 @@ public class ClockworkDroidModel extends BipedModel<ClockworkDroidEntity> {
 	}
 
 	@Override
-	public void setupAnim(ClockworkDroidEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+	public void setupAnim(ClockworkDroidEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		//previously the render function, render code was moved to a method below
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		rightArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);

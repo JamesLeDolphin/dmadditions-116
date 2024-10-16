@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class IceGovernessRenderer extends BipedRenderer<IceGovernessEntity, IceGovernessModel>{
+public class IceGovernessRenderer extends BipedRenderer<IceGovernessEntity, IceGovernessModel> {
 
 	public IceGovernessRenderer(EntityRendererManager entityRendererManager, IceGovernessModel iceGovernessModel, float v) {
 		super(entityRendererManager, iceGovernessModel, v);

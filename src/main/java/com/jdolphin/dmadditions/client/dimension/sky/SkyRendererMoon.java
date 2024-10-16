@@ -39,7 +39,7 @@ public class SkyRendererMoon implements ISkyRenderHandler {
 		RenderSystem.enableDepthTest();
 		matrixStackIn.mulPose(new Quaternion(angle.x, angle.y, 0.0F, true));
 
-		for(int i = 0; i < 6; ++i) {
+		for (int i = 0; i < 6; ++i) {
 			matrixStackIn.pushPose();
 			if (i == 1) {
 				matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
@@ -62,7 +62,7 @@ public class SkyRendererMoon implements ISkyRenderHandler {
 			}
 
 			float skyDepth = 10.0F;
-			skyDepth = skyDepth * (float)minecraft.options.renderDistance / 4.0F;
+			skyDepth = skyDepth * (float) minecraft.options.renderDistance / 4.0F;
 			Matrix4f matrix4f = matrixStackIn.last().pose();
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 			bufferbuilder.vertex(matrix4f, -skyDepth, -skyDepth, -skyDepth).uv(0.0F, 0.0F).color(255, 255, 255, 255).endVertex();

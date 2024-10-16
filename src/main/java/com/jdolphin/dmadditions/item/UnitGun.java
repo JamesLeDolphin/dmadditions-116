@@ -34,7 +34,7 @@ public class UnitGun extends Item {
 
 
 	private SoundEvent getShootSound() {
-		return (SoundEvent)this.shootSound.get();
+		return (SoundEvent) this.shootSound.get();
 	}
 
 
@@ -52,10 +52,10 @@ public class UnitGun extends Item {
 
 	public void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
 		super.releaseUsing(stack, worldIn, entityLiving, timeLeft);
-		this.attackDamage = worldIn.getDifficulty() == Difficulty.EASY ? 4.0F : (float)(worldIn.getDifficulty() == Difficulty.NORMAL ? 6 : 8);
+		this.attackDamage = worldIn.getDifficulty() == Difficulty.EASY ? 4.0F : (float) (worldIn.getDifficulty() == Difficulty.NORMAL ? 6 : 8);
 		if (!worldIn.isClientSide) {
 			int timeUsed = this.getUseDuration(stack) - timeLeft;
-			if ((float)timeUsed < this.requiredChargeTime) {
+			if ((float) timeUsed < this.requiredChargeTime) {
 				return;
 			}
 
@@ -65,8 +65,8 @@ public class UnitGun extends Item {
 			laser.setDamageSource(new EntityDamageSource("unit_gun", entityLiving));
 			laser.shoot(entityLiving, entityLiving.xRot, entityLiving.yRot, 0.0F, 2.5F, 0.0F);
 			worldIn.addFreshEntity(laser);
-			if (entityLiving instanceof ServerPlayerEntity && !((ServerPlayerEntity)entityLiving).isCreative()) {
-				stack.hurt(1, random, (ServerPlayerEntity)entityLiving);
+			if (entityLiving instanceof ServerPlayerEntity && !((ServerPlayerEntity) entityLiving).isCreative()) {
+				stack.hurt(1, random, (ServerPlayerEntity) entityLiving);
 			}
 
 		}

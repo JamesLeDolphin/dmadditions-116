@@ -52,18 +52,18 @@ public abstract class TardisActionListMixin {
 			List<TileEntity> possibleHazards = net.tardis.mod.helper.WorldHelper.getTEsInChunks((ServerWorld) world, new ChunkPos(pos), 3);
 			possibleHazards.removeIf((tex) -> !(tex instanceof net.tardis.mod.tileentities.IAffectTARDISLanding));
 
-            for (TileEntity te : possibleHazards) {
+			for (TileEntity te : possibleHazards) {
 				net.tardis.mod.tileentities.IAffectTARDISLanding affect = (net.tardis.mod.tileentities.IAffectTARDISLanding) te;
-                if (pos.closerThan(te.getBlockPos(), affect.getEffectiveRange())) {
-                    if (te instanceof net.tardis.mod.tileentities.machines.TransductionBarrierTile) {
-                        Location coord = affectDMTardis(world,
-                                (net.tardis.mod.tileentities.machines.TransductionBarrierTile) te, player, data);
-                        //data.setCurrentLocation(coord.getBlockPosition(), coord.dimensionWorldKey());
-                        cir.setReturnValue(false);
-                    }
-                }
-                cir.setReturnValue(false);
-            }
+				if (pos.closerThan(te.getBlockPos(), affect.getEffectiveRange())) {
+					if (te instanceof net.tardis.mod.tileentities.machines.TransductionBarrierTile) {
+						Location coord = affectDMTardis(world,
+							(net.tardis.mod.tileentities.machines.TransductionBarrierTile) te, player, data);
+						//data.setCurrentLocation(coord.getBlockPosition(), coord.dimensionWorldKey());
+						cir.setReturnValue(false);
+					}
+				}
+				cir.setReturnValue(false);
+			}
 		}
 	}
 }

@@ -85,6 +85,7 @@ public class RacnossModel extends SegmentedModel<RacnossEntity> implements IMode
 		HandSide handside = racnossEntity.getMainArm();
 		return racnossEntity.swingingArm == Hand.MAIN_HAND ? handside : handside.getOpposite();
 	}
+
 	public ModelRenderer getArm(HandSide handSide) {
 		return handSide == HandSide.LEFT ? this.leftArm : this.rightArm;
 	}

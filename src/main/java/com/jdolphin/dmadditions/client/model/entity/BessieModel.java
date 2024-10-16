@@ -17,10 +17,12 @@ public class BessieModel extends SegmentedModel<BessieEntity> implements IModelP
 	protected ModelRenderer wheels;
 	protected ModelRenderer body;
 	public JSONModel model;
+
 	public BessieModel() {
 		super();
 		ModelReloaderRegistry.register(this);
 	}
+
 	@Override
 	public void init() {
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/bessie.json"));

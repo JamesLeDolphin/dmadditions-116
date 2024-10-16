@@ -147,8 +147,8 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 				return;
 			}
 
-			VillagerEntity villagerentity = (VillagerEntity)target;
-			CybermanEntity woodenCybermanEntity = (CybermanEntity)villagerentity.convertTo((EntityType<CybermanEntity>)DMEntities.CYBERMAN_ENTITY.get(), false);
+			VillagerEntity villagerentity = (VillagerEntity) target;
+			CybermanEntity woodenCybermanEntity = (CybermanEntity) villagerentity.convertTo((EntityType<CybermanEntity>) DMEntities.CYBERMAN_ENTITY.get(), false);
 			woodenCybermanEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(woodenCybermanEntity.blockPosition()), SpawnReason.CONVERSION, new ZombieEntity.GroupData(false, true), null);
 			ForgeEventFactory.onLivingConvert(target, woodenCybermanEntity);
 			if (!this.isSilent()) {

@@ -31,6 +31,7 @@ public interface IPlayerRegenCap extends INBTSerializable<CompoundNBT> {
 	void regenerate();
 
 	void update();
+
 	boolean isPreRegen();
 
 	boolean isRegenerating();
@@ -82,7 +83,7 @@ public interface IPlayerRegenCap extends INBTSerializable<CompoundNBT> {
 
 		public void readNBT(Capability<IPlayerRegenCap> capability, IPlayerRegenCap instance, Direction side, INBT nbt) {
 			if (nbt instanceof CompoundNBT) {
-				instance.deserializeNBT((CompoundNBT)nbt);
+				instance.deserializeNBT((CompoundNBT) nbt);
 			}
 
 		}

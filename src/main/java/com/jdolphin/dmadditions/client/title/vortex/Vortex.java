@@ -21,7 +21,7 @@ public class Vortex {
 	private float textureRotationOffsetFactor = 0.0f;
 	private float speed = 4f;
 
-	public Vortex(float rotationFactor, String id){
+	public Vortex(float rotationFactor, String id) {
 		this(id);
 		this.distortionFactor = rotationFactor;
 	}
@@ -30,7 +30,7 @@ public class Vortex {
 		TEXTURE_LOCATION = Helper.createAdditionsRL("textures/vortex/" + name + ".png");
 	}
 
-	@SuppressWarnings({ "deprecation", "resource" })
+	@SuppressWarnings({"deprecation", "resource"})
 	public void render() {
 		int width = Minecraft.getInstance().screen.width;
 		int height = Minecraft.getInstance().screen.height;
@@ -48,7 +48,7 @@ public class Vortex {
 		GlStateManager._popMatrix();
 	}
 
-	@SuppressWarnings({ "deprecation", "resource" })
+	@SuppressWarnings({"deprecation", "resource"})
 	public void renderVortex() {
 		GlStateManager._pushMatrix();
 		GlStateManager._enableCull();
@@ -76,13 +76,12 @@ public class Vortex {
 		time += Minecraft.getInstance().getDeltaFrameTime() / 100;
 	}
 
-	private static final float oneEight = 1/8f;
+	private static final float oneEight = 1 / 8f;
 	private static final float sqrt3Over2 = (float) (1.0f / Math.sqrt(2));
 
 	public void renderSection(BufferBuilder builder, int locationOffset, float textureDistanceOffset, float textureRotationOffset, float startScale, float endScale) {
 		int verticalOffset = (locationOffset * oneEight + textureDistanceOffset > 1.0) ? locationOffset - 8 : locationOffset;
 		int horizontalOffset = (textureRotationOffset > 1.0) ? -8 : 0;
-
 
 
 		builder.vertex(0, -startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
@@ -99,7 +98,6 @@ public class Vortex {
 		horizontalOffset = ((oneEight + textureRotationOffset > 1.0) ? -7 : 1);
 
 
-
 		builder.vertex(startScale * -sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 
@@ -114,7 +112,6 @@ public class Vortex {
 		horizontalOffset = ((1.0f / 3.0f + textureRotationOffset > 1.0) ? -6 : 2);
 
 
-
 		builder.vertex(startScale * -sqrt3Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 
@@ -126,7 +123,6 @@ public class Vortex {
 		builder.vertex(startScale * -0.0f, startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 		horizontalOffset = ((0.5f + textureRotationOffset > 1.0) ? -5 : 3);
-
 
 
 		builder.vertex(startScale * -0.0f, startScale + this.computeDistortionFactor(time, locationOffset), -locationOffset)
@@ -143,7 +139,6 @@ public class Vortex {
 		horizontalOffset = ((2.0f / 3.0f + textureRotationOffset > 1.0) ? -4 : 4);
 
 
-
 		builder.vertex(startScale * sqrt3Over2, startScale * 0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 
@@ -158,7 +153,6 @@ public class Vortex {
 		horizontalOffset = ((5.0f / 6.0f + textureRotationOffset > 1.0) ? -3 : 5);
 
 
-
 		builder.vertex(startScale * sqrt3Over2, startScale * -0.5 + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + 0.0f + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 
@@ -171,7 +165,6 @@ public class Vortex {
 		builder.vertex(startScale * -0.0f, startScale * -1.0f + this.computeDistortionFactor(time, locationOffset), -locationOffset)
 			.uv(horizontalOffset * oneEight + oneEight + textureRotationOffset, verticalOffset * oneEight + 0.0f + textureDistanceOffset).endVertex();
 		horizontalOffset = ((5.0f / 6.0f + textureRotationOffset > 1.0) ? -2 : 6);
-
 
 
 		builder.vertex(startScale * -0.0f, startScale * -1.0f + this.computeDistortionFactor(time, locationOffset), -locationOffset)

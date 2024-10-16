@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.item;
 
 import com.swdteam.common.init.DMProjectiles;
 import com.swdteam.common.item.gun.GunItem;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
@@ -18,10 +19,12 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.block.BlockState;
 import net.minecraftforge.fml.RegistryObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SonicBlasterItem extends GunItem {
 	private static Map<BlockPos, BlockState> removedBlocks = new HashMap<>();
@@ -45,22 +48,22 @@ public class SonicBlasterItem extends GunItem {
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-			// Check if the player is not in the process of breaking blocks
-			ItemStack stack = new ItemStack(this);
-			if (!isBreakingBlocks(player)) {
-				// Get the block in front of the player
-				RayTraceResult result = getPlayerLookBlock(world, player, 10);
-				BlockPos targetPos = new BlockPos(result.getLocation());
+		// Check if the player is not in the process of breaking blocks
+		ItemStack stack = new ItemStack(this);
+		if (!isBreakingBlocks(player)) {
+			// Get the block in front of the player
+			RayTraceResult result = getPlayerLookBlock(world, player, 10);
+			BlockPos targetPos = new BlockPos(result.getLocation());
 
-				CompoundNBT tag = stack.getOrCreateTag(); //Use this to save stuff
+			CompoundNBT tag = stack.getOrCreateTag(); //Use this to save stuff
 
-				// Remove the block chunk
-				removeBlockChunk(world, targetPos, player);
+			// Remove the block chunk
+			removeBlockChunk(world, targetPos, player);
 
-				// Store the last removed position and time
-				lastRemovedPos = targetPos;
-				lastRemovedTime = System.currentTimeMillis();
-			}/* else {
+			// Store the last removed position and time
+			lastRemovedPos = targetPos;
+			lastRemovedTime = System.currentTimeMillis();
+		}/* else {
 				// Toggle restore mode
 				toggleRestoreMode(player);
 				player.displayClientMessage(new StringTextComponent("Mode changed to: Restore Mode").withStyle(TextFormatting.GREEN), true);
@@ -84,8 +87,8 @@ public class SonicBlasterItem extends GunItem {
 
 	private void removeBlockChunk(World world, BlockPos pos, PlayerEntity player) {
 		// Iterate over the blocks in the chunk
-		for (int x = -1; x <=  1; x++) {
-			for ( int y = -1; y <= 1; y++) {
+		for (int x = -1; x <= 1; x++) {
+			for (int y = -1; y <= 1; y++) {
 				for (int z = -1; z <= 1; z++) {
 					BlockPos blockPos = pos.offset(x, y, z);
 					// Check if the block can be broken by the player

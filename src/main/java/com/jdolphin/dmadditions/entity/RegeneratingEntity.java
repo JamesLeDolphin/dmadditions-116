@@ -24,7 +24,7 @@ public abstract class RegeneratingEntity extends MobEntity {
 		if (this.getHealth() - amount <= 0 && canRegen()) {
 			this.setRegen();
 		}
-        return true;
+		return true;
 	}
 
 	public boolean canRegen() {

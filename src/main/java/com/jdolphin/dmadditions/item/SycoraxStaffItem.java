@@ -25,7 +25,7 @@ public class SycoraxStaffItem extends Item {
 			double yOffset = random.nextGaussian() * 0.02D;
 			double zOffset = random.nextGaussian() * 0.02D;
 
-			world.addParticle(ParticleTypes.SMOKE, position.x,position.y,position.z, xOffset, yOffset, zOffset);
+			world.addParticle(ParticleTypes.SMOKE, position.x, position.y, position.z, xOffset, yOffset, zOffset);
 		}
 	}
 }

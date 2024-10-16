@@ -22,22 +22,23 @@ public class SnowmanModel extends SegmentedModel<SnowmanEntity> implements IMode
 	protected ModelRenderer torso;
 	protected ModelRenderer skirt;
 
-	public SnowmanModel(){
+	public SnowmanModel() {
 		super();
 		ModelReloaderRegistry.register(this);
 	}
 
 	@Override
 	public void setupAnim(SnowmanEntity snowmanEntity, float v, float v1, float v2, float v3, float v4) {
-		this.head.yRot = v3 * ((float)Math.PI / 180F);
-		this.head.xRot = v4 * ((float)Math.PI / 180F);
-		this.skirt.yRot = v3 * ((float)Math.PI / 180F) * 0.25F;
+		this.head.yRot = v3 * ((float) Math.PI / 180F);
+		this.head.xRot = v4 * ((float) Math.PI / 180F);
+		this.skirt.yRot = v3 * ((float) Math.PI / 180F) * 0.25F;
 	}
 
 	@Override
 	public JSONModel getModel() {
 		return model;
 	}
+
 	@Override
 	public void init() {
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/snowman.json"));

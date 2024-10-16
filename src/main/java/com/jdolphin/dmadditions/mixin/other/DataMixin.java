@@ -36,7 +36,7 @@ public abstract class DataMixin {
 			}
 
 		} catch (ClassCastException ignored) {
-        }
+		}
 	}
 
 }

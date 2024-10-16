@@ -56,14 +56,21 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 	@Shadow(remap = false)
 	public TardisData tardisData;
 
-	public TardisTileEntityMixin(TileEntityType<?> tileEntityTypeIn) { super(tileEntityTypeIn); }
-	private TardisTileEntity _this = ((TardisTileEntity)(Object)this);
+	public TardisTileEntityMixin(TileEntityType<?> tileEntityTypeIn) {
+		super(tileEntityTypeIn);
+	}
+
+	private TardisTileEntity _this = ((TardisTileEntity) (Object) this);
 	public boolean open = false;
 
-	@Unique private String FORCEFIELD = "Forcefield";
-	@Unique private String INVISIBLE = "Invisible";
-	@Unique private boolean invisible;
-	@Unique private boolean ff_active;
+	@Unique
+	private String FORCEFIELD = "Forcefield";
+	@Unique
+	private String INVISIBLE = "Invisible";
+	@Unique
+	private boolean invisible;
+	@Unique
+	private boolean ff_active;
 
 	@Inject(at = @At("TAIL"), method = "tick")
 	public void tick(CallbackInfo ci) {
@@ -92,9 +99,12 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 			}
 		}
 	}
+
 	public boolean isForcefieldActive() {
 		return ff_active;
-	};
+	}
+
+	;
 
 	@Override
 	public void setForcefieldActive(boolean active) {
@@ -111,20 +121,21 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 
 	public boolean isInvisible() {
 		return invisible;
-	};
+	}
+
+	;
 
 
-
-	@Inject(at=@At("TAIL"), method = "save", cancellable = true)
-	public void save(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir){
+	@Inject(at = @At("TAIL"), method = "save", cancellable = true)
+	public void save(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir) {
 		compound.putBoolean(INVISIBLE, invisible);
 		compound.putBoolean(FORCEFIELD, ff_active);
 		cir.setReturnValue(super.save(compound));
 
 	}
 
-	@Inject(at=@At("TAIL"), method = "load")
-	public void load(BlockState blockstate, CompoundNBT compound, CallbackInfo ci){
+	@Inject(at = @At("TAIL"), method = "load")
+	public void load(BlockState blockstate, CompoundNBT compound, CallbackInfo ci) {
 		if (compound.contains(INVISIBLE)) {
 			invisible = compound.getBoolean(INVISIBLE);
 		}

@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-public class WhispermanRenderer extends BipedRenderer<WhispermanEntity, WhispermanModel>{
+public class WhispermanRenderer extends BipedRenderer<WhispermanEntity, WhispermanModel> {
 
 	public WhispermanRenderer(EntityRendererManager entityRendererManager) {
 		super(entityRendererManager, new WhispermanModel(), 0.5f);

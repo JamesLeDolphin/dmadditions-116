@@ -59,7 +59,7 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 				--this.seeTime;
 			}
 
-			if (!(d0 > (double)this.attackRadiusSqr) && this.seeTime >= 20) {
+			if (!(d0 > (double) this.attackRadiusSqr) && this.seeTime >= 20) {
 				this.mob.getNavigation().stop();
 				++this.strafingTime;
 			} else {
@@ -68,11 +68,11 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 			}
 
 			if (this.strafingTime >= 20) {
-				if ((double)this.mob.getRandom().nextFloat() < 0.3D) {
+				if ((double) this.mob.getRandom().nextFloat() < 0.3D) {
 					this.strafingClockwise = !this.strafingClockwise;
 				}
 
-				if ((double)this.mob.getRandom().nextFloat() < 0.3D) {
+				if ((double) this.mob.getRandom().nextFloat() < 0.3D) {
 					this.strafingBackwards = !this.strafingBackwards;
 				}
 
@@ -80,9 +80,9 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 			}
 
 			if (this.strafingTime > -1) {
-				if (d0 > (double)(this.attackRadiusSqr * 0.75F)) {
+				if (d0 > (double) (this.attackRadiusSqr * 0.75F)) {
 					this.strafingBackwards = false;
-				} else if (d0 < (double)(this.attackRadiusSqr * 0.25F)) {
+				} else if (d0 < (double) (this.attackRadiusSqr * 0.25F)) {
 					this.strafingBackwards = true;
 				}
 
@@ -98,7 +98,7 @@ public class RangedLasergunAttackGoal<T extends MonsterEntity & IRangedAttackMob
 				} else if (flag) {
 					int i = this.mob.getTicksUsingItem();
 					Item item = this.mob.getMainHandItem().getItem();
-					if (i >= ((GunItem)item).requiredChargeTime) {
+					if (i >= ((GunItem) item).requiredChargeTime) {
 						this.mob.stopUsingItem();
 						this.mob.performRangedAttack(livingentity, BowItem.getPowerForTime(i));
 						this.attackTime = this.attackIntervalMin;

@@ -12,14 +12,14 @@ import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 
-public class JimRenderer extends BipedRenderer<JimEntity, BipedModel<JimEntity>>{
+public class JimRenderer extends BipedRenderer<JimEntity, BipedModel<JimEntity>> {
 
 	public JimRenderer(EntityRendererManager erm, BipedModel<JimEntity> model, float v) {
 		super(erm, model, v);
-      this.addLayer(new BipedArmorLayer<>(this, new BipedModel<>(0.5F), new BipedModel<>(1.0F)));
-      this.addLayer(new HeldItemLayer<>(this));
-      this.addLayer(new HeadLayer<>(this));
-      this.addLayer(new ElytraLayer<>(this));
+		this.addLayer(new BipedArmorLayer<>(this, new BipedModel<>(0.5F), new BipedModel<>(1.0F)));
+		this.addLayer(new HeldItemLayer<>(this));
+		this.addLayer(new HeadLayer<>(this));
+		this.addLayer(new ElytraLayer<>(this));
 	}
 
 	public JimRenderer(EntityRendererManager erm) {

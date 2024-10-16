@@ -49,11 +49,11 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 		this.variants = keys;
 		DispenserBlock.registerBehavior(this, new DefaultDispenseItemBehavior() {
 			public ItemStack execute(IBlockSource dispenser, ItemStack spawnerStack) {
-				Direction direction = (Direction)dispenser.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = (Direction) dispenser.getBlockState().getValue(DispenserBlock.FACING);
 				EntityType<?> entitytype = DMAEntities.getEntityTypeFromString(entityType);
-				Entity e = entitytype.spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity)null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
+				Entity e = entitytype.spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity) null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
 				if (e instanceof DalekEntity) {
-					((DalekEntity)e).setID((String)keys.get(e.level.random.nextInt(keys.size())));
+					((DalekEntity) e).setID((String) keys.get(e.level.random.nextInt(keys.size())));
 					System.out.println("askdhalkjsdhaljshds");
 				}
 
@@ -84,7 +84,7 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			if (block == Blocks.SPAWNER) {
 				TileEntity tileentity = world.getBlockEntity(blockpos);
 				if (tileentity instanceof MobSpawnerTileEntity) {
-					AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawner();
+					AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawner();
 					EntityType<?> entitytype1 = DMAEntities.getEntityTypeFromString(this.entityType);
 					abstractspawner.setEntityId(entitytype1);
 					tileentity.setChanged();
@@ -102,11 +102,11 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			}
 
 			EntityType<?> entitytype = DMAEntities.getEntityTypeFromString(this.entityType);
-			Entity entity = entitytype.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+			Entity entity = entitytype.spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
 			itemstack.shrink(1);
 			if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
-				String variant = (String)this.variants.get((new Random()).nextInt(this.variants.size()));
-				((IEntityVariant)entity).setID(variant);
+				String variant = (String) this.variants.get((new Random()).nextInt(this.variants.size()));
+				((IEntityVariant) entity).setID(variant);
 			}
 
 			return ActionResultType.SUCCESS;
@@ -121,14 +121,14 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 		} else if (worldIn.isClientSide) {
 			return ActionResult.success(itemstack);
 		} else {
-			BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult)raytraceresult;
+			BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceresult;
 			BlockPos blockpos = blockraytraceresult.getBlockPos();
 			if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
 				return ActionResult.pass(itemstack);
 			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockraytraceresult.getDirection(), itemstack)) {
 				EntityType<?> entitytype = DMAEntities.getEntityTypeFromString(this.entityType);
 				Entity entity;
-				if ((entity = entitytype.spawn((ServerWorld)worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
+				if ((entity = entitytype.spawn((ServerWorld) worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
 					return ActionResult.pass(itemstack);
 				} else {
 					if (!playerIn.abilities.instabuild) {
@@ -137,8 +137,8 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 
 					itemstack.shrink(1);
 					if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
-						String variant = (String)this.variants.get((new Random()).nextInt(this.variants.size()));
-						((IEntityVariant)entity).setID(variant);
+						String variant = (String) this.variants.get((new Random()).nextInt(this.variants.size()));
+						((IEntityVariant) entity).setID(variant);
 					}
 
 					playerIn.awardStat(Stats.ITEM_USED.get(this));

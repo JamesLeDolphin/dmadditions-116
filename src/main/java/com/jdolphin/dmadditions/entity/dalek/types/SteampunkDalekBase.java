@@ -11,6 +11,7 @@ public class SteampunkDalekBase extends DalekBase {
 	public SteampunkDalekBase(String dalekName) {
 		super(dalekName);
 	}
+
 	public float getMaxHealth() {
 		return 15.0F;
 	}
@@ -18,9 +19,11 @@ public class SteampunkDalekBase extends DalekBase {
 	public DMProjectiles.Laser getLaser(DalekEntity dalek) {
 		return DMProjectiles.SMOKE;
 	}
+
 	public SoundEvent getAttackSound(Entity e) {
-	return DMSoundEvents.ENTITY_DALEK_MOLTEN_ATTACK.get();
+		return DMSoundEvents.ENTITY_DALEK_MOLTEN_ATTACK.get();
 	}
+
 	public SoundEvent getShootSound(Entity e) {
 		return DMSoundEvents.ENTITY_DALEK_GUNSTICK_SHOOT.get();
 	}

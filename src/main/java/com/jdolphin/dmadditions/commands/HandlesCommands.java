@@ -24,22 +24,22 @@ import java.util.regex.Pattern;
 public class HandlesCommands {
 	protected static HashSet<HandlesCommand> commands = new HashSet<>();
 
-	public static HandlesCommand get(String query){
+	public static HandlesCommand get(String query) {
 		Optional<HandlesCommand> optionalCommand = commands.stream().filter(c -> c.matches(query)).findFirst();
 		return optionalCommand.orElse(null);
 	}
 
 
 	public static HandlesCommand NEAREST_PLAYER = HandlesCommand.create("(.*)((near|close)(\\b|e?st|by) (player|people)s?|(player|people)s? (near|close)(\\b| to) me)\\??",
-					   (player, handles, matcher, query) -> {
-		PlayerEntity closestPlayer = player.level.getNearestPlayer(EntityPredicate.DEFAULT, player);
-		if (closestPlayer != null) {
-			ITextComponent n = closestPlayer.getName();
-			sendHandlesMessage(player, handles, String.format("%s is the closest player to you", n.getString()));
-		} else
-			sendHandlesMessage(player, handles, "I am unable to find anyone near you");
-		return true;
-	});
+		(player, handles, matcher, query) -> {
+			PlayerEntity closestPlayer = player.level.getNearestPlayer(EntityPredicate.DEFAULT, player);
+			if (closestPlayer != null) {
+				ITextComponent n = closestPlayer.getName();
+				sendHandlesMessage(player, handles, String.format("%s is the closest player to you", n.getString()));
+			} else
+				sendHandlesMessage(player, handles, "I am unable to find anyone near you");
+			return true;
+		});
 
 	public static HandlesCommand LOCATE_TARDIS = HandlesCommand.create("(locate|find|where|wher).*(tardis|tardus|ship)\\??", (player, handles, matcher, query) -> {
 		if (player.getServer() != null) {
@@ -60,24 +60,24 @@ public class HandlesCommands {
 
 	public static HandlesCommand TARDIS_DISGUISE = HandlesCommand.create("(whats|wuh|what|wah).*(tardis|tardus|ship)\\??", (player, handles, matcher, query) -> {
 		if (player.getServer() != null) {
-		List<Integer> ids = DMTardis.getUserTardises(player.getServer(), player.getUUID()).getTardises();
-		if (!ids.isEmpty()) {
-			for (int id : ids) {
-				int tardis = DMTardis.getTardis(id).getGlobalID();
-				TardisData data = DMTardis.getTardis(tardis);
-				Tardis ext = data.getTardisExterior();
-				sendHandlesMessage(player, handles, String.format("Your TARDIS (%s) is disguised as %s", id, ext.getRegName()));
+			List<Integer> ids = DMTardis.getUserTardises(player.getServer(), player.getUUID()).getTardises();
+			if (!ids.isEmpty()) {
+				for (int id : ids) {
+					int tardis = DMTardis.getTardis(id).getGlobalID();
+					TardisData data = DMTardis.getTardis(tardis);
+					Tardis ext = data.getTardisExterior();
+					sendHandlesMessage(player, handles, String.format("Your TARDIS (%s) is disguised as %s", id, ext.getRegName()));
+				}
+			} else {
+				sendHandlesMessage(player, handles, "Unable to find your TARDIS");
+				return false;
 			}
-		} else {
-			sendHandlesMessage(player, handles, "Unable to find your TARDIS");
-			return false;
 		}
-	}
 		return true;
 	});
 
 	public static HandlesCommand ECHO = HandlesCommand.create("(echo|say) (.+)", (player, handles, matcher, query) -> {
-		if(matcher.find()){
+		if (matcher.find()) {
 			String e = matcher.group(2);
 			sendHandlesMessage(player, handles, e);
 		}
@@ -108,8 +108,7 @@ public class HandlesCommands {
 	});
 
 
-
-	public static void sendHandlesMessage(PlayerEntity player, ItemStack itemStack, String message){
+	public static void sendHandlesMessage(PlayerEntity player, ItemStack itemStack, String message) {
 		IFormattableTextComponent handlesText = new StringTextComponent("<").append(itemStack.getHoverName()).append("> ").withStyle(TextFormatting.AQUA);
 		IFormattableTextComponent messageText = new StringTextComponent(message).withStyle(TextFormatting.RESET);
 
@@ -125,25 +124,26 @@ public class HandlesCommands {
 			this.function = function;
 		}
 
-		public static HandlesCommand create(Pattern pattern, HandlesCommandFunction function){
+		public static HandlesCommand create(Pattern pattern, HandlesCommandFunction function) {
 			HandlesCommand command = new HandlesCommand(pattern, function);
 			commands.add(command);
 			return command;
 		}
-		public static HandlesCommand create(String pattern, HandlesCommandFunction function){
+
+		public static HandlesCommand create(String pattern, HandlesCommandFunction function) {
 			return create(Pattern.compile(pattern, Pattern.CASE_INSENSITIVE), function);
 		}
 
-		public Pattern getPattern(){
+		public Pattern getPattern() {
 			return pattern;
 		}
 
-		public boolean matches(String query){
+		public boolean matches(String query) {
 			Matcher matcher = this.pattern.matcher(query);
 			return matcher.matches();
 		}
 
-		public boolean execute(ItemStack itemStack, PlayerEntity player, String query){
+		public boolean execute(ItemStack itemStack, PlayerEntity player, String query) {
 			return function.execute(player, itemStack, pattern.matcher(query), query);
 		}
 

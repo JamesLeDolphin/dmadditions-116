@@ -1,21 +1,11 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
-import java.util.Arrays;
-
-import javax.annotation.Nonnull;
-
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
-
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +14,9 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 
 public class MondasianEntity extends MonsterEntity {
@@ -74,7 +67,7 @@ public class MondasianEntity extends MonsterEntity {
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MonsterEntity.createMobAttributes()
 			.add(Attributes.MAX_HEALTH, 16.0D)
-			.add(Attributes.MOVEMENT_SPEED, (double)0.35F)
+			.add(Attributes.MOVEMENT_SPEED, (double) 0.35F)
 			.add(Attributes.ATTACK_DAMAGE, 5.0D)
 			.add(Attributes.FOLLOW_RANGE, 20.0);
 
@@ -91,6 +84,7 @@ public class MondasianEntity extends MonsterEntity {
 		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
 		this.targetSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true));
 	}
+
 	public enum MondasianType {
 		BLONDE("blonde"),
 		COP("cop"),

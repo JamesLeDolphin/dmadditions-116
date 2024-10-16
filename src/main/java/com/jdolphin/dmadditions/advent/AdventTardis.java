@@ -6,7 +6,7 @@ public enum AdventTardis {
 	public final String name;
 	public final int date;
 
-	AdventTardis(String name, int date){
+	AdventTardis(String name, int date) {
 		this.name = name;
 		this.date = date;
 	}

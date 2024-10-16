@@ -46,11 +46,11 @@ public class CommandSit {
 				world.addFreshEntity(armorStand);
 				player.startRiding(armorStand, true);
 				player.sendMessage(new StringTextComponent("You have sat down.").withStyle(TextFormatting.GREEN),
-						player.getUUID());
+					player.getUUID());
 
 				// Find and kill unoccupied chairs
 				List<ArmorStandEntity> chairs = world.getEntitiesOfClass(ArmorStandEntity.class,
-						armorStand.getBoundingBox().inflate(1.0));
+					armorStand.getBoundingBox().inflate(1.0));
 				for (ArmorStandEntity chair : chairs) {
 					if (chair.getPersistentData().contains("Tags")) {
 						CompoundNBT chairTags = chair.getPersistentData().getCompound("Tags");

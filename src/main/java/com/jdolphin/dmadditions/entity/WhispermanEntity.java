@@ -17,7 +17,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.world.World;
 
-public class WhispermanEntity extends MonsterEntity{
+public class WhispermanEntity extends MonsterEntity {
 
 	public WhispermanEntity(EntityType<? extends MonsterEntity> type, World world) {
 		super(type, world);
@@ -26,7 +26,7 @@ public class WhispermanEntity extends MonsterEntity{
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MonsterEntity.createMonsterAttributes()
 			.add(Attributes.FOLLOW_RANGE, 35.0D)
-			.add(Attributes.MOVEMENT_SPEED, (double)0.13F)
+			.add(Attributes.MOVEMENT_SPEED, (double) 0.13F)
 			.add(Attributes.ATTACK_DAMAGE, 15.0D)
 			.add(Attributes.ARMOR, 2.0D)
 			.add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
@@ -49,7 +49,7 @@ public class WhispermanEntity extends MonsterEntity{
 		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TurtleEntity.class, 10, true, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
 	}
 
-	static class WhispermanAttackGoal extends MeleeAttackGoal{
+	static class WhispermanAttackGoal extends MeleeAttackGoal {
 		public WhispermanAttackGoal(CreatureEntity entity, double speedModifier, boolean followEvenIfNotSeen) {
 			super(entity, speedModifier, followEvenIfNotSeen);
 		}
@@ -62,7 +62,7 @@ public class WhispermanEntity extends MonsterEntity{
 		public void stop() {
 			LivingEntity livingentity = this.mob.getTarget();
 			if (!EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
-				this.mob.setTarget((LivingEntity)null);
+				this.mob.setTarget((LivingEntity) null);
 				this.mob.setAggressive(false);
 			}
 
@@ -73,23 +73,23 @@ public class WhispermanEntity extends MonsterEntity{
 		@Override
 		public void tick() {
 			super.tick();
-			if(!this.canContinueToUse()){
-				this.mob.setAggressive(false);
-			}
-		}
-		
-		protected void checkAndPerformAttack(LivingEntity livingEntity, double v) {
-			double d0 = this.getAttackReachSqr(livingEntity);
-			if(v <= d0){
-				this.resetAttackCooldown();
-				// this.mob.swing(Hand.MAIN_HAND);
-				this.mob.doHurtTarget(livingEntity);
-			}else if(!this.canContinueToUse()){
+			if (!this.canContinueToUse()) {
 				this.mob.setAggressive(false);
 			}
 		}
 
-		public boolean canContinueToUse(LivingEntity entity){
+		protected void checkAndPerformAttack(LivingEntity livingEntity, double v) {
+			double d0 = this.getAttackReachSqr(livingEntity);
+			if (v <= d0) {
+				this.resetAttackCooldown();
+				// this.mob.swing(Hand.MAIN_HAND);
+				this.mob.doHurtTarget(livingEntity);
+			} else if (!this.canContinueToUse()) {
+				this.mob.setAggressive(false);
+			}
+		}
+
+		public boolean canContinueToUse(LivingEntity entity) {
 			LivingEntity livingentity = this.mob.getTarget();
 			if (livingentity == null) {
 				return false;
@@ -100,7 +100,7 @@ public class WhispermanEntity extends MonsterEntity{
 			} else if (!this.mob.isWithinRestriction(livingentity.blockPosition())) {
 				return false;
 			} else {
-				return !(livingentity instanceof PlayerEntity) || !livingentity.isSpectator() && !((PlayerEntity)livingentity).isCreative();
+				return !(livingentity instanceof PlayerEntity) || !livingentity.isSpectator() && !((PlayerEntity) livingentity).isCreative();
 			}
 		}
 

@@ -27,7 +27,7 @@ public class BaubleBlockItem extends BlockItem {
 	public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 		ItemStack itemstack = playerEntity.getItemInHand(hand);
 		world.playSound((PlayerEntity) null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
-				SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+			SoundEvents.SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		if (!world.isClientSide) {
 			BaubleEntity baubleEntity = new BaubleEntity(world, playerEntity);
 			baubleEntity.setItem(itemstack);

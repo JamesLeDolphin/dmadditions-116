@@ -10,7 +10,7 @@ import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.HandSide;
 
-public class WhispermanModel extends BipedModel<WhispermanEntity> implements IModelPartReloader{
+public class WhispermanModel extends BipedModel<WhispermanEntity> implements IModelPartReloader {
 
 	private JSONModel model;
 
@@ -19,7 +19,7 @@ public class WhispermanModel extends BipedModel<WhispermanEntity> implements IMo
 		ModelReloaderRegistry.register(this);
 	}
 
-	public WhispermanModel(){
+	public WhispermanModel() {
 		this(1f);
 	}
 
@@ -47,7 +47,7 @@ public class WhispermanModel extends BipedModel<WhispermanEntity> implements IMo
 	protected void setupAttackAnimation(WhispermanEntity entity, float jeffery) {
 		super.setupAttackAnimation(entity, jeffery);
 
-		if(entity.isAggressive()){
+		if (entity.isAggressive()) {
 			this.getArm(entity.isLeftHanded() ? HandSide.LEFT : HandSide.RIGHT).xRot = -1.5f;
 		}
 	}

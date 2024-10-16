@@ -30,6 +30,7 @@ public class ElixirOfLifeItem extends Item {
 				stack.shrink(1);
 				return ActionResult.consume(stack);
 			}
-		} return ActionResult.pass(stack);
+		}
+		return ActionResult.pass(stack);
 	}
 }

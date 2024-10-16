@@ -13,6 +13,7 @@ public enum VortexType {
 	NONE("custom");
 
 	public Vortex vortex;
+
 	VortexType(String name) {
 		vortex = new Vortex(name);
 	}

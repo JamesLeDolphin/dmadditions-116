@@ -22,11 +22,13 @@ public class TimeKeeperConsole extends RotatableTileEntityBase.WaterLoggable {
 	public static List<CoordPanelBlock.CoordPanelButtons> buttons;
 	public Supplier<TileEntity> tileEntitySupplier;
 	private Boolean didPressButton = false;
+
 	public BlockRenderType getRenderShape(BlockState blockState) {
 		return BlockRenderType.MODEL;
 
 
 	}
+
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(new Property[]{BUTTON_PRESSED});

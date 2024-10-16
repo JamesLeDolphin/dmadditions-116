@@ -21,7 +21,7 @@ public class TeleportCommand {
 		LiteralArgumentBuilder<CommandSource> tp = Commands.literal("dmadevtp")
 			.then(Commands.argument("player", EntityArgument.players())
 				.then(Commands.argument("location", Vec3Argument.vec3())
-					.executes(context -> teleport(context, Vec3Argument.getCoordinates(context,"location").getBlockPos(context.getSource()), EntityArgument.getPlayer(context, "player")))));
+					.executes(context -> teleport(context, Vec3Argument.getCoordinates(context, "location").getBlockPos(context.getSource()), EntityArgument.getPlayer(context, "player")))));
 		DMACommands.register(dispatcher, tp);
 	}
 

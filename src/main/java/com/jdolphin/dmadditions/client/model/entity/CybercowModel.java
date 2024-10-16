@@ -1,14 +1,12 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
-import org.jetbrains.annotations.NotNull;
-
 import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class CybercowModel extends QuadrupedModel<CyberCowEntity> {
 	private final ModelRenderer body;
@@ -56,7 +54,7 @@ public class CybercowModel extends QuadrupedModel<CyberCowEntity> {
 	}
 
 	@Override
-	public void renderToBuffer(@NotNull MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(@NotNull MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg0.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);

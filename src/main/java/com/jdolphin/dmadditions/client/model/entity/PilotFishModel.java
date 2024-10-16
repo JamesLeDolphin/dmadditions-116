@@ -61,14 +61,14 @@ public class PilotFishModel extends BipedModel<PilotFishEntity> implements IMode
 		super.setupAnim(pilotFishEntity, v, v1, v2, v3, v4);
 
 		if (pilotFishEntity.isUsingItem()) {
-			float f = MathHelper.sin(this.attackTime * (float)Math.PI);
-			float f1 = MathHelper.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float)Math.PI);
+			float f = MathHelper.sin(this.attackTime * (float) Math.PI);
+			float f1 = MathHelper.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float) Math.PI);
 			this.rightArm.zRot = 0.0F;
 			this.leftArm.zRot = 0.0F;
 			this.rightArm.yRot = -(0.1F - f * 0.6F);
 			this.leftArm.yRot = 0.1F - f * 0.6F;
-			this.rightArm.xRot = (-(float)Math.PI / 2F);
-			this.leftArm.xRot = (-(float)Math.PI / 2F);
+			this.rightArm.xRot = (-(float) Math.PI / 2F);
+			this.leftArm.xRot = (-(float) Math.PI / 2F);
 			this.rightArm.xRot -= f * 1.2F - f1 * 0.4F;
 			this.leftArm.xRot -= f * 1.2F - f1 * 0.4F;
 			ModelHelper.bobArms(this.rightArm, this.leftArm, v2);

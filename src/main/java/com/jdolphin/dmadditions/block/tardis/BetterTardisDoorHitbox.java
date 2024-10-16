@@ -61,12 +61,12 @@ public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context){
-			BlockState blockstate = this.defaultBlockState().getBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
+		BlockState blockstate = this.defaultBlockState().getBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 
-			if (blockstate.canSurvive(context.getLevel(), context.getClickedPos())) {
-				return blockstate;
-			}
+		if (blockstate.canSurvive(context.getLevel(), context.getClickedPos())) {
+			return blockstate;
+		}
 		return this.defaultBlockState();
 	}
 

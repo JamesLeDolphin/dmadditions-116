@@ -27,6 +27,7 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 		super(dispatcher);
 		ModelReloaderRegistry.register(this);
 	}
+
 	@Override
 	public JSONModel getModel() {
 		return SCREEN_MODEL;
@@ -51,7 +52,7 @@ public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSe
 			matrixStack.translate(0.0D, 0.12600000202655792D, -0.3100000023841858D);
 			matrixStack.scale(0.4F, 0.5F, 0.4F);
 
-			switch(face){
+			switch (face) {
 				case CEILING:
 					matrixStack.translate(0, 1.49, 0);
 

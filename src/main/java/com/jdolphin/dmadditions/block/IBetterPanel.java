@@ -68,7 +68,7 @@ public interface IBetterPanel extends IHorizontalFaceBlock, IBetterBlockTooltip 
 		return getShape(state, worldIn, pos, context);
 	}
 
-	default BlockState getStateForPlacement(BlockItemUseContext context, BlockState defaultBlockState){
+	default BlockState getStateForPlacement(BlockItemUseContext context, BlockState defaultBlockState) {
 		for (Direction direction : context.getNearestLookingDirections()) {
 			BlockState blockstate;
 			if (direction.getAxis() == Direction.Axis.Y) {

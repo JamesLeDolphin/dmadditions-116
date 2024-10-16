@@ -28,7 +28,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	private int currentRegens;
 
 	public PlayerRegenCapability(PlayerEntity player) {
-	this.player = player;
+		this.player = player;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 		if (postponed()) {
 			postponeTime--;
 		}
-		if (!this.player.isSpectator() && !player.isCreative());
+		if (!this.player.isSpectator() && !player.isCreative()) ;
 
 		if (isPreRegen()) preRegenTime--;
 		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
@@ -70,8 +70,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 				ChatUtil.MessageType.CHAT);
 			this.postponeTime = Helper.minutes(5);
 			this.canPostpone = false;
-		}
-		else {
+		} else {
 			this.postponeTime = 0;
 			this.canPostpone = true;
 		}

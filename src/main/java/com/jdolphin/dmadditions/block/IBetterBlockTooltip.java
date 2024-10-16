@@ -14,23 +14,23 @@ import org.jetbrains.annotations.Nullable;
 public interface IBetterBlockTooltip extends IBlockTooltip {
 
 	@Override
-	default ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity){
+	default ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
 		String key = getTooltipTranslationKey(blockState, blockPos, vector3d, playerEntity);
-		if(key == null) return blockState.getBlock().getName();
+		if (key == null) return blockState.getBlock().getName();
 
 		return getName(blockState.getBlock(), key);
 	}
 
-	static ITextComponent getName(Block block, @Nullable String key){
+	static ITextComponent getName(Block block, @Nullable String key) {
 		ResourceLocation resourceLocation = block.getRegistryName();
-		if(key == null) return block.getName();
+		if (key == null) return block.getName();
 
 		assert resourceLocation != null;
 		return new TranslationTextComponent(String.format("tooltip.block.%s.%s.%s", resourceLocation.getNamespace(), resourceLocation.getPath(), key));
 	}
 
 	// TODO: rename this method
-	default String getTooltipTranslationKey(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity){
+	default String getTooltipTranslationKey(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
 		return null;
 	}
 }

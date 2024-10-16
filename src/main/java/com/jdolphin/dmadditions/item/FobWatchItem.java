@@ -89,7 +89,7 @@ public class FobWatchItem extends Item {
 	public void addRegen(ItemStack stack, int i) {
 		CompoundNBT tag = stack.getOrCreateTag();
 		int j = tag.contains(REGEN_TAG) ? tag.getInt(REGEN_TAG) : 0;
-		tag.putInt(REGEN_TAG, MathHelper.clamp(0, j + i ,12));
+		tag.putInt(REGEN_TAG, MathHelper.clamp(0, j + i, 12));
 	}
 
 	public boolean showDurabilityBar(ItemStack stack) {
@@ -114,6 +114,6 @@ public class FobWatchItem extends Item {
 
 
 	public int getRGBDurabilityForDisplay(ItemStack stack) {
-		return new Color(255,215,0).getRGB();
+		return new Color(255, 215, 0).getRGB();
 	}
 }

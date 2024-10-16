@@ -29,7 +29,8 @@ public abstract class RenderBlockTardisMixin {
 	@Unique
 	private static ResourceLocation FORCEFIELD = Helper.createAdditionsRL("textures/forcefield.png");
 
-	@Unique private static CubeModel cube;
+	@Unique
+	private static CubeModel cube;
 
 	@Inject(at = @At("TAIL"), method = "render(Lcom/swdteam/common/tileentity/DMTileEntityBase;FLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;II)V", cancellable = true, remap = false)
 	public void render(DMTileEntityBase base, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer,
@@ -53,4 +54,5 @@ public abstract class RenderBlockTardisMixin {
 				renderTardis(ivertexbuilder, tardisData, data, matrixStack, iRenderTypeBuffer, tardis, partialTicks, combinedLightIn, combinedOverlayIn, tardis.pulses, true);
 			}
 		}
-	}}
+	}
+}

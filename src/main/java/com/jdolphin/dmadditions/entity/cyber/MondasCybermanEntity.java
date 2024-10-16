@@ -1,11 +1,5 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
-import java.util.EnumSet;
-import java.util.Objects;
-import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
-
 import com.jdolphin.dmadditions.init.DMADamageSources;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
@@ -13,20 +7,13 @@ import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.MoveTowardsTargetGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,6 +28,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 public class MondasCybermanEntity extends MonsterEntity {
 	private static final DataParameter<Integer> DATA_ID_ATTACK_TARGET = EntityDataManager.defineId(MondasCybermanEntity.class, DataSerializers.INT);
@@ -124,7 +116,7 @@ public class MondasCybermanEntity extends MonsterEntity {
 						d2 = d2 / d3;
 						double d4 = this.random.nextDouble();
 
-						while(d4 < d3) {
+						while (d4 < d3) {
 							d4 += this.random.nextDouble() * 1.7D;
 							this.level.addParticle(ParticleTypes.FLAME, this.getX() + d0 * d4, this.getEyeY() + 0.5 + d1 * d4, this.getZ() + d2 * d4, 0.0D, 0.0D, 0.0D);
 						}
@@ -238,7 +230,7 @@ public class MondasCybermanEntity extends MonsterEntity {
 			} else {
 				Entity entity = this.level.getEntity(this.entityData.get(DATA_ID_ATTACK_TARGET));
 				if (entity instanceof LivingEntity) {
-					this.clientSideCachedAttackTarget = (LivingEntity)entity;
+					this.clientSideCachedAttackTarget = (LivingEntity) entity;
 					return this.clientSideCachedAttackTarget;
 				} else {
 					return null;

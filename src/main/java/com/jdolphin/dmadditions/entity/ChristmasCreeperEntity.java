@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.Collection;
 
-public class ChristmasCreeperEntity extends CreeperEntity{
+public class ChristmasCreeperEntity extends CreeperEntity {
 	private static final DataParameter<Integer> DATA_SWELL_DIR = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.INT);
 	private static final DataParameter<Boolean> DATA_IS_POWERED = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> DATA_IS_IGNITED = EntityDataManager.defineId(CreeperEntity.class, DataSerializers.BOOLEAN);
@@ -78,9 +78,9 @@ public class ChristmasCreeperEntity extends CreeperEntity{
 			areaeffectcloudentity.setRadiusOnUse(-0.5F);
 			areaeffectcloudentity.setWaitTime(10);
 			areaeffectcloudentity.setDuration(areaeffectcloudentity.getDuration() / 2);
-			areaeffectcloudentity.setRadiusPerTick(-areaeffectcloudentity.getRadius() / (float)areaeffectcloudentity.getDuration());
+			areaeffectcloudentity.setRadiusPerTick(-areaeffectcloudentity.getRadius() / (float) areaeffectcloudentity.getDuration());
 
-			for(EffectInstance effectinstance : collection) {
+			for (EffectInstance effectinstance : collection) {
 				areaeffectcloudentity.addEffect(new EffectInstance(effectinstance));
 			}
 

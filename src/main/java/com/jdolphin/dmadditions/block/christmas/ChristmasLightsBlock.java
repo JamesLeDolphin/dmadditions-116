@@ -23,6 +23,7 @@ public class ChristmasLightsBlock extends HorizontalBlock {
 	VoxelShape NORTH_AABB = Block.box(0.0D, 0.0D, 13.0D, 16.0D, 16.0D, 16.0D);
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
 	public ChristmasLightsBlock(Properties properties) {
 		super(properties);
 	}
@@ -33,7 +34,7 @@ public class ChristmasLightsBlock extends HorizontalBlock {
 	}
 
 	public VoxelShape getShape(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, ISelectionContext iSelectionContext) {
-		switch((Direction)blockState.getValue(FACING)) {
+		switch ((Direction) blockState.getValue(FACING)) {
 			case NORTH:
 				return NORTH_AABB;
 			case SOUTH:
@@ -45,6 +46,7 @@ public class ChristmasLightsBlock extends HorizontalBlock {
 				return EAST_AABB;
 		}
 	}
+
 	@Nullable
 	public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
 		if (!blockItemUseContext.replacingClickedOnBlock()) {
@@ -58,7 +60,7 @@ public class ChristmasLightsBlock extends HorizontalBlock {
 		IWorldReader iworldreader = blockItemUseContext.getLevel();
 		BlockPos blockpos = blockItemUseContext.getClickedPos();
 
-		for(Direction direction : blockItemUseContext.getNearestLookingDirections()) {
+		for (Direction direction : blockItemUseContext.getNearestLookingDirections()) {
 			if (direction.getAxis().isHorizontal()) {
 				blockstate1 = blockstate1.setValue(FACING, direction.getOpposite());
 				if (blockstate1.canSurvive(iworldreader, blockpos)) {

@@ -36,7 +36,7 @@ public class DalekIDLootCondition implements ILootCondition {
 	@Override
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.getParamOrNull(this.entityTarget.getParam());
-		if(!(entity instanceof DalekEntity)) return false;
+		if (!(entity instanceof DalekEntity)) return false;
 
 		DalekEntity dalek = (DalekEntity) entity;
 		IDalek dalekData = dalek.getDalekData();

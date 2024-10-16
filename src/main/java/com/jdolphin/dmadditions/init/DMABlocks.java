@@ -59,7 +59,6 @@ public class DMABlocks {
 	}
 
 
-
 	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "blue_bauble");
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
@@ -69,7 +68,7 @@ public class DMABlocks {
 		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
-		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
+			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
 		"christmas_lights", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> CLOAKING_PANEL = registerBlock(() ->
@@ -89,54 +88,54 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerBlock(() ->
 		new ChristmasPresentBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
-				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
+			.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
-			() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
-			new Item.Properties().tab(DMTabs.DM_TARDIS));
+		() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
+		new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 	public static RegistryObject<Block> BLUE_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-	.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "blue_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "blue_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> GREEN_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "green_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "green_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> ORANGE_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "orange_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "orange_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> PINK_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "pink_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "pink_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> PURPLE_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "purple_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "purple_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> RED_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "red_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "red_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> YELLOW_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "yellow_candy_cane_block", DMTabs.DM_TARDIS);
+			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "yellow_candy_cane_block", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
-			.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
+		.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> WREATH = registerBlock(
-			() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
-			"wreath", ItemGroup.TAB_DECORATIONS);
+		() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
+		"wreath", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> TARDIS_SNOWGLOBE = registerBlock(
-			() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
-			"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
+		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
+		"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> RANDOMIZER = registerBlock(
-			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-			"randomizer", DMTabs.DM_TARDIS);
+		() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
+		"randomizer", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> COMBAT_PANEL = registerBlock(
 		() -> new CombatPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
@@ -144,11 +143,11 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
 
-		public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock(() -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
-		public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock(() -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock(() -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock(() -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> CHRISTMAS_TREE = registerBlock( () -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
-			.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> CHRISTMAS_TREE = registerBlock(() -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
+		.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> CHRISTMAS_CRACKER = registerBlock(() -> new ChristmasCrackerBlock(AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion().dynamicShape().noCollission().sound(SoundType.WOOL)), "christmas_cracker");
 
@@ -247,7 +246,7 @@ public class DMABlocks {
 	public static RegistryObject<Block> BROWN_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "brown_plastic_shape_roundel_container");
 	public static RegistryObject<Block> GREEN_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "green_plastic_shape_roundel_container");
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "red_plastic_shape_roundel_container");
-	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD,"black_plastic_shape_roundel_container");
+	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "black_plastic_shape_roundel_container");
 
 	public static RegistryObject<Block> ENGINE = registerBlock(() -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
 
@@ -261,9 +260,9 @@ public class DMABlocks {
 	}
 
 	@SafeVarargs
-	public static void registerRenderTypes(RenderType renderType, RegistryObject<Block> ...blocks){
-		for(RegistryObject<Block> block : blocks ){
-			if(block != null && block.isPresent()){
+	public static void registerRenderTypes(RenderType renderType, RegistryObject<Block>... blocks) {
+		for (RegistryObject<Block> block : blocks) {
+			if (block != null && block.isPresent()) {
 				registerRenderType(block.get(), renderType);
 			}
 		}
@@ -276,7 +275,7 @@ public class DMABlocks {
 		);
 
 		registerRenderTypes(RenderType.cutoutMipped(),
-				CHRISTMAS_CRACKER
+			CHRISTMAS_CRACKER
 		);
 
 		registerRenderTypes(RenderType.cutoutMipped(),
@@ -305,6 +304,7 @@ public class DMABlocks {
 		);
 
 	}
+
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name) {
 		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(SoundType.WOOD)),
 			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);

@@ -28,7 +28,7 @@ import net.minecraftforge.common.IForgeShearable;
 import java.util.Collections;
 import java.util.List;
 
-public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IForgeShearable{
+public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IForgeShearable {
 	private int engineRevTime = 0;
 
 	protected static final DataParameter<Boolean> DATA_ID_FLYABLE = EntityDataManager.defineId(ShoppingCartEntity.class, DataSerializers.BOOLEAN);
@@ -51,19 +51,19 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 	public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(Attributes.MOVEMENT_SPEED, 0.4)
-				.add(Attributes.MAX_HEALTH, 20.0)
-				.add(Attributes.ATTACK_DAMAGE, 2.0);
+			.add(Attributes.MOVEMENT_SPEED, 0.4)
+			.add(Attributes.MAX_HEALTH, 20.0)
+			.add(Attributes.ATTACK_DAMAGE, 2.0);
 	}
 
 	@Override
 	public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		if(level.isClientSide)
+		if (level.isClientSide)
 			return ActionResultType.PASS;
 
 		ItemStack itemstack = player.getItemInHand(hand);
 
-		if(itemstack.getItem().equals(DMABlocks.ENGINE.get().asItem()) && !this.hasEngine()){
+		if (itemstack.getItem().equals(DMABlocks.ENGINE.get().asItem()) && !this.hasEngine()) {
 			this.setHasEngine(true);
 			itemstack.shrink(1);
 			this.playSound(SoundEvents.ARMOR_EQUIP_CHAIN, 1, 1);
@@ -81,7 +81,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 	@Override
 	public List<ItemStack> onSheared(PlayerEntity player, ItemStack item, World world, BlockPos pos, int fortune) {
-		if(!this.hasEngine()) return Collections.emptyList();
+		if (!this.hasEngine()) return Collections.emptyList();
 
 		this.setHasEngine(false);
 
@@ -112,7 +112,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 		if (this.isAlive()) {
 
 			if (this.isVehicle() && this.canBeSteered()) {
-				if(hasEngine()) this.setEngineStarted(true);
+				if (hasEngine()) this.setEngineStarted(true);
 				else this.setEngineStarted(false);
 
 				LivingEntity livingentity = (LivingEntity) this.getControllingPassenger();
@@ -137,7 +137,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 				float f2 = MathHelper.sin(this.yRot * 0.017453292F);
 				float f3 = MathHelper.cos(this.yRot * 0.017453292F);
 
-				if(this.isFlyable()){
+				if (this.isFlyable()) {
 					this.setNoGravity(true);
 					if (f1 > 0.0F) {
 
@@ -148,9 +148,9 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 						this.setNoGravity(true);
 					}
 				} else {
-					if(f1 > 0.0F) {
+					if (f1 > 0.0F) {
 						this.setNoGravity(false);
-						if(this.isEngineStarted()){
+						if (this.isEngineStarted()) {
 							this.setDeltaMovement(this.getDeltaMovement().add(-0.2F * f2, 0, 0.2F * f3));
 
 							--this.engineRevTime;
@@ -167,7 +167,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 		}
 	}
 
-	public void playRevSound(float volume, float pitch){
+	public void playRevSound(float volume, float pitch) {
 		this.playSound(DMASoundEvents.V8_REVVING.get(), volume, pitch);
 	}
 
@@ -207,15 +207,15 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	@Override
 	public boolean hurt(DamageSource source, float v) {
 		Entity entity = source.getEntity();
-		if(entity instanceof PlayerEntity){
-			if(isEngineStarted()){
+		if (entity instanceof PlayerEntity) {
+			if (isEngineStarted()) {
 				this.setEngineStarted(false);
 				this.playSound(SoundEvents.ITEM_BREAK, 1, 1);
 				return false;
 			}
 
 			PlayerEntity player = (PlayerEntity) entity;
-			if(player.abilities.instabuild){
+			if (player.abilities.instabuild) {
 				this.remove();
 				return false;
 			}
@@ -244,7 +244,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 		this.setFlyable(tag.getBoolean("Flyable"));
 		this.setNoGravity(this.isFlyable());
 		this.setEngineStarted(tag.getBoolean("EngineStarted"));
-		if(tag.contains("HasEngine"))
+		if (tag.contains("HasEngine"))
 			this.setHasEngine(tag.getBoolean("HasEngine"));
 	}
 
@@ -257,29 +257,29 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 		tag.putBoolean("HasEngine", hasEngine());
 	}
 
-	public boolean hasEngine(){
+	public boolean hasEngine() {
 		return this.entityData.get(DATA_ID_HAS_ENGINE);
 	}
 
-	public void setHasEngine(boolean hasEngine){
+	public void setHasEngine(boolean hasEngine) {
 		this.entityData.set(DATA_ID_HAS_ENGINE, hasEngine);
-		if(!hasEngine)
+		if (!hasEngine)
 			this.setEngineStarted(false);
 	}
 
-	public boolean isEngineStarted(){
+	public boolean isEngineStarted() {
 		return this.entityData.get(DATA_ID_ENGINE_STARTED);
 	}
 
-	public void setEngineStarted(boolean isEngineStarted){
+	public void setEngineStarted(boolean isEngineStarted) {
 		this.entityData.set(DATA_ID_ENGINE_STARTED, isEngineStarted);
 	}
 
-	public boolean isFlyable(){
+	public boolean isFlyable() {
 		return this.entityData.get(DATA_ID_FLYABLE);
 	}
 
-	public void setFlyable(boolean isFlyable){
+	public void setFlyable(boolean isFlyable) {
 		this.entityData.set(DATA_ID_FLYABLE, isFlyable);
 	}
 
@@ -289,7 +289,7 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 		SoundHandler soundManager = Minecraft.getInstance().getSoundManager();
 
-		if(sound == null)
+		if (sound == null)
 			sound = new ShoppingCartTickableSound(this, DMASoundEvents.V8_IDLE.get());
 
 		if (!soundManager.isActive(sound)) {
@@ -301,16 +301,16 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 	public void clientTick() {
 		SoundHandler soundManager = Minecraft.getInstance().getSoundManager();
 
-		if(this.isEngineStarted() && (this.sound == null || this.sound.isStopped() || !soundManager.isActive(sound))){
+		if (this.isEngineStarted() && (this.sound == null || this.sound.isStopped() || !soundManager.isActive(sound))) {
 			this.playSound();
-		} else if(this.sound != null && this.sound.isStopped()){
+		} else if (this.sound != null && this.sound.isStopped()) {
 			sound = null;
 		}
 	}
 
 	@Override
 	public void tick() {
-		if(this.level.isClientSide()){
+		if (this.level.isClientSide()) {
 			clientTick();
 		}
 

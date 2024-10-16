@@ -43,7 +43,7 @@ public class SkyRendererGallifrey implements ISkyRenderHandler {
 		matrixStack.mulPose(new Quaternion(angle.x, angle.y, 0.0F, true));
 
 		Matrix4f matrix4f = matrixStack.last().pose();
-		for(int i = 0; i < 6; ++i) {
+		for (int i = 0; i < 6; ++i) {
 			matrixStack.pushPose();
 			if (i == 1) {
 				matrixStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
@@ -66,7 +66,7 @@ public class SkyRendererGallifrey implements ISkyRenderHandler {
 			}
 
 			float skyDepth = 10.0F;
-			skyDepth = skyDepth * (float)Minecraft.getInstance().options.renderDistance / 4.0F;
+			skyDepth = skyDepth * (float) Minecraft.getInstance().options.renderDistance / 4.0F;
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 			bufferbuilder.vertex(matrix4f, -skyDepth, -skyDepth, -skyDepth).uv(0.0F, 0.0F).color(255, 255, 255, 255).endVertex();
 			bufferbuilder.vertex(matrix4f, -skyDepth, -skyDepth, skyDepth).uv(0.0F, 2.0F).color(255, 255, 255, 255).endVertex();

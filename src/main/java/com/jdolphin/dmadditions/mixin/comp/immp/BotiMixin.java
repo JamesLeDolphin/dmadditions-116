@@ -130,12 +130,12 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 		Iterator<? extends Entity> var3;
 		if (this.level.getDayTime() % 20L == 0L) {
-			var3 = this.level.getEntitiesOfClass(RiftEntity.class, new AxisAlignedBB((double)(this.worldPosition.getX() - 16), (double)(this.worldPosition.getY() - 4), (double)(this.worldPosition.getZ() - 16), (double)(this.worldPosition.getX() + 16), (double)(this.worldPosition.getY() + 4), (double)(this.worldPosition.getZ() + 16)), Entity::isAlive).iterator();
+			var3 = this.level.getEntitiesOfClass(RiftEntity.class, new AxisAlignedBB((double) (this.worldPosition.getX() - 16), (double) (this.worldPosition.getY() - 4), (double) (this.worldPosition.getZ() - 16), (double) (this.worldPosition.getX() + 16), (double) (this.worldPosition.getY() + 4), (double) (this.worldPosition.getZ() + 16)), Entity::isAlive).iterator();
 
-			while(var3.hasNext()) {
-				RiftEntity rift = (RiftEntity)var3.next();
+			while (var3.hasNext()) {
+				RiftEntity rift = (RiftEntity) var3.next();
 				if (rift.getRiftData() != null) {
-					rift.getRiftData().tardisUseRiftTick((((TardisTileEntity) (Object) this)), (PlayerEntity)null, this.tardisData, rift);
+					rift.getRiftData().tardisUseRiftTick((((TardisTileEntity) (Object) this)), (PlayerEntity) null, this.tardisData, rift);
 				}
 			}
 		}
@@ -151,13 +151,13 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 				this.animStartTime += tickTime;
 			}
 
-			this.dematTime = (float)((double)(System.currentTimeMillis() - this.animStartTime) / 10000.0);
+			this.dematTime = (float) ((double) (System.currentTimeMillis() - this.animStartTime) / 10000.0);
 			if (this.dematTime >= 1.0F) {
 				this.dematTime = 1.0F;
 			}
 
 			if (this.dematTime == 1.0F) {
-				MinecraftForge.EVENT_BUS.post(new TardisEvent.DeMatFinish(this.tardisData, (PlayerEntity)null, this.level, false, (TardisFlightData)null, this.worldPosition));
+				MinecraftForge.EVENT_BUS.post(new TardisEvent.DeMatFinish(this.tardisData, (PlayerEntity) null, this.level, false, (TardisFlightData) null, this.worldPosition));
 				this.removeLight();
 				this.level.setBlockAndUpdate(this.getBlockPos(), Blocks.AIR.defaultBlockState());
 				this.animStartTime = 0L;
@@ -173,7 +173,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 			}
 
 			if (System.currentTimeMillis() - this.animStartTime > 9000L) {
-				this.dematTime = 1.0F - (float)((double)(System.currentTimeMillis() - (this.animStartTime + 9000L)) / 10000.0);
+				this.dematTime = 1.0F - (float) ((double) (System.currentTimeMillis() - (this.animStartTime + 9000L)) / 10000.0);
 			}
 
 			if (this.dematTime <= 0.0F) {
@@ -181,13 +181,13 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 			}
 
 			if (this.dematTime == 0.0F) {
-				MinecraftForge.EVENT_BUS.post(new TardisEvent.MatFinish(this.tardisData, (PlayerEntity)null, this.level, (TardisFlightData)null, this.worldPosition));
+				MinecraftForge.EVENT_BUS.post(new TardisEvent.MatFinish(this.tardisData, (PlayerEntity) null, this.level, (TardisFlightData) null, this.worldPosition));
 				this.tardisData = DMTardis.getTardis(this.globalID);
 				if (this.tardisData != null) {
 					var3 = this.level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(this.worldPosition)).iterator();
 
-					while(var3.hasNext()) {
-						LivingEntity livingEntity = (LivingEntity)var3.next();
+					while (var3.hasNext()) {
+						LivingEntity livingEntity = (LivingEntity) var3.next();
 						TeleportUtil.teleportPlayer(livingEntity, DMDimensions.TARDIS, new Vector3d(this.tardisData.getInteriorSpawnPosition().x(), this.tardisData.getInteriorSpawnPosition().y(), this.tardisData.getInteriorSpawnPosition().z()), 90.0F);
 					}
 				}

@@ -11,14 +11,15 @@ import net.minecraft.world.World;
 
 public class SonicMagpieTelevision implements DMSonicRegistry.ISonicInteraction {
 
-	public SonicMagpieTelevision() {}
+	public SonicMagpieTelevision() {
+	}
 
 	@Override
 	public void interact(World world, PlayerEntity playerEntity, ItemStack itemStack, Object o) {
 		if (o instanceof BlockPos) {
 			BlockPos p = (BlockPos) o;
 			BlockState state = world.getBlockState(p);
-			if(state.getBlock() instanceof MagpieTelevisionBlock) {
+			if (state.getBlock() instanceof MagpieTelevisionBlock) {
 				world.setBlockAndUpdate(p, state.cycle(MagpieTelevisionBlock.ON));
 			}
 		}

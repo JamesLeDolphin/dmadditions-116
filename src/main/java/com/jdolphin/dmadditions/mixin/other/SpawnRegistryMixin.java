@@ -30,9 +30,9 @@ public class SpawnRegistryMixin {
 	private static void addSpawnToAllBiomes(EntityType<?> type, int weight, int min, int max, EntityClassification entityType, CallbackInfo ci) {
 		if (!DMACommonConfig.disable_spawns.get()) {
 
-            for (Map.Entry<RegistryKey<Biome>, Biome> registryKeyBiomeEntry : ForgeRegistries.BIOMES.getEntries()) {
-                addSpawn(registryKeyBiomeEntry.getKey(), type, weight, min, max, entityType, ci);
-            }
+			for (Map.Entry<RegistryKey<Biome>, Biome> registryKeyBiomeEntry : ForgeRegistries.BIOMES.getEntries()) {
+				addSpawn(registryKeyBiomeEntry.getKey(), type, weight, min, max, entityType, ci);
+			}
 		}
 	}
 

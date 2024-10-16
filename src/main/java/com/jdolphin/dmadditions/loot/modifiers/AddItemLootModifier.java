@@ -44,7 +44,7 @@ public class AddItemLootModifier extends LootModifier {
 			Iterator<JsonElement> itemIterator = JSONUtils.getAsJsonArray(object, "items").iterator();
 			ArrayList<ItemStack> items = new ArrayList<>();
 
-			while(itemIterator.hasNext())
+			while (itemIterator.hasNext())
 				items.add(ShapedRecipe.itemFromJson((JsonObject) itemIterator.next()));
 
 			return new AddItemLootModifier(conditionsIn, items);
@@ -56,7 +56,7 @@ public class AddItemLootModifier extends LootModifier {
 			JsonObject jsonObject = new JsonObject();
 			JsonArray items = new JsonArray();
 
-			for(ItemStack item : instance.items)
+			for (ItemStack item : instance.items)
 				items.add(gson.toJson(item.serializeNBT()));
 
 			jsonObject.add("items", items);

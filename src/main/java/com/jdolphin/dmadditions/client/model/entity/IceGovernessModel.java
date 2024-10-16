@@ -11,7 +11,7 @@ import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 
-public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements IModelPartReloader{
+public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements IModelPartReloader {
 
 	private JSONModel model;
 
@@ -22,7 +22,7 @@ public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements
 
 	@Override
 	public void setupAnim(IceGovernessEntity iceGovernessEntity, float v, float v1, float v2,
-			float v3, float v4) {
+						  float v3, float v4) {
 		super.setupAnim(iceGovernessEntity, v, v1, v2, v3, v4);
 	}
 
@@ -47,9 +47,9 @@ public class IceGovernessModel extends BipedModel<IceGovernessEntity> implements
 
 	}
 
-	public ResourceLocation getTexture(){
+	public ResourceLocation getTexture() {
 		ModelInformation modelData = this.model.getModelData();
-		if(modelData == null) return null;
+		if (modelData == null) return null;
 		return modelData.getTexture();
 	}
 

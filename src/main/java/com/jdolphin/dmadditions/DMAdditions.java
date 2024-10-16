@@ -97,9 +97,11 @@ public class DMAdditions {
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");
 	}
+
 	public static boolean hasTC() {
 		return ModList.get().isLoaded("tconstruct");
 	}
+
 	public static boolean hasIMMP() {
 		return ModList.get().isLoaded("immersive_portals");
 	}
@@ -168,8 +170,10 @@ public class DMAdditions {
 		event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
 		event.put(DMAEntities.HEROBRINE.get(), HerobrineEntity.createAttributes().build());
 		event.put(DMAEntities.CYBERCOW.get(), CyberCowEntity.createAttributes().build());
-		if (DMAEntities.CLOCKWORK_DROID != null) event.put(DMAEntities.CLOCKWORK_DROID.get(), ClockworkDroidEntity.createAttributes().build());
-		if (DMAEntities.ICE_WARRIOR != null) event.put(DMAEntities.ICE_WARRIOR.get(), ClockworkDroidEntity.createAttributes().build());
+		if (DMAEntities.CLOCKWORK_DROID != null)
+			event.put(DMAEntities.CLOCKWORK_DROID.get(), ClockworkDroidEntity.createAttributes().build());
+		if (DMAEntities.ICE_WARRIOR != null)
+			event.put(DMAEntities.ICE_WARRIOR.get(), ClockworkDroidEntity.createAttributes().build());
 	}
 
 
@@ -328,17 +332,20 @@ public class DMAdditions {
 	public static boolean isValidForStructure(ResourceLocation biomeRegistryKey, StructureFeature<?, ?> structure) {
 		if (biomeRegistryKey != null) {
 			String registryKey = biomeRegistryKey.toString();
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR)) return registryKey.equals("minecraft:snowy_taiga");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
-				registryKey.equals("dmadditions:dead_forest");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR))
+				return registryKey.equals("minecraft:snowy_taiga");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS))
+				return registryKey.equals("dmadditions:mondas_frozen") ||
+					registryKey.equals("dmadditions:dead_forest");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND))
+				return registryKey.equals("minecraft:snowy_taiga");
 
 		}
 		return false;
-    }
+	}
 
 	@SubscribeEvent
-	public void addReloadListeners(AddReloadListenerEvent event){
+	public void addReloadListeners(AddReloadListenerEvent event) {
 		event.addListener(new JokeReloadListener(GSON, "cracker_jokes"));
 	}
 
@@ -380,6 +387,7 @@ public class DMAdditions {
 			}
 		}
 	}
+
 	@SubscribeEvent
 	public void missingBlocks(RegistryEvent.MissingMappings<Block> event) {
 		for (RegistryEvent.MissingMappings.Mapping<Block> blockMapping : event.getMappings("dalekmod")) {

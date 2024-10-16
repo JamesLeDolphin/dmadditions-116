@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 
-public class HerobrineRenderer extends BipedRenderer<HerobrineEntity, BipedModel<HerobrineEntity>>{
+public class HerobrineRenderer extends BipedRenderer<HerobrineEntity, BipedModel<HerobrineEntity>> {
 
 	public HerobrineRenderer(EntityRendererManager erm, BipedModel<HerobrineEntity> model, float v) {
 		super(erm, model, v);

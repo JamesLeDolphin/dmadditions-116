@@ -52,12 +52,12 @@ public class IceWarriorModel extends BipedModel<IceWarriorEntity> {
 	}
 
 	@Override
-	public void setupAnim(IceWarriorEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+	public void setupAnim(IceWarriorEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		//previously the render function, render code was moved to a method below
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		Head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		Body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		RightArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);

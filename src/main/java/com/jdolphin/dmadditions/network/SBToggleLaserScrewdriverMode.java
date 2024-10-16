@@ -12,39 +12,39 @@ import java.util.function.Supplier;
 
 public class SBToggleLaserScrewdriverMode {
 
-		public SBToggleLaserScrewdriverMode() {
-		}
+	public SBToggleLaserScrewdriverMode() {
+	}
 
-		public SBToggleLaserScrewdriverMode(PacketBuffer buf) {
-		}
+	public SBToggleLaserScrewdriverMode(PacketBuffer buf) {
+	}
 
-		public void encode(PacketBuffer buf) {
-		}
+	public void encode(PacketBuffer buf) {
+	}
 
-		public boolean handle(Supplier<NetworkEvent.Context> supplier) {
-			ServerPlayerEntity player = supplier.get().getSender();
-			assert player != null;
-			try {
-				ItemStack gun = player.getMainHandItem();
-				if (gun.getItem() instanceof LaserScrewdriverItem) {
-					LaserScrewdriverItem item = (LaserScrewdriverItem) gun.getItem();
-					item.toggleShootMode();
+	public boolean handle(Supplier<NetworkEvent.Context> supplier) {
+		ServerPlayerEntity player = supplier.get().getSender();
+		assert player != null;
+		try {
+			ItemStack gun = player.getMainHandItem();
+			if (gun.getItem() instanceof LaserScrewdriverItem) {
+				LaserScrewdriverItem item = (LaserScrewdriverItem) gun.getItem();
+				item.toggleShootMode();
 
-					if (item.shootMode()) {
-						ChatUtil.sendError(player,
-							new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.laser"),
-							ChatUtil.MessageType.STATUS_BAR);
-					} else {
-						ChatUtil.sendCompletedMsg(player,
-							new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.sonic"),
-							ChatUtil.MessageType.STATUS_BAR);
-					}
-
-					return true;
+				if (item.shootMode()) {
+					ChatUtil.sendError(player,
+						new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.laser"),
+						ChatUtil.MessageType.STATUS_BAR);
+				} else {
+					ChatUtil.sendCompletedMsg(player,
+						new TranslationTextComponent("item.dmadditions.laser_screwdriver.mode.sonic"),
+						ChatUtil.MessageType.STATUS_BAR);
 				}
-			} catch (Exception e) {
-				return false;
+
+				return true;
 			}
+		} catch (Exception e) {
 			return false;
 		}
+		return false;
+	}
 }

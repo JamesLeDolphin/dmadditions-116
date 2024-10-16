@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 
 public class TardisControlModel extends EntityModel<TardisControl> {
 	private final ModelRenderer bb_main;
+
 	public TardisControlModel() {
 		super(RenderType::entityTranslucent);
 		texWidth = 32;
@@ -25,7 +26,7 @@ public class TardisControlModel extends EntityModel<TardisControl> {
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		bb_main.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 }

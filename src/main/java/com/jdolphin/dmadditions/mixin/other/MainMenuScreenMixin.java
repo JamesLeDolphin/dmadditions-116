@@ -25,7 +25,8 @@ public abstract class MainMenuScreenMixin extends Screen {
 
 	@Mutable
 	@Shadow
-	@Final private static ResourceLocation PANORAMA_OVERLAY;
+	@Final
+	private static ResourceLocation PANORAMA_OVERLAY;
 
 	@Unique
 	private static void dmadditions_116$getBg(String name) {
@@ -44,6 +45,6 @@ public abstract class MainMenuScreenMixin extends Screen {
 		if (DMAClientConfig.dma_classic.get()) {
 			int i = new Random().nextInt(MenuBackGround.values().length);
 			dmadditions_116$getBg(MenuBackGround.values()[i].getName());
-    }
-  }
+		}
+	}
 }

@@ -28,6 +28,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+
 @SuppressWarnings({"deprecation"})
 public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock implements IBetterPanel {
 

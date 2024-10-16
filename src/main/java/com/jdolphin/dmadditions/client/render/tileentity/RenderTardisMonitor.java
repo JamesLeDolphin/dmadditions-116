@@ -27,10 +27,12 @@ import net.minecraft.world.LightType;
 
 public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEntity> implements IModelPartReloader {
 	public static JSONModel MODEL_SCANNER;
+
 	public RenderTardisMonitor(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
 		super(tileEntityRendererDispatcher);
 		ModelReloaderRegistry.register(this);
 	}
+
 	@Override
 	public JSONModel getModel() {
 		return MODEL_SCANNER;
@@ -82,9 +84,10 @@ public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEnt
 		}
 
 	}
+
 	//TODO: Fix this thingymabob
 	public void init() {
-			MODEL_SCANNER = ModelLoader.loadModel(Helper.createDMRL(
-				String.format("models/tileentity/%s.json"/*, registryName.getPath()*/)));
+		MODEL_SCANNER = ModelLoader.loadModel(Helper.createDMRL(
+			String.format("models/tileentity/%s.json"/*, registryName.getPath()*/)));
 	}
 }

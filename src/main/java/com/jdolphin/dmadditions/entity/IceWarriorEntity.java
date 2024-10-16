@@ -10,21 +10,17 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.HandSide;
 import net.minecraft.world.World;
+
 import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Function;
 
 public class IceWarriorEntity extends MonsterEntity {
-	public static final String TAG_ICEWARRIOR= "IcewarriorType";
+	public static final String TAG_ICEWARRIOR = "IcewarriorType";
 	public static final DataParameter<String> ICEWARRIOR_TYPE = EntityDataManager.defineId(IceWarriorEntity.class, DataSerializers.STRING);
 
 	public IceWarriorEntity(EntityType<IceWarriorEntity> type, World world) {

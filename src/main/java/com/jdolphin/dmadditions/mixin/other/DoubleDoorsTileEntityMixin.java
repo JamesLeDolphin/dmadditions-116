@@ -27,10 +27,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DoubleDoorsTileEntity.class)
-public abstract class DoubleDoorsTileEntityMixin extends DMTileEntityBase  {
+public abstract class DoubleDoorsTileEntityMixin extends DMTileEntityBase {
 
-	public DoubleDoorsTileEntityMixin(TileEntityType<?> type) { super(type); }
-	private DoubleDoorsTileEntity _this = ((DoubleDoorsTileEntity)(Object)this);
+	public DoubleDoorsTileEntityMixin(TileEntityType<?> type) {
+		super(type);
+	}
+
+	private DoubleDoorsTileEntity _this = ((DoubleDoorsTileEntity) (Object) this);
 
 	public boolean open = false;
 

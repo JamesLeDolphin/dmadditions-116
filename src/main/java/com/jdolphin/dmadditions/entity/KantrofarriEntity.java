@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 public class KantrofarriEntity extends MonsterEntity {
 
 	public static final DamageSource KANTROFFARI_ATTACK = new DamageSource("kantrofarri").bypassArmor();
+
 	public KantrofarriEntity(EntityType<? extends MonsterEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -25,7 +26,7 @@ public class KantrofarriEntity extends MonsterEntity {
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return MonsterEntity.createMonsterAttributes()
 			.add(Attributes.FOLLOW_RANGE, 4.0d)
-			.add(Attributes.MOVEMENT_SPEED, (double)0.3d)
+			.add(Attributes.MOVEMENT_SPEED, (double) 0.3d)
 			.add(Attributes.ATTACK_DAMAGE, 3d)
 			.add(Attributes.ARMOR, 2.0D)
 			.add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
@@ -46,7 +47,7 @@ public class KantrofarriEntity extends MonsterEntity {
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
 	}
 
-	static class KantrofarriAttackGoal extends MeleeAttackGoal{
+	static class KantrofarriAttackGoal extends MeleeAttackGoal {
 		public KantrofarriAttackGoal(CreatureEntity entity, double speedModifier, boolean followEvenIfNotSeen) {
 			super(entity, speedModifier, followEvenIfNotSeen);
 		}
@@ -59,7 +60,7 @@ public class KantrofarriEntity extends MonsterEntity {
 		public void stop() {
 			LivingEntity livingentity = this.mob.getTarget();
 			if (!EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
-				this.mob.setTarget((LivingEntity)null);
+				this.mob.setTarget((LivingEntity) null);
 				this.mob.setAggressive(false);
 			}
 
@@ -69,23 +70,23 @@ public class KantrofarriEntity extends MonsterEntity {
 		@Override
 		public void tick() {
 			super.tick();
-			if(!this.canContinueToUse()){
+			if (!this.canContinueToUse()) {
 				this.mob.setAggressive(false);
 			}
 		}
 
 		protected void checkAndPerformAttack(LivingEntity livingEntity, double v) {
 			double d0 = this.getAttackReachSqr(livingEntity);
-			if(v <= d0){
+			if (v <= d0) {
 				this.resetAttackCooldown();
 				// this.mob.swing(Hand.MAIN_HAND);
 				this.mob.doHurtTarget(livingEntity);
-			}else if(!this.canContinueToUse()){
+			} else if (!this.canContinueToUse()) {
 				this.mob.setAggressive(false);
 			}
 		}
 
-		public boolean canContinueToUse(LivingEntity entity){
+		public boolean canContinueToUse(LivingEntity entity) {
 			LivingEntity livingentity = this.mob.getTarget();
 			if (livingentity == null) {
 				return false;
@@ -96,7 +97,7 @@ public class KantrofarriEntity extends MonsterEntity {
 			} else if (!this.mob.isWithinRestriction(livingentity.blockPosition())) {
 				return false;
 			} else {
-				return !(livingentity instanceof PlayerEntity) || !livingentity.isSpectator() && !((PlayerEntity)livingentity).isCreative();
+				return !(livingentity instanceof PlayerEntity) || !livingentity.isSpectator() && !((PlayerEntity) livingentity).isCreative();
 			}
 		}
 

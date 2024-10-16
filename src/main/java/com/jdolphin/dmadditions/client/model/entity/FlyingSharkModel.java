@@ -61,10 +61,10 @@ public class FlyingSharkModel extends SegmentedModel<FlyingSharkEntity> implemen
 		this.head.yRot = netHeadYaw * ((float) Math.PI / 270F);
 
 		this.flyingShark.xRot = headPitch * ((float) Math.PI / 180F);
-		this.head.xRot = headPitch * ((float)Math.PI / 180F);
-		this.head.yRot = netHeadYaw * ((float)Math.PI / 270F);
+		this.head.xRot = headPitch * ((float) Math.PI / 180F);
+		this.head.yRot = netHeadYaw * ((float) Math.PI / 270F);
 
-		this.flyingShark.xRot = headPitch * ((float)Math.PI / 180F);
+		this.flyingShark.xRot = headPitch * ((float) Math.PI / 180F);
 		if (Entity.getHorizontalDistanceSqr(entity.getDeltaMovement()) > 1.0E-7D) {
 			this.flyingShark.xRot += -0.05F + -0.05F * MathHelper.cos(ageInTicks * 0.3F);
 			this.tail.xRot = -0.1F * MathHelper.cos(ageInTicks * 0.3F);

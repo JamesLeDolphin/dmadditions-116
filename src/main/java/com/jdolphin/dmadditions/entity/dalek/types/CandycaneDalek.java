@@ -11,18 +11,19 @@ public class CandycaneDalek extends DalekBase {
 	public CandycaneDalek(String dalekName) {
 		super(dalekName);
 	}
-		public float getMaxHealth() {
-			return 17.0F;
-		}
 
-		public DMProjectiles.Laser getLaser(DalekEntity dalek) {
-			return DMProjectiles.BLUE_LASER;
-		}
+	public float getMaxHealth() {
+		return 17.0F;
+	}
 
-		public SoundEvent getAttackSound(Entity e) {
-			return DMSoundEvents.ENTITY_DALEK_CLASSIC_ATTACK.get();
-		}
+	public DMProjectiles.Laser getLaser(DalekEntity dalek) {
+		return DMProjectiles.BLUE_LASER;
+	}
 
-		protected void aiStep() {
-		}
+	public SoundEvent getAttackSound(Entity e) {
+		return DMSoundEvents.ENTITY_DALEK_CLASSIC_ATTACK.get();
+	}
+
+	protected void aiStep() {
+	}
 }

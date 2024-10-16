@@ -66,7 +66,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos,
-			ISelectionContext iSelectionContext) {
+										ISelectionContext iSelectionContext) {
 
 		return this.getShape(blockState, iBlockReader, blockPos, iSelectionContext);
 	}
@@ -74,7 +74,8 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext selectionContext) {
 		Direction facing = state.getValue(FACING);
-		if(!state.getValue(FACE).equals(AttachFace.FLOOR)) return IBetterPanel.super.getShape(state, reader, pos, selectionContext);
+		if (!state.getValue(FACE).equals(AttachFace.FLOOR))
+			return IBetterPanel.super.getShape(state, reader, pos, selectionContext);
 
 		switch (facing) {
 			case NORTH:
@@ -100,7 +101,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	}
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
-			BlockRayTraceResult rayTraceResult) {
+								BlockRayTraceResult rayTraceResult) {
 		if (worldIn.isClientSide)
 			return ActionResultType.PASS;
 
@@ -119,8 +120,8 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 
 				Random rand = DMAdditions.RANDOM;
 				int xCoord = MathHelper.nextInt(rand, (int) Math.max(border.getMinX(), -i), (int) Math.min(border.getMaxX(), i));
-				int yCoord = MathHelper.nextInt(rand,5, level.getMaxBuildHeight());
-				int zCoord = MathHelper.nextInt(rand,(int) Math.max(border.getMinZ(), -i), (int) Math.min(border.getMaxZ(), i));
+				int yCoord = MathHelper.nextInt(rand, 5, level.getMaxBuildHeight());
+				int zCoord = MathHelper.nextInt(rand, (int) Math.max(border.getMinZ(), -i), (int) Math.min(border.getMaxZ(), i));
 
 
 				BlockPos newPos = new BlockPos(xCoord, yCoord, zCoord);
@@ -143,11 +144,12 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					Random rand = new Random();
 					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
-						if(!player.level.isClientSide() && tile.getLandTime() <= 0) {
+						if (!player.level.isClientSide() && tile.getLandTime() <= 0) {
 							int rad = 5 * tile.coordIncr;
 							BlockPos dest = tile.getDestinationPosition().offset(rad - rand.nextInt(rad * 2), 0, rad - rand.nextInt(rad * 2));
 							tile.setDestination(tile.getDestinationDimension(), dest);
-					}});
+						}
+					});
 				}
 			}
 

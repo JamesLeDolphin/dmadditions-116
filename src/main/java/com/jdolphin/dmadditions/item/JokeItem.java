@@ -19,52 +19,52 @@ public class JokeItem extends Item {
 		super(properties);
 	}
 
-	public JokeItem(){
+	public JokeItem() {
 		super(new Properties().stacksTo(1));
 	}
 
 	public static List<Joke> jokes = new ArrayList<Joke>();
 
-	public static Joke getJoke(ItemStack stack){
+	public static Joke getJoke(ItemStack stack) {
 		CompoundNBT compoundnbt = stack.getTagElement("joke");
-		if(compoundnbt != null && compoundnbt.contains("question") && compoundnbt.contains("answer")){
-			return new Joke (
+		if (compoundnbt != null && compoundnbt.contains("question") && compoundnbt.contains("answer")) {
+			return new Joke(
 				compoundnbt.getString("question"),
 				compoundnbt.getString("answer")
 			);
 		}
-		return new Joke (
+		return new Joke(
 			"Why did the customer refund their christmas crackers?",
 			"Because they didn't have any jokes."
 		);
 	}
 
-	public static void setJoke(ItemStack stack, String question, String answer){
+	public static void setJoke(ItemStack stack, String question, String answer) {
 		stack.getOrCreateTagElement("joke").putString("question", question);
 		stack.getTagElement("joke").putString("answer", answer);
 	}
 
-	public static void setJoke(ItemStack stack, Joke joke){
-		if(joke == null) return;
+	public static void setJoke(ItemStack stack, Joke joke) {
+		if (joke == null) return;
 
 		setJoke(stack, joke.question, joke.answer);
 	}
 
-	public static void setJoke(ItemStack stack, String[] joke){
+	public static void setJoke(ItemStack stack, String[] joke) {
 		setJoke(stack, joke[0], joke[1]);
 	}
 
-	public static Joke randomJoke(){
+	public static Joke randomJoke() {
 		int size = jokes.size();
 
-		if(size <= 0) return null;
+		if (size <= 0) return null;
 
 		return jokes.get(random.nextInt(size));
 	}
 
 	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-		if(world.isClientSide) {
+		if (world.isClientSide) {
 			Joke joke = getJoke(player.getItemInHand(hand));
 			StringTextComponent text = new StringTextComponent(player.isShiftKeyDown() ? joke.answer : joke.question);
 			TextFormatting format = player.isShiftKeyDown() ? TextFormatting.GOLD : TextFormatting.LIGHT_PURPLE;

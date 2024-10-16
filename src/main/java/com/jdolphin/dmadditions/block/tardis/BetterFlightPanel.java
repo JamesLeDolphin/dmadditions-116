@@ -32,6 +32,7 @@ public class BetterFlightPanel extends FlightPanelBlock implements IBetterPanel 
 	public BetterFlightPanel(Properties properties) {
 		super(properties);
 	}
+
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
 		if (handIn == Hand.MAIN_HAND && !worldIn.isClientSide) {

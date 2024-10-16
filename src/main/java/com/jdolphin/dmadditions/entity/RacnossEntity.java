@@ -53,14 +53,14 @@ public class RacnossEntity extends MonsterEntity {
 
 	@Override
 	public boolean checkSpawnRules(IWorld world, SpawnReason reason) {
-		if(!reason.equals(SpawnReason.NATURAL))
+		if (!reason.equals(SpawnReason.NATURAL))
 			return super.checkSpawnRules(world, reason);
 
 		BlockPos blockPos = blockPosition();
 		IChunk chunk = world.getChunk(blockPos);
 
 		boolean noVillages = chunk.getReferencesForFeature(Structure.VILLAGE).isEmpty();
-		if(noVillages) return false;
+		if (noVillages) return false;
 
 		return super.checkSpawnRules(world, reason);
 	}
@@ -71,7 +71,7 @@ public class RacnossEntity extends MonsterEntity {
 
 		float f = 1.0F;
 		if (fallFlying) {
-			f = (float)entity.getDeltaMovement().lengthSqr();
+			f = (float) entity.getDeltaMovement().lengthSqr();
 			f = f / 0.2F;
 			f = f * f * f;
 		}
@@ -103,12 +103,12 @@ public class RacnossEntity extends MonsterEntity {
 		model.leg6.xRot = 0;
 
 		float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
-		float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float)Math.PI) * 0.4F) * limbSwingAmount;
-		float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
-		float f6 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI * 1.5F)) * 0.4F) * limbSwingAmount;
+		float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float) Math.PI) * 0.4F) * limbSwingAmount;
+		float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+		float f6 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI * 1.5F)) * 0.4F) * limbSwingAmount;
 		float f7 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + 0.0F) * 0.4F) * limbSwingAmount;
-		float f8 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float)Math.PI) * 0.4F) * limbSwingAmount;
-		float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+		float f8 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float) Math.PI) * 0.4F) * limbSwingAmount;
+		float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
 		model.leg0.yRot += f3;
 		model.leg1.yRot += -f3;
 		model.leg2.yRot += f4;
@@ -149,7 +149,7 @@ public class RacnossEntity extends MonsterEntity {
 			HandSide handside = model.getAttackArm(this);
 			ModelRenderer modelrenderer = model.getArm(handside);
 			float f = model.attackTime;
-			model.body.yRot = MathHelper.sin(MathHelper.sqrt(f) * ((float)Math.PI * 2F)) * 0.2F;
+			model.body.yRot = MathHelper.sin(MathHelper.sqrt(f) * ((float) Math.PI * 2F)) * 0.2F;
 			if (handside == HandSide.LEFT) {
 				model.body.yRot *= -1.0F;
 			}
@@ -165,11 +165,11 @@ public class RacnossEntity extends MonsterEntity {
 			f = f * f;
 			f = f * f;
 			f = 1.0F - f;
-			float f1 = MathHelper.sin(f * (float)Math.PI);
-			float f2 = MathHelper.sin(model.attackTime * (float)Math.PI) * -(model.head.xRot - 0.7F) * 0.75F;
-			modelrenderer.xRot = (float)((double)modelrenderer.xRot - ((double)f1 * 1.2D + (double)f2));
+			float f1 = MathHelper.sin(f * (float) Math.PI);
+			float f2 = MathHelper.sin(model.attackTime * (float) Math.PI) * -(model.head.xRot - 0.7F) * 0.75F;
+			modelrenderer.xRot = (float) ((double) modelrenderer.xRot - ((double) f1 * 1.2D + (double) f2));
 			modelrenderer.yRot += model.body.yRot * 2.0F;
-			modelrenderer.zRot += MathHelper.sin(model.attackTime * (float)Math.PI) * -0.4F;
+			modelrenderer.zRot += MathHelper.sin(model.attackTime * (float) Math.PI) * -0.4F;
 		}
 	}
 }

@@ -12,9 +12,11 @@ public class CandyCaneBlock extends DirectionalBlock {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
+
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> blockBlockStateBuilder) {
 		blockBlockStateBuilder.add(FACING);
 	}
+
 	public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
 		return this.defaultBlockState().setValue(FACING, blockItemUseContext.getNearestLookingDirection().getOpposite());
 	}

@@ -15,6 +15,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class PlayerLocatorScreen extends Screen {
 	private TextFieldWidget playerInput;
+
 	public PlayerLocatorScreen() {
 		super(new TranslationTextComponent("dmadditions.gui.player_locator"));
 	}

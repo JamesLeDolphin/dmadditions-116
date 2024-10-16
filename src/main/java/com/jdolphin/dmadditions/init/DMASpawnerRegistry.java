@@ -31,12 +31,12 @@ public class DMASpawnerRegistry {
 	}
 
 	public static void init() {
-			if (DMAEntities.SNOWMAN != null) {
-				EntitySpawnPlacementRegistry.register(DMAEntities.SNOWMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
-				addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
-				addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
-				addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
-			}
+		if (DMAEntities.SNOWMAN != null) {
+			EntitySpawnPlacementRegistry.register(DMAEntities.SNOWMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
+			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+		}
 
 		if (DMAEntities.PILOT_FISH != null) {
 			EntitySpawnPlacementRegistry.register(DMAEntities.PILOT_FISH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
@@ -48,12 +48,12 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 		}
 
-		if(DMAEntities.CHRISTMAS_CREEPER != null && AdventUnlock.isDecember()){
+		if (DMAEntities.CHRISTMAS_CREEPER != null && AdventUnlock.isDecember()) {
 			EntitySpawnPlacementRegistry.register(DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
 			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
 		}
 
-		if(DMAEntities.KANTROFARRI != null){
+		if (DMAEntities.KANTROFARRI != null) {
 			EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
 			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);
 		}
@@ -65,11 +65,11 @@ public class DMASpawnerRegistry {
 	}
 
 	public static void initDalekSpawns() {
-			addDalekSpawn(DMADalekRegistry.DALEK_SANTA, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
-				Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
-			addDalekSpawn(DMADalekRegistry.CANDYCANE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
-			addDalekSpawn(DMADalekRegistry.STORM, Biomes.DARK_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS,
-				Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU);
+		addDalekSpawn(DMADalekRegistry.DALEK_SANTA, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
+			Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
+		addDalekSpawn(DMADalekRegistry.CANDYCANE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS);
+		addDalekSpawn(DMADalekRegistry.STORM, Biomes.DARK_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS,
+			Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU);
 		addDalekSpawn(DMADalekRegistry.GLASS, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA,
 			Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_BEACH);
 
@@ -96,22 +96,22 @@ public class DMASpawnerRegistry {
 
 	@SuppressWarnings("unused")
 	private static void addSpawnToAllBiomes(EntityType<?> type, int weight, int min, int max, EntityClassification entityType) {
-        for (Entry<RegistryKey<Biome>, Biome> rl : ForgeRegistries.BIOMES.getEntries()) {
-            if (rl.getKey() == Biomes.THE_VOID) continue;
-            addSpawn(rl.getKey(), type, weight, min, max, entityType);
-        }
+		for (Entry<RegistryKey<Biome>, Biome> rl : ForgeRegistries.BIOMES.getEntries()) {
+			if (rl.getKey() == Biomes.THE_VOID) continue;
+			addSpawn(rl.getKey(), type, weight, min, max, entityType);
+		}
 
 	}
 
 	@SuppressWarnings("unused")
 	@SafeVarargs
 	private static void removeSpawn(EntityType<?> type, RegistryKey<Biome>... biome) {
-        for (RegistryKey<Biome> bi : biome) {
-            if (spawns.containsKey(bi.location())) {
-                SpawnInfo info = spawns.get(bi.location());
-                info.removeSpawn(type);
-            }
-        }
+		for (RegistryKey<Biome> bi : biome) {
+			if (spawns.containsKey(bi.location())) {
+				SpawnInfo info = spawns.get(bi.location());
+				info.removeSpawn(type);
+			}
+		}
 
 	}
 

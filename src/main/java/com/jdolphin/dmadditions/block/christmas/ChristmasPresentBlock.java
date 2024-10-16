@@ -24,8 +24,8 @@ public class ChristmasPresentBlock extends Block {
 	//TODO: Fix hitbox, its supposed to get bigger but atm removes it completely
 	//@Override
 	//public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-    //    return Block.box(24, 24, 24, 24, 24, 24);
-    //}
+	//    return Block.box(24, 24, 24, 24, 24, 24);
+	//}
 
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -44,7 +44,8 @@ public class ChristmasPresentBlock extends Block {
 							}
 						}
 					}
-				} serverPlayer.teleportTo(destinationWorld, player.getX(), player.getY(), player.getZ(), serverPlayer.getYHeadRot(), player.xRot);
+				}
+				serverPlayer.teleportTo(destinationWorld, player.getX(), player.getY(), player.getZ(), serverPlayer.getYHeadRot(), player.xRot);
 				destinationWorld.setBlockAndUpdate(pos, DMABlocks.CHRISTMAS_PRESENT.get().defaultBlockState());
 			}
 		}

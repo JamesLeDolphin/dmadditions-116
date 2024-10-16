@@ -29,13 +29,14 @@ import java.util.List;
 public class ChristmasCrackerBlock extends HorizontalBlock {
 	public static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 3.0D, 10.0D);
 	public static final VoxelShape SHAPE_EAST = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 3.0D, 16.0D);
+
 	public ChristmasCrackerBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos,
-			ISelectionContext context) {
+							   ISelectionContext context) {
 		switch (state.getValue(HorizontalBlock.FACING)) {
 			case NORTH:
 			case SOUTH:
@@ -66,8 +67,8 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 
 	@Override
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-		if(hand == Hand.MAIN_HAND && player.getItemInHand(hand).isEmpty() && !world.isClientSide()){
-			openCracker(world, new Vector3d(pos.getX()+.5,pos.getY(),pos.getZ()+.5));
+		if (hand == Hand.MAIN_HAND && player.getItemInHand(hand).isEmpty() && !world.isClientSide()) {
+			openCracker(world, new Vector3d(pos.getX() + .5, pos.getY(), pos.getZ() + .5));
 			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 			return ActionResultType.SUCCESS;
 		}
@@ -75,19 +76,19 @@ public class ChristmasCrackerBlock extends HorizontalBlock {
 	}
 
 	// Spawns contents at the location x,y,z with particle and sound
-	public static void openCracker(World world, Vector3d position){
-		if(world.isClientSide) return;
+	public static void openCracker(World world, Vector3d position) {
+		if (world.isClientSide) return;
 		for (ItemStack item : generateContents(world)) {
 			ItemEntity surprise = new ItemEntity(world, position.x, position.y, position.z, item);
 			world.addFreshEntity(surprise);
 		}
-		world.getServer().getLevel(world.dimension()).sendParticles(ParticleTypes.FIREWORK, position.x,position.y,position.z,30,0.1,0.1,0.1,0.1);
-		BlockPos soundPoint = new BlockPos(Math.floor(position.x),Math.floor(position.y),Math.floor(position.z));
-		world.playSound(null, soundPoint, SoundEvents.FIREWORK_ROCKET_BLAST, SoundCategory.NEUTRAL, 2,1);
+		world.getServer().getLevel(world.dimension()).sendParticles(ParticleTypes.FIREWORK, position.x, position.y, position.z, 30, 0.1, 0.1, 0.1, 0.1);
+		BlockPos soundPoint = new BlockPos(Math.floor(position.x), Math.floor(position.y), Math.floor(position.z));
+		world.playSound(null, soundPoint, SoundEvents.FIREWORK_ROCKET_BLAST, SoundCategory.NEUTRAL, 2, 1);
 	}
 
 	// Generates the items a cracker will drop when it is opened
-	public static List<ItemStack> generateContents(World world){
+	public static List<ItemStack> generateContents(World world) {
 		List<ItemStack> contents = new ArrayList<ItemStack>();
 
 		// christmas_hat

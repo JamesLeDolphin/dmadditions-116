@@ -19,7 +19,9 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -114,5 +116,6 @@ public class CyberCowEntity extends CowEntity {
 		return false;
 	}
 
-	public void setBaby(boolean b) {}
+	public void setBaby(boolean b) {
+	}
 }

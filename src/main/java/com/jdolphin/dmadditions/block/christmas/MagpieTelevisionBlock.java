@@ -28,19 +28,21 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 	public MagpieTelevisionBlock(Properties builder) {
 		super(builder);
 	}
+
 	public static final IntegerProperty CHANNEL = IntegerProperty.create("channel", 0, 5);
 	public static final BooleanProperty ON = BooleanProperty.create("on");
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
 		switch (state.getValue(HorizontalBlock.FACING)) {
-            case EAST:
-            case WEST:
-                return SHAPE_EW;
-            default:
+			case EAST:
+			case WEST:
+				return SHAPE_EW;
+			default:
 				return SHAPE_NS;
 		}
 	}
+
 	@Override
 	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
@@ -69,9 +71,9 @@ public class MagpieTelevisionBlock extends HorizontalBlock {
 				int current = state.getValue(CHANNEL);
 				world.setBlockAndUpdate(pos, state.setValue(CHANNEL, current == 5 ? 0 : current + 1));
 				world.playSound(null, pos, SoundEvents.CAT_HISS, SoundCategory.BLOCKS, 0.2f, 20f);
-            }
-            return ActionResultType.SUCCESS;
-        }
+			}
+			return ActionResultType.SUCCESS;
+		}
 		return ActionResultType.FAIL;
 	}
 

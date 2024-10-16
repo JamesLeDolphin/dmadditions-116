@@ -11,7 +11,7 @@ import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
-public class TankModel<T extends TankEntity> extends SegmentedModel<T> implements IModelPartReloader{
+public class TankModel<T extends TankEntity> extends SegmentedModel<T> implements IModelPartReloader {
 
 	protected JSONModel model;
 
@@ -30,7 +30,7 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 	protected ModelRenderer turretUpper;
 	protected ModelRenderer turretBarrel;
 
-	public TankModel(){
+	public TankModel() {
 		super();
 		ModelReloaderRegistry.register(this);
 	}
@@ -63,15 +63,15 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 
 	@Override
 	public Iterable<ModelRenderer> parts() {
-		return ImmutableSet.of(upperBody, lowerBody, mainBody, 
-				sideLadders, 
-				wheels, 
-				turret);
+		return ImmutableSet.of(upperBody, lowerBody, mainBody,
+			sideLadders,
+			wheels,
+			turret);
 	}
 
 	@Override
 	public void setupAnim(TankEntity entity, float v, float v1, float v2,
-			float v3, float v4) {
+						  float v3, float v4) {
 
 		this.turret.yRot = entity.turretRot - (float) Math.toRadians(entity.yRot);
 

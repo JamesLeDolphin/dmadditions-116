@@ -18,7 +18,6 @@ public class SpecialWeaponsMixin {
 	public void getLaser(DalekEntity dalek, CallbackInfoReturnable<DMProjectiles.Laser> cir) {
 		if (DMACommonConfig.disable_swd_laser.get()) {
 			cir.setReturnValue(DMProjectiles.BLUE_LASER);
-		}
-		else cir.setReturnValue(DMProjectiles.EXPLOSIVE_LASER);
+		} else cir.setReturnValue(DMProjectiles.EXPLOSIVE_LASER);
 	}
 }

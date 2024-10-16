@@ -60,15 +60,14 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 										}
 									});
 								}
-							}else this.switchLever(state, worldIn, pos);
+							} else this.switchLever(state, worldIn, pos);
 						});
 						if (tile.isInFlight()) {
 							tile.land();
 						}
 					});
 					this.switchLever(state, worldIn, pos);
-				}
-				else {
+				} else {
 					this.switchLever(state, worldIn, pos);
 				}
 			}

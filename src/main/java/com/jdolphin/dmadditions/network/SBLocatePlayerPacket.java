@@ -50,8 +50,10 @@ public class SBLocatePlayerPacket {
 					TardisFlightData flight = TardisFlightPool.getFlightData(data);
 					flight.setPos(this.pos);
 					player.sendMessage(new StringTextComponent("Coordinates set!").withStyle(TextFormatting.GREEN), player.getUUID());
-				} else player.sendMessage(new StringTextComponent("Error 403: Cannot access player!").withStyle(TextFormatting.RED), player.getUUID());
-			} else player.sendMessage(new StringTextComponent("Error 404: Player not found!").withStyle(TextFormatting.RED), player.getUUID());
+				} else
+					player.sendMessage(new StringTextComponent("Error 403: Cannot access player!").withStyle(TextFormatting.RED), player.getUUID());
+			} else
+				player.sendMessage(new StringTextComponent("Error 404: Player not found!").withStyle(TextFormatting.RED), player.getUUID());
 			return true;
 		} catch (NullPointerException err) {
 			err.printStackTrace();

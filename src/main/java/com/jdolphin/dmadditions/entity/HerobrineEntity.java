@@ -42,13 +42,13 @@ public class HerobrineEntity extends MonsterEntity {
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return LivingEntity.createLivingAttributes()
-				.add(Attributes.ATTACK_DAMAGE, 1.0D)
-				.add(Attributes.MOVEMENT_SPEED, (double) 0.2F)
-				.add(Attributes.ATTACK_SPEED)
-				.add(Attributes.LUCK)
-				.add(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get())
-				.add(Attributes.ATTACK_KNOCKBACK)
-				.add(Attributes.FOLLOW_RANGE, 20.0D);
+			.add(Attributes.ATTACK_DAMAGE, 1.0D)
+			.add(Attributes.MOVEMENT_SPEED, (double) 0.2F)
+			.add(Attributes.ATTACK_SPEED)
+			.add(Attributes.LUCK)
+			.add(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get())
+			.add(Attributes.ATTACK_KNOCKBACK)
+			.add(Attributes.FOLLOW_RANGE, 20.0D);
 	}
 
 	public HerobrineEntity(EntityType<? extends MonsterEntity> type, World world) {
@@ -76,9 +76,9 @@ public class HerobrineEntity extends MonsterEntity {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if(source.isCreativePlayer() 
-		|| source.isBypassInvul()
-		|| source.getEntity() instanceof JimEntity) {
+		if (source.isCreativePlayer()
+			|| source.isBypassInvul()
+			|| source.getEntity() instanceof JimEntity) {
 			super.hurt(source, amount);
 			return true;
 		}
@@ -98,7 +98,7 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 	}
 
-	public boolean switchMainHandItem(int slot){
+	public boolean switchMainHandItem(int slot) {
 		ItemStack mainHandItem = this.getMainHandItem();
 
 		ItemStack item = inventory.getItem(slot);
@@ -109,10 +109,10 @@ public class HerobrineEntity extends MonsterEntity {
 		return true;
 	}
 
-	public BlockState getCarriedBlock(){
+	public BlockState getCarriedBlock() {
 		ItemStack stack = this.getMainHandItem();
 		Item item = stack.getItem();
-		if(!(item instanceof BlockItem)) return null;
+		if (!(item instanceof BlockItem)) return null;
 
 		return ((BlockItem) item).getBlock().defaultBlockState();
 	}
@@ -121,7 +121,7 @@ public class HerobrineEntity extends MonsterEntity {
 		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable(x, y, z);
 
 		while (blockpos$mutable.getY() > 0
-				&& !this.level.getBlockState(blockpos$mutable).getMaterial().blocksMotion()) {
+			&& !this.level.getBlockState(blockpos$mutable).getMaterial().blocksMotion()) {
 			blockpos$mutable.move(Direction.DOWN);
 		}
 
@@ -130,13 +130,13 @@ public class HerobrineEntity extends MonsterEntity {
 		boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
 		if (flag && !flag1) {
 			net.minecraftforge.event.entity.living.EntityTeleportEvent.EnderEntity event = net.minecraftforge.event.ForgeEventFactory
-					.onEnderTeleport(this, x, y, z);
+				.onEnderTeleport(this, x, y, z);
 			if (event.isCanceled())
 				return false;
 			boolean flag2 = this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
 			if (flag2 && !this.isSilent()) {
 				this.level.playSound((PlayerEntity) null, this.xo, this.yo, this.zo, SoundEvents.ENDERMAN_TELEPORT,
-						this.getSoundSource(), 1.0F, 1.0F);
+					this.getSoundSource(), 1.0F, 1.0F);
 				this.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
 			}
 
@@ -151,8 +151,8 @@ public class HerobrineEntity extends MonsterEntity {
 	}
 
 	public boolean isInventoryFull() {
-		for(int i = 0; i <= inventory.getContainerSize(); i++)
-			if(inventory.getItem(i).isEmpty()) return false;
+		for (int i = 0; i <= inventory.getContainerSize(); i++)
+			if (inventory.getItem(i).isEmpty()) return false;
 
 		return true;
 	}
@@ -176,20 +176,20 @@ public class HerobrineEntity extends MonsterEntity {
 		this.inventory.fromTag(nbt.getList("Inventory", 10));
 	}
 
-	public boolean inventoryContainsBlocks(){
-		for(int i = 0; i <= inventory.getContainerSize(); i++){
-			if(inventory.getItem(i).getItem() instanceof BlockItem)
+	public boolean inventoryContainsBlocks() {
+		for (int i = 0; i <= inventory.getContainerSize(); i++) {
+			if (inventory.getItem(i).getItem() instanceof BlockItem)
 				return true;
 		}
 
 		return false;
 	}
 
-	public List<Integer> getInventorySlotsWithBlocks(){
+	public List<Integer> getInventorySlotsWithBlocks() {
 		ArrayList<Integer> list = new ArrayList<>();
 
-		for(int i = 0; i <= inventory.getContainerSize(); i++){
-			if(inventory.getItem(i).getItem() instanceof BlockItem)
+		for (int i = 0; i <= inventory.getContainerSize(); i++) {
+			if (inventory.getItem(i).getItem() instanceof BlockItem)
 				list.add(i);
 		}
 
@@ -201,11 +201,11 @@ public class HerobrineEntity extends MonsterEntity {
 	protected void pickUpItem(ItemEntity item) {
 		super.pickUpItem(item);
 
-		if(item.removed) return;
+		if (item.removed) return;
 
 		ItemStack stack = item.getItem();
 
-		if(inventory.canAddItem(stack)){
+		if (inventory.canAddItem(stack)) {
 			inventory.addItem(stack);
 			this.take(item, stack.getCount());
 			item.remove();
@@ -225,14 +225,14 @@ public class HerobrineEntity extends MonsterEntity {
 			this.targetChangeTime = this.tickCount;
 		}
 
-		super.setTarget(target); 
+		super.setTarget(target);
 	}
 
 	protected void customServerAiStep() {
 		if (this.level.isDay() && this.tickCount >= this.targetChangeTime + 600) {
 			float f = this.getBrightness();
 			if (f > 0.5F && this.level.canSeeSky(this.blockPosition()) && this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
-				this.setTarget((LivingEntity)null);
+				this.setTarget((LivingEntity) null);
 				this.teleport();
 				this.targetChangeTime = this.tickCount;
 			}
@@ -255,10 +255,10 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 
 		public boolean canUse() {
-			if(!herobrine.inventoryContainsBlocks() && this.herobrine.getCarriedBlock() == null)
+			if (!herobrine.inventoryContainsBlocks() && this.herobrine.getCarriedBlock() == null)
 				return false;
 
-			if(!(herobrine.getMainHandItem().getItem() instanceof BlockItem)) {
+			if (!(herobrine.getMainHandItem().getItem() instanceof BlockItem)) {
 				List<Integer> slots = herobrine.getInventorySlotsWithBlocks();
 
 				herobrine.switchMainHandItem(
@@ -267,10 +267,10 @@ public class HerobrineEntity extends MonsterEntity {
 
 			}
 
-			if (this.herobrine.getCarriedBlock() == null) 
+			if (this.herobrine.getCarriedBlock() == null)
 				return false;
 
-			if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.herobrine.level, this.herobrine)) 
+			if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.herobrine.level, this.herobrine))
 				return false;
 
 			return this.herobrine.getRandom().nextInt(20) == 0;
@@ -325,19 +325,19 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 
 		public boolean canUse() {
-			if (!ForgeEventFactory.getMobGriefingEvent(this.herobrine.level, this.herobrine)) 
+			if (!ForgeEventFactory.getMobGriefingEvent(this.herobrine.level, this.herobrine))
 				return false;
 
-			if(!findBlock())
+			if (!findBlock())
 				return false;
 
-			if(!herobrine.inventory.canAddItem(itemStack))
+			if (!herobrine.inventory.canAddItem(itemStack))
 				return false;
-			
+
 			return this.herobrine.getRandom().nextInt(interval) == 0;
 		}
 
-		protected boolean findBlock(){
+		protected boolean findBlock() {
 			Random random = this.herobrine.getRandom();
 			World world = this.herobrine.level;
 			int i = MathHelper.floor(this.herobrine.getX() - 2.0D + random.nextDouble() * 4.0D);
@@ -346,10 +346,10 @@ public class HerobrineEntity extends MonsterEntity {
 			blockpos = new BlockPos(i, j, k);
 			blockstate = world.getBlockState(blockpos);
 			Vector3d vector3d = new Vector3d((double) MathHelper.floor(this.herobrine.getX()) + 0.5D, (double) j + 0.5D,
-					(double) MathHelper.floor(this.herobrine.getZ()) + 0.5D);
+				(double) MathHelper.floor(this.herobrine.getZ()) + 0.5D);
 			Vector3d vector3d1 = new Vector3d((double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D);
 			BlockRayTraceResult blockraytraceresult = world.clip(new RayTraceContext(vector3d, vector3d1,
-					RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, this.herobrine));
+				RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, this.herobrine));
 
 			itemStack = new ItemStack(blockstate.getBlock().asItem());
 			return blockraytraceresult.getBlockPos().equals(blockpos);
@@ -372,7 +372,7 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 	}
 
-	static class TeleportOutOfWaterGoal extends SwimGoal{
+	static class TeleportOutOfWaterGoal extends SwimGoal {
 		protected HerobrineEntity herobrineEntity;
 
 		public TeleportOutOfWaterGoal(HerobrineEntity entity) {
@@ -387,7 +387,7 @@ public class HerobrineEntity extends MonsterEntity {
 
 	}
 
-	static class TeleportWhenCloseGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T>{
+	static class TeleportWhenCloseGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
 		protected HerobrineEntity herobrineEntity;
 		protected double range;
 
@@ -402,7 +402,7 @@ public class HerobrineEntity extends MonsterEntity {
 		public void tick() {
 			super.tick();
 
-			if(target.distanceTo(herobrineEntity) <= range) {
+			if (target.distanceTo(herobrineEntity) <= range) {
 				herobrineEntity.teleport();
 			}
 		}
@@ -440,17 +440,17 @@ public class HerobrineEntity extends MonsterEntity {
 	}
 
 	public boolean checkSpawnRules(IWorld world, SpawnReason spawnReason) {
-		if(spawnReason == SpawnReason.NATURAL){
+		if (spawnReason == SpawnReason.NATURAL) {
 			List<HerobrineEntity> others = world.getEntitiesOfClass(HerobrineEntity.class, this.getBoundingBox().inflate(256));
 
-			if(others.size() > 0){
+			if (others.size() > 0) {
 				return false;
 			}
 
-			if(this.random.nextInt(4) == 4){
+			if (this.random.nextInt(4) == 4) {
 				world.players().forEach(player -> {
-					ChatUtil.sendMessageToPlayer(player, 
-						new TranslationTextComponent("multiplayer.player.joined", "Herobrine").withStyle(TextFormatting.YELLOW), 
+					ChatUtil.sendMessageToPlayer(player,
+						new TranslationTextComponent("multiplayer.player.joined", "Herobrine").withStyle(TextFormatting.YELLOW),
 						MessageType.CHAT);
 				});
 			}

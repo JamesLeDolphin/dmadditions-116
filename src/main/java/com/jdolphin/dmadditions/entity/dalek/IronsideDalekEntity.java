@@ -90,7 +90,7 @@ public class IronsideDalekEntity extends DalekEntity {
 			this.getEntityData().set(DALEK_ARM_LEFT, "GunArm");
 		}
 
-		return (String)this.getEntityData().get(DALEK_ARM_LEFT);
+		return (String) this.getEntityData().get(DALEK_ARM_LEFT);
 	}
 
 	public String getDalekArmRight() {
@@ -98,7 +98,7 @@ public class IronsideDalekEntity extends DalekEntity {
 			this.getEntityData().set(DALEK_ARM_RIGHT, "SuctionArm");
 		}
 
-		return (String)this.getEntityData().get(DALEK_ARM_RIGHT);
+		return (String) this.getEntityData().get(DALEK_ARM_RIGHT);
 	}
 
 	public void setupDalek() {
@@ -129,11 +129,11 @@ public class IronsideDalekEntity extends DalekEntity {
 	}
 
 	public int getFuse() {
-		return (Integer)this.getEntityData().get(DALEK_FUSE);
+		return (Integer) this.getEntityData().get(DALEK_FUSE);
 	}
 
 	public boolean canBreakIn() {
-		return (Boolean)this.getEntityData().get(DALEK_BREAK_IN);
+		return (Boolean) this.getEntityData().get(DALEK_BREAK_IN);
 	}
 
 	public void calculateEntityAnimation(LivingEntity entity, boolean b) {
@@ -189,7 +189,7 @@ public class IronsideDalekEntity extends DalekEntity {
 				this.lookAt(damageSource.getEntity(), 1.0F, 1.0F);
 			}
 
-			this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), (SoundEvent)DMSoundEvents.ENTITY_DALEK_HURT.get(), this.getSoundSource(), 1.0F, 1.0F, false);
+			this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), (SoundEvent) DMSoundEvents.ENTITY_DALEK_HURT.get(), this.getSoundSource(), 1.0F, 1.0F, false);
 		}
 
 		return super.hurt(damageSource, amount);
@@ -218,17 +218,17 @@ public class IronsideDalekEntity extends DalekEntity {
 	private void calculateLifting() {
 		this.oLift = this.lift;
 		this.oLiftSpeed = this.liftSpeed;
-		this.liftSpeed = (float)((double)this.liftSpeed + (double)(!this.onGround ? 4 : -1) * 0.3);
+		this.liftSpeed = (float) ((double) this.liftSpeed + (double) (!this.onGround ? 4 : -1) * 0.3);
 		this.liftSpeed = MathHelper.clamp(this.liftSpeed, 0.0F, 1.0F);
 		if (!this.onGround && this.lifting < 1.0F) {
 			if (this.tickCount % 15 == 0) {
-				this.playSound((SoundEvent)DMSoundEvents.ENTITY_DALEK_HOVER.get(), 1.0F, 1.0F);
+				this.playSound((SoundEvent) DMSoundEvents.ENTITY_DALEK_HOVER.get(), 1.0F, 1.0F);
 			}
 
 			this.lifting = 1.0F;
 		}
 
-		this.lifting = (float)((double)this.lifting * 0.9);
+		this.lifting = (float) ((double) this.lifting * 0.9);
 		Vector3d vector3d = this.getDeltaMovement();
 		if (!this.onGround && vector3d.y < 0.0) {
 			this.setDeltaMovement(vector3d.multiply(1.0, 0.6, 1.0));
@@ -323,15 +323,15 @@ public class IronsideDalekEntity extends DalekEntity {
 
 	public IDalek getDalekData() {
 		if (this.cachedData == null) {
-			this.cachedData = DMDalekRegistry.getDalek((String)this.getEntityData().get(DALEK_TYPE));
+			this.cachedData = DMDalekRegistry.getDalek((String) this.getEntityData().get(DALEK_TYPE));
 		}
 
 		return this.cachedData;
 	}
 
 	public ItemStack getPickedResult(RayTraceResult target) {
-		Item i = (Item)ForgeRegistries.ITEMS.getValue(Helper.createDMRL(this.getDalekData().getType().getRegistryName() + "_spawner"));
-		return i != null ? new ItemStack(i) : new ItemStack((IItemProvider)DMItems.DALEK_SPAWNER[0].get());
+		Item i = (Item) ForgeRegistries.ITEMS.getValue(Helper.createDMRL(this.getDalekData().getType().getRegistryName() + "_spawner"));
+		return i != null ? new ItemStack(i) : new ItemStack((IItemProvider) DMItems.DALEK_SPAWNER[0].get());
 	}
 
 	protected void defineSynchedData() {
@@ -349,10 +349,10 @@ public class IronsideDalekEntity extends DalekEntity {
 
 	public void addAdditionalSaveData(CompoundNBT compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putString(DMNBTKeys.TYPE_DALEK, (String)this.getEntityData().get(DALEK_TYPE));
+		compound.putString(DMNBTKeys.TYPE_DALEK, (String) this.getEntityData().get(DALEK_TYPE));
 		compound.putString(DMNBTKeys.ARM_ATTACHMENT_LEFT, this.getDalekArmLeft());
 		compound.putString(DMNBTKeys.ARM_ATTACHMENT_RIGHT, this.getDalekArmRight());
-		compound.putInt(DMNBTKeys.DALEK_FUSE, (Integer)this.getEntityData().get(DALEK_FUSE));
+		compound.putInt(DMNBTKeys.DALEK_FUSE, (Integer) this.getEntityData().get(DALEK_FUSE));
 	}
 
 	public void readAdditionalSaveData(CompoundNBT compound) {
@@ -366,7 +366,7 @@ public class IronsideDalekEntity extends DalekEntity {
 
 	public void onSyncedDataUpdated(DataParameter<?> key) {
 		if (DALEK_TYPE.equals(key)) {
-			this.cachedData = DMDalekRegistry.getDalek((String)this.getEntityData().get(DALEK_TYPE));
+			this.cachedData = DMDalekRegistry.getDalek((String) this.getEntityData().get(DALEK_TYPE));
 		}
 
 		super.onSyncedDataUpdated(key);

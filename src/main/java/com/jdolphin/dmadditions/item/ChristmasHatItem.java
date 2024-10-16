@@ -34,7 +34,7 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		super(iArmorMaterial, equipmentSlotType, properties);
 	}
 
-	public ChristmasHatItem(){
+	public ChristmasHatItem() {
 		super(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES));
 	}
 
@@ -64,8 +64,8 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 0xFFFFFF;
 	}
 
-	public static int itemColor(ItemStack stack, int tint){
-		if(tint == 0) {
+	public static int itemColor(ItemStack stack, int tint) {
+		if (tint == 0) {
 			CompoundNBT compoundnbt = stack.getTagElement("display");
 			return compoundnbt != null && compoundnbt.contains("color", 99) ? compoundnbt.getInt("color") : 0xFFFFFF;
 		}

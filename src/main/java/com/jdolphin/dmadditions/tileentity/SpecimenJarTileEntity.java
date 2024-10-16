@@ -18,14 +18,15 @@ public class SpecimenJarTileEntity extends DMTileEntityBase {
 	public SpecimenJarTileEntity(TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn);
 	}
-	public SpecimenJarTileEntity(){
+
+	public SpecimenJarTileEntity() {
 		this(TILE_SPECIMEN_JAR.get());
 	}
 
 	private static List<Item> allowedSpecimens;
 
-	public static List<Item> getAllowedSpecimens(){
-		if(allowedSpecimens != null) return allowedSpecimens;
+	public static List<Item> getAllowedSpecimens() {
+		if (allowedSpecimens != null) return allowedSpecimens;
 		List<Item> allowed = new ArrayList<>();
 
 		allowed.add(DMAItems.KANTROFARRI_SPAWNER.get()); // 0
@@ -37,45 +38,51 @@ public class SpecimenJarTileEntity extends DMTileEntityBase {
 	}
 
 	private ItemStack specimen = ItemStack.EMPTY;
+
 	@Override
 	public void load(BlockState state, CompoundNBT nbt) {
-		if(nbt.contains("Item")){
+		if (nbt.contains("Item")) {
 			this.specimen = ItemStack.of(nbt.getCompound("Item"));
 		}
 		super.load(state, nbt);
 	}
+
 	@Override
 	public CompoundNBT save(CompoundNBT nbt) {
-		if(this.specimen != null){
+		if (this.specimen != null) {
 			CompoundNBT tag = new CompoundNBT();
 			this.specimen.save(tag);
 			nbt.put("Item", tag);
-		}
-		else{
+		} else {
 			nbt.remove("Item");
 		}
 		return super.save(nbt);
 	}
 
-	public boolean hasSpecimen() { return !specimen.isEmpty(); }
-	public boolean acceptSpecimen(Item specimenIn){
+	public boolean hasSpecimen() {
+		return !specimen.isEmpty();
+	}
+
+	public boolean acceptSpecimen(Item specimenIn) {
 		return getAllowedSpecimens().contains(specimenIn);
 	}
 
-	public static int getSpecimenIndex(Item specimenIn){
+	public static int getSpecimenIndex(Item specimenIn) {
 		return getAllowedSpecimens().indexOf(specimenIn);
 	}
 
-	public int getSpecimenIndex(){
+	public int getSpecimenIndex() {
 		return getSpecimenIndex(specimen.getItem());
 	}
 
-	public void setSpecimen(ItemStack specimenIn){
-		if(acceptSpecimen(specimenIn.getItem())) { specimen = specimenIn.copy(); specimen.setCount(1); }
-		else specimen = ItemStack.EMPTY;
+	public void setSpecimen(ItemStack specimenIn) {
+		if (acceptSpecimen(specimenIn.getItem())) {
+			specimen = specimenIn.copy();
+			specimen.setCount(1);
+		} else specimen = ItemStack.EMPTY;
 	}
 
-	public ItemStack getSpecimen(){
+	public ItemStack getSpecimen() {
 		return specimen;
 	}
 }

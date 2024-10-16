@@ -11,11 +11,13 @@ public enum MenuBackGround {
 	D13("bg_7"),
 	TARDIS_SHADERS("bg_8"),
 	FOREMAN("bg_9");
-  
+
 	String name;
+
 	MenuBackGround(String name) {
 		this.name = name;
 	}
+
 	public String getName() {
 		return this.name;
 	}

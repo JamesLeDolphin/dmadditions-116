@@ -5,7 +5,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -23,15 +22,15 @@ public class TwoDizItem extends Item {
 	public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
 		CompoundNBT tag = entity.getPersistentData();
 
-			if (!tag.contains(ENTITY_WIDTH)) {
-				tag.putFloat(ENTITY_WIDTH, 0.9f);
-			}
-			float width = tag.getFloat(ENTITY_WIDTH);
-			if (width >= 0.1) {
-				tag.putFloat(ENTITY_WIDTH, width - 0.1f);
-			} else {
-				tag.putFloat(ENTITY_WIDTH, 1);
-			}
+		if (!tag.contains(ENTITY_WIDTH)) {
+			tag.putFloat(ENTITY_WIDTH, 0.9f);
+		}
+		float width = tag.getFloat(ENTITY_WIDTH);
+		if (width >= 0.1) {
+			tag.putFloat(ENTITY_WIDTH, width - 0.1f);
+		} else {
+			tag.putFloat(ENTITY_WIDTH, 1);
+		}
 
 		entity.refreshDimensions();
 		return super.interactLivingEntity(stack, player, entity, hand);

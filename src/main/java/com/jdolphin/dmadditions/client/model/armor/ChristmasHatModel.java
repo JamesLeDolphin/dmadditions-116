@@ -49,15 +49,15 @@ public class ChristmasHatModel extends BipedModel<LivingEntity> implements IMode
 
 	@Override
 	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder vertexBuilder, int int1, int int2,
-			float r, float g, float b, float p_225598_8_) {
+							   float r, float g, float b, float p_225598_8_) {
 
 		int i = this.color;
-		r = (float)(i >> 16 & 255) / 255.0F;
-		g = (float)(i >> 8 & 255) / 255.0F;
-		b = (float)(i & 255) / 255.0F;
+		r = (float) (i >> 16 & 255) / 255.0F;
+		g = (float) (i >> 8 & 255) / 255.0F;
+		b = (float) (i & 255) / 255.0F;
 
 
 		super.renderToBuffer(matrixStack, vertexBuilder, int1, int2, r, g, b,
-				p_225598_8_);
+			p_225598_8_);
 	}
 }

@@ -19,7 +19,7 @@ public class BaubleBlock extends Block {
 		super(properties);
 	}
 
-	public BaubleBlock(){
+	public BaubleBlock() {
 		this(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().noCollission());
 	}
 

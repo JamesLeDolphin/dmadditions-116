@@ -36,7 +36,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
-
 import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
@@ -92,7 +91,8 @@ public class TardisControl extends Entity {
 	public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand hand) {
 		if (!this.level.isClientSide()) {
 			return cooldown == 0 ? this.getAction(player.level, player) : ActionResultType.PASS;
-		} System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		}
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		return ActionResultType.PASS;
 	}
 
@@ -132,8 +132,10 @@ public class TardisControl extends Entity {
 
 	@Override
 	protected void readAdditionalSaveData(CompoundNBT tag) {
-		if (tag.contains(TAG_TYPE)) setType(tag.getString(TAG_TYPE)); else this.remove();
-		if (tag.contains(TAG_MASTER_POS)) setMaster(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS))); else this.remove();
+		if (tag.contains(TAG_TYPE)) setType(tag.getString(TAG_TYPE));
+		else this.remove();
+		if (tag.contains(TAG_MASTER_POS)) setMaster(NBTUtil.readBlockPos((CompoundNBT) tag.get(TAG_MASTER_POS)));
+		else this.remove();
 	}
 
 
@@ -251,7 +253,7 @@ public class TardisControl extends Entity {
 				setCooldown();
 				ChatUtil.sendMessageToPlayer(player, new TranslationTextComponent("entity.dmadditions.console.fail.dim"), ChatUtil.MessageType.CHAT);
 			}
-		} 
+		}
 		LogManager.getLogger().warn("what");
 		return ActionResultType.PASS;
 	}
@@ -271,6 +273,7 @@ public class TardisControl extends Entity {
 
 		private String name;
 		private Vector3d offset;
+
 		ControlType(String name, Vector3d offset) {
 			this.name = name;
 			this.offset = offset;

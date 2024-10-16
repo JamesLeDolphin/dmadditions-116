@@ -51,12 +51,12 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> {
 	}
 
 	@Override
-	public void setupAnim(TimeLordEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+	public void setupAnim(TimeLordEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		//previously the render function, render code was moved to a method below
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		right_leg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		left_leg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
