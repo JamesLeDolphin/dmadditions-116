@@ -1,9 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
-import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
-import com.jdolphin.dmadditions.network.SBLocatePlayerPacket;
-import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
+import com.jdolphin.dmadditions.network.*;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.fml.network.NetworkDirection;
@@ -29,6 +26,11 @@ public class DMAPackets {
 			.encoder(SBLocatePlayerPacket::encode)
 			.decoder(SBLocatePlayerPacket::new)
 			.consumer(SBLocatePlayerPacket::handle)
+			.add();
+		INSTANCE.messageBuilder(SBSonicInteractPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
+			.encoder(SBSonicInteractPacket::encode)
+			.decoder(SBSonicInteractPacket::new)
+			.consumer(SBSonicInteractPacket::handle)
 			.add();
 		INSTANCE.registerMessage(index++, CBOpenGUIPacket.class, CBOpenGUIPacket::encode, CBOpenGUIPacket::decode, CBOpenGUIPacket::handle);
 		INSTANCE.registerMessage(index++, CBSyncPlayerPacket.class, CBSyncPlayerPacket::encode, CBSyncPlayerPacket::decode, CBSyncPlayerPacket::handle);

@@ -90,7 +90,7 @@ public class DMProjectilesMixin {
 			public void onImpact(World world, RayTraceResult result, LaserEntity laser) {
 				if (result.getType() == RayTraceResult.Type.ENTITY) {
 					Entity entity = ((EntityRayTraceResult) result).getEntity();
-					if (entity != null && entity instanceof LivingEntity) {
+					if (entity instanceof LivingEntity) {
 						if (entity instanceof PlayerEntity) {
 							PlayerEntity player = (PlayerEntity) entity;
 							if (player.isBlocking()) {
@@ -127,7 +127,7 @@ public class DMProjectilesMixin {
 			public void onImpact(World world, RayTraceResult result, LaserEntity laser) {
 				if (result.getType() == RayTraceResult.Type.ENTITY) {
 					Entity entity = ((EntityRayTraceResult) result).getEntity();
-					if (entity != null && entity instanceof LivingEntity) {
+					if (entity instanceof LivingEntity) {
 						if (entity instanceof PlayerEntity) {
 							PlayerEntity player = (PlayerEntity) entity;
 							if (player.isBlocking()) {
@@ -169,7 +169,7 @@ public class DMProjectilesMixin {
 						float randomX = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff / 10.0F);
 						float randomY = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff / 10.0F);
 						float randomZ = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff / 10.0F);
-						laser.level.addParticle((IParticleData) DMParticleTypes.POISON_GAS.get(), laser.getX() + (double) randomX, laser.getY() + (double) randomY, laser.getZ() + (double) randomZ, 0.0, 0.0, 0.0);
+						laser.level.addParticle(DMParticleTypes.POISON_GAS.get(), laser.getX() + (double) randomX, laser.getY() + (double) randomY, laser.getZ() + (double) randomZ, 0.0, 0.0, 0.0);
 					}
 				}
 
@@ -182,7 +182,7 @@ public class DMProjectilesMixin {
 			public void onImpact(World world, RayTraceResult result, LaserEntity laser) {
 				if (result.getType() == RayTraceResult.Type.ENTITY) {
 					Entity entity = ((EntityRayTraceResult) result).getEntity();
-					if (entity != null && entity instanceof LivingEntity) {
+					if (entity instanceof LivingEntity) {
 						if (entity instanceof PlayerEntity) {
 							PlayerEntity player = (PlayerEntity) entity;
 							if (player.isBlocking()) {
@@ -213,9 +213,9 @@ public class DMProjectilesMixin {
 				if (laser.level.isClientSide) {
 					for (int i = 0; i < 25; ++i) {
 						float ff = (float) (10 - laser.tickCount);
-						float randomX = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff / 1.0F);
-						float randomY = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff / 1.0F);
-						float randomZ = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff / 1.0F);
+						float randomX = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff);
+						float randomY = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff);
+						float randomZ = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff);
 						laser.level.addParticle((IParticleData) DMParticleTypes.FIRE_BALL.get(), laser.getX() + (double) randomX, laser.getY() + (double) randomY - 0.10000000149011612, laser.getZ() + (double) randomZ, 0.0, 0.0, 0.0);
 					}
 				}
@@ -237,7 +237,7 @@ public class DMProjectilesMixin {
 					BlockPos blockpos = block.getBlockPos();
 					BlockState blockstate = world.getBlockState(blockpos);
 					if (CampfireBlock.canLight(blockstate)) {
-						world.setBlockAndUpdate(blockpos, (BlockState) blockstate.setValue(CampfireBlock.LIT, true));
+						world.setBlockAndUpdate(blockpos, blockstate.setValue(CampfireBlock.LIT, true));
 					} else {
 						blockpos = blockpos.relative(block.getDirection());
 						if (AbstractFireBlock.canBePlacedAt(world, blockpos, laser.getDirection())) {

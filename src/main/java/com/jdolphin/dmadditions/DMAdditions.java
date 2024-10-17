@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import com.jdolphin.dmadditions.item.SonicBlasterItemHandler;
+import com.jdolphin.dmadditions.client.ClientForgeEvents;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
@@ -276,7 +276,7 @@ public class DMAdditions {
 			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
 		}
 
-		ClientRegistry.registerKeyBinding(SonicBlasterItemHandler.RESTORE_MODE);
+		ClientRegistry.registerKeyBinding(ClientForgeEvents.SONIC_SHADE_INTERACTION);
 	}
 
 	@SubscribeEvent

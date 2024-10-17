@@ -122,8 +122,7 @@ public class SonicBlasterItem extends GunItem {
 		}
 	}
 
-	public static void toggleRestoreMode(PlayerEntity player) {
+	public static void toggleRestoreMode(ItemStack stack) {
 		isRestoreMode = !isRestoreMode;
-		player.displayClientMessage(new StringTextComponent("Mode changed to: " + (isRestoreMode ? "Restore Mode" : "Break Mode")).withStyle(TextFormatting.GREEN), true);
 	}
 }
