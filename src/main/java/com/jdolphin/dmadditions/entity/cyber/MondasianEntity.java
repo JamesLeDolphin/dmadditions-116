@@ -97,7 +97,7 @@ public class MondasianEntity extends MonsterEntity {
 		ALEX("alex"),
 		CYB4("cyb4"),
 		JAMES("james"),
-		CYB5("cyb5"),
+		LUCIFER("lucifer"),
 		;
 
 		private final String name;
