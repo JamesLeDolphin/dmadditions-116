@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jdolphin.dmadditions.block.tardis.ConsoleBlock;
 import org.jetbrains.annotations.NotNull;
 
 import com.jdolphin.dmadditions.entity.control.TardisControl;
@@ -62,7 +63,7 @@ public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTile
 				TardisControl control = new TardisControl(world, type, this.worldPosition);
 
 				Vector3d offset = control.position();
-				BlockPos pos = this.getBlockPos();
+				BlockPos pos = this.getBlockPos().relative(this.level.getBlockState(this.getBlockPos()).getValue(ConsoleBlock.FACING));
 
 				control.setPos(pos.getX() + 0.5 + offset.x(),
 					pos.getY() + 0.5 + offset.y(),
