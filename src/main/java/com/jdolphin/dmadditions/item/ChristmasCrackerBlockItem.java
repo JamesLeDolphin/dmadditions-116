@@ -25,8 +25,8 @@ public class ChristmasCrackerBlockItem extends BlockItem {
 		super(type, properties);
 	}
 
-	public ChristmasCrackerBlockItem(RegistryObject<Block> type){
-		super(type.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS));
+	public ChristmasCrackerBlockItem(RegistryObject<Block> type, Item.Properties properties) {
+		super(type.get(), properties);
 	}
 
 	@Override

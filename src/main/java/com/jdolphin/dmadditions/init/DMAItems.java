@@ -42,10 +42,18 @@ public class DMAItems {
 	public static RegistryObject<Item> GOLD_BAUBLE = ITEMS.register("gold_bauble", () -> new BaubleBlockItem(DMABlocks.GOLD_BAUBLE_BLOCK));
 	public static RegistryObject<Item> GREEN_BAUBLE = ITEMS.register("green_bauble", () -> new BaubleBlockItem(DMABlocks.GREEN_BAUBLE_BLOCK));
 	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble", () -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
-	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker", () -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
+	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker",
+		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
 
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> LASER_CHARGE = ITEMS.register("laser_charge",
+		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> EARTHSHOCK_GUN = ITEMS.register("earthshock_gun",
+		() -> new SingleShotGunItem(DMItemTiers.STEEL, 1, 7,
+			DMProjectiles.BLUE_LASER, DMSoundEvents.ENTITY_DALEK_GUNSTICK_CHARGE, DMASoundEvents.EARTHSHOCK_GUN_SHOOT, new Item.Properties().tab(ItemGroup.TAB_COMBAT), LASER_CHARGE));
 
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 			() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));

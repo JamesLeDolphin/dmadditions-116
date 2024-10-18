@@ -97,9 +97,8 @@ public class CyberCowEntity extends CowEntity {
 			if (this.random.nextInt(10) == 0) {
 				world.addFreshEntity(new CybermatEntity(DMEntities.CYBERMAT_ENTITY.get(), world));
 			}
-			return true;
 		}
-		return false;
+		return super.hurt(source, amount);
 	}
 
 	public boolean canFallInLove() {
