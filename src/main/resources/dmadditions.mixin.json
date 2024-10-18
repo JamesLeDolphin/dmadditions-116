@@ -27,7 +27,8 @@
 		"other.SpawnRegistryMixin",
 		"other.SpecialWeaponsMixin",
 		"other.TardisKeyMixin",
-		"other.TardisTileEntityMixin"
+		"other.TardisTileEntityMixin",
+		"other.CybermanEntityMixin"
 	],
 	"client": [
 		"other.DMTileRenderRegistryMixin",
@@ -35,6 +36,7 @@
 		"other.MainMenuScreenMixin",
 		"other.ModelDalekBaseMixin",
 		"other.SplashesMixin",
-		"other.RenderDalekMixin"
+		"other.RenderDalekMixin",
+		"other.RenderCybermanMixin"
 	]
 }
