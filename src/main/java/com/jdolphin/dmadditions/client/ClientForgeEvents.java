@@ -1,5 +1,10 @@
 package com.jdolphin.dmadditions.client;
 
+import java.util.UUID;
+
+import org.apache.logging.log4j.LogManager;
+import org.lwjgl.glfw.GLFW;
+
 import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererGallifrey;
@@ -13,20 +18,24 @@ import com.jdolphin.dmadditions.network.SBSonicInteractPacket;
 import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
 import com.swdteam.client.init.DMGuiHandler;
 import com.swdteam.client.init.DMKeybinds;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceContext.FluidMode;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(
 	modid = DMAdditions.MODID,
@@ -54,30 +63,43 @@ public class ClientForgeEvents {
 		}
 	}
 
-
-
 	@SubscribeEvent
 	public static void onKeyInput(InputEvent.KeyInputEvent event) {
-		PlayerEntity player = Minecraft.getInstance().player;
+		Minecraft minecraft = Minecraft.getInstance();
+		PlayerEntity player = minecraft.player;
 		if (player != null) {
-		ItemStack stack = player.getMainHandItem();
-		if (DMKeybinds.GUN_CHANGE_BULLET.consumeClick()) {
-			if (stack.getItem().equals(DMAItems.LASER_SCREWDRIVER.get())) {
-				SBToggleLaserScrewdriverMode packet = new SBToggleLaserScrewdriverMode();
-				DMAPackets.INSTANCE.sendToServer(packet);
+			ItemStack stack = player.getMainHandItem();
+			if (DMKeybinds.GUN_CHANGE_BULLET.consumeClick()) {
+				if (stack.getItem().equals(DMAItems.LASER_SCREWDRIVER.get())) {
+					SBToggleLaserScrewdriverMode packet = new SBToggleLaserScrewdriverMode();
+					DMAPackets.INSTANCE.sendToServer(packet);
+				}
 			}
-		}
-		if (DMKeybinds.GUN_CHANGE_BULLET.consumeClick()) {
+			if (DMKeybinds.GUN_CHANGE_BULLET.consumeClick()) {
 				if (DMAItems.SONIC_BLASTER != null && stack.getItem().equals(DMAItems.SONIC_BLASTER.get())) {
 					SonicBlasterItem.toggleRestoreMode(stack);
 				}
 			}
-		if (SONIC_SHADE_INTERACTION.consumeClick()) {
-			ItemStack headStack = player.getItemBySlot(EquipmentSlotType.HEAD);
-			if (DMAItems.SONIC_SHADES != null && headStack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
-				SBSonicInteractPacket packet = new SBSonicInteractPacket();
-				DMAPackets.INSTANCE.sendToServer(packet);
-				if (player.isShiftKeyDown()) DMGuiHandler.openGui(12, headStack, player);
+			if (SONIC_SHADE_INTERACTION.consumeClick()) {
+				if (DMAItems.SONIC_SHADES != null
+						&& player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(DMAItems.SONIC_SHADES.get())) {
+					if (player.isShiftKeyDown()) {
+						DMGuiHandler.openGui(12, player.getMainHandItem(), player);
+						return;
+					}
+
+					LivingEntity e = SonicShadesItem.rayTraceEntity(minecraft.level, minecraft.player);
+					UUID uuid = e != null ? e.getUUID() : null;
+
+					RayTraceResult blockResult = SonicShadesItem.rayTraceBlock(player.level, player, FluidMode.ANY);
+					BlockPos blockPos = blockResult instanceof BlockRayTraceResult ? ((BlockRayTraceResult) blockResult).getBlockPos() : null;
+
+					LogManager.getLogger().debug("Sonic shades raytrace: \n\tpos: {}\n\tuuid: {}\n\tentity: {}",
+							blockPos, uuid,
+							e != null ? e.getType().getRegistryName() : null);
+
+					SBSonicInteractPacket packet = new SBSonicInteractPacket(blockPos, uuid);
+					DMAPackets.INSTANCE.sendToServer(packet);
 				}
 			}
 		}

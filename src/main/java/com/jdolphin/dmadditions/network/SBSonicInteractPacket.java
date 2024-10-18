@@ -1,43 +1,59 @@
 package com.jdolphin.dmadditions.network;
 
+import java.util.UUID;
+import java.util.function.Supplier;
+
+import org.apache.logging.log4j.LogManager;
+
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.SonicShadesItem;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.init.DMSoundEvents;
-import com.swdteam.common.sonic.ISonicEntityInteraction;
 import com.swdteam.common.sonic.SonicCategory;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.controller.LookController;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.extensions.IForgeEntity;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.function.Supplier;
-
 public class SBSonicInteractPacket {
+	protected UUID uuid;
+	protected BlockPos blockPos;
 
-	public SBSonicInteractPacket() {
+	public SBSonicInteractPacket(BlockPos pos, UUID entity) {
+		this.blockPos = pos;
+		this.uuid = entity;
 	}
 
 	public SBSonicInteractPacket(PacketBuffer buf) {
+		boolean isEntity = buf.readBoolean();
+		if (isEntity) {
+			this.uuid = buf.readUUID();
+		} else {
+			blockPos = buf.readBlockPos();
+		}
 	}
 
 	public void encode(PacketBuffer buf) {
+		buf.writeBoolean(isEntity());
+		if (isEntity()) {
+			buf.writeUUID(uuid);
+		} else {
+			buf.writeBlockPos(blockPos);
+		}
+	}
+
+	protected boolean isEntity() {
+		return uuid != null;
 	}
 
 	private void sonicUse(ItemStack stack, PlayerEntity player) {
@@ -65,48 +81,53 @@ public class SBSonicInteractPacket {
 			if (DMAItems.SONIC_SHADES != null && stack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
 				SonicShadesItem.checkIsSetup(stack);
 
-				RayTraceResult rayTraceResult = SonicShadesItem.getPlayerRayTraceResult(world, player, RayTraceContext.FluidMode.ANY);
+				world.playSound(null, player.blockPosition(), DMSoundEvents.ENTITY_SONIC_ELEVENTH_EXTEND.get(),
+						SoundCategory.PLAYERS, 0.5F, 1.0F);
+
 				CompoundNBT tag = stack.getOrCreateTag();
-				if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
-					BlockRayTraceResult result = (BlockRayTraceResult) rayTraceResult;
-					BlockState state = world.getBlockState(result.getBlockPos());
+				if (isEntity()) {
+					Entity entity = world.getEntity(uuid);
+					if (entity != null) {
+						LogManager.getLogger().debug("entity: {}", entity);
+						if (DMSonicRegistry.SONIC_LOOKUP.containsKey(entity.getType())) {
+							DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP
+									.get(entity.getType());
+							if (sonic != null && tag.getInt("energy") > 0) {
+								if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
+									player.displayClientMessage(
+											(new StringTextComponent("This ability is still locked"))
+													.withStyle(TextFormatting.RED),
+											false);
+								} else {
+									sonic.interact(world, player, stack, entity);
+									sonicUse(tag);
+									SonicCategory.checkUnlock(player, stack);
+								}
+							}
+						}
+					}
+				} else {
+					BlockState state = world.getBlockState(blockPos);
 
 					if (DMSonicRegistry.SONIC_LOOKUP.containsKey(state.getBlock())) {
 						DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(state.getBlock());
 						if (sonic != null && tag.getInt("energy") > 0) {
 							if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
-								playFailSound(player);
-								player.displayClientMessage((new StringTextComponent("This ability is still locked")).withStyle(TextFormatting.RED), false);
+								player.displayClientMessage((new StringTextComponent("This ability is still locked"))
+										.withStyle(TextFormatting.RED), false);
 							} else {
-								sonic.interact(world, player, stack, result.getBlockPos());
-								sonicUse(stack, player);
+								sonic.interact(world, player, stack, blockPos);
+								sonicUse(tag);
+								SonicCategory.checkUnlock(player, stack);
 							}
-						} playFailSound(player);
-					}
-				}
-				if (rayTraceResult.getType() == RayTraceResult.Type.ENTITY) {
-					EntityRayTraceResult result = (EntityRayTraceResult) rayTraceResult;
-					Entity entity = result.getEntity();
-					if (entity != null) {
-						System.out.println(entity);
-						if (DMSonicRegistry.SONIC_LOOKUP.containsKey(entity)) {
-							DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(entity.getType());
-							if (sonic != null && tag.getInt("energy") > 0) {
-								if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
-									playFailSound(player);
-									player.displayClientMessage((new StringTextComponent("This ability is still locked")).withStyle(TextFormatting.RED), false);
-								} else {
-									sonic.interact(world, player, stack, entity);
-									sonicUse(stack, player);
-								}
-							} playFailSound(player);
 						}
 					}
 				}
+
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 		return false;
