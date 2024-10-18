@@ -4,10 +4,13 @@ import java.util.Arrays;
 
 import javax.annotation.Nonnull;
 
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -23,6 +26,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 
@@ -115,5 +120,19 @@ public class MondasianEntity extends MonsterEntity {
 				.filter(type -> type.name.equals(name)).findFirst()
 				.orElse(BLONDE);
 		}
+	}
+
+	@Override
+	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+		super.populateDefaultEquipmentSlots(p_180481_1_);
+
+		TimedUnlock.handlePumpkinHead(this);
+	}
+
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
+			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
+		populateDefaultEquipmentSlots(difficulty);
+		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
 	}
 }
