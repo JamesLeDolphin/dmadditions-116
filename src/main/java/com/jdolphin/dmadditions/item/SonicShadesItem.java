@@ -1,23 +1,31 @@
 package com.jdolphin.dmadditions.item;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.apache.logging.log4j.LogManager;
+import org.jetbrains.annotations.NotNull;
+
 import com.jdolphin.dmadditions.client.model.armor.SonicShadesModel;
-import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.sonic.SonicCategory;
+
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
@@ -29,9 +37,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class SonicShadesItem extends ArmorItem {
 
@@ -86,7 +91,7 @@ public class SonicShadesItem extends ArmorItem {
 		}
 	}
 
-	public static @NotNull RayTraceResult getPlayerRayTraceResult(World world, PlayerEntity player, RayTraceContext.@NotNull FluidMode fluidMode) {
+	public static @NotNull RayTraceResult rayTraceBlock(World world, PlayerEntity player, RayTraceContext.@NotNull FluidMode fluidMode) {
 		float f = player.xRot;
 		float f1 = player.yRot;
 		Vector3d vector3d = player.getEyePosition(1.0F);
@@ -119,4 +124,27 @@ public class SonicShadesItem extends ArmorItem {
 		}
 
 	}
+
+	public static LivingEntity rayTraceEntity(ClientWorld world, ClientPlayerEntity player) {
+		double reach = player.getAttribute((Attribute) ForgeMod.REACH_DISTANCE.get()).getValue();
+		Vector3d eyePos = player.getEyePosition(1);
+		Vector3d forward = eyePos.add(player.getForward().scale(reach));
+		LogManager.getLogger().debug("Raytrace Positions:\n\teye: {}\n\tforward: {}", eyePos, forward);
+
+		EntityPredicate target = new EntityPredicate();
+		target.selector((e) -> {
+			return e.getBoundingBox()
+					.clip(eyePos, forward)
+					.isPresent();
+		});
+
+		List<LivingEntity> entities = StreamSupport.stream(world
+				.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(reach))
+				.spliterator(), false)
+				.filter(e -> e instanceof LivingEntity)
+				.collect(Collectors.toList());
+
+		return world.getNearestEntity(entities, target, null, eyePos.x, eyePos.y, eyePos.z);
+	}
+
 }
