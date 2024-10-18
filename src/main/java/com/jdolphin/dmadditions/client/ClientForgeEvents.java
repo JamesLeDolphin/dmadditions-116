@@ -73,10 +73,11 @@ public class ClientForgeEvents {
 				}
 			}
 		if (SONIC_SHADE_INTERACTION.consumeClick()) {
-			if (DMAItems.SONIC_SHADES != null && player.getItemBySlot(EquipmentSlotType.HEAD).getItem().equals(DMAItems.SONIC_SHADES.get())) {
+			ItemStack headStack = player.getItemBySlot(EquipmentSlotType.HEAD);
+			if (DMAItems.SONIC_SHADES != null && headStack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
 				SBSonicInteractPacket packet = new SBSonicInteractPacket();
 				DMAPackets.INSTANCE.sendToServer(packet);
-				if (player.isShiftKeyDown()) DMGuiHandler.openGui(12, player.getMainHandItem(), player);
+				if (player.isShiftKeyDown()) DMGuiHandler.openGui(12, headStack, player);
 				}
 			}
 		}

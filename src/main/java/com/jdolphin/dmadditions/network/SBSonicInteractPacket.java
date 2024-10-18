@@ -40,9 +40,17 @@ public class SBSonicInteractPacket {
 	public void encode(PacketBuffer buf) {
 	}
 
-	private void sonicUse(CompoundNBT tag) {
+	private void sonicUse(ItemStack stack, PlayerEntity player) {
+		CompoundNBT tag = stack.getOrCreateTag();
 		tag.putInt("xp", tag.getInt("xp") + 1);
 		tag.putInt("energy", tag.getInt("energy") - 1);
+		player.getCooldowns().addCooldown(stack.getItem(), 20 * 2);
+		player.level.playSound(null, player.blockPosition(), DMSoundEvents.ENTITY_SONIC_NINTH.get(), SoundCategory.PLAYERS, 0.5F, 1.0F);
+		SonicCategory.checkUnlock(player, stack);
+	}
+
+	private void playFailSound(PlayerEntity player) {
+		player.level.playSound(null, player.blockPosition(), DMSoundEvents.ENTITY_SONIC_ELEVENTH_EXTEND.get(), SoundCategory.PLAYERS, 0.5F, 0F);
 	}
 
 	public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -57,8 +65,6 @@ public class SBSonicInteractPacket {
 			if (DMAItems.SONIC_SHADES != null && stack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
 				SonicShadesItem.checkIsSetup(stack);
 
-				world.playSound(null, player.blockPosition(), DMSoundEvents.ENTITY_SONIC_ELEVENTH_EXTEND.get(), SoundCategory.PLAYERS, 0.5F, 1.0F);
-
 				RayTraceResult rayTraceResult = SonicShadesItem.getPlayerRayTraceResult(world, player, RayTraceContext.FluidMode.ANY);
 				CompoundNBT tag = stack.getOrCreateTag();
 				if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
@@ -69,16 +75,16 @@ public class SBSonicInteractPacket {
 						DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(state.getBlock());
 						if (sonic != null && tag.getInt("energy") > 0) {
 							if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
+								playFailSound(player);
 								player.displayClientMessage((new StringTextComponent("This ability is still locked")).withStyle(TextFormatting.RED), false);
 							} else {
 								sonic.interact(world, player, stack, result.getBlockPos());
-								sonicUse(tag);
-								SonicCategory.checkUnlock(player, stack);
+								sonicUse(stack, player);
 							}
-						}
+						} playFailSound(player);
 					}
 				}
-				if (rayTraceResult.getType() == RayTraceResult.Type.MISS) {
+				if (rayTraceResult.getType() == RayTraceResult.Type.ENTITY) {
 					EntityRayTraceResult result = (EntityRayTraceResult) rayTraceResult;
 					Entity entity = result.getEntity();
 					if (entity != null) {
@@ -87,17 +93,16 @@ public class SBSonicInteractPacket {
 							DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(entity.getType());
 							if (sonic != null && tag.getInt("energy") > 0) {
 								if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
+									playFailSound(player);
 									player.displayClientMessage((new StringTextComponent("This ability is still locked")).withStyle(TextFormatting.RED), false);
 								} else {
 									sonic.interact(world, player, stack, entity);
-									sonicUse(tag);
-									SonicCategory.checkUnlock(player, stack);
+									sonicUse(stack, player);
 								}
-							}
+							} playFailSound(player);
 						}
 					}
 				}
-
 				return true;
 			}
 		} catch (Exception e) {
