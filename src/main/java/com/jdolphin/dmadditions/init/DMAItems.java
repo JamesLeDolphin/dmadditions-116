@@ -44,7 +44,7 @@ public class DMAItems {
 
 	public static final RegistryObject<Item> TWODIS = registerAdventItem(1, "twodis", () -> new TwoDizItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static final RegistryObject<Item> SONIC_SHADES = registerAdventItem(1, "sonic_shades", () -> new SonicShadesItem(DMAArmorMaterial.SONIC_SHADES, EquipmentSlotType.HEAD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static final RegistryObject<Item> SONIC_SHADES = registerAdventItem(1, "sonic_shades", () -> new SonicShadesItem(EquipmentSlotType.HEAD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble",
 		() -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));

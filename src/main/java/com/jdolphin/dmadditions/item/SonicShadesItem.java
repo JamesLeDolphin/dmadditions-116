@@ -7,12 +7,10 @@ import java.util.stream.StreamSupport;
 import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
-import com.jdolphin.dmadditions.client.model.armor.SonicShadesModel;
-import com.jdolphin.dmadditions.util.Helper;
+import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.sonic.SonicCategory;
 
 import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -21,8 +19,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -34,31 +30,18 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
 
-public class SonicShadesItem extends ArmorItem {
+public class SonicShadesItem extends ClothesItem {
 
-	public SonicShadesItem(IArmorMaterial material, EquipmentSlotType equipmentSlotType, Properties properties) {
-		super(material, equipmentSlotType, properties);
-	}
-	@SuppressWarnings("unchecked")
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-		return (A) new SonicShadesModel(1f);
+	public SonicShadesItem(EquipmentSlotType equipmentSlotType, Properties properties) {
+		super(properties, equipmentSlotType, null);
 	}
 
 	@Override
 	public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
 		if (armorType == EquipmentSlotType.HEAD) return true;
 		return super.canEquip(stack, armorType, entity);
-	}
-
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-		return Helper.createAdditionsRL("textures/models/armor/sonic_shades.png").toString();
 	}
 
 	public static void checkIsSetup(ItemStack stack) {

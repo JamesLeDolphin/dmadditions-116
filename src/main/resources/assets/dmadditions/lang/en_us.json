@@ -329,5 +329,7 @@
 	"key.dmadditions.restore_mode": "Restore Mode",
 	"item.dmadditions.sonic_blaster": "Sonic Blaster",
 
-	"entity.dmadditions.ice_warrior": "Ice Warrior"
+	"entity.dmadditions.ice_warrior": "Ice Warrior",
+
+	"item.dmadditions.sonic_shades": "Sonic Shades"
 }

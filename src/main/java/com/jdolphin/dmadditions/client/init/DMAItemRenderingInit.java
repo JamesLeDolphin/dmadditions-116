@@ -19,6 +19,11 @@ public class DMAItemRenderingInit {
 			IRI_SYCORAX_STAFF.addTransformType("sprite", TransformType.GROUND);
 			IRI_SYCORAX_STAFF.addTransformType("sprite", TransformType.FIXED);
 		}
+
+		if (DMAItems.SONIC_SHADES != null) {
+			ItemRenderInfo IRI_SONIC_SHADES = ItemRenderingRegistry.addItemRenderer(DMAItems.SONIC_SHADES);
+			IRI_SONIC_SHADES.addTransformType("worn", TransformType.HEAD);
+		}
 	}
 
 }
