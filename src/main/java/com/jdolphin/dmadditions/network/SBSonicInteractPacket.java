@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.network;
 import java.util.UUID;
 import java.util.function.Supplier;
 
+import net.minecraft.entity.player.PlayerEntity;
 import org.apache.logging.log4j.LogManager;
 
 import com.jdolphin.dmadditions.init.DMAItems;
@@ -81,9 +82,6 @@ public class SBSonicInteractPacket {
 			if (DMAItems.SONIC_SHADES != null && stack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
 				SonicShadesItem.checkIsSetup(stack);
 
-				world.playSound(null, player.blockPosition(), DMSoundEvents.ENTITY_SONIC_ELEVENTH_EXTEND.get(),
-						SoundCategory.PLAYERS, 0.5F, 1.0F);
-
 				CompoundNBT tag = stack.getOrCreateTag();
 				if (isEntity()) {
 					Entity entity = world.getEntity(uuid);
@@ -94,17 +92,15 @@ public class SBSonicInteractPacket {
 									.get(entity.getType());
 							if (sonic != null && tag.getInt("energy") > 0) {
 								if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
-									player.displayClientMessage(
-											(new StringTextComponent("This ability is still locked"))
-													.withStyle(TextFormatting.RED),
-											false);
+									playFailSound(player);
+									player.displayClientMessage(new StringTextComponent("This ability is still locked").withStyle(TextFormatting.RED), false);
 								} else {
 									sonic.interact(world, player, stack, entity);
-									sonicUse(tag);
+									sonicUse(stack, player);
 									SonicCategory.checkUnlock(player, stack);
 								}
 							}
-						}
+						} else playFailSound(player);
 					}
 				} else {
 					BlockState state = world.getBlockState(blockPos);
@@ -113,15 +109,16 @@ public class SBSonicInteractPacket {
 						DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(state.getBlock());
 						if (sonic != null && tag.getInt("energy") > 0) {
 							if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
-								player.displayClientMessage((new StringTextComponent("This ability is still locked"))
+								playFailSound(player);
+								player.displayClientMessage(new StringTextComponent("This ability is still locked")
 										.withStyle(TextFormatting.RED), false);
 							} else {
 								sonic.interact(world, player, stack, blockPos);
-								sonicUse(tag);
+								sonicUse(stack, player);
 								SonicCategory.checkUnlock(player, stack);
 							}
 						}
-					}
+					} else playFailSound(player);
 				}
 
 				return true;
