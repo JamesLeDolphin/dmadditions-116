@@ -45,11 +45,20 @@ public class SplashesMixin {
 
 				add("Torchwood is responsible for everything");
 				add("Don't trust Torchwood");
+
+				add("Stop typing everything I say");
 			}
 		};
 
 		if (TimedUnlock.isDecember()) {
-			splashes.add("DM Advent Calandar!?");
+			splashes.add("DM Advent Calendar!?");
+		}
+
+		if (TimedUnlock.isHalloween()){
+			splashes.add("Are YOU trick-or-treating!?");
+			splashes.add("Get yourself some sweets!");
+			splashes.add("Is that dalek wearing a pumpkin?");
+			splashes.add("Spoopy");
 		}
 
 		if (TimedUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && TimedUnlock.getDate() == 1) {
