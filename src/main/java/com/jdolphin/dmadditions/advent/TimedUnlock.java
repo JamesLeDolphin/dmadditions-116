@@ -3,6 +3,12 @@ package com.jdolphin.dmadditions.advent;
 import static com.jdolphin.dmadditions.DMAdditions.IS_DEBUG;
 
 import java.util.Calendar;
+import java.util.Random;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 
 
 public class TimedUnlock {
@@ -44,6 +50,18 @@ public class TimedUnlock {
 	public static boolean isHalloween() {
 		return getMonth() == Calendar.OCTOBER
 				&& getDate() == 31;
+	}
+
+	/** Randomly equip a pumpkin or jack-o-lantern on halloween
+	 * @return true if equipped
+	 */
+	public static boolean handlePumpkinHead(LivingEntity entity) {
+		Random random = entity.getRandom();
+		if (random.nextFloat() <= 0.25 && TimedUnlock.isHalloween()) {
+			entity.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(random.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
+			return true;
+		}
+		return false;
 	}
 
 	public static boolean halloween(int year) {

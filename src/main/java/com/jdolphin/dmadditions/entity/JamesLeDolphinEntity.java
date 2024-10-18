@@ -22,6 +22,8 @@ public class JamesLeDolphinEntity extends DolphinEntity {
 
 	@Override
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyInstance) {
+		TimedUnlock.handlePumpkinHead(this);
+
 		if (TimedUnlock.isDecember() && random.nextBoolean() && DMAItems.SANTA_HAT != null) {
 			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 			this.setDropChance(EquipmentSlotType.HEAD, 0.25f);

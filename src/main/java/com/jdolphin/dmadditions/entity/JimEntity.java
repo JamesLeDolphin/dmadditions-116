@@ -50,18 +50,17 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	));
 
 	private final RangedAttackGoal rangedAttackGoal = new RangedAttackGoal(this, 1.0D, 20, 15.0F);
-	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false){
-      public void stop() {
-         super.stop();
-         JimEntity.this.setAggressive(false);
-      }
+	private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+		public void stop() {
+			super.stop();
+			JimEntity.this.setAggressive(false);
+		}
 
-      public void start() {
-         super.start();
-         JimEntity.this.setAggressive(true);
-      }
-   };
- 
+		public void start() {
+			super.start();
+			JimEntity.this.setAggressive(true);
+		}
+	};
 
 	public JimEntity(EntityType<? extends AnimalEntity> type, World world) {
 		super(type, world);
@@ -116,6 +115,8 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
 		super.populateDefaultEquipmentSlots(difficulty);
 
+		TimedUnlock.handlePumpkinHead(this);
+
 		if(TimedUnlock.isDecember() && random.nextBoolean()){
 			equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 		}
@@ -166,20 +167,21 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob{
 
 	@Override
 	public void performRangedAttack(LivingEntity target, float v) {
-      double d0 = 0.0;
-      double d1 = 0.0;
-      double d2 = 0.0;
-      if (target.isAlive()) {
-         d0 = target.getX() - this.getX();
-         d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
-         d2 = target.getZ() - this.getZ();
-         LaserEntity laser = new LaserEntity(this.level, this, 0.2F, (float)this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
-         laser.setDamageSource(new EntityDamageSource("dalekgun", this));
-         laser.setLaserType(DMProjectiles.BULLET);
-         laser.shoot(d0, d1, d2, 2.5F, 0.0F);
-         this.playSound((SoundEvent)DMSoundEvents.ENTITY_AUTON_SHOOT.get(), 1.0F, 1.0F);
-         this.level.addFreshEntity(laser);
-      }
+		double d0 = 0.0;
+		double d1 = 0.0;
+		double d2 = 0.0;
+		if (target.isAlive()) {
+			d0 = target.getX() - this.getX();
+			d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
+			d2 = target.getZ() - this.getZ();
+			LaserEntity laser = new LaserEntity(this.level, this, 0.2F,
+					(float) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
+			laser.setDamageSource(new EntityDamageSource("dalekgun", this));
+			laser.setLaserType(DMProjectiles.BULLET);
+			laser.shoot(d0, d1, d2, 2.5F, 0.0F);
+			this.playSound((SoundEvent) DMSoundEvents.ENTITY_AUTON_SHOOT.get(), 1.0F, 1.0F);
+			this.level.addFreshEntity(laser);
+		}
 	}
 
 	@Override
