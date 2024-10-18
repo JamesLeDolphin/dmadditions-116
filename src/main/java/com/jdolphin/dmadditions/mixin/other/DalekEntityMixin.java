@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import org.apache.logging.log4j.LogManager;
+import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -10,6 +11,7 @@ import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
 import com.swdteam.common.entity.dalek.DalekEntity;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -39,7 +41,15 @@ public abstract class DalekEntityMixin extends MobEntity implements IDalekEntity
 			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
 
 		if (TimedUnlock.isHalloween() && random.nextBoolean()) {
-			this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(this.random.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
+			Block block = Blocks.CARVED_PUMPKIN;
+			float f = random.nextFloat();
+
+			if (f < 0.1) {
+				block = Blocks.JACK_O_LANTERN;
+			} else if (f < 0.7 && CARVED_DALEK_PUMPKIN != null) {
+				block = CARVED_DALEK_PUMPKIN.get();
+			}
+			this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(block));
 			this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
 		}
 
