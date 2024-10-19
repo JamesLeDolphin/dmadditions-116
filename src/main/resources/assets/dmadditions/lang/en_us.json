@@ -235,6 +235,10 @@
 	"item.dmadditions.torchwood_tank": "Torchwood Tank",
 	"item.dmadditions.shopping_cart": "Shopping Cart",
 
+	"tooltip.item.dmadditions.shopping_cart.has_engine": "Has engine",
+	"tooltip.item.dmadditions.shopping_cart.no_engine": "No engine",
+	"tooltip.item.dmadditions.shopping_cart.flyable": "Flyable",
+
 	"block.dmadditions.engine": "Engine",
 
 	"item.dmadditions.matts_pink_thong": "Matt's Pink Thong",
