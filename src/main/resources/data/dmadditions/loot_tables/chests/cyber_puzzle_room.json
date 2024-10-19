@@ -13,8 +13,38 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "name": "minecraft:rotten_flesh",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dmadditions:frying_pan",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dalekmod:pistol",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dalekmod:steel_chestplate",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "dalekmod:circuit",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
           "name": "dalekmod:steel_ingot",
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -27,8 +57,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 8,
           "name": "dalekmod:stainless_steel_ingot",
+          "weight": 8,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -41,53 +71,23 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
           "name": "dalekmod:steel_sword",
-          "functions": [
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:sharpness",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 0
-              }
-            }
-          ]
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
           "name": "dalekmod:steel_mace",
-          "functions": [
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:smite",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 0
-              }
-            }
-          ]
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
           "name": "dalekmod:steel_battleaxe",
-          "functions": [
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:efficiency",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 0
-              }
-            }
-          ]
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
-          "name": "dalekmod:music_disc_cyberwave"
+          "name": "dalekmod:music_disc_cyberwave",
+          "weight": 1
         }
       ]
     }

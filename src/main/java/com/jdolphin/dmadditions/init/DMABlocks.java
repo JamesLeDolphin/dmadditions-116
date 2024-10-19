@@ -64,9 +64,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
 
-	public static RegistryObject<Block> CONSOLE = registerBlockAndItem("console",
-		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
-
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
 		"christmas_lights", ItemGroup.TAB_DECORATIONS);
@@ -136,10 +133,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> RANDOMIZER = registerBlock(
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> COMBAT_PANEL = registerBlock(
-		() -> new CombatPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"combat_panel", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
 

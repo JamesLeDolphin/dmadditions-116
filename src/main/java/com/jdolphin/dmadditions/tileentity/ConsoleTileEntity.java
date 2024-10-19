@@ -30,9 +30,6 @@ public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTile
 		super(tileEntityTypeIn);
 	}
 
-	public ConsoleTileEntity() {
-		this(DMABlockEntities.TILE_CONSOLE.get());
-	}
 
 	@Override
 	public void onLoad() {

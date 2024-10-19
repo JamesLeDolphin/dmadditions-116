@@ -1,4 +1,3 @@
-
 {
   "type": "minecraft:chest",
   "pools": [
@@ -20,7 +19,25 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:stone"
+          "name": "minecraft:golden_sword",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly",
+              "enchantments": [
+                "minecraft:smite",
+                "minecraft:sharpness",
+                "minecraft:mending"
+              ]
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 5,
+                "max": 32
+              }
+            }
+          ]
         }
       ]
     },
@@ -82,52 +99,41 @@
         {
           "type": "minecraft:item",
           "name": "dalekmod:steel_sword",
-          "weight": 5,
+          "weight": 2,
           "functions": [
             {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:sharpness",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 0
-              }
+              "function": "minecraft:enchant_randomly",
+              "enchantments": [
+                "minecraft:sharpness"
+              ]
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "dalekmod:steel_mace",
-          "weight": 5,
+          "weight": 2,
           "functions": [
             {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:smite",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 0
-              }
+              "function": "minecraft:enchant_randomly",
+              "enchantments": [
+                "minecraft:smite"
+              ]
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "dalekmod:steel_battleaxe",
-          "weight": 5,
+          "weight": 2,
           "functions": [
             {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:efficiency",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 0
-              }
+              "function": "minecraft:enchant_randomly",
+              "enchantments": [
+                "minecraft:efficiency"
+              ]
             }
           ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "dalekmod:music_disc_cyberwave",
-          "weight": 3
         }
       ]
     }

@@ -132,10 +132,11 @@ public class DMAdditions {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 
-		MinecraftForge.EVENT_BUS.register(this);
-		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
-		MinecraftForge.EVENT_BUS.register(RegenEvents.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
+
+		vengaBus.register(this);
+		vengaBus.register(DMAEventHandlerGeneral.class);
+		vengaBus.register(RegenEvents.class);
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) DMAFluids.FLUIDS.register(bus);
@@ -306,6 +307,10 @@ public class DMAdditions {
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
+		}
+
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
@@ -330,6 +335,8 @@ public class DMAdditions {
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR)) return registryKey.equals("minecraft:snowy_taiga");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
 				registryKey.equals("dmadditions:dead_forest");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN)) return registryKey.equals("dmadditions:mondas_frozen");
+
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
 
 		}

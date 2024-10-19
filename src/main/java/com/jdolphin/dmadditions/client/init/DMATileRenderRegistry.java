@@ -28,7 +28,6 @@ public class DMATileRenderRegistry {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
 		registerModel(DMABlockEntities.TILE_SPECIMEN_JAR.get(), SpecimenJarRenderer::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
-		registerModel(DMABlockEntities.TILE_CONSOLE.get(), ConsoleRenderer::new);
 		registerModel(DMABlockEntities.TILE_REDDASH_STATUE.get(), Helper.createAdditionsRL("models/tileentity/reddash_statue.json"));
 	}
 
