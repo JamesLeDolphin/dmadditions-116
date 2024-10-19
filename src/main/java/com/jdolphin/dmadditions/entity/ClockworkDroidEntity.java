@@ -28,6 +28,7 @@ public class ClockworkDroidEntity extends MonsterEntity {
 
 	public ClockworkDroidEntity(EntityType<ClockworkDroidEntity> type, World world) {
 		super(type, world);
+		this.setHealth(20.0F);
 	}
 
 	public ClockworkDroidEntity(World world) {

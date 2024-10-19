@@ -23,6 +23,7 @@ public class IceWarriorEntity extends MonsterEntity {
 
 	public IceWarriorEntity(EntityType<IceWarriorEntity> type, World world) {
 		super(type, world);
+		this.setHealth(20.0F);
 	}
 
 	public IceWarriorEntity(World world) {
