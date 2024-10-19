@@ -5,6 +5,7 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
+import com.jdolphin.dmadditions.entity.ClockworkDroidEntity;
 import com.jdolphin.dmadditions.item.*;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.*;
@@ -254,6 +255,11 @@ public class DMAItems {
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
 		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+
+	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = registerAdventItem(1, "clockwork_droid_spawner",
+		() -> new DMASpawnerItem<>("clockwork_droid", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> ICEWARRIOR_SPAWNER = registerAdventItem(1, "ice_warrior_spawner",
+		() -> new DMASpawnerItem<>("ice_warrior", new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
 		() -> new DMASpawnerItem<>("torchwood_tank", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
