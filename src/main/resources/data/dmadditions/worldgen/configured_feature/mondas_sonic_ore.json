@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": {
+      "type": "minecraft:decorated",
+      "name": "dmadditions:mondas_sonic_ore",
+      "config": {
+        "feature": {
+          "type": "minecraft:decorated",
+          "config": {
+            "feature": {
+              "config": {
+                "target": {
+                  "predicate_type": "minecraft:block_match",
+                  "block": "minecraft:stone"
+                },
+                "state": {
+                  "Name": "dmadditions:stone_sonic_crystal_ore"
+                },
+                "size": 3
+              },
+              "type": "minecraft:ore"
+            },
+            "decorator": {
+              "config": {
+                "bottom_offset": 0,
+                "top_offset": 1,
+                "maximum": 40
+              },
+              "type": "minecraft:range"
+            }
+          }
+        },
+        "decorator": {
+          "config": {},
+          "type": "minecraft:square"
+        }
+      }
+    },
+    "decorator": {
+      "config": {
+        "count":10
+      },
+      "type": "minecraft:count"
+    }
+  }
+}

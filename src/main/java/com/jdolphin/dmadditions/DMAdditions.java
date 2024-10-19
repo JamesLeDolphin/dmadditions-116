@@ -322,6 +322,11 @@ public class DMAdditions {
 				.squared().decorated(Features.Placements.HEIGHTMAP)
 				.decorated(Placement.COUNT_EXTRA.configured(
 					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));
+
+			List<Supplier<ConfiguredFeature<?, ?>>> oreBase =
+				event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES);
+			oreBase.add(() -> DMAConfiguredStructures.SONIC_ORE
+				.squared().decorated(Features.Placements.HEIGHTMAP));
 		}
 	}
 
