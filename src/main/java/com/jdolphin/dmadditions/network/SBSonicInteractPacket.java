@@ -83,45 +83,47 @@ public class SBSonicInteractPacket {
 				SonicShadesItem.checkIsSetup(stack);
 
 				CompoundNBT tag = stack.getOrCreateTag();
-				if (isEntity()) {
-					Entity entity = world.getEntity(uuid);
-					if (entity != null) {
-						LogManager.getLogger().debug("entity: {}", entity);
-						if (DMSonicRegistry.SONIC_LOOKUP.containsKey(entity.getType())) {
-							DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP
+				if (!player.getCooldowns().isOnCooldown(stack.getItem())) {
+					if (isEntity()) {
+						Entity entity = world.getEntity(uuid);
+						if (entity != null) {
+							LogManager.getLogger().debug("entity: {}", entity);
+							if (DMSonicRegistry.SONIC_LOOKUP.containsKey(entity.getType())) {
+								DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP
 									.get(entity.getType());
+								if (sonic != null && tag.getInt("energy") > 0) {
+									if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
+										playFailSound(player);
+										player.displayClientMessage(new StringTextComponent("This ability is still locked").withStyle(TextFormatting.RED), false);
+									} else {
+										sonic.interact(world, player, stack, entity);
+										sonicUse(stack, player);
+										SonicCategory.checkUnlock(player, stack);
+									}
+								}
+							} else playFailSound(player);
+						}
+					} else {
+						BlockState state = world.getBlockState(blockPos);
+
+						if (DMSonicRegistry.SONIC_LOOKUP.containsKey(state.getBlock())) {
+							DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(state.getBlock());
 							if (sonic != null && tag.getInt("energy") > 0) {
 								if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
 									playFailSound(player);
-									player.displayClientMessage(new StringTextComponent("This ability is still locked").withStyle(TextFormatting.RED), false);
+									player.displayClientMessage(new StringTextComponent("This ability is still locked")
+										.withStyle(TextFormatting.RED), false);
 								} else {
-									sonic.interact(world, player, stack, entity);
+									sonic.interact(world, player, stack, blockPos);
 									sonicUse(stack, player);
 									SonicCategory.checkUnlock(player, stack);
 								}
 							}
 						} else playFailSound(player);
 					}
-				} else {
-					BlockState state = world.getBlockState(blockPos);
 
-					if (DMSonicRegistry.SONIC_LOOKUP.containsKey(state.getBlock())) {
-						DMSonicRegistry.ISonicInteraction sonic = DMSonicRegistry.SONIC_LOOKUP.get(state.getBlock());
-						if (sonic != null && tag.getInt("energy") > 0) {
-							if (!SonicCategory.canExecute(stack, sonic.getCategory()) && !player.isCreative()) {
-								playFailSound(player);
-								player.displayClientMessage(new StringTextComponent("This ability is still locked")
-										.withStyle(TextFormatting.RED), false);
-							} else {
-								sonic.interact(world, player, stack, blockPos);
-								sonicUse(stack, player);
-								SonicCategory.checkUnlock(player, stack);
-							}
-						}
-					} else playFailSound(player);
+					return true;
 				}
-
-				return true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

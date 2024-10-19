@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S#C",
+    "GPG"
+  ],
+  "key": {
+    "#": {
+      "item": "dalekmod:sonic_emitter"
+    },
+  "P": {
+    "item": "dalekmod:plastic_chunk"
+  },
+    "G": {
+    "item": "minecraft:black_stained_glass_pane"
+  },
+    "S": {
+      "tag": "forge:ingots/stainless_steel"
+    },
+    "C": {
+      "tag": "forge:circuits/basic"
+    }
+  },
+  "result": {
+    "item": "dmadditions:sonic_shades",
+    "count": 1
+  }
+}

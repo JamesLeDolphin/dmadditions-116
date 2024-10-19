@@ -1,8 +1,1 @@
-{
-	"parent": "dalekmod:item/glasses_gui",
-	"display": {
-		"gui": {
-			"rotation": [0, 0, 180]
-		}
-	}
-}
+{"parent":"item/generated","textures":{"layer0":"dmadditions:item/sonic_shades"}}

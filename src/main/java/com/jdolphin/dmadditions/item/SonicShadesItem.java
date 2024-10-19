@@ -115,11 +115,9 @@ public class SonicShadesItem extends ClothesItem {
 		LogManager.getLogger().debug("Raytrace Positions:\n\teye: {}\n\tforward: {}", eyePos, forward);
 
 		EntityPredicate target = new EntityPredicate();
-		target.selector((e) -> {
-			return e.getBoundingBox()
-					.clip(eyePos, forward)
-					.isPresent();
-		});
+		target.selector((e) -> e.getBoundingBox()
+				.clip(eyePos, forward)
+				.isPresent());
 
 		List<LivingEntity> entities = StreamSupport.stream(world
 				.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(reach))

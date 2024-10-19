@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.event;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
+import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.TwoDizItem;
 import com.jdolphin.dmadditions.util.Helper;
@@ -11,6 +12,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.RegistryKey;
@@ -18,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
@@ -61,6 +65,25 @@ public class DMAEventHandlerGeneral {
 	}
 
 	@SubscribeEvent
+	public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
+		PlayerEntity player = event.player;
+		if (player instanceof ServerPlayerEntity) {
+			ItemStack headStack = player.getItemBySlot(EquipmentSlotType.HEAD);
+
+			if (DMAItems.SONIC_SHADES != null && headStack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
+				World level = player.level;
+				CompoundNBT tag = headStack.getOrCreateTag();
+				int energy = tag.contains("energy") ? tag.getInt("energy") : 0;
+				if (energy < 100) {
+					if (level.random.nextFloat() < 0.4f) {
+						tag.putInt("energy", energy + 1);
+					}
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public static void sizeEvent(EntityEvent.Size event) {
 		Entity entity = event.getEntity();
 		EntitySize size = event.getNewSize();
@@ -68,7 +91,6 @@ public class DMAEventHandlerGeneral {
 			CompoundNBT tag = entity.getPersistentData();
 			float width = 1.0f;
 			if (tag.contains(TwoDizItem.ENTITY_WIDTH)) {
-				System.out.println("Contains width");
 				width = tag.getFloat(TwoDizItem.ENTITY_WIDTH);
 			}
 			event.setNewSize(new EntitySize(size.width * width, size.height, size.fixed));
