@@ -8,12 +8,6 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 
 
 public class ClockworkDroidModel extends BipedModel<ClockworkDroidEntity> {
-	private final ModelRenderer head;
-	private final ModelRenderer body;
-	private final ModelRenderer rightArm;
-	private final ModelRenderer leftArm;
-	private final ModelRenderer rightLeg;
-	private final ModelRenderer leftLeg;
 
 	public ClockworkDroidModel() {
 		super(0.7f);
@@ -53,7 +47,7 @@ public class ClockworkDroidModel extends BipedModel<ClockworkDroidEntity> {
 
 	@Override
 	public void setupAnim(ClockworkDroidEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		//previously the render function, render code was moved to a method below
+		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 	}
 
 	@Override
