@@ -247,7 +247,7 @@ public class DMAItems {
 	public static RegistryObject<Item> KANTROFARRI_COOKED = ITEMS.register("kantrofarri_cooked",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
-		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+		() -> new ShoppingCartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
 		() -> new DMASpawnerItem<>("torchwood_tank", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
