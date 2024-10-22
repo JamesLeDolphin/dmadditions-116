@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.client.init;
 
-import com.jdolphin.dmadditions.client.render.tileentity.ConsoleRenderer;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderCoordPanel;
 import com.jdolphin.dmadditions.client.render.tileentity.RenderDimensionSelectorPanel;
 import com.jdolphin.dmadditions.client.render.tileentity.SpecimenJarRenderer;

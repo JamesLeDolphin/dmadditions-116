@@ -1,13 +1,10 @@
 package com.jdolphin.dmadditions.world.structure;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.init.DMEntities;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
@@ -23,6 +20,8 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+
+import java.util.List;
 
 public class MondasCyberBase extends Structure<NoFeatureConfig> {
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(

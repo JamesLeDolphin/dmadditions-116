@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.item.ShoppingCartItem;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.*;

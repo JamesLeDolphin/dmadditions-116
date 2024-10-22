@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.util.Helper;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -10,7 +9,6 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RandomBlockMatchRuleTest;
-import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
 

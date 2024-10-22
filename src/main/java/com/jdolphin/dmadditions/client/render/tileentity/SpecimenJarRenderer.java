@@ -1,26 +1,15 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
 import com.jdolphin.dmadditions.block.SpecimenJarBlock;
-import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.tileentity.SpecimenJarTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.swdteam.client.gui.util.GuiUtils;
-import com.swdteam.util.EntityUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.model.ModelHelper;
-import net.minecraft.client.renderer.model.ModelManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -31,11 +20,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.fml.network.FMLPlayMessages;
 import org.jetbrains.annotations.NotNull;
 
 public class SpecimenJarRenderer extends TileEntityRenderer<SpecimenJarTileEntity> {

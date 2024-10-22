@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.christmas.*;
 import com.jdolphin.dmadditions.block.tardis.*;
-import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.block.StatueBlock;

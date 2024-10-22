@@ -1,14 +1,12 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import org.jetbrains.annotations.NotNull;
-
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.util.Helper;
-
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class MondasianRenderer extends LivingRenderer<MondasianEntity, PlayerModel<MondasianEntity>> {
 	public MondasianRenderer(EntityRendererManager manager) {
