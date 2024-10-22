@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.entity.EntityType;
@@ -9,10 +10,12 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -42,6 +45,10 @@ public class MondasianEntity extends MonsterEntity {
 		}
 
 		super.readAdditionalSaveData(compound);
+	}
+
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return DMAItems.MONDASIAN_SPAWNER.get().getDefaultInstance();
 	}
 
 	protected void defineSynchedData() {

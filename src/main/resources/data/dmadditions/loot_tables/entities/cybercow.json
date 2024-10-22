@@ -2,18 +2,11 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "rolls": {
-        "min": 1,
-        "max": 5
-      },
-      "bonus_rolls": {
-        "min": 1,
-        "max": 5
-      },
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dalekmod:steel_rod",
+          "name": "dalekmod:circuit",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -33,7 +26,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:rotten_flesh",
+          "name": "minecraft:redstone",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -44,29 +37,68 @@
             },
             {
               "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0,
+                "max": 2
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:beef",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 3
               }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "dalekmod:steel_ingot",
-          "functions": [
+            },
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
+              "function": "minecraft:furnace_smelt",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "flags": {
+                      "is_on_fire": true
+                    }
+                  }
+                }
+              ]
             },
             {
               "function": "minecraft:looting_enchant",
               "count": {
                 "min": 0,
-                "max": 2
+                "max": 1
               }
             }
           ]
