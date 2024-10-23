@@ -59,14 +59,14 @@ public class DMAItems {
 	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker",
 		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
-	public static RegistryObject<Item> VORTEX_MANIPULATOR = ITEMS.register("vortex_manipulator",
+	public static RegistryObject<Item> VORTEX_MANIPULATOR = registerAdventItem(1, "vortex_manipulator",
 		() -> new VortexManipulatorItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
-		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
 
 	public static RegistryObject<Item> BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",
 		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
