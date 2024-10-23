@@ -23,6 +23,7 @@ public class IceWarriorEntity extends MonsterEntity {
 
 	public IceWarriorEntity(EntityType<IceWarriorEntity> type, World world) {
 		super(type, world);
+		this.setHealth(20.0F);
 	}
 
 	public IceWarriorEntity(World world) {
@@ -59,7 +60,12 @@ public class IceWarriorEntity extends MonsterEntity {
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-		this.goalSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, false));
+		this.goalSelector.addGoal(10, new NearestAttackableTargetGoal(this, LivingEntity.class, false) {
+			@Override
+			public boolean canUse() {
+				return super.canUse() && !(this.target instanceof IceWarriorEntity);
+			}
+		});
 		this.goalSelector.addGoal(11, new MeleeAttackGoal(this, 1f, false));
 		this.goalSelector.addGoal(12, new HurtByTargetGoal(this));
 	}

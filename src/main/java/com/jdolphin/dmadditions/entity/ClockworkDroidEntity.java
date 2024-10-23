@@ -28,6 +28,7 @@ public class ClockworkDroidEntity extends MonsterEntity {
 
 	public ClockworkDroidEntity(EntityType<ClockworkDroidEntity> type, World world) {
 		super(type, world);
+		this.setHealth(20.0F);
 	}
 
 	public ClockworkDroidEntity(World world) {
@@ -64,7 +65,12 @@ public class ClockworkDroidEntity extends MonsterEntity {
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-		this.goalSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, LivingEntity.class, false));
+		this.goalSelector.addGoal(10, new NearestAttackableTargetGoal(this, LivingEntity.class, false) {
+			@Override
+			public boolean canUse() {
+				return super.canUse() && !(this.target instanceof ClockworkDroidEntity);
+			}
+		});
 		this.goalSelector.addGoal(11, new MeleeAttackGoal(this, 1f, false));
 	}
 
