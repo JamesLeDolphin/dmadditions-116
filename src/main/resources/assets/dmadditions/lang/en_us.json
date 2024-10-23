@@ -330,6 +330,5 @@
 	"item.dmadditions.motlen_steel_bucket": "Molten Steel Bucket",
 	"item.dmadditions.motlen_stainless_steel_bucket": "Molten Stainless Steel Bucket",
 	"item.dmadditions.motlen_metalert_bucket": "Molten Metalert Bucket",
-	"item.dmadditions.motlen_silicon_bucket": "Molten Silicon Bucket",
-	"screen.dmadditions.vortex_manipulator": "Vortex manipulator"
+	"item.dmadditions.motlen_silicon_bucket": "Molten Silicon Bucket"
 }
