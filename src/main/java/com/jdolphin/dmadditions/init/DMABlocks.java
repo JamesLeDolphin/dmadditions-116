@@ -1,7 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
+import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
+import com.jdolphin.dmadditions.block.EngineBlock;
 import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.christmas.*;
 import com.jdolphin.dmadditions.block.tardis.*;
@@ -48,6 +51,20 @@ public class DMABlocks {
 			.requiresCorrectToolForDrops()
 			.strength(6.0F, 6.0F), 1, 5),
 		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+
+	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
+		if (!TimedUnlock.advent(day))
+			return null;
+
+		return registerBlock(supplier, name);
+	}
+
+	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
+		if (!TimedUnlock.advent(day))
+			return null;
+
+		return registerBlock(supplier, name, tab);
+	}
 
 	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "blue_bauble");
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
@@ -240,20 +257,6 @@ public class DMABlocks {
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name, SoundType soundType) {
 		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(soundType).noOcclusion()),
 			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);
-	}
-
-	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
-		if (!AdventUnlock.unlockAt(day))
-			return null;
-
-		return registerBlock(supplier, name);
-	}
-
-	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
-		if (!AdventUnlock.unlockAt(day))
-			return null;
-
-		return registerBlock(supplier, name, tab);
 	}
 
 	@SafeVarargs

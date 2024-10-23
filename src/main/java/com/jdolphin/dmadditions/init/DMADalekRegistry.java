@@ -47,7 +47,7 @@ public class DMADalekRegistry {
 		SESAME_STREET.addChild("sesame_street_dalek_emperor");
 
 // 		how to advent unlock daleks
-//		if (AdventUnlock.unlockAt(20)) {
+//		if (TimedUnlock.advent(2025, 20)) {
 //		}
 
 		dalekList.addAll(dmaDalekList);
