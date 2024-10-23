@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import org.spongepowered.asm.mixin.Mixin;
-
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.common.entity.CybermanEntity;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -17,6 +14,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(CybermanEntity.class)
 public abstract class CybermanEntityMixin extends MonsterEntity implements IRangedAttackMob {

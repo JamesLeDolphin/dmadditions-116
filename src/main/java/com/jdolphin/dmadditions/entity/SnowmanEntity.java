@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMAItems;
-
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;

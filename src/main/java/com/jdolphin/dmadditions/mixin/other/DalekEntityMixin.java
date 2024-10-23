@@ -1,16 +1,8 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
 import com.swdteam.common.entity.dalek.DalekEntity;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -24,6 +16,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
 
 
 @Mixin(DalekEntity.class)

@@ -1,14 +1,14 @@
 package com.jdolphin.dmadditions.advent;
 
-import static com.jdolphin.dmadditions.DMAdditions.IS_DEBUG;
-
-import java.util.Calendar;
-import java.util.Random;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+
+import java.util.Calendar;
+import java.util.Random;
+
+import static com.jdolphin.dmadditions.DMAdditions.IS_DEBUG;
 
 
 public class TimedUnlock {

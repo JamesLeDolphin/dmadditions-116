@@ -1,11 +1,7 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
-import com.jdolphin.dmadditions.init.DMAItems;
-import java.util.Arrays;
-
-import javax.annotation.Nonnull;
-
 import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.entity.EntityType;
@@ -22,6 +18,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;

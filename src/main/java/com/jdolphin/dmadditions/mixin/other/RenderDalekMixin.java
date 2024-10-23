@@ -1,17 +1,15 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import com.jdolphin.dmadditions.client.render.entity.layers.DalekHeadLayer;
 import com.swdteam.client.model.ModelDalekBase;
 import com.swdteam.client.render.entity.RenderDalek;
 import com.swdteam.common.entity.dalek.DalekEntity;
-
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderDalek.class)
 public abstract class RenderDalekMixin extends LivingRenderer<DalekEntity, ModelDalekBase>{

@@ -1,12 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity.layers;
 
-import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.block.AbstractSkullBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -31,6 +26,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.UUID;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class NoHeadHeadLayer<T extends LivingEntity, M extends EntityModel<T>> extends LayerRenderer<T, M> {
