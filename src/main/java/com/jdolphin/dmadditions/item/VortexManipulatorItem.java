@@ -1,8 +1,12 @@
 package com.jdolphin.dmadditions.item;
 
+import com.jdolphin.dmadditions.init.DMAPackets;
+import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.util.DMALocation;
+import com.jdolphin.dmadditions.util.GuiHandler;
 import com.swdteam.common.init.DMItems;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -52,7 +56,7 @@ public class VortexManipulatorItem extends Item implements IForgeItem {
 		CompoundNBT tag = stack.getOrCreateTag();
 		if (!level.isClientSide()) {
 			setup(tag);
-
+			if (player.isShiftKeyDown()) DMAPackets.sendTo((ServerPlayerEntity) player, new CBOpenGUIPacket(player.blockPosition(), GuiHandler.VORTEX_MANIUPULATOR));
 			ItemStack offHand = player.getItemInHand(Hand.OFF_HAND);
 			ItemStack mainHand = player.getItemInHand(Hand.MAIN_HAND);
 			if (offHand.getItem().equals(DMItems.FULL_ARTRON.get()) && mainHand.getItem().equals(this)) {

@@ -336,6 +336,7 @@
 	"item.dmadditions.ice_warrior_spawner": "Ice Warrior Spawner",
 
 	"item.dmadditions.sonic_shades": "Sonic Shades",
-	"screen.dmadditions.vortex_manipulator": "Vortex Manipulator"
+	"screen.dmadditions.vortex_manipulator": "Vortex Manipulator",
+	"dmadditions.button.select": "Select"
 
 }

@@ -32,6 +32,11 @@ public class DMAPackets {
 			.decoder(SBSonicInteractPacket::new)
 			.consumer(SBSonicInteractPacket::handle)
 			.add();
+		INSTANCE.messageBuilder(SBSetDestinationPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
+			.encoder(SBSetDestinationPacket::encode)
+			.decoder(SBSetDestinationPacket::new)
+			.consumer(SBSetDestinationPacket::handle)
+			.add();
 		INSTANCE.registerMessage(index++, CBOpenGUIPacket.class, CBOpenGUIPacket::encode, CBOpenGUIPacket::decode, CBOpenGUIPacket::handle);
 		INSTANCE.registerMessage(index++, CBSyncPlayerPacket.class, CBSyncPlayerPacket::encode, CBSyncPlayerPacket::decode, CBSyncPlayerPacket::handle);
 	}
