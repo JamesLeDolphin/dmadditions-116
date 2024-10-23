@@ -1,21 +1,13 @@
 package com.jdolphin.dmadditions.item;
 
 import com.jdolphin.dmadditions.util.DMALocation;
-import com.swdteam.common.block.tardis.TardisBlock;
 import com.swdteam.common.init.DMItems;
-import com.swdteam.common.tardis.Location;
-import com.swdteam.util.TeleportUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeItem;
 
@@ -61,27 +53,17 @@ public class VortexManipulatorItem extends Item implements IForgeItem {
 		if (!level.isClientSide()) {
 			setup(tag);
 
-			if (getFuel(tag) < MAX_FUEL) {
-				ItemStack offHand = player.getItemInHand(Hand.OFF_HAND);
-				ItemStack mainHand = player.getItemInHand(Hand.MAIN_HAND);
-				if (offHand.getItem().equals(DMItems.FULL_ARTRON.get()) && mainHand.getItem().equals(this)) {
+			ItemStack offHand = player.getItemInHand(Hand.OFF_HAND);
+			ItemStack mainHand = player.getItemInHand(Hand.MAIN_HAND);
+			if (offHand.getItem().equals(DMItems.FULL_ARTRON.get()) && mainHand.getItem().equals(this)) {
+				if (getFuel(tag) < MAX_FUEL) {
 					setFuel(tag, MAX_FUEL);
 					offHand.shrink(1);
 					return ActionResult.success(stack);
 				}
 			}
-			if (getFuel(tag) > 0) {
-				DMALocation location = tag.contains(TAG_DESTINATION) ? DMALocation.getLocation(tag.getString(TAG_DESTINATION)) : DMALocation.DEFAULT;
-
-				TeleportUtil.teleportPlayer(player,
-					RegistryKey.create(Registry.DIMENSION_REGISTRY,
-					new ResourceLocation(location.getDimension())),
-					location.getBlockPos());
-				return ActionResult.success(stack);
-			}
-
-
 		}
 		return ActionResult.pass(stack);
 	}
+
 }

@@ -50,22 +50,6 @@ public class DMALocation {
 		return allDatMixed;
 	}
 
-	private DMALocation getLocation() {
-		String[] dataParts = allDatMixed.split("\\|");
-		if (dataParts.length == 4) {
-			int X = Integer.parseInt(dataParts[0]);
-			int Y = Integer.parseInt(dataParts[1]);
-			int Z = Integer.parseInt(dataParts[2]);
-			String dimension = dataParts[3];
-
-
-			return new DMALocation(X, Y, Z, dimension);
-		} else {
-			System.out.println("Invalid data format");
-		}
-		return null;
-	}
-
 	public static DMALocation getLocation(String locationString) {
 		String[] dataParts = locationString.split("\\|");
 		if (dataParts.length == 4) {
@@ -76,7 +60,7 @@ public class DMALocation {
 				String dimension = dataParts[3];
 
 				return new DMALocation(x, y, z, dimension);
-			} catch (NumberFormatException e){
+			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
 		} else {

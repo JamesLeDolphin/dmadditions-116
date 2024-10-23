@@ -59,6 +59,9 @@ public class DMAItems {
 	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker",
 		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
 
+	public static RegistryObject<Item> VORTEX_MANIPULATOR = ITEMS.register("vortex_manipulator",
+		() -> new VortexManipulatorItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
+
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
