@@ -122,7 +122,7 @@ public class DMABlocks {
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
 			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "yellow_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
+	public static RegistryObject<Block> REDDASH_STATUE = registerBlock(() -> new StFatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
 		.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> WREATH = registerBlock(
