@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/leaves",
   "textures": {
-    "all": "dmadditions:block/cobbled_crocoite"
+    "all": "dmadditions:block/gallifrey_cobble_stone"
   }
 }

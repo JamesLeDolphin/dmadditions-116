@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "dmadditions:crocoite"
+              "name": "dmadditions:gallifrey_stone"
             },
             {
               "type": "minecraft:item",
@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "dmadditions:cobbled_crocoite"
+              "name": "dmadditions:gallifrey_cobble_stone"
             }
           ]
         }
