@@ -1,0 +1,14 @@
+{
+  "name": "dmadditions.tardis.name.dalek_mod_police_boxes",
+  "models": [
+    "dmadditions:models/tileentity/tardis/dalek_mod_a_police_box.json",
+    "dmadditions:models/tileentity/tardis/dalek_mod_b_police_box.json",
+    "dmadditions:models/tileentity/tardis/dalek_mod_c_police_box.json",
+    "dmadditions:models/tileentity/tardis/dalek_mod_d_police_box.json"
+  ],
+  "cost": 100,
+  "unlockable": true,
+  "desc": "dmadditions.tardis.description.dalek_mod_police_boxes",
+  "doorOpenSound": "minecraft:block.wool.break",
+  "doorCloseSound": "minecraft:block.wool.place"
+}

@@ -1,0 +1,132 @@
+{
+	"credit": "Made with Blockbench",
+	"texture": "dmadditions:tileentity/tardis/dalek_mod_d_police_box",
+	"texture_width": 128,
+	"texture_height": 128,
+	"scale": 1,
+	"groups": [
+		{
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [36,25],
+					"size": [8,32,2],
+					"origin": [-8,-34,-10],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [56,25],
+					"size": [8,32,2],
+					"origin": [0,-34,-10],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"group_name": "bone",
+			"pivot": [0,24,0],
+			"rotation": [0,0,0],
+			"cubes": [
+				{
+					"uv": [0,101],
+					"size": [24,2,24],
+					"origin": [-12,-2,-12],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [116,0],
+					"size": [3,38,3],
+					"origin": [-11,-40,-11],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [116,0],
+					"size": [3,38,3],
+					"origin": [8,-40,-11],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [116,0],
+					"size": [3,38,3],
+					"origin": [-11,-40,8],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [116,0],
+					"size": [3,38,3],
+					"origin": [8,-40,8],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,72],
+					"size": [24,4,24],
+					"origin": [-12,-38,-12],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,0],
+					"size": [20,3,20],
+					"origin": [-10,-41,-10],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,0],
+					"size": [4,5,4],
+					"origin": [-2,-49,-2],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [0,25],
+					"size": [16,32,2],
+					"origin": [-8,-34,8],
+					"inflate": 0,
+					"mirror": false
+				},
+				{
+					"uv": [3,1],
+					"size": [18,3,18],
+					"origin": [-9,-44,-9],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"pivot": [0,5.5,9],
+			"rotation": [0,-90,0],
+			"cubes": [
+				{
+					"uv": [0,25],
+					"size": [16,32,2],
+					"origin": [1,-15.5,8],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		},
+		{
+			"pivot": [0,5.5,9],
+			"rotation": [0,90,0],
+			"cubes": [
+				{
+					"uv": [0,25],
+					"size": [16,32,2],
+					"origin": [-17,-15.5,8],
+					"inflate": 0,
+					"mirror": false
+				}
+			]
+		}
+	]
+}
