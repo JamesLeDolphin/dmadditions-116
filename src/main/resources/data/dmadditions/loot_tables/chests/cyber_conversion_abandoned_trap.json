@@ -13,7 +13,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dalekmod:gold_bullet",
+          "name": "dalekmod:golden_bullet",
           "weight": 6,
           "functions": [
             {
