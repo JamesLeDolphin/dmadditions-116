@@ -13,8 +13,17 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:rotten_flesh",
-          "weight": 5
+          "name": "dmadditions:laser_charge",
+          "weight": 7,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
