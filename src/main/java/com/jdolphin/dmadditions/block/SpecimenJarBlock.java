@@ -90,6 +90,7 @@ public class SpecimenJarBlock extends FallingBlock implements IBlockTooltip {
 		entity.setHurtsEntities(true);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState state, World world, BlockPos pos, BlockState state1, boolean harvest) {
 		if(state1.getBlock() != this && world.getBlockState(pos.below()).getBlock() != Blocks.AIR){
@@ -128,7 +129,7 @@ public class SpecimenJarBlock extends FallingBlock implements IBlockTooltip {
 				if (jar.acceptSpecimen(held.getItem())) {
 					jar.setSpecimen(held);
 					if (!player.isCreative()) held.shrink(1);
-					if (held.getCount() == 0) player.setItemInHand(hand, ItemStack.EMPTY);
+					//if (held.getCount() == 0) player.setItemInHand(hand, ItemStack.EMPTY);
 					world.setBlockAndUpdate(blockPos, state.setValue(HAS_SPECIMEN, true));
 					return ActionResultType.SUCCESS;
 				}

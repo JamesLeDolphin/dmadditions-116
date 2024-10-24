@@ -48,6 +48,9 @@ public class DMAItems {
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> SPECIMEN_JAR = ITEMS.register("specimen_jar",
+		() -> new SpecimenJarBlockItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> LASER_CHARGE = ITEMS.register("laser_charge",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

@@ -73,9 +73,7 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 
 	public ActionResultType useOn(ItemUseContext context) {
 		World world = context.getLevel();
-		if (world.isClientSide) {
-			return ActionResultType.SUCCESS;
-		} else {
+		if (!world.isClientSide) {
 			ItemStack itemstack = context.getItemInHand();
 			BlockPos blockpos = context.getClickedPos();
 			Direction direction = context.getClickedFace();
@@ -111,6 +109,7 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 
 			return ActionResultType.SUCCESS;
 		}
+		return ActionResultType.SUCCESS;
 	}
 
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
