@@ -250,10 +250,10 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> ENGINE = registerBlock(() -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
 
-	public static RegistryObject<Block> CROCITE = registerBlockAndItem("crocoite", () -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)),
+	public static RegistryObject<Block> GALLIFREY_STONE = registerBlockAndItem("gallifrey_stone", () -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)),
 		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
 
-	public static RegistryObject<Block> COBBLED_CROCITE = registerBlockAndItem("cobbled_crocoite", () -> new Block(AbstractBlock.Properties.copy(Blocks.COBBLESTONE)),
+	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerBlockAndItem("gallifrey_cobblestone", () -> new Block(AbstractBlock.Properties.copy(Blocks.COBBLESTONE)),
 		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, ItemGroup itemgroup) {

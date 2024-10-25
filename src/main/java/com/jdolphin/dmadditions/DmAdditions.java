@@ -125,11 +125,11 @@ public class DmAdditions {
 		//This one line fixes joinging servers that dont have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
-		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
 		DMABlocks.BLOCKS.register(bus);
+		DMAItems.ITEMS.register(bus);
+		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
 		DMAEntities.ENTITY_TYPES.register(bus);
 		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
-		DMAItems.ITEMS.register(bus);
 		DMAWorldCarvers.WORLD_CARVERS.register(bus);
 		DMAProjectiles.init();
 		DMALootConditionManager.init();
@@ -330,6 +330,16 @@ public class DmAdditions {
 				event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
 			base.add(() -> DMAConfiguredStructures.DEAD_TREE
+				.squared().decorated(Features.Placements.HEIGHTMAP)
+				.decorated(Placement.COUNT_EXTRA.configured(
+					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));
+		}
+
+		if (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:gallifrey_forest")) {
+			List<Supplier<ConfiguredFeature<?, ?>>> base =
+				event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
+
+			base.add(() -> DMAConfiguredStructures.GALLIFREY_TREE
 				.squared().decorated(Features.Placements.HEIGHTMAP)
 				.decorated(Placement.COUNT_EXTRA.configured(
 					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));

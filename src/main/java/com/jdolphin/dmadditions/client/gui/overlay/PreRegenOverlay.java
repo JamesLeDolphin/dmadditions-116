@@ -21,9 +21,8 @@ public class PreRegenOverlay extends Overlay {
 		if (player != null) {
 			player.getCapability(DMACapabilities.REGEN_CAPABILITY).ifPresent(cap -> {
 				if (cap.isPreRegen()) {
-					renderOverlay(stack);
+					//renderOverlay(stack);
 				}
-				else return;
 			});
 		}
 	}

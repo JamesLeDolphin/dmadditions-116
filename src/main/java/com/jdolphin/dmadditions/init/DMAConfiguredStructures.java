@@ -26,6 +26,15 @@ public class DMAConfiguredStructures {
 				new ForkyTrunkPlacer(4, 2, 3),
 				new TwoLayerFeature(1, 1, 1))).heightmap(Heightmap.Type.WORLD_SURFACE_WG).ignoreVines().build()));
 
+	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GALLIFREY_TREE =
+		register("gallifrey_tree", Feature.TREE.configured((
+			new BaseTreeFeatureConfig.Builder(
+				new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.defaultBlockState()),
+				new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.defaultBlockState()),
+				new BlobFoliagePlacer(FeatureSpread.fixed(1), FeatureSpread.fixed(0), 1),
+				new ForkyTrunkPlacer(4, 2, 3),
+				new TwoLayerFeature(1, 1, 1))).heightmap(Heightmap.Type.WORLD_SURFACE_WG).ignoreVines().build()));
+
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
 		Registry.register(registry, Helper.createAdditionsRL("configured_manor"), CONFIGURED_MANOR);
