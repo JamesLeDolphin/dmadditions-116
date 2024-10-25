@@ -314,8 +314,8 @@
 	"dmadditions.button.cancel": "Cancel",
 	"dmadditions.button.player_locator.select": "Locate Player",
 	"block.dmadditions.player_locator.disabled": "Player locator is disabled on this server!",
-	"block.dmadditions.crocoite": "Crocoite",
-	"block.dmadditions.cobbled_crocoite": "Cobbled Crocoite",
+	"block.dmadditions.gallifrey_stone": "Gallifrey Stone",
+	"block.dmadditions.gallifrey_cobble_stone": "Gallifrey Cobble Stone",
 
 	"item.dmadditions.motlen_dalekanium_bucket": "Molten Dalekanium Bucket",
 	"item.dmadditions.motlen_steel_bucket": "Molten Steel Bucket",
