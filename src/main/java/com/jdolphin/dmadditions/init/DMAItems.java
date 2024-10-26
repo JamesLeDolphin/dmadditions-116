@@ -76,15 +76,14 @@ public class DMAItems {
 	public static RegistryObject<Item> YELLOW_CANDY_CANE = ITEMS.register("yellow_candy_cane",
 			() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
-
 	public static RegistryObject<Item> TIMELORD_SPAWNER = ITEMS.register("timelord_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.TIMELORD.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.TIMELORD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.SNOWMAN.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.SNOWMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> CYBERCOW_SPAWNER = ITEMS.register("cybercow_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.CYBERCOW.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.CYBERCOW, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
 			() -> new SingleShotGunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, 5, DMAProjectiles.BULLET, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
@@ -210,13 +209,13 @@ public class DMAItems {
 			() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
 		public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("wooden_cyberman_spawner",
-			() -> new DMASpawnerItem<>(DMAEntities.WOODEN_CYBERMAN.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
+			() -> new DMASpawnerItem<>(DMAEntities.WOODEN_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> MONDAS_CYBERMAN_SPAWNER = ITEMS.register("mondas_cyberman_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.MONDAS_CYBERMAN.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.MONDAS_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.PILOT_FISH.get(), new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.PILOT_FISH, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 			() -> new SingleShotGunItem(DMItemTiers.DALEK_CANNON, 2.0F, 3.0f,
@@ -248,10 +247,10 @@ public class DMAItems {
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
 
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
-		() -> new DMASpawnerItem<>(DMAEntities.SHOPPING_CART.get(), new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+		() -> new DMASpawnerItem<>(DMAEntities.SHOPPING_CART, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
-		() -> new DMASpawnerItem<>(DMAEntities.TORCHWOOD_TANK.get(), new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+		() -> new DMASpawnerItem<>(DMAEntities.TORCHWOOD_TANK, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
 			0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));

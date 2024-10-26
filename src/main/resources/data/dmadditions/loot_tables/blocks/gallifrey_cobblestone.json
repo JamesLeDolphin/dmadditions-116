@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dmadditions:gallifrey_cobble_stone"
+          "name": "dmadditions:gallifrey_cobblestone"
         }
       ],
       "conditions": [

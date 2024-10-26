@@ -31,6 +31,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraftforge.fml.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -40,20 +41,22 @@ import java.util.Random;
 
 public class DMASpawnerItem<T extends Entity> extends Item {
 
-	private final EntityType<?> entityType;
+	private final RegistryObject<EntityType<T>> entityType;
 	private List<String> variants;
 
-	public DMASpawnerItem(final EntityType<?> entityType, final List<String> keys, Item.Properties properties) {
+	public DMASpawnerItem(final RegistryObject<EntityType<T>> entityType, final List<String> keys, Item.Properties properties) {
 		super(properties);
 		this.entityType = entityType;
 		this.variants = keys;
 		DispenserBlock.registerBehavior(this, new DefaultDispenseItemBehavior() {
 			public ItemStack execute(IBlockSource dispenser, ItemStack spawnerStack) {
 				Direction direction = (Direction)dispenser.getBlockState().getValue(DispenserBlock.FACING);
-				Entity e = entityType.spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity)null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
-				if (e instanceof DalekEntity) {
-					((DalekEntity)e).setID((String)keys.get(e.level.random.nextInt(keys.size())));
-					System.out.println("askdhalkjsdhaljshds");
+				if (entityType.isPresent()) {
+					Entity e = entityType.get().spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity) null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
+					if (e instanceof DalekEntity) {
+						((DalekEntity) e).setID((String) keys.get(e.level.random.nextInt(keys.size())));
+						System.out.println("askdhalkjsdhaljshds");
+					}
 				}
 
 				spawnerStack.shrink(1);
@@ -62,11 +65,11 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 		});
 	}
 
-	public DMASpawnerItem(EntityType<?> entityType, String key, Item.Properties properties) {
+	public DMASpawnerItem(RegistryObject<EntityType<T>> entityType, String key, Item.Properties properties) {
 		this(entityType, Arrays.asList(key), properties);
 	}
 
-	public DMASpawnerItem(EntityType<?> entityType, Item.Properties properties) {
+	public DMASpawnerItem(RegistryObject<EntityType<T>> entityType, Item.Properties properties) {
 		this(entityType, Arrays.asList(), properties);
 	}
 
@@ -81,12 +84,14 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			if (block == Blocks.SPAWNER) {
 				TileEntity tileentity = world.getBlockEntity(blockpos);
 				if (tileentity instanceof MobSpawnerTileEntity) {
-					AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawner();
-					abstractspawner.setEntityId(this.entityType);
-					tileentity.setChanged();
-					world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
-					itemstack.shrink(1);
-					return ActionResultType.SUCCESS;
+					if (entityType.isPresent()) {
+						AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawner();
+						abstractspawner.setEntityId(this.entityType.get());
+						tileentity.setChanged();
+						world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
+						itemstack.shrink(1);
+						return ActionResultType.SUCCESS;
+					}
 				}
 			}
 
@@ -96,15 +101,15 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			} else {
 				blockpos1 = blockpos.relative(direction);
 			}
-
-			Entity entity = this.entityType.spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1,
-				SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
-			itemstack.shrink(1);
-			if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
-				String variant = (String) this.variants.get((new Random()).nextInt(this.variants.size()));
-				((IEntityVariant) entity).setID(variant);
+			if (entityType.isPresent()) {
+				Entity entity = this.entityType.get().spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1,
+					SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+				itemstack.shrink(1);
+				if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
+					String variant = (String) this.variants.get((new Random()).nextInt(this.variants.size()));
+					((IEntityVariant) entity).setID(variant);
+				}
 			}
-
 		}
 		return ActionResultType.SUCCESS;
 	}
@@ -114,22 +119,22 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 		RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
 		if (raytraceresult.getType() != RayTraceResult.Type.BLOCK) {
 			return ActionResult.pass(itemstack);
-		} else if (worldIn.isClientSide) {
-			return ActionResult.success(itemstack);
-		} else {
+		}
+		if (!worldIn.isClientSide) {
 			BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult)raytraceresult;
 			BlockPos blockpos = blockraytraceresult.getBlockPos();
 			if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
 				return ActionResult.pass(itemstack);
 			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockraytraceresult.getDirection(), itemstack)) {
 				Entity entity;
-				if ((entity = this.entityType.spawn((ServerWorld)worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
+				if (entityType.isPresent()) {
+				if ((entity = this.entityType.get().spawn((ServerWorld)worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
 					return ActionResult.pass(itemstack);
 				} else {
 					if (!playerIn.abilities.instabuild) {
 						itemstack.shrink(1);
 					}
-
+				}
 					itemstack.shrink(1);
 					if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
 						String variant = (String)this.variants.get((new Random()).nextInt(this.variants.size()));
@@ -143,6 +148,7 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 				return ActionResult.fail(itemstack);
 			}
 		}
+		return ActionResult.success(itemstack);
 	}
 
 	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {

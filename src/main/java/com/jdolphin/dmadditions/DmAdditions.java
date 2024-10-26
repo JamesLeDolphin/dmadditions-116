@@ -126,9 +126,9 @@ public class DmAdditions {
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
 		DMABlocks.BLOCKS.register(bus);
+		DMAEntities.ENTITY_TYPES.register(bus);
 		DMAItems.ITEMS.register(bus);
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
-		DMAEntities.ENTITY_TYPES.register(bus);
 		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
 		DMAWorldCarvers.WORLD_CARVERS.register(bus);
 		DMAProjectiles.init();

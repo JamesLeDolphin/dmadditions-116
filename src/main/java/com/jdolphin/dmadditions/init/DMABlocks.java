@@ -262,7 +262,7 @@ public class DMABlocks {
 
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name, SoundType soundType) {
 		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(soundType).noOcclusion()),
-			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);
+			name, (new Item.Properties()).tab(DMACreativeTabs.DMA_ROUNDEL_CONTAINERS), true);
 	}
 
 	@SafeVarargs
@@ -312,7 +312,7 @@ public class DMABlocks {
 	}
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name) {
 		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(SoundType.WOOD)),
-			name, (new Item.Properties()).tab(DMATabs.DMA_ROUNDEL_CONTAINERS), true);
+			name, (new Item.Properties()).tab(DMACreativeTabs.DMA_ROUNDEL_CONTAINERS), true);
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name) {

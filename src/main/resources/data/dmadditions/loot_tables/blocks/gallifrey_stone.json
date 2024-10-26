@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "dmadditions:gallifrey_cobble_stone"
+              "name": "dmadditions:gallifrey_cobblestone"
             }
           ]
         }

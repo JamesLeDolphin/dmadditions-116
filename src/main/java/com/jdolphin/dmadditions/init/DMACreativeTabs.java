@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import static com.swdteam.common.init.DMTabs.DM_TARDIS;
 
-public class DMATabs {
+public class DMACreativeTabs {
 	public static final HashMap<Integer, Item> MIXIN_ICONS = new HashMap<>();
 	private static boolean mixinIconsReady = false;
 
@@ -36,6 +36,6 @@ public class DMATabs {
 		}
 	};
 
-	public DMATabs() {
+	public DMACreativeTabs() {
 	}
 }
