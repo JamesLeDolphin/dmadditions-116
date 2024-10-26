@@ -40,18 +40,17 @@ import java.util.Random;
 
 public class DMASpawnerItem<T extends Entity> extends Item {
 
-	private String entityType;
+	private final EntityType<?> entityType;
 	private List<String> variants;
 
-	public DMASpawnerItem(final String entityType, final List<String> keys, Item.Properties properties) {
+	public DMASpawnerItem(final EntityType<?> entityType, final List<String> keys, Item.Properties properties) {
 		super(properties);
 		this.entityType = entityType;
 		this.variants = keys;
 		DispenserBlock.registerBehavior(this, new DefaultDispenseItemBehavior() {
 			public ItemStack execute(IBlockSource dispenser, ItemStack spawnerStack) {
 				Direction direction = (Direction)dispenser.getBlockState().getValue(DispenserBlock.FACING);
-				EntityType<?> entitytype = DMAEntities.getEntityTypeFromString(entityType);
-				Entity e = entitytype.spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity)null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
+				Entity e = entityType.spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity)null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
 				if (e instanceof DalekEntity) {
 					((DalekEntity)e).setID((String)keys.get(e.level.random.nextInt(keys.size())));
 					System.out.println("askdhalkjsdhaljshds");
@@ -63,19 +62,17 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 		});
 	}
 
-	public DMASpawnerItem(String entityType, String key, Item.Properties properties) {
+	public DMASpawnerItem(EntityType<?> entityType, String key, Item.Properties properties) {
 		this(entityType, Arrays.asList(key), properties);
 	}
 
-	public DMASpawnerItem(String entityType, Item.Properties properties) {
+	public DMASpawnerItem(EntityType<?> entityType, Item.Properties properties) {
 		this(entityType, Arrays.asList(), properties);
 	}
 
 	public ActionResultType useOn(ItemUseContext context) {
 		World world = context.getLevel();
-		if (world.isClientSide) {
-			return ActionResultType.SUCCESS;
-		} else {
+		if (!world.isClientSide) {
 			ItemStack itemstack = context.getItemInHand();
 			BlockPos blockpos = context.getClickedPos();
 			Direction direction = context.getClickedFace();
@@ -84,9 +81,8 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			if (block == Blocks.SPAWNER) {
 				TileEntity tileentity = world.getBlockEntity(blockpos);
 				if (tileentity instanceof MobSpawnerTileEntity) {
-					AbstractSpawner abstractspawner = ((MobSpawnerTileEntity)tileentity).getSpawner();
-					EntityType<?> entitytype1 = DMAEntities.getEntityTypeFromString(this.entityType);
-					abstractspawner.setEntityId(entitytype1);
+					AbstractSpawner abstractspawner = ((MobSpawnerTileEntity) tileentity).getSpawner();
+					abstractspawner.setEntityId(this.entityType);
 					tileentity.setChanged();
 					world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
 					itemstack.shrink(1);
@@ -101,16 +97,16 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 				blockpos1 = blockpos.relative(direction);
 			}
 
-			EntityType<?> entitytype = DMAEntities.getEntityTypeFromString(this.entityType);
-			Entity entity = entitytype.spawn((ServerWorld)world, itemstack, context.getPlayer(), blockpos1, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+			Entity entity = this.entityType.spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1,
+				SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
 			itemstack.shrink(1);
 			if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
-				String variant = (String)this.variants.get((new Random()).nextInt(this.variants.size()));
-				((IEntityVariant)entity).setID(variant);
+				String variant = (String) this.variants.get((new Random()).nextInt(this.variants.size()));
+				((IEntityVariant) entity).setID(variant);
 			}
 
-			return ActionResultType.SUCCESS;
 		}
+		return ActionResultType.SUCCESS;
 	}
 
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
@@ -126,9 +122,8 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
 				return ActionResult.pass(itemstack);
 			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockraytraceresult.getDirection(), itemstack)) {
-				EntityType<?> entitytype = DMAEntities.getEntityTypeFromString(this.entityType);
 				Entity entity;
-				if ((entity = entitytype.spawn((ServerWorld)worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
+				if ((entity = this.entityType.spawn((ServerWorld)worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
 					return ActionResult.pass(itemstack);
 				} else {
 					if (!playerIn.abilities.instabuild) {
