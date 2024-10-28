@@ -56,14 +56,15 @@ public abstract class DalekEntityMixin extends MobEntity implements IDalekEntity
 
 	@Inject(method = "aiStep", at = @At("TAIL"))
 	public void aiStep(CallbackInfo ci) {
-		if (!this.level.isClientSide) return;
+		if (this.level.isClientSide) {
 
-		if (this.jukebox == null
-			|| !this.jukebox.closerThan(this.position(), 5.0D)
-			|| !this.level.getBlockState(this.jukebox).is(Blocks.JUKEBOX)) {
+			if (this.jukebox == null
+				|| !this.jukebox.closerThan(this.position(), 5.0D)
+				|| !this.level.getBlockState(this.jukebox).is(Blocks.JUKEBOX)) {
 
-			this.party = false;
-			this.jukebox = null;
+				this.party = false;
+				this.jukebox = null;
+			}
 		}
 	}
 

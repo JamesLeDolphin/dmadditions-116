@@ -241,9 +241,6 @@ public class DMAdditions {
 				world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
-			if (world.isFlat()) {
-				return;
-			}
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 
