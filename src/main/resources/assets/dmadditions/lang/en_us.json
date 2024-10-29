@@ -341,6 +341,9 @@
 
 	"screen.dmadditions.vortex_manipulator": "Vortex Manipulator",
 	"item.dmadditions.vortex_manipulator": "Vortex Manipulator",
-	"dmadditions.button.select": "Select"
+	"dmadditions.button.select": "Select",
+
+	"commands.tardis-mail.send.success": "Sent %s %s to TARDIS %s.",
+	"commands.tardis-mail.spawn.success": "Spawned %s %s at TARDIS %s."
 
 }
