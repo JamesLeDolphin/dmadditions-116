@@ -32,6 +32,7 @@
 	"block.dmadditions.stone_sonic_crystal_ore": "Sonic Crystal Ore",
 	"entity.dmadditions.cybercow": "Cyber-Cow",
 	"item.dmadditions.cybercow_spawner": "Cyber-Cow Spawner",
+	"item.dmadditions.mondas_data_card": "Dimension Data Card",
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",

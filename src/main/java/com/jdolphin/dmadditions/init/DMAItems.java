@@ -8,16 +8,14 @@ import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.item.*;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.*;
-import com.swdteam.common.item.BulletItem;
-import com.swdteam.common.item.ClothesItem;
-import com.swdteam.common.item.DiscItem;
-import com.swdteam.common.item.FoodItem;
+import com.swdteam.common.item.*;
 import com.swdteam.common.item.gun.SingleShotGunItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -48,6 +46,9 @@ public class DMAItems {
 
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> MONDAS_DATA_CARD = ITEMS.register("mondas_data_card", () ->
+		new DimensionDataCard((new Item.Properties()).tab(ItemGroup.TAB_MISC).stacksTo(1).tab(DMTabs.DM_TARDIS), "dmadditions:mondas", TextFormatting.AQUA));
 
 	public static RegistryObject<Item> SPECIMEN_JAR = ITEMS.register("specimen_jar",
 		() -> new SpecimenJarBlockItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
