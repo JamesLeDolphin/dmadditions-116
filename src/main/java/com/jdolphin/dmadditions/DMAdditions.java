@@ -148,6 +148,7 @@ public class DMAdditions {
 		CommandSit.register(dispatcher);
 		ToggleModeCommand.register(dispatcher);
 		GodCommand.register(dispatcher);
+		TardisMailCommand.register(dispatcher);
 	}
 
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
