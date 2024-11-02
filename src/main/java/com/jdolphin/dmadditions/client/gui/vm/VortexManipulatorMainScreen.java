@@ -3,18 +3,18 @@ package com.jdolphin.dmadditions.client.gui.vm;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBSetDestinationPacket;
-import com.jdolphin.dmadditions.util.DMALocation;
 import com.jdolphin.dmadditions.util.GuiHelper;
+import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +22,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class VortexManipulatorMainScreen extends Screen {
 	private TextFieldWidget dimInput, xInput, yInput, zInput;
+	public static ResourceLocation BG_LOCATION = Helper.createAdditionsRL("textures/gui/vm_bg.png");
 
 	public VortexManipulatorMainScreen() {
 		super(new TranslationTextComponent("screen.dmadditions.vortex_manipulator"));
@@ -59,7 +60,7 @@ public class VortexManipulatorMainScreen extends Screen {
 
 	public void render(@NotNull MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
 		super.render(stack, mouseX, mouseY, partialTicks);
-
+		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
 		dimInput.render(stack, mouseX, mouseY, partialTicks);
 		xInput.render(stack, mouseX, mouseY, partialTicks);
 		yInput.render(stack, mouseX, mouseY, partialTicks);
@@ -69,7 +70,16 @@ public class VortexManipulatorMainScreen extends Screen {
 		if (style != null && style.getHoverEvent() != null) {
 			this.renderComponentHoverEffect(stack, style, mouseX, mouseY);
 		}
+	}
 
+	@Override
+	public void renderBackground(MatrixStack stack) {
+		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		this.minecraft.getTextureManager().bind(BG_LOCATION);
+		int lvt_5_1_ = (this.width - 32) / 2;
+		int lvt_6_1_ = (this.height - 16) / 2;
+		this.blit(stack, lvt_5_1_, lvt_6_1_, 0, 0, 32, 16);
+		this.blit(stack, lvt_5_1_, lvt_6_1_, 0, 126, 32, 16);
 	}
 
 	public void setCoords() {
