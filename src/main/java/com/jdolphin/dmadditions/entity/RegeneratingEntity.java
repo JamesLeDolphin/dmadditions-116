@@ -64,7 +64,7 @@ public abstract class RegeneratingEntity extends CreatureEntity {
 		int i = getRegens();
 		setRegens(Math.max(i - 1, 0));
 		this.addEffect(new EffectInstance(Effects.REGENERATION, 20 * 10, 1, false, false));
-		this.regenTicks = Helper.seconds(30);
+		this.regenTicks = Helper.seconds(10);
 	}
 
 	@Override

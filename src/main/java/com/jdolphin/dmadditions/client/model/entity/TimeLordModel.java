@@ -60,10 +60,10 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> {
 		this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 		this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
 
-		if (entity.isRegenerating()) {
-			this.head.xRot = entity.getRegenTicks() * 0.017453292F;
-			this.leftArm.zRot = entity.getRegenTicks() * 0.6662F;
-			this.rightArm.zRot = entity.getRegenTicks() * 0.6662F;
+		if (entity.getRegenTicks() > 0) {
+			this.head.xRot = (float) MathHelper.clampedLerp(entity.getRegenTicks(), 0, 20);
+			this.leftArm.zRot = (float) MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			this.rightArm.zRot = (float) MathHelper.clampedLerp(entity.getRegenTicks(), 0, 115);
 		}
 	}
 
