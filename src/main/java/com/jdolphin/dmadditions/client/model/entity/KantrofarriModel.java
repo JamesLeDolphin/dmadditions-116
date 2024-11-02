@@ -39,7 +39,7 @@ public class KantrofarriModel extends SegmentedModel<KantrofarriEntity> implemen
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/kantrofarri.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 
-		this.body = modelWrapper.getPart("body");
+		this.body = modelWrapper.getPart("chair");
 		this.tail = modelWrapper.getPart("tail");
 		this.leg1 = modelWrapper.getPart("leg1");
 		this.leg2 = modelWrapper.getPart("leg2");

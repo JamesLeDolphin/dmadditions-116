@@ -44,7 +44,7 @@ public class TankModel<T extends TankEntity> extends SegmentedModel<T> implement
 	public void init() {
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/torchwood_tank.json"));
 		ModelWrapper modelWrapper = model.getModelData().getModel();
-		this.upperBody = modelWrapper.getPart("Upperbody"); //TODO: maybe put all body parts into one group
+		this.upperBody = modelWrapper.getPart("Upperbody"); //TODO: maybe put all chair parts into one group
 		this.lowerBody = modelWrapper.getPart("Lowerbody");
 		this.mainBody = modelWrapper.getPart("Mainbody");
 

@@ -38,7 +38,7 @@ public class JamesLeDolphinModel<T extends DolphinEntity> extends DolphinModel<T
 		if (this.model != null) {
 			ModelWrapper modelWrapper = this.model.getModelData().getModel();
 			this.head = modelWrapper.getPart("head");
-			this.body = modelWrapper.getPart("body");
+			this.body = modelWrapper.getPart("chair");
 			this.tail = modelWrapper.getPart("tail");
 			this.tailFin = modelWrapper.getPart("tail_fin");
 		}

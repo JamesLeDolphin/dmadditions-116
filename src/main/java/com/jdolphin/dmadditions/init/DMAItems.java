@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
-import com.jdolphin.dmadditions.entity.ClockworkDroidEntity;
 import com.jdolphin.dmadditions.item.*;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.*;
@@ -92,10 +91,10 @@ public class DMAItems {
 
 
 	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
-		() -> new DMASpawnerItem<>("snowman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.SNOWMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> CYBERCOW_SPAWNER = ITEMS.register("cybercow_spawner",
-		() -> new DMASpawnerItem<>("cybercow", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.CYBERCOW, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> UNIT_GUN = ITEMS.register("unit_gun",
 		() -> new SingleShotGunItem(DMItemTiers.DALEK_GUNSTICK, 0.1F, 5, DMAProjectiles.BULLET, DMSoundEvents.ITEM_GUN_CLICK, DMASoundEvents.PISTOL_SHOOT,
@@ -221,57 +220,60 @@ public class DMAItems {
 		() -> new DiscItem(5, DMASoundEvents.MUSIC_DISC_PFD, (new Item.Properties()).rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> WOODEN_CYBERMAN_SPAWNER = ITEMS.register("wooden_cyberman_spawner",
-		() -> new DMASpawnerItem<>("wooden_cyberman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.WOODEN_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> MONDAS_CYBERMAN_SPAWNER = ITEMS.register("mondas_cyberman_spawner",
-		() -> new DMASpawnerItem<>("mondas_cyberman", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.MONDAS_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> MONDASIAN_SPAWNER = ITEMS.register("mondasian_spawner",
-		() -> new DMASpawnerItem<>("mondasian", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.MONDASIAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
-		() -> new DMASpawnerItem<>("pilot_fish", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.PILOT_FISH, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 		() -> new SingleShotGunItem(DMItemTiers.DALEK_CANNON, 2.0F, 3.0f,
 			DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 			DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = ITEMS.register("flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK::get, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
+	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = ITEMS.register("flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
 
-	public static RegistryObject<Item> RACNOSS_SPAWNER = ITEMS.register("racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS::get, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
+	public static RegistryObject<Item> RACNOSS_SPAWNER = ITEMS.register("racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 
 	public static RegistryObject<Item> SYCORAX_STAFF = ITEMS.register("sycorax_staff", () -> new SycoraxStaffItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1)));
 
 	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = ITEMS.register("christmas_creeper_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER::get, 0x0da70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER, 0x0da70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> JIM_SPAWNER = ITEMS.register("jim_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.JIM::get, 0x864b0f, 0x624c37, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new ForgeSpawnEggItem(DMAEntities.JIM, 0x864b0f, 0x624c37, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> WHISPERMAN_SPAWNER = ITEMS.register("whisperman_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN::get, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
+		() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 	public static RegistryObject<Item> KANTROFARRI_SPAWNER = ITEMS.register("kantrofarri_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.KANTROFARRI::get, 0x657fad, 0xd9cacd, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new ForgeSpawnEggItem(DMAEntities.KANTROFARRI, 0x657fad, 0xd9cacd, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 	public static RegistryObject<Item> KANTROFARRI = ITEMS.register("kantrofarri",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI).tab(ItemGroup.TAB_FOOD)));
 	public static RegistryObject<Item> KANTROFARRI_COOKED = ITEMS.register("kantrofarri_cooked",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
-		() -> new DMASpawnerItem<>("shopping_cart", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+		() -> new DMASpawnerItem<>(DMAEntities.SHOPPING_CART, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = registerAdventItem(1, "clockwork_droid_spawner",
-		() -> new DMASpawnerItem<>("clockwork_droid", new Item.Properties().tab(ItemGroup.TAB_MISC)));
-	public static RegistryObject<Item> ICEWARRIOR_SPAWNER = registerAdventItem(1, "ice_warrior_spawner",
-		() -> new DMASpawnerItem<>("ice_warrior", new Item.Properties().tab(ItemGroup.TAB_MISC)));
+		() -> new DMASpawnerItem<>(DMAEntities.CLOCKWORK_DROID, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> ICE_WARRIOR_SPAWNER = registerAdventItem(1, "ice_warrior_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.ICE_WARRIOR, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
-		() -> new DMASpawnerItem<>("torchwood_tank", new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
+		() -> new DMASpawnerItem<>(DMAEntities.TORCHWOOD_TANK, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
-	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE::get,
+	public static RegistryObject<Item> DAVROS_CHAIR = ITEMS.register("davros_chair",
+		() -> new DMASpawnerItem<>(DMAEntities.DAVROS_CHAIR, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
+
+	public static RegistryObject<Item> BESSIE = ITEMS.register("bessie", () -> new ForgeSpawnEggItem(DMAEntities.BESSIE,
 		0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
-	public static RegistryObject<Item> TW_SUV = ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV::get,
+	public static RegistryObject<Item> TW_SUV = ITEMS.register("torchwood_suv", () -> new ForgeSpawnEggItem(DMAEntities.TW_SUV,
 		0, 0, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
 	public static RegistryObject<Item> RPG = ITEMS.register("rpg",

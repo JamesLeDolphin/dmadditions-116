@@ -39,7 +39,7 @@ public class FlyingSharkModel extends SegmentedModel<FlyingSharkEntity> implemen
 		this.flyingShark = modelWrapper.getPart("flying_shark");
 		this.head = modelWrapper.getPart("head");
 		this.mouth = modelWrapper.getPart("mouth");
-		this.body = modelWrapper.getPart("body");
+		this.body = modelWrapper.getPart("chair");
 		this.tail = modelWrapper.getPart("tail");
 		this.tail1 = modelWrapper.getPart("tail1");
 		this.tail2 = modelWrapper.getPart("tail2");

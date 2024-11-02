@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C",
+    "LMK",
+    "KKK"
+  ],
+  "key": {
+    "K": {
+      "item": "dalekmod:refined_dalekanium_ingot"
+    },
+    "C": {
+      "tag": "forge:circuits/basic"
+    },
+    "M": {
+      "item": "minecraft:minecart"
+    },
+    "L": {
+      "item": "minecraft:level"
+    }
+  },
+  "result": {
+    "item": "dmadditions:davros_chair",
+    "count": 1
+  }
+}

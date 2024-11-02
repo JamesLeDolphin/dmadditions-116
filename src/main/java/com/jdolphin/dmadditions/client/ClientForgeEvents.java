@@ -2,6 +2,13 @@ package com.jdolphin.dmadditions.client;
 
 import java.util.UUID;
 
+import com.jdolphin.dmadditions.init.DMAEntities;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.renderer.entity.PlayerRenderer;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
+import net.minecraft.entity.Entity;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import org.apache.logging.log4j.LogManager;
 import org.lwjgl.glfw.GLFW;
 
@@ -40,7 +47,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(
 	modid = DMAdditions.MODID,
 	bus = Mod.EventBusSubscriber.Bus.FORGE,
-	value = {Dist.CLIENT}
+	value = Dist.CLIENT
 )
 public class ClientForgeEvents {
 	public static final KeyBinding SONIC_SHADE_INTERACTION = new KeyBinding("key.dmadditions.sonic_shade_interaction", GLFW.GLFW_KEY_R, "key.categories.gameplay");
@@ -60,6 +67,25 @@ public class ClientForgeEvents {
 			if (minecraft.level.dimension().equals(DMADimensions.GALLIFREY)) {
 				info.setSkyRenderHandler(SkyRendererGallifrey.INSTANCE);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void renderEvent(RenderPlayerEvent event) {
+		PlayerEntity player = event.getPlayer();
+		PlayerRenderer renderer = event.getRenderer();
+		PlayerModel<AbstractClientPlayerEntity> model = renderer.getModel();
+		Entity vehicle = player.getVehicle();
+		if (vehicle != null && vehicle.getType() == DMAEntities.DAVROS_CHAIR.get()) {
+			model.rightLeg.visible = false;
+			model.rightPants.visible = false;
+			model.leftLeg.visible = false;
+			model.leftPants.visible = false;
+		} else {
+			model.rightLeg.visible = true;
+			model.rightPants.visible = true;
+			model.leftLeg.visible = true;
+			model.leftPants.visible = true;
 		}
 	}
 

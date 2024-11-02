@@ -24,6 +24,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.SNOWMAN, SnowmanRenderer::new);
 		registerRender(DMAEntities.CHRISTMAS_TREE, ChristmasTreeRenderer::new);
 		registerRender(DMAEntities.BESSIE, BessieRenderer::new);
+		registerRender(DMAEntities.DAVROS_CHAIR, DavrosChairRenderer::new);
 		registerRender(DMAEntities.TW_SUV, TorchwoodSuvRenderer::new);
 		registerRender(DMAEntities.FLYING_SHARK, FlyingSharkRenderer::new);
 		registerRender(DMAEntities.RACNOSS, RacnossRenderer::new);

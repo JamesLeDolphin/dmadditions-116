@@ -47,9 +47,11 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<MondasianEntity>> MONDASIAN = registerHumanoidEntity("mondasian",
 		MondasianEntity::new, EntityClassification.MONSTER);
 
-	public static RegistryObject<EntityType<BessieEntity>> BESSIE = registerEntity("bessie", BessieEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
+	public static RegistryObject<EntityType<VehicleEntity>> BESSIE = registerEntity("bessie", VehicleEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
 
-	public static RegistryObject<EntityType<TorchwoodSuvEntity>> TW_SUV = registerEntity("torchwood_suv", TorchwoodSuvEntity::new,
+	public static RegistryObject<EntityType<VehicleEntity>> DAVROS_CHAIR = registerAdventEntity(17, "davros_chair", VehicleEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
+
+	public static RegistryObject<EntityType<VehicleEntity>> TW_SUV = registerEntity("torchwood_suv", VehicleEntity::new,
 		EntityClassification.MISC, 3, 2);
 
 	public static RegistryObject<EntityType<RacnossEntity>> RACNOSS = registerEntity("racnoss",
@@ -81,7 +83,7 @@ public class DMAEntities {
 		.setTrackingRange(64)
 		.build(Helper.createAdditionsRL("herobrine").toString()));
 
-	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerEntity("control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
+	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerAdventEntity( 24,"control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
 
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
@@ -121,6 +123,15 @@ public class DMAEntities {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
 																						   EntityClassification classification) {
 		return registerEntity(name, entityClass, classification, 0.6f, 1.8f);
+	}
+
+	@Nullable
+	private static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name,  EntityType.IFactory<T> entityClass,
+																						 EntityClassification classification, float width, float height) {
+		if (AdventUnlock.unlockAt(date)) {
+			return registerEntity(name, entityClass, classification, width, height);
+		}
+		else return null;
 	}
 
 	@Nullable

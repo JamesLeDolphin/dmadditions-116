@@ -156,8 +156,9 @@ public class DMAdditions {
 		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.MONDAS_CYBERMAN.get(), MondasCybermanEntity.createAttributes().build());
 		event.put(DMAEntities.MONDASIAN.get(), MondasianEntity.createAttributes().build());
-		event.put(DMAEntities.BESSIE.get(), BessieEntity.setCustomAttributes().build());
-		event.put(DMAEntities.TW_SUV.get(), TorchwoodSuvEntity.setCustomAttributes().build());
+		event.put(DMAEntities.BESSIE.get(), VehicleEntity.setCustomAttributes().build());
+		event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
+		event.put(DMAEntities.TW_SUV.get(), VehicleEntity.setCustomAttributes().build());
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
 		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());

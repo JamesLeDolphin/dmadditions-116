@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.entity.BessieEntity;
+import com.jdolphin.dmadditions.entity.VehicleEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
@@ -12,10 +12,10 @@ import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
 
-public class BessieModel extends SegmentedModel<BessieEntity> implements IModelPartReloader {
+public class BessieModel extends SegmentedModel<VehicleEntity> implements IModelPartReloader {
 
 	protected ModelRenderer wheels;
-	protected ModelRenderer body;
+	protected ModelRenderer chair;
 	public JSONModel model;
 
 	public BessieModel() {
@@ -28,7 +28,7 @@ public class BessieModel extends SegmentedModel<BessieEntity> implements IModelP
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/bessie.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 		this.wheels = modelWrapper.getPart("wheels");
-		this.body = modelWrapper.getPart("body");
+		this.chair = modelWrapper.getPart("chair");
 	}
 
 	@Override
@@ -38,11 +38,11 @@ public class BessieModel extends SegmentedModel<BessieEntity> implements IModelP
 
 	@Override
 	public Iterable<ModelRenderer> parts() {
-		return ImmutableList.of(wheels, body);
+		return ImmutableList.of(wheels, chair);
 	}
 
 	@Override
-	public void setupAnim(BessieEntity bessieEntity, float v, float v1, float v2, float v3, float v4) {
+	public void setupAnim(VehicleEntity bessieEntity, float v, float v1, float v2, float v3, float v4) {
 
 	}
 }

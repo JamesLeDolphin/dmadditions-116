@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -19,15 +20,14 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 
 
-public class BessieEntity extends AnimalEntity implements IJumpingMount {
+public class VehicleEntity extends AnimalEntity implements IJumpingMount {
 	protected float jumpPower;
 	protected boolean horseJumping;
 	private float deltaRotation;
 	private int engineRevTime = 0;
-	boolean deathExplosion = false;
 	public boolean driving = false;
 
-	public BessieEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+	public VehicleEntity(EntityType<? extends VehicleEntity> entityType, World world) {
 		super(entityType, world);
 		this.maxUpStep = 1.0F;
 	}
@@ -120,11 +120,26 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 
 	@Override
 	public double getPassengersRidingOffset() {
-		return -0.02;
+		if (isBessie()) return -0.02;
+		if (isChair()) return 0.5;
+		return 0;
 	}
 
 	protected boolean canAddPassenger(Entity entity) {
+		if (!isBessie()) return this.getPassengers().isEmpty();
 		return this.getPassengers().size() < 2 && !this.isEyeInFluid(FluidTags.WATER);
+	}
+
+	public boolean isBessie() {
+		return this.getType().equals(DMAEntities.BESSIE.get());
+	}
+
+	public boolean isChair() {
+		return this.getType().equals(DMAEntities.DAVROS_CHAIR.get());
+	}
+
+	public void playMoveSound() {
+		if (isBessie()) this.playSound(DMASoundEvents.BESSIE.get(), 1.0F, 0.4F);
 	}
 
 	public void travel(Vector3d vector3d) {
@@ -139,26 +154,13 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 				this.yHeadRot = this.yBodyRot;
 				float f = livingentity.xxa * 0.5F;
 				float f1 = livingentity.zza;
-//				if (livingentity instanceof PlayerEntity && !ItemUtils.playerHasItem((PlayerEntity)livingentity, (Item)WOTWItems.FUEL.get(), false) && !((PlayerEntity)livingentity).isCreative()) {
-//					f = 0.0F;
-//					f1 = 0.0F;
-//				}
 
 				if (f1 > 0.0F) {
 					this.driving = true;
-//					if (MathUtils.getRANDOM().nextInt(100) == 1 && livingentity instanceof PlayerEntity) {
-//						PlayerEntity pl = (PlayerEntity)livingentity;
-//						if (ItemUtils.playerHasItem(pl, (Item)WOTWItems.FUEL.get(), false) && !pl.isCreative()) {
-//							this.playSound(SoundEvents.ITEM_BOTTLE_EMPTY, 1.0F, (float)MathUtils.randomDouble(0.6D, 1.0D));
-//							if (!this.world.isRemote) {
-//								ItemUtils.consumeItem(pl, (Item)WOTWItems.FUEL.get());
-//							}
-//						}
-//					}
 
 					++this.engineRevTime;
 					if (this.engineRevTime > 10) {
-						this.playSound(DMASoundEvents.BESSIE.get(), 1.0F, 0.4F + f1);
+						this.playMoveSound();
 						this.engineRevTime = 0;
 					}
 				} else {
@@ -172,11 +174,6 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 				if (f1 > 0.5F) {
 					f1 = 0.5F;
 				}
-
-// 				if (this.onGround && this.jumpPower == 0.0F && this.isRearing() && !this.allowStandSliding) {
-// 					f = 0.0F;
-// 					f1 = 0.0F;
-// 				}
 
 				double d3;
 				double d2;
@@ -316,8 +313,10 @@ public class BessieEntity extends AnimalEntity implements IJumpingMount {
 
 	@Override
 	public void handleStartJump(int l) {
-		this.level.playSound(null, this, DMASoundEvents.BESSIE_HORN.get(),
-			SoundCategory.NEUTRAL, l / 100f, 1f);
+		if (isBessie()) {
+			this.level.playSound(null, this, DMASoundEvents.BESSIE_HORN.get(),
+				SoundCategory.NEUTRAL, l / 100f, 1f);
+		}
 	}
 
 	@Override
