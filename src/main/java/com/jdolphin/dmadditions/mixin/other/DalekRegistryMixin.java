@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.jdolphin.dmadditions.init.DMADalekRegistry;
+import com.jdolphin.dmadditions.init.DMADaleks;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +22,6 @@ abstract class DalekRegistryMixin {
 
 	@Inject(method = "init()V", at = @At("TAIL"), remap = false)
 	private static void init(CallbackInfo ci) {
-		DMADalekRegistry.init(dalekList, daleks);
+		DMADaleks.init(dalekList, daleks);
 	}
 }

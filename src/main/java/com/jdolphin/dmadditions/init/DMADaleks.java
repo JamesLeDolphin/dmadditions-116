@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
+import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.dalek.types.*;
 import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 import static com.swdteam.common.init.DMDalekRegistry.DALEK_TYPES;
 
-public class DMADalekRegistry {
+public class DMADaleks {
 	private static List<String> dmaDalekList = new ArrayList<>();
 	private static Map<String, IDalek> dmaDaleks = new HashMap<>();
 
@@ -26,6 +27,7 @@ public class DMADalekRegistry {
 	public static IDalek SWD;
 	public static IDalek GLASS;
 	public static IDalek SESAME_STREET;
+	public static IDalek SUPREME;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
@@ -46,9 +48,10 @@ public class DMADalekRegistry {
 		SESAME_STREET.addChild("sesame_street_dalek_yellow");
 		SESAME_STREET.addChild("sesame_street_dalek_emperor");
 
-// 		how to advent unlock daleks
-//		if (AdventUnlock.unlockAt(20)) {
-//		}
+		if (AdventUnlock.unlockAt(15)) {
+			SUPREME = addDalek(DalekType.TIME_WAR, new CustomDalekBase("Supreme Dalek"), "red_supreme_dalek");
+			SUPREME.addChild("blue_supreme_dalek");
+		}
 
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);
