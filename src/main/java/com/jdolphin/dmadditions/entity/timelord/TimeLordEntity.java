@@ -84,7 +84,7 @@ public class TimeLordEntity extends RegeneratingEntity implements IAngerable {
 
 	public void tick() {
 		super.tick();
-		if (this.regenTicks == 10) {
+		if (this.getRegenTicks() == 10) {
 			this.setTimelordType(getRandomTimelordType());
 		}
 	}

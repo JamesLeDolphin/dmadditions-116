@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.client.model.entity;
 import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
@@ -59,11 +60,20 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> {
 		this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
 		this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 		this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
+		this.leftArm.zRot = 0;
+		this.rightArm.zRot = 0;
+		rightArm.setPos(5.0F, 2.0F, 0.0F);
+		leftArm.setPos(-5.0F, 2.0F, 0.0F);
 
-		if (entity.getRegenTicks() > 0) {
-			this.head.xRot = (float) MathHelper.clampedLerp(entity.getRegenTicks(), 0, 20);
-			this.leftArm.zRot = (float) MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.rightArm.zRot = (float) MathHelper.clampedLerp(entity.getRegenTicks(), 0, 115);
+		int regenTicks = entity.getRegenTicks();
+
+		if (regenTicks > 0) {
+			this.head.xRot = (float) MathHelper.lerp((float) regenTicks / 200, -0.2f, 0f);
+			//LogManager.getLogger().debug("regenTicks: {}; {}", regenTicks, (float) regenTicks / 200);
+			this.rightArm.zRot = 10;
+			this.leftArm.zRot = -10;
+			rightArm.setPos(-4.0F, -3.0F, 0.0F);
+			leftArm.setPos(4.0F, -3.0F, 0.0F);
 		}
 	}
 
@@ -83,3 +93,4 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> {
 		modelRenderer.zRot = z;
 	}
 }
+

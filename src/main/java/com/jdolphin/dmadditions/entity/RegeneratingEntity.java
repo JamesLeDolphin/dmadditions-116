@@ -12,20 +12,26 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Rotation;
 import net.minecraft.world.World;
+
+import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
 public abstract class RegeneratingEntity extends CreatureEntity {
-	protected int regenTicks;
 	public static final String TAG_REGENS = "Regenerations";
-	public static final DataParameter<Integer> REGENS = EntityDataManager.defineId(RegeneratingEntity.class, DataSerializers.INT);
+	public static final DataParameter<Integer> REGENS = EntityDataManager.defineId(RegeneratingEntity.class,
+			DataSerializers.INT);
+	public static final DataParameter<Integer> REGEN_TICKS = EntityDataManager.defineId(RegeneratingEntity.class,
+			DataSerializers.INT);
+
 	protected RegeneratingEntity(EntityType<? extends RegeneratingEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
 	protected void defineSynchedData() {
 		this.getEntityData().define(REGENS, 12);
+		this.getEntityData().define(REGEN_TICKS, 0);
 		super.defineSynchedData();
 	}
 
@@ -57,14 +63,18 @@ public abstract class RegeneratingEntity extends CreatureEntity {
 	}
 
 	public int getRegenTicks() {
-		return regenTicks;
+		return this.entityData.get(REGEN_TICKS);
+	}
+
+	public void setRegenTicks(int ticks) {
+		this.entityData.set(REGEN_TICKS, ticks);
 	}
 
 	public void setRegen() {
 		int i = getRegens();
 		setRegens(Math.max(i - 1, 0));
 		this.addEffect(new EffectInstance(Effects.REGENERATION, 20 * 10, 1, false, false));
-		this.regenTicks = Helper.seconds(10);
+		this.setRegenTicks(Helper.seconds(10));
 	}
 
 	@Override
@@ -74,27 +84,30 @@ public abstract class RegeneratingEntity extends CreatureEntity {
 			this.setRegen();
 			return false;
 		}
-        return super.hurt(source, amount);
+		return super.hurt(source, amount);
 	}
 
 	public boolean canRegen() {
-		return hasRegens() && regenTicks == 0;
+		return hasRegens() && getRegenTicks() == 0;
 	}
 
 	public boolean isRegenerating() {
-		return this.regenTicks > 0;
+		return this.getRegenTicks() > 0;
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
 		if (isRegenerating()) {
-			regenTicks--;
+			this.setRegenTicks(this.getRegenTicks() - 1);
 			this.yHeadRot = 0;
 			this.rotate(Rotation.NONE);
-			System.out.println("Regenerating");
+			LogManager.getLogger().debug("Regenerating");
 			this.setTarget(null);
 			this.getNavigation().stop();
+			this.setHealth(this.getMaxHealth());
+			this.revive();
+			this.addEffect(new EffectInstance(Effects.GLOWING, 3, 1, false, false, false));
 		}
 	}
 }
