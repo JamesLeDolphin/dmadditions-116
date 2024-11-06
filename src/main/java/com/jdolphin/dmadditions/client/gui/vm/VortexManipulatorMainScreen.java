@@ -12,6 +12,9 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -59,7 +62,10 @@ public class VortexManipulatorMainScreen extends Screen {
 	}
 
 	public void render(@NotNull MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-		super.render(stack, mouseX, mouseY, partialTicks);
+		this.renderBackground(stack);
+		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
+		this.blit(stack, this.width / 2 - 128, this.height / 2 - 79, 0, 0, 256, 158);
+
 		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
 		dimInput.render(stack, mouseX, mouseY, partialTicks);
 		xInput.render(stack, mouseX, mouseY, partialTicks);
@@ -70,16 +76,6 @@ public class VortexManipulatorMainScreen extends Screen {
 		if (style != null && style.getHoverEvent() != null) {
 			this.renderComponentHoverEffect(stack, style, mouseX, mouseY);
 		}
-	}
-
-	@Override
-	public void renderBackground(MatrixStack stack) {
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.minecraft.getTextureManager().bind(BG_LOCATION);
-		int lvt_5_1_ = (this.width - 32) / 2;
-		int lvt_6_1_ = (this.height - 16) / 2;
-		this.blit(stack, lvt_5_1_, lvt_6_1_, 0, 0, 32, 16);
-		this.blit(stack, lvt_5_1_, lvt_6_1_, 0, 126, 32, 16);
 	}
 
 	public void setCoords() {
