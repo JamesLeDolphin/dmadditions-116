@@ -29,7 +29,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	private int postponeTime = 0;
 	private boolean canPostpone = true;
 	private int preRegenTime = Helper.seconds(15);
-	private int regenTicks;
+	private int regenTicks = Helper.seconds(8) + 1;
 	private int currentRegens;
 
 	public PlayerRegenCapability(PlayerEntity player) {
@@ -48,7 +48,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 			Helper.info("Pre");
 			preRegenTime--;
 		}
-		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
+		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == Helper.seconds(8)) {
 			this.regenerate();
 		}
 
@@ -57,8 +57,8 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 			player.teleportTo(player.getX(), player.getY(), player.getZ());
 		}
 
-		if (regenTicks == Helper.seconds(8)) {
-			regenTicks = 0;
+		if (regenTicks == 0) {
+			regenTicks = Helper.seconds(8) + 1;
 		}
 	}
 
@@ -116,8 +116,8 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 
 	@Override
 	public void regenerate() {
-		this.regenTicks++;
-		if (regenTicks == 1) {
+		this.regenTicks--;
+		if (regenTicks == Helper.seconds(8) - 1) {
 			Helper.playSound(player.level, player.blockPosition(), DMASoundEvents.REGEN_START.get(), SoundCategory.PLAYERS);
 			ChatUtil.sendMessageToPlayer(player,
 				new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
@@ -140,7 +140,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 
 	@Override
 	public boolean isRegenerating() {
-		return this.regenTicks > 0;
+		return this.regenTicks < Helper.seconds(8);
 	}
 
 	@Override

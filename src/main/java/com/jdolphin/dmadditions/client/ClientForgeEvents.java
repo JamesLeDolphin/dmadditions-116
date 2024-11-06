@@ -4,15 +4,23 @@ import com.jdolphin.dmadditions.DmAdditions;
 import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererGallifrey;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMondas;
+import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.jdolphin.dmadditions.init.DMADimensions;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBToggleLaserScrewdriverMode;
 import com.swdteam.client.init.DMKeybinds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.renderer.entity.PlayerRenderer;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -40,6 +48,22 @@ public class ClientForgeEvents {
 				info.setSkyRenderHandler(SkyRendererGallifrey.INSTANCE);
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void renderEvent(RenderPlayerEvent event) {
+		PlayerEntity player = event.getPlayer();
+		PlayerRenderer renderer = event.getRenderer();
+
+		player.getCapability(DMACapabilities.REGEN_CAPABILITY).ifPresent(cap -> {
+			int ticks = cap.getRegenTicks();
+			PlayerModel<AbstractClientPlayerEntity> model = renderer.getModel();
+			if (cap.isRegenerating()) {
+				model.rightArm.zRot = MathHelper.lerp((float) ticks / 200, -0.2f, 0);
+			} else {
+				model.rightArm.zRot = 0f;
+			}
+		});
 	}
 
 	@SubscribeEvent
