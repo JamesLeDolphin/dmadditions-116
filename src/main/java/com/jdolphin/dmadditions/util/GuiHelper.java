@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraftforge.fml.client.gui.widget.Slider;
@@ -14,7 +15,7 @@ import java.awt.*;
 //Copied from portal gun mod code, credit: JamesLeDolphin (me)
 @SuppressWarnings("resource")
 public class GuiHelper {
-
+	public static ResourceLocation BUTTONS_LOCATION = Helper.createAdditionsRL("textures/gui/buttons.png");
 	public static void renderWidgets(MatrixStack stack, int pMouseX, int pMouseY, float pPartialTick, Widget... widgets) {
 		for (Widget widget : widgets) {
 			widget.render(stack, pMouseX, pMouseY, pPartialTick);

@@ -2,20 +2,19 @@ package com.jdolphin.dmadditions.client.gui.vm;
 
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMAPackets;
-import com.jdolphin.dmadditions.network.SBSetDestinationPacket;
+import com.jdolphin.dmadditions.item.VortexManipulatorItem;
+import com.jdolphin.dmadditions.network.SBVMInteractionPacket;
 import com.jdolphin.dmadditions.util.GuiHelper;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
@@ -25,6 +24,8 @@ import org.lwjgl.glfw.GLFW;
 
 public class VortexManipulatorMainScreen extends Screen {
 	private TextFieldWidget dimInput, xInput, yInput, zInput;
+	private ImageButton cancel, select;
+	private int fuel = 0, maxFuel = 0;
 	public static ResourceLocation BG_LOCATION = Helper.createAdditionsRL("textures/gui/vm_bg.png");
 
 	public VortexManipulatorMainScreen() {
@@ -36,41 +37,68 @@ public class VortexManipulatorMainScreen extends Screen {
 	}
 
 	protected void init() {
-		this.addButton(new Button(this.width / 2 - 136, this.height / 2 + 32,128, 20,
-			new TranslationTextComponent("dmadditions.button.select"), (button) -> {
+		ClientPlayerEntity player = Minecraft.getInstance().player;
+		if (player != null) {
+			ItemStack stack = player.getMainHandItem();
+			if (stack.getItem().equals(DMAItems.VORTEX_MANIPULATOR.get())) {
+				maxFuel = VortexManipulatorItem.MAX_FUEL;
+				CompoundNBT tag = stack.getOrCreateTag();
+				if (tag.contains(VortexManipulatorItem.TAG_FUEL)) {
+					fuel = tag.getInt(VortexManipulatorItem.TAG_FUEL);
+				}
+			}
+		}
+		this.select = this.addButton(new ImageButton(this.width / 2 - 70, this.height / 2 + 28 , 20, 20, 0, 0, 20,
+			GuiHelper.BUTTONS_LOCATION, 256, 256, (button) -> {
 			this.setCoords();
 			this.onClose();
+		},
+			new TranslationTextComponent("dmadditions.button.select")));
 
-		}));
-		this.addButton(new Button(this.width / 2 + 8, this.height / 2 + 32, 128, 20,
-			new TranslationTextComponent("dmadditions.button.cancel"), (button) -> {
+		this.cancel = this.addButton(new ImageButton( this.width / 2 - 38, this.height / 2 + 28, 20, 20, 0, 0, 20,
+			GuiHelper.BUTTONS_LOCATION, 256, 256, (button) -> {
 			this.onClose();
-		}));
+		},
+			new TranslationTextComponent("dmadditions.button.cancel")));
+
 
 		this.dimInput = this.addWidget(new TextFieldWidget(this.font,
-			this.width / 2 - 32, this.height / 2 - 32, 112, 12,
+			this.width / 2 + 17, this.height / 2 - 31, 78, 20,
 			 new TranslationTextComponent("chat.editBox")));
 		this.xInput = this.addWidget(new TextFieldWidget(this.font,
-			this.width / 2 - 32, this.height / 2 - 16, 64, 12,
+			this.width / 2 - 84, this.height / 2 - 32, 64, 12,
 			new TranslationTextComponent("chat.editBox")));
 		this.yInput = this.addWidget(new TextFieldWidget(this.font,
-			this.width / 2 - 32, this.height / 2, 64, 12,
+			this.width / 2 - 84, this.height / 2 - 16, 64, 12,
 			new TranslationTextComponent("chat.editBox")));
 		this.zInput = this.addWidget(new TextFieldWidget(this.font,
-			this.width / 2 - 32, this.height / 2 + 16, 64, 12,
+			this.width / 2 - 84, this.height / 2, 64, 12,
 			new TranslationTextComponent("chat.editBox")));
 	}
 
 	public void render(@NotNull MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(stack);
 		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
-		this.blit(stack, this.width / 2 - 128, this.height / 2 - 79, 0, 0, 256, 158);
+		blit(stack, this.width / 2 - 128, this.height / 2 - 64, 0, 0, 0, 256, 128,128, 256);
 
 		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
 		dimInput.render(stack, mouseX, mouseY, partialTicks);
 		xInput.render(stack, mouseX, mouseY, partialTicks);
 		yInput.render(stack, mouseX, mouseY, partialTicks);
 		zInput.render(stack, mouseX, mouseY, partialTicks);
+
+		cancel.render(stack, mouseX, mouseY, partialTicks);
+		select.render(stack, mouseX, mouseY, partialTicks);
+		GuiHelper.drawWhiteString(stack, "X:", this.width / 2 - 94, this.height / 2 - 30);
+		GuiHelper.drawWhiteString(stack, "Y:", this.width / 2 - 94, this.height / 2 - 14);
+		GuiHelper.drawWhiteString(stack, "Z:", this.width / 2 - 94, this.height / 2 + 2);
+
+		GuiHelper.drawWhiteString(stack, "Dimension:", this.width / 2 + 18, this.height / 2 - 42);
+
+		GuiHelper.drawWhiteString(stack, "Fuel:", this.width / 2 + 58, this.height / 2 + 10);
+		GuiHelper.drawWhiteString(stack, String.format("%s/%s", this.fuel, this.maxFuel), this.width / 2 + 54, this.height / 2 + 22);
+		GuiHelper.renderTooltip(this, stack, new TranslationTextComponent("dmadditions.button.select"), select);
+		GuiHelper.renderTooltip(this, stack, new TranslationTextComponent("dmadditions.button.cancel"), cancel);
 
 		Style style = GuiHelper.getStyle(this, mouseX, mouseY);
 		if (style != null && style.getHoverEvent() != null) {
@@ -93,7 +121,7 @@ public class VortexManipulatorMainScreen extends Screen {
 			ItemStack itemStack = player.getMainHandItem();
 			if (!itemStack.getItem().equals(DMAItems.VORTEX_MANIPULATOR.get()))
 				throw new NullPointerException("Vortex manipulator cannot be null!");
-			SBSetDestinationPacket packet = new SBSetDestinationPacket(new BlockPos(x, y, z), resourceLocation);
+			SBVMInteractionPacket packet = new SBVMInteractionPacket(new BlockPos(x, y, z), resourceLocation);
 			DMAPackets.INSTANCE.sendToServer(packet);
 			this.onClose();
 		} catch (Exception error) {

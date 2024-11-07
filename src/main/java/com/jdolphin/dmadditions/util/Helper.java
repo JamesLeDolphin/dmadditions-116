@@ -34,7 +34,11 @@ public class Helper {
 	}
 
 	public static void playSound(World world, BlockPos pos, SoundEvent soundEvent, SoundCategory category) {
-		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, category, 1.0f, 1.0f);
+		playSound(world, pos, soundEvent, category, 1.0f);
+	}
+
+	public static void playSound(World world, BlockPos pos, SoundEvent soundEvent, SoundCategory category, float pitch) {
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, category, 1.0f, pitch);
 	}
 
 	public static int minutes(int min) {

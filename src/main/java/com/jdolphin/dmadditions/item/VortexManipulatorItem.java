@@ -36,15 +36,6 @@ public class VortexManipulatorItem extends Item implements IForgeItem {
 		tag.putInt(TAG_FUEL, Math.max(0, i - amount));
 	}
 
-	public boolean showDurabilityBar(ItemStack stack) {
-		return getFuel(stack.getOrCreateTag()) < MAX_FUEL;
-	}
-
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-		return Math.round((float)getFuel(stack.getOrCreateTag()) * 13.0F / MAX_FUEL);
-	}
-
 	public static void setup(CompoundNBT tag) {
 		if (!tag.contains(TAG_FUEL)) tag.putInt(TAG_FUEL, MAX_FUEL);
 		if (!tag.contains(TAG_DESTINATION)) tag.putString(TAG_DESTINATION, DMALocation.DEFAULT.getLocationString());
