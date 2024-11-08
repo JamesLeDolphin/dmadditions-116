@@ -40,8 +40,7 @@ public class DMAItems {
 	public static final RegistryObject<Item> DOCS_FLUTE = registerAdventItem(16, "docs_flute", () -> new FluteItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static final RegistryObject<Item> SONIC_BLASTER = registerAdventItem(3, "sonic_blaster",
-		() -> new SonicBlasterItem(DMItemTiers.DALEK_GUNSTICK, 0.15F, 5, DMAProjectiles.BLUE_LASER, DMSoundEvents.ITEM_GUN_CLICK,
-			DMASoundEvents.PISTOL_SHOOT, new Item.Properties().tab(ItemGroup.TAB_COMBAT), DMItems.BULLET, DMItems.GOLD_BULLET, DMItems.DARK_STAR_BULLET));
+		() -> new SonicBlasterItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT)));
 
 	public static final RegistryObject<Item> TWODIS = registerAdventItem(4, "twodis", () -> new TwoDizItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

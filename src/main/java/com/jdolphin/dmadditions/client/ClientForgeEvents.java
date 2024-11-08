@@ -101,11 +101,6 @@ public class ClientForgeEvents {
 					DMAPackets.INSTANCE.sendToServer(packet);
 				}
 			}
-			if (DMKeybinds.GUN_CHANGE_BULLET.consumeClick()) {
-				if (DMAItems.SONIC_BLASTER != null && stack.getItem().equals(DMAItems.SONIC_BLASTER.get())) {
-					SonicBlasterItem.toggleRestoreMode(stack);
-				}
-			}
 			if (SONIC_SHADE_INTERACTION.consumeClick()) {
 				ItemStack headStack = player.getItemBySlot(EquipmentSlotType.HEAD);
 				if (DMAItems.SONIC_SHADES != null && headStack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
