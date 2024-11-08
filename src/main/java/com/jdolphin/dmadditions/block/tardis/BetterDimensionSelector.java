@@ -1,12 +1,5 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-
 import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
@@ -22,7 +15,6 @@ import com.swdteam.common.tardis.data.TardisLocationRegistry;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import com.swdteam.util.ChatUtil;
 import com.swdteam.util.ChatUtil.MessageType;
-
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -53,6 +45,9 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+
+import java.util.*;
+import java.util.function.Supplier;
 
 public class BetterDimensionSelector extends DimensionSelectorPanelBlock implements IBetterPanel {
 	public static List<DimensionPanelButtons> buttons = new ArrayList<>();
