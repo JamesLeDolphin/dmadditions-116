@@ -100,6 +100,13 @@ public class DMAEntities {
 				.build(Helper.createAdditionsRL("clockwork_droid").toString())
 		);
 
+	public static final RegistryObject<EntityType<ZygonEntity>> ZYGON =
+		registerAdventEntity(10, "zygon", () ->
+			EntityType.Builder.<ZygonEntity>of(ZygonEntity::new, EntityClassification.MONSTER)
+				.sized(0.5f, 1.8f)
+				.build(Helper.createAdditionsRL("zygon").toString())
+		);
+
 	public static final RegistryObject<EntityType<IceWarriorEntity>> ICE_WARRIOR =
 		registerAdventEntity(9, "ice_warrior", () ->
 			EntityType.Builder.<IceWarriorEntity>of(IceWarriorEntity::new, EntityClassification.MONSTER)

@@ -70,9 +70,7 @@ public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		if (SNOWMAN_SPAWNER == null) return null;
-
-		return new ItemStack(SNOWMAN_SPAWNER.get());
+		return SNOWMAN_SPAWNER.get().getDefaultInstance();
 	}
 
 	public boolean isSensitiveToWater() {

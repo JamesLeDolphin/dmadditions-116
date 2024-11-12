@@ -18,8 +18,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 
 public class IceWarriorEntity extends MonsterEntity {
-	public static final String TAG_ICEWARRIOR = "IcewarriorType";
-	public static final DataParameter<String> ICEWARRIOR_TYPE = EntityDataManager.defineId(IceWarriorEntity.class, DataSerializers.STRING);
 
 	public IceWarriorEntity(EntityType<IceWarriorEntity> type, World world) {
 		super(type, world);
@@ -29,21 +27,6 @@ public class IceWarriorEntity extends MonsterEntity {
 	public IceWarriorEntity(World world) {
 		super(DMAEntities.CLOCKWORK_DROID.get(), world);
 	}
-
-//	@Override
-//	protected void defineSynchedData() {
-//		IceWarriorType[] types = IceWarriorType.values();
-//		this.entityData.define(ICEWARRIOR_TYPE, types[this.random.nextInt(types.length)].getName());
-//		super.defineSynchedData();
-//	}
-
-//	public IceWarriorType getClockworkDroidType() {
-//		return IceWarriorType.get(this.entityData.get(ICEWARRIOR_TYPE));
-//	}
-
-//	public void setIceWarriorType(String type) {
-//		setIceWarriorType(IceWarriorType.get(type));
-//	}
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return LivingEntity.createLivingAttributes()
@@ -69,62 +52,16 @@ public class IceWarriorEntity extends MonsterEntity {
 		this.goalSelector.addGoal(11, new MeleeAttackGoal(this, 1f, false));
 		this.goalSelector.addGoal(12, new HurtByTargetGoal(this));
 	}
-//	public void setIceWarriorType(IceWarriorType type) {
-//		if (this.entityData != null) {
-//			this.entityData.set(ICEWARRIOR_TYPE, type.getName());
-//		}
-//	}
 
 	@Override
 	public void addAdditionalSaveData(@Nonnull CompoundNBT compound) {
-		if (this.entityData != null) {
-			compound.putString(TAG_ICEWARRIOR, this.entityData.get(ICEWARRIOR_TYPE));
-		}
 
 		super.addAdditionalSaveData(compound);
 	}
 
-//	@Override
-//	public void readAdditionalSaveData(CompoundNBT compound) {
-//		if (compound.contains(TAG_ICEWARRIOR)) {
-//			this.setIceWarriorType(compound.getString(TAG_ICEWARRIOR));
-//		}
-//
-//		super.readAdditionalSaveData(compound);
-//	}
-
 
 	@Override
 	public HandSide getMainArm() {
-		return null;
+		return HandSide.RIGHT;
 	}
-
-//	public enum ClockworkDroidType {
-//		VARIANT1("variant_1"),
-//		VARIANT2("variant_2"),
-//		VARIANT3("variant_3");
-//
-//		private final String name;
-//		public final Function<Random, List<ItemStack>> getInventory;
-//
-//		public String getName() {
-//			return this.name;
-//		}
-//
-//		IceWarriorType(String name) {
-//			this.name = name;
-//			this.getInventory = (random) -> null;
-//		}
-//
-//		IceWarriorType(String name, Function<Random, List<ItemStack>> getInventory) {
-//			this.name = name;
-//			this.getInventory = getInventory;
-//		}
-//
-//		public static IceWarriorType get(String name) {
-//			return Arrays.stream(values())
-//				.filter(type -> type.name.equals(name)).findFirst()
-//				.orElse(VARIANT2);
-//		}
-//	}
 }

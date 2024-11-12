@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.entity.ai.goal;
+package com.jdolphin.dmadditions.entity.goal;
 
 import com.swdteam.common.item.gun.GunItem;
 import net.minecraft.entity.IRangedAttackMob;

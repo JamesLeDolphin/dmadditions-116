@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.entity.ai.goal;
+package com.jdolphin.dmadditions.entity.goal;
 
 import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
 import net.minecraft.entity.ai.goal.Goal;
