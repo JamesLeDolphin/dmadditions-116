@@ -101,18 +101,23 @@ public class DMAEntities {
 		);
 
 	public static final RegistryObject<EntityType<ZygonEntity>> ZYGON =
-		registerAdventEntity(10, "zygon", () ->
+		registerAdventEntity(1, "zygon", () ->
 			EntityType.Builder.<ZygonEntity>of(ZygonEntity::new, EntityClassification.MONSTER)
 				.sized(0.5f, 1.8f)
-				.build(Helper.createAdditionsRL("zygon").toString())
+				.build(Helper.createAdditionsRL("zygon").toString()));
+
+	public static final RegistryObject<EntityType<EmptyChildEntity>> EMPTY_CHILD =
+		registerAdventEntity(2, "empty_child", () ->
+			EntityType.Builder.<EmptyChildEntity>of(EmptyChildEntity::new, EntityClassification.MONSTER)
+				.sized(0.5f, 1.5f)
+				.build(Helper.createAdditionsRL("empty_child").toString())
 		);
 
 	public static final RegistryObject<EntityType<IceWarriorEntity>> ICE_WARRIOR =
 		registerAdventEntity(9, "ice_warrior", () ->
 			EntityType.Builder.<IceWarriorEntity>of(IceWarriorEntity::new, EntityClassification.MONSTER)
 				.sized(0.5f, 1.8f)
-				.build(Helper.createAdditionsRL("ice_warrior").toString())
-		);
+				.build(Helper.createAdditionsRL("ice_warrior").toString()));
 
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
