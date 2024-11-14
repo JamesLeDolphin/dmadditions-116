@@ -11,6 +11,7 @@ import com.mojang.serialization.Dynamic;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
@@ -23,6 +24,7 @@ import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.ZombieVillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.villager.IVillagerDataHolder;
 import net.minecraft.entity.villager.VillagerType;
@@ -80,6 +82,13 @@ public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
 		if (bool && this.getMainHandItem().isEmpty() && entity instanceof LivingEntity) {
 			float f = this.level.getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
 			((LivingEntity)entity).addEffect(new EffectInstance(Effects.POISON, 20 * 3 * (int) f));
+
+			if (entity instanceof IVillagerDataHolder) {
+				if (random.nextFloat() > 0.4) {
+					this.setVillagerData(((IVillagerDataHolder) entity).getVillagerData());
+					this.entityData.set(DISGUISED, true);
+				}
+			}
 		}
 
 		return bool;
@@ -107,18 +116,9 @@ public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-		this.goalSelector.addGoal(10, new NearestAttackableTargetGoal<PlayerEntity>(this, PlayerEntity.class, false) {
-
-			public boolean canUse() {
-				return super.canUse() && !isDisguised();
-			}
-		});
-
-		this.goalSelector.addGoal(8, new NearestAttackableTargetGoal<VillagerEntity>(this, VillagerEntity.class, false) {
-			public boolean canUse() {
-				return super.canUse() && !isDisguised();
-			}
-		});
+		this.goalSelector.addGoal(10, new ZygonNearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
+		this.goalSelector.addGoal(8, new ZygonNearestAttackableTargetGoal<>(this, VillagerEntity.class, false));
+		this.goalSelector.addGoal(8, new ZygonNearestAttackableTargetGoal<>(this, ZombieVillagerEntity.class, false));
 		this.goalSelector.addGoal(11, new MeleeAttackGoal(this, 1f, false));
 		this.goalSelector.addGoal(12, new HurtByTargetGoal(this));
 	}
@@ -157,4 +157,15 @@ public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
 	public void setVillagerData(VillagerData villagerData) {
 		this.entityData.set(DATA_VILLAGER_DATA, villagerData);
 	}
+
+	public final class ZygonNearestAttackableTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
+		private ZygonNearestAttackableTargetGoal(MobEntity entity, Class<T> target, boolean mustSee) {
+			super(entity, target, mustSee);
+		}
+
+		public boolean canUse() {
+			return super.canUse() && !isDisguised();
+		}
+	}
+
 }
