@@ -24,7 +24,7 @@ public class ZygonRenderer extends MobRenderer<MobEntity, EntityModel<MobEntity>
 	public ZygonRenderer(EntityRendererManager erm) {
 		super(erm, (EntityModel<MobEntity>) (Object) new ZygonModel(), 0);
 		zygonModel = model;
-		villagerModel = new VillagerModel<>(1);
+		villagerModel = new VillagerModel<>(0);
 	}
 
 	public static final ResourceLocation ZYGON_SKIN = Helper.createAdditionsRL("textures/entity/zygon.png");
@@ -45,9 +45,9 @@ public class ZygonRenderer extends MobRenderer<MobEntity, EntityModel<MobEntity>
 		ZygonEntity zygonEntity = (ZygonEntity) entity;
 		EntityModel<? extends Entity> entityModel;
 		if (zygonEntity.isDisguised()) {
-			entityModel = new VillagerModel<>(0.0f);
+			entityModel = villagerModel;
 		} else {
-			entityModel = new ZygonModel();
+			entityModel = zygonModel;
 		}
 
 		model = (EntityModel<MobEntity>) entityModel;
