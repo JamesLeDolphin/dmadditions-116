@@ -4,10 +4,11 @@ import com.jdolphin.dmadditions.entity.ZygonEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.renderer.entity.model.IHeadToggle;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 
-public class ZygonModel extends BipedModel<ZygonEntity> {
+public class ZygonModel extends BipedModel<ZygonEntity> implements IHeadToggle{
 	private final ModelRenderer rightLeg;
 	private final ModelRenderer leftLeg;
 	private final ModelRenderer head;
@@ -71,5 +72,10 @@ public class ZygonModel extends BipedModel<ZygonEntity> {
 		modelRenderer.xRot = x;
 		modelRenderer.yRot = y;
 		modelRenderer.zRot = z;
+	}
+
+	@Override
+	public void hatVisible(boolean visible) {
+
 	}
 }
