@@ -37,6 +37,7 @@ public class VortexManipulatorMainScreen extends Screen {
 	}
 
 	protected void init() {
+		@SuppressWarnings("resource")
 		ClientPlayerEntity player = Minecraft.getInstance().player;
 		if (player != null) {
 			ItemStack stack = player.getMainHandItem();
@@ -78,10 +79,11 @@ public class VortexManipulatorMainScreen extends Screen {
 
 	public void render(@NotNull MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(stack);
-		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
+		Minecraft instance = Minecraft.getInstance();
+		instance.textureManager.bind(BG_LOCATION);
 		blit(stack, this.width / 2 - 128, this.height / 2 - 64, 0, 0, 0, 256, 128,128, 256);
 
-		Minecraft.getInstance().textureManager.bind(BG_LOCATION);
+		instance.textureManager.bind(BG_LOCATION);
 		dimInput.render(stack, mouseX, mouseY, partialTicks);
 		xInput.render(stack, mouseX, mouseY, partialTicks);
 		yInput.render(stack, mouseX, mouseY, partialTicks);
