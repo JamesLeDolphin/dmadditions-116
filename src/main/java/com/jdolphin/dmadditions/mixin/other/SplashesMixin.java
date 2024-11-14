@@ -45,11 +45,14 @@ public class SplashesMixin {
 
 				add("Torchwood is responsible for everything");
 				add("Don't trust Torchwood");
+
+				// spellchecker:ignore dodgily
+				add("Very dodgily I must add");
 			}
 		};
 
 		if (AdventUnlock.isDecember()) {
-			splashes.add("DM Advent Calandar!?");
+			splashes.add("DM Advent Calendar!?");
 		}
 
 		if (AdventUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && AdventUnlock.getDate() == 1) {
