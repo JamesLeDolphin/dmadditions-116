@@ -71,7 +71,7 @@ public class ZygonEntity extends MonsterEntity {
 	}
 
 	protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-		if (isDisguised()) return ActionResultType.PASS;
+		if (!isDisguised()) return ActionResultType.PASS;
 		this.entityData.set(DISGUISED, false);
 		return ActionResultType.SUCCESS;
 	}
