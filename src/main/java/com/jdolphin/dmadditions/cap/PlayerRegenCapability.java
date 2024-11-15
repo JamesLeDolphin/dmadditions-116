@@ -52,7 +52,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 			this.regenerate();
 		}
 
-		if (regenTicks > 0) {
+		if (regenTicks < Helper.seconds(8) + 1) {
 			if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
 			player.teleportTo(player.getX(), player.getY(), player.getZ());
 		}
