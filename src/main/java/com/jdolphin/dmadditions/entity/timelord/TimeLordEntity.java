@@ -138,7 +138,15 @@ public class TimeLordEntity extends RegeneratingEntity implements IAngerable {
 
 	public enum TimeLordType {
 		ARI("ari"),
-		ZURI("zuri");
+		ZURI("zuri"),
+		ALEX("alex"),
+		EFE("efe"),
+		KAI("kai"),
+		MAKENA("makena"),
+		NOOR("noor"),
+		STEVE("steve"),
+		SUNNY("sunny"),
+		;
 
 		private final String name;
 		public final Function<Random, List<ItemStack>> getInventory;
