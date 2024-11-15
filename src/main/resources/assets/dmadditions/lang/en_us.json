@@ -343,6 +343,8 @@
 	"item.dmadditions.vortex_manipulator": "Vortex Manipulator",
 	"dmadditions.button.select": "Select",
 
-	"item.dmadditions.docs_flute": "2nd Doctor's Flute"
+	"item.dmadditions.docs_flute": "2nd Doctor's Flute",
+
+	"entity.dmadditions.zygon": "Zygon"
 
 }

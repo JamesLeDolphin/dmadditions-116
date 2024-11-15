@@ -39,6 +39,9 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
@@ -166,6 +169,16 @@ public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
 		public boolean canUse() {
 			return super.canUse() && !isDisguised();
 		}
+	}
+
+	protected ITextComponent getTypeName() {
+		if (!this.isDisguised())
+			return super.getTypeName();
+
+		ResourceLocation profName = this.getVillagerData().getProfession().getRegistryName();
+		return new TranslationTextComponent(EntityType.VILLAGER.getDescriptionId() + '.'
+				+ (!"minecraft".equals(profName.getNamespace()) ? profName.getNamespace() + '.' : "")
+				+ profName.getPath());
 	}
 
 }
