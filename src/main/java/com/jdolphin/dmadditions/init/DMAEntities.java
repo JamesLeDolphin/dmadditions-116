@@ -103,7 +103,8 @@ public class DMAEntities {
 	public static final RegistryObject<EntityType<ZygonEntity>> ZYGON =
 		registerAdventEntity(1, "zygon", () ->
 			EntityType.Builder.<ZygonEntity>of(ZygonEntity::new, EntityClassification.MONSTER)
-				.sized(0.5f, 1.8f)
+				.sized(0.5f, 1.95f)
+				.clientTrackingRange(10)
 				.build(Helper.createAdditionsRL("zygon").toString()));
 
 	public static final RegistryObject<EntityType<EmptyChildEntity>> EMPTY_CHILD =

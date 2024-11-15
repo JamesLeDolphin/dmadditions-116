@@ -38,9 +38,8 @@ public class ZygonRenderer extends MobRenderer<ZygonEntity, EntityModel<ZygonEnt
 	@Override
 	@ParametersAreNonnullByDefault
 	public void render(ZygonEntity entity, float f, float f1, MatrixStack stack, IRenderTypeBuffer buffer, int i) {
-		ZygonEntity zygonEntity = (ZygonEntity) entity;
 		EntityModel<ZygonEntity> entityModel;
-		if (zygonEntity.isDisguised()) {
+		if (entity.isDisguised()) {
 			entityModel = villagerModel;
 		} else {
 			entityModel = zygonModel;
@@ -53,11 +52,7 @@ public class ZygonRenderer extends MobRenderer<ZygonEntity, EntityModel<ZygonEnt
 	@Override
 	@NotNull
 	public ResourceLocation getTextureLocation(@NotNull ZygonEntity entity) {
-		if (!(entity instanceof ZygonEntity))
-			return ZYGON_SKIN;
-
-		ZygonEntity zygonEntity = (ZygonEntity) entity;
-		return zygonEntity.isDisguised() ? VILLAGER_SKIN : ZYGON_SKIN;
+		return entity.isDisguised() ? VILLAGER_SKIN : ZYGON_SKIN;
 	}
 
 }

@@ -47,7 +47,7 @@ import net.minecraft.world.World;
 public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
 	public static final String TAG_DISGUISED = "Disguised";
 	public static final DataParameter<Boolean> DISGUISED = EntityDataManager.defineId(ZygonEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<VillagerData> DATA_VILLAGER_DATA = EntityDataManager.defineId(VillagerEntity.class, DataSerializers.VILLAGER_DATA);
+	private static final DataParameter<VillagerData> DATA_VILLAGER_DATA = EntityDataManager.defineId(ZygonEntity.class, DataSerializers.VILLAGER_DATA);
 
 	public ZygonEntity(EntityType<ZygonEntity> type, World world) {
 		super(type, world);
