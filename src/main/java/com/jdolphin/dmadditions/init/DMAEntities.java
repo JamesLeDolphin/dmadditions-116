@@ -107,6 +107,12 @@ public class DMAEntities {
 				.clientTrackingRange(10)
 				.build(Helper.createAdditionsRL("zygon").toString()));
 
+	public static final RegistryObject<EntityType<EmptyVillagerEntity>> EMPTY_VILLAGER =
+		registerAdventEntity(2, "empty_villager", () ->
+			EntityType.Builder.<EmptyVillagerEntity>of(EmptyVillagerEntity::new, EntityClassification.MONSTER)
+				.sized(0.5f, 1.8f)
+				.build(Helper.createAdditionsRL("empty_villager").toString()));
+
 	public static final RegistryObject<EntityType<EmptyChildEntity>> EMPTY_CHILD =
 		registerAdventEntity(2, "empty_child", () ->
 			EntityType.Builder.<EmptyChildEntity>of(EmptyChildEntity::new, EntityClassification.MONSTER)

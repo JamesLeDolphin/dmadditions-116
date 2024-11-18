@@ -39,6 +39,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.CLOCKWORK_DROID, ClockworkDroidRenderer::new);
 		registerRender(DMAEntities.ICE_WARRIOR, IceWarriorRenderer::new);
 		registerRender(DMAEntities.ZYGON, ZygonRenderer::new);
+		registerRender(DMAEntities.EMPTY_VILLAGER, EmptyVillagerRenderer::new);
 		registerRender(DMAEntities.EMPTY_CHILD, EmptyChildRenderer::new);
 	}
 

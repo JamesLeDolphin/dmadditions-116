@@ -178,8 +178,10 @@ public class DMAdditions {
 			event.put(DMAEntities.ICE_WARRIOR.get(), IceWarriorEntity.createAttributes().build());
 		if (DMAEntities.ZYGON != null)
 			event.put(DMAEntities.ZYGON.get(), ZygonEntity.createAttributes().build());
-		if (DMAEntities.EMPTY_CHILD != null)
+		if (DMAEntities.EMPTY_CHILD != null) {
 			event.put(DMAEntities.EMPTY_CHILD.get(), EmptyChildEntity.createAttributes().build());
+			event.put(DMAEntities.EMPTY_VILLAGER.get(), EmptyChildEntity.createAttributes().build());
+		}
 		if (DMAEntities.DAVROS_CHAIR != null)
 			event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
 	}

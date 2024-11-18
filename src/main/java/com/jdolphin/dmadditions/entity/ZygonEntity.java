@@ -44,7 +44,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
+public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder {
 	public static final String TAG_DISGUISED = "Disguised";
 	public static final DataParameter<Boolean> DISGUISED = EntityDataManager.defineId(ZygonEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<VillagerData> DATA_VILLAGER_DATA = EntityDataManager.defineId(ZygonEntity.class, DataSerializers.VILLAGER_DATA);
@@ -66,6 +66,12 @@ public class ZygonEntity extends MonsterEntity implements IVillagerDataHolder{
 			.add(Attributes.MAX_HEALTH, 20.0f)
 			.add(Attributes.ATTACK_KNOCKBACK)
 			.add(Attributes.FOLLOW_RANGE, 30.0D);
+	}
+
+	@Override
+	public void onAddedToWorld() {
+		super.onAddedToWorld();
+		this.setVillagerData(new VillagerData(VillagerType.byBiome(this.level.getBiomeName(this.blockPosition())), VillagerProfession.NONE, 1));
 	}
 
 	@Override

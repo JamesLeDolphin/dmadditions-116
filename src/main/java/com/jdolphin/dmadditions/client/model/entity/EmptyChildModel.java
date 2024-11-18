@@ -20,33 +20,36 @@ public class EmptyChildModel extends BipedModel<EmptyChildEntity> {
 	private final ModelRenderer rightLeg;
 
 	public EmptyChildModel() {
-		super(0.5f);
+		super(0.25f);
 		texWidth = 64;
 		texHeight = 64;
 
 		head = new ModelRenderer(this);
-		head.setPos(0.0F, 6.1F, 0.0F);
-		head.texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, 0.0F, false);
+		head.setPos(0.0F, 5.875F, 0.375F);
+		head.texOffs(0, 0).addBox(-4.0F, -7.875F, -4.375F, 8.0F, 8.0F, 8.0F, 0.0F, false);
+		head.texOffs(32, 12).addBox(-3.5F, -6.875F, -5.375F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+		head.texOffs(32, 30).addBox(-1.5F, -2.875F, -7.375F, 3.0F, 3.0F, 3.0F, 0.0F, false);
+		head.texOffs(32, 36).addBox(0.5F, -6.875F, -5.375F, 3.0F, 3.0F, 1.0F, 0.0F, false);
 
 		body = new ModelRenderer(this);
 		body.setPos(0.0F, 6.6F, 0.0F);
-		body.texOffs(0, 17).addBox(-4.0F, -0.5F, -2.0F, 8.0F, 10.0F, 4.0F, 0.0F, false);
-
-		rightArm = new ModelRenderer(this);
-		rightArm.setPos(-4.0F, 8.1F, 0.0F);
-		rightArm.texOffs(25, 17).addBox(-4.0F, -2.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
+		body.texOffs(0, 16).addBox(-4.0F, -0.5F, -2.0F, 8.0F, 10.0F, 4.0F, 0.0F, false);
 
 		leftArm = new ModelRenderer(this);
-		leftArm.setPos(4.0F, 8.1F, 0.0F);
-		leftArm.texOffs(0, 32).addBox(0.0F, -2.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
+		leftArm.setPos(-4.0F, 8.1F, 0.0F);
+		leftArm.texOffs(24, 16).addBox(-4.0F, -2.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
 
-		leftLeg = new ModelRenderer(this);
-		leftLeg.setPos(2.0F, 16.1F, 0.0F);
-		leftLeg.texOffs(33, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
+		rightArm = new ModelRenderer(this);
+		rightArm.setPos(4.0F, 8.1F, 0.0F);
+		rightArm.texOffs(0, 30).addBox(0.0F, -2.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
 
 		rightLeg = new ModelRenderer(this);
-		rightLeg.setPos(-2.0F, 16.1F, 0.0F);
-		rightLeg.texOffs(17, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
+		rightLeg.setPos(2.0F, 16.1F, 0.0F);
+		rightLeg.texOffs(32, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
+
+		leftLeg = new ModelRenderer(this);
+		leftLeg.setPos(-2.0F, 16.1F, 0.0F);
+		leftLeg.texOffs(16, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
 	}
 
 	@Override

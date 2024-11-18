@@ -57,9 +57,7 @@ public class PilotFishEntity extends MonsterEntity implements IRangedAttackMob {
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		if (PILOT_FISH_SPAWNER == null) return null;
-
-		return new ItemStack(PILOT_FISH_SPAWNER.get());
+		return PILOT_FISH_SPAWNER.get().getDefaultInstance();
 	}
 
 	@Override
