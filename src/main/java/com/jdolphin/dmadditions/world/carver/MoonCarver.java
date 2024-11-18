@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.carver;
+package com.jdolphin.dmadditions.world.carver;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;

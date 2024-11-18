@@ -1,12 +1,11 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.carver.AndrozaniminorCarver;
-import com.jdolphin.dmadditions.carver.GallifreyCarver;
-import com.jdolphin.dmadditions.carver.MoonCarver;
+import com.jdolphin.dmadditions.world.carver.AndrozaniminorCarver;
+import com.jdolphin.dmadditions.world.carver.GallifreyCarver;
+import com.jdolphin.dmadditions.world.carver.MoonCarver;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

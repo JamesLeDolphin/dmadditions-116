@@ -17,7 +17,7 @@
   "spawn_costs": {},
   "carvers": {
     "air": [
-      "minecraft:ocean_cave"
+      "dmadditions:gallifrey_carver"
     ]
   },
   "features": []

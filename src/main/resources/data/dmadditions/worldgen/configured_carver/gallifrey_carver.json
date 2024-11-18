@@ -1,6 +1,6 @@
 {
-  "type": "minecraft:cave",
+  "type": "dmadditions:gallifrey_carver",
   "config": {
-    "probability": 0.1
+    "probability": 0.14285715
   }
 }
