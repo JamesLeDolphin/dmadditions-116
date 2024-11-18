@@ -157,7 +157,6 @@ public class DMAdditions {
 		event.put(DMAEntities.MONDAS_CYBERMAN.get(), MondasCybermanEntity.createAttributes().build());
 		event.put(DMAEntities.MONDASIAN.get(), MondasianEntity.createAttributes().build());
 		event.put(DMAEntities.BESSIE.get(), VehicleEntity.setCustomAttributes().build());
-		event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
 		event.put(DMAEntities.TW_SUV.get(), VehicleEntity.setCustomAttributes().build());
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
@@ -181,6 +180,8 @@ public class DMAdditions {
 			event.put(DMAEntities.ZYGON.get(), ZygonEntity.createAttributes().build());
 		if (DMAEntities.EMPTY_CHILD != null)
 			event.put(DMAEntities.EMPTY_CHILD.get(), EmptyChildEntity.createAttributes().build());
+		if (DMAEntities.DAVROS_CHAIR != null)
+			event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
 	}
 
 
@@ -192,6 +193,7 @@ public class DMAdditions {
 			DMAConfiguredStructures.registerConfiguredStructures();
 		});
 		CapabilityManager.INSTANCE.register(IPlayerRegenCap.class, new IPlayerRegenCap.Storage(), () -> new PlayerRegenCapability(null));
+
 		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
 		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
 		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");
