@@ -60,7 +60,7 @@
   "spawn_costs": {},
   "carvers": {
     "air": [
-      "minecraft:cave"
+      "dmadditions:gallifrey_carver"
     ]
   },
   "features": []

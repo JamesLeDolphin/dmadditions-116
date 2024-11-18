@@ -9,6 +9,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
 
 public class DMAConfiguredStructures {
@@ -29,11 +30,11 @@ public class DMAConfiguredStructures {
 	public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GALLIFREY_TREE =
 		register("gallifrey_tree", Feature.TREE.configured((
 			new BaseTreeFeatureConfig.Builder(
-				new SimpleBlockStateProvider(Blocks.DARK_OAK_LOG.defaultBlockState()),
-				new SimpleBlockStateProvider(Blocks.DARK_OAK_LEAVES.defaultBlockState()),
-				new BlobFoliagePlacer(FeatureSpread.fixed(1), FeatureSpread.fixed(0), 1),
-				new ForkyTrunkPlacer(4, 2, 3),
-				new TwoLayerFeature(1, 1, 1))).heightmap(Heightmap.Type.WORLD_SURFACE_WG).ignoreVines().build()));
+				new SimpleBlockStateProvider(DMABlocks.GALLIFREY_OAK_LOG.get().defaultBlockState()),
+				new SimpleBlockStateProvider(DMABlocks.GALLIFREY_OAK_LEAVES.get().defaultBlockState()),
+				new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
+				new ForkyTrunkPlacer(4, 5, 3),
+				new TwoLayerFeature(3, 1, 2))).heightmap(Heightmap.Type.WORLD_SURFACE_WG).ignoreVines().build()));
 
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;

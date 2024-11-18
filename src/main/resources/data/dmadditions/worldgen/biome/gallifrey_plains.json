@@ -1,66 +1,24 @@
 {
-  "surface_builder": "minecraft:grass",
-  "depth": 0.125,
-  "scale": 0.05,
+  "surface_builder": "dmadditions:gallifrey",
+  "depth": -0.999,
+  "scale": 0.1,
   "temperature": 0.8,
   "downfall": 0.4,
   "precipitation": "rain",
-  "category": "plains",
-  "player_spawn_friendly": true,
+  "category": "ocean",
   "effects": {
-    "sky_color": 16742403,
+    "sky_color": 15974453,
     "fog_color": 12638463,
-    "water_color": 14982975,
-    "water_fog_color": 329011,
-    "grass_color": 8465959,
-    "foliage_color": 10248001
+    "water_color": 4159204,
+    "water_fog_color": 329011
   },
   "starts": [],
-  "spawners": {
-    "creature": [
-      {
-        "type": "minecraft:sheep",
-        "weight": 12,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:pig",
-        "weight": 10,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:chicken",
-        "weight": 10,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:cow",
-        "weight": 8,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:horse",
-        "weight": 5,
-        "minCount": 2,
-        "maxCount": 6
-      },
-      {
-        "type": "minecraft:donkey",
-        "weight": 1,
-        "minCount": 1,
-        "maxCount": 3
-      }
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "dmadditions:gallifrey_carver"
     ]
   },
-  "spawn_costs": {},
-  "carvers": {},
-  "features": [
-    [
-      "minecraft:patch_grass_plain"
-    ]
-  ]
+  "features": []
 }

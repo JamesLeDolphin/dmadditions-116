@@ -1,11 +1,12 @@
 {
-  "surface_builder": "minecraft:giant_tree_taiga",
+  "surface_builder": "minecraft:grass",
   "depth": 0.125,
   "scale": 0.05,
   "temperature": 0.8,
   "downfall": 0.4,
   "precipitation": "rain",
-  "category": "extreme_hills",
+  "temperature_modifier": "none",
+  "category": "forest",
   "player_spawn_friendly": true,
   "effects": {
     "sky_color": 16742403,
@@ -57,6 +58,10 @@
     ]
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "dmadditions:gallifrey_carver"
+    ]
+  },
   "features": []
 }

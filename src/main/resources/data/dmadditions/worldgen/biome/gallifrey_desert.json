@@ -57,7 +57,11 @@
     ]
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "dmadditions:gallifrey_carver"
+    ]
+  },
   "features": [
     [
       "minecraft:patch_dead_bush"

@@ -2,11 +2,11 @@
   "type": "dmadditions:gallifrey",
   "generator": {
     "type": "minecraft:noise",
-    "seed": 419117565,
-    "settings": "minecraft:overworld",
+    "seed": -390176751,
+    "settings": "dmadditions:gallifrey_noise",
     "biome_source": {
       "type": "minecraft:multi_noise",
-      "seed": 419117565,
+      "seed": -390176751,
       "altitude_noise": {
         "firstOctave": -7,
         "amplitudes": [
@@ -39,21 +39,21 @@
         {
           "biome": "dmadditions:gallifrey_ocean",
           "parameters": {
-            "altitude": -0.1,
-            "temperature": 0.1,
+            "altitude": 0,
+            "temperature": 0.8,
             "humidity": 1,
-            "weirdness": 2,
-            "offset": 0.5
+            "weirdness": 1,
+            "offset": 1
           }
         },
         {
           "biome": "dmadditions:gallifrey_desert",
           "parameters": {
-            "altitude": 0,
+            "altitude": 0.2,
             "temperature": 2,
             "humidity": 0,
             "weirdness": 0,
-            "offset": 1
+            "offset": 0
           }
         },
         {
@@ -62,8 +62,8 @@
             "altitude": 1,
             "temperature": 1,
             "humidity": 1,
-            "weirdness": 0.7,
-            "offset": 1
+            "weirdness": 0.4,
+            "offset": 0.5
           }
         },
         {
@@ -72,18 +72,18 @@
             "altitude": 1,
             "temperature": 1,
             "humidity": 0,
-            "weirdness": 0.5,
+            "weirdness": 0.6,
             "offset": 1
           }
         },
         {
           "biome": "dmadditions:gallifrey_mountains",
           "parameters": {
-            "altitude": 1,
+            "altitude": 0.5,
             "temperature": 0.5,
             "humidity": 2,
-            "weirdness": 0.7,
-            "offset": 0.3
+            "weirdness": 0,
+            "offset": 0
           }
         }
       ]
