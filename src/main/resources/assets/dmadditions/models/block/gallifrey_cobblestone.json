@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "dmadditions:block/gallifrey_cobblestone"
+  }
+}
