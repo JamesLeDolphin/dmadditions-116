@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "dmadditons:block/gallifrey_oak_log_top",
-    "side": "dmadditiosn:block/gallifrey_oak_log_side"
+    "end": "dmadditions:block/gallifrey_oak_log_top",
+    "side": "dmadditions:block/gallifrey_oak_log_side"
   }
 }

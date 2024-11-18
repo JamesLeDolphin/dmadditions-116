@@ -314,8 +314,15 @@
 	"dmadditions.button.cancel": "Cancel",
 	"dmadditions.button.player_locator.select": "Locate Player",
 	"block.dmadditions.player_locator.disabled": "Player locator is disabled on this server!",
+
 	"block.dmadditions.gallifrey_stone": "Gallifrey Stone",
-	"block.dmadditions.gallifrey_cobble_stone": "Gallifrey Cobble Stone",
+	"block.dmadditions.gallifrey_oak_leaves": "Gallifrey Oak Leaves",
+	"block.dmadditions.gallifrey_cobblestone": "Gallifrey Cobblestone",
+	"block.dmadditions.gallifrey_oak_planks": "Gallifrey Oak Planks",
+	"block.dmadditions.gallifrey_oak_log": "Gallifrey Oak Log",
+	"block.dmadditions.stripped_gallifrey_oak_log": "Stripped Gallifrey Oak Log",
+	"block.dmadditions.gallifrey_oak_door": "Gallifrey Oak Door",
+	"block.dmadditions.gallifrey_oak_trapdoor": "Gallifrey Oak Trapdoor",
 
 	"item.dmadditions.motlen_dalekanium_bucket": "Molten Dalekanium Bucket",
 	"item.dmadditions.motlen_steel_bucket": "Molten Steel Bucket",

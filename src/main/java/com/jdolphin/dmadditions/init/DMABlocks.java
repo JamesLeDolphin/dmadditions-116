@@ -79,16 +79,23 @@ public class DMABlocks {
 		"gallifrey_oak_planks", ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_LEAVES = registerBlock(() ->
-			new LeavesBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.HOE).sound(SoundType.WOOD)),
+			new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).harvestTool(ToolType.HOE).sound(SoundType.GRASS).noOcclusion()),
 		"gallifrey_oak_leaves", ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_DOOR = registerBlock(() ->
-			new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD)),
+			new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()),
 		"gallifrey_oak_door", ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_TRAPDOOR = registerBlock(() ->
-			new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD)),
+			new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()),
 		"gallifrey_oak_trapdoor", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_STONE = registerBlockAndItem("gallifrey_stone", () -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)),
+		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+
+	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerBlockAndItem("gallifrey_cobblestone",
+		() -> new Block(AbstractBlock.Properties.of(Material.STONE)),
+		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
 
 	public static RegistryObject<Block> CONSOLE = registerBlockAndItem("console",
 		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
@@ -276,12 +283,6 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> ENGINE = registerBlock(() -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
 
-	public static RegistryObject<Block> GALLIFREY_STONE = registerBlockAndItem("gallifrey_stone", () -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)),
-		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
-
-	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerBlockAndItem("gallifrey_cobblestone", () -> new Block(AbstractBlock.Properties.copy(Blocks.COBBLESTONE)),
-		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
-
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, ItemGroup itemgroup) {
 		return registerBlock(block, name, (new Item.Properties()).tab(itemgroup), true);
 	}
@@ -308,28 +309,18 @@ public class DMABlocks {
 	}
 
 	public static void registerRenderTypes() {
-		registerRenderTypes(RenderType.cutoutMipped(),
-			TARDIS_SNOWGLOBE,
-			CHRISTMAS_TREE
-		);
-
-		registerRenderTypes(RenderType.cutoutMipped(),
-				CHRISTMAS_CRACKER
-		);
 
 		registerRenderTypes(RenderType.cutoutMipped(),
 			BLUE_BAUBLE_BLOCK,
 			GOLD_BAUBLE_BLOCK,
 			GREEN_BAUBLE_BLOCK,
-			RED_BAUBLE_BLOCK
-		);
-
-		registerRenderTypes(RenderType.cutoutMipped(),
-			MAGPIE_TELEVISION
-		);
-
-		registerRenderTypes(RenderType.cutoutMipped(),
-			TITANIC_SNOWGLOBE
+			RED_BAUBLE_BLOCK,
+			TITANIC_SNOWGLOBE,
+			MAGPIE_TELEVISION,
+			CHRISTMAS_CRACKER,
+			TARDIS_SNOWGLOBE,
+			CHRISTMAS_TREE,
+			GALLIFREY_OAK_LEAVES
 		);
 
 		registerRenderTypes(RenderType.translucent(),
@@ -339,7 +330,9 @@ public class DMABlocks {
 		registerRenderTypes(RenderType.cutout(),
 			STEEL_BEAMS_ROUNDEL_CONTAINER,
 			RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER,
-			STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER
+			STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER,
+			GALLIFREY_OAK_TRAPDOOR,
+			GALLIFREY_OAK_DOOR
 		);
 
 	}
