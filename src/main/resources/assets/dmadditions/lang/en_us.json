@@ -30,6 +30,7 @@
 
 	"entity.dmadditions.empty_child": "Empty Child",
 	"entity.dmadditions.empty_villager": "Empty Villager",
+	"subtitles.entity.empty_child.mummy": "Are you my mummy?",
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",

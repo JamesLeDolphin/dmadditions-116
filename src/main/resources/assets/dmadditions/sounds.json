@@ -40,6 +40,12 @@
 			"dmadditions:entity/cyber/mondas/ambient_3"
 		]
 	},
+	"entity.empty_child.mummy": {
+		"subtitle": "subtitles.entity.empty_child.mummy",
+		"sounds": [
+			"dmadditions:entity/empty_child/mummy"
+		]
+	},
 	"entity.cyberman.mondas.laser_attack": {
 		"subtitle": "subtitles.entity.cyberman.mondas.laser_attack",
 		"sounds": [

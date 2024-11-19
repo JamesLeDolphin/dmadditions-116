@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.mojang.brigadier.LiteralMessage;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.entity.Entity;
@@ -20,6 +21,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.HandSide;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.Difficulty;
@@ -28,6 +30,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -94,17 +97,21 @@ public class EmptyChildEntity extends MonsterEntity {
 	}
 
 	@Override
+	protected @Nullable SoundEvent getAmbientSound() {
+		return DMASoundEvents.MUMMY.get();
+	}
+
+	@Override
 	public void baseTick() {
 		super.baseTick();
 			if (level.getBlockState(this.blockPosition()).getBlock() instanceof AbstractSignBlock) {
 				SignTileEntity tile = (SignTileEntity) level.getBlockEntity(this.blockPosition());
 				if (tile != null) {
-					System.out.println("Msg");
 					tile.setMessage(0, new StringTextComponent("ARE"));
 					tile.setMessage(1, new StringTextComponent("YOU"));
 					tile.setMessage(2, new StringTextComponent("MY"));
 					tile.setMessage(3, new StringTextComponent("MUMMY"));
-				} else System.out.println("Null");
+				}
 			}
 	}
 
