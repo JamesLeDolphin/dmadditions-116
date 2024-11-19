@@ -8,6 +8,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -57,38 +58,42 @@ public class EmptyChildEntity extends MonsterEntity {
 
 	public void killed(ServerWorld level, LivingEntity target) {
 		super.killed(level, target);
-		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity && ForgeEventFactory.canLivingConvert(target,
-			DMAEntities.EMPTY_CHILD.get(), (timer) -> {
-		})) {
-			if (this.random.nextBoolean()) {
-				return;
-			}
+		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity) {
 
-			VillagerEntity villagerentity = (VillagerEntity)target;
+			VillagerEntity villagerentity = (VillagerEntity) target;
 			VillagerData data = villagerentity.getVillagerData();
-			EmptyVillagerEntity emptyVillager = (EmptyVillagerEntity)villagerentity.convertTo((EntityType)DMAEntities.EMPTY_VILLAGER.get(), false);
-			emptyVillager.finalizeSpawn(level, level.getCurrentDifficultyAt(emptyVillager.blockPosition()),
-				SpawnReason.CONVERSION,
-				new ZombieEntity.GroupData(false, true), null);
+			EntityType<? extends EmptyChildEntity> convertToType = DMAEntities.EMPTY_VILLAGER.get();
+			if (villagerentity.isBaby()) {
+				convertToType = DMAEntities.EMPTY_CHILD.get();
+			}
+			if (ForgeEventFactory.canLivingConvert(target, convertToType, timer -> {})) {
 
-			ForgeEventFactory.onLivingConvert(target, emptyVillager);
-			emptyVillager.setVillagerData(data);
-			if (!this.isSilent()) {
-				level.levelEvent(null, 1026, this.blockPosition(), 0);
+
+				EmptyChildEntity emptyVillager = villagerentity.convertTo((EntityType<? extends EmptyChildEntity>) convertToType, false);
+				if (emptyVillager != null) {
+					emptyVillager.finalizeSpawn(level, level.getCurrentDifficultyAt(emptyVillager.blockPosition()),
+						SpawnReason.CONVERSION,
+						new ZombieEntity.GroupData(false, true), null);
+
+					ForgeEventFactory.onLivingConvert(target, emptyVillager);
+					if (convertToType.equals(DMAEntities.EMPTY_VILLAGER.get())) ((EmptyVillagerEntity) emptyVillager).setVillagerData(data);
+					if (!this.isSilent()) {
+						level.levelEvent(null, 1026, this.blockPosition(), 0);
+					}
+				}
 			}
 		}
-
 	}
 
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
-		this.goalSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, false));
+		this.goalSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
 		this.goalSelector.addGoal(11, new MeleeAttackGoal(this, 1f, false));
-		this.goalSelector.addGoal(12, new HurtByTargetGoal(this));
+		this.goalSelector.addGoal(12, new HurtByTargetGoal(this, EmptyChildEntity.class, EmptyVillagerEntity.class).setAlertOthers());
 	}
 
 	@Override

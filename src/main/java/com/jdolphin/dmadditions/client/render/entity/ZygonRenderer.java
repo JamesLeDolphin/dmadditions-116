@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.client.render.entity;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import org.jetbrains.annotations.NotNull;
 
 import com.jdolphin.dmadditions.client.model.entity.ZygonModel;
@@ -26,6 +27,7 @@ public class ZygonRenderer extends MobRenderer<ZygonEntity, EntityModel<ZygonEnt
 		IReloadableResourceManager rrm = (IReloadableResourceManager) Minecraft.getInstance().getResourceManager();
 		zygonModel = model;
 		villagerModel = new VillagerModel<>(0);
+		this.addLayer(new HeadLayer(this));
 		this.addLayer(new ZygonLevelPendantLayer(this, rrm, "villager"));
 	}
 

@@ -23,6 +23,7 @@ public class EmptyVillagerRenderer extends MobRenderer<EmptyVillagerEntity, Enti
 	public EmptyVillagerRenderer(EntityRendererManager erm) {
 		super(erm, new VillagerModel<>(0), 0);
 		IReloadableResourceManager rrm = (IReloadableResourceManager) Minecraft.getInstance().getResourceManager();
+		this.addLayer(new HeadLayer(this));
 		this.addLayer(new VillagerLevelPendantLayer(this, rrm, "villager"));
 	}
 
