@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "dmadditions:gallifrey_sandstone"
+  },
+  "result": "dmadditions:gallifrey_smooth_sandstone",
+  "experience": 0.1,
+  "cookingtime": 200
+}

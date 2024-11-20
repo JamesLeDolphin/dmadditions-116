@@ -2,7 +2,7 @@
   "parent": "dalekmod:travel/root",
   "display": {
     "icon": {
-      "item": "dmadditions:crocoite"
+      "item": "dmadditions:gallifrey_stone"
     },
     "title": {
       "translate": "advancements.dmadditions.visit_gallifrey.title"

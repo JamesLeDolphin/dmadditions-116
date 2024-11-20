@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dmadditions:gallifrey_oak_planks"
+    }
+  },
+  "result": {
+    "item": "dmadditions:gallifrey_oak_slab",
+    "count": 6
+  }
+}

@@ -11,6 +11,7 @@ import com.jdolphin.dmadditions.block.tardis.*;
 import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
+import com.jdolphin.dmadditions.world.tree.GallifreyOakTree;
 import com.swdteam.common.block.LogBlock;
 import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
@@ -29,6 +30,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.awt.*;
 import java.util.function.Supplier;
 
 import static com.swdteam.common.init.DMBlocks.registerRenderType;
@@ -66,39 +68,106 @@ public class DMABlocks {
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
 
-	public static RegistryObject<Block> GALLIFREY_OAK_LOG = registerBlock(() ->
+	public static RegistryObject<Block> GALLIFREY_OAK_LOG = registerAdventBlock(6, () ->
 			new LogBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG),
 		"gallifrey_oak_log", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_LOG = registerBlock(() ->
+	public static RegistryObject<Block> GALLIFREY_OAK_WOOD = registerAdventBlock(6, () ->
+			new LogBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get()), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG),
+		"gallifrey_oak_wood", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_OAK_SAPLING = registerAdventBlock(6, () ->
+			new SaplingBlock(new GallifreyOakTree(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)),
+		"gallifrey_oak_sapling", ItemGroup.TAB_DECORATIONS);
+
+	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_WOOD = registerAdventBlock(6, () ->
+			new RotatedPillarBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get())),
+		"stripped_gallifrey_oak_wood", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SAND = registerAdventBlock(6, () ->
+			new SandBlock(Color.PINK.getRGB(), AbstractBlock.Properties.of(Material.SAND).harvestTool(ToolType.SHOVEL).strength(0.5f).sound(SoundType.SAND)),
+		"gallifrey_sand", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE =  registerAdventBlock(6, () ->
+			new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
+		"gallifrey_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE =  registerAdventBlock(6, () ->
+			new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_smooth_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_CUT_SANDSTONE =  registerAdventBlock(6, () ->
+			new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_cut_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_CUT_SANDSTONE_SLAB =  registerAdventBlock(6, () ->
+			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_cut_sandstone_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_SLAB =  registerAdventBlock(6, () ->
+			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_sandstone_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_WALL =  registerAdventBlock(6, () ->
+			new WallBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_sandstone_wall", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_STAIRS =  registerAdventBlock(6, () ->
+			new StairsBlock(() -> GALLIFREY_SANDSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_sandstone_stairs", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE_SLAB =  registerAdventBlock(6, () ->
+			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_smooth_sandstone_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE_STAIRS =  registerAdventBlock(6, () ->
+			new StairsBlock(() -> GALLIFREY_SMOOTH_SANDSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_SMOOTH_SANDSTONE.get())),
+		"gallifrey_smooth_sandstone_stairs", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_CHISELED_SANDSTONE =  registerAdventBlock(6, () ->
+			new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_chiseled_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_PILLAR =  registerAdventBlock(6, () ->
+			new RotatedPillarBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
+		"gallifrey_sandstone_pillar", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_LOG =  registerAdventBlock(6, () ->
 			log(MaterialColor.COLOR_RED, MaterialColor.COLOR_PINK),
 		"stripped_gallifrey_oak_log", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_PLANKS = registerBlock(() ->
+	public static RegistryObject<Block> GALLIFREY_OAK_PLANKS =  registerAdventBlock(6, () ->
 			new Block(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD)),
 		"gallifrey_oak_planks", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_LEAVES = registerBlock(() ->
+	public static RegistryObject<Block> GALLIFREY_OAK_SLAB =  registerAdventBlock(6, () ->
+			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())),
+		"gallifrey_oak_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_OAK_STAIRS =  registerAdventBlock(6, () ->
+			new StairsBlock(() -> GALLIFREY_OAK_PLANKS.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())),
+		"gallifrey_oak_stairs", ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> GALLIFREY_OAK_LEAVES =  registerAdventBlock(6, () ->
 			new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).harvestTool(ToolType.HOE).sound(SoundType.GRASS).noOcclusion()),
 		"gallifrey_oak_leaves", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_DOOR = registerBlock(() ->
+	public static RegistryObject<Block> GALLIFREY_OAK_DOOR = registerAdventBlock(6, () ->
 			new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()),
 		"gallifrey_oak_door", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_TRAPDOOR = registerBlock(() ->
+	public static RegistryObject<Block> GALLIFREY_OAK_TRAPDOOR =  registerAdventBlock(6, () ->
 			new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()),
 		"gallifrey_oak_trapdoor", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_STONE = registerBlockAndItem("gallifrey_stone", () -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)),
-		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+	public static RegistryObject<Block> GALLIFREY_STONE = registerAdventBlock(6,
+		() -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)), "gallifrey_stone", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerBlockAndItem("gallifrey_cobblestone",
-		() -> new Block(AbstractBlock.Properties.of(Material.STONE)),
-		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerAdventBlock(6,
+		() -> new Block(AbstractBlock.Properties.of(Material.STONE)), "gallifrey_cobblestone", ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> CONSOLE = registerBlockAndItem("console",
-		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
+	public static RegistryObject<Block> CONSOLE = registerAdventBlock(24,
+		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), "console", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
 		new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
@@ -169,10 +238,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> RANDOMIZER = registerBlock(
 			() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
 			"randomizer", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> COMBAT_PANEL = registerBlock(
-		() -> new CombatPanelBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"combat_panel", DMTabs.DM_TARDIS);
 
 	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
 
@@ -332,7 +397,8 @@ public class DMABlocks {
 			RUSTED_STEEL_BEAMS_ROUNDEL_CONTAINER,
 			STAINLESS_STEEL_BEAMS_ROUNDEL_CONTAINER,
 			GALLIFREY_OAK_TRAPDOOR,
-			GALLIFREY_OAK_DOOR
+			GALLIFREY_OAK_DOOR,
+			GALLIFREY_OAK_SAPLING
 		);
 
 	}

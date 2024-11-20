@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "dmadditions:block/gallifrey_oak_log_side"
+  }
+}

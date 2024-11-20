@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "dmadditions:block/gallifrey_sandstone_top",
+    "side": "dmadditions:block/gallifrey_cut_sandstone"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "dmadditions:gallifrey_sandstone"
+    }
+  },
+  "result": {
+    "item": "dmadditions:gallifrey_sandstone_pillar",
+    "count": 2
+  }
+}

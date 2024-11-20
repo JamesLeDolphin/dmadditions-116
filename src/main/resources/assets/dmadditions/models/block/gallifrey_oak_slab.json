@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "dmadditions:block/gallifrey_oak_planks",
+    "top": "dmadditions:block/gallifrey_oak_planks",
+    "side": "dmadditions:block/gallifrey_oak_planks"
+  }
+}
