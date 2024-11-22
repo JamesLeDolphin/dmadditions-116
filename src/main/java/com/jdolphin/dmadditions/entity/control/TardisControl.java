@@ -56,7 +56,7 @@ public class TardisControl extends Entity {
 		super(type, world);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+    @OnlyIn(Dist.CLIENT)
 	public boolean shouldShowName() {
 		return true;
 	}

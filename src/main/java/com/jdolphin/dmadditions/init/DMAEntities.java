@@ -84,7 +84,7 @@ public class DMAEntities {
 		.setTrackingRange(64)
 		.build(Helper.createAdditionsRL("herobrine").toString()));
 
-	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerEntity("control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
+	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerAdventEntity(24, "control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
 
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
@@ -94,7 +94,11 @@ public class DMAEntities {
 			.setShouldReceiveVelocityUpdates(true)
 			.build(Helper.createAdditionsRL("flying_shark").toString()));
 
-
+	//TODO: Remove this method after advent
+	private static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int day, String name, EntityType.IFactory<T> entityClass,
+																				   EntityClassification classification, float width, float height) {
+		return TimedUnlock.advent(day) ? registerEntity(name, entityClass, classification, width, height) : null;
+	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
 		EntityClassification classification, float width, float height) {

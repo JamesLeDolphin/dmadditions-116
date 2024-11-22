@@ -44,7 +44,9 @@
     [],
     [],
     [],
-    [],
+    [
+      "dmadditions:gallifrey_zeiton_ore"
+    ],
     [],
     [
       "minecraft:lake_lava",
