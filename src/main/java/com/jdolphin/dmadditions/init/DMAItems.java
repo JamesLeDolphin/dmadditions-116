@@ -88,6 +88,14 @@ public class DMAItems {
 	public static RegistryObject<Item> YELLOW_CANDY_CANE = ITEMS.register("yellow_candy_cane",
 		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
+	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = registerAdventItem(11, "netherite_cyberman_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.NETHERITE_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> EMPTY_CHILD_SPAWNER = registerAdventItem(2, "empty_child_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.EMPTY_CHILD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> EMPTY_VILLAGER_SPAWNER = registerAdventItem(2, "empty_villager_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.EMPTY_VILLAGER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.SNOWMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));

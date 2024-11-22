@@ -5,10 +5,7 @@ import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.advent.AdventUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
-import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
-import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -82,6 +79,11 @@ public class DMAEntities {
 		.clientTrackingRange(64)
 		.setTrackingRange(64)
 		.build(Helper.createAdditionsRL("herobrine").toString()));
+
+	public static RegistryObject<EntityType<NetheriteCybermanEntity>> NETHERITE_CYBERMAN = registerAdventEntity(11, "netherite_cyberman", () ->
+		EntityType.Builder.of(NetheriteCybermanEntity::new, EntityClassification.MONSTER)
+			.sized(0.5f, 1.8f)
+			.build(Helper.createAdditionsRL("netherite_cyberman").toString()));
 
 	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerAdventEntity( 24,"control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
 

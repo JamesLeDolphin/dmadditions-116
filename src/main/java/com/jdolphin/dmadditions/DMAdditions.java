@@ -182,6 +182,8 @@ public class DMAdditions {
 			event.put(DMAEntities.EMPTY_CHILD.get(), EmptyChildEntity.createAttributes().build());
 			event.put(DMAEntities.EMPTY_VILLAGER.get(), EmptyChildEntity.createAttributes().build());
 		}
+		if (DMAEntities.NETHERITE_CYBERMAN != null)
+			event.put(DMAEntities.NETHERITE_CYBERMAN.get(), NetheriteCybermanEntity.setCustomAttributes().build());
 		if (DMAEntities.DAVROS_CHAIR != null)
 			event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
 	}
