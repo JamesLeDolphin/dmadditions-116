@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.other;
 
 import com.google.common.base.Function;
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
 import com.swdteam.client.model.ModelDalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -32,7 +32,7 @@ public class ModelDalekBaseMixin {
 		ModelDalekBase modelDalekBase = (ModelDalekBase) (Object) this;
 		Field renderTypeField;
 		try {
-			renderTypeField = Model.class.getDeclaredField(DmAdditions.IS_DEBUG ? "renderType" : "field_228281_q_");
+			renderTypeField = Model.class.getDeclaredField(DMAdditions.IS_DEBUG ? "renderType" : "field_228281_q_");
 
 			renderTypeField.setAccessible(true);
 			Function<ResourceLocation, RenderType> renderType = RenderType::entityTranslucent;

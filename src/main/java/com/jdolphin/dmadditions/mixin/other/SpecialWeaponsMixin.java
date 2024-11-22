@@ -15,9 +15,9 @@ public class SpecialWeaponsMixin {
 
 
 	@Inject(method = "getLaser(Lcom/swdteam/common/entity/dalek/DalekEntity;)Lcom/swdteam/common/init/DMProjectiles$Laser;", at = @At("HEAD"), remap = false, cancellable = true)
-	public void getLaser(DalekEntity dalek, CallbackInfoReturnable<DMProjectiles.Laser> cir) {
+	public void dma_getLaser(DalekEntity dalek, CallbackInfoReturnable<DMProjectiles.Laser> cir) {
 		if (DMACommonConfig.disable_swd_laser.get()) {
-			cir.setReturnValue(DMProjectiles.BLUE_LASER);
+			cir.setReturnValue(DMProjectiles.TIME_WAR_SWD_LASER);
 		}
 		else cir.setReturnValue(DMProjectiles.EXPLOSIVE_LASER);
 	}

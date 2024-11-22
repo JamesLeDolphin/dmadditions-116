@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -36,7 +36,7 @@ public class BetterFastReturnLeverBlock extends BetterTardisLeverBlock {
 				ChatUtil.sendCompletedMsg(player, DMTranslationKeys.TARDIS_FAST_RETURN_SET, ChatUtil.MessageType.STATUS_BAR);
 			}
 
-			if (DmAdditions.hasNTM()) {
+			if (DMAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					net.tardis.mod.helper.TardisHelper.getConsoleInWorld(worldIn).ifPresent(tile -> {
 						net.tardis.mod.misc.SpaceTimeCoord coord = tile.getReturnLocation();

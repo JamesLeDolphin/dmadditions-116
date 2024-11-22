@@ -1,26 +1,33 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
+import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.extensions.IForgeEntity;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 
-public class MondasianEntity extends MonsterEntity implements IForgeEntity {
+public class MondasianEntity extends MonsterEntity {
 	public static String TAG_MONDASIAN_TYPE = "MondasianType";
 
 	public static final DataParameter<String> MONDASIAN_TYPE = EntityDataManager.defineId(MondasianEntity.class, DataSerializers.STRING);
@@ -43,6 +50,10 @@ public class MondasianEntity extends MonsterEntity implements IForgeEntity {
 		}
 
 		super.readAdditionalSaveData(compound);
+	}
+
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return DMAItems.MONDASIAN_SPAWNER.get().getDefaultInstance();
 	}
 
 	protected void defineSynchedData() {
@@ -91,7 +102,7 @@ public class MondasianEntity extends MonsterEntity implements IForgeEntity {
 		ALEX("alex"),
 		CYB4("cyb4"),
 		JAMES("james"),
-		CYB5("cyb5"),
+		LUCIFER("lucifer"),
 		;
 
 		private final String name;
@@ -109,5 +120,19 @@ public class MondasianEntity extends MonsterEntity implements IForgeEntity {
 				.filter(type -> type.name.equals(name)).findFirst()
 				.orElse(BLONDE);
 		}
+	}
+
+	@Override
+	protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+		super.populateDefaultEquipmentSlots(p_180481_1_);
+
+		TimedUnlock.handlePumpkinHead(this);
+	}
+
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
+			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
+		populateDefaultEquipmentSlots(difficulty);
+		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
 	}
 }

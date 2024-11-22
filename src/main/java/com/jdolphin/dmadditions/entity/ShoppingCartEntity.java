@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.client.audio.ShoppingCartTickableSound;
 import com.jdolphin.dmadditions.init.DMABlocks;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
+import com.jdolphin.dmadditions.item.ShoppingCartItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.*;
@@ -226,15 +227,19 @@ public class ShoppingCartEntity extends MobEntity implements IJumpingMount, IFor
 
 	@Override
 	public void die(DamageSource damageSource) {
-		this.remove();
 		if (this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
 			ItemStack itemstack = new ItemStack(DMAItems.SHOPPING_CART.get());
 			if (this.hasCustomName()) {
 				itemstack.setHoverName(this.getCustomName());
 			}
 
+			CompoundNBT tag = itemstack.getOrCreateTag();
+			tag.putBoolean(ShoppingCartItem.HAS_ENGINE, this.hasEngine());
+			tag.putBoolean(ShoppingCartItem.FLYABLE, this.isFlyable());
+
 			this.spawnAtLocation(itemstack);
 		}
+		this.remove();
 	}
 
 	@Override

@@ -99,8 +99,8 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 
 	@Override
 	public boolean hasRegens() {
-        return currentRegens > minRegens;
-    }
+		return currentRegens > minRegens;
+	}
 
 	@Override
 	public void setPreRegen(boolean preRegen) {

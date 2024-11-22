@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.init.MixinBlock;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMBlocks;
@@ -24,7 +24,7 @@ public abstract class DMBlocksMixin {
 		remap = false)
 	private static <B extends Block> void registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem, CallbackInfoReturnable<RegistryObject<Block>> cir) {
 		if (MixinBlock.has(name)) {
-			DmAdditions.LOGGER.info(String.format("Changing %s's behavior", name));
+			DMAdditions.LOGGER.info(String.format("Changing %s's behavior", name));
 
 			RegistryObject<Block> blockObj = RegistryHandler.BLOCKS.register(name, MixinBlock.get(name).supplier);
 			if (needsItem) {

@@ -4,8 +4,10 @@
   "scale": 0.1,
   "temperature": 0.8,
   "downfall": 0.4,
-  "precipitation": "rain",
+  "precipitation": "snow",
+  "temperature_modifier": "none",
   "category": "plains",
+  "player_spawn_friendly": true,
   "effects": {
     "sky_color": 15974453,
     "fog_color": 12638463,
@@ -46,7 +48,20 @@
       }
     ]
   },
-  "spawn_costs": {},
+  "spawn_costs": {
+    "dalekmod:weeping_angel": {
+      "energy_budget": 0.4,
+      "charge": 1
+    },
+    "dalekmod:dalek": {
+      "energy_budget": 0.33,
+      "charge": 1
+    },
+    "dmadditions:timelord": {
+      "energy_budget": 0.12,
+      "charge": 1
+    }
+  },
   "carvers": {
     "air": [
       "dmadditions:gallifrey_carver",

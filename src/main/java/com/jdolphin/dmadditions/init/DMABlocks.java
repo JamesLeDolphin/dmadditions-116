@@ -1,7 +1,8 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.DMAdditions;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.EngineBlock;
@@ -37,7 +38,7 @@ import static com.swdteam.common.init.DMBlocks.registerRenderType;
 
 @SuppressWarnings("unused")
 public class DMABlocks {
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DmAdditions.MODID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DMAdditions.MODID);
 
 	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
 		() -> new CoralHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
@@ -49,15 +50,23 @@ public class DMABlocks {
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 
+	public static final RegistryObject<Block> STONE_SONIC_CRYSTAL_ORE = registerBlockAndItem("stone_sonic_crystal_ore",
+		() -> new BetterOreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE)
+			.harvestTool(ToolType.PICKAXE).harvestLevel(2)
+			.sound(SoundType.STONE)
+			.requiresCorrectToolForDrops()
+			.strength(6.0F, 6.0F), 1, 5),
+		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
-		if (!AdventUnlock.unlockAt(day))
+		if (!TimedUnlock.advent(day))
 			return null;
 
 		return registerBlock(supplier, name);
 	}
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
-		if (!AdventUnlock.unlockAt(day))
+		if (!TimedUnlock.advent(day))
 			return null;
 
 		return registerBlock(supplier, name, tab);
@@ -189,7 +198,7 @@ public class DMABlocks {
 		new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
 
 	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerBlock(() ->
-		new PresentBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
+		new ChristmasPresentBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
 				.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
@@ -220,7 +229,7 @@ public class DMABlocks {
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
 		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "red_candy_cane_block", DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block>YELLOW_CANDY_CANE_BLOCK = registerBlock(() ->
+	public static RegistryObject<Block> YELLOW_CANDY_CANE_BLOCK = registerBlock(() ->
 		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
 		.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "yellow_candy_cane_block", DMTabs.DM_TARDIS);
 
@@ -255,7 +264,7 @@ public class DMABlocks {
 			new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
 		"titanic_snowglobe", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> SPECIMEN_JAR = registerBlock(() -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> SPECIMEN_JAR = registerBlock(() -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar");
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);

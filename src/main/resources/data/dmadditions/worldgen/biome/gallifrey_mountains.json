@@ -1,10 +1,11 @@
 {
   "surface_builder": "dmadditions:gallifrey",
-  "depth": 1,
-  "scale": 0.3,
+  "depth": 1.222,
+  "scale": 0.5,
   "temperature": 0.8,
   "downfall": 0.4,
   "precipitation": "snow",
+  "temperature_modifier": "none",
   "category": "extreme_hills",
   "player_spawn_friendly": true,
   "effects": {
@@ -42,18 +43,6 @@
         "weight": 8,
         "minCount": 4,
         "maxCount": 4
-      },
-      {
-        "type": "minecraft:horse",
-        "weight": 5,
-        "minCount": 2,
-        "maxCount": 6
-      },
-      {
-        "type": "minecraft:donkey",
-        "weight": 1,
-        "minCount": 1,
-        "maxCount": 3
       }
     ]
   },

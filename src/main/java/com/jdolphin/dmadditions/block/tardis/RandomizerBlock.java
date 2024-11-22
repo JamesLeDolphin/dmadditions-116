@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.init.DMDimensions;
@@ -100,7 +100,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 	}
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
-	                            BlockRayTraceResult rayTraceResult) {
+			BlockRayTraceResult rayTraceResult) {
 		if (worldIn.isClientSide)
 			return ActionResultType.PASS;
 
@@ -117,7 +117,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 
 				double i = DMACommonConfig.randomizer_max.get();
 
-				Random rand = DmAdditions.RANDOM;
+				Random rand = DMAdditions.RANDOM;
 				int xCoord = MathHelper.nextInt(rand, (int) Math.max(border.getMinX(), -i), (int) Math.min(border.getMaxX(), i));
 				int yCoord = MathHelper.nextInt(rand,5, level.getMaxBuildHeight());
 				int zCoord = MathHelper.nextInt(rand,(int) Math.max(border.getMinZ(), -i), (int) Math.min(border.getMaxZ(), i));
@@ -139,7 +139,7 @@ public class RandomizerBlock extends HorizontalBlock implements IBetterPanel {
 			}
 
 
-			if (DmAdditions.hasNTM()) {
+			if (DMAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					Random rand = new Random();
 					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {

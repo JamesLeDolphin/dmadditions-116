@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "dmadditions:block/stone_sonic_crystal_ore"
+  }
+}

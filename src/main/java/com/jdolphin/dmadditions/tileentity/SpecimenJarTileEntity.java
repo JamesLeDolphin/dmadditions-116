@@ -5,6 +5,7 @@ import com.swdteam.common.tileentity.DMTileEntityBase;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 
@@ -52,8 +53,8 @@ public class SpecimenJarTileEntity extends DMTileEntityBase {
 	}
 
 	public void setSpecimen(ItemStack specimenIn) {
-		if (acceptSpecimen(specimenIn.getItem())) {
-			specimen = specimenIn;
+		if (!specimenIn.getItem().equals(Items.AIR) && acceptSpecimen(specimenIn.getItem())) {
+			specimen = specimenIn.copy();
 			specimen.setCount(1);
 			this.setChanged();
 		}

@@ -16,6 +16,7 @@ import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("unused")
 public class JamesLeDolphinModel<T extends DolphinEntity> extends DolphinModel<T> implements IModelPartReloader, IHasHead {
 	public JSONModel model;
 	private ModelRenderer head;

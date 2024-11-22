@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
 import com.jdolphin.dmadditions.init.DMAEntities;
@@ -11,11 +11,9 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class DMAEntityRenderRegistry {
-	public DMAEntityRenderRegistry() {
-	}
 
 	public static void registerEntityRenderers() {
-		DmAdditions.LOGGER.info("Registering DMA Entity Renders");
+		DMAdditions.LOGGER.info("Registering DMA Entity Renders");
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.MONDASIAN, MondasianRenderer::new);

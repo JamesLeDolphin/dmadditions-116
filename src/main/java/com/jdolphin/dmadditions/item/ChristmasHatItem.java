@@ -38,6 +38,7 @@ public class ChristmasHatItem extends DyeableArmorItem {
 		super(DMAArmorMaterial.CHRISTMAS_HAT, EquipmentSlotType.HEAD, new Item.Properties().tab(DMTabs.DM_CLOTHES));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Nullable
 	@Override
 	@OnlyIn(Dist.CLIENT)

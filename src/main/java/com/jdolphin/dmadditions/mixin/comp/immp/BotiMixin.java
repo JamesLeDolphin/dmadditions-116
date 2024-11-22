@@ -128,7 +128,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 			this.tardisData.getRiftData().setType("");
 		}
 
-		Iterator var3;
+		Iterator<? extends Entity> var3;
 		if (this.level.getDayTime() % 20L == 0L) {
 			var3 = this.level.getEntitiesOfClass(RiftEntity.class, new AxisAlignedBB((double)(this.worldPosition.getX() - 16), (double)(this.worldPosition.getY() - 4), (double)(this.worldPosition.getZ() - 16), (double)(this.worldPosition.getX() + 16), (double)(this.worldPosition.getY() + 4), (double)(this.worldPosition.getZ() + 16)), Entity::isAlive).iterator();
 
@@ -264,7 +264,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						dma$portalSpawned = false;
 					}
 
-					//Dont lock em out
+					//Don't lock em out
 					if (dma$portal == null && (tile.doorOpenLeft || tile.doorOpenRight)) {
 						List<Entity> entities = this.level.getEntitiesOfClass(Entity.class, bounds);
 

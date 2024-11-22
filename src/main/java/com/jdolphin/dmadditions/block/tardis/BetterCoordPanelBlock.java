@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.RotatableTileEntityBase;
 import com.swdteam.common.block.tardis.CoordPanelBlock;
@@ -50,9 +50,13 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 
 	protected String formatIncrementMessage(Boolean add, Direction.Axis axis, CoordPanelTileEntity tile, Boolean ntm) {
 		if (!ntm) {
-			return (add ? "Added " : "Subtracted ") + tile.incrementValue + (add ? " to " : " from ") + axis.toString().toUpperCase() + " (" + TardisFlightPool.getFlightData(DMTardis.getTardisFromInteriorPos(tile.getBlockPos())).getPos(axis) + ")";
-	 	} else return "";
-    }
+			return (add ? "Added " : "Subtracted ") + tile.incrementValue + (add ? " to " : " from ")
+					+ axis.toString().toUpperCase() + " ("
+					+ TardisFlightPool.getFlightData(DMTardis.getTardisFromInteriorPos(tile.getBlockPos())).getPos(axis)
+					+ ")";
+		} else
+			return "";
+	}
 
 	@Override
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -139,7 +143,7 @@ public class BetterCoordPanelBlock extends CoordPanelBlock implements IBetterPan
 						}
 					}
 
-					if (DmAdditions.hasNTM()) {
+					if (DMAdditions.hasNTM()) {
 							if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 								net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 									switch (buttonClicked) {

@@ -6,7 +6,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -25,8 +24,8 @@ public class ChristmasCrackerBlockItem extends BlockItem {
 		super(type, properties);
 	}
 
-	public ChristmasCrackerBlockItem(RegistryObject<Block> type){
-		super(type.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS));
+	public ChristmasCrackerBlockItem(RegistryObject<Block> type, Item.Properties properties) {
+		super(type.get(), properties);
 	}
 
 	@Override

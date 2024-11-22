@@ -58,6 +58,7 @@ public class PlayerLocatorScreen extends Screen {
 	}
 
 	public void setCoords() {
+		@SuppressWarnings("resource")
 		SBLocatePlayerPacket packet = new SBLocatePlayerPacket(this.playerInput.getValue(), Helper.vec3ToBlockPos(Minecraft.getInstance().player.position()));
 		DMAPackets.INSTANCE.sendToServer(packet);
 	}

@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.init;
 
 import com.google.common.base.Supplier;
-import com.jdolphin.dmadditions.DmAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.DMAdditions;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class DMAEntities {
-	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DmAdditions.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DMAdditions.MODID);
 
 	public static EntityType<?> getEntityTypeFromString(String s) {
 		Optional<EntityType<?>> ty = EntityType.byString("dmadditions:" + s);
@@ -97,25 +97,25 @@ public class DMAEntities {
 
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
-																				   EntityClassification classification, float width, float height) {
+		EntityClassification classification, float width, float height) {
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(entityClass, classification).sized(width, height)
 			.clientTrackingRange(8).build(Helper.createAdditionsRL(name).toString()));
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
-																				   EntityClassification classification) {
+		EntityClassification classification) {
 		return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(entityClass, classification)
 			.clientTrackingRange(8).build(Helper.createAdditionsRL(name).toString()));
 	}
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
-																				   EntityClassification classification) {
+		EntityClassification classification) {
 		return registerEntity(name, entityClass, classification, 0.6f, 1.8f);
 	}
 
 	@Nullable 
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier){
-		if(AdventUnlock.unlockAt(date)){
+		if (TimedUnlock.advent(date)) {
 			return ENTITY_TYPES.register(name, supplier);
 		}
 

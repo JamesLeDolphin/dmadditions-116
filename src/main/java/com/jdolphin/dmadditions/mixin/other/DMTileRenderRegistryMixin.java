@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.other;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.swdteam.client.init.DMTileEntityRenderRegistry;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
@@ -19,7 +19,7 @@ public class DMTileRenderRegistryMixin {
 	@Inject(method = "registerModel(Lnet/minecraft/tileentity/TileEntityType;Ljava/util/function/Function;)V", at = @At("HEAD"), cancellable = true, remap = false)
 	private static <T extends TileEntity> void registerModel(TileEntityType<T> tileEntityType, Function<? super TileEntityRendererDispatcher, ? extends TileEntityRenderer<? super T>> rendererFactory, CallbackInfo ci) {
 		if (DMATileRenderRegistry.MIXIN_RENDERERS.contains(tileEntityType)) {
-			DmAdditions.LOGGER
+			DMAdditions.LOGGER
 				.info(String.format("Cancelling tile entity renderer: %s", tileEntityType.getRegistryName()));
 
 			ci.cancel();

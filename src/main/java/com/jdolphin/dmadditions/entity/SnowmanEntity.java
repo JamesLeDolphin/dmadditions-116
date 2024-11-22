@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMAItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -97,6 +98,8 @@ public class SnowmanEntity extends MonsterEntity implements IForgeShearable {
 	@Override
 	protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
 		super.populateDefaultEquipmentSlots(instance);
+
+		TimedUnlock.handlePumpkinHead(this);
 
 		if (random.nextFloat() <= 0.25 && DMAItems.SANTA_HAT != null) {
 			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));

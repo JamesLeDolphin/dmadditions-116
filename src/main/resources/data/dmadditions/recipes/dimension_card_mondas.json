@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#PE",
+        "FDF",
+        "EP#"
+    ],
+    "key": {
+        "#": {
+            "item": "dalekmod:refined_sonic_crystal"
+        },
+        "P": {
+            "item": "dalekmod:stainless_steel_block"
+        },
+        "E": {
+            "item": "minecraft:blue_ice"
+        },
+        "F": {
+            "item": "dalekmod:steel_block"
+        },
+        "D": {
+            "item": "dalekmod:dimension_data_card"
+        }
+    },
+    "result": {
+        "item": "dmadditions:mondas_data_card",
+        "count": 1
+    }
+}

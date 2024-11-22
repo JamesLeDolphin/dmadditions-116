@@ -23,6 +23,7 @@ public class BaubleBlock extends Block {
 		this(AbstractBlock.Properties.of(Material.GLASS).noOcclusion().noCollission());
 	}
 
+	@SuppressWarnings("deprecation")
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, IWorld world, BlockPos pos, BlockPos pos1) {
 		return !this.canSurvive(blockState, world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockState1, world, pos, pos1);
 	}

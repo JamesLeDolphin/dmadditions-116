@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererGallifrey;
 import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMondas;
@@ -26,7 +26,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(
-	modid = DmAdditions.MODID,
+	modid = DMAdditions.MODID,
 	bus = Mod.EventBusSubscriber.Bus.FORGE,
 	value = {Dist.CLIENT}
 )

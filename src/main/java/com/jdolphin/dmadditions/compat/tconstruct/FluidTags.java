@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.compat.tconstruct;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMATags;
 import net.minecraft.data.DataGenerator;
@@ -14,7 +14,7 @@ import slimeknights.tconstruct.common.TinkerTags;
 public class FluidTags extends FluidTagsProvider {
 
 	public FluidTags(DataGenerator p_i49156_1_, @Nullable ExistingFileHelper existingFileHelper) {
-		super(p_i49156_1_, DmAdditions.MODID, existingFileHelper);
+		super(p_i49156_1_, DMAdditions.MODID, existingFileHelper);
 	}
 
 	@Override

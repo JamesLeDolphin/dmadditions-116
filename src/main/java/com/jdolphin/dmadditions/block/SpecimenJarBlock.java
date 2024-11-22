@@ -4,12 +4,16 @@ import com.jdolphin.dmadditions.entity.KantrofarriEntity;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.tileentity.SpecimenJarTileEntity;
+import com.swdteam.common.block.IBlockTooltip;
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -22,6 +26,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -29,11 +35,11 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class SpecimenJarBlock extends FallingBlock {
-
+public class SpecimenJarBlock extends FallingBlock implements IBlockTooltip {
 	public static final DirectionProperty FACING = HorizontalBlock.FACING;
-	public static final BooleanProperty HAS_SPECIMEN = BooleanProperty.create("has_specimen")
-;	public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 16, 13);
+	public static final BooleanProperty HAS_SPECIMEN = BooleanProperty.create("has_specimen");
+
+	public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 16, 13);
 	public SpecimenJarBlock(Properties p_i48377_1_) {
 		super(p_i48377_1_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -84,6 +90,7 @@ public class SpecimenJarBlock extends FallingBlock {
 		entity.setHurtsEntities(true);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState state, World world, BlockPos pos, BlockState state1, boolean harvest) {
 		if(state1.getBlock() != this && world.getBlockState(pos.below()).getBlock() != Blocks.AIR){
@@ -122,7 +129,6 @@ public class SpecimenJarBlock extends FallingBlock {
 				if (jar.acceptSpecimen(held.getItem())) {
 					jar.setSpecimen(held);
 					if (!player.isCreative()) held.shrink(1);
-					if (held.getCount() == 0) player.setItemInHand(hand, ItemStack.EMPTY);
 					world.setBlockAndUpdate(blockPos, state.setValue(HAS_SPECIMEN, true));
 					return ActionResultType.SUCCESS;
 				}
@@ -157,10 +163,14 @@ public class SpecimenJarBlock extends FallingBlock {
 
 	private void dropSpecimen(ItemStack specimen, BlockPos pos, World world) {
 		if (specimen != null && !specimen.isEmpty()) {
-			if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
-				KantrofarriEntity kantrofarri = new KantrofarriEntity(world);
-				kantrofarri.moveTo(pos, 0, 0);
-				world.addFreshEntity(kantrofarri);
+			if (specimen.getItem() instanceof SpawnEggItem) {
+				SpawnEggItem spawnEgg = (SpawnEggItem) specimen.getItem();
+				EntityType<?> type = spawnEgg.getType(specimen.getOrCreateTag());
+				Entity entity = type.create(world);
+				if (entity != null) {
+					entity.setPos(pos.getX(), pos.getY(), pos.getZ());
+					world.addFreshEntity(entity);
+				}
 			} else {
 				ItemEntity entity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), specimen);
 				world.addFreshEntity(entity);
@@ -171,10 +181,14 @@ public class SpecimenJarBlock extends FallingBlock {
 	private ActionResultType giveSpecimen(SpecimenJarTileEntity jar, ItemStack held, PlayerEntity player, BlockPos pos, World world, BlockState state) {
 		if (jar != null) {
 			ItemStack specimen = jar.getSpecimen();
-			if (specimen.getItem().equals(DMAItems.KANTROFARRI_SPAWNER.get())) {
-				KantrofarriEntity kantrofarri = new KantrofarriEntity(world);
-				kantrofarri.moveTo(player.position());
-				world.addFreshEntity(kantrofarri);
+			if (specimen.getItem() instanceof SpawnEggItem) {
+				SpawnEggItem spawnEgg = (SpawnEggItem) specimen.getItem();
+				EntityType<?> type = spawnEgg.getType(specimen.getOrCreateTag());
+				Entity entity = type.create(world);
+				if (entity != null) {
+					entity.setPos(pos.getX(), pos.getY(), pos.getZ());
+					world.addFreshEntity(entity);
+				}
 				jar.emptySpecimen();
 				world.setBlockAndUpdate(pos, state.setValue(HAS_SPECIMEN, false));
 				return ActionResultType.SUCCESS;
@@ -194,5 +208,23 @@ public class SpecimenJarBlock extends FallingBlock {
 			}
 		}
 		return ActionResultType.FAIL;
+	}
+
+	@Override
+	public ITextComponent getName(BlockState blockState, BlockPos blockPos, Vector3d vector3d, PlayerEntity playerEntity) {
+		TileEntity tile = playerEntity.level.getBlockEntity(blockPos);
+		if (tile instanceof SpecimenJarTileEntity) {
+			SpecimenJarTileEntity specimenJar = (SpecimenJarTileEntity) tile;
+			if (specimenJar.hasSpecimen()) {
+				ItemStack stack = specimenJar.getSpecimen();
+				if (stack.getItem() instanceof SpawnEggItem) {
+					SpawnEggItem eggItem = (SpawnEggItem) stack.getItem();
+					EntityType<?> type = eggItem.getType(stack.getOrCreateTag());
+					Entity entity = type.create(playerEntity.level);
+					if (entity != null) return entity.getName();
+				} return stack.getHoverName();
+			}
+		}
+		return null;
 	}
 }

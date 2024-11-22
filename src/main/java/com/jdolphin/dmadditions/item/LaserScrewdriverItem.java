@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.item;
 
+import com.jdolphin.dmadditions.init.DMADamageSources;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.init.DMProjectiles;
@@ -9,7 +10,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -56,7 +60,7 @@ public class LaserScrewdriverItem extends SonicScrewdriverItem {
 
 			LaserEntity laser = new LaserEntity(world, player, 0.0F, this.attackDamage);
 			laser.setLaserType(this.laserType);
-			laser.setDamageSource(new EntityDamageSource("laser_screwdriver", player));
+			laser.setDamageSource(DMADamageSources.LASER_SCREWDRIVER);
 			laser.shoot(player, player.xRot, player.yRot, 0.0F, 2.5F, 0.0F);
 			world.addFreshEntity(laser);
 			if (player instanceof ServerPlayerEntity && !player.isCreative()) {

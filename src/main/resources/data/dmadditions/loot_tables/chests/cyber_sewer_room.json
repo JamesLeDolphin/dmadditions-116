@@ -3,7 +3,7 @@
   "pools": [
     {
       "rolls": {
-        "min": 1,
+        "min": 2,
         "max": 5
       },
       "bonus_rolls": {
@@ -13,8 +13,8 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 8,
           "name": "dalekmod:gas_mask",
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -24,13 +24,13 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 8,
-          "name": "dalekmod:roundel_wrench"
+          "name": "dalekmod:roundel_wrench",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "weight": 6,
           "name": "dalekmod:circuit",
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -43,8 +43,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 6,
           "name": "dalekmod:banana_peel",
+          "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -57,8 +57,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 8,
           "name": "minecraft:spider_eye",
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -71,8 +71,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 8,
           "name": "minecraft:string",
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -85,8 +85,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 6,
           "name": "minecraft:bowl",
+          "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",

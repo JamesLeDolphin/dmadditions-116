@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
@@ -44,7 +44,7 @@ public class BetterFlightLeverBlock extends BetterTardisLeverBlock {
 				}
 			} else this.switchLever(state, worldIn, pos);
 
-			if (DmAdditions.hasNTM()) {
+			if (DMAdditions.hasNTM()) {
 				if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(worldIn, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
 					net.tardis.mod.helper.TardisHelper.getConsole(worldIn.getServer(), worldIn).ifPresent(tile -> {
 						tile.getControl(net.tardis.mod.controls.HandbrakeControl.class).ifPresent(brake -> {

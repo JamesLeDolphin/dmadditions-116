@@ -22,6 +22,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -81,7 +82,7 @@ public class MondasCybermanEntity extends MonsterEntity {
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, CybermanEntity.class, 12.0F, 0.01F));
 		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.4, 0.5F));
+		this.targetSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.9, 32F));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		randomStrollGoal.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
@@ -178,29 +179,58 @@ public class MondasCybermanEntity extends MonsterEntity {
 		}
 
 		public void tick() {
-			LivingEntity livingentity = this.cyber.getTarget();
-			this.cyber.getLookControl().setLookAt(livingentity, 90.0F, 90.0F);
-			Helper.playSound(cyber.level, cyber.blockPosition(), DMASoundEvents.MONDAS_CYBER_LASER_ATTACK.get(), SoundCategory.HOSTILE);
-			double d = this.cyber.distanceTo(livingentity);
-			if (!this.cyber.canSee(livingentity)) {
+			LivingEntity target = this.cyber.getTarget();
+			this.cyber.getLookControl().setLookAt(target, 90.0F, 90.0F);
+			double distance = this.cyber.distanceTo(target);
+			if (!this.cyber.canSee(target)) {
 				this.cyber.setTarget((LivingEntity) null);
-			} else if (d > 1 && d <= this.cyber.getAttributeValue(Attributes.FOLLOW_RANGE)) {
-				this.cyber.getNavigation().createPath(livingentity, 0);
+			} else if (distance > 1 && distance <= this.cyber.getAttributeValue(Attributes.FOLLOW_RANGE)) {
+				this.cyber.getNavigation().createPath(target, 0);
 				++this.attackTime;
-				if (this.attackTime == 0) {
-					this.cyber.setActiveAttackTarget(this.cyber.getTarget().getId());
-				} else if (this.attackTime >= this.cyber.getAttackDuration()) {
-					float f = 1.0F;
-					if (this.cyber.level.getDifficulty() == Difficulty.HARD) {
-						f += 2.0F;
-					}
 
-					livingentity.hurt(DMADamageSources.CYBER_BEAM, (float) this.cyber.getAttributeValue(Attributes.ATTACK_DAMAGE) + f);
-					this.cyber.setTarget((LivingEntity) null);
+				if(distance >= getAttackReachSqr(target)){
+					tickRanged();
+				} else {
+					tickMelee();
 				}
 
 				super.tick();
 			}
+		}
+
+		public void tickMelee() {
+			LivingEntity target = this.cyber.getTarget();
+			double distance = this.cyber.distanceTo(target);
+			double reach = this.getAttackReachSqr(target);
+
+			if (distance <= reach && this.attackTime >= 0) {
+				this.attackTime = -10;
+				this.cyber.swing(Hand.MAIN_HAND);
+				this.cyber.doHurtTarget(target);
+			}
+
+		}
+
+		public void tickRanged() {
+			LivingEntity target = this.cyber.getTarget();
+			if (this.attackTime == 0) {
+				Helper.playSound(cyber.level, cyber.blockPosition(), DMASoundEvents.MONDAS_CYBER_LASER_ATTACK.get(),
+						SoundCategory.HOSTILE);
+				this.cyber.setActiveAttackTarget(this.cyber.getTarget().getId());
+			} else if (this.attackTime >= this.cyber.getAttackDuration()) {
+				float f = 1.0F;
+				if (this.cyber.level.getDifficulty() == Difficulty.HARD) {
+					f += 2.0F;
+				}
+
+				target.hurt(DMADamageSources.CYBER_BEAM,
+						(float) this.cyber.getAttributeValue(Attributes.ATTACK_DAMAGE) + f);
+				this.cyber.setTarget((LivingEntity) null);
+			}
+		}
+
+		protected double getAttackReachSqr(LivingEntity entity) {
+			return (double) (this.cyber.getBbWidth() * 2.0F * this.cyber.getBbWidth() * 2.0F + entity.getBbWidth());
 		}
 	}
 

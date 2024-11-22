@@ -36,24 +36,19 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.DimensionSettings;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.StructureFeature;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
@@ -91,10 +86,10 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 
-@Mod(DmAdditions.MODID)
-public class DmAdditions {
+@Mod(DMAdditions.MODID)
+public class DMAdditions {
 	public static final String MODID = "dmadditions";
-	public static final String VERSION = "1.3.11";
+	public static final String VERSION = "1.3.13";
 	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
@@ -115,14 +110,14 @@ public class DmAdditions {
 	public static List<Data> exteriors = new ArrayList<>();
 
 
-	public DmAdditions() {
+	public DMAdditions() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		LOGGER.info(IS_DEBUG ? "Running in debugger" : "Not running in debugger");
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::entityAttributeEvent);
 		bus.addListener(this::runLater);
-		//This one line fixes joinging servers that dont have dma
+		//This one line fixes joining servers that don't have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
 		DMABlocks.BLOCKS.register(bus);
@@ -137,15 +132,14 @@ public class DmAdditions {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 
-		MinecraftForge.EVENT_BUS.register(this);
-		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
-		MinecraftForge.EVENT_BUS.register(RegenEvents.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
+
+		vengaBus.register(this);
+		vengaBus.register(DMAEventHandlerGeneral.class);
+		vengaBus.register(RegenEvents.class);
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
-		if (hasTC()) {
-			DMAFluids.FLUIDS.register(bus);
-		}
+		if (hasTC()) DMAFluids.FLUIDS.register(bus);
 	}
 
 	@SubscribeEvent
@@ -251,9 +245,6 @@ public class DmAdditions {
 				world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
-			if (world.isFlat()) {
-				return;
-			}
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 
@@ -322,6 +313,10 @@ public class DmAdditions {
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
+		}
+
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
@@ -333,6 +328,11 @@ public class DmAdditions {
 				.squared().decorated(Features.Placements.HEIGHTMAP)
 				.decorated(Placement.COUNT_EXTRA.configured(
 					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));
+
+			List<Supplier<ConfiguredFeature<?, ?>>> oreBase =
+				event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES);
+			oreBase.add(() -> DMAConfiguredStructures.SONIC_ORE
+				.squared().decorated(Features.Placements.HEIGHTMAP));
 		}
 
 		if (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:gallifrey_forest")) {
@@ -356,6 +356,8 @@ public class DmAdditions {
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR)) return registryKey.equals("minecraft:snowy_taiga");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
 				registryKey.equals("dmadditions:dead_forest");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN)) return registryKey.equals("dmadditions:mondas_frozen");
+
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.equals("dmadditions:gallifrey_plains") || registryKey.equals("dmadditions:gallifrey_forest");
 

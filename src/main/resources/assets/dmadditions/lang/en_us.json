@@ -25,7 +25,14 @@
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 
 	"death.attack.sheared": "%1$s was sheared to death",
+	"subtitles.item.earthshock_gun.shoot": "Earthshock gun shoots",
+	"item.dmadditions.laser_charge": "Laser Charge",
+	"item.dmadditions.earthshock_gun": "Earthshock Gun",
 	"death.attack.electrocution": "%1$s was electrocuted to death",
+	"block.dmadditions.stone_sonic_crystal_ore": "Sonic Crystal Ore",
+	"entity.dmadditions.cybercow": "Cyber-Cow",
+	"item.dmadditions.cybercow_spawner": "Cyber-Cow Spawner",
+	"item.dmadditions.mondas_data_card": "Dimension Data Card",
 
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",
@@ -232,13 +239,17 @@
 	"item.dmadditions.torchwood_tank": "Torchwood Tank",
 	"item.dmadditions.shopping_cart": "Shopping Cart",
 
+	"tooltip.item.dmadditions.shopping_cart.has_engine": "Has engine",
+	"tooltip.item.dmadditions.shopping_cart.no_engine": "No engine",
+	"tooltip.item.dmadditions.shopping_cart.flyable": "Flyable",
+
 	"block.dmadditions.engine": "Engine",
 
 	"item.dmadditions.matts_pink_thong": "Matt's Pink Thong",
 
-	"block.dmadditions.reddash_statue": "Reddashs Statue",
+	"block.dmadditions.reddash_statue": "Reddash's Statue",
 
-	"item.dmadditions.reddash_statue": "Reddashs Statue",
+	"item.dmadditions.reddash_statue": "Reddash's Statue",
 
 	"item.dmadditions.space_suit_helmet": "Space Suit Helmet",
 	"item.dmadditions.space_suit_chestplate": "Space Suit Chestplace",
@@ -277,7 +288,7 @@
 	"entity.dmadditions.racnoss": "Racnoss",
 	"item.dmadditions.racnoss_spawner": "Racnoss Spawner",
 
-	"entity.dmaddiitons.whisperman": "Whisperman",
+	"entity.dmadditions.whisperman": "Whisperman",
 	"item.dmadditions.whisperman_spawner": "Whisperman Spawner",
 
 	"block.dmadditions.christmas_cracker": "Christmas Cracker",
@@ -302,7 +313,7 @@
 
 	"item.dmadditions.kantrofarri_spawner": "Kantrofarri Spawner",
 	"entity.dmadditions.kantrofarri": "Kantrofarri",
-	"item.dmadditions.kantrofarri": "Kantrofarri",
+	"item.dmadditions.kantrofarri": "Raw Kantrofarri",
 	"item.dmadditions.kantrofarri_cooked": "Cooked Kantrofarri",
 	"death.attack.kantrofarri": "%1$s had a pleasant dream",
 	"block.dmadditions.specimen_jar": "Specimen Jar",

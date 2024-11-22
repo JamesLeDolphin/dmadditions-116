@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Tardis;
 import com.swdteam.common.tardis.TardisData;
@@ -98,7 +98,7 @@ public class HandlesCommands {
 	});
 
 	public static HandlesCommand VERSION = HandlesCommand.create("(whats|wuh|what|wah).*(version|vers|ver|v|versioon)\\??", (player, handles, matcher, query) -> {
-		sendHandlesMessage(player, handles, String.format("My current version is: %s", DalekMod.VERSION + "-" + DmAdditions.VERSION));
+		sendHandlesMessage(player, handles, String.format("My current version is: %s", DalekMod.VERSION + "-" + DMAdditions.VERSION));
 		return true;
 	});
 

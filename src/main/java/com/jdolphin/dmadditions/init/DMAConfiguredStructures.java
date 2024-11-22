@@ -8,6 +8,7 @@ import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.template.RandomBlockMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
@@ -37,6 +38,10 @@ public class DMAConfiguredStructures {
 				new ForkyTrunkPlacer(4, 5, 3),
 				new TwoLayerFeature(3, 1, 2))).heightmap(Heightmap.Type.WORLD_SURFACE_WG).ignoreVines().build()));
 
+	public static final ConfiguredFeature<OreFeatureConfig, ?> SONIC_ORE =
+		OreFeature.ORE.configured(new OreFeatureConfig(new RandomBlockMatchRuleTest(Blocks.STONE, 0.25f),
+			DMABlocks.STONE_SONIC_CRYSTAL_ORE.get().defaultBlockState(), 2));
+
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
 		Registry.register(registry, Helper.createAdditionsRL("configured_manor"), CONFIGURED_MANOR);
@@ -53,7 +58,7 @@ public class DMAConfiguredStructures {
 	}
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key,
-																				 ConfiguredFeature<FC, ?> configuredFeature) {
+			ConfiguredFeature<FC, ?> configuredFeature) {
 		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);
 	}
 }

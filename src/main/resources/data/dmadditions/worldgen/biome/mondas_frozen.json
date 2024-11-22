@@ -1,5 +1,5 @@
 {
-  "surface_builder": "minecraft:grass",
+  "surface_builder": "minecraft:ice_spikes",
   "depth": 0.125,
   "scale": 0.05,
   "temperature": -2,
@@ -7,6 +7,7 @@
   "precipitation": "snow",
   "temperature_modifier": "frozen",
   "category": "icy",
+  "player_spawn_friendly": false,
   "effects": {
     "sky_color": 7907327,
     "fog_color": 11060981,
@@ -25,19 +26,24 @@
     "monster": [
       {
         "type": "dalekmod:cyberman",
-        "weight": 12,
-        "minCount": 4,
-        "maxCount": 12
-      }
-    ],
-    "creature": [
+        "weight": 4,
+        "minCount": 1,
+        "maxCount": 5
+      },
       {
-        "type": "minecraft:cow",
-        "weight": 8,
-        "minCount": 4,
-        "maxCount": 4
+        "type": "dmadditions:mondas_cyberman",
+        "weight": 4,
+        "minCount": 1,
+        "maxCount": 5
+      },
+      {
+        "type": "dmadditions:mondasian",
+        "weight": 5,
+        "minCount": 2,
+        "maxCount": 5
       }
     ],
+    "creature": [],
     "water_creature": [],
     "water_ambient": [],
     "misc": []
@@ -51,9 +57,7 @@
   },
   "features": [
     [],
-    [
-      "minecraft:lake_water"
-    ],
+    [],
     [],
     [],
     [],
@@ -76,8 +80,8 @@
     ],
     [],
     [
+      "minecraft:pile_ice",
       "minecraft:patch_grass_plain",
-      "minecraft:spring_water",
       "minecraft:pile_snow"
     ],
     [

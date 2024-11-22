@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.init;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.jdolphin.dmadditions.DmAdditions;
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.world.structure.*;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Supplier;
 
 public class DMAStructures {
-	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DmAdditions.MODID);
+	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, DMAdditions.MODID);
 
 	public static final RegistryObject<Structure<NoFeatureConfig>> MANOR = registerStructure("manor", () -> new ManorStructure(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Structure<NoFeatureConfig>> GALLIFREY_SHED = registerStructure("gallifrey_shed", () -> new GallifreyShedStructure(NoFeatureConfig.CODEC));
@@ -36,8 +36,8 @@ public class DMAStructures {
 		setupMapSpacingAndLand(GALLIFREY_SHED.get(), new StructureSeparationSettings(25, 12, 1111511), false);
 		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
-		setupMapSpacingAndLand(MONDAS_RUIN.get(), new StructureSeparationSettings(30, 10, 23478), true);
-		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(30, 10, 23578), false);
+		setupMapSpacingAndLand(MONDAS_RUIN.get(), new StructureSeparationSettings(30, 10, 225478), true);
+		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(20, 10, 5988732), false);
 
 	}
 
