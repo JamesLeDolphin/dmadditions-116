@@ -2,16 +2,13 @@
   "type": "minecraft:default",
   "config": {
     "top_material": {
-      "Name": "minecraft:red_sand",
-      "Properties": {
-        "snowy": "true"
-      }
+      "Name": "dmadditions:gallifrey_sand"
     },
     "under_material": {
-      "Name": "minecraft:red_sand"
+      "Name": "dmadditions:gallifrey_sandstone"
     },
     "underwater_material": {
-      "Name": "minecraft:gravel"
+      "Name": "dmadditions:gallifrey_sandstone"
     }
   }
 }

@@ -40,7 +40,7 @@
           "biome": "dmadditions:gallifrey_ocean",
           "parameters": {
             "altitude": 0,
-            "temperature": 0.8,
+            "temperature": 1,
             "humidity": 1,
             "weirdness": 1,
             "offset": 1
@@ -59,7 +59,7 @@
         {
           "biome": "dmadditions:gallifrey_forest",
           "parameters": {
-            "altitude": 1,
+            "altitude": 0.7,
             "temperature": 1,
             "humidity": 1,
             "weirdness": 0.4,
@@ -69,7 +69,7 @@
         {
           "biome": "dmadditions:gallifrey_plains",
           "parameters": {
-            "altitude": 1,
+            "altitude": 0.5,
             "temperature": 1,
             "humidity": 0,
             "weirdness": 0.6,

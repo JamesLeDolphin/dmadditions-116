@@ -17,6 +17,6 @@ import java.util.Random;
 public class GallifreyCarver extends CaveWorldCarver {
 	public GallifreyCarver(Codec<ProbabilityConfig> codec) {
 		super(codec, 256);
-		this.replaceableBlocks = ImmutableSet.of(DMABlocks.GALLIFREY_STONE.get(), Blocks.GRASS_BLOCK, Blocks.RED_SAND);
+		this.replaceableBlocks = ImmutableSet.of(DMABlocks.GALLIFREY_STONE.get(), Blocks.GRASS_BLOCK, DMABlocks.GALLIFREY_SAND.get(), DMABlocks.GALLIFREY_SANDSTONE.get());
 	}
 }

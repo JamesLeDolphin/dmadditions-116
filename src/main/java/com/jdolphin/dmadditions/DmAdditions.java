@@ -258,22 +258,18 @@ public class DmAdditions {
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_MONDAS.get(),
-				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_MONDAS.get()));
 
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
+
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.GALLIFREY_SHED.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.GALLIFREY_SHED.get()));
 
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MONDAS_RUIN.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
 
 		}
-	}
-	//TODO Remove this? doesnt seem to do anything
-	public static void registerStructure(RegistryKey<DimensionSettings> dimension, Structure<?> structure, StructureSeparationSettings separationSettings) {
-		WorldGenRegistries.NOISE_GENERATOR_SETTINGS.getOptional(dimension).ifPresent((dimensionSettings) -> {
-			DimensionStructuresSettings structuresSettings = dimensionSettings.structureSettings();
-			structuresSettings.structureConfig.put(structure, separationSettings);
-		});
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {
@@ -314,6 +310,10 @@ public class DmAdditions {
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
+		}
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_SHED)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_SHED);
 		}
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
@@ -357,6 +357,7 @@ public class DmAdditions {
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) return registryKey.equals("dmadditions:mondas_frozen") ||
 				registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) return registryKey.equals("minecraft:snowy_taiga");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.equals("dmadditions:gallifrey_plains") || registryKey.equals("dmadditions:gallifrey_forest");
 
 		}
 		return false;

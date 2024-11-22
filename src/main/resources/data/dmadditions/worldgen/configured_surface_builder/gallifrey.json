@@ -4,14 +4,14 @@
     "top_material": {
       "Name": "minecraft:grass_block",
       "Properties": {
-        "snowy": "true"
+        "snowy": "false"
       }
     },
     "under_material": {
-      "Name": "minecraft:red_sand"
+      "Name": "minecraft:dirt"
     },
     "underwater_material": {
-      "Name": "minecraft:gravel"
+      "Name": "minecraft:dirt"
     }
   }
 }
