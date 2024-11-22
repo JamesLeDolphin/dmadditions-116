@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.entity.timelord;
 
 import com.jdolphin.dmadditions.entity.RegeneratingEntity;
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -16,6 +17,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.RangedInteger;
 import net.minecraft.util.TickRangeConverter;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,6 +48,10 @@ public class TimeLordEntity extends RegeneratingEntity implements IAngerable {
 	public TimeLordType getRandomTimelordType() {
 		TimeLordType[] types = TimeLordType.values();
 		return types[this.random.nextInt(types.length)];
+	}
+
+	public ItemStack getPickedResult(RayTraceResult result) {
+		return DMAItems.TIMELORD_SPAWNER.get().getDefaultInstance();
 	}
 
 	@Override

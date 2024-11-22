@@ -19,26 +19,6 @@
   },
   "starts": [],
   "spawners": {
-    "monster": [
-      {
-        "type": "dalekmod:cyberman",
-        "weight": 2,
-        "minCount": 2,
-        "maxCount": 3
-      },
-      {
-        "type": "dalekmod:dalek",
-        "weight": 2,
-        "minCount": 2,
-        "maxCount": 3
-      },
-      {
-        "type": "dalekmod:weeping_angel",
-        "weight": 1,
-        "minCount": 0,
-        "maxCount": 3
-      }
-    ],
     "ambient": [
       {
         "type": "dmadditions:timelord",
@@ -49,14 +29,6 @@
     ]
   },
   "spawn_costs": {
-    "dalekmod:weeping_angel": {
-      "energy_budget": 0.4,
-      "charge": 1
-    },
-    "dalekmod:dalek": {
-      "energy_budget": 0.33,
-      "charge": 1
-    },
     "dmadditions:timelord": {
       "energy_budget": 0.12,
       "charge": 1

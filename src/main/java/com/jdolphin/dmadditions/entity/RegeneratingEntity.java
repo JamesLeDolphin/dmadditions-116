@@ -11,6 +11,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -79,7 +80,7 @@ public abstract class RegeneratingEntity extends CreatureEntity {
 	public void setRegen() {
 		int i = getRegens();
 		setRegens(Math.max(i - 1, 0));
-		this.setRegenTicks(Helper.seconds(10));
+		this.setRegenTicks(Helper.seconds(8));
 		Helper.playSound(level, this.blockPosition(), DMASoundEvents.REGEN_START.get(), SoundCategory.NEUTRAL);
 	}
 
@@ -107,7 +108,7 @@ public abstract class RegeneratingEntity extends CreatureEntity {
 		this.setRot(0, 0);
 		this.setTarget(null);
 		this.getNavigation().stop();
-
+		this.addEffect(new EffectInstance(Effects.ABSORPTION, 1, 0));
 		double rand = this.random.nextDouble();
 
 		this.level.addParticle(particle, this.getX() - 0.15 * rand, this.getEyeY() + 0.25, this.getZ() + 0.35 * rand, 0.0D, 0.2, 0.0D);

@@ -1,7 +1,11 @@
 package com.jdolphin.dmadditions.mixin.other;
 
 import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
+import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
+import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -9,6 +13,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -33,6 +39,13 @@ public abstract class DalekEntityMixin extends MobEntity implements IDalekEntity
 	private boolean party;
 	private BlockPos jukebox;
 
+	@Inject(at = @At("TAIL"), remap = false, method = "registerGoals()V")
+	protected void registerGoals(CallbackInfo ci) {
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, TimeLordEntity.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, MondasianEntity.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, MondasCybermanEntity.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, WoodenCybermanEntity.class, true));
+	}
 
 	@Override
 	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
