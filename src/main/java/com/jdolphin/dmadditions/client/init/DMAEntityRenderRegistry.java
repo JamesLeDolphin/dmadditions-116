@@ -41,6 +41,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.ZYGON, ZygonRenderer::new);
 		registerRender(DMAEntities.EMPTY_VILLAGER, EmptyVillagerRenderer::new);
 		registerRender(DMAEntities.EMPTY_CHILD, EmptyChildRenderer::new);
+		registerRender(DMAEntities.DALEK_MUTANT, DalekMutantRenderer::new);
 		registerRender(DMAEntities.NETHERITE_CYBERMAN, NetheriteCybermanRenderer::new);
 	}
 
