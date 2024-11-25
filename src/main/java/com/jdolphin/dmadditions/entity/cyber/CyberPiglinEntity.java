@@ -11,7 +11,10 @@ import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTags;
 import com.swdteam.util.SWDMathUtils;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -23,6 +26,7 @@ import net.minecraft.entity.monster.piglin.PiglinEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -33,9 +37,9 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
 
-public class NetheriteCybermanEntity extends MonsterEntity {
+public class CyberPiglinEntity extends MonsterEntity {
 
-	public NetheriteCybermanEntity(EntityType<? extends NetheriteCybermanEntity> type, World worldIn) {
+	public CyberPiglinEntity(EntityType<? extends CyberPiglinEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
@@ -60,9 +64,9 @@ public class NetheriteCybermanEntity extends MonsterEntity {
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, ClamEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, MagnodonEntity.class, true));
-		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PiglinEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PiglinBruteEntity.class, true));
+		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, DalekEntity.class, true));
 		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, StormEntity.class, true));
 	}
 

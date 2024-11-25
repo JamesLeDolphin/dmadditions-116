@@ -1,7 +1,8 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
+import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.swdteam.common.entity.CybermanEntity;
+import com.swdteam.common.entity.CybervillagerEntity;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -37,7 +38,6 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttackMob {
 	public static final DataParameter<Boolean> HAS_GUN;
-	private Goal meeleAttack;
 
 	public WoodenCybermanEntity(EntityType<? extends MonsterEntity> entityType, World world) {
 		super(entityType, world);
@@ -54,12 +54,10 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinEntity.class, 6.0F, 1.0, 1.2));
-		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PiglinBruteEntity.class, 6.0F, 1.0, 1.2));
 		if (this.hasGun()) {
 			this.goalSelector.addGoal(4, new RangedLaserAttack<>(this, 1.0, 20, 15.0F));
 		} else {
-			this.goalSelector.addGoal(2, this.meeleAttack = new MeleeAttackGoal(this, 1.0, false));
+			this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
 		}
 
 		this.goalSelector.addGoal(5, new LookAtGoalBetter(this, PlayerEntity.class, 8.0F));
@@ -101,9 +99,9 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 
 	public void performRangedAttack(LivingEntity target, float distanceFactor) {
-		double d0 = 0.0;
-		double d1 = 0.0;
-		double d2 = 0.0;
+		double d0;
+		double d1;
+		double d2;
 		if (target.isAlive()) {
 			d0 = target.getX() - this.getX();
 			d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
@@ -141,21 +139,29 @@ public class WoodenCybermanEntity extends MonsterEntity implements IRangedAttack
 
 	public void killed(ServerWorld level, LivingEntity target) {
 		super.killed(level, target);
-		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && target instanceof VillagerEntity && ForgeEventFactory.canLivingConvert(target, DMEntities.CYBERMAN_ENTITY.get(), (timer) -> {
-		})) {
-			if (level.getDifficulty() != Difficulty.NORMAL || level.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
-				return;
-			}
+		if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD)) {
+			if (target instanceof VillagerEntity)
+				convert(level, ((VillagerEntity) target), DMEntities.CYBERMANVILLAGER_ENTITY.get());
+			if (target instanceof PiglinEntity)
+				convert(level, ((PiglinEntity) target), DMAEntities.CYBER_PIGLIN.get());
+			if (target instanceof PiglinBruteEntity)
+				convert(level, ((PiglinBruteEntity) target), DMAEntities.NETHERITE_CYBERMAN.get());
+		}
+	}
 
-			VillagerEntity villagerentity = (VillagerEntity) target;
-			CybermanEntity woodenCybermanEntity = (CybermanEntity) villagerentity.convertTo((EntityType<CybermanEntity>) DMEntities.CYBERMAN_ENTITY.get(), false);
-			woodenCybermanEntity.finalizeSpawn(level, level.getCurrentDifficultyAt(woodenCybermanEntity.blockPosition()), SpawnReason.CONVERSION, new ZombieEntity.GroupData(false, true), null);
-			ForgeEventFactory.onLivingConvert(target, woodenCybermanEntity);
-			if (!this.isSilent()) {
-				level.levelEvent(null, 1026, this.blockPosition(), 0);
+
+	public <E extends MobEntity> void convert(ServerWorld world, MobEntity target, EntityType<E> convertToType) {
+		if (ForgeEventFactory.canLivingConvert(target, convertToType, (timer) -> {})) {
+			E converted = target.convertTo(convertToType, false);
+			if (converted != null) {
+				converted.finalizeSpawn(world, world.getCurrentDifficultyAt(converted.blockPosition()), SpawnReason.CONVERSION,
+					new ZombieEntity.GroupData(false, true), null);
+				ForgeEventFactory.onLivingConvert(target, converted);
+				if (!this.isSilent()) {
+					world.levelEvent(null, 1026, this.blockPosition(), 0);
+				}
 			}
 		}
-
 	}
 
 	public ItemStack getPickedResult(RayTraceResult target) {

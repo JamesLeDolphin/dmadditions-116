@@ -72,6 +72,9 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<KantrofarriEntity>> KANTROFARRI = registerEntity("kantrofarri",
 		KantrofarriEntity::new, EntityClassification.MONSTER, 1.0f, 0.4f);
 
+	public static RegistryObject<EntityType<DalekMutantEntity>> DALEK_MUTANT = registerAdventEntity(13, "dalek_mutant",
+		DalekMutantEntity::new, EntityClassification.MONSTER, 1.0f, 0.4f);
+
 	public static RegistryObject<EntityType<JimEntity>> JIM = registerHumanoidEntity("jim", JimEntity::new, EntityClassification.CREATURE);
 
 
@@ -80,7 +83,12 @@ public class DMAEntities {
 		.setTrackingRange(64)
 		.build(Helper.createAdditionsRL("herobrine").toString()));
 
-	public static RegistryObject<EntityType<NetheriteCybermanEntity>> NETHERITE_CYBERMAN = registerAdventEntity(11, "netherite_cyberman", () ->
+	public static RegistryObject<EntityType<CyberPiglinEntity>> CYBER_PIGLIN = registerAdventEntity(4, "cyber_piglin", () ->
+		EntityType.Builder.of(CyberPiglinEntity::new, EntityClassification.MONSTER)
+			.sized(0.5f, 1.8f)
+			.build(Helper.createAdditionsRL("cyber_piglin").toString()));
+
+	public static RegistryObject<EntityType<NetheriteCybermanEntity>> NETHERITE_CYBERMAN = registerAdventEntity(4, "netherite_cyberman", () ->
 		EntityType.Builder.of(NetheriteCybermanEntity::new, EntityClassification.MONSTER)
 			.sized(0.5f, 1.8f)
 			.build(Helper.createAdditionsRL("netherite_cyberman").toString()));

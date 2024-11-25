@@ -3,11 +3,13 @@ package com.jdolphin.dmadditions.event;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
+import com.jdolphin.dmadditions.entity.DalekMutantEntity;
 import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.TwoDizItem;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
+import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +27,10 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.Random;
 
 public class DMAEventHandlerGeneral {
 	public static final ResourceLocation PLAYER_DATA_CAP = Helper.createAdditionsRL("player_data");
@@ -79,6 +84,19 @@ public class DMAEventHandlerGeneral {
 						tag.putInt("energy", energy + 1);
 					}
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void entityDeathEvent(LivingDeathEvent event) {
+		LivingEntity entity = event.getEntityLiving();
+		if (entity instanceof DalekEntity) {
+			World world = entity.level;
+			Random random = entity.getRandom();
+			if (random.nextInt(10) < 2) {
+				DalekMutantEntity mutant = new DalekMutantEntity(world);
+				world.addFreshEntity(mutant);
 			}
 		}
 	}

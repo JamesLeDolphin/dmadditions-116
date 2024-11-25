@@ -3,6 +3,7 @@ package com.jdolphin.dmadditions.client.init;
 import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
+import com.jdolphin.dmadditions.entity.cyber.CyberPiglinEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -43,6 +44,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.EMPTY_CHILD, EmptyChildRenderer::new);
 		registerRender(DMAEntities.DALEK_MUTANT, DalekMutantRenderer::new);
 		registerRender(DMAEntities.NETHERITE_CYBERMAN, NetheriteCybermanRenderer::new);
+		registerRender(DMAEntities.CYBER_PIGLIN, CyberPiglinRenderer::new);
 	}
 
 

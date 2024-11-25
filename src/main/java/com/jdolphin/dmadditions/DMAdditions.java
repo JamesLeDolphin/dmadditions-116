@@ -182,6 +182,7 @@ public class DMAdditions {
 			event.put(DMAEntities.EMPTY_CHILD.get(), EmptyChildEntity.createAttributes().build());
 			event.put(DMAEntities.EMPTY_VILLAGER.get(), EmptyChildEntity.createAttributes().build());
 		}
+		if (DMAEntities.CYBER_PIGLIN != null) event.put(DMAEntities.CYBER_PIGLIN.get(), CyberPiglinEntity.setCustomAttributes().build());
 		if (DMAEntities.DALEK_MUTANT != null) event.put(DMAEntities.DALEK_MUTANT.get(), KantrofarriEntity.createAttributes().build());
 		if (DMAEntities.NETHERITE_CYBERMAN != null)
 			event.put(DMAEntities.NETHERITE_CYBERMAN.get(), NetheriteCybermanEntity.setCustomAttributes().build());
