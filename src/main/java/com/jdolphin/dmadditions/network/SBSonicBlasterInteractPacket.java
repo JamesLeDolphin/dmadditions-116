@@ -46,7 +46,7 @@ public class SBSonicBlasterInteractPacket {
 
 			// Check if the block is bedrock before attempting to destroy it
 			// (block != Blocks.BEDROCK && block != Blocks.ENDER_CHEST
-			if (block != Blocks.BEDROCK) {
+		if (block != Blocks.BEDROCK) {
 				world.destroyBlock(bPos, false);
 				if (!block.isAir(state, world, bPos)) {
 					server.addTickable(() -> {
