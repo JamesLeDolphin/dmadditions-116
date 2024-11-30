@@ -24,11 +24,11 @@ public class DMAMixinConfigPlugin implements IMixinConfigPlugin {
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
 		List<String> immp = new ArrayList<>();
-		immp.add("com.jdolphin.dmadditions.mixin.comp.immp.BotiMixin");
-		immp.add("com.jdolphin.dmadditions.mixin.comp.immp.SotoMixin");
+		immp.add("com.jdolphin.dmadditions.mixin.compatibility.portals.BotiMixin");
+		immp.add("com.jdolphin.dmadditions.mixin.compatibility.portals.SotoMixin");
 
 		List<String> ntm = new ArrayList<>();
-		ntm.add("com.jdolphin.dmadditions.mixin.comp.ntm.TardisActionListMixin");
+		ntm.add("com.jdolphin.dmadditions.mixin.compatibility.tardis.TardisActionListMixin");
 
 		if (immp.contains(mixinClassName)) {
 			return LoadingModList.get().getModFileById("immersive_portals") != null && DMACommonConfig.isBotiEnabled();
