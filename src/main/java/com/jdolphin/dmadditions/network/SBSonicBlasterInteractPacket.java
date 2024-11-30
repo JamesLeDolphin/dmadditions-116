@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.network;
 
 import com.jdolphin.dmadditions.init.DMAItems;
+import com.jdolphin.dmadditions.init.DMATags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -44,21 +45,16 @@ public class SBSonicBlasterInteractPacket {
 			BlockState state = world.getBlockState(bPos);
 			Block block = state.getBlock();
 
-			// Check if the block is bedrock before attempting to destroy it
-			// (block != Blocks.BEDROCK && block != Blocks.ENDER_CHEST
-		if (block != Blocks.BEDROCK) {
+		if (!DMATags.Blocks.SONIC_BLASTER_BLACKLIST.contains(block)) {
 				world.destroyBlock(bPos, false);
 				if (!block.isAir(state, world, bPos)) {
 					server.addTickable(() -> {
 						if (server.getTickCount() == i + 20 * 6) {
 							if (world.setBlock(bPos, state, Constants.BlockFlags.DEFAULT)) {
-								LogManager.getLogger().debug("Set block back {} {}", state, bPos);
 							}
 						}
 					});
 				}
-			} else {
-				LogManager.getLogger().debug("Attempted to break bedrock at {}. Action ignored.", bPos);
 			}
 
 			player.getCooldowns().addCooldown(DMAItems.SONIC_BLASTER.get(), 20 * 2);

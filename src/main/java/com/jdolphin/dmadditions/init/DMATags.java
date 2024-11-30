@@ -13,16 +13,10 @@ import net.minecraftforge.common.Tags;
 public class DMATags {
 	public static class Blocks {
 		public static final Tags.IOptionalNamedTag<Block> ROUNDEL_CONTAINERS = createTag("roundel_containers");
-
-		private static Tags.IOptionalNamedTag<Block> createTag(String name, Boolean itemTag) {
-			if (itemTag) {
-				ItemTags.createOptional(Helper.createDMRL(name));
-			}
-			return BlockTags.createOptional(Helper.createDMRL(name));
-		}
+		public static final Tags.IOptionalNamedTag<Block> SONIC_BLASTER_BLACKLIST = createTag("sonic_blaster_blacklist");
 
 		private static Tags.IOptionalNamedTag<Block> createTag(String name) {
-			return createTag(name, true);
+			return BlockTags.createOptional(Helper.createAdditionsRL(name));
 		}
 	}
 

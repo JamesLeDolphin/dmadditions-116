@@ -1,0 +1,15 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:bedrock",
+		"minecraft:ender_chest",
+		"minecraft:spawner",
+		"minecraft:command_block",
+		"minecraft:obsidian",
+		"minecraft:end_portal_frame",
+		"dalekmod:storm_spawner",
+		"dalekmod:storage-vault",
+		"dalekmod:artron_fuel_tank",
+		"minecraft:respawn_anchor"
+	]
+}
