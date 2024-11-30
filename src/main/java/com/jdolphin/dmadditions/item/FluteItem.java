@@ -1,29 +1,49 @@
 package com.jdolphin.dmadditions.item;
 
+import com.swdteam.util.ParticleUtil;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.item.UseAction;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class FluteItem extends Item {
+	SoundEvent[] sounds;
 	public FluteItem(Properties properties) {
 		super(properties);
+		this.sounds = new SoundEvent[]{SoundEvents.NOTE_BLOCK_FLUTE, SoundEvents.NOTE_BLOCK_CHIME, SoundEvents.NOTE_BLOCK_BELL,
+			SoundEvents.NOTE_BLOCK_PLING, SoundEvents.NOTE_BLOCK_XYLOPHONE};
 	}
 
+	@Override
+	public @NotNull UseAction getUseAnimation(@NotNull ItemStack stack) {
+		return UseAction.BOW;
+	}
+
+	@Override
 	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-		if (!world.isClientSide) {
-			playFluteSound(world, player);
+		ItemStack stack = player.getItemInHand(hand);
+		if (!world.isClientSide()) {
+			SoundEvent sound = sounds[player.getRandom().nextInt(sounds.length)];
+			world.playSound(null, player.blockPosition(), sound, SoundCategory.PLAYERS, 1.0f, 1.0f);
 		}
-		return ActionResult.success(player.getItemInHand(hand));
+		world.addParticle(ParticleTypes.NOTE,  player.getRandomX(1), player.getY() + 0.7, player.getRandomZ(1),
+			255,0,0);
+
+		return ActionResult.pass(stack);
 	}
 
-	private void playFluteSound(World world, PlayerEntity player) {
-		world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_FLUTE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_CHIME, SoundCategory.PLAYERS, 1.0F, 1.2F);
-		world.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_BASS, SoundCategory.PLAYERS, 1.0F, 1.5F);
+	@Override
+	public int getUseDuration(ItemStack stack) {
+		return 7200;
 	}
 }
