@@ -32,7 +32,6 @@
 		"client.DalekEntityMixin",
 		"client.DMTileRenderRegistryMixin",
 		"client.ItemRenderingInitMixin",
-		"client.KerblamScreenMixin",
 		"client.MainMenuScreenMixin",
 		"client.ModelDalekBaseMixin",
 		"client.RenderBlockTardisMixin",

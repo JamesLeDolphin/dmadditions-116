@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.entity.DalekMutantEntity;
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.jdolphin.dmadditions.item.TwoDizItem;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
 import com.swdteam.common.entity.dalek.DalekEntity;
@@ -97,20 +96,6 @@ public class DMAEventHandlerGeneral {
 				DalekMutantEntity mutant = new DalekMutantEntity(world);
 				world.addFreshEntity(mutant);
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void sizeEvent(EntityEvent.Size event) {
-		Entity entity = event.getEntity();
-		EntitySize size = event.getNewSize();
-		if (entity instanceof LivingEntity) {
-			CompoundNBT tag = entity.getPersistentData();
-			float width = 1.0f;
-			if (tag.contains(TwoDizItem.ENTITY_WIDTH)) {
-				width = tag.getFloat(TwoDizItem.ENTITY_WIDTH);
-			}
-			event.setNewSize(new EntitySize(size.width * width, size.height, size.fixed));
 		}
 	}
 

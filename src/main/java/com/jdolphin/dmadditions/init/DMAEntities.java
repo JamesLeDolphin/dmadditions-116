@@ -104,7 +104,7 @@ public class DMAEntities {
 			.build(Helper.createAdditionsRL("flying_shark").toString()));
 
 	public static final RegistryObject<EntityType<ClockworkDroidEntity>> CLOCKWORK_DROID =
-		registerAdventEntity(10, "clockwork_droid", () ->
+		registerAdventEntity(6, "clockwork_droid", () ->
 			EntityType.Builder.<ClockworkDroidEntity>of(ClockworkDroidEntity::new, EntityClassification.MONSTER)
 				.sized(0.5f, 1.8f)
 				.build(Helper.createAdditionsRL("clockwork_droid").toString())
@@ -131,7 +131,7 @@ public class DMAEntities {
 		);
 
 	public static final RegistryObject<EntityType<IceWarriorEntity>> ICE_WARRIOR =
-		registerAdventEntity(9, "ice_warrior", () ->
+		registerAdventEntity(5, "ice_warrior", () ->
 			EntityType.Builder.<IceWarriorEntity>of(IceWarriorEntity::new, EntityClassification.MONSTER)
 				.sized(0.5f, 1.8f)
 				.build(Helper.createAdditionsRL("ice_warrior").toString()));

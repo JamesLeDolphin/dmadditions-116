@@ -24,6 +24,15 @@
 	"item.dmadditions.mondasian_spawner": "Mondasian Spawner",
 	"itemGroup.DMA_Roundel_Containers": "Roundel Containers",
 
+	"item.dmadditions.empty_child_spawner": "Empty Child Spawner",
+	"item.dmadditions.empty_villager_spawner": "Empty Villager Spawner",
+	"item.dmadditions.netherite_cyberman_spawner": "Netherite Cyberman Spawner",
+	"item.dmadditions.cyber_piglin_spawner": "Cyber Piglin Spawner",
+	"item.dmadditions.zygon_spawner": "Zygon Spawner",
+
+	"entity.dmadditions.cyber_piglin": "Cyber Piglin",
+	"entity.dmadditions.netherite_cyberman": "Netherite Cyberman",
+
 	"death.attack.sheared": "%1$s was sheared to death",
 	"subtitles.item.earthshock_gun.shoot": "Earthshock gun shoots",
 	"item.dmadditions.laser_charge": "Laser Charge",

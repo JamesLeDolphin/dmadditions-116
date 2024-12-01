@@ -41,8 +41,6 @@ public class DMAItems {
 	public static final RegistryObject<Item> SONIC_BLASTER = registerAdventItem(3, "sonic_blaster",
 		() -> new SonicBlasterItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT)));
 
-	public static final RegistryObject<Item> TWODIS = registerAdventItem(4, "twodis", () -> new TwoDizItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
 	public static final RegistryObject<Item> SONIC_SHADES = registerAdventItem(21, "sonic_shades", () -> new SonicShadesItem(EquipmentSlotType.HEAD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble",
@@ -278,9 +276,19 @@ public class DMAItems {
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
 		() -> new ShoppingCartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
-	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = registerAdventItem(1, "clockwork_droid_spawner",
+	public static RegistryObject<Item> CYBER_PIGLIN_SPAWNER = registerAdventItem(4, "cyber_piglin_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.CYBER_PIGLIN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> ZYGON_SPAWNER = registerAdventItem(1, "zygon_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.ZYGON, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	//public static RegistryObject<Item> TIMELORD_SPAWNER = registerAdventItem(9, "timelord_spawner",
+	//	() -> new DMASpawnerItem<>(DMAEntities., new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = registerAdventItem(6, "clockwork_droid_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.CLOCKWORK_DROID, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-	public static RegistryObject<Item> ICE_WARRIOR_SPAWNER = registerAdventItem(1, "ice_warrior_spawner",
+
+	public static RegistryObject<Item> ICE_WARRIOR_SPAWNER = registerAdventItem(5, "ice_warrior_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.ICE_WARRIOR, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
