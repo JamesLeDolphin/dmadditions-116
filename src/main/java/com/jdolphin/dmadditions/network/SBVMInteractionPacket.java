@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.network;
 
-import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.VortexManipulatorItem;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.DMSoundEvents;

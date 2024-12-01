@@ -1,7 +1,5 @@
 package com.jdolphin.dmadditions.commands;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMACommands;
 import com.jdolphin.dmadditions.tardismail.TardisMail;
@@ -14,7 +12,6 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.TardisData;
-
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.ItemArgument;
@@ -24,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
+
+import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class TardisMailCommand {
 	public static final SimpleCommandExceptionType ERROR_TARDIS_NOT_FOUND = new SimpleCommandExceptionType(

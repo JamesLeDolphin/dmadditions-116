@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.entity.ZygonEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.VillagerLevelPendantLayer;

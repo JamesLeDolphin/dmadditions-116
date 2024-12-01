@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.entity.cyber;
 
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
-import com.swdteam.common.entity.CybervillagerEntity;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.entity.dalek.DalekEntity;

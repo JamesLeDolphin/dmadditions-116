@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.model.entity.IceWarriorModel;
 import com.jdolphin.dmadditions.entity.IceWarriorEntity;
 import com.jdolphin.dmadditions.util.Helper;

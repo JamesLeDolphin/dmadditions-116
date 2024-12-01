@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import com.jdolphin.dmadditions.client.model.entity.BessieModel;
 import com.jdolphin.dmadditions.client.model.entity.DavrosChairModel;
 import com.jdolphin.dmadditions.entity.VehicleEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.item;
 
-import org.jetbrains.annotations.NotNull;
-
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBSonicBlasterInteractPacket;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -15,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class SonicBlasterItem extends Item {
 

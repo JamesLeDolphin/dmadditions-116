@@ -4,7 +4,6 @@ import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.entity.DalekMutantEntity;
-import com.jdolphin.dmadditions.init.DMACapabilities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.TwoDizItem;
 import com.jdolphin.dmadditions.util.Helper;

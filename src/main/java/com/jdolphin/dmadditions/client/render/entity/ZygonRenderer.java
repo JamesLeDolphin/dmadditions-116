@@ -1,23 +1,21 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import net.minecraft.client.renderer.entity.layers.HeadLayer;
-import org.jetbrains.annotations.NotNull;
-
 import com.jdolphin.dmadditions.client.model.entity.ZygonModel;
 import com.jdolphin.dmadditions.entity.ZygonEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.VillagerModel;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class ZygonRenderer extends MobRenderer<ZygonEntity, EntityModel<ZygonEntity>> {
 

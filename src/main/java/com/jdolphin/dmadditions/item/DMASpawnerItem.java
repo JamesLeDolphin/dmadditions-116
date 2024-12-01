@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.item;
 
-import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.common.entity.IEntityVariant;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import com.swdteam.common.entity.dalek.IDalek;

@@ -1,15 +1,7 @@
 package com.jdolphin.dmadditions.item;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import org.apache.logging.log4j.LogManager;
-import org.jetbrains.annotations.NotNull;
-
 import com.swdteam.common.item.ClothesItem;
 import com.swdteam.common.sonic.SonicCategory;
-
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.world.ClientWorld;
@@ -31,6 +23,12 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeMod;
+import org.apache.logging.log4j.LogManager;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class SonicShadesItem extends ClothesItem {
 

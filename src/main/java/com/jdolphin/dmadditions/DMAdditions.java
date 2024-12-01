@@ -1,23 +1,11 @@
 package com.jdolphin.dmadditions;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Supplier;
-
-import com.jdolphin.dmadditions.client.ClientForgeEvents;
-import com.jdolphin.dmadditions.entity.cyber.*;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.client.ClientDMBusEvents;
+import com.jdolphin.dmadditions.client.ClientForgeEvents;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
@@ -25,6 +13,7 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
+import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
@@ -72,6 +61,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;

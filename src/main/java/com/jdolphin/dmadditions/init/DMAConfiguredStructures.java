@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.util.Helper;
-
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;

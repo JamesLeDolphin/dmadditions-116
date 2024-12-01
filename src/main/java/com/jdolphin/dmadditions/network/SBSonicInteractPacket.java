@@ -1,19 +1,13 @@
 package com.jdolphin.dmadditions.network;
 
-import java.util.UUID;
-import java.util.function.Supplier;
-
-import net.minecraft.entity.player.PlayerEntity;
-import org.apache.logging.log4j.LogManager;
-
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.item.SonicShadesItem;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.sonic.SonicCategory;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -25,6 +19,10 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
+import org.apache.logging.log4j.LogManager;
+
+import java.util.UUID;
+import java.util.function.Supplier;
 
 public class SBSonicInteractPacket {
 	protected UUID uuid;

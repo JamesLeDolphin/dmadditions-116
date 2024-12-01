@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMASoundEvents;
-import com.mojang.brigadier.LiteralMessage;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -22,18 +21,14 @@ import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public class EmptyChildEntity extends MonsterEntity {
 
