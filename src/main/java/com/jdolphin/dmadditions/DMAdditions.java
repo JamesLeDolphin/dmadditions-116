@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 import com.jdolphin.dmadditions.client.ClientForgeEvents;
+import com.jdolphin.dmadditions.entity.cyber.*;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
@@ -24,10 +25,6 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
-import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
