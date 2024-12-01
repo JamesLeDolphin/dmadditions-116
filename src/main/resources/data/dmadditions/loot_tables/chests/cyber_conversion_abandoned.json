@@ -10,7 +10,7 @@
         {
           "type": "minecraft:item",
           "name": "dmadditions:torchwood_pistol",
-          "weight": 34,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -30,7 +30,7 @@
         {
           "type": "minecraft:item",
           "name": "dalekmod:steel_sword",
-          "weight": 34,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -41,27 +41,24 @@
         {
           "type": "minecraft:item",
           "name": "dalekmod:steel_battleaxe",
-          "weight": 43,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
+              "count": 1
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "dalekmod:golden_bullet",
-          "weight": 99,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 23
+                "max": 6
               }
             }
           ]
@@ -69,7 +66,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:string",
-          "weight": 10,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -83,12 +80,12 @@
         {
           "type": "minecraft:item",
           "name": "dmadditions:santa_hat",
-          "weight": 5
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:paper",
-          "weight": 15,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -102,7 +99,7 @@
         {
           "type": "minecraft:item",
           "name": "dalekmod:bullet_casing",
-          "weight": 8,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -116,7 +113,7 @@
         {
           "type": "minecraft:item",
           "name": "dalekmod:circuit",
-          "weight": 8,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -135,14 +132,20 @@
         {
           "type": "minecraft:item",
           "name": "dmadditions:green_candy_cane",
-          "weight": 12,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 4
-              }
+                "max": 3
+              },
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.5
+                }
+              ]
             }
           ]
         }

@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.client;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.client.data.Splashes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,22 +40,29 @@ public class SplashesMixin {
 				add("Soon™");
 				add("We do a little hacking");
 
-				add("JAMES DID NOTHING WRONG!!!");
 				add("James was here");
 
-				add("Torchwood is responsible for everything");
 				add("Don't trust Torchwood");
 
 				// spellchecker:ignore dodgily
 				add("Very dodgily I must add");
+
+				add("Stop typing everything I say");
 			}
 		};
 
-		if (AdventUnlock.isDecember()) {
+		if (TimedUnlock.isDecember()) {
 			splashes.add("DM Advent Calendar!?");
 		}
 
-		if (AdventUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && AdventUnlock.getDate() == 1) {
+		if (TimedUnlock.isHalloween()) {
+			splashes.add("Are YOU trick-or-treating!?");
+			splashes.add("Get yourself some sweets!");
+			splashes.add("Is that dalek wearing a pumpkin?");
+			splashes.add("Spoopy");
+		}
+
+		if (TimedUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && TimedUnlock.getDate() == 1) {
 			Random random = new Random();
 
 			if (random.nextBoolean()) {

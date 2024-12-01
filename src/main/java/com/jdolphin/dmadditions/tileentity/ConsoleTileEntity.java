@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.tileentity;
 
 import com.jdolphin.dmadditions.entity.control.TardisControl;
-import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -28,9 +27,6 @@ public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTile
 		super(tileEntityTypeIn);
 	}
 
-	public ConsoleTileEntity() {
-		this(DMABlockEntities.TILE_CONSOLE.get());
-	}
 
 	@Override
 	public void onLoad() {

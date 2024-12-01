@@ -7,17 +7,21 @@ import com.swdteam.common.block.tardis.DimensionSelectorPanelBlock;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.common.init.DMSoundEvents;
 import com.swdteam.common.init.DMTardis;
+import com.swdteam.common.item.DimensionDataCard;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisFlightData;
 import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.common.tardis.data.TardisLocationRegistry;
 import com.swdteam.common.tileentity.tardis.DimensionSelectorTileEntity;
 import com.swdteam.util.ChatUtil;
+import com.swdteam.util.ChatUtil.MessageType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.tileentity.TileEntity;
@@ -115,6 +119,19 @@ public class BetterDimensionSelector extends DimensionSelectorPanelBlock impleme
 			if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
 				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
 				if (data != null) {
+					if (player.getItemInHand(handIn).getItem() instanceof DimensionDataCard) {
+						ItemStack stack = player.getItemInHand(handIn);
+						CompoundNBT nbt = stack.getOrCreateTag();
+						if (nbt.contains("dim_id")) {
+							data.unlockDimension(nbt.getString("dim_id"));
+							ChatUtil.sendCompletedMsg(player, "Dimension Unlocked!", MessageType.STATUS_BAR);
+							if (!player.isCreative()) {
+								stack.shrink(1);
+								player.setItemInHand(handIn, stack);
+							}
+						}
+					}
+
 					switch (buttonClicked) {
 						case BTN_LEFT:
 							if (tet.getIndex() - 1 < 0) {

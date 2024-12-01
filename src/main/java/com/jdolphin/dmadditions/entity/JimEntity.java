@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.LaserEntity;
@@ -62,7 +62,6 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob {
 		}
 	};
 
-
 	public JimEntity(EntityType<? extends AnimalEntity> type, World world) {
 		super(type, world);
 
@@ -116,7 +115,9 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob {
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
 		super.populateDefaultEquipmentSlots(difficulty);
 
-		if (AdventUnlock.isDecember() && random.nextBoolean()) {
+		TimedUnlock.handlePumpkinHead(this);
+
+		if(TimedUnlock.isDecember() && random.nextBoolean()){
 			equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
 		}
 
@@ -173,7 +174,8 @@ public class JimEntity extends AnimalEntity implements IRangedAttackMob {
 			d0 = target.getX() - this.getX();
 			d1 = target.getY(0.3333333333333333) - this.getY() - 0.75;
 			d2 = target.getZ() - this.getZ();
-			LaserEntity laser = new LaserEntity(this.level, this, 0.2F, (float) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
+			LaserEntity laser = new LaserEntity(this.level, this, 0.2F,
+					(float) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
 			laser.setDamageSource(new EntityDamageSource("dalekgun", this));
 			laser.setLaserType(DMProjectiles.BULLET);
 			laser.shoot(d0, d1, d2, 2.5F, 0.0F);

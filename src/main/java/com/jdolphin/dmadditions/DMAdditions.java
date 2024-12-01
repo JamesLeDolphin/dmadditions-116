@@ -24,7 +24,10 @@ import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.cyber.*;
+import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
+import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
@@ -81,6 +84,15 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
 
 
 @Mod(DMAdditions.MODID)
@@ -131,10 +143,11 @@ public class DMAdditions {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 
-		MinecraftForge.EVENT_BUS.register(this);
-		MinecraftForge.EVENT_BUS.register(DMAEventHandlerGeneral.class);
-		MinecraftForge.EVENT_BUS.register(RegenEvents.class);
 		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
+
+		vengaBus.register(this);
+		vengaBus.register(DMAEventHandlerGeneral.class);
+		vengaBus.register(RegenEvents.class);
 		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
 		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) DMAFluids.FLUIDS.register(bus);
@@ -261,9 +274,6 @@ public class DMAdditions {
 				world.dimension().equals(World.OVERWORLD)) {
 				return;
 			}
-			if (world.isFlat()) {
-				return;
-			}
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CYBER_UNDERGROUND.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CYBER_UNDERGROUND.get()));
 
@@ -326,6 +336,10 @@ public class DMAdditions {
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
+		}
+
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
@@ -337,6 +351,11 @@ public class DMAdditions {
 				.squared().decorated(Features.Placements.HEIGHTMAP)
 				.decorated(Placement.COUNT_EXTRA.configured(
 					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));
+
+			List<Supplier<ConfiguredFeature<?, ?>>> oreBase =
+				event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES);
+			oreBase.add(() -> DMAConfiguredStructures.SONIC_ORE
+				.squared().decorated(Features.Placements.HEIGHTMAP));
 		}
 	}
 

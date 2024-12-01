@@ -1,13 +1,10 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
-import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
-import com.jdolphin.dmadditions.block.EngineBlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.christmas.*;
 import com.jdolphin.dmadditions.block.tardis.*;
-import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
 import com.swdteam.common.block.StatueBlock;
@@ -44,28 +41,32 @@ public class DMABlocks {
 			.instabreak().noOcclusion().sound(SoundType.STONE)),
 		"copper_flight_lever", DMTabs.DM_TARDIS);
 
+	public static final RegistryObject<Block> STONE_SONIC_CRYSTAL_ORE = registerBlockAndItem("stone_sonic_crystal_ore",
+		() -> new BetterOreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE)
+			.harvestTool(ToolType.PICKAXE).harvestLevel(2)
+			.sound(SoundType.STONE)
+			.requiresCorrectToolForDrops()
+			.strength(6.0F, 6.0F), 1, 5),
+		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
+
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
-		if (!AdventUnlock.unlockAt(day))
+		if (!TimedUnlock.advent(day))
 			return null;
 
 		return registerBlock(supplier, name);
 	}
 
 	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
-		if (!AdventUnlock.unlockAt(day))
+		if (!TimedUnlock.advent(day))
 			return null;
 
 		return registerBlock(supplier, name, tab);
 	}
 
-
 	public static RegistryObject<Block> BLUE_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "blue_bauble");
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
-
-	public static RegistryObject<Block> CONSOLE = registerBlockAndItem("console",
-		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
 			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
@@ -153,7 +154,7 @@ public class DMABlocks {
 			new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
 		"titanic_snowglobe", ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> SPECIMEN_JAR = registerBlock(() -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> SPECIMEN_JAR = registerBlock(() -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar");
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);

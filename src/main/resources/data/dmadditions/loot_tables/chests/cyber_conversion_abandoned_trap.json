@@ -1,4 +1,3 @@
-
 {
   "type": "minecraft:chest",
   "pools": [
@@ -14,7 +13,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dalekmod:circuit",
+          "name": "dalekmod:golden_bullet",
           "weight": 6,
           "functions": [
             {
@@ -28,22 +27,22 @@
         },
         {
           "type": "minecraft:item",
-          "name": "dalekmod:banana_peel",
-          "weight": 6,
+          "name": "minecraft:arrow",
+          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 20
+                "max": 9
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:spider_eye",
-          "weight": 8,
+          "name": "minecraft:spectral_arrow",
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -56,8 +55,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:string",
-          "weight": 8,
+          "name": "minecraft:tipped_arrow",
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -65,20 +64,22 @@
                 "min": 1,
                 "max": 5
               }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:bowl",
-          "weight": 6,
-          "functions": [
+            },
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
+              "function": "minecraft:set_stew_effect",
+              "effects": [
+                {
+                  "type": "minecraft:instant_damage",
+                  "duration": 1
+                },
+                {
+                  "type": "minecraft:poison",
+                  "duration": {
+                    "min": 5,
+                    "max": 15
+                  }
+                }
+              ]
             }
           ]
         }

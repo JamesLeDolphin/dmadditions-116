@@ -25,10 +25,10 @@ import java.util.List;
 
 public class MondasCyberBase extends Structure<NoFeatureConfig> {
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-		new MobSpawnInfo.Spawners(DMEntities.CYBERMAN_ENTITY.get(), 100, 4, 9),
-		new MobSpawnInfo.Spawners(DMAEntities.MONDASIAN.get(), 100, 4, 9),
-		new MobSpawnInfo.Spawners(DMAEntities.MONDAS_CYBERMAN.get(), 100, 4, 9),
-		new MobSpawnInfo.Spawners(DMEntities.CYBERMANVILLAGER_ENTITY.get(), 10, 2, 3)
+		new MobSpawnInfo.Spawners(DMEntities.CYBERMAN_ENTITY.get(), 6, 4, 9),
+		new MobSpawnInfo.Spawners(DMAEntities.MONDASIAN.get(), 2, 4, 9),
+		new MobSpawnInfo.Spawners(DMAEntities.MONDAS_CYBERMAN.get(), 4, 4, 9),
+		new MobSpawnInfo.Spawners(DMEntities.CYBERMANVILLAGER_ENTITY.get(), 3, 2, 3)
 	);
 	private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of();
 

@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMBiomes;
@@ -48,7 +48,7 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
 		}
 
-		if (DMAEntities.CHRISTMAS_CREEPER != null && AdventUnlock.isDecember()) {
+		if(DMAEntities.CHRISTMAS_CREEPER != null && TimedUnlock.isDecember()) {
 			EntitySpawnPlacementRegistry.register(DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
 			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
 		}

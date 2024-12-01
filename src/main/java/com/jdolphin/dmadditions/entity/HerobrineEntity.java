@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.entity;
 
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
 import com.swdteam.util.ChatUtil.MessageType;
@@ -26,6 +27,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -457,5 +460,19 @@ public class HerobrineEntity extends MonsterEntity {
 		}
 
 		return true;
+	}
+
+	@Override
+	protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+		super.populateDefaultEquipmentSlots(difficulty);
+
+		TimedUnlock.handlePumpkinHead(this);
+	}
+
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
+			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
+		this.populateDefaultEquipmentSlots(difficulty);
+		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
 	}
 }

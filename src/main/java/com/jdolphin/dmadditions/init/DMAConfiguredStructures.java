@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.util.Helper;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -8,6 +9,7 @@ import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.template.RandomBlockMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
 
@@ -25,6 +27,10 @@ public class DMAConfiguredStructures {
 				new BlobFoliagePlacer(FeatureSpread.fixed(1), FeatureSpread.fixed(0), 1),
 				new ForkyTrunkPlacer(4, 2, 3),
 				new TwoLayerFeature(1, 1, 1))).heightmap(Heightmap.Type.WORLD_SURFACE_WG).ignoreVines().build()));
+
+	public static final ConfiguredFeature<OreFeatureConfig, ?> SONIC_ORE =
+		OreFeature.ORE.configured(new OreFeatureConfig(new RandomBlockMatchRuleTest(Blocks.STONE, 0.25f),
+			DMABlocks.STONE_SONIC_CRYSTAL_ORE.get().defaultBlockState(), 2));
 
 	public static void registerConfiguredStructures() {
 		Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;

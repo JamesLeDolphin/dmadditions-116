@@ -21,10 +21,16 @@ public class DMATags {
 	}
 
 	public static class Items {
-		public static final Tags.IOptionalNamedTag<Item> DATA_MODULES = createTag("data_modules");
-		public static final Tags.IOptionalNamedTag<Item> TARDIS_KEYS = createTag("tardis_keys");
+
+		public static final Tags.IOptionalNamedTag<Item> DATA_MODULES = createDMTag("data_modules");
+		public static final Tags.IOptionalNamedTag<Item> SPECIMEN_JAR_ACCEPTS = createTag("specimen_jar_accepts");
+		public static final Tags.IOptionalNamedTag<Item> TARDIS_KEYS = createDMTag("tardis_keys");
 
 		private static Tags.IOptionalNamedTag<Item> createTag(String name) {
+			return ItemTags.createOptional(Helper.createAdditionsRL(name));
+		}
+
+		private static Tags.IOptionalNamedTag<Item> createDMTag(String name) {
 			return ItemTags.createOptional(Helper.createDMRL(name));
 		}
 	}

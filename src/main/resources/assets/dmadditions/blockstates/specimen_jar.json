@@ -1,39 +1,34 @@
 {
-  "multipart":[
-    {
-      "apply": {"model": "dmadditions:block/specimen_jar"}
+  "variants": {
+    "facing=east,has_specimen=false": {
+      "model": "dmadditions:block/specimen_jar",
+      "y": 90
     },
-
-    {
-      "when": {"specimen": 1, "facing": "north"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 0}
+    "facing=north,has_specimen=false": {
+      "model": "dmadditions:block/specimen_jar"
     },
-    {
-      "when": {"specimen": 1, "facing": "east"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 90}
+    "facing=south,has_specimen=false": {
+      "model": "dmadditions:block/specimen_jar",
+      "y": 180
     },
-    {
-      "when": {"specimen": 1, "facing": "south"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 180}
-    },    {
-      "when": {"specimen": 1, "facing": "west"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 270}
+    "facing=west,has_specimen=false": {
+      "model": "dmadditions:block/specimen_jar",
+      "y": 270
     },
-
-    {
-      "when": {"specimen": 2, "facing": "north"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 0}
+    "facing=east,has_specimen=true": {
+      "model": "dmadditions:block/specimen_jar_filled",
+      "y": 90
     },
-    {
-      "when": {"specimen": 2, "facing": "east"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 90}
+    "facing=north,has_specimen=true": {
+      "model": "dmadditions:block/specimen_jar_filled"
     },
-    {
-      "when": {"specimen": 2, "facing": "south"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 180}
-    },    {
-      "when": {"specimen": 2, "facing": "west"},
-      "apply": {"model": "dmadditions:block/specimen/specimen_kantrofarri", "y": 270}
+    "facing=south,has_specimen=true": {
+      "model": "dmadditions:block/specimen_jar_filled",
+      "y": 180
+    },
+    "facing=west,has_specimen=true": {
+      "model": "dmadditions:block/specimen_jar_filled",
+      "y": 270
     }
-  ]
+  }
 }

@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
 import com.jdolphin.dmadditions.advent.AdventTardis;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.common.init.DMTardisRegistry;
 import com.swdteam.common.tardis.TardisInterior;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -32,7 +32,7 @@ public class DMTardisRegistryMixin {
 
 				logger.debug("Interior {} unlocks at {}", key, adventTardis.date);
 
-				return !AdventUnlock.unlockAt(adventTardis.date);
+				return !TimedUnlock.advent(adventTardis.date);
 			});
 
 			cir.setReturnValue(list);

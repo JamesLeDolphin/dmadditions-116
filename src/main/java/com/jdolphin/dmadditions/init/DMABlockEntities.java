@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.tileentity.*;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -17,22 +17,19 @@ public class DMABlockEntities {
 
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 
-	protected static <T extends TileEntity> RegistryObject<TileEntityType<T>> registerAdventTileEntity(int day, String name, Supplier<TileEntityType<T>> supplier) {
-		if (!AdventUnlock.unlockAt(day)) return null;
+	protected static <T extends TileEntity> RegistryObject<TileEntityType<T>> registerAdventTileEntity(int day, String name, Supplier<TileEntityType<T>> supplier){
+		if (!TimedUnlock.advent(day)) return null;
 		return TILE_ENTITY_TYPES.register(name, supplier);
 	}
 
 	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
-		() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
+			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
 	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
 		TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
 
 	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR = TILE_ENTITY_TYPES.register("specimen_jar", () ->
 		TileEntityType.Builder.of(SpecimenJarTileEntity::new, DMABlocks.SPECIMEN_JAR.get()).build(null));
-
-	public static final RegistryObject<TileEntityType<ConsoleTileEntity>> TILE_CONSOLE = TILE_ENTITY_TYPES.register("console", () ->
-		TileEntityType.Builder.of(ConsoleTileEntity::new, DMABlocks.CONSOLE.get()).build(null));
 
 
 	public static final RegistryObject<TileEntityType<RoundelContainerTileEntity>> TILE_ROUNDEL_CONTAINER = TILE_ENTITY_TYPES.register("roundel_container", () ->

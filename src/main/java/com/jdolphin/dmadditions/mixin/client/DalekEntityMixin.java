@@ -1,37 +1,70 @@
 package com.jdolphin.dmadditions.mixin.client;
 
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
 import com.swdteam.common.entity.dalek.DalekEntity;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
+
 
 @Mixin(DalekEntity.class)
-public abstract class DalekEntityMixin extends LivingEntity implements IDalekEntityMixin {
+public abstract class DalekEntityMixin extends MobEntity implements IDalekEntityMixin {
+	protected DalekEntityMixin(EntityType<? extends MobEntity> p_i48576_1_, World p_i48576_2_) {
+		super(p_i48576_1_, p_i48576_2_);
+	}
+
 	private boolean party;
 	private BlockPos jukebox;
 
-	protected DalekEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
-		super(entityType, world);
+
+	@Override
+	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
+			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
+
+		if (TimedUnlock.isHalloween() && random.nextBoolean()) {
+			Block block = Blocks.CARVED_PUMPKIN;
+			float f = random.nextFloat();
+
+			if (f < 0.1) {
+				block = Blocks.JACK_O_LANTERN;
+			} else if (f < 0.7 && CARVED_DALEK_PUMPKIN != null) {
+				block = CARVED_DALEK_PUMPKIN.get();
+			}
+			this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(block));
+			this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
+		}
+
+		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
 	}
 
 	@Inject(method = "aiStep", at = @At("TAIL"))
 	public void aiStep(CallbackInfo ci) {
-		if (!this.level.isClientSide) return;
+		if (this.level.isClientSide) {
 
-		if (this.jukebox == null
-			|| !this.jukebox.closerThan(this.position(), 5.0D)
-			|| !this.level.getBlockState(this.jukebox).is(Blocks.JUKEBOX)) {
+			if (this.jukebox == null
+				|| !this.jukebox.closerThan(this.position(), 5.0D)
+				|| !this.level.getBlockState(this.jukebox).is(Blocks.JUKEBOX)) {
 
-			this.party = false;
-			this.jukebox = null;
+				this.party = false;
+				this.jukebox = null;
+			}
 		}
 	}
 

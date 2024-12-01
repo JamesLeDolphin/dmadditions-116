@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
 import com.jdolphin.dmadditions.advent.AdventTardis;
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.common.tardis.Data;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +30,7 @@ public abstract class DataMixin {
 
 			logger.debug("Tardis {} unlocks at advent day {}", key, adventTardis.date);
 
-			if (!AdventUnlock.unlockAt(adventTardis.date)) {
+			if (!TimedUnlock.advent(adventTardis.date)) {
 				cir.setReturnValue(false);
 				cir.cancel();
 			}

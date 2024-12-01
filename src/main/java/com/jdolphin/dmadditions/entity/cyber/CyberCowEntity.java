@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.entity.cyber;
 
 import com.jdolphin.dmadditions.init.DMADamageSources;
 import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.CybermatEntity;
 import com.swdteam.common.init.DMEntities;
@@ -19,6 +20,10 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -50,6 +55,11 @@ public class CyberCowEntity extends CowEntity {
 	public static AttributeModifierMap.@NotNull MutableAttribute createAttributes() {
 		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.18);
 	}
+
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return DMAItems.CYBERCOW_SPAWNER.get().getDefaultInstance();
+	}
+
 
 	public ActionResultType mobInteract(PlayerEntity entity, Hand hand) {
 		ItemStack itemInHand = entity.getItemInHand(hand);
@@ -99,9 +109,8 @@ public class CyberCowEntity extends CowEntity {
 			if (this.random.nextInt(10) == 0) {
 				world.addFreshEntity(new CybermatEntity(DMEntities.CYBERMAT_ENTITY.get(), world));
 			}
-			return true;
 		}
-		return false;
+		return super.hurt(source, amount);
 	}
 
 	public boolean canFallInLove() {
