@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.entity.ai.goal.RangedLasergunAttackGoal;
 import com.jdolphin.dmadditions.entity.goal.RangedLasergunAttackGoal;
 import com.swdteam.common.entity.LaserEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;

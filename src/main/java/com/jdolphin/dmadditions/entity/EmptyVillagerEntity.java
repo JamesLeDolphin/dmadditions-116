@@ -1,7 +1,5 @@
 package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
-import com.jdolphin.dmadditions.init.DMAItems;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
 import com.swdteam.common.init.DMItems;

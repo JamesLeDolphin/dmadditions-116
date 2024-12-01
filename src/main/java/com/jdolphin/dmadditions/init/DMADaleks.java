@@ -48,7 +48,7 @@ public class DMADaleks {
 		SESAME_STREET.addChild("sesame_street_dalek_yellow");
 		SESAME_STREET.addChild("sesame_street_dalek_emperor");
 
-		if (AdventUnlock.unlockAt(15)) {
+		if (TimedUnlock.advent(15)) {
 			SUPREME = addDalek(DalekType.TIME_WAR, new CustomDalekBase("Supreme Dalek"), "red_supreme_dalek");
 			SUPREME.addChild("blue_supreme_dalek");
 		}

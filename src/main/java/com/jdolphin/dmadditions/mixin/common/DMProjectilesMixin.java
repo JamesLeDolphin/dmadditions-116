@@ -10,6 +10,7 @@ import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -238,7 +239,7 @@ public class DMProjectilesMixin {
 						float randomX = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff);
 						float randomY = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff);
 						float randomZ = laser.level.random.nextFloat() * (float) (laser.level.random.nextBoolean() ? -1 : 1) / (ff);
-						laser.level.addParticle((IParticleData) DMParticleTypes.FIRE_BALL.get(), laser.getX() + (double) randomX, laser.getY() + (double) randomY - 0.10000000149011612, laser.getZ() + (double) randomZ, 0.0, 0.0, 0.0);
+						laser.level.addParticle(DMParticleTypes.FIRE_BALL.get(), laser.getX() + (double) randomX, laser.getY() + (double) randomY - 0.10000000149011612, laser.getZ() + (double) randomZ, 0.0, 0.0, 0.0);
 					}
 				}
 

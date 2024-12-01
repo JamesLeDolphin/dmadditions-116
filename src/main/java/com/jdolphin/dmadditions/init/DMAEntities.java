@@ -157,7 +157,7 @@ public class DMAEntities {
 	@Nullable
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name,  EntityType.IFactory<T> entityClass,
 																						 EntityClassification classification, float width, float height) {
-		if (AdventUnlock.unlockAt(date)) {
+		if (TimedUnlock.advent(date)) {
 			return registerEntity(name, entityClass, classification, width, height);
 		}
 		else return null;
@@ -165,7 +165,7 @@ public class DMAEntities {
 
 	@Nullable
 	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier) {
-		if (AdventUnlock.unlockAt(date)) {
+		if (TimedUnlock.advent(date)) {
 			return ENTITY_TYPES.register(name, supplier);
 		}
 		return null;

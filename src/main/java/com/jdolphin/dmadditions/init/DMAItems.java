@@ -30,7 +30,7 @@ import java.util.function.Supplier;
 public class DMAItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DMAdditions.MODID);
 
-	protected static RegistryObject<Item> addAdventItem(int day, String name, Supplier<Item> supplier) {
+	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
 		if (!TimedUnlock.advent(day)) return null;
 
 		return ITEMS.register(name, supplier);
@@ -55,7 +55,7 @@ public class DMAItems {
 		() -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
 	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker",
-		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER));
+		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> VORTEX_MANIPULATOR = registerAdventItem(1, "vortex_manipulator",
 		() -> new VortexManipulatorItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));

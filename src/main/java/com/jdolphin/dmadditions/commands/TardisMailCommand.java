@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.commands;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
-import com.jdolphin.dmadditions.advent.AdventUnlock;
+import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMACommands;
 import com.jdolphin.dmadditions.tardismail.TardisMail;
 import com.mojang.brigadier.CommandDispatcher;
@@ -31,7 +31,7 @@ public class TardisMailCommand {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		LiteralArgumentBuilder<CommandSource> mail = Commands.literal("tardis-mail")
-				.requires(source -> AdventUnlock.unlockAt(19))
+				.requires(source -> TimedUnlock.advent(19))
 				.then(Commands.literal("spawn")
 						.requires(source -> source.hasPermission(2))
 						.then(Commands.argument("id", IntegerArgumentType.integer())
