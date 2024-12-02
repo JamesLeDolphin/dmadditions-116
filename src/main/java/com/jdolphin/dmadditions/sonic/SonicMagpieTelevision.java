@@ -2,7 +2,8 @@ package com.jdolphin.dmadditions.sonic;
 
 import com.jdolphin.dmadditions.block.christmas.MagpieTelevisionBlock;
 import com.swdteam.common.init.DMSonicRegistry;
-import com.swdteam.common.sonic.SonicCategory;
+import com.swdteam.common.sonic.category.ISonicCategory;
+import com.swdteam.common.sonic.category.SonicCategories;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -36,7 +37,7 @@ public class SonicMagpieTelevision implements DMSonicRegistry.ISonicInteraction 
 	}
 
 	@Override
-	public SonicCategory getCategory() {
-		return SonicCategory.REDSTONE;
+	public ISonicCategory getCategory() {
+		return SonicCategories.REDSTONE;
 	}
 }

@@ -6,6 +6,7 @@ import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.item.*;
+import com.jdolphin.dmadditions.item.SonicShadesItem;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.*;
 import com.swdteam.common.item.*;
@@ -76,27 +77,6 @@ public class DMAItems {
 
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
-
-	public static RegistryObject<Item> BLUE_CANDY_CANE = ITEMS.register("blue_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-
-	public static RegistryObject<Item> RED_CANDY_CANE = ITEMS.register("red_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-
-	public static RegistryObject<Item> GREEN_CANDY_CANE = ITEMS.register("green_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-
-	public static RegistryObject<Item> ORANGE_CANDY_CANE = ITEMS.register("orange_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-
-	public static RegistryObject<Item> PURPLE_CANDY_CANE = ITEMS.register("purple_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-
-	public static RegistryObject<Item> PINK_CANDY_CANE = ITEMS.register("pink_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
-
-	public static RegistryObject<Item> YELLOW_CANDY_CANE = ITEMS.register("yellow_candy_cane",
-		() -> new FoodItem((new Item.Properties()).food(DMAFoods.CANDY_CANE).tab(ItemGroup.TAB_FOOD)));
 
 	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = registerAdventItem(11, "netherite_cyberman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.NETHERITE_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));

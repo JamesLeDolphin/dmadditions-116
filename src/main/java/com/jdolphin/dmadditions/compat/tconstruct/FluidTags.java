@@ -24,26 +24,26 @@ public class FluidTags extends FluidTagsProvider {
 
 	@Override
 	public void addTags() {
-		tagLocal(DMAFluids.molten_dalekanium);
-		tagLocal(DMAFluids.molten_metalert);
-		tagAll(DMAFluids.molten_steel);
-		tagLocal(DMAFluids.molten_stainless_steel);
-		tagLocal(DMAFluids.molten_silicon);
-		this.tag(DMATags.Fluids.METALERT).addTag(DMAFluids.molten_metalert.getLocalTag());
-		this.tag(DMATags.Fluids.DALEKANIUM).addTag(DMAFluids.molten_dalekanium.getLocalTag());
-		this.tag(DMATags.Fluids.SILICON).addTag(DMAFluids.molten_silicon.getLocalTag());
-		this.tag(DMATags.Fluids.STAINLESS_STEEL).addTag(DMAFluids.molten_stainless_steel.getLocalTag());
-		this.tag(TinkerTags.Fluids.CHEAP_METAL_SPILLING).addTag(DMAFluids.molten_steel.getForgeTag()).addTag(DMAFluids.molten_stainless_steel.getLocalTag())
-			.addTag(DMAFluids.molten_silicon.getLocalTag());
-		this.tag(TinkerTags.Fluids.AVERAGE_METAL_SPILLING).addTag(DMAFluids.molten_dalekanium.getLocalTag());
-		this.tag(TinkerTags.Fluids.EXPENSIVE_METAL_SPILLING).addTag(DMAFluids.molten_metalert.getLocalTag());
-		this.tag(TinkerTags.Fluids.METAL_LIKE).addTag(DMAFluids.molten_silicon.getLocalTag()).addTag(DMAFluids.molten_metalert.getLocalTag()).addTag(DMAFluids.molten_dalekanium.getLocalTag())
-			.addTag(DMAFluids.molten_steel.getForgeTag()).addTag(DMAFluids.molten_stainless_steel.getLocalTag());
+		tagLocal(DMAFluids.MOLTEN_DALEKANIUM);
+		tagLocal(DMAFluids.MOLTEN_METALERT);
+		tagAll(DMAFluids.MOLTEN_STEEL);
+		tagLocal(DMAFluids.MOLTEN_STAINLESS_STEEL);
+		tagLocal(DMAFluids.MOLTEN_SILICON);
+		this.tag(DMATags.Fluids.METALERT).addTag(DMAFluids.MOLTEN_METALERT.getLocalTag());
+		this.tag(DMATags.Fluids.DALEKANIUM).addTag(DMAFluids.MOLTEN_DALEKANIUM.getLocalTag());
+		this.tag(DMATags.Fluids.SILICON).addTag(DMAFluids.MOLTEN_SILICON.getLocalTag());
+		this.tag(DMATags.Fluids.STAINLESS_STEEL).addTag(DMAFluids.MOLTEN_STAINLESS_STEEL.getLocalTag());
+		this.tag(TinkerTags.Fluids.CHEAP_METAL_SPILLING).addTag(DMAFluids.MOLTEN_STEEL.getForgeTag()).addTag(DMAFluids.MOLTEN_STAINLESS_STEEL.getLocalTag())
+			.addTag(DMAFluids.MOLTEN_SILICON.getLocalTag());
+		this.tag(TinkerTags.Fluids.AVERAGE_METAL_SPILLING).addTag(DMAFluids.MOLTEN_DALEKANIUM.getLocalTag());
+		this.tag(TinkerTags.Fluids.EXPENSIVE_METAL_SPILLING).addTag(DMAFluids.MOLTEN_METALERT.getLocalTag());
+		this.tag(TinkerTags.Fluids.METAL_LIKE).addTag(DMAFluids.MOLTEN_SILICON.getLocalTag()).addTag(DMAFluids.MOLTEN_METALERT.getLocalTag()).addTag(DMAFluids.MOLTEN_DALEKANIUM.getLocalTag())
+			.addTag(DMAFluids.MOLTEN_STEEL.getForgeTag()).addTag(DMAFluids.MOLTEN_STAINLESS_STEEL.getLocalTag());
 	}
 
 
 	private void tagLocal(FluidObject<?> fluid) {
-		this.tag(fluid.getLocalTag()).add(new Fluid[]{fluid.getStill(), fluid.getFlowing()});
+		this.tag(fluid.getLocalTag()).add(fluid.getStill(), fluid.getFlowing());
 	}
 
 	private void tagAll(FluidObject<?> fluid) {

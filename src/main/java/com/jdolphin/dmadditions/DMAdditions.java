@@ -22,7 +22,9 @@ import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
+import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.IRust;
+import com.swdteam.common.init.DMItems;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
 import net.minecraft.block.Block;
@@ -281,11 +283,11 @@ public class DMAdditions {
 		MinecraftForge.EVENT_BUS.register(ClientDMBusEvents.class);
 		DMATileRenderRegistry.init();
 		if (hasTC()) {
-			TinkersRenderType.setTranslucent(DMAFluids.molten_dalekanium);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_steel);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_stainless_steel);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_metalert);
-			TinkersRenderType.setTranslucent(DMAFluids.molten_silicon);
+			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_DALEKANIUM);
+			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_STEEL);
+			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_STAINLESS_STEEL);
+			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_METALERT);
+			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_SILICON);
 		}
 
 		ClientRegistry.registerKeyBinding(ClientForgeEvents.SONIC_SHADE_INTERACTION);
@@ -394,6 +396,15 @@ public class DMAdditions {
 					.forEach(item -> itemMapping.remap(item.get()));
 			}
 		}
+		for (RegistryEvent.MissingMappings.Mapping<Item> itemMapping : event.getMappings("dmadditions")) {
+			ResourceLocation regName = itemMapping.key;
+			if (regName != null) {
+				String path = regName.getPath();
+				RegistryHandler.ITEMS.getEntries().stream()
+					.filter(thing -> thing.getId().getPath().equals(path))
+					.forEach(item -> itemMapping.remap(item.get()));
+			}
+		}
 	}
 
 	@SubscribeEvent
@@ -416,6 +427,15 @@ public class DMAdditions {
 			if (regName != null) {
 				String path = regName.getPath();
 				DMABlocks.BLOCKS.getEntries().stream()
+					.filter(thing -> thing.getId().getPath().equals(path))
+					.forEach(block -> blockMapping.remap(block.get()));
+			}
+		}
+		for (RegistryEvent.MissingMappings.Mapping<Block> blockMapping : event.getMappings("dmadditions")) {
+			ResourceLocation regName = blockMapping.key;
+			if (regName != null) {
+				String path = regName.getPath();
+				RegistryHandler.BLOCKS.getEntries().stream()
 					.filter(thing -> thing.getId().getPath().equals(path))
 					.forEach(block -> blockMapping.remap(block.get()));
 			}

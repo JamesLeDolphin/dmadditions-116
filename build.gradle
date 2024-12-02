@@ -95,7 +95,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //Dalek Mod
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5334493")
+    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5954895")
 
     //Immersive portals
     compileOnly fg.deobf("curse.maven:immersiveportals-355440:3562072")
@@ -117,9 +117,6 @@ dependencies {
 
     //JEI
     runtimeOnly fg.deobf("curse.maven:jei-238222:4371666")
-
-    //JourneyMap
-    runtimeOnly fg.deobf("curse.maven:journeymap-32274:5157944")
 
     //Shut up experimental settings
     runtimeOnly fg.deobf("curse.maven:shutup-experimental-settings-407174:3188120")

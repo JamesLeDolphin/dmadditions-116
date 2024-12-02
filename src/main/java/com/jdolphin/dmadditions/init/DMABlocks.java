@@ -95,34 +95,6 @@ public class DMABlocks {
 		() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
 
-	public static RegistryObject<Block> BLUE_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "blue_candy_cane_block", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> GREEN_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "green_candy_cane_block", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> ORANGE_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "orange_candy_cane_block", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> PINK_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "pink_candy_cane_block", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> PURPLE_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "purple_candy_cane_block", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> RED_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "red_candy_cane_block", DMTabs.DM_TARDIS);
-
-	public static RegistryObject<Block> YELLOW_CANDY_CANE_BLOCK = registerBlock(() ->
-		new CandyCaneBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GRAY).strength(6.25F, 5.75F).requiresCorrectToolForDrops()
-			.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), "yellow_candy_cane_block", DMTabs.DM_TARDIS);
-
 	public static RegistryObject<Block> REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
 		.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
 

@@ -1,7 +1,8 @@
 package com.jdolphin.dmadditions.item;
 
 import com.swdteam.common.item.ClothesItem;
-import com.swdteam.common.sonic.SonicCategory;
+import com.swdteam.common.sonic.category.ISonicCategory;
+import com.swdteam.common.sonic.category.SonicCategories;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.world.ClientWorld;
@@ -62,7 +63,7 @@ public class SonicShadesItem extends ClothesItem {
 		if (!compound.contains("perms")) {
 			list = new ListNBT();
 			tag = new CompoundNBT();
-			tag.putString("perm", SonicCategory.REDSTONE.perm);
+			tag.putString("perm", SonicCategories.REDSTONE.getPerm());
 			list.add(tag);
 			compound.put("perms", list);
 		}
@@ -95,22 +96,21 @@ public class SonicShadesItem extends ClothesItem {
 
 		list.add((new StringTextComponent("Abilities")).withStyle(TextFormatting.GOLD).withStyle(TextFormatting.BOLD));
 
-		for (int i = 0; i < SonicCategory.values().length; ++i) {
-			SonicCategory cat = SonicCategory.values()[i];
-			if (!SonicCategory.canExecute(stack, cat) && cat.xpRequired > 0) {
-				list.add(cat.unlockName.withStyle(TextFormatting.RED));
+		for (int i = 0; i < SonicCategories.getCategories().size(); ++i) {
+			ISonicCategory cat = SonicCategories.getCategories().get(i);
+			if (!ISonicCategory.canExecute(stack, cat) && cat.getXPRequired() > 0) {
+				list.add(cat.getUnlockName().withStyle(TextFormatting.RED));
 			} else {
-				list.add(cat.permName.withStyle(TextFormatting.GREEN));
+				list.add(cat.getUnlockName().withStyle(TextFormatting.GREEN));
 			}
 		}
 
 	}
 
 	public static LivingEntity rayTraceEntity(ClientWorld world, ClientPlayerEntity player) {
-		double reach = player.getAttribute((Attribute) ForgeMod.REACH_DISTANCE.get()).getValue();
+		double reach = player.getAttribute(ForgeMod.REACH_DISTANCE.get()).getValue();
 		Vector3d eyePos = player.getEyePosition(1);
 		Vector3d forward = eyePos.add(player.getForward().scale(reach));
-		LogManager.getLogger().debug("Raytrace Positions:\n\teye: {}\n\tforward: {}", eyePos, forward);
 
 		EntityPredicate target = new EntityPredicate();
 		target.selector((e) -> e.getBoundingBox()

@@ -7,7 +7,7 @@ version="1.4.3"
 displayName="Dalek Mod Additions"
 displayURL="https://modrinth.com/mod/dalek-mod-additions"
 logoFile="logo.png"
-credits="1JamesLeDolphin, SamTiz, Torchwood_one, TheMajorNoob_239, Frogrilla, HeyHey37, Bobdude, MaouUmbra, Flames_6067, Bug1312, Acen, ranafangirl, groundship"
+credits="1JamesLeDolphin, SamTiz, Torchwood_one, TheMajorNoob_239, Frogrilla, HeyHey37, Alfinator, Bobdude, MaouUmbra, Flames_6067, Bug1312, Acen, ranafangirl, groundship"
 authors="QRT Studios"
 description='''Adds various things, and changes different features of The Dalek Mod'''
 
@@ -30,7 +30,7 @@ updateJSONURL="https://api.modrinth.com/updates/6XJWjUK9/forge_updates.json"
 [[dependencies.dmadditions]]
     modId="dalekmod"
     mandatory=true
-    versionRange="[69.4.20,70)"
+    versionRange="[70,)"
     ordering="BEFORE"
     side="BOTH"
 
