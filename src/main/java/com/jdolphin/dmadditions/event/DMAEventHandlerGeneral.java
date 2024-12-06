@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
 import com.jdolphin.dmadditions.entity.DalekMutantEntity;
+import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
@@ -93,8 +94,10 @@ public class DMAEventHandlerGeneral {
 			World world = entity.level;
 			Random random = entity.getRandom();
 			if (random.nextInt(10) < 2) {
-				DalekMutantEntity mutant = new DalekMutantEntity(world);
-				world.addFreshEntity(mutant);
+				if (DMAEntities.DALEK_MUTANT != null) {
+					DalekMutantEntity mutant = new DalekMutantEntity(world);
+					world.addFreshEntity(mutant);
+				}
 			}
 		}
 	}
