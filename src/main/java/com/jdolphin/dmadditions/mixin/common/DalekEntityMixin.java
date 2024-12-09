@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.mixin.client;
+package com.jdolphin.dmadditions.mixin.common;
 
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;

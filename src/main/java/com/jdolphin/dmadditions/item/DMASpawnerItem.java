@@ -49,11 +49,11 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 		this.variants = keys;
 		DispenserBlock.registerBehavior(this, new DefaultDispenseItemBehavior() {
 			public ItemStack execute(IBlockSource dispenser, ItemStack spawnerStack) {
-				Direction direction = (Direction)dispenser.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = dispenser.getBlockState().getValue(DispenserBlock.FACING);
 				if (entityType.isPresent()) {
 					Entity e = entityType.get().spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity) null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
 					if (e instanceof DalekEntity) {
-						((DalekEntity) e).setID((String) keys.get(e.level.random.nextInt(keys.size())));
+						((DalekEntity) e).setID(keys.get(e.level.random.nextInt(keys.size())));
 						System.out.println("askdhalkjsdhaljshds");
 					}
 				}
@@ -104,8 +104,8 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 				Entity entity = this.entityType.get().spawn((ServerWorld) world, itemstack, context.getPlayer(), blockpos1,
 					SpawnReason.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
 				itemstack.shrink(1);
-				if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
-					String variant = (String) this.variants.get((new Random()).nextInt(this.variants.size()));
+				if (this.variants != null && entity instanceof IEntityVariant) {
+					String variant = this.variants.get((new Random()).nextInt(this.variants.size()));
 					((IEntityVariant) entity).setID(variant);
 				}
 			}
@@ -115,16 +115,15 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
-		RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
+		BlockRayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
 		if (raytraceresult.getType() != RayTraceResult.Type.BLOCK) {
 			return ActionResult.pass(itemstack);
 		}
 		if (!worldIn.isClientSide) {
-			BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult)raytraceresult;
-			BlockPos blockpos = blockraytraceresult.getBlockPos();
+			BlockPos blockpos = raytraceresult.getBlockPos();
 			if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
 				return ActionResult.pass(itemstack);
-			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, blockraytraceresult.getDirection(), itemstack)) {
+			} else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, raytraceresult.getDirection(), itemstack)) {
 				Entity entity;
 				if (entityType.isPresent()) {
 					if ((entity = this.entityType.get().spawn((ServerWorld)worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false)) == null) {
@@ -135,8 +134,8 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 						}
 					}
 					itemstack.shrink(1);
-					if (entity != null && this.variants != null && entity instanceof IEntityVariant) {
-						String variant = (String)this.variants.get((new Random()).nextInt(this.variants.size()));
+					if (this.variants != null && entity instanceof IEntityVariant) {
+						String variant = this.variants.get((new Random()).nextInt(this.variants.size()));
 						((IEntityVariant)entity).setID(variant);
 					}
 
@@ -152,8 +151,8 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 
 	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		if (this.entityType != null && worldIn != null && this.entityType.equals("dalek")) {
-			((IDalek) DMDalekRegistry.getDaleks().get(this.variants.get(0))).getTooltips(tooltip);
+		if (this.entityType != null && worldIn != null && this.entityType.getId().toString().equals("dalekmod:dalek")) {
+			DMDalekRegistry.getDaleks().get(this.variants.get(0)).getTooltips(tooltip);
 		}
 
 	}

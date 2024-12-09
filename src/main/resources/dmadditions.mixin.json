@@ -10,6 +10,8 @@
 	"refmap": "dmadditions.mixin-refmap.json",
 	"mixins": [
 		"common.CarvedPumpkinBlockMixin",
+		"common.CybermanEntityMixin",
+		"common.DalekEntityMixin",
 		"common.DalekRegistryMixin",
 		"common.DataMixin",
 		"common.DMBlocksMixin",
@@ -29,12 +31,13 @@
 		"compatibility.tardis.TardisActionListMixin"
 	],
 	"client": [
-		"client.DalekEntityMixin",
 		"client.DMTileRenderRegistryMixin",
 		"client.ItemRenderingInitMixin",
 		"client.MainMenuScreenMixin",
 		"client.ModelDalekBaseMixin",
 		"client.RenderBlockTardisMixin",
+		"client.RenderCybermanMixin",
+		"client.RenderDalekMixin",
 		"client.SplashesMixin"
 	]
 }

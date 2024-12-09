@@ -78,7 +78,7 @@ public class DMAItems {
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
 
-	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = registerAdventItem(11, "netherite_cyberman_spawner",
+	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = registerAdventItem(4, "netherite_cyberman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.NETHERITE_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> EMPTY_CHILD_SPAWNER = registerAdventItem(2, "empty_child_spawner",
