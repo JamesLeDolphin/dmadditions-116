@@ -17,7 +17,7 @@ public class PlayerLocatorScreen extends Screen {
 	private TextFieldWidget playerInput;
 
 	public PlayerLocatorScreen() {
-		super(new TranslationTextComponent("dmadditions.gui.player_locator"));
+		super(new TranslationTextComponent("dmadditions.gui.player_locator.json"));
 	}
 
 
@@ -27,7 +27,7 @@ public class PlayerLocatorScreen extends Screen {
 			this.width / 2 - 64, this.height / 2 - 64, 128, 24,
 			new TranslationTextComponent("chat.editBox"));
 		this.addButton(new Button(this.width / 2 - 136, this.height / 2 + 32, 128, 20,
-			new TranslationTextComponent("dmadditions.button.player_locator.select"), (button) -> {
+			new TranslationTextComponent("dmadditions.button.player_locator.json.select"), (button) -> {
 			this.setCoords();
 			this.onClose();
 		}));
@@ -46,7 +46,7 @@ public class PlayerLocatorScreen extends Screen {
 	@Override
 	public void render(MatrixStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
 		this.renderBackground(pPoseStack);
-		GuiHelper.drawWhiteCenteredString(pPoseStack, new TranslationTextComponent("dmadditions.gui.player_locator"),
+		GuiHelper.drawWhiteCenteredString(pPoseStack, new TranslationTextComponent("dmadditions.gui.player_locator.json"),
 			this.width / 2, 30);
 
 		GuiHelper.renderWidgets(pPoseStack, pMouseX, pMouseY, pPartialTick, playerInput);

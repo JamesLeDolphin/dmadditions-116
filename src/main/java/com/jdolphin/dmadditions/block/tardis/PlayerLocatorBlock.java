@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.block.tardis;
 
+import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.init.DMAPackets;
@@ -7,6 +8,7 @@ import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.util.GuiHandler;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
+import com.swdteam.common.init.DMDimensions;
 import com.swdteam.util.ChatUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -39,10 +41,12 @@ public class PlayerLocatorBlock extends AbstractRotateableWaterLoggableBlock imp
 	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if (world.isClientSide || hand.equals(Hand.OFF_HAND))
 			return super.use(state, world, pos, player, hand, hit);
-		if (Helper.isTardis(world) && DMACommonConfig.canPlayerLocate()) {
+		if (DMACommonConfig.canPlayerLocate() && (world.dimension().equals(DMDimensions.TARDIS) || (DMAdditions.hasNTM() &&
+			net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(world, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)))) {
 			DMAPackets.sendTo(((ServerPlayerEntity) player), new CBOpenGUIPacket(pos, GuiHandler.PLAYER_LOCATOR));
-		} else if (!DMACommonConfig.canPlayerLocate()) ChatUtil.sendMessageToPlayer(player,
-			new TranslationTextComponent("block.dmadditions.player_locator.disabled"), ChatUtil.MessageType.STATUS_BAR);
+		}
+		else if (!DMACommonConfig.canPlayerLocate()) ChatUtil.sendMessageToPlayer(player,
+			new TranslationTextComponent("block.dmadditions.player_locator.json.disabled"), ChatUtil.MessageType.STATUS_BAR);
 		return super.use(state, world, pos, player, hand, hit);
 	}
 

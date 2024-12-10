@@ -51,7 +51,7 @@ public class DMASpawnerItem<T extends Entity> extends Item {
 			public ItemStack execute(IBlockSource dispenser, ItemStack spawnerStack) {
 				Direction direction = dispenser.getBlockState().getValue(DispenserBlock.FACING);
 				if (entityType.isPresent()) {
-					Entity e = entityType.get().spawn(dispenser.getLevel(), spawnerStack, (PlayerEntity) null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
+					Entity e = entityType.get().spawn(dispenser.getLevel(), spawnerStack, null, dispenser.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
 					if (e instanceof DalekEntity) {
 						((DalekEntity) e).setID(keys.get(e.level.random.nextInt(keys.size())));
 						System.out.println("askdhalkjsdhaljshds");

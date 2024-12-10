@@ -12,6 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -41,14 +42,18 @@ public class SBLocatePlayerPacket {
 		ServerPlayerEntity player = context.getSender();
 		assert player != null;
 		MinecraftServer server = player.getServer();
-
+		ServerWorld world = (ServerWorld) player.level;
 		try {
 			ServerPlayerEntity pl1 = server.getPlayerList().getPlayerByName(this.name);
 			if (pl1 != null) {
-				if (!Helper.isTardis(pl1.getLevel()) && !pl1.inventory.contains(DMAItems.BIO_DAMPNER.get().getDefaultInstance())) {
-					TardisData data = DMTardis.getTardisFromInteriorPos(this.pos);
-					TardisFlightData flight = TardisFlightPool.getFlightData(data);
-					flight.setPos(this.pos);
+				if (!pl1.inventory.contains(DMAItems.BIO_DAMPNER.get().getDefaultInstance())) {
+					if (Helper.isTardis(world)) {
+						TardisData data = DMTardis.getTardisFromInteriorPos(this.pos);
+						TardisFlightData flight = TardisFlightPool.getFlightData(data);
+						flight.setPos(this.pos);
+					} else if (net.tardis.mod.helper.WorldHelper.areDimensionTypesSame(world, net.tardis.mod.world.dimensions.TDimensions.DimensionTypes.TARDIS_TYPE)) {
+						net.tardis.mod.helper.TardisHelper.getConsole(server, world).ifPresent(tile -> tile.setDestination(pl1.getLevel().dimension(), pl1.blockPosition()));
+					}
 					player.sendMessage(new StringTextComponent("Coordinates set!").withStyle(TextFormatting.GREEN), player.getUUID());
 				} else
 					player.sendMessage(new StringTextComponent("Error 403: Cannot access player!").withStyle(TextFormatting.RED), player.getUUID());
