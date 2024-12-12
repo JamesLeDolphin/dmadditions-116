@@ -18,18 +18,10 @@ import java.util.function.Supplier;
 public enum DMAArmorMaterial implements IArmorMaterial {
 	MATTS_PINK_THONG("matts_pink_thong", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
 		() -> Ingredient.EMPTY),
-	SPACE_SUIT("space_suit", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F,
-		() -> Ingredient.EMPTY),
 	CYBERMAN_ARMOUR("cyberman_armor", 28, new int[]{3, 6, 7}, 9, SoundEvents.ARMOR_EQUIP_CHAIN,
 		2.0F, 0.3F, () -> Ingredient.of(DMItems.STEEL_INGOT.get())),
 
-	CHRISTMAS_HAT("christmas_hat", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
-		() -> Ingredient.EMPTY),
-
 	WEDDING_DRESS("wedding_dress", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
-		() -> Ingredient.EMPTY),
-
-	SCARF("scarf", 20, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,
 		() -> Ingredient.EMPTY),
 
 	SONIC_SHADES("sonic_shades", 1, new int[4], 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0f, 0.0f,

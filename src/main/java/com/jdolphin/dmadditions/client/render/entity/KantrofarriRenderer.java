@@ -6,6 +6,7 @@ import com.swdteam.model.javajson.JSONModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class KantrofarriRenderer extends MobRenderer<KantrofarriEntity, KantrofarriModel> {
 	public KantrofarriRenderer(EntityRendererManager entityRendererManager) {
@@ -13,7 +14,7 @@ public class KantrofarriRenderer extends MobRenderer<KantrofarriEntity, Kantrofa
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(KantrofarriEntity kantrofarriEntity) {
+	public ResourceLocation getTextureLocation(@NotNull KantrofarriEntity kantrofarriEntity) {
 		JSONModel.ModelInformation modelData = model.getModel().getModelData();
 		return modelData.getTexture();
 	}

@@ -28,12 +28,7 @@ public class DMAEntities {
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN = registerEntity("jamesledolphin",
 		JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE, 0.9f, 0.6f);
 
-	public static RegistryObject<EntityType<PilotFishEntity>> PILOT_FISH = registerHumanoidEntity("pilot_fish", PilotFishEntity::new, EntityClassification.MONSTER);
-
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN = registerEntity("snowman", SnowmanEntity::new, EntityClassification.MONSTER);
-
-	public static RegistryObject<EntityType<ChristmasTreeEntity>> CHRISTMAS_TREE = registerEntity("christmas_tree",
-		ChristmasTreeEntity::new, EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN = registerHumanoidEntity("wooden_cyberman",
 		WoodenCybermanEntity::new, EntityClassification.MONSTER);
@@ -60,12 +55,6 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<ShoppingCartEntity>> SHOPPING_CART = registerEntity("shopping_cart",
 		ShoppingCartEntity::new, EntityClassification.MISC, 0.98f, 0.7f);
 
-	public static RegistryObject<EntityType<TankEntity>> TORCHWOOD_TANK = registerEntity("torchwood_tank", TankEntity::new, EntityClassification.MISC,
-		1, 1);
-
-	public static RegistryObject<EntityType<ChristmasCreeperEntity>> CHRISTMAS_CREEPER = registerEntity("christmas_creeper",
-		ChristmasCreeperEntity::new, EntityClassification.MONSTER, 0.6f, 1.7f);
-
 	public static RegistryObject<EntityType<WhispermanEntity>> WHISPERMAN = registerHumanoidEntity("whisperman",
 		WhispermanEntity::new, EntityClassification.MONSTER);
 
@@ -74,9 +63,6 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<DalekMutantEntity>> DALEK_MUTANT = registerAdventEntity(13, "dalek_mutant",
 		DalekMutantEntity::new, EntityClassification.MONSTER, 1.0f, 0.4f);
-
-	public static RegistryObject<EntityType<JimEntity>> JIM = registerHumanoidEntity("jim", JimEntity::new, EntityClassification.CREATURE);
-
 
 	public static RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = ENTITY_TYPES.register("herobrine", () -> EntityType.Builder.of(HerobrineEntity::new, EntityClassification.MONSTER)
 		.clientTrackingRange(64)

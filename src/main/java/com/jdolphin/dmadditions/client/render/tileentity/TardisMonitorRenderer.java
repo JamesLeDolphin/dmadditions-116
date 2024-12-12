@@ -25,10 +25,10 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.LightType;
 
-public class RenderTardisMonitor extends TileEntityRenderer<BetterScannerTileEntity> implements IModelPartReloader {
+public class TardisMonitorRenderer extends TileEntityRenderer<BetterScannerTileEntity> implements IModelPartReloader {
 	public static JSONModel MODEL_SCANNER;
 
-	public RenderTardisMonitor(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+	public TardisMonitorRenderer(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
 		super(tileEntityRendererDispatcher);
 		ModelReloaderRegistry.register(this);
 	}

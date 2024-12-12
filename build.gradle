@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.4.7'
+version = '1.4.8'
 group = 'com.jdolphin.dmadditions'
 archivesBaseName = 'dmadditions'
 
@@ -95,7 +95,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //Dalek Mod
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5954895")
+    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5983747")
 
     //Immersive portals
     compileOnly fg.deobf("curse.maven:immersiveportals-355440:3562072")

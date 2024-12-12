@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.commands;
 
 import com.jdolphin.dmadditions.advent.TimedUnlock;
-import com.jdolphin.dmadditions.init.DMACommands;
 import com.jdolphin.dmadditions.tardismail.TardisMail;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -40,7 +39,6 @@ public class TardisMailCommand {
 						.requires(source -> source.getLevel().dimension().equals(DMDimensions.TARDIS))
 						.then(Commands.argument("id", IntegerArgumentType.integer())
 								.executes(TardisMailCommand::send)));
-		DMACommands.register(dispatcher, mail);
 	}
 
 	public static TardisData getTardis(int id) throws CommandSyntaxException {

@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.client.gui.panels;
 
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBLocatePlayerPacket;
-import com.jdolphin.dmadditions.util.GuiHelper;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -46,12 +45,12 @@ public class PlayerLocatorScreen extends Screen {
 	@Override
 	public void render(MatrixStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
 		this.renderBackground(pPoseStack);
-		GuiHelper.drawWhiteCenteredString(pPoseStack, new TranslationTextComponent("dmadditions.gui.player_locator.json"),
+		Helper.drawWhiteCenteredString(pPoseStack, new TranslationTextComponent("dmadditions.gui.player_locator.json"),
 			this.width / 2, 30);
 
-		GuiHelper.renderWidgets(pPoseStack, pMouseX, pMouseY, pPartialTick, playerInput);
+		Helper.renderWidgets(pPoseStack, pMouseX, pMouseY, pPartialTick, playerInput);
 
-		Style style = GuiHelper.getStyle(this, pMouseX, pMouseY);
+		Style style = Helper.getStyle(this, pMouseX, pMouseY);
 		if (style != null && style.getHoverEvent() != null) {
 			this.renderComponentHoverEffect(pPoseStack, style, pMouseX, pMouseY);
 		}

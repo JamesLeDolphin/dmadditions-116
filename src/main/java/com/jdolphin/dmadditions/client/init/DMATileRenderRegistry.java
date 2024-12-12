@@ -1,10 +1,9 @@
 package com.jdolphin.dmadditions.client.init;
 
-import com.jdolphin.dmadditions.client.render.tileentity.RenderCoordPanel;
-import com.jdolphin.dmadditions.client.render.tileentity.RenderDimensionSelectorPanel;
+import com.jdolphin.dmadditions.client.render.tileentity.CoordPanelRenderer;
+import com.jdolphin.dmadditions.client.render.tileentity.DimensionSelectorPanelRenderer;
 import com.jdolphin.dmadditions.client.render.tileentity.SpecimenJarRenderer;
 import com.jdolphin.dmadditions.init.DMABlockEntities;
-import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.client.render.tileentity.RenderTileEntityBase;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.model.javajson.JSONModel;
@@ -24,10 +23,9 @@ import java.util.function.Function;
 public class DMATileRenderRegistry {
 
 	public static void init() {
-		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), RenderCoordPanel::new);
+		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), CoordPanelRenderer::new);
 		registerModel(DMABlockEntities.TILE_SPECIMEN_JAR.get(), SpecimenJarRenderer::new);
-		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), RenderDimensionSelectorPanel::new);
-		registerModel(DMABlockEntities.TILE_REDDASH_STATUE.get(), Helper.createAdditionsRL("models/tileentity/reddash_statue.json"));
+		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), DimensionSelectorPanelRenderer::new);
 	}
 
 	public static final ArrayList<TileEntityType<?>> MIXIN_RENDERERS = new ArrayList<TileEntityType<?>>() {{

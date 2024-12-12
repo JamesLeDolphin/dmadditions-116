@@ -38,21 +38,6 @@ public class DMASpawnerRegistry {
 			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
 		}
 
-		if (DMAEntities.PILOT_FISH != null) {
-			EntitySpawnPlacementRegistry.register(DMAEntities.PILOT_FISH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
-			addSpawn(Biomes.DESERT, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.PLAINS, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.TAIGA, DMAEntities.PILOT_FISH.get(), 2, 1, 3, EntityClassification.MONSTER);
-		}
-
-		if(DMAEntities.CHRISTMAS_CREEPER != null && TimedUnlock.isDecember()) {
-			EntitySpawnPlacementRegistry.register(DMAEntities.CHRISTMAS_CREEPER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
-			addSpawnToAllBiomes(DMAEntities.CHRISTMAS_CREEPER.get(), 3, 1, 3, EntityClassification.MONSTER);
-		}
-
 		if (DMAEntities.KANTROFARRI != null) {
 			EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
 			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);

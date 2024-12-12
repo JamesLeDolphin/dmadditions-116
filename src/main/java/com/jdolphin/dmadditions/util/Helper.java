@@ -1,17 +1,53 @@
 package com.jdolphin.dmadditions.util;
 
 import com.jdolphin.dmadditions.DMAdditions;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.main.DalekMod;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraft.world.World;
 
+import java.awt.*;
+
 public class Helper {
+	public static ResourceLocation BUTTONS_LOCATION = Helper.createAdditionsRL("textures/gui/buttons.png");
+	public static void renderWidgets(MatrixStack stack, int pMouseX, int pMouseY, float pPartialTick, Widget... widgets) {
+		for (Widget widget : widgets) {
+			widget.render(stack, pMouseX, pMouseY, pPartialTick);
+		}
+	}
+
+	public static void drawWhiteString(MatrixStack stack, String text, int x, int y) {
+		AbstractGui.drawString(stack, Minecraft.getInstance().font, text, x, y, Color.WHITE.getRGB());
+	}
+
+	public static void drawWhiteCenteredString(MatrixStack stack, ITextComponent text, int x, int y) {
+		drawWhiteCenteredString(stack, text.getString(), x, y);
+	}
+
+	public static void drawWhiteCenteredString(MatrixStack stack, String text, int x, int y) {
+		AbstractGui.drawCenteredString(stack, Minecraft.getInstance().font, text, x, y, Color.WHITE.getRGB());
+	}
+
+	public static void renderTooltip(Screen screen, MatrixStack stack, ITextComponent component, Widget widget) {
+		if (widget.isHovered()) screen.renderTooltip(stack, component, widget.x, widget.y);
+	}
+
+	public static Style getStyle(Screen screen, int x, int y) {
+		return screen.getMinecraft().gui.getChat().getClickedComponentStyleAt(x, y);
+	}
+
 
 	public static ResourceLocation createAdditionsRL(String string) {
 		return new ResourceLocation(DMAdditions.MODID, string);

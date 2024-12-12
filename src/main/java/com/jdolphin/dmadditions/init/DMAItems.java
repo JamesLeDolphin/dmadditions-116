@@ -53,9 +53,6 @@ public class DMAItems {
 	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble",
 		() -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
-	public static RegistryObject<Item> CHRISTMAS_CRACKER = ITEMS.register("christmas_cracker",
-		() -> new ChristmasCrackerBlockItem(DMABlocks.CHRISTMAS_CRACKER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
 	public static RegistryObject<Item> VORTEX_MANIPULATOR = registerAdventItem(1, "vortex_manipulator",
 		() -> new VortexManipulatorItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
 
@@ -104,13 +101,6 @@ public class DMAItems {
 	public static RegistryObject<Item> FRYING_PAN = ITEMS.register("frying_pan",
 		() -> new FryingPanItem(2, -2.6f, ItemTier.NETHERITE, new HashSet<>(), new Item.Properties().tab(ItemGroup.TAB_COMBAT).rarity(Rarity.UNCOMMON)));
 
-	public static RegistryObject<Item> SANTA_HAT = ITEMS.register("santa_hat",
-		() -> new ClothesItem(EquipmentSlotType.HEAD));
-
-	public static RegistryObject<Item> CHRISTMAS_HAT = ITEMS.register("christmas_hat", ChristmasHatItem::new);
-
-	public static RegistryObject<Item> JOKE = ITEMS.register("joke", JokeItem::new);
-
 	public static RegistryObject<Item> TOP_HAT = ITEMS.register("top_hat", () -> new ClothesItem(EquipmentSlotType.HEAD));
 
 	public static RegistryObject<Item> WEDDING_DRESS = ITEMS.register("wedding_dress",
@@ -134,47 +124,6 @@ public class DMAItems {
 		}
 	);
 
-	public static RegistryObject<Item> SCARF_RED = ITEMS.register("scarf_red",
-		() -> new ArmorItem(DMAArmorMaterial.SCARF, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-				return (A) new ScarfModel(1f);
-			}
-
-			@Override
-			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return Helper.createAdditionsRL("textures/models/armor/scarf_red.png").toString();
-			}
-
-			@Override
-			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
-				if (armorType == EquipmentSlotType.CHEST) return true;
-				return super.canEquip(stack, armorType, entity);
-			}
-		}
-	);
-
-	public static RegistryObject<Item> SCARF_BROWN = ITEMS.register("scarf_brown",
-		() -> new ArmorItem(DMAArmorMaterial.SCARF, EquipmentSlotType.CHEST, new Item.Properties().tab(DMTabs.DM_CLOTHES)) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-				return (A) new ScarfModel(1f);
-			}
-
-			@Override
-			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return Helper.createAdditionsRL("textures/models/armor/scarf_brown.png").toString();
-			}
-
-			@Override
-			public boolean canEquip(ItemStack stack, EquipmentSlotType armorType, Entity entity) {
-				if (armorType == EquipmentSlotType.CHEST) return true;
-				return super.canEquip(stack, armorType, entity);
-			}
-		}
-	);
 	public static RegistryObject<Item> MATTS_PINK_THONG = ITEMS.register("matts_pink_thong",
 		() -> new ArmorItem(DMAArmorMaterial.MATTS_PINK_THONG, EquipmentSlotType.LEGS, new Item.Properties()) {
 
@@ -198,18 +147,6 @@ public class DMAItems {
 			}
 		});
 
-	public static RegistryObject<Item> SPACE_SUIT_HELMET = ITEMS.register("space_suit_helmet",
-		() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.HEAD, new Item.Properties()));
-
-	public static RegistryObject<Item> SPACE_SUIT_CHESTPLATE = ITEMS.register("space_suit_chestplate",
-		() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.CHEST, new Item.Properties()));
-
-	public static RegistryObject<Item> SPACE_SUIT_LEGGINGS = ITEMS.register("space_suit_leggings",
-		() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.LEGS, new Item.Properties()));
-
-	public static RegistryObject<Item> SPACE_SUIT_BOOTS = ITEMS.register("space_suit_boots",
-		() -> new ArmorItem(DMAArmorMaterial.SPACE_SUIT, EquipmentSlotType.FEET, new Item.Properties()));
-
 	public static RegistryObject<Item> LASER_SCREWDRIVER = ITEMS.register("laser_screwdriver",
 		() -> new LaserScrewdriverItem(ItemGroup.TAB_TOOLS, 100, DMAProjectiles.METALLIC_GOLD_LASER));
 
@@ -225,9 +162,6 @@ public class DMAItems {
 	public static RegistryObject<Item> MONDASIAN_SPAWNER = ITEMS.register("mondasian_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.MONDASIAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> PILOT_FISH_SPAWNER = ITEMS.register("pilot_fish_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.PILOT_FISH, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
 	public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 		() -> new SingleShotGunItem(DMItemTiers.DALEK_CANNON, 2.0F, 3.0f,
 			DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
@@ -238,12 +172,6 @@ public class DMAItems {
 	public static RegistryObject<Item> RACNOSS_SPAWNER = ITEMS.register("racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 
 	public static RegistryObject<Item> SYCORAX_STAFF = ITEMS.register("sycorax_staff", () -> new SycoraxStaffItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1)));
-
-	public static RegistryObject<Item> CHRISTMAS_CREEPER_SPAWNER = ITEMS.register("christmas_creeper_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.CHRISTMAS_CREEPER, 0x0da70b, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
-	public static RegistryObject<Item> JIM_SPAWNER = ITEMS.register("jim_spawner",
-		() -> new ForgeSpawnEggItem(DMAEntities.JIM, 0x864b0f, 0x624c37, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> WHISPERMAN_SPAWNER = ITEMS.register("whisperman_spawner",
 		() -> new ForgeSpawnEggItem(DMAEntities.WHISPERMAN, 0x8d8a87, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
@@ -270,9 +198,6 @@ public class DMAItems {
 
 	public static RegistryObject<Item> ICE_WARRIOR_SPAWNER = registerAdventItem(5, "ice_warrior_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.ICE_WARRIOR, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
-	public static RegistryObject<Item> TORCHWOOD_TANK = ITEMS.register("torchwood_tank",
-		() -> new DMASpawnerItem<>(DMAEntities.TORCHWOOD_TANK, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
 	public static RegistryObject<Item> DAVROS_CHAIR = ITEMS.register("davros_chair",
 		() -> new DMASpawnerItem<>(DMAEntities.DAVROS_CHAIR, new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));

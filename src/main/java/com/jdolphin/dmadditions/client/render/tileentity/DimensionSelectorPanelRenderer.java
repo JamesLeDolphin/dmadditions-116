@@ -20,10 +20,10 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class RenderDimensionSelectorPanel extends TileEntityRenderer<DimensionSelectorTileEntity> implements IModelPartReloader {
+public class DimensionSelectorPanelRenderer extends TileEntityRenderer<DimensionSelectorTileEntity> implements IModelPartReloader {
 	public static JSONModel SCREEN_MODEL;
 
-	public RenderDimensionSelectorPanel(TileEntityRendererDispatcher dispatcher) {
+	public DimensionSelectorPanelRenderer(TileEntityRendererDispatcher dispatcher) {
 		super(dispatcher);
 		ModelReloaderRegistry.register(this);
 	}

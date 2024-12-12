@@ -11,21 +11,105 @@
 			"rotation": [0,0,0],
 			"children": [
 				{
-					"group_name": "body",
-					"pivot": [0,-2,0],
+					"group_name": "leg5",
+					"pivot": [0,-1,-7],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
-							"uv": [0,0],
-							"size": [10,3,4],
-							"origin": [-5,0,-4],
+							"uv": [12,14],
+							"size": [2,1,8],
+							"origin": [-1,1,-8],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
-							"uv": [0,23],
-							"size": [8,3,3],
-							"origin": [-4,0,-7],
+							"uv": [24,17],
+							"size": [2,1,4],
+							"origin": [-1,0,-4],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "leg4",
+					"pivot": [4,-1,-4],
+					"rotation": [0,0,0],
+					"cubes": [
+						{
+							"uv": [20,5],
+							"size": [2,1,8],
+							"origin": [-1,0.9,-8],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [12,29],
+							"size": [2,1,4],
+							"origin": [-1,-0.1,-4],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "leg3",
+					"pivot": [-4,-1,-4],
+					"rotation": [0,0,0],
+					"cubes": [
+						{
+							"uv": [0,13],
+							"size": [2,1,8],
+							"origin": [-1,0.9,-8],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [0,29],
+							"size": [2,1,4],
+							"origin": [-1,-0.1,-4],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "leg2",
+					"pivot": [5,-1,0],
+					"rotation": [0,0,0],
+					"cubes": [
+						{
+							"uv": [24,0],
+							"size": [6,1,2],
+							"origin": [0,0.9,-1],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [32,7],
+							"size": [3,1,2],
+							"origin": [0,-0.1,-1],
+							"inflate": 0,
+							"mirror": false
+						}
+					]
+				},
+				{
+					"group_name": "leg1",
+					"pivot": [-5,-1,0],
+					"rotation": [0,0,0],
+					"cubes": [
+						{
+							"uv": [24,14],
+							"size": [6,1,2],
+							"origin": [-6,0.9,-1],
+							"inflate": 0,
+							"mirror": false
+						},
+						{
+							"uv": [32,3],
+							"size": [3,1,2],
+							"origin": [-3,-0.1,-1],
 							"inflate": 0,
 							"mirror": false
 						}
@@ -67,105 +151,21 @@
 					]
 				},
 				{
-					"group_name": "leg1",
-					"pivot": [-5,-1,0],
+					"group_name": "body",
+					"pivot": [0,-2,0],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
-							"uv": [24,14],
-							"size": [6,1,2],
-							"origin": [-6,0.9,-1],
+							"uv": [0,0],
+							"size": [10,3,4],
+							"origin": [-5,0,-4],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
-							"uv": [32,3],
-							"size": [3,1,2],
-							"origin": [-3,-0.1,-1],
-							"inflate": 0,
-							"mirror": false
-						}
-					]
-				},
-				{
-					"group_name": "leg2",
-					"pivot": [5,-1,0],
-					"rotation": [0,0,0],
-					"cubes": [
-						{
-							"uv": [24,0],
-							"size": [6,1,2],
-							"origin": [0,0.9,-1],
-							"inflate": 0,
-							"mirror": false
-						},
-						{
-							"uv": [32,7],
-							"size": [3,1,2],
-							"origin": [0,-0.1,-1],
-							"inflate": 0,
-							"mirror": false
-						}
-					]
-				},
-				{
-					"group_name": "leg3",
-					"pivot": [-4,-1,-4],
-					"rotation": [0,0,0],
-					"cubes": [
-						{
-							"uv": [0,13],
-							"size": [2,1,8],
-							"origin": [-1,0.9,-8],
-							"inflate": 0,
-							"mirror": false
-						},
-						{
-							"uv": [0,29],
-							"size": [2,1,4],
-							"origin": [-1,-0.1,-4],
-							"inflate": 0,
-							"mirror": false
-						}
-					]
-				},
-				{
-					"group_name": "leg4",
-					"pivot": [4,-1,-4],
-					"rotation": [0,0,0],
-					"cubes": [
-						{
-							"uv": [20,5],
-							"size": [2,1,8],
-							"origin": [-1,0.9,-8],
-							"inflate": 0,
-							"mirror": false
-						},
-						{
-							"uv": [12,29],
-							"size": [2,1,4],
-							"origin": [-1,-0.1,-4],
-							"inflate": 0,
-							"mirror": false
-						}
-					]
-				},
-				{
-					"group_name": "leg5",
-					"pivot": [0,-1,-7],
-					"rotation": [0,0,0],
-					"cubes": [
-						{
-							"uv": [12,14],
-							"size": [2,1,8],
-							"origin": [-1,1,-8],
-							"inflate": 0,
-							"mirror": false
-						},
-						{
-							"uv": [24,17],
-							"size": [2,1,4],
-							"origin": [-1,0,-4],
+							"uv": [0,23],
+							"size": [8,3,3],
+							"origin": [-4,0,-7],
 							"inflate": 0,
 							"mirror": false
 						}

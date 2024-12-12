@@ -80,8 +80,7 @@ public class HerobrineEntity extends MonsterEntity {
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		if (source.isCreativePlayer()
-			|| source.isBypassInvul()
-			|| source.getEntity() instanceof JimEntity) {
+			|| source.isBypassInvul()) {
 			super.hurt(source, amount);
 			return true;
 		}

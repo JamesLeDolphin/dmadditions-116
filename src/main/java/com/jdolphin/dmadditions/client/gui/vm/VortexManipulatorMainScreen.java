@@ -4,7 +4,6 @@ import com.jdolphin.dmadditions.init.DMAItems;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.item.VortexManipulatorItem;
 import com.jdolphin.dmadditions.network.SBVMInteractionPacket;
-import com.jdolphin.dmadditions.util.GuiHelper;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -50,14 +49,14 @@ public class VortexManipulatorMainScreen extends Screen {
 			}
 		}
 		this.select = this.addButton(new ImageButton(this.width / 2 - 70, this.height / 2 + 28 , 20, 20, 0, 0, 20,
-			GuiHelper.BUTTONS_LOCATION, 256, 256, (button) -> {
+			Helper.BUTTONS_LOCATION, 256, 256, (button) -> {
 			this.setCoords();
 			this.onClose();
 		},
 			new TranslationTextComponent("dmadditions.button.select")));
 
 		this.cancel = this.addButton(new ImageButton( this.width / 2 - 38, this.height / 2 + 28, 20, 20, 0, 0, 20,
-			GuiHelper.BUTTONS_LOCATION, 256, 256, (button) -> {
+			Helper.BUTTONS_LOCATION, 256, 256, (button) -> {
 			this.onClose();
 		},
 			new TranslationTextComponent("dmadditions.button.cancel")));
@@ -91,18 +90,18 @@ public class VortexManipulatorMainScreen extends Screen {
 
 		cancel.render(stack, mouseX, mouseY, partialTicks);
 		select.render(stack, mouseX, mouseY, partialTicks);
-		GuiHelper.drawWhiteString(stack, "X:", this.width / 2 - 94, this.height / 2 - 30);
-		GuiHelper.drawWhiteString(stack, "Y:", this.width / 2 - 94, this.height / 2 - 14);
-		GuiHelper.drawWhiteString(stack, "Z:", this.width / 2 - 94, this.height / 2 + 2);
+		Helper.drawWhiteString(stack, "X:", this.width / 2 - 94, this.height / 2 - 30);
+		Helper.drawWhiteString(stack, "Y:", this.width / 2 - 94, this.height / 2 - 14);
+		Helper.drawWhiteString(stack, "Z:", this.width / 2 - 94, this.height / 2 + 2);
 
-		GuiHelper.drawWhiteString(stack, "Dimension:", this.width / 2 + 18, this.height / 2 - 42);
+		Helper.drawWhiteString(stack, "Dimension:", this.width / 2 + 18, this.height / 2 - 42);
 
-		GuiHelper.drawWhiteString(stack, "Fuel:", this.width / 2 + 58, this.height / 2 + 10);
-		GuiHelper.drawWhiteString(stack, String.format("%s/%s", this.fuel, this.maxFuel), this.width / 2 + 54, this.height / 2 + 22);
-		GuiHelper.renderTooltip(this, stack, new TranslationTextComponent("dmadditions.button.select"), select);
-		GuiHelper.renderTooltip(this, stack, new TranslationTextComponent("dmadditions.button.cancel"), cancel);
+		Helper.drawWhiteString(stack, "Fuel:", this.width / 2 + 58, this.height / 2 + 10);
+		Helper.drawWhiteString(stack, String.format("%s/%s", this.fuel, this.maxFuel), this.width / 2 + 54, this.height / 2 + 22);
+		Helper.renderTooltip(this, stack, new TranslationTextComponent("dmadditions.button.select"), select);
+		Helper.renderTooltip(this, stack, new TranslationTextComponent("dmadditions.button.cancel"), cancel);
 
-		Style style = GuiHelper.getStyle(this, mouseX, mouseY);
+		Style style = Helper.getStyle(this, mouseX, mouseY);
 		if (style != null && style.getHoverEvent() != null) {
 			this.renderComponentHoverEffect(stack, style, mouseX, mouseY);
 		}

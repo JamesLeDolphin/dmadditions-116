@@ -21,7 +21,6 @@ public class KantrofarriModel extends SegmentedModel<KantrofarriEntity> implemen
 	protected ModelRenderer leg4;
 	protected ModelRenderer leg5;
 
-
 	public JSONModel model;
 
 	public KantrofarriModel() {
@@ -39,7 +38,7 @@ public class KantrofarriModel extends SegmentedModel<KantrofarriEntity> implemen
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/kantrofarri.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 
-		this.body = modelWrapper.getPart("chair");
+		this.body = modelWrapper.getPart("body");
 		this.tail = modelWrapper.getPart("tail");
 		this.leg1 = modelWrapper.getPart("leg1");
 		this.leg2 = modelWrapper.getPart("leg2");
@@ -55,69 +54,35 @@ public class KantrofarriModel extends SegmentedModel<KantrofarriEntity> implemen
 
 	@Override
 	public void setupAnim(KantrofarriEntity entity, float v, float v1, float v2, float v3, float v4) {
-		if (!entity.isAggressive()) {
+		float eighth = (float) (Math.PI / 8);
+		float sixth = (float) (Math.PI / 6);
 			this.body.zRot = (float) (Math.PI);
 			this.body.y = 24;
 
 			this.tail.zRot = (float) (Math.PI);
 			this.tail.y = 24;
-			this.tail.xRot = -(float) (Math.PI / 8);
+			this.tail.xRot = -eighth;
 
 			this.leg1.xRot = -(float) (Math.PI);
 			this.leg1.y = 23;
-			this.leg1.zRot = (float) (Math.PI / 6);
+			this.leg1.zRot = sixth;
 
 			this.leg2.xRot = -(float) (Math.PI);
 			this.leg2.y = 23;
-			this.leg2.zRot = -(float) (Math.PI / 6);
+			this.leg2.zRot = -sixth;
 
 			this.leg3.zRot = (float) (Math.PI);
 			this.leg3.y = 23;
-			this.leg3.xRot = (float) (Math.PI / 8);
-			this.leg3.yRot = -(float) (Math.PI / 6);
+			this.leg3.xRot = eighth;
+			this.leg3.yRot = -sixth;
 
 			this.leg4.zRot = (float) (Math.PI);
 			this.leg4.y = 23;
-			this.leg4.xRot = (float) (Math.PI / 8);
-			this.leg4.yRot = (float) (Math.PI / 6);
+			this.leg4.xRot = eighth;
+			this.leg4.yRot = sixth;
 
 			this.leg5.zRot = (float) (Math.PI);
 			this.leg5.y = 23;
-			this.leg5.xRot = (float) (Math.PI / 8);
-		} else {
-			baseAnim();
-		}
+			this.leg5.xRot = eighth;
 	}
-
-	private void baseAnim() {
-		this.body.zRot = 0;
-		this.body.y = 22;
-
-		this.tail.zRot = 0;
-		this.tail.y = 22;
-		this.tail.xRot = 0;
-
-		this.leg1.xRot = 0;
-		this.leg1.y = 22;
-		this.leg1.zRot = 0;
-
-		this.leg2.xRot = 0;
-		this.leg2.y = 22;
-		this.leg2.zRot = 0;
-
-		this.leg3.zRot = 0;
-		this.leg3.y = 22;
-		this.leg3.xRot = 0;
-		this.leg3.yRot = (float) (Math.PI / 6);
-
-		this.leg4.zRot = 0;
-		this.leg4.y = 22;
-		this.leg4.xRot = 0;
-		this.leg4.yRot = -(float) (Math.PI / 6);
-
-		this.leg5.zRot = 0;
-		this.leg5.y = 22;
-		this.leg5.xRot = 0;
-	}
-
 }

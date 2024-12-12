@@ -16,7 +16,6 @@ public final class DMACommonConfig {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_explosive_laser;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_boti;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_player_loc;
-	public static final ForgeConfigSpec.ConfigValue<List<? extends String>> disable_dma_commands;
 
 	public static boolean isBotiEnabled() {
 		return !disable_boti.get();
@@ -39,8 +38,6 @@ public final class DMACommonConfig {
 			.define("disable_boti", false);
 		disable_player_loc = BUILDER.comment("Disable player locating. Default = false")
 			.define("disable_player_locating", false);
-
-		disable_dma_commands = BUILDER.comment("Disable DMA commands").defineList("disable_dma_commands", Collections.emptyList(), entry -> true);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();

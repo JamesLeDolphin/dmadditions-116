@@ -2,6 +2,7 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.init.DMAItems;
+import com.swdteam.common.init.DMItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
@@ -24,8 +25,8 @@ public class JamesLeDolphinEntity extends DolphinEntity {
 	protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyInstance) {
 		TimedUnlock.handlePumpkinHead(this);
 
-		if (TimedUnlock.isDecember() && random.nextBoolean() && DMAItems.SANTA_HAT != null) {
-			this.equipItemIfPossible(new ItemStack(DMAItems.SANTA_HAT.get()));
+		if (TimedUnlock.isDecember() && random.nextBoolean() && DMItems.RED_SANTA_HAT != null) {
+			this.equipItemIfPossible(new ItemStack(DMItems.RED_SANTA_HAT.get()));
 			this.setDropChance(EquipmentSlotType.HEAD, 0.25f);
 		}
 	}

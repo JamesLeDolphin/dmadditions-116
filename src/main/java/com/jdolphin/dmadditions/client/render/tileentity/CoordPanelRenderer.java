@@ -20,8 +20,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class RenderCoordPanel extends TileEntityRenderer<CoordPanelTileEntity> {
-	public RenderCoordPanel(TileEntityRendererDispatcher dispatcher) {
+public class CoordPanelRenderer extends TileEntityRenderer<CoordPanelTileEntity> {
+	public CoordPanelRenderer(TileEntityRendererDispatcher dispatcher) {
 		super(dispatcher);
 	}
 

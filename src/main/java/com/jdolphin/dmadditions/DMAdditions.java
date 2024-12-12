@@ -17,7 +17,6 @@ import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
-import com.jdolphin.dmadditions.jokes.JokeReloadListener;
 import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
 import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.brigadier.CommandDispatcher;
@@ -145,11 +144,6 @@ public class DMAdditions {
 	@SubscribeEvent
 	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
 		CommandDispatcher<CommandSource> dispatcher = event.getDispatcher();
-		GameModeCommand.register(dispatcher);
-		TeleportCommand.register(dispatcher);
-		CommandSit.register(dispatcher);
-		ToggleModeCommand.register(dispatcher);
-		GodCommand.register(dispatcher);
 		//TardisMailCommand.register(dispatcher);
 	}
 
@@ -161,16 +155,11 @@ public class DMAdditions {
 		event.put(DMAEntities.BESSIE.get(), VehicleEntity.setCustomAttributes().build());
 		event.put(DMAEntities.TW_SUV.get(), VehicleEntity.setCustomAttributes().build());
 		event.put(DMAEntities.SNOWMAN.get(), SnowmanEntity.setCustomAttributes().build());
-		event.put(DMAEntities.CHRISTMAS_TREE.get(), ChristmasTreeEntity.setCustomAttributes().build());
-		event.put(DMAEntities.PILOT_FISH.get(), PilotFishEntity.setCustomAttributes().build());
 		event.put(DMAEntities.FLYING_SHARK.get(), FlyingSharkEntity.setCustomAttributes().build());
 		event.put(DMAEntities.RACNOSS.get(), RacnossEntity.setCustomAttributes().build());
 		event.put(DMAEntities.SHOPPING_CART.get(), ShoppingCartEntity.setCustomAttributes().build());
-		event.put(DMAEntities.TORCHWOOD_TANK.get(), ShoppingCartEntity.setCustomAttributes().build());
-		event.put(DMAEntities.CHRISTMAS_CREEPER.get(), CreeperEntity.createAttributes().build());
 		event.put(DMAEntities.WHISPERMAN.get(), WhispermanEntity.createAttributes().build());
 		event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
-		event.put(DMAEntities.JIM.get(), JimEntity.createAttributes().build());
 		event.put(DMAEntities.HEROBRINE.get(), HerobrineEntity.createAttributes().build());
 		event.put(DMAEntities.CYBERCOW.get(), CyberCowEntity.createAttributes().build());
 
@@ -367,11 +356,6 @@ public class DMAdditions {
 		return false;
 	}
 
-	@SubscribeEvent
-	public void addReloadListeners(AddReloadListenerEvent event) {
-		event.addListener(new JokeReloadListener(GSON, "cracker_jokes"));
-	}
-
 	private void runLater(ParallelDispatchEvent event) {
 		if (DMABlocks.MAGPIE_TELEVISION.isPresent()) {
 			event.enqueueWork(() -> {
@@ -410,6 +394,15 @@ public class DMAdditions {
 	@SubscribeEvent
 	public void missingEntities(RegistryEvent.MissingMappings<EntityType<?>> event) {
 		for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> entityMapping : event.getMappings("dalekmod")) {
+			ResourceLocation regName = entityMapping.key;
+			if (regName != null) {
+				String path = regName.getPath();
+				DMAEntities.ENTITY_TYPES.getEntries().stream()
+					.filter(thing -> thing.getId().getPath().equals(path))
+					.forEach(entity -> entityMapping.remap(entity.get()));
+			}
+		}
+		for (RegistryEvent.MissingMappings.Mapping<EntityType<?>> entityMapping : event.getMappings("dmadditions")) {
 			ResourceLocation regName = entityMapping.key;
 			if (regName != null) {
 				String path = regName.getPath();

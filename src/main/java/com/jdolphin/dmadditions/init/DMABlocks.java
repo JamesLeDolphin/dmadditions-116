@@ -6,8 +6,6 @@ import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.christmas.*;
 import com.jdolphin.dmadditions.block.tardis.*;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
-import com.jdolphin.dmadditions.tileentity.ReddashStatueTileEntity;
-import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
 import com.swdteam.common.item.BaseBlockItem;
@@ -78,14 +76,11 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> PLAYER_LOCATOR = registerBlock(() ->
 			new PlayerLocatorBlock(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
-		"player_locator.json", ItemGroup.TAB_BUILDING_BLOCKS);
+		"player_locator", ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> FORCEFIELD_PANEL = registerBlock(() ->
 			new ForceFieldPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
 		"forcefield_panel", ItemGroup.TAB_BUILDING_BLOCKS);
-
-	public static RegistryObject<Block> CHRISTMAS_PUDDING = registerBlock(() ->
-		new ChristmasPuddingBlock(AbstractBlock.Properties.of(Material.CAKE).strength(0.5F).sound(SoundType.WOOL)), "christmas_pudding", ItemGroup.TAB_FOOD);
 
 	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerBlock(() ->
 		new ChristmasPresentBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
@@ -94,13 +89,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
 		() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
-
-	public static RegistryObject<Block> REDDASH_STATUE = registerBlock(() -> new StatueBlock(ReddashStatueTileEntity::new, AbstractBlock.Properties.of(Material.STONE)
-		.requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)), "reddash_statue", ItemGroup.TAB_DECORATIONS);
-
-	public static RegistryObject<Block> WREATH = registerBlock(
-		() -> new WreathBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.8F, 0.8F).sound(SoundType.GRASS).noOcclusion().noCollission().instabreak()),
-		"wreath", ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> TARDIS_SNOWGLOBE = registerBlock(
 		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
@@ -114,11 +102,6 @@ public class DMABlocks {
 
 	public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock(() -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
 	public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock(() -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
-
-	public static RegistryObject<Block> CHRISTMAS_TREE = registerBlock(() -> new ChristmasTreeBlock(AbstractBlock.Properties.of(Material.WOOD)
-		.harvestTool(ToolType.AXE).noOcclusion().dynamicShape()), "christmas_tree", ItemGroup.TAB_DECORATIONS);
-
-	public static RegistryObject<Block> CHRISTMAS_CRACKER = registerBlock(() -> new ChristmasCrackerBlock(AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion().dynamicShape().noCollission().sound(SoundType.WOOL)), "christmas_cracker");
 
 	public static RegistryObject<Block> MAGPIE_TELEVISION = registerBlock(() -> new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), "magpie_television", ItemGroup.TAB_DECORATIONS);
 
@@ -239,12 +222,7 @@ public class DMABlocks {
 
 	public static void registerRenderTypes() {
 		registerRenderTypes(RenderType.cutoutMipped(),
-			TARDIS_SNOWGLOBE,
-			CHRISTMAS_TREE
-		);
-
-		registerRenderTypes(RenderType.cutoutMipped(),
-			CHRISTMAS_CRACKER
+			TARDIS_SNOWGLOBE
 		);
 
 		registerRenderTypes(RenderType.cutoutMipped(),

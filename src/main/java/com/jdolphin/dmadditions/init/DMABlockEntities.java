@@ -25,9 +25,6 @@ public class DMABlockEntities {
 	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 
-	public static final RegistryObject<TileEntityType<ReddashStatueTileEntity>> TILE_REDDASH_STATUE = TILE_ENTITY_TYPES.register("reddash_statue", () ->
-		TileEntityType.Builder.of(ReddashStatueTileEntity::new, DMABlocks.REDDASH_STATUE.get()).build(null));
-
 	public static final RegistryObject<TileEntityType<SpecimenJarTileEntity>> TILE_SPECIMEN_JAR = TILE_ENTITY_TYPES.register("specimen_jar", () ->
 		TileEntityType.Builder.of(SpecimenJarTileEntity::new, DMABlocks.SPECIMEN_JAR.get()).build(null));
 

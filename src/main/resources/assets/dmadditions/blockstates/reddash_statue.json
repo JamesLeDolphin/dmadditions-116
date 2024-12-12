@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "dmadditions:block/reddash_statue", "y": 0, "x": 90 },
-    "facing=south": { "model": "dmadditions:block/reddash_statue", "y": 180, "x": 90  },
-    "facing=west":  { "model": "dmadditions:block/reddash_statue", "y": 270, "x": 90  },
-    "facing=east":  { "model": "dmadditions:block/reddash_statue", "y": 90, "x": 90  }
-  }
-}
