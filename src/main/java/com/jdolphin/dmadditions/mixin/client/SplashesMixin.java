@@ -26,7 +26,6 @@ public class SplashesMixin {
 				add("I'll ask Json");
 
 				add("The secret is our public open-source technology!");
-				add("James blames Torchwood");
 
 				add("Sam secretly did all the work");
 				add(":3");
@@ -41,12 +40,9 @@ public class SplashesMixin {
 				add("We do a little hacking");
 
 				add("James was here");
-
 				add("Don't trust Torchwood");
 
-				// spellchecker:ignore dodgily
 				add("Very dodgily I must add");
-
 				add("Stop typing everything I say");
 			}
 		};

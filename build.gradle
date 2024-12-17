@@ -95,7 +95,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //Dalek Mod
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5983747")
+    implementation fg.deobf("curse.maven:the-dalek-mod-59654:5997213")
 
     //Immersive portals
     compileOnly fg.deobf("curse.maven:immersiveportals-355440:3562072")

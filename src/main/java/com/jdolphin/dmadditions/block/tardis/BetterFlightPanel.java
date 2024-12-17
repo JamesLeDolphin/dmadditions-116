@@ -34,31 +34,8 @@ public class BetterFlightPanel extends FlightPanelBlock implements IBetterPanel 
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-		if (handIn == Hand.MAIN_HAND && !worldIn.isClientSide) {
-			if (worldIn.dimension().equals(DMDimensions.TARDIS)) {
-				TardisData data = DMTardis.getTardisFromInteriorPos(pos);
-				if (data != null && !data.isInFlight() && data.getCurrentLocation() != null && !DMFlightMode.isInFlight(data.getGlobalID())) {
-					ServerWorld world = worldIn.getServer().getLevel(data.getCurrentLocation().dimensionWorldKey());
-					world.setBlockAndUpdate(data.getCurrentLocation().getBlockPosition(), Blocks.AIR.defaultBlockState());
-					DMFlightMode.addFlight(player, new DMFlightMode.FlightModeData(data.getGlobalID(), player.getX(), player.getY(), player.getZ()));
-					TeleportUtil.teleportPlayer(player, data.getCurrentLocation().dimensionWorldKey(), new Vector3d(data.getCurrentLocation().getPosition().x(), data.getCurrentLocation().getPosition().y(), data.getCurrentLocation().getPosition().z()), 0.0F);
-					player.abilities.mayBuild = false;
-					if (data.getFuel() > 0.0) {
-						player.abilities.flying = true;
-						player.abilities.mayfly = true;
-					} else {
-						player.abilities.flying = false;
-						player.abilities.mayfly = false;
-					}
-
-					player.onUpdateAbilities();
-				} else if (data.isInFlight()) {
-					ChatUtil.sendError(player, "TARDIS is currently in flight", ChatUtil.MessageType.CHAT);
-				}
-			}
-		}
-		return ActionResultType.CONSUME;
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult result) {
+		return super.use(state, worldIn, pos, player, handIn, result);
 	}
 
 	@Override

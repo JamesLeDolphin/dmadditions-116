@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "   ",
+    " E ",
     "BCK",
     "SSS"
   ],
@@ -12,6 +12,9 @@
     "B": {
       "tag": "minecraft:buttons"
     },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
     "C": {
       "tag": "forge:circuits/basic"
     },
@@ -20,7 +23,7 @@
     }
   },
   "result": {
-    "item": "dmadditions:door_panel",
+    "item": "dmadditions:player_locator",
     "count": 1
   }
 }
