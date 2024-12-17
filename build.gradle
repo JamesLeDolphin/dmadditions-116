@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.4.8'
+version = '1.4.9'
 group = 'com.jdolphin.dmadditions'
 archivesBaseName = 'dmadditions'
 
