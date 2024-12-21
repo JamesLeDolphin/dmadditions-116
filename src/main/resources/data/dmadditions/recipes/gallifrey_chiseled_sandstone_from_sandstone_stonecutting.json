@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "dmadditions:gallifrey_sandstone"
+  },
+  "result": "dmadditions:gallifrey_chiseled_sandstone",
+  "count": 1
+}

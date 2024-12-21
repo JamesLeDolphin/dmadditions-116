@@ -13,7 +13,9 @@ import net.minecraftforge.common.Tags;
 public class DMATags {
 	public static class Blocks {
 		public static final Tags.IOptionalNamedTag<Block> ROUNDEL_CONTAINERS = createTag("roundel_containers");
+		public static final Tags.IOptionalNamedTag<Block> GALLIFREY_REPLACEABLE = createTag("gallifrey_replaceable");
 		public static final Tags.IOptionalNamedTag<Block> SONIC_BLASTER_BLACKLIST = createTag("sonic_blaster_blacklist");
+
 
 		private static Tags.IOptionalNamedTag<Block> createTag(String name) {
 			return BlockTags.createOptional(Helper.createAdditionsRL(name));

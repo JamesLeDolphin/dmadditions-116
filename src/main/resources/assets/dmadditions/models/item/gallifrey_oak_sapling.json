@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dmadditions:block/gallifrey_oak_sapling"
+  }
+}

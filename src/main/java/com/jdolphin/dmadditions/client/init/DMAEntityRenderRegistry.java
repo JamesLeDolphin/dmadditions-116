@@ -17,6 +17,7 @@ public class DMAEntityRenderRegistry {
 
 		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.MONDASIAN, MondasianRenderer::new);
+		registerRender(DMAEntities.TIMELORD, TimeLordRenderer::new);
 		registerRender(DMAEntities.CYBERCOW, CybercowRenderer::new);
 		registerRender(DMAEntities.WOODEN_CYBERMAN, WoodenCybermanRenderer::new);
 		registerRender(DMAEntities.MONDAS_CYBERMAN, MondasCybermanRenderer::new);
@@ -30,7 +31,6 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.WHISPERMAN, WhispermanRenderer::new);
 		registerRender(DMAEntities.KANTROFARRI, KantrofarriRenderer::new);
 		registerRender(DMAEntities.HEROBRINE, HerobrineRenderer::new);
-		registerRender(DMAEntities.CONTROL, TardisControlRenderer::new);
 		registerRender(DMAEntities.CLOCKWORK_DROID, ClockworkDroidRenderer::new);
 		registerRender(DMAEntities.ICE_WARRIOR, IceWarriorRenderer::new);
 		registerRender(DMAEntities.ZYGON, ZygonRenderer::new);

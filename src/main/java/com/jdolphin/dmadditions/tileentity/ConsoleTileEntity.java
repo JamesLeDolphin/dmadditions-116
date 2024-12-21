@@ -1,7 +1,15 @@
 package com.jdolphin.dmadditions.tileentity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jdolphin.dmadditions.block.tardis.ConsoleBlock;
+import com.jdolphin.dmadditions.init.DMABlockEntities;
+import org.jetbrains.annotations.NotNull;
+
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.swdteam.common.tileentity.DMTileEntityBase;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
@@ -13,8 +21,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTileEntity {
 	public final List<TardisControl> controls = new ArrayList<>();
@@ -27,6 +33,9 @@ public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTile
 		super(tileEntityTypeIn);
 	}
 
+	public ConsoleTileEntity() {
+		this(DMABlockEntities.TILE_CONSOLE.get());
+	}
 
 	@Override
 	public void onLoad() {
@@ -52,18 +61,18 @@ public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTile
 			TardisControl.ControlType[] types = TardisControl.ControlType.values();
 			this.hasControls = true;
 			for (TardisControl.ControlType type : types) {
-				TardisControl control = new TardisControl(world, type, this.worldPosition);
+				//TardisControl control = new TardisControl(world, type, this.worldPosition);
 
-				Vector3d offset = control.position();
-				BlockPos pos = this.getBlockPos();
+//				Vector3d offset = control.position();
+//				BlockPos pos = this.getBlockPos().relative(this.level.getBlockState(this.getBlockPos()).getValue(ConsoleBlock.FACING));
 
-				control.setPos(pos.getX() + 0.5 + offset.x(),
-					pos.getY() + 0.5 + offset.y(),
-					pos.getZ() + 0.5 + offset.z());
+//				control.setPos(pos.getX() + 0.5 + offset.x(),
+//					pos.getY() + 0.5 + offset.y(),
+//					pos.getZ() + 0.5 + offset.z());
 
-				control.setMaster(this.worldPosition);
-				world.addFreshEntity(control);
-				this.controls.add(control);
+//				control.setMaster(this.worldPosition);
+//				world.addFreshEntity(control);
+//				this.controls.add(control);
 			}
 		}
 	}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:default",
+  "config": {
+    "top_material": {
+      "Name": "dmadditions:gallifrey_sand"
+    },
+    "under_material": {
+      "Name": "dmadditions:gallifrey_sandstone"
+    },
+    "underwater_material": {
+      "Name": "dmadditions:gallifrey_sandstone"
+    }
+  }
+}

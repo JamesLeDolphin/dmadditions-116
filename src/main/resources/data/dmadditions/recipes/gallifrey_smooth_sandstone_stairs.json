@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dmadditions:gallifrey_smooth_sandstone"
+    }
+  },
+  "result": {
+    "item": "dmadditions:gallifrey_smooth_sandstone_stairs",
+    "count": 4
+  }
+}

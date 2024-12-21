@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "top": "dmadditions:block/gallifrey_oak_door_top",
+    "bottom": "dmadditions:block/gallifrey_oak_door_bottom"
+  }
+}

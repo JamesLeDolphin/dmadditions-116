@@ -1,0 +1,15 @@
+{
+  "name": "dmadditions:gallifrey/shed_start",
+  "fallback": "dmadditions:gallifrey/empty_pool",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "dmadditions:gallifrey/gallifrey_shed",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

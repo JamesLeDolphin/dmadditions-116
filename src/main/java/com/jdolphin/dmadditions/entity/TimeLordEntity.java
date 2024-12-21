@@ -1,24 +1,38 @@
-package com.jdolphin.dmadditions.entity;
+package com.jdolphin.dmadditions.entity.timelord;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import com.jdolphin.dmadditions.entity.RegeneratingEntity;
+import com.jdolphin.dmadditions.init.DMAItems;
+import com.swdteam.common.entity.CybermanEntity;
+import com.swdteam.common.entity.LookAtGoalBetter;
+import com.swdteam.common.entity.dalek.DalekEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.RangedInteger;
+import net.minecraft.util.TickRangeConverter;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.function.Function;
 
-public class TimeLordEntity extends RegeneratingEntity {
+public class TimeLordEntity extends RegeneratingEntity implements IAngerable {
 	public static String TYPE_TIMELORD = "TimelordType";
+	private UUID persistentAngerTarget;
+	private int remainingPersistentAngerTime;
+	private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
 	public static final DataParameter<String> TIMELORD_TYPE = EntityDataManager.defineId(TimeLordEntity.class, DataSerializers.STRING);
 
 	public TimeLordEntity(EntityType<? extends RegeneratingEntity> type, World world) {
@@ -26,9 +40,34 @@ public class TimeLordEntity extends RegeneratingEntity {
 	}
 
 	protected void defineSynchedData() {
-		TimeLordType[] types = TimeLordType.values();
-		this.getEntityData().define(TIMELORD_TYPE, types[this.random.nextInt(types.length)].getName());
+
+		this.getEntityData().define(TIMELORD_TYPE, getRandomTimelordType().getName());
 		super.defineSynchedData();
+	}
+
+	public TimeLordType getRandomTimelordType() {
+		TimeLordType[] types = TimeLordType.values();
+		return types[this.random.nextInt(types.length)];
+	}
+
+	public ItemStack getPickedResult(RayTraceResult result) {
+		return DMAItems.TIMELORD_SPAWNER.get().getDefaultInstance();
+	}
+
+	@Override
+	protected void registerGoals() {
+		super.registerGoals();
+		this.goalSelector.addGoal(1, new SwimGoal(this));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(6, new LookAtGoalBetter(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.addGoal(6, new LookAtGoalBetter(this, TimeLordEntity.class, 6.0F));
+		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+		this.targetSelector.addGoal(4, new MeleeAttackGoal(this, 1.5f, true));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, CybermanEntity.class, true));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this,
+			PlayerEntity.class, 10, true, false, this::isAngryAt));
+		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(3, new AvoidEntityGoal<>(this, DalekEntity.class, 16.0F, 1.5, 1.2));
 	}
 
 	public TimeLordType getTimelordType() {
@@ -47,6 +86,13 @@ public class TimeLordEntity extends RegeneratingEntity {
 			.add(Attributes.LUCK)
 			.add(Attributes.ATTACK_KNOCKBACK)
 			.add(Attributes.FOLLOW_RANGE, 30.0D);
+	}
+
+	public void tick() {
+		super.tick();
+		if (this.getRegenTicks() == 10) {
+			this.setTimelordType(getRandomTimelordType());
+		}
 	}
 
 	public void setTimelordType(TimeLordType type) {
@@ -71,9 +117,42 @@ public class TimeLordEntity extends RegeneratingEntity {
 		super.readAdditionalSaveData(compound);
 	}
 
+	@Override
+	public int getRemainingPersistentAngerTime() {
+		return remainingPersistentAngerTime;
+	}
+
+	@Override
+	public void setRemainingPersistentAngerTime(int i) {
+		this.remainingPersistentAngerTime = i;
+	}
+
+	@Override
+	public @Nullable UUID getPersistentAngerTarget() {
+		return this.persistentAngerTarget;
+	}
+
+	@Override
+	public void setPersistentAngerTarget(@Nullable UUID uuid) {
+		this.persistentAngerTarget = uuid;
+	}
+
+	@Override
+	public void startPersistentAngerTimer() {
+		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.randomValue(this.random));
+	}
+
 	public enum TimeLordType {
 		ARI("ari"),
-		ZURI("zuri");
+		ZURI("zuri"),
+		ALEX("alex"),
+		EFE("efe"),
+		KAI("kai"),
+		MAKENA("makena"),
+		NOOR("noor"),
+		STEVE("steve"),
+		SUNNY("sunny"),
+		;
 
 		private final String name;
 		public final Function<Random, List<ItemStack>> getInventory;

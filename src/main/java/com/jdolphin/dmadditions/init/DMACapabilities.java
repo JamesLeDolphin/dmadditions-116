@@ -7,5 +7,5 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 public class DMACapabilities {
 
 	@CapabilityInject(IPlayerRegenCap.class)
-	public static final Capability<IPlayerRegenCap> REGEN_CAP_CAPABILITY = null;
+	public static final Capability<IPlayerRegenCap> REGEN_CAPABILITY = null;
 }

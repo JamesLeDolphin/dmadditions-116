@@ -7,11 +7,11 @@ import net.minecraft.world.World;
 
 public class DalekMutantEntity extends KantrofarriEntity {
 
-	public DalekMutantEntity(EntityType<? extends MonsterEntity> entityType, World world) {
-		super(entityType, world);
-	}
-
 	public DalekMutantEntity(World world) {
 		super(DMAEntities.DALEK_MUTANT.get(), world);
+	}
+
+	public DalekMutantEntity(EntityType<? extends DalekMutantEntity> type, World world) {
+		super(type, world);
 	}
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "dmadditions:block/gallifrey_sandstone"
+  }
+}

@@ -1,14 +1,19 @@
 package com.jdolphin.dmadditions.cap;
 
 import com.jdolphin.dmadditions.init.DMAPackets;
+import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.network.CBSyncPlayerPacket;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.util.ChatUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.client.settings.PointOfView;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -24,7 +29,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	private int postponeTime = 0;
 	private boolean canPostpone = true;
 	private int preRegenTime = Helper.seconds(15);
-	private int regenTicks;
+	private int regenTicks = Helper.seconds(8) + 1;
 	private int currentRegens;
 
 	public PlayerRegenCapability(PlayerEntity player) {
@@ -36,15 +41,24 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 		if (postponed()) {
 			postponeTime--;
 		}
-		if (!this.player.isSpectator() && !player.isCreative()) ;
+		if (preRegenTime == Helper.seconds(30)) Helper.playSound(player.level, player.blockPosition(),
+			DMASoundEvents.PRE_REGEN.get(), SoundCategory.PLAYERS);
 
-		if (isPreRegen()) preRegenTime--;
-		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == 0) {
+		if (isPreRegen()) {
+			Helper.info("Pre");
+			preRegenTime--;
+		}
+		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == Helper.seconds(8)) {
 			this.regenerate();
 		}
 
-		if (regenTicks == Helper.seconds(30)) {
-			regenTicks = 0;
+		if (regenTicks < Helper.seconds(8) + 1) {
+			if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
+			player.teleportTo(player.getX(), player.getY(), player.getZ());
+		}
+
+		if (regenTicks == 0) {
+			regenTicks = Helper.seconds(8) + 1;
 		}
 	}
 
@@ -70,7 +84,9 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 				ChatUtil.MessageType.CHAT);
 			this.postponeTime = Helper.minutes(5);
 			this.canPostpone = false;
-		} else {
+			this.update();
+		}
+		else {
 			this.postponeTime = 0;
 			this.canPostpone = true;
 		}
@@ -90,23 +106,25 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 	public void setPreRegen(boolean preRegen) {
 		if (preRegen) {
 			this.player.setRemainingFireTicks(0);
-			this.player.getActiveEffects().stream().filter(effect -> !effect.getEffect().isBeneficial()).forEach(effectInstance -> {
-				player.removeEffect(effectInstance.getEffect());
-			});
+			this.player.getActiveEffects().stream().filter(effect ->
+				!effect.getEffect().isBeneficial()).forEach(effectInstance ->
+				player.removeEffect(effectInstance.getEffect()));
 			this.preRegenTime = Helper.seconds(30);
+			this.update();
 		} else this.preRegenTime = 0;
 	}
 
 	@Override
 	public void regenerate() {
-		this.regenTicks++;
-		if (regenTicks == 1) ChatUtil.sendMessageToPlayer(player,
-			new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
-		player.setSpeed(0);
-		this.removeRegens(1);
+		this.regenTicks--;
+		if (regenTicks == Helper.seconds(8) - 1) {
+			Helper.playSound(player.level, player.blockPosition(), DMASoundEvents.REGEN_START.get(), SoundCategory.PLAYERS);
+			ChatUtil.sendMessageToPlayer(player,
+				new StringTextComponent(player.getName().getString() + ", I let you go."), ChatUtil.MessageType.CHAT);
+		}
+
 		player.addEffect(new EffectInstance(Effects.REGENERATION, Helper.seconds(20), 0, false, false, false));
 		player.setDeltaMovement(new Vector3d(0, 0, 0));
-
 		this.update();
 	}
 
@@ -117,12 +135,12 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 
 	@Override
 	public boolean isPreRegen() {
-		return this.preRegenTime > 0;
+		return this.preRegenTime > 0 && !postponed();
 	}
 
 	@Override
 	public boolean isRegenerating() {
-		return this.regenTicks > 0;
+		return this.regenTicks < Helper.seconds(8);
 	}
 
 	@Override
@@ -162,6 +180,7 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 		CompoundNBT tag = new CompoundNBT();
 		tag.putInt(TAG_REGEN_AMOUNT, this.currentRegens);
 		tag.putInt(TAG_POSTPONE, this.postponeTime);
+		tag.putBoolean(TAG_CAN_POSTPONE, this.canPostpone);
 		tag.putInt(TAG_PRE_REGEN, this.preRegenTime);
 		return tag;
 	}
@@ -176,6 +195,9 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 		}
 		if (nbt.contains(TAG_PRE_REGEN)) {
 			this.preRegenTime = nbt.getInt(TAG_PRE_REGEN);
+		}
+		if (nbt.contains(TAG_CAN_POSTPONE)) {
+			this.canPostpone = nbt.getBoolean(TAG_CAN_POSTPONE);
 		}
 	}
 }

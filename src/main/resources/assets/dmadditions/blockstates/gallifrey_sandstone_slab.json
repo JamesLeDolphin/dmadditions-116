@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "dmadditions:block/gallifrey_sandstone_slab"
+    },
+    "type=double": {
+      "model": "dmadditions:block/gallifrey_sandstone"
+    },
+    "type=top": {
+      "model": "dmadditions:block/gallifrey_sandstone_slab_top"
+    }
+  }
+}

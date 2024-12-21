@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "dmadditions:block/gallifrey_sand"
+      },
+      {
+        "model": "dmadditions:block/gallifrey_sand",
+        "y": 90
+      },
+      {
+        "model": "dmadditions:block/gallifrey_sand",
+        "y": 180
+      },
+      {
+        "model": "dmadditions:block/gallifrey_sand",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "dmadditions:gallifrey_oak_log"
+    }
+  ],
+  "result": {
+    "item": "dmadditions:gallifrey_oak_planks",
+    "count": 4
+  }
+}

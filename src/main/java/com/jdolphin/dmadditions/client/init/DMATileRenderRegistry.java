@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.client.init;
 
+import com.jdolphin.dmadditions.client.render.tileentity.ConsoleRenderer;
 import com.jdolphin.dmadditions.client.render.tileentity.CoordPanelRenderer;
 import com.jdolphin.dmadditions.client.render.tileentity.DimensionSelectorPanelRenderer;
 import com.jdolphin.dmadditions.client.render.tileentity.SpecimenJarRenderer;
@@ -24,8 +25,9 @@ public class DMATileRenderRegistry {
 
 	public static void init() {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), CoordPanelRenderer::new);
-		registerModel(DMABlockEntities.TILE_SPECIMEN_JAR.get(), SpecimenJarRenderer::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), DimensionSelectorPanelRenderer::new);
+		registerModel(DMABlockEntities.TILE_CONSOLE.get(), ConsoleRenderer::new);
+		registerModel(DMABlockEntities.TILE_SPECIMEN_JAR.get(), SpecimenJarRenderer::new);
 	}
 
 	public static final ArrayList<TileEntityType<?>> MIXIN_RENDERERS = new ArrayList<TileEntityType<?>>() {{

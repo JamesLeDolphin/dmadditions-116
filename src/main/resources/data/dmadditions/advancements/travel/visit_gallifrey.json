@@ -1,0 +1,31 @@
+{
+  "parent": "dalekmod:travel/root",
+  "display": {
+    "icon": {
+      "item": "dmadditions:gallifrey_stone"
+    },
+    "title": {
+      "translate": "advancements.dmadditions.visit_gallifrey.title"
+    },
+    "description": {
+      "translate": "advancements.dmadditions.visit_gallifrey.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "visit_gallifrey": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "dmadditions:gallifrey"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "visit_gallifrey"
+    ]
+  ]
+}

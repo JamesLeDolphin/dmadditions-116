@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "dmadditions:block/gallifrey_oak_log_top",
+    "side": "dmadditions:block/gallifrey_oak_log_side"
+  }
+}

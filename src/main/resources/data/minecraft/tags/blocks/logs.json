@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "dmadditions:gallifrey_oak_log",
+    "dmadditions:gallifrey_oak_wood",
+    "dmadditions:stripped_gallifrey_oak_log",
+    "dmadditions:stripped_gallifrey_oak_wood"
+  ]
+}

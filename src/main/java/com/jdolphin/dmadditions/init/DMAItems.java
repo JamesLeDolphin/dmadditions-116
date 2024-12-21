@@ -59,6 +59,15 @@ public class DMAItems {
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
+	public static RegistryObject<Item> ELIXIR_OF_LIFE = ITEMS.register("elixir_of_life",
+		() -> new ElixirOfLifeItem(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
+
+	public static RegistryObject<Item> FOB_WATCH = ITEMS.register("fob_watch",
+		() -> new FobWatchItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> MONDASIAN_SPAWNER = ITEMS.register("mondasian_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.MONDASIAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
 	public static RegistryObject<Item> MONDAS_DATA_CARD = ITEMS.register("mondas_data_card", () ->
 		new DimensionDataCard((new Item.Properties()).tab(ItemGroup.TAB_MISC).stacksTo(1).tab(DMTabs.DM_TARDIS), "dmadditions:mondas", TextFormatting.AQUA));
 
@@ -83,6 +92,9 @@ public class DMAItems {
 
 	public static RegistryObject<Item> EMPTY_VILLAGER_SPAWNER = registerAdventItem(2, "empty_villager_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.EMPTY_VILLAGER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> TIMELORD_SPAWNER = ITEMS.register("timelord_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.TIMELORD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> SNOWMAN_SPAWNER = ITEMS.register("snowman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.SNOWMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
@@ -159,9 +171,6 @@ public class DMAItems {
 	public static RegistryObject<Item> MONDAS_CYBERMAN_SPAWNER = ITEMS.register("mondas_cyberman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.MONDAS_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> MONDASIAN_SPAWNER = ITEMS.register("mondasian_spawner",
-		() -> new DMASpawnerItem<>(DMAEntities.MONDASIAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
 	public static RegistryObject<Item> PILOT_FISH_TRUMPET = ITEMS.register("pilot_fish_trumpet",
 		() -> new SingleShotGunItem(DMItemTiers.DALEK_CANNON, 2.0F, 3.0f,
 			DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
@@ -179,8 +188,10 @@ public class DMAItems {
 		() -> new ForgeSpawnEggItem(DMAEntities.KANTROFARRI, 0x657fad, 0xd9cacd, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 	public static RegistryObject<Item> KANTROFARRI = ITEMS.register("kantrofarri",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI).tab(ItemGroup.TAB_FOOD)));
+
 	public static RegistryObject<Item> KANTROFARRI_COOKED = ITEMS.register("kantrofarri_cooked",
 		() -> new FoodItem(new Item.Properties().food(DMAFoods.KANTROFARRI_COOKED).tab(ItemGroup.TAB_FOOD)));
+
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
 		() -> new ShoppingCartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
@@ -189,9 +200,6 @@ public class DMAItems {
 
 	public static RegistryObject<Item> ZYGON_SPAWNER = registerAdventItem(1, "zygon_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.ZYGON, new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
-	//public static RegistryObject<Item> TIMELORD_SPAWNER = registerAdventItem(9, "timelord_spawner",
-	//	() -> new DMASpawnerItem<>(DMAEntities., new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = registerAdventItem(6, "clockwork_droid_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.CLOCKWORK_DROID, new Item.Properties().tab(ItemGroup.TAB_MISC)));

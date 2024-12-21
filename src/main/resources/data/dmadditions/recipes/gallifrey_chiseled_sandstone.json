@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "dmadditions:gallifrey_sandstone_slab"
+    }
+  },
+  "result": {
+    "item": "dmadditions:gallifrey_chiseled_sandstone"
+  }
+}

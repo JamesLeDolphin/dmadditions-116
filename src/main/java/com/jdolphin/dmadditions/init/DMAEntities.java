@@ -4,7 +4,7 @@ import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.Entity;
@@ -28,6 +28,8 @@ public class DMAEntities {
 	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN = registerEntity("jamesledolphin",
 		JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE, 0.9f, 0.6f);
 
+	public static RegistryObject<EntityType<TimeLordEntity>> TIMELORD = registerHumanoidEntity("timelord", TimeLordEntity::new, EntityClassification.AMBIENT);
+
 	public static RegistryObject<EntityType<SnowmanEntity>> SNOWMAN = registerEntity("snowman", SnowmanEntity::new, EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN = registerHumanoidEntity("wooden_cyberman",
@@ -41,7 +43,7 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<VehicleEntity>> BESSIE = registerEntity("bessie", VehicleEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
 
-	public static RegistryObject<EntityType<VehicleEntity>> DAVROS_CHAIR = registerAdventEntity(17, "davros_chair", VehicleEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
+	public static RegistryObject<EntityType<VehicleEntity>> DAVROS_CHAIR = registerEntity("davros_chair", VehicleEntity::new, EntityClassification.MISC, 0.9f, 0.6f);
 
 	public static RegistryObject<EntityType<VehicleEntity>> TW_SUV = registerEntity("torchwood_suv", VehicleEntity::new,
 		EntityClassification.MISC, 3, 2);
@@ -61,7 +63,7 @@ public class DMAEntities {
 	public static RegistryObject<EntityType<KantrofarriEntity>> KANTROFARRI = registerEntity("kantrofarri",
 		KantrofarriEntity::new, EntityClassification.MONSTER, 1.0f, 0.4f);
 
-	public static RegistryObject<EntityType<DalekMutantEntity>> DALEK_MUTANT = registerAdventEntity(13, "dalek_mutant",
+	public static RegistryObject<EntityType<DalekMutantEntity>> DALEK_MUTANT = registerEntity("dalek_mutant",
 		DalekMutantEntity::new, EntityClassification.MONSTER, 1.0f, 0.4f);
 
 	public static RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = ENTITY_TYPES.register("herobrine", () -> EntityType.Builder.of(HerobrineEntity::new, EntityClassification.MONSTER)
@@ -79,7 +81,7 @@ public class DMAEntities {
 			.sized(0.5f, 1.8f)
 			.build(Helper.createAdditionsRL("netherite_cyberman").toString()));
 
-	public static RegistryObject<EntityType<TardisControl>> CONTROL = registerAdventEntity( 24,"control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
+	//public static RegistryObject<EntityType<TardisControl>> CONTROL = registerAdventEntity( 24, "control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
 
 	public static RegistryObject<EntityType<FlyingSharkEntity>> FLYING_SHARK = ENTITY_TYPES.register("flying_shark",
 		() -> EntityType.Builder.of(FlyingSharkEntity::new, EntityClassification.CREATURE)
@@ -121,7 +123,6 @@ public class DMAEntities {
 			EntityType.Builder.<IceWarriorEntity>of(IceWarriorEntity::new, EntityClassification.MONSTER)
 				.sized(0.5f, 1.8f)
 				.build(Helper.createAdditionsRL("ice_warrior").toString()));
-
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
 																				   EntityClassification classification, float width, float height) {

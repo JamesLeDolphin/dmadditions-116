@@ -26,6 +26,8 @@ public class DMASoundEvents {
 	public static RegistryObject<SoundEvent> MONDAS_CYBER_LASER_ATTACK;
 	public static RegistryObject<SoundEvent> MUMMY;
 	public static RegistryObject<SoundEvent> EARTHSHOCK_GUN_SHOOT;
+	public static RegistryObject<SoundEvent> PRE_REGEN;
+	public static RegistryObject<SoundEvent> REGEN_START;
 
 	public static void init() {
 		PISTOL_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.pistol.shoot");
@@ -46,6 +48,8 @@ public class DMASoundEvents {
 		MONDAS_CYBER_LASER_ATTACK = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.mondas.laser_attack");
 		EARTHSHOCK_GUN_SHOOT = buildSound(RegistryHandler.SOUNDS, "item.earthshock_gun.shoot");
 		MUMMY = buildSound(RegistryHandler.SOUNDS, "entity.empty_child.mummy");
+		PRE_REGEN = buildSound(RegistryHandler.SOUNDS, "entity.player.regen.pre");
+		REGEN_START = buildSound(RegistryHandler.SOUNDS, "entity.player.regen.start");
 	}
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {

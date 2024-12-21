@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "dmadditions:gallifrey_stone",
+    "dmadditions:gallifrey_cobblestone",
+    "minecraft:dirt",
+    "dmadditions:gallifrey_sandstone"
+  ]
+}

@@ -44,6 +44,11 @@ public class DMAPackets {
 			.add();
 		INSTANCE.registerMessage(index++, CBOpenGUIPacket.class, CBOpenGUIPacket::encode, CBOpenGUIPacket::decode, CBOpenGUIPacket::handle);
 		INSTANCE.registerMessage(index++, CBSyncPlayerPacket.class, CBSyncPlayerPacket::encode, CBSyncPlayerPacket::decode, CBSyncPlayerPacket::handle);
+		INSTANCE.messageBuilder(SBTardisConsoleActionPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
+			.encoder(SBTardisConsoleActionPacket::encode)
+			.decoder(SBTardisConsoleActionPacket::new)
+			.consumer(SBTardisConsoleActionPacket::handle)
+			.add();
 	}
 
 	public static void sendTo(ServerPlayerEntity playerEntity, Object packet) {

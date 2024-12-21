@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.client.ClientDMBusEvents;
+import com.jdolphin.dmadditions.client.gui.overlay.PreRegenOverlay;
 import com.jdolphin.dmadditions.client.ClientForgeEvents;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
 import com.jdolphin.dmadditions.commands.*;
@@ -14,6 +15,10 @@ import com.jdolphin.dmadditions.config.DMAClientConfig;
 import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.*;
 import com.jdolphin.dmadditions.entity.cyber.*;
+import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
+import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
 import com.jdolphin.dmadditions.event.RegenEvents;
 import com.jdolphin.dmadditions.init.*;
@@ -22,6 +27,7 @@ import com.jdolphin.dmadditions.util.Helper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.swdteam.common.RegistryHandler;
+import com.swdteam.client.init.BusClientEvents;
 import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMItems;
 import com.swdteam.common.init.DMSonicRegistry;
@@ -75,7 +81,7 @@ import net.minecraftforge.fml.network.FMLNetworkConstants;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,11 +125,11 @@ public class DMAdditions {
 		//This one line fixes joining servers that don't have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
-		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
 		DMABlocks.BLOCKS.register(bus);
 		DMAEntities.ENTITY_TYPES.register(bus);
-		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
 		DMAItems.ITEMS.register(bus);
+		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
+		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
 		DMAWorldCarvers.WORLD_CARVERS.register(bus);
 		DMAProjectiles.init();
 		DMALootConditionManager.init();
@@ -179,6 +185,7 @@ public class DMAdditions {
 			event.put(DMAEntities.NETHERITE_CYBERMAN.get(), NetheriteCybermanEntity.setCustomAttributes().build());
 		if (DMAEntities.DAVROS_CHAIR != null)
 			event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
+		event.put(DMAEntities.TIMELORD.get(), TimeLordEntity.createAttributes().build());
 	}
 
 
@@ -261,6 +268,9 @@ public class DMAdditions {
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MANOR.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MANOR.get()));
 
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.GALLIFREY_SHED.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.GALLIFREY_SHED.get()));
+
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MONDAS_RUIN.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
 
@@ -271,6 +281,7 @@ public class DMAdditions {
 		DMABlocks.registerRenderTypes();
 		MinecraftForge.EVENT_BUS.register(ClientDMBusEvents.class);
 		DMATileRenderRegistry.init();
+		BusClientEvents.overlays.add(new PreRegenOverlay());
 		if (hasTC()) {
 			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_DALEKANIUM);
 			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_STEEL);
@@ -307,6 +318,10 @@ public class DMAdditions {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
 		}
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_SHED)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_SHED);
+		}
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) {
 			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
@@ -321,6 +336,9 @@ public class DMAdditions {
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
+		final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+		structures.add(() -> DMAConfiguredStructures.CONFIGURED_CITADEL);
+
 		if (isBiomeValidForDeadTree(biomeRegistryKey)) {
 			List<Supplier<ConfiguredFeature<?, ?>>> base =
 				event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
@@ -334,6 +352,16 @@ public class DMAdditions {
 				event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES);
 			oreBase.add(() -> DMAConfiguredStructures.SONIC_ORE
 				.squared().decorated(Features.Placements.HEIGHTMAP));
+		}
+
+		if (biomeRegistryKey != null && biomeRegistryKey.toString().equals("dmadditions:gallifrey_forest")) {
+			List<Supplier<ConfiguredFeature<?, ?>>> base =
+				event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
+
+			base.add(() -> DMAConfiguredStructures.GALLIFREY_TREE
+				.squared().decorated(Features.Placements.HEIGHTMAP)
+				.decorated(Placement.COUNT_EXTRA.configured(
+					new AtSurfaceWithExtraConfig(2, 0.5f, 4))));
 		}
 	}
 
@@ -351,6 +379,7 @@ public class DMAdditions {
 					registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND))
 				return registryKey.equals("minecraft:snowy_taiga");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.equals("dmadditions:gallifrey_plains") || registryKey.equals("dmadditions:gallifrey_forest");
 
 		}
 		return false;
