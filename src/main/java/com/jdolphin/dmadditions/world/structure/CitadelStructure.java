@@ -67,7 +67,6 @@ public class CitadelStructure extends Structure<NoFeatureConfig> {
 
 		@ParametersAreNonnullByDefault
 		public void generatePieces(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
-			if (Objects.equals(biomeIn.getRegistryName(), DMABiomes.GALLIFREY_MOUNTAINS.getRegistryName())) {
 				int x = (chunkX << 4) + 7;
 				int z = (chunkZ << 4) + 7;
 				BlockPos blockpos = new BlockPos(x, 0, z);
@@ -77,7 +76,6 @@ public class CitadelStructure extends Structure<NoFeatureConfig> {
 				SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.CITADEL, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), blockpos, schematic);
 
 				this.calculateBoundingBox();
-			}
 		}
 	}
 }

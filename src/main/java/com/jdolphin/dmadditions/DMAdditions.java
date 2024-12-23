@@ -271,6 +271,9 @@ public class DMAdditions {
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.GALLIFREY_SHED.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.GALLIFREY_SHED.get()));
 
+			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CITADEL.get(),
+				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CITADEL.get()));
+
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MONDAS_RUIN.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
 
@@ -336,8 +339,10 @@ public class DMAdditions {
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
-		final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-		structures.add(() -> DMAConfiguredStructures.CONFIGURED_CITADEL);
+		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CITADEL)) {
+			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CITADEL);
+		}
 
 		if (isBiomeValidForDeadTree(biomeRegistryKey)) {
 			List<Supplier<ConfiguredFeature<?, ?>>> base =
@@ -380,7 +385,7 @@ public class DMAdditions {
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND))
 				return registryKey.equals("minecraft:snowy_taiga");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.equals("dmadditions:gallifrey_plains") || registryKey.equals("dmadditions:gallifrey_forest");
-
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CITADEL)) return  registryKey.equals("dmadditions:gallifrey_mountains");
 		}
 		return false;
 	}

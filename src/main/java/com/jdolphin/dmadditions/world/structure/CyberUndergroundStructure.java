@@ -52,20 +52,17 @@ public class CyberUndergroundStructure extends Structure<NoFeatureConfig> {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
-		public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
+		public void generatePieces(DynamicRegistries registries, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
-			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern) dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(Helper.createAdditionsRL("cyber_underground/start_pool"));
-			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
-			this.pieces.forEach((piece) -> {
-				piece.move(0, -50, 0);
-			});
-			this.pieces.forEach((piece) -> {
-				--piece.getBoundingBox().y0;
-			});
+			JigsawManager.addPieces(registries,
+				new VillageConfig(() -> registries.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+					.get(Helper.createAdditionsRL("cyber_underground/start_pool")),
+					10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+			this.pieces.forEach((piece) -> piece.move(0, -50, 0));
+			this.pieces.forEach((piece) -> --piece.getBoundingBox().y0);
 			this.calculateBoundingBox();
 		}
 	}
