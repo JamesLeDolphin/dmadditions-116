@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.model.entity;
+package com.jdolphin.dmadditions.client.model.entity.cyber;
 
 
 import com.jdolphin.dmadditions.entity.cyber.CyberPiglinEntity;

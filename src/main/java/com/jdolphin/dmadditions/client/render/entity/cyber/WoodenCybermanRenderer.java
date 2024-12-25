@@ -1,6 +1,6 @@
-package com.jdolphin.dmadditions.client.render.entity;
+package com.jdolphin.dmadditions.client.render.entity.cyber;
 
-import com.jdolphin.dmadditions.client.model.entity.WoodenCybermanModel;
+import com.jdolphin.dmadditions.client.model.entity.cyber.WoodenCybermanModel;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

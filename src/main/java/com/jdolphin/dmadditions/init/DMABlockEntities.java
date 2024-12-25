@@ -17,11 +17,6 @@ public class DMABlockEntities {
 
 	public static RegistryObject<TileEntityType<BetterScannerTileEntity>> TILE_SCANNER;
 
-	protected static <T extends TileEntity> RegistryObject<TileEntityType<T>> registerAdventTileEntity(int day, String name, Supplier<TileEntityType<T>> supplier){
-		if (!TimedUnlock.advent(day)) return null;
-		return TILE_ENTITY_TYPES.register(name, supplier);
-	}
-
 	public static final RegistryObject<TileEntityType<DoorPanelTileEntity>> TILE_DOOR_PANEL = TILE_ENTITY_TYPES.register("door_panel",
 			() -> TileEntityType.Builder.of(DoorPanelTileEntity::new, DMABlocks.DOOR_PANEL.get()).build(null));
 

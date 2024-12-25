@@ -50,11 +50,23 @@
 	"item.dmadditions.cybercow_spawner": "Cyber-Cow Spawner",
 	"item.dmadditions.mondas_data_card": "Dimension Data Card",
 
+	"item.dmadditions.tomb_cyber_controller_spawner": "Tomb Cybercontroller Spawner",
+	"item.dmadditions.cyber_warrior_spawner": "Cyber Warrior Spawner",
+	"item.dmadditions.tomb_cyberman_spawner": "Tomb Cyberman Spawner",
+	"item.dmadditions.invasion_cyberman_spawner": "Invasion Cyberman Spawner",
+
+	"entity.dmadditions.tomb_cyber_controller": "Tomb Cybercontroller",
+	"entity.dmadditions.warrior_cyberman": "Warrior Cyberman",
+	"entity.dmadditions.tomb_cyberman": "Tomb Cyberman",
+	"entity.dmadditions.invasion_cyberman": "Invasion Cyberman",
+
 	"notice.dmadditions.tardis.randomizer_set": "Randomizer location has been set to %1$s %2$s!",
 	"item.dmadditions.frying_pan": "Frying Pan",
 	"block.dmadditions.randomizer": "Randomizer",
 	"subtitles.item.frying_pan.hit": "Hit by Frying Pan",
 	"subtitles.entity.cyberman.mondas.ambient": "Cyberman Speaks",
+	"subtitles.entity.cyberman.invasion.ambient": "Invasion Cyberman Speaks",
+	"subtitles.entity.cyberman.tomb_controller.ambient": "Tomb Cybercontroller Speaks",
 	"subtitles.entity.cyberman.mondas.laser_attack": "Laser Shoots",
 	"container.dmadditions.roundel_storage": "Roundel Storage",
 

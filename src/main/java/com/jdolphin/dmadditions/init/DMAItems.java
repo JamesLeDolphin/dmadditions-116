@@ -84,13 +84,25 @@ public class DMAItems {
 	public static RegistryObject<Item> HANDLES = ITEMS.register("handles",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
 
-	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = registerAdventItem(4, "netherite_cyberman_spawner",
+	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = ITEMS.register("netherite_cyberman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.NETHERITE_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> EMPTY_CHILD_SPAWNER = registerAdventItem(2, "empty_child_spawner",
+//	public static RegistryObject<Item> CYBER_WARRIOR_SPAWNER = ITEMS.register("cyber_warrior_spawner",
+//		() -> new DMASpawnerItem<>(DMAEntities.WARRIOR_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+//	public static RegistryObject<Item> TOMB_CYBERMAN = ITEMS.register("tomb_cyberman_spawner",
+//		() -> new DMASpawnerItem<>(DMAEntities.TOMB_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+//	public static RegistryObject<Item> TOMB_CYBER_CONTROLLER= ITEMS.register("tomb_cyber_controller_spawner",
+//		() -> new DMASpawnerItem<>(DMAEntities.TOMB_CYBER_CONTROLLER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+//	public static RegistryObject<Item> INVASION_CYBERMAN = ITEMS.register("invasion_cyberman_spawner",
+//		() -> new DMASpawnerItem<>(DMAEntities.INVASION_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+
+	public static RegistryObject<Item> EMPTY_CHILD_SPAWNER = ITEMS.register("empty_child_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.EMPTY_CHILD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> EMPTY_VILLAGER_SPAWNER = registerAdventItem(2, "empty_villager_spawner",
+	public static RegistryObject<Item> EMPTY_VILLAGER_SPAWNER = ITEMS.register("empty_villager_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.EMPTY_VILLAGER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> TIMELORD_SPAWNER = ITEMS.register("timelord_spawner",
@@ -176,9 +188,11 @@ public class DMAItems {
 			DMProjectiles.EXPLOSIVE_LASER, DMSoundEvents.ENTITY_DALEK_CANNON_CHARGE,
 			DMSoundEvents.ENTITY_DALEK_CANNON_SHOOT, (new Item.Properties()).tab(ItemGroup.TAB_COMBAT)));
 
-	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = ITEMS.register("flying_shark_spawner", () -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
+	public static RegistryObject<Item> FLYING_SHARK_SPAWNER = ITEMS.register("flying_shark_spawner",
+		() -> new ForgeSpawnEggItem(DMAEntities.FLYING_SHARK, 0x004A5B, 0xffffff, new Item.Properties().tab(ItemGroup.TAB_MISC))); // TODO once someone makes a spawner texture, replace this with a DMASpawnerItem instead of a ForgeSpawnEggItem
 
-	public static RegistryObject<Item> RACNOSS_SPAWNER = ITEMS.register("racnoss_spawner", () -> new ForgeSpawnEggItem(DMAEntities.RACNOSS, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
+	public static RegistryObject<Item> RACNOSS_SPAWNER = ITEMS.register("racnoss_spawner",
+		() -> new ForgeSpawnEggItem(DMAEntities.RACNOSS, 0xa61911, 0x0, new Item.Properties().tab(ItemGroup.TAB_MISC))); //TODO texture
 
 	public static RegistryObject<Item> SYCORAX_STAFF = ITEMS.register("sycorax_staff", () -> new SycoraxStaffItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1)));
 

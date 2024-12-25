@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.render.entity;
+package com.jdolphin.dmadditions.client.render.entity.cyber;
 
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.util.Helper;

@@ -13,20 +13,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class DMAEntities {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DMAdditions.MODID);
-
-	public static EntityType<?> getEntityTypeFromString(String s) {
-		Optional<EntityType<?>> ty = EntityType.byString("dmadditions:" + s);
-		return ty.get();
-	}
-
-	public static final RegistryObject<EntityType<JamesLeDolphinEntity>> JAMESLEDOLPHIN = registerEntity("jamesledolphin",
-		JamesLeDolphinEntity::new, EntityClassification.WATER_CREATURE, 0.9f, 0.6f);
 
 	public static RegistryObject<EntityType<TimeLordEntity>> TIMELORD = registerHumanoidEntity("timelord", TimeLordEntity::new, EntityClassification.AMBIENT);
 
@@ -34,6 +23,23 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<WoodenCybermanEntity>> WOODEN_CYBERMAN = registerHumanoidEntity("wooden_cyberman",
 		WoodenCybermanEntity::new, EntityClassification.MONSTER);
+
+	public static RegistryObject<EntityType<DMACybermanEntity>> WARRIOR_CYBERMAN = registerHumanoidEntity("warrior_cyberman",
+		((type, world) ->
+			new DMACybermanEntity(type, world, /*DMAItems.CYBER_WARRIOR_SPAWNER.get()*/ null, DMACybermanEntity.CybermanType.CYBERWARRIOR)), EntityClassification.MONSTER);
+
+	public static RegistryObject<EntityType<DMACybermanEntity>> TOMB_CYBERMAN = registerHumanoidEntity("tomb_cyberman",
+		((type, world) ->
+			new DMACybermanEntity(type, world, /*DMAItems.CYBER_WARRIOR_SPAWNER.get()*/ null, DMACybermanEntity.CybermanType.TOMB)), EntityClassification.MONSTER);
+
+	public static RegistryObject<EntityType<DMACybermanEntity>> TOMB_CYBER_CONTROLLER = registerHumanoidEntity("tomb_cyber_controller",
+		((type, world) ->
+			new DMACybermanEntity(type, world, /*DMAItems.TOMB_CYBER_CONTROLLER.get() */ null,
+				DMASoundEvents.TOMB_CONTROLLER_AMBIENT.get(), DMACybermanEntity.CybermanType.TOMB_CONTROLLER)), EntityClassification.MONSTER);
+
+	public static RegistryObject<EntityType<DMACybermanEntity>> INVASION_CYBERMAN = registerHumanoidEntity("invasion_cyberman",
+		((type, world) ->
+			new DMACybermanEntity(type, world, /*DMAItems.INVASION_CYBERMAN.get()*/ null, DMASoundEvents.INVASION_AMBIENT.get(), DMACybermanEntity.CybermanType.INVASION)), EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<MondasCybermanEntity>> MONDAS_CYBERMAN = registerHumanoidEntity("mondas_cyberman",
 		MondasCybermanEntity::new, EntityClassification.MONSTER);
@@ -71,15 +77,11 @@ public class DMAEntities {
 		.setTrackingRange(64)
 		.build(Helper.createAdditionsRL("herobrine").toString()));
 
-	public static RegistryObject<EntityType<CyberPiglinEntity>> CYBER_PIGLIN = registerAdventEntity(4, "cyber_piglin", () ->
-		EntityType.Builder.of(CyberPiglinEntity::new, EntityClassification.MONSTER)
-			.sized(0.5f, 1.8f)
-			.build(Helper.createAdditionsRL("cyber_piglin").toString()));
+	public static RegistryObject<EntityType<CyberPiglinEntity>> CYBER_PIGLIN =
+		registerHumanoidEntity("cyber_piglin", CyberPiglinEntity::new, EntityClassification.MONSTER);
 
-	public static RegistryObject<EntityType<NetheriteCybermanEntity>> NETHERITE_CYBERMAN = registerAdventEntity(4, "netherite_cyberman", () ->
-		EntityType.Builder.of(NetheriteCybermanEntity::new, EntityClassification.MONSTER)
-			.sized(0.5f, 1.8f)
-			.build(Helper.createAdditionsRL("netherite_cyberman").toString()));
+	public static RegistryObject<EntityType<NetheriteCybermanEntity>> NETHERITE_CYBERMAN = registerHumanoidEntity( "netherite_cyberman",
+		NetheriteCybermanEntity::new, EntityClassification.MONSTER);
 
 	//public static RegistryObject<EntityType<TardisControl>> CONTROL = registerAdventEntity( 24, "control", TardisControl::new, EntityClassification.MISC, 0.2f, 0.2f);
 
@@ -92,37 +94,21 @@ public class DMAEntities {
 			.build(Helper.createAdditionsRL("flying_shark").toString()));
 
 	public static final RegistryObject<EntityType<ClockworkDroidEntity>> CLOCKWORK_DROID =
-		registerAdventEntity(6, "clockwork_droid", () ->
-			EntityType.Builder.<ClockworkDroidEntity>of(ClockworkDroidEntity::new, EntityClassification.MONSTER)
-				.sized(0.5f, 1.8f)
-				.build(Helper.createAdditionsRL("clockwork_droid").toString())
-		);
+		registerHumanoidEntity("clockwork_droid",
+			ClockworkDroidEntity::new, EntityClassification.MONSTER);
 
 	public static final RegistryObject<EntityType<ZygonEntity>> ZYGON =
-		registerAdventEntity(1, "zygon", () ->
-			EntityType.Builder.<ZygonEntity>of(ZygonEntity::new, EntityClassification.MONSTER)
-				.sized(0.5f, 1.95f)
-				.clientTrackingRange(10)
-				.build(Helper.createAdditionsRL("zygon").toString()));
+		registerHumanoidEntity("zygon", ZygonEntity::new, EntityClassification.MONSTER);
 
 	public static final RegistryObject<EntityType<EmptyVillagerEntity>> EMPTY_VILLAGER =
-		registerAdventEntity(2, "empty_villager", () ->
-			EntityType.Builder.<EmptyVillagerEntity>of(EmptyVillagerEntity::new, EntityClassification.MONSTER)
-				.sized(0.5f, 1.8f)
-				.build(Helper.createAdditionsRL("empty_villager").toString()));
+		registerHumanoidEntity("empty_villager",
+			EmptyVillagerEntity::new, EntityClassification.MONSTER);
 
 	public static final RegistryObject<EntityType<EmptyChildEntity>> EMPTY_CHILD =
-		registerAdventEntity(2, "empty_child", () ->
-			EntityType.Builder.<EmptyChildEntity>of(EmptyChildEntity::new, EntityClassification.MONSTER)
-				.sized(0.5f, 1.5f)
-				.build(Helper.createAdditionsRL("empty_child").toString())
-		);
+		registerHumanoidEntity("empty_child", EmptyChildEntity::new, EntityClassification.MONSTER);
 
 	public static final RegistryObject<EntityType<IceWarriorEntity>> ICE_WARRIOR =
-		registerAdventEntity(5, "ice_warrior", () ->
-			EntityType.Builder.<IceWarriorEntity>of(IceWarriorEntity::new, EntityClassification.MONSTER)
-				.sized(0.5f, 1.8f)
-				.build(Helper.createAdditionsRL("ice_warrior").toString()));
+		registerHumanoidEntity("ice_warrior", IceWarriorEntity::new, EntityClassification.MONSTER);
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String name, EntityType.IFactory<T> entityClass,
 																				   EntityClassification classification, float width, float height) {
@@ -139,22 +125,5 @@ public class DMAEntities {
 	private static <T extends Entity> RegistryObject<EntityType<T>> registerHumanoidEntity(String name, EntityType.IFactory<T> entityClass,
 																						   EntityClassification classification) {
 		return registerEntity(name, entityClass, classification, 0.6f, 1.8f);
-	}
-
-	@Nullable
-	private static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name,  EntityType.IFactory<T> entityClass,
-																						 EntityClassification classification, float width, float height) {
-		if (TimedUnlock.advent(date)) {
-			return registerEntity(name, entityClass, classification, width, height);
-		}
-		else return null;
-	}
-
-	@Nullable
-	protected static <T extends Entity> RegistryObject<EntityType<T>> registerAdventEntity(int date, String name, Supplier<EntityType<T>> supplier) {
-		if (TimedUnlock.advent(date)) {
-			return ENTITY_TYPES.register(name, supplier);
-		}
-		return null;
 	}
 }

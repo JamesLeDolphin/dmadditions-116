@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.model.entity;
+package com.jdolphin.dmadditions.client.model.entity.cyber;
 
 import com.jdolphin.dmadditions.entity.cyber.NetheriteCybermanEntity;
 import com.jdolphin.dmadditions.util.Helper;
@@ -27,7 +27,7 @@ public class NetheriteCybermanModel extends BipedModel<NetheriteCybermanEntity> 
 	}
 
 	public void init() {
-		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/netherite_cyberman.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/cyberwarrior.json"));
 		if (this.model != null) {
 			ModelWrapper wrapper = this.model.getModelData().getModel();
 			this.head = wrapper.getPart("Head");

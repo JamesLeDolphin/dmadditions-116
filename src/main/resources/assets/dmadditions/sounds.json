@@ -55,6 +55,22 @@
 			"dmadditions:entity/cyber/mondas/ambient_3"
 		]
 	},
+	"entity.cyberman.tomb_controller.ambient": {
+		"subtitle": "subtitles.entity.cyberman.tomb_controller.ambient",
+		"sounds": [
+			"dmadditions:entity/cyber/we_will_survive",
+			"dmadditions:entity/cyber/you_belong_to_us",
+			"dmadditions:entity/cyber/you_shall_be_like_us"
+		]
+	},
+	"entity.cyberman.invasion.ambient": {
+		"subtitle": "subtitles.entity.cyberman.invasion.ambient",
+		"sounds": [
+			"dmadditions:entity/cyber/do_not_move",
+			"dmadditions:entity/cyber/do_not_resist",
+			"dmadditions:entity/cyber/obey_or_destroy"
+		]
+	},
 	"entity.empty_child.mummy": {
 		"subtitle": "subtitles.entity.empty_child.mummy",
 		"sounds": [

@@ -101,7 +101,7 @@ public class ClockworkDroidEntity extends MonsterEntity {
 
 	@Override
 	public HandSide getMainArm() {
-		return null;
+		return HandSide.RIGHT;
 	}
 
 	public enum ClockworkDroidType {
@@ -119,11 +119,6 @@ public class ClockworkDroidEntity extends MonsterEntity {
 		ClockworkDroidType(String name) {
 			this.name = name;
 			this.getInventory = (random) -> null;
-		}
-
-		ClockworkDroidType(String name, Function<Random, List<ItemStack>> getInventory) {
-			this.name = name;
-			this.getInventory = getInventory;
 		}
 
 		public static ClockworkDroidType get(String name) {

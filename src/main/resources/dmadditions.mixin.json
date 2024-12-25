@@ -17,7 +17,6 @@
 		"common.DMBlocksMixin",
 		"common.DMProjectilesMixin",
 		"common.DMTardisRegistryMixin",
-		"common.DolphinEntityMixin",
 		"common.DoubleDoorsTileEntityMixin",
 		"common.KerblamItemMixin",
 		"common.KerblamItemReloadListenerMixin",

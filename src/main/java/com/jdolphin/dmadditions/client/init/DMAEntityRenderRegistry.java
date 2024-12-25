@@ -1,8 +1,12 @@
 package com.jdolphin.dmadditions.client.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
+import com.jdolphin.dmadditions.client.model.entity.cyber.CyberWarriorModel;
+import com.jdolphin.dmadditions.client.model.entity.cyber.InvasionCybermanModel;
+import com.jdolphin.dmadditions.client.model.entity.cyber.TombControllerCybermanModel;
+import com.jdolphin.dmadditions.client.model.entity.cyber.TombCybermanModel;
 import com.jdolphin.dmadditions.client.render.entity.*;
-import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
+import com.jdolphin.dmadditions.client.render.entity.cyber.*;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -14,8 +18,6 @@ public class DMAEntityRenderRegistry {
 
 	public static void registerEntityRenderers() {
 		DMAdditions.LOGGER.info("Registering DMA Entity Renders");
-
-		registerRender(DMAEntities.JAMESLEDOLPHIN, JamesLeDolphinRenderer::new);
 		registerRender(DMAEntities.MONDASIAN, MondasianRenderer::new);
 		registerRender(DMAEntities.TIMELORD, TimeLordRenderer::new);
 		registerRender(DMAEntities.CYBERCOW, CybercowRenderer::new);
@@ -39,6 +41,11 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.DALEK_MUTANT, DalekMutantRenderer::new);
 		registerRender(DMAEntities.NETHERITE_CYBERMAN, NetheriteCybermanRenderer::new);
 		registerRender(DMAEntities.CYBER_PIGLIN, CyberPiglinRenderer::new);
+
+		registerRender(DMAEntities.TOMB_CYBERMAN, (manager) -> new DMACybermanRenderer(manager, new TombCybermanModel()));
+		registerRender(DMAEntities.WARRIOR_CYBERMAN, (manager) -> new DMACybermanRenderer(manager, new CyberWarriorModel()));
+		registerRender(DMAEntities.TOMB_CYBER_CONTROLLER, (manager) -> new DMACybermanRenderer(manager, new TombControllerCybermanModel()));
+		registerRender(DMAEntities.INVASION_CYBERMAN, (manager) -> new DMACybermanRenderer(manager, new InvasionCybermanModel()));
 	}
 
 

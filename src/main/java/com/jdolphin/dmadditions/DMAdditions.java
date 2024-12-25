@@ -154,7 +154,6 @@ public class DMAdditions {
 	}
 
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
-		event.put(DMAEntities.JAMESLEDOLPHIN.get(), JamesLeDolphinEntity.createAttributes().build());
 		event.put(DMAEntities.WOODEN_CYBERMAN.get(), WoodenCybermanEntity.setCustomAttributes().build());
 		event.put(DMAEntities.MONDAS_CYBERMAN.get(), MondasCybermanEntity.createAttributes().build());
 		event.put(DMAEntities.MONDASIAN.get(), MondasianEntity.createAttributes().build());
@@ -168,24 +167,22 @@ public class DMAdditions {
 		event.put(DMAEntities.KANTROFARRI.get(), KantrofarriEntity.createAttributes().build());
 		event.put(DMAEntities.HEROBRINE.get(), HerobrineEntity.createAttributes().build());
 		event.put(DMAEntities.CYBERCOW.get(), CyberCowEntity.createAttributes().build());
-
-		if (DMAEntities.CLOCKWORK_DROID != null)
-			event.put(DMAEntities.CLOCKWORK_DROID.get(), ClockworkDroidEntity.createAttributes().build());
-		if (DMAEntities.ICE_WARRIOR != null)
-			event.put(DMAEntities.ICE_WARRIOR.get(), IceWarriorEntity.createAttributes().build());
-		if (DMAEntities.ZYGON != null)
-			event.put(DMAEntities.ZYGON.get(), ZygonEntity.createAttributes().build());
-		if (DMAEntities.EMPTY_CHILD != null) {
-			event.put(DMAEntities.EMPTY_CHILD.get(), EmptyChildEntity.createAttributes().build());
-			event.put(DMAEntities.EMPTY_VILLAGER.get(), EmptyChildEntity.createAttributes().build());
-		}
-		if (DMAEntities.CYBER_PIGLIN != null) event.put(DMAEntities.CYBER_PIGLIN.get(), CyberPiglinEntity.setCustomAttributes().build());
-		if (DMAEntities.DALEK_MUTANT != null) event.put(DMAEntities.DALEK_MUTANT.get(), KantrofarriEntity.createAttributes().build());
-		if (DMAEntities.NETHERITE_CYBERMAN != null)
-			event.put(DMAEntities.NETHERITE_CYBERMAN.get(), NetheriteCybermanEntity.setCustomAttributes().build());
-		if (DMAEntities.DAVROS_CHAIR != null)
-			event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
+		event.put(DMAEntities.CLOCKWORK_DROID.get(), ClockworkDroidEntity.createAttributes().build());
+		event.put(DMAEntities.ICE_WARRIOR.get(), IceWarriorEntity.createAttributes().build());
+		event.put(DMAEntities.ZYGON.get(), ZygonEntity.createAttributes().build());
+		event.put(DMAEntities.EMPTY_CHILD.get(), EmptyChildEntity.createAttributes().build());
+		event.put(DMAEntities.EMPTY_VILLAGER.get(), EmptyChildEntity.createAttributes().build());
+		event.put(DMAEntities.CYBER_PIGLIN.get(), CyberPiglinEntity.setCustomAttributes().build());
+		event.put(DMAEntities.DALEK_MUTANT.get(), KantrofarriEntity.createAttributes().build());
+		event.put(DMAEntities.NETHERITE_CYBERMAN.get(), NetheriteCybermanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.DAVROS_CHAIR.get(), VehicleEntity.setCustomAttributes().build());
 		event.put(DMAEntities.TIMELORD.get(), TimeLordEntity.createAttributes().build());
+
+		event.put(DMAEntities.INVASION_CYBERMAN.get(), DMACybermanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.TOMB_CYBER_CONTROLLER.get(), DMACybermanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.WARRIOR_CYBERMAN.get(), DMACybermanEntity.setCustomAttributes().build());
+		event.put(DMAEntities.TOMB_CYBERMAN.get(), DMACybermanEntity.setCustomAttributes().build());
+
 	}
 
 
@@ -316,31 +313,25 @@ public class DMAdditions {
 			}
 		}
 		ResourceLocation biomeRegistryKey = event.getName();
-
+		final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
 		}
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_SHED)) {
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_SHED);
 		}
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND)) {
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND);
 		}
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS)) {
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS);
 		}
 
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN)) {
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CITADEL)) {
-			final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CITADEL);
 		}
 
