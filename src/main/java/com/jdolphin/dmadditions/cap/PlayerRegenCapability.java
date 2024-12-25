@@ -38,28 +38,27 @@ public class PlayerRegenCapability implements IPlayerRegenCap {
 
 	@Override
 	public void tick() {
-		if (postponed()) {
-			postponeTime--;
-		}
-		if (preRegenTime == Helper.seconds(30)) Helper.playSound(player.level, player.blockPosition(),
-			DMASoundEvents.PRE_REGEN.get(), SoundCategory.PLAYERS);
+//		if (postponed()) {
+//			postponeTime--;
+//		}
+//		if (preRegenTime == Helper.seconds(30)) Helper.playSound(player.level, player.blockPosition(),
+//			DMASoundEvents.PRE_REGEN.get(), SoundCategory.PLAYERS);
 
-		if (isPreRegen()) {
-			Helper.info("Pre");
-			preRegenTime--;
-		}
-		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == Helper.seconds(8)) {
-			this.regenerate();
-		}
+//		if (isPreRegen()) {
+//			preRegenTime--;
+//		}
+//		if (preRegenTime == 5 && !postponed() && hasRegens() && this.regenTicks == Helper.seconds(8)) {
+//			this.regenerate();
+//		}
 
-		if (regenTicks < Helper.seconds(8) + 1) {
-			if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
-			player.teleportTo(player.getX(), player.getY(), player.getZ());
-		}
+//		if (regenTicks < Helper.seconds(8) + 1) {
+//			if (player instanceof ClientPlayerEntity) Minecraft.getInstance().options.setCameraType(PointOfView.THIRD_PERSON_FRONT);
+//			player.teleportTo(player.getX(), player.getY(), player.getZ());
+//		}
 
-		if (regenTicks == 0) {
-			regenTicks = Helper.seconds(8) + 1;
-		}
+//		if (regenTicks == 0) {
+//			regenTicks = Helper.seconds(8) + 1;
+//		}
 	}
 
 	@Override

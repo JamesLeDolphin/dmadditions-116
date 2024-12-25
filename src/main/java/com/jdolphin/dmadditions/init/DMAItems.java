@@ -59,11 +59,11 @@ public class DMAItems {
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> ELIXIR_OF_LIFE = ITEMS.register("elixir_of_life",
-		() -> new ElixirOfLifeItem(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
+	//public static RegistryObject<Item> ELIXIR_OF_LIFE = ITEMS.register("elixir_of_life",
+	//	() -> new ElixirOfLifeItem(new Item.Properties().tab(ItemGroup.TAB_MISC).stacksTo(1)));
 
-	public static RegistryObject<Item> FOB_WATCH = ITEMS.register("fob_watch",
-		() -> new FobWatchItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	//public static RegistryObject<Item> FOB_WATCH = ITEMS.register("fob_watch",
+	//	() -> new FobWatchItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> MONDASIAN_SPAWNER = ITEMS.register("mondasian_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.MONDASIAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
