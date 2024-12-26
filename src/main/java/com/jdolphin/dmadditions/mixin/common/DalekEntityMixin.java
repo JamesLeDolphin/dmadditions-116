@@ -14,7 +14,6 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -26,6 +25,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
 
@@ -39,7 +39,7 @@ public abstract class DalekEntityMixin extends MobEntity implements IDalekEntity
 	private boolean party;
 	private BlockPos jukebox;
 
-	@Inject(at = @At("TAIL"), remap = false, method = "registerGoals()V")
+	@Inject(at = @At("TAIL"), method = "registerGoals()V")
 	protected void registerGoals(CallbackInfo ci) {
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, TimeLordEntity.class, true));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, MondasianEntity.class, true));
@@ -47,9 +47,10 @@ public abstract class DalekEntityMixin extends MobEntity implements IDalekEntity
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, WoodenCybermanEntity.class, true));
 	}
 
-	@Override
-	public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
-			SpawnReason reason, ILivingEntityData data, CompoundNBT nbt) {
+	@Inject(at = @At("HEAD"),
+		method = "finalizeSpawn(Lnet/minecraft/world/IServerWorld;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/entity/ILivingEntityData;Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/entity/ILivingEntityData;")
+	public void finalizeSpawn(IServerWorld world, DifficultyInstance difficulty,
+							  SpawnReason spawnReason, ILivingEntityData spawnDataIn, CompoundNBT entityTag, CallbackInfoReturnable<ILivingEntityData> cir) {
 
 		if (TimedUnlock.isHalloween() && random.nextBoolean()) {
 			Block block = Blocks.CARVED_PUMPKIN;
@@ -63,8 +64,6 @@ public abstract class DalekEntityMixin extends MobEntity implements IDalekEntity
 			this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(block));
 			this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
 		}
-
-		return super.finalizeSpawn(world, difficulty, reason, data, nbt);
 	}
 
 	@Inject(method = "aiStep", at = @At("TAIL"))

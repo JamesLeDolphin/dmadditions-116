@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "dmadditions:block/stripped_gallifrey_oak_side"
+    "all": "dmadditions:block/stripped_gallifrey_oak_log_side"
   }
 }

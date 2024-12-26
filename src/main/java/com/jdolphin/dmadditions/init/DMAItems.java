@@ -53,9 +53,6 @@ public class DMAItems {
 	public static RegistryObject<Item> RED_BAUBLE = ITEMS.register("red_bauble",
 		() -> new BaubleBlockItem(DMABlocks.RED_BAUBLE_BLOCK));
 
-	public static RegistryObject<Item> VORTEX_MANIPULATOR = registerAdventItem(1, "vortex_manipulator",
-		() -> new VortexManipulatorItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION)));
-
 	public static RegistryObject<Item> BIO_DAMPNER = ITEMS.register("bio_dampner",
 		() -> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 

@@ -32,11 +32,6 @@ public class DMAPackets {
 			.decoder(SBSonicInteractPacket::new)
 			.consumer(SBSonicInteractPacket::handle)
 			.add();
-		INSTANCE.messageBuilder(SBVMInteractionPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
-			.encoder(SBVMInteractionPacket::encode)
-			.decoder(SBVMInteractionPacket::new)
-			.consumer(SBVMInteractionPacket::handle)
-			.add();
 		INSTANCE.messageBuilder(SBSonicBlasterInteractPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
 			.encoder(SBSonicBlasterInteractPacket::encode)
 			.decoder(SBSonicBlasterInteractPacket::new)
