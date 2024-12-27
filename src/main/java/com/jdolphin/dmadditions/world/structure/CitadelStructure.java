@@ -58,7 +58,7 @@ public class CitadelStructure extends Structure<NoFeatureConfig> {
 			BlockPos blockpos = new BlockPos(x, 0, z);
 			System.out.println(blockpos);
 			Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
-			SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.CITADEL, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), blockpos, schematic);
+			SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.DEFAULT, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), blockpos, schematic);
 
 			this.calculateBoundingBox();
 		}
