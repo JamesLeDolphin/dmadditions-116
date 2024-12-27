@@ -20,7 +20,9 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class MondasRuin extends Structure<NoFeatureConfig> {
@@ -35,7 +37,7 @@ public class MondasRuin extends Structure<NoFeatureConfig> {
 		super(codec);
 	}
 
-	public IStartFactory<NoFeatureConfig> getStartFactory() {
+	public @NotNull IStartFactory<NoFeatureConfig> getStartFactory() {
 		return MondasRuin.Start::new;
 	}
 
@@ -56,19 +58,17 @@ public class MondasRuin extends Structure<NoFeatureConfig> {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
+		@ParametersAreNonnullByDefault
 		public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
-			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(
-				() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
-					.get(Helper.createAdditionsRL("mondas_ruin/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
-			this.pieces.forEach((piece) -> {
-				piece.move(0, 0, 0);
-			});
-			this.pieces.forEach((piece) -> {
-				--piece.getBoundingBox().y0;
-			});
+			JigsawManager.addPieces(dynamicRegistryManager,
+				new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+					.get(Helper.createAdditionsRL("mondas_ruin/start_pool")), 10),
+				AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+			this.pieces.forEach((piece) -> piece.move(0, 0, 0));
+			this.pieces.forEach((piece) -> --piece.getBoundingBox().y0);
 			this.calculateBoundingBox();
 		}
 	}

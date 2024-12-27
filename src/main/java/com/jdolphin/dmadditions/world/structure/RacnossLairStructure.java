@@ -21,6 +21,7 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class RacnossLairStructure extends Structure<NoFeatureConfig> {
@@ -32,7 +33,7 @@ public class RacnossLairStructure extends Structure<NoFeatureConfig> {
 	}
 
 	public Structure.IStartFactory<NoFeatureConfig> getStartFactory() {
-		return CyberUndergroundStructure.Start::new;
+		return RacnossLairStructure.Start::new;
 	}
 
 	public GenerationStage.Decoration step() {
@@ -52,20 +53,18 @@ public class RacnossLairStructure extends Structure<NoFeatureConfig> {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
+		@ParametersAreNonnullByDefault
 		public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
 			BlockPos blockpos = new BlockPos(x, 0, z);
-			JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> {
-				return (JigsawPattern) dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(Helper.createAdditionsRL("racnoss_lair/start_pool"));
-			}, 10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
-			this.pieces.forEach((piece) -> {
-				piece.move(0, -50, 0);
-			});
-			this.pieces.forEach((piece) -> {
-				--piece.getBoundingBox().y0;
-			});
+			JigsawManager.addPieces(dynamicRegistryManager,
+				new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+					.get(Helper.createAdditionsRL("racnoss_lair/start_pool")), 10),
+				AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+			this.pieces.forEach((piece) -> piece.move(0, -50, 0));
+			this.pieces.forEach((piece) -> --piece.getBoundingBox().y0);
 			this.calculateBoundingBox();
 		}
 	}

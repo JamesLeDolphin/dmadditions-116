@@ -31,18 +31,10 @@ import java.util.function.Supplier;
 public class DMAItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DMAdditions.MODID);
 
-	protected static RegistryObject<Item> registerAdventItem(int day, String name, Supplier<Item> supplier) {
-		if (!TimedUnlock.advent(day)) return null;
+	public static final RegistryObject<Item> DOCS_FLUTE = ITEMS.register("docs_flute", () -> new FluteItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-		return ITEMS.register(name, supplier);
-	}
-
-	public static final RegistryObject<Item> DOCS_FLUTE = registerAdventItem(16, "docs_flute", () -> new FluteItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
-
-	public static final RegistryObject<Item> SONIC_BLASTER = registerAdventItem(3, "sonic_blaster",
+	public static final RegistryObject<Item> SONIC_BLASTER = ITEMS.register("sonic_blaster",
 		() -> new SonicBlasterItem(new Item.Properties().tab(ItemGroup.TAB_COMBAT)));
-
-	public static final RegistryObject<Item> SONIC_SHADES = registerAdventItem(21, "sonic_shades", () -> new SonicShadesItem(EquipmentSlotType.HEAD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> BLUE_BAUBLE = ITEMS.register("blue_bauble",
 		() -> new BaubleBlockItem(DMABlocks.BLUE_BAUBLE_BLOCK));
@@ -67,6 +59,9 @@ public class DMAItems {
 
 	public static RegistryObject<Item> MONDAS_DATA_CARD = ITEMS.register("mondas_data_card", () ->
 		new DimensionDataCard((new Item.Properties()).tab(ItemGroup.TAB_MISC).stacksTo(1).tab(DMTabs.DM_TARDIS), "dmadditions:mondas", TextFormatting.AQUA));
+
+	public static RegistryObject<Item> GALLIFREY_DATA_CARD = ITEMS.register("gallifrey_data_card", () ->
+		new DimensionDataCard((new Item.Properties()).tab(ItemGroup.TAB_MISC).stacksTo(1).tab(DMTabs.DM_TARDIS), "dmadditions:gallifrey", TextFormatting.DARK_RED));
 
 	public static RegistryObject<Item> SPECIMEN_JAR = ITEMS.register("specimen_jar",
 		() -> new SpecimenJarBlockItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
@@ -206,16 +201,16 @@ public class DMAItems {
 	public static RegistryObject<Item> SHOPPING_CART = ITEMS.register("shopping_cart",
 		() -> new ShoppingCartItem(new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION))); // TODO: texture
 
-	public static RegistryObject<Item> CYBER_PIGLIN_SPAWNER = registerAdventItem(4, "cyber_piglin_spawner",
+	public static RegistryObject<Item> CYBER_PIGLIN_SPAWNER = ITEMS.register("cyber_piglin_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.CYBER_PIGLIN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> ZYGON_SPAWNER = registerAdventItem(1, "zygon_spawner",
+	public static RegistryObject<Item> ZYGON_SPAWNER = ITEMS.register("zygon_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.ZYGON, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = registerAdventItem(6, "clockwork_droid_spawner",
+	public static RegistryObject<Item> CLOWCKWORK_SPAWNER = ITEMS.register("clockwork_droid_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.CLOCKWORK_DROID, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-	public static RegistryObject<Item> ICE_WARRIOR_SPAWNER = registerAdventItem(5, "ice_warrior_spawner",
+	public static RegistryObject<Item> ICE_WARRIOR_SPAWNER = ITEMS.register("ice_warrior_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.ICE_WARRIOR, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> DAVROS_CHAIR = ITEMS.register("davros_chair",

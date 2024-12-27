@@ -8,7 +8,6 @@ import com.jdolphin.dmadditions.client.ClientDMBusEvents;
 import com.jdolphin.dmadditions.client.gui.overlay.PreRegenOverlay;
 import com.jdolphin.dmadditions.client.ClientForgeEvents;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
-import com.jdolphin.dmadditions.commands.*;
 import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
 import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
 import com.jdolphin.dmadditions.config.DMAClientConfig;
@@ -29,14 +28,12 @@ import com.mojang.serialization.Codec;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.client.init.BusClientEvents;
 import com.swdteam.common.block.IRust;
-import com.swdteam.common.init.DMItems;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -56,7 +53,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -137,13 +133,13 @@ public class DMAdditions {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DMAClientConfig.SPEC, "dma-client.toml");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DMACommonConfig.SPEC, "dma-common.toml");
 
-		IEventBus vengaBus = MinecraftForge.EVENT_BUS;
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
-		vengaBus.register(this);
-		vengaBus.register(DMAEventHandlerGeneral.class);
-		vengaBus.register(RegenEvents.class);
-		vengaBus.addListener(EventPriority.HIGH, this::biomeModification);
-		vengaBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
+		forgeBus.register(this);
+		forgeBus.register(DMAEventHandlerGeneral.class);
+		forgeBus.register(RegenEvents.class);
+		forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
+		forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) DMAFluids.FLUIDS.register(bus);
 	}
 
@@ -289,8 +285,6 @@ public class DMAdditions {
 			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_METALERT);
 			TinkersRenderType.setTranslucent(DMAFluids.MOLTEN_SILICON);
 		}
-
-		ClientRegistry.registerKeyBinding(ClientForgeEvents.SONIC_SHADE_INTERACTION);
 	}
 
 	@SubscribeEvent
@@ -314,6 +308,7 @@ public class DMAdditions {
 		}
 		ResourceLocation biomeRegistryKey = event.getName();
 		final List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+
 		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_MANOR)) {
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MANOR);
 		}
@@ -370,12 +365,12 @@ public class DMAdditions {
 			String registryKey = biomeRegistryKey.toString();
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_MANOR))
 				return registryKey.equals("minecraft:snowy_taiga");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS))
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_MONDAS) || structure.equals(DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN))
 				return registryKey.equals("dmadditions:mondas_frozen") ||
 					registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND))
 				return registryKey.equals("minecraft:snowy_taiga");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.equals("dmadditions:gallifrey_plains") || registryKey.equals("dmadditions:gallifrey_forest");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.contains("dmadditions:gallifrey");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CITADEL)) return  registryKey.equals("dmadditions:gallifrey_mountains");
 		}
 		return false;

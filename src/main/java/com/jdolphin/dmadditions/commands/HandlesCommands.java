@@ -29,6 +29,12 @@ public class HandlesCommands {
 		return optionalCommand.orElse(null);
 	}
 
+	public static HandlesCommand HELP = HandlesCommand.create("(help|what|wut|wha|what're).*(commands|cmds|do)\\??",
+		(player, handles, matcher, query) -> {
+		sendHandlesMessage(player, handles, String.format("My commands are: %s", commands));
+		return true;
+	});
+
 
 	public static HandlesCommand NEAREST_PLAYER = HandlesCommand.create("(.*)((near|close)(\\b|e?st|by) (player|people)s?|(player|people)s? (near|close)(\\b| to) me)\\??",
 		(player, handles, matcher, query) -> {

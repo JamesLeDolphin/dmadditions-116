@@ -36,12 +36,12 @@ public class DMAStructures {
 	}
 
 	public static void setupStructures() {
-		setupMapSpacingAndLand(GALLIFREY_SHED.get(), new StructureSeparationSettings(25, 12, 1111511), false);
+		setupMapSpacingAndLand(GALLIFREY_SHED.get(), new StructureSeparationSettings(25, 12, 5436), false);
 		setupMapSpacingAndLand(MANOR.get(), new StructureSeparationSettings(50, 10, 42069314), false);
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
-		setupMapSpacingAndLand(MONDAS_RUIN.get(), new StructureSeparationSettings(30, 10, 225478), true);
+		setupMapSpacingAndLand(MONDAS_RUIN.get(), new StructureSeparationSettings(20, 11, 514524682), true);
 		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(20, 10, 5988732), false);
-		setupMapSpacingAndLand(CITADEL.get(), new StructureSeparationSettings(50, 10, 2174531), true);
+		setupMapSpacingAndLand(CITADEL.get(), new StructureSeparationSettings(10, 9, 2174531), true);
 
 	}
 

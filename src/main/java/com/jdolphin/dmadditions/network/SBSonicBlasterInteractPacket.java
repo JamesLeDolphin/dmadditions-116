@@ -48,8 +48,7 @@ public class SBSonicBlasterInteractPacket {
 				if (!block.isAir(state, world, bPos)) {
 					server.addTickable(() -> {
 						if (server.getTickCount() == i + 20 * 6) {
-							if (world.setBlock(bPos, state, Constants.BlockFlags.DEFAULT)) {
-							}
+							world.setBlock(bPos, state, Constants.BlockFlags.DEFAULT);
 						}
 					});
 				}

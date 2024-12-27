@@ -27,11 +27,6 @@ public class DMAPackets {
 			.decoder(SBLocatePlayerPacket::new)
 			.consumer(SBLocatePlayerPacket::handle)
 			.add();
-		INSTANCE.messageBuilder(SBSonicInteractPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
-			.encoder(SBSonicInteractPacket::encode)
-			.decoder(SBSonicInteractPacket::new)
-			.consumer(SBSonicInteractPacket::handle)
-			.add();
 		INSTANCE.messageBuilder(SBSonicBlasterInteractPacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
 			.encoder(SBSonicBlasterInteractPacket::encode)
 			.decoder(SBSonicBlasterInteractPacket::new)

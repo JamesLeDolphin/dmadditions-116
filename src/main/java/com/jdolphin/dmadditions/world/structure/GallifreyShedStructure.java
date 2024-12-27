@@ -21,6 +21,7 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class GallifreyShedStructure extends Structure<NoFeatureConfig> {
@@ -53,6 +54,7 @@ public class GallifreyShedStructure extends Structure<NoFeatureConfig> {
 			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
+		@ParametersAreNonnullByDefault
 		public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
 
 			int x = (chunkX << 4) + 7;
@@ -62,6 +64,7 @@ public class GallifreyShedStructure extends Structure<NoFeatureConfig> {
 				dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
 					.get(Helper.createAdditionsRL("gallifrey/shed_start")), 10),
 				AbstractVillagePiece::new, chunkGenerator, templateManagerIn, blockpos, this.pieces, this.random, false, true);
+			this.pieces.forEach((piece) -> piece.move(0, 0, 0));
 			this.pieces.forEach((piece) -> --piece.getBoundingBox().y0);
 			this.calculateBoundingBox();
 		}

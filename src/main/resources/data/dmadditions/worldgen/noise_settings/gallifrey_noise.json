@@ -38,6 +38,17 @@
 		}
 	},
 	"structures": {
-		"structures": {}
+		"structures": {
+			"dmadditions:gallifrey_shed": {
+				"spacing": 25,
+				"separation": 12,
+				"salt": 5436
+			},
+			"dmadditions:citadel": {
+				"spacing": 10,
+				"separation": 9,
+				"salt": 2174531
+			}
+		}
 	}
 }

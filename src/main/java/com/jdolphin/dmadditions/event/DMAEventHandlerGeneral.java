@@ -69,25 +69,6 @@ public class DMAEventHandlerGeneral {
 	}
 
 	@SubscribeEvent
-	public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
-		PlayerEntity player = event.player;
-		if (player instanceof ServerPlayerEntity) {
-			ItemStack headStack = player.getItemBySlot(EquipmentSlotType.HEAD);
-
-			if (DMAItems.SONIC_SHADES != null && headStack.getItem().equals(DMAItems.SONIC_SHADES.get())) {
-				World level = player.level;
-				CompoundNBT tag = headStack.getOrCreateTag();
-				int energy = tag.contains("energy") ? tag.getInt("energy") : 0;
-				if (energy < 100) {
-					if (level.random.nextFloat() < 0.4f) {
-						tag.putInt("energy", energy + 1);
-					}
-				}
-			}
-		}
-	}
-
-	@SubscribeEvent
 	public static void entityDeathEvent(LivingDeathEvent event) {
 		LivingEntity entity = event.getEntityLiving();
 		if (entity instanceof DalekEntity) {

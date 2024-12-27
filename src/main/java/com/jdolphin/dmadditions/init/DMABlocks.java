@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.CarvedDalekPumpkinBlock;
 import com.jdolphin.dmadditions.block.DalekPumpkinBlock;
@@ -13,10 +12,8 @@ import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.world.tree.GallifreyOakTree;
 import com.swdteam.common.block.LogBlock;
-import com.swdteam.common.block.StatueBlock;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.init.DMTabs;
-import com.swdteam.common.item.BaseBlockItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -39,17 +36,15 @@ import static com.swdteam.common.init.DMBlocks.registerRenderType;
 public class DMABlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DMAdditions.MODID);
 
-	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlock(
+	public static final RegistryObject<Block> CORAL_FLIGHT_LEVER = registerBlockWithItem("coral_flight_lever",
 		() -> new CoralHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
-			.instabreak().noOcclusion().sound(SoundType.STONE)),
-		"coral_flight_lever", DMTabs.DM_TARDIS);
+			.instabreak().noOcclusion().sound(SoundType.STONE)), DMTabs.DM_TARDIS);
 
-	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlock(
+	public static final RegistryObject<Block> COPPER_FLIGHT_LEVER = registerBlockWithItem("copper_flight_lever",
 		() -> new CopperHandbrake(net.minecraft.block.AbstractBlock.Properties.of(Material.STONE)
-			.instabreak().noOcclusion().sound(SoundType.STONE)),
-		"copper_flight_lever", DMTabs.DM_TARDIS);
+			.instabreak().noOcclusion().sound(SoundType.STONE)), DMTabs.DM_TARDIS);
 
-	public static final RegistryObject<Block> STONE_SONIC_CRYSTAL_ORE = registerBlockAndItem("stone_sonic_crystal_ore",
+	public static final RegistryObject<Block> STONE_SONIC_CRYSTAL_ORE = registerBlockWithItem("stone_sonic_crystal_ore",
 		() -> new BetterOreBlock(AbstractBlock.Properties.copy(Blocks.COAL_ORE)
 			.harvestTool(ToolType.PICKAXE).harvestLevel(2), 1, 5),
 		new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS));
@@ -59,154 +54,129 @@ public class DMABlocks {
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
 
-	public static RegistryObject<Block> GALLIFREY_OAK_LOG = registerAdventBlock(8, () ->
-			new LogBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG),
-		"gallifrey_oak_log", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_LOG = registerBlockWithItem("gallifrey_oak_log",
+		() -> new LogBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_WOOD = registerAdventBlock(8, () ->
-			new LogBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get()), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG),
-		"gallifrey_oak_wood", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_WOOD = registerBlockWithItem("gallifrey_oak_wood",
+		() -> new LogBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get()), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_SAPLING = registerAdventBlock(8, () ->
-			new SaplingBlock(new GallifreyOakTree(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)),
-		"gallifrey_oak_sapling", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> GALLIFREY_OAK_SAPLING = registerBlockWithItem("gallifrey_oak_sapling",
+		() -> new SaplingBlock(new GallifreyOakTree(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)), ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_WOOD = registerAdventBlock(8, () ->
-			new RotatedPillarBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get())),
-		"stripped_gallifrey_oak_wood", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_WOOD = registerBlockWithItem("stripped_gallifrey_oak_wood",
+		() -> new RotatedPillarBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SAND = registerAdventBlock(8, () ->
-			new SandBlock(Color.PINK.getRGB(), AbstractBlock.Properties.of(Material.SAND).harvestTool(ToolType.SHOVEL).strength(0.5f).sound(SoundType.SAND)),
-		"gallifrey_sand", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SAND = registerBlockWithItem("gallifrey_sand",
+		() -> new SandBlock(Color.PINK.getRGB(), AbstractBlock.Properties.of(Material.SAND).harvestTool(ToolType.SHOVEL).strength(0.5f).sound(SoundType.SAND)),ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SANDSTONE =  registerAdventBlock(8, () ->
-			new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
-		"gallifrey_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE =  registerBlockWithItem("gallifrey_sandstone",
+		() -> new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE =  registerAdventBlock(8, () ->
-			new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_smooth_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE =  registerBlockWithItem("gallifrey_smooth_sandstone",
+		() -> new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_CUT_SANDSTONE =  registerAdventBlock(8, () ->
-			new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_cut_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_CUT_SANDSTONE =  registerBlockWithItem("gallifrey_cut_sandstone",
+		() -> new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_CUT_SANDSTONE_SLAB =  registerAdventBlock(8, () ->
-			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_cut_sandstone_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_CUT_SANDSTONE_SLAB =  registerBlockWithItem("gallifrey_cut_sandstone_slab",
+		() -> new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SANDSTONE_SLAB =  registerAdventBlock(8, () ->
-			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_sandstone_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_SLAB =  registerBlockWithItem("gallifrey_sandstone_slab",
+		() -> new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SANDSTONE_WALL =  registerAdventBlock(8, () ->
-			new WallBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_sandstone_wall", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_WALL =  registerBlockWithItem("gallifrey_sandstone_wall",
+		() -> new WallBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SANDSTONE_STAIRS =  registerAdventBlock(8, () ->
-			new StairsBlock(() -> GALLIFREY_SANDSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_sandstone_stairs", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_STAIRS =  registerBlockWithItem("gallifrey_sandstone_stairs",
+		() -> new StairsBlock(() -> GALLIFREY_SANDSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE_SLAB =  registerAdventBlock(8, () ->
-			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_smooth_sandstone_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE_SLAB =  registerBlockWithItem("gallifrey_smooth_sandstone_slab",
+		() -> new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE_STAIRS =  registerAdventBlock(8, () ->
-			new StairsBlock(() -> GALLIFREY_SMOOTH_SANDSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_SMOOTH_SANDSTONE.get())),
-		"gallifrey_smooth_sandstone_stairs", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE_STAIRS =  registerBlockWithItem("gallifrey_smooth_sandstone_stairs",
+		() -> new StairsBlock(() -> GALLIFREY_SMOOTH_SANDSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_SMOOTH_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_CHISELED_SANDSTONE =  registerAdventBlock(8, () ->
-			new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_chiseled_sandstone", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_CHISELED_SANDSTONE =  registerBlockWithItem("gallifrey_chiseled_sandstone",
+		() -> new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_SANDSTONE_PILLAR =  registerAdventBlock(8, () ->
-			new RotatedPillarBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())),
-		"gallifrey_sandstone_pillar", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_SANDSTONE_PILLAR =  registerBlockWithItem("gallifrey_sandstone_pillar",
+		() -> new RotatedPillarBlock(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_LOG =  registerAdventBlock(8, () ->
-			log(MaterialColor.COLOR_RED, MaterialColor.COLOR_PINK),
-		"stripped_gallifrey_oak_log", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> STRIPPED_GALLIFREY_OAK_LOG =  registerBlockWithItem("stripped_gallifrey_oak_log",
+		() -> log(MaterialColor.COLOR_RED, MaterialColor.COLOR_PINK), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_PLANKS =  registerAdventBlock(8, () ->
-			new Block(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD)),
-		"gallifrey_oak_planks", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_PLANKS =  registerBlockWithItem("gallifrey_oak_planks",
+		() -> new Block(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_SLAB =  registerAdventBlock(8, () ->
-			new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())),
-		"gallifrey_oak_slab", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_SLAB =  registerBlockWithItem("gallifrey_oak_slab",
+		() -> new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_STAIRS =  registerAdventBlock(8, () ->
-			new StairsBlock(() -> GALLIFREY_OAK_PLANKS.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())),
-		"gallifrey_oak_stairs", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_STAIRS =  registerBlockWithItem("gallifrey_oak_stairs",
+		() -> new StairsBlock(() -> GALLIFREY_OAK_PLANKS.get().defaultBlockState(), AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_LEAVES =  registerAdventBlock(8, () ->
-			new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).harvestTool(ToolType.HOE).sound(SoundType.GRASS).noOcclusion()),
-		"gallifrey_oak_leaves", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_LEAVES =  registerBlockWithItem("gallifrey_oak_leaves",
+		() -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).harvestTool(ToolType.HOE).sound(SoundType.GRASS).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_DOOR = registerAdventBlock(8, () ->
-			new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()),
-		"gallifrey_oak_door", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_DOOR = registerBlockWithItem("gallifrey_oak_door",
+		() -> new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_OAK_TRAPDOOR =  registerAdventBlock(8, () ->
-			new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()),
-		"gallifrey_oak_trapdoor", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_OAK_TRAPDOOR =  registerBlockWithItem("gallifrey_oak_trapdoor",
+		() -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_STONE = registerAdventBlock(8,
-		() -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)), "gallifrey_stone", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_STONE = registerBlockWithItem( "gallifrey_stone",
+		() -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_ZEITON_ORE = registerAdventBlock(8,
-		() -> new BetterOreBlock(AbstractBlock.Properties.copy(Blocks.COAL_ORE), 2, 5), "gallifrey_zeiton_ore", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_ZEITON_ORE = registerBlockWithItem("gallifrey_zeiton_ore",
+		() -> new BetterOreBlock(AbstractBlock.Properties.copy(Blocks.COAL_ORE), 2, 5),  ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerAdventBlock(8,
-		() -> new Block(AbstractBlock.Properties.of(Material.STONE)), "gallifrey_cobblestone", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerBlockWithItem("gallifrey_cobblestone",
+		() -> new Block(AbstractBlock.Properties.of(Material.STONE)),  ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> CONSOLE = registerAdventBlock(24,
-		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), "console", DMTabs.DM_TARDIS);
+	public static RegistryObject<Block> CONSOLE = registerBlockWithItem("console",
+		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)),new Item.Properties().tab(DMTabs.DM_TARDIS));
 
-	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlock(() ->
-			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()),
-		"christmas_lights", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlockWithItem("christmas_lights", () ->
+			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()), ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> CLOAKING_PANEL = registerBlock(() ->
-			new CloakPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
-		"cloak_panel", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> CLOAKING_PANEL = registerBlockWithItem("cloak_panel", () ->
+			new CloakPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> PLAYER_LOCATOR = registerBlock(() ->
-			new PlayerLocatorBlock(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
-		"player_locator", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> PLAYER_LOCATOR = registerBlockWithItem("player_locator", () ->
+			new PlayerLocatorBlock(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> FORCEFIELD_PANEL = registerBlock(() ->
-			new ForceFieldPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)),
-		"forcefield_panel", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> FORCEFIELD_PANEL = registerBlockWithItem("forcefield_panel", () ->
+			new ForceFieldPanel(AbstractBlock.Properties.of(Material.STONE).strength(6.25F, 5.75F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerBlock(() ->
+	public static RegistryObject<Block> CHRISTMAS_PRESENT = registerBlockWithItem("christmas_present", () ->
 		new ChristmasPresentBlock(AbstractBlock.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()
-			.harvestTool(ToolType.PICKAXE)), "christmas_present", ItemGroup.TAB_DECORATIONS);
+			.harvestTool(ToolType.PICKAXE)), ItemGroup.TAB_DECORATIONS);
 
-	public static RegistryObject<Block> DOOR_PANEL = registerBlockAndItem("door_panel",
+	public static RegistryObject<Block> DOOR_PANEL = registerBlockWithItem("door_panel",
 		() -> new DoorPanelBlock(DoorPanelTileEntity::new, AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.WOOD)),
 		new Item.Properties().tab(DMTabs.DM_TARDIS));
 
-	public static RegistryObject<Block> TARDIS_SNOWGLOBE = registerBlock(
-		() -> new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
-		"tardis_snowglobe", ItemGroup.TAB_DECORATIONS);
-
-	public static RegistryObject<Block> RANDOMIZER = registerBlock(
+	public static RegistryObject<Block> RANDOMIZER = registerBlockWithItem("randomizer",
 		() -> new RandomizerBlock(AbstractBlock.Properties.of(Material.STONE).instabreak().noOcclusion().sound(SoundType.STONE)),
-		"randomizer", DMTabs.DM_TARDIS);
+		 DMTabs.DM_TARDIS);
 
-	public static RegistryObject<Block> CHEESE_ORE = registerBlock(() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), "cheese_ore", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> CHEESE_ORE = registerBlockWithItem("cheese_ore",
+		() -> new OreBlock(AbstractBlock.Properties.copy(DMBlocks.ANORTHOSITE.isPresent() ? DMBlocks.ANORTHOSITE.get() : Blocks.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> DALEK_PUMPKIN = registerBlock(() -> new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
-	public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlock(() -> new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), "carved_dalek_pumpkin", ItemGroup.TAB_BUILDING_BLOCKS);
+	public static RegistryObject<Block> DALEK_PUMPKIN = registerBlockWithItem("dalek_pumpkin", () ->
+		new DalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> MAGPIE_TELEVISION = registerBlock(() -> new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), "magpie_television", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> CARVED_DALEK_PUMPKIN = registerBlockWithItem("carved_dalek_pumpkin", () ->
+		new CarvedDalekPumpkinBlock(AbstractBlock.Properties.copy(Blocks.CARVED_PUMPKIN)), ItemGroup.TAB_BUILDING_BLOCKS);
 
-	public static RegistryObject<Block> TITANIC_SNOWGLOBE = registerBlock(() ->
-			new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)),
-		"titanic_snowglobe", ItemGroup.TAB_DECORATIONS);
+	public static RegistryObject<Block> MAGPIE_TELEVISION = registerBlockWithItem("magpie_television", () ->
+		new MagpieTelevisionBlock(AbstractBlock.Properties.of(Material.WOOD).noOcclusion()), ItemGroup.TAB_DECORATIONS);
+
+	public static RegistryObject<Block> TITANIC_SNOWGLOBE = registerBlockWithItem("titanic_snowglobe", () ->
+			new SnowGlobeBlock(AbstractBlock.Properties.of(Material.GLASS).strength(0.8F, 0.8F).noOcclusion().dynamicShape().sound(SoundType.GLASS)), ItemGroup.TAB_DECORATIONS);
 
 	public static RegistryObject<Block> SPECIMEN_JAR = registerBlock(() -> new SpecimenJarBlock(AbstractBlock.Properties.of(Material.GLASS).sound(SoundType.GLASS).noOcclusion()), "specimen_jar");
+
+	public static RegistryObject<Block> ENGINE = registerBlockWithItem("engine", () -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), ItemGroup.TAB_MATERIALS);
 
 	public static RegistryObject<Block> BLACK_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "black_quartz_roundel_container", SoundType.STONE);
 	public static RegistryObject<Block> YELLOW_QUARTZ_ROUNDEL_CONTAINER = registerContainer(Material.STONE, "yellow_quartz_roundel_container", SoundType.STONE);
@@ -297,8 +267,6 @@ public class DMABlocks {
 	public static RegistryObject<Block> RED_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "red_plastic_shape_roundel_container");
 	public static RegistryObject<Block> BLACK_PLASTIC_SHAPE_ROUNDEL_CONTAINER = registerContainer(Material.WOOD, "black_plastic_shape_roundel_container");
 
-	public static RegistryObject<Block> ENGINE = registerBlock(() -> new EngineBlock(AbstractBlock.Properties.of(Material.PISTON).noOcclusion()), "engine", ItemGroup.TAB_MATERIALS);
-
 	@SafeVarargs
 	public static void registerRenderTypes(RenderType renderType, RegistryObject<Block>... blocks) {
 		for (RegistryObject<Block> block : blocks) {
@@ -310,17 +278,12 @@ public class DMABlocks {
 
 	public static void registerRenderTypes() {
 		registerRenderTypes(RenderType.cutoutMipped(),
-			TARDIS_SNOWGLOBE
-		);
-
-		registerRenderTypes(RenderType.cutoutMipped(),
 			BLUE_BAUBLE_BLOCK,
 			GOLD_BAUBLE_BLOCK,
 			GREEN_BAUBLE_BLOCK,
 			RED_BAUBLE_BLOCK,
 			TITANIC_SNOWGLOBE,
 			MAGPIE_TELEVISION,
-			TARDIS_SNOWGLOBE,
 			GALLIFREY_OAK_LEAVES
 		);
 
@@ -338,13 +301,9 @@ public class DMABlocks {
 		);
 	}
 
-	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, ItemGroup itemgroup) {
-		return registerBlock(block, name, (new Item.Properties()).tab(itemgroup), true);
-	}
-
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name, SoundType soundType) {
-		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(soundType).noOcclusion()),
-			name, (new Item.Properties()).tab(DMACreativeTabs.DMA_ROUNDEL_CONTAINERS), true);
+		return registerBlockWithItem(name, () -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(soundType).noOcclusion()),
+			DMACreativeTabs.DMA_ROUNDEL_CONTAINERS);
 	}
 
 	public static RotatedPillarBlock log(MaterialColor color, MaterialColor color1) {
@@ -354,40 +313,20 @@ public class DMABlocks {
 			.strength(2.0F).sound(SoundType.WOOD));
 	}
 
-	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name) {
-		if (!TimedUnlock.advent(day))
-			return null;
-
-		return registerBlock(supplier, name);
-	}
-
-	protected static RegistryObject<Block> registerAdventBlock(int day, Supplier<Block> supplier, String name, ItemGroup tab) {
-		if (!TimedUnlock.advent(day))
-			return null;
-
-		return registerBlock(supplier, name, tab);
-	}
-
 	public static <B extends Block> RegistryObject<Block> registerContainer(Material material, String name) {
-		return registerBlock(() -> new RoundelContainerBlock(AbstractBlock.Properties.of(material).strength(2.0F, 2.5F).sound(SoundType.WOOD)),
-			name, (new Item.Properties()).tab(DMACreativeTabs.DMA_ROUNDEL_CONTAINERS), true);
+		return registerContainer(material, name, SoundType.WOOD);
 	}
 
 	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name) {
-		return registerBlock(block, name, new Item.Properties(), false);
+		return BLOCKS.register(name, block);
 	}
 
-	public static <B extends Block> RegistryObject<Block> registerBlock(Supplier<B> block, String name, Item.Properties properties, boolean needsItem) {
-		RegistryObject<Block> blockObj = BLOCKS.register(name, block);
-		if (needsItem) {
-			DMAItems.ITEMS.register(name, () -> new BaseBlockItem(blockObj.get(), properties));
-		}
-
-		return blockObj;
+	public static <B extends Block> RegistryObject<Block> registerBlockWithItem(String name, Supplier<B> block, ItemGroup group) {
+		return registerBlockWithItem(name, block, new Item.Properties().tab(group));
 	}
 
-	public static <B extends Block> RegistryObject<Block> registerBlockAndItem(String name, Supplier<B> block, Item.Properties properties) {
-		RegistryObject<Block> blockObject = BLOCKS.register(name, block);
+	public static <B extends Block> RegistryObject<Block> registerBlockWithItem(String name, Supplier<B> block, Item.Properties properties) {
+		RegistryObject<Block> blockObject = registerBlock(block, name);
 		DMAItems.ITEMS.register(name, () -> new BlockItem(blockObject.get(), properties));
 		return blockObject;
 	}
