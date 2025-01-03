@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.client.render.entity.cyber;
 
+import com.jdolphin.dmadditions.client.model.entity.cyber.AbstractCybermanModel;
 import com.jdolphin.dmadditions.entity.cyber.DMACybermanEntity;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -8,9 +9,9 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public class DMACybermanRenderer extends LivingRenderer<DMACybermanEntity, BipedModel<DMACybermanEntity>> {
+public class DMACybermanRenderer extends LivingRenderer<DMACybermanEntity, AbstractCybermanModel> {
 
-	public DMACybermanRenderer(EntityRendererManager manager, BipedModel<DMACybermanEntity> model) {
+	public DMACybermanRenderer(EntityRendererManager manager, AbstractCybermanModel model) {
 		super(manager, model, 0.5f);
 	}
 
@@ -20,6 +21,6 @@ public class DMACybermanRenderer extends LivingRenderer<DMACybermanEntity, Biped
 
 	@Override
 	public @NotNull ResourceLocation getTextureLocation(DMACybermanEntity entity) {
-		return Helper.createAdditionsRL("textures/entity/cyber/" + entity.getCybermanType().getName() + ".png");
+		return this.model.model.getModelData().getTexture();
 	}
 }

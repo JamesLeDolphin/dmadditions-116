@@ -27,7 +27,7 @@ public class NetheriteCybermanModel extends BipedModel<NetheriteCybermanEntity> 
 	}
 
 	public void init() {
-		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/cyberwarrior.json"));
+		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/netherite_cyberman.json"));
 		if (this.model != null) {
 			ModelWrapper wrapper = this.model.getModelData().getModel();
 			this.head = wrapper.getPart("Head");

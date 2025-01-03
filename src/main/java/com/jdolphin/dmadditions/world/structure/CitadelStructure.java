@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import com.swdteam.util.world.Schematic;
 import com.swdteam.util.world.SchematicUtils;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.biome.Biome;
@@ -19,7 +20,6 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.io.File;
 import java.util.List;
 
 public class CitadelStructure extends Structure<NoFeatureConfig> {
@@ -53,14 +53,15 @@ public class CitadelStructure extends Structure<NoFeatureConfig> {
 
 		@ParametersAreNonnullByDefault
 		public void generatePieces(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
-			int x = (chunkX << 4) + 7;
-			int z = (chunkZ << 4) + 7;
-			BlockPos blockpos = new BlockPos(x, 0, z);
-			System.out.println(blockpos);
-			Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
-			SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.DEFAULT, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), blockpos, schematic);
+			ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
+			BlockPos pos = chunkPos.getWorldPosition();
+			if (pos.getX() == -4225 && pos.getZ() == -4410) {
 
-			this.calculateBoundingBox();
+				Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
+				SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.DEFAULT, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), pos, schematic);
+				//this.boundingBox = MutableBoundingBox.createProper(0, 0, 0, );
+				this.calculateBoundingBox();
+			}
 		}
 	}
 }

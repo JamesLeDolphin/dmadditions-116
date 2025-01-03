@@ -9,24 +9,31 @@ import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 
-public class InvasionCybermanModel extends AbstractCybermanModel {
+public class AbstractCybermanModel extends BipedModel<DMACybermanEntity> implements IModelPartReloader {
+	public JSONModel model;
 
-	public InvasionCybermanModel() {
-		super(ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/invasion_cyberman.json")));
+	public AbstractCybermanModel(JSONModel model) {
+		super(0.5f);
+		this.model = model;
 		ModelReloaderRegistry.register(this);
 	}
 
+	@Override
 	public void init() {
-		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/invasion_cyberman.json"));
 		if (this.model != null) {
 			ModelWrapper wrapper = this.model.getModelData().getModel();
-			this.head = wrapper.getPart("head");
-			this.body = wrapper.getPart("torso");
-			this.leftArm = wrapper.getPart("rightarm");
-			this.rightArm = wrapper.getPart("leftarm");
-			this.leftLeg = wrapper.getPart("rightleg");
-			this.rightLeg = wrapper.getPart("leftleg");
+			this.head = wrapper.getPart("Head");
+			this.body = wrapper.getPart("Body");
+			this.leftArm = wrapper.getPart("LeftArm");
+			this.rightArm = wrapper.getPart("RightArm");
+			this.leftLeg = wrapper.getPart("LeftLeg");
+			this.rightLeg = wrapper.getPart("RightLeg");
 			this.hat.visible = false;
 		}
+	}
+
+	@Override
+	public JSONModel getModel() {
+		return model;
 	}
 }

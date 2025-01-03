@@ -26,20 +26,20 @@ public class DMAEntities {
 
 	public static RegistryObject<EntityType<DMACybermanEntity>> WARRIOR_CYBERMAN = registerHumanoidEntity("warrior_cyberman",
 		((type, world) ->
-			new DMACybermanEntity(type, world, /*DMAItems.CYBER_WARRIOR_SPAWNER.get()*/ null, DMACybermanEntity.CybermanType.CYBERWARRIOR)), EntityClassification.MONSTER);
+			new DMACybermanEntity(type, world, DMAItems.CYBER_WARRIOR_SPAWNER.get(), null, DMACybermanEntity.CybermanType.CYBERWARRIOR)), EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<DMACybermanEntity>> TOMB_CYBERMAN = registerHumanoidEntity("tomb_cyberman",
 		((type, world) ->
-			new DMACybermanEntity(type, world, /*DMAItems.CYBER_WARRIOR_SPAWNER.get()*/ null, DMACybermanEntity.CybermanType.TOMB)), EntityClassification.MONSTER);
+			new DMACybermanEntity(type, world, DMAItems.CYBER_WARRIOR_SPAWNER.get(), null, DMACybermanEntity.CybermanType.TOMB)), EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<DMACybermanEntity>> TOMB_CYBER_CONTROLLER = registerHumanoidEntity("tomb_cyber_controller",
 		((type, world) ->
-			new DMACybermanEntity(type, world, /*DMAItems.TOMB_CYBER_CONTROLLER.get() */ null,
+			new DMACybermanEntity(type, world, DMAItems.TOMB_CYBER_CONTROLLER.get(),
 				DMASoundEvents.TOMB_CONTROLLER_AMBIENT.get(), DMACybermanEntity.CybermanType.TOMB_CONTROLLER)), EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<DMACybermanEntity>> INVASION_CYBERMAN = registerHumanoidEntity("invasion_cyberman",
 		((type, world) ->
-			new DMACybermanEntity(type, world, /*DMAItems.INVASION_CYBERMAN.get()*/ null, DMASoundEvents.INVASION_AMBIENT.get(), DMACybermanEntity.CybermanType.INVASION)), EntityClassification.MONSTER);
+			new DMACybermanEntity(type, world, DMAItems.INVASION_CYBERMAN.get(), DMASoundEvents.INVASION_AMBIENT.get(), DMACybermanEntity.CybermanType.INVASION)), EntityClassification.MONSTER);
 
 	public static RegistryObject<EntityType<MondasCybermanEntity>> MONDAS_CYBERMAN = registerHumanoidEntity("mondas_cyberman",
 		MondasCybermanEntity::new, EntityClassification.MONSTER);

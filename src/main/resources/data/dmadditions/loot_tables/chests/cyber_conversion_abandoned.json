@@ -131,7 +131,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "dmadditions:green_candy_cane",
+          "name": "dalekmod:green_candy_cane",
           "weight": 3,
           "functions": [
             {

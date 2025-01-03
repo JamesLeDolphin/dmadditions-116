@@ -31,22 +31,20 @@ public class DMASpawnerRegistry {
 	}
 
 	public static void init() {
-		if (DMAEntities.SNOWMAN != null) {
-			EntitySpawnPlacementRegistry.register(DMAEntities.SNOWMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
-			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
-			addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
-		}
+		EntitySpawnPlacementRegistry.register(DMAEntities.SNOWMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, MonsterEntity::checkAnyLightMonsterSpawnRules);
+		addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+		addSpawn(Biomes.SNOWY_MOUNTAINS, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
+		addSpawn(Biomes.SNOWY_TAIGA, DMAEntities.SNOWMAN.get(), 2, 1, 3, EntityClassification.MONSTER);
 
-		if (DMAEntities.KANTROFARRI != null) {
-			EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
-			addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);
-		}
-
+		EntitySpawnPlacementRegistry.register(DMAEntities.KANTROFARRI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMobSpawnRules);
+		addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.KANTROFARRI.get(), 2, 3, 5, EntityClassification.MONSTER);
 
 		EntitySpawnPlacementRegistry.register(DMAEntities.HEROBRINE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkAnyLightMonsterSpawnRules);
 		addSpawn(DMBiomes.CLASSIC, DMAEntities.HEROBRINE.get(), 1, 1, 1, EntityClassification.CREATURE);
 
+		addSpawn(Biomes.SNOWY_TUNDRA, DMAEntities.ICE_WARRIOR.get(), 2, 1, 2, EntityClassification.MONSTER);
+
+		addSpawn(Biomes.PLAINS, DMAEntities.ZYGON.get(), 2, 1, 2, EntityClassification.MONSTER);
 	}
 
 	public static void initDalekSpawns() {

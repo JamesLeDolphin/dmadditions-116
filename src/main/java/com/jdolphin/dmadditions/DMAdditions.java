@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
@@ -74,10 +75,14 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
+
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +94,7 @@ import java.util.function.Supplier;
 public class DMAdditions {
 	public static final String MODID = "dmadditions";
 	public static final String VERSION = "1.3.13";
-	public static final boolean IS_DEBUG = java.lang.management.ManagementFactory.getRuntimeMXBean().
+	public static final boolean IS_DEBUG = ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -370,8 +375,7 @@ public class DMAdditions {
 					registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND))
 				return registryKey.equals("minecraft:snowy_taiga");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED)) return registryKey.contains("dmadditions:gallifrey");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CITADEL)) return  registryKey.equals("dmadditions:gallifrey_mountains");
+			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED) || structure.equals(DMAConfiguredStructures.CONFIGURED_CITADEL)) return registryKey.contains("dmadditions:gallifrey");
 		}
 		return false;
 	}

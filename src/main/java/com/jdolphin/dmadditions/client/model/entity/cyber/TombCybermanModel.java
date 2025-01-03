@@ -9,25 +9,14 @@ import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 
-public class TombCybermanModel extends BipedModel<DMACybermanEntity> implements IModelPartReloader {
-	public JSONModel model;
+public class TombCybermanModel extends AbstractCybermanModel {
 
 	public TombCybermanModel() {
-		super(0.5f);
+		super(ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/tomb_cyberman.json")));
 		ModelReloaderRegistry.register(this);
 	}
 
-	public void setupAnim(DMACybermanEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-	}
-
-	@Override
-	public JSONModel getModel() {
-		return model;
-	}
-
 	public void init() {
-		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/tomb_cyberman.json"));
 		if (this.model != null) {
 			ModelWrapper wrapper = this.model.getModelData().getModel();
 			this.head = wrapper.getPart("head");
@@ -38,6 +27,5 @@ public class TombCybermanModel extends BipedModel<DMACybermanEntity> implements 
 			this.rightLeg = wrapper.getPart("leftleg");
 			this.hat.visible = false;
 		}
-
 	}
 }

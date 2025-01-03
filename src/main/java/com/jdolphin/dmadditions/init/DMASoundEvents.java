@@ -52,8 +52,8 @@ public class DMASoundEvents {
 		MUMMY = buildSound(RegistryHandler.SOUNDS, "entity.empty_child.mummy");
 		PRE_REGEN = buildSound(RegistryHandler.SOUNDS, "entity.player.regen.pre");
 		REGEN_START = buildSound(RegistryHandler.SOUNDS, "entity.player.regen.start");
-		MONDAS_CYBER_LASER_ATTACK = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.invasion.ambient");
-		MONDAS_CYBER_LASER_ATTACK = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.tomb_controller.ambient");
+		INVASION_AMBIENT = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.invasion.ambient");
+		TOMB_CONTROLLER_AMBIENT = buildSound(RegistryHandler.SOUNDS, "entity.cyberman.tomb_controller.ambient");
 	}
 
 	public static RegistryObject<SoundEvent> buildSound(DeferredRegister<SoundEvent> register, String registryName) {

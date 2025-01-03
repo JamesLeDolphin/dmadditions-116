@@ -9,21 +9,11 @@ import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 
-public class TombControllerCybermanModel extends BipedModel<DMACybermanEntity> implements IModelPartReloader {
-	public JSONModel model;
+public class TombControllerCybermanModel extends AbstractCybermanModel {
 
 	public TombControllerCybermanModel() {
-		super(0.5f);
+		super(ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/cyber/tomb_controller_cyberman.json")));
 		ModelReloaderRegistry.register(this);
-	}
-
-	public void setupAnim(DMACybermanEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-	}
-
-	@Override
-	public JSONModel getModel() {
-		return model;
 	}
 
 	public void init() {

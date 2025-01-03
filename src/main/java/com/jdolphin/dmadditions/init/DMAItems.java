@@ -79,17 +79,17 @@ public class DMAItems {
 	public static RegistryObject<Item> NETHERITE_CYBERMAN_SPAWNER = ITEMS.register("netherite_cyberman_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.NETHERITE_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-//	public static RegistryObject<Item> CYBER_WARRIOR_SPAWNER = ITEMS.register("cyber_warrior_spawner",
-//		() -> new DMASpawnerItem<>(DMAEntities.WARRIOR_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> CYBER_WARRIOR_SPAWNER = ITEMS.register("cyber_warrior_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.WARRIOR_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-//	public static RegistryObject<Item> TOMB_CYBERMAN = ITEMS.register("tomb_cyberman_spawner",
-//		() -> new DMASpawnerItem<>(DMAEntities.TOMB_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> TOMB_CYBERMAN = ITEMS.register("tomb_cyberman_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.TOMB_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-//	public static RegistryObject<Item> TOMB_CYBER_CONTROLLER= ITEMS.register("tomb_cyber_controller_spawner",
-//		() -> new DMASpawnerItem<>(DMAEntities.TOMB_CYBER_CONTROLLER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> TOMB_CYBER_CONTROLLER= ITEMS.register("tomb_cyber_controller_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.TOMB_CYBER_CONTROLLER, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
-//	public static RegistryObject<Item> INVASION_CYBERMAN = ITEMS.register("invasion_cyberman_spawner",
-//		() -> new DMASpawnerItem<>(DMAEntities.INVASION_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+	public static RegistryObject<Item> INVASION_CYBERMAN = ITEMS.register("invasion_cyberman_spawner",
+		() -> new DMASpawnerItem<>(DMAEntities.INVASION_CYBERMAN, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 	public static RegistryObject<Item> EMPTY_CHILD_SPAWNER = ITEMS.register("empty_child_spawner",
 		() -> new DMASpawnerItem<>(DMAEntities.EMPTY_CHILD, new Item.Properties().tab(ItemGroup.TAB_MISC)));
