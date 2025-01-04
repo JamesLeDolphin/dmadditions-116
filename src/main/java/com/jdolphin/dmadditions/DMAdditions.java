@@ -331,9 +331,8 @@ public class DMAdditions {
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
-		if (isValidForStructure(biomeRegistryKey, DMAConfiguredStructures.CONFIGURED_CITADEL)) {
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CITADEL);
-		}
+
 
 		if (isBiomeValidForDeadTree(biomeRegistryKey)) {
 			List<Supplier<ConfiguredFeature<?, ?>>> base =
