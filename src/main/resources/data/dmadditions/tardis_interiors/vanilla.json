@@ -1,0 +1,176 @@
+{
+	"defaultSpawnRotation": 180,
+	"doorOffset": [15.5, 4, 33.5],
+	"interiorName": "dmadditions.interior.name.vanilla",
+	"schematic": "dmadditions:vanilla",
+	"previewImage": "dmadditions:textures/gui/interior_selection/vanilla.png",
+	"xOffset": 0,
+	"yOffset": 0,
+	"zOffset": 6,
+	"recipe": [
+		{
+			"item": "minecraft:lapis_block",
+			"quantity": 18
+		},
+		{
+			"item": "minecraft:birch_log",
+			"quantity": 44
+		},
+		{
+			"item": "minecraft:birch_planks",
+			"quantity": 330
+		},
+		{
+			"item": "minecraft:dark_oak_planks",
+			"quantity": 42
+		},
+		{
+			"item": "minecraft:cyan_terracotta",
+			"quantity": 590
+		},
+		{
+			"item": "minecraft:black_wool",
+			"quantity": 614
+		},
+		{
+			"item": "minecraft:blue_terracotta",
+			"quantity": 323
+		},
+		{
+			"item": "minecraft:quartz_stairs",
+			"quantity": 21
+		},
+		{
+			"item": "minecraft:iron_bars",
+			"quantity": 64
+		},
+		{
+			"item": "minecraft:polished_andesite",
+			"quantity": 57
+		},
+		{
+			"item": "minecraft:black_concrete",
+			"quantity": 82
+		},
+		{
+			"item": "dalekmod:rusted_steel_grate_slab",
+			"quantity": 47
+		},
+		{
+			"item": "minecraft:cobblestone_wall",
+			"quantity": 4
+		},
+		{
+			"item": "minecraft:smooth_stone_slab",
+			"quantity": 19
+		},
+		{
+			"item": "minecraft:spruce_slab",
+			"quantity": 16
+		},
+		{
+			"item": "minecraft:daylight_detector",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:dimension_selector_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:dark_oak_scanner",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:chain",
+			"quantity": 7
+		},
+		{
+			"item": "dalekmod:blue_stainless_steel_wall",
+			"quantity": 20
+		},
+		{
+			"item": "minecraft:oak_fence",
+			"quantity": 6
+		},
+		{
+			"item": "dalekmod:rusted_steel_grate",
+			"quantity": 9
+		},
+		{
+			"item": "minecraft:birch_slab",
+			"quantity": 8
+		},
+		{
+			"item": "minecraft:spruce_stairs",
+			"quantity": 4
+		},
+		{
+			"item": "dalekmod:chameleon_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:flight_lever",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:light_blue_stained_glass_pane",
+			"quantity": 18
+		},
+		{
+			"item": "minecraft:sea_lantern",
+			"quantity": 2
+		},
+		{
+			"item": "dalekmod:coord_panel",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:blue_stained_glass",
+			"quantity": 7
+		},
+		{
+			"item": "dalekmod:fault_locator",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:heavy_weighted_pressure_plate",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fast_return_lever",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:sticky_piston",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:lever",
+			"quantity": 2
+		},
+		{
+			"item": "dalekmod:flight_panel",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:bookshelf",
+			"quantity": 12
+		},
+		{
+			"item": "minecraft:birch_stairs",
+			"quantity": 3
+		},
+		{
+			"item": "minecraft:white_concrete",
+			"quantity": 7
+		},
+		{
+			"item": "minecraft:stone_pressure_plate",
+			"quantity": 1
+		},
+		{
+			"item": "minecraft:iron_door",
+			"quantity": 2
+		}
+	]
+}

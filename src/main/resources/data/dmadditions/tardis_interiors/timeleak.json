@@ -1,0 +1,108 @@
+{
+	"defaultSpawnRotation": 0,
+	"doorOffset": [37, 5, 12],
+	"interiorName": "dmadditions.interior.name.timeleak",
+	"schematic": "dmadditions:timeleak",
+	"previewImage": "dmadditions:textures/gui/interior_selection/timeleak.png",
+	"xOffset": 0,
+	"yOffset": 6,
+	"zOffset": 0,
+	"recipe": [
+		{
+			"item": "minecraft:stripped_spruce_wood",
+			"quantity": 855
+		},
+		{
+			"item": "minecraft:oak_planks",
+			"quantity": 448
+		},
+		{
+			"item": "minecraft:dark_oak_trapdoor",
+			"quantity": 438
+		},
+		{
+			"item": "minecraft:spruce_stairs",
+			"quantity": 303
+		},
+		{
+			"item": "minecraft:spruce_slab",
+			"quantity": 51
+		},
+		{
+			"item": "minecraft:spruce_wood",
+			"quantity": 51
+		},
+		{
+			"item": "minecraft:spruce_planks",
+			"quantity": 23
+		},
+		{
+			"item": "minecraft:christmas_lights",
+			"quantity": 18
+		},
+		{
+			"item": "minecraft:spruce_door",
+			"quantity": 8
+		},
+		{
+			"item": "dalekmod:white_tube_rotor",
+			"quantity": 6
+		},
+		{
+			"item": "minecraft:wreath",
+			"quantity": 4
+		},
+		{
+			"item": "dalekmod:wooden_scanner",
+			"quantity": 2
+		},
+		{
+			"item": "dmadditions:randomizer",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:light_alternator",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:coral_flight_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:copper_flight_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:door_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fault_locator",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:dimension_selector_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:waypoint_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:fast_return_lever",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:chameleon_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dalekmod:coord_panel",
+			"quantity": 1
+		},
+		{
+			"item": "dmadditions:tardis_snowglobe",
+			"quantity": 1
+		}
+	]
+}

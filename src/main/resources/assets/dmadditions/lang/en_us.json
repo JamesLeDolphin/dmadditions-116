@@ -33,6 +33,7 @@
 
 	"entity.dmadditions.cyber_piglin": "Cyber Piglin",
 	"entity.dmadditions.netherite_cyberman": "Netherite Cyberman",
+	"dmadditions.interior.name.vanilla": "Vanilla Interior",
 
 	"death.attack.sheared": "%1$s was sheared to death",
 	"subtitles.item.earthshock_gun.shoot": "Earthshock gun shoots",
