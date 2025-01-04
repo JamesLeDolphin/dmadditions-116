@@ -62,8 +62,7 @@ public class CitadelStructure extends Structure<NoFeatureConfig> {
 			BlockPos pos1 = new BlockPos(-4320, 0, -4800);
 			ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
 			BlockPos pos = chunkPos.getWorldPosition();
-			System.out.println(chunkPos.getWorldPosition());
-			if (Objects.equals(biomeIn.getRegistryName(), DMABiomes.GALLIFREY_PLAINS.location())) {
+			if (Objects.requireNonNull(biomeIn.getRegistryName()).toString().contains("dmadditions:gallifrey")) {
 				if (pos.equals(pos1)) {
 					Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
 					SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.CITADEL, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), pos, schematic);

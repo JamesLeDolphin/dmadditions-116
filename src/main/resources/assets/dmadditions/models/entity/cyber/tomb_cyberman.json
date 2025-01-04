@@ -7,39 +7,39 @@
 	"groups": [
 		{
 			"group_name": "player",
-			"pivot": [0,0.1,0],
+			"pivot": [0,24,0],
 			"rotation": [0,0,0],
 			"children": [
 				{
 					"group_name": "rightleg",
-					"pivot": [0,23.9,0],
+					"pivot": [1.5,-12.2,0],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
 							"uv": [42,26],
 							"size": [4,12,4],
-							"origin": [0,-12.4,-2],
+							"origin": [-1.5,-0.2,-2],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [51,52],
 							"size": [1,8,0],
-							"origin": [3.5,-13,0],
+							"origin": [2,-0.8,0],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [34,56],
 							"size": [1,2,2],
-							"origin": [4,-12,-1],
+							"origin": [2.5,0.2,-1],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [57,11],
 							"size": [1,2,2],
-							"origin": [4,-7,-1],
+							"origin": [2.5,5.2,-1],
 							"inflate": 0,
 							"mirror": false
 						}
@@ -47,34 +47,34 @@
 				},
 				{
 					"group_name": "leftleg",
-					"pivot": [0,23.9,0],
+					"pivot": [-1.5,-12.2,0],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
 							"uv": [0,34],
 							"size": [4,12,4],
-							"origin": [-4,-12.4,-2],
+							"origin": [-2.5,-0.2,-2],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [48,52],
 							"size": [1,8,0],
-							"origin": [-4.5,-13,0],
+							"origin": [-3,-0.8,0],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [54,52],
 							"size": [1,2,2],
-							"origin": [-5,-12,-1],
+							"origin": [-3.5,0.2,-1],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [27,56],
 							"size": [1,2,2],
-							"origin": [-5,-7,-1],
+							"origin": [-3.5,5.2,-1],
 							"inflate": 0,
 							"mirror": false
 						}
@@ -82,34 +82,34 @@
 				},
 				{
 					"group_name": "torso",
-					"pivot": [0,23.9,0],
+					"pivot": [0,-24.4,-1.625],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
 							"uv": [0,17],
 							"size": [8,12,4],
-							"origin": [-4,-24.4,-2],
+							"origin": [-4,0,-0.375],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [11,51],
 							"size": [3,9,1],
-							"origin": [-1.5,-22.9,-3],
+							"origin": [-1.5,1.5,-1.375],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [17,34],
 							"size": [2,7,1],
-							"origin": [1,-21.9,-2.5],
+							"origin": [1,2.5,-0.875],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [20,51],
 							"size": [2,7,1],
-							"origin": [-3,-21.9,-2.5],
+							"origin": [-3,2.5,-0.875],
 							"inflate": 0,
 							"mirror": false
 						}
@@ -117,34 +117,34 @@
 				},
 				{
 					"group_name": "rightarm",
-					"pivot": [0,23.9,0],
+					"pivot": [5.3,-22.3,0],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
 							"uv": [33,0],
 							"size": [4,12,4],
-							"origin": [4,-24.4,-2],
+							"origin": [-1.3,-2.1,-2],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [50,0],
 							"size": [5,10,0],
-							"origin": [3.5,-24.5,0],
+							"origin": [-1.8,-2.2,0],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [34,51],
 							"size": [1,2,2],
-							"origin": [8,-23,-1],
+							"origin": [2.7,-0.7,-1],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [41,52],
 							"size": [1,2,2],
-							"origin": [8,-16,-1],
+							"origin": [2.7,6.3,-1],
 							"inflate": 0,
 							"mirror": false
 						}
@@ -152,34 +152,34 @@
 				},
 				{
 					"group_name": "leftarm",
-					"pivot": [-4,15.4,0],
+					"pivot": [-5.3,-22.3,0],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
 							"uv": [25,26],
 							"size": [4,12,4],
-							"origin": [-4,-15.9,-2],
+							"origin": [-2.7,-2.1,-2],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [0,51],
 							"size": [5,10,0],
-							"origin": [-4.5,-16,0],
+							"origin": [-3.2,-2.2,0],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [50,11],
 							"size": [1,2,2],
-							"origin": [-5,-14.5,-1],
+							"origin": [-3.7,-0.7,-1],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [27,51],
 							"size": [1,2,2],
-							"origin": [-5,-7.5,-1],
+							"origin": [-3.7,6.3,-1],
 							"inflate": 0,
 							"mirror": false
 						}
@@ -187,27 +187,27 @@
 				},
 				{
 					"group_name": "head",
-					"pivot": [0,23.9,0],
+					"pivot": [0,-24.5,0],
 					"rotation": [0,0,0],
 					"cubes": [
 						{
 							"uv": [0,0],
 							"size": [8,8,8],
-							"origin": [-4,-32.4,-4],
+							"origin": [-4,-7.9,-4],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [17,43],
 							"size": [12,7,0],
-							"origin": [-6,-34.5,0],
+							"origin": [-6,-10,0],
 							"inflate": 0,
 							"mirror": false
 						},
 						{
 							"uv": [42,43],
 							"size": [4,4,4],
-							"origin": [-2,-36,-2],
+							"origin": [-2,-11.5,-2],
 							"inflate": 0,
 							"mirror": false
 						}
