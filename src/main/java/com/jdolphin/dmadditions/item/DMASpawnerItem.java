@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.item;
 
 import com.swdteam.common.entity.IEntityVariant;
 import com.swdteam.common.entity.dalek.DalekEntity;
-import com.swdteam.common.entity.dalek.IDalek;
 import com.swdteam.common.init.DMDalekRegistry;
 import net.minecraft.block.*;
 import net.minecraft.client.util.ITooltipFlag;

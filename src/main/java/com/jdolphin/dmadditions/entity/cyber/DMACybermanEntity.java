@@ -1,6 +1,5 @@
 package com.jdolphin.dmadditions.entity.cyber;
 
-import com.jdolphin.dmadditions.entity.ClockworkDroidEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.swdteam.common.entity.*;
 import com.swdteam.common.entity.dalek.DalekEntity;

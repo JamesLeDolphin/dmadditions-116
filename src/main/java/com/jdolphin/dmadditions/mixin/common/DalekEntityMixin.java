@@ -1,11 +1,11 @@
 package com.jdolphin.dmadditions.mixin.common;
 
 import com.jdolphin.dmadditions.advent.TimedUnlock;
+import com.jdolphin.dmadditions.entity.TimeLordEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
 import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
 import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
 import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
-import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

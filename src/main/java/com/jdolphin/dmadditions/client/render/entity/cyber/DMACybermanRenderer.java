@@ -2,10 +2,8 @@ package com.jdolphin.dmadditions.client.render.entity.cyber;
 
 import com.jdolphin.dmadditions.client.model.entity.cyber.AbstractCybermanModel;
 import com.jdolphin.dmadditions.entity.cyber.DMACybermanEntity;
-import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 

@@ -1,19 +1,17 @@
 package com.jdolphin.dmadditions.network;
 
-import java.util.UUID;
-import java.util.function.Supplier;
-
-import org.apache.logging.log4j.LogManager;
-
 import com.jdolphin.dmadditions.entity.control.TardisControl;
 import com.jdolphin.dmadditions.util.Helper;
-
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkEvent;
+import org.apache.logging.log4j.LogManager;
+
+import java.util.UUID;
+import java.util.function.Supplier;
 
 public class SBTardisConsoleActionPacket {
 	protected UUID controlUuid;

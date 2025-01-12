@@ -2,15 +2,8 @@ package com.jdolphin.dmadditions.block.tardis;
 
 import com.jdolphin.dmadditions.block.IBetterPanel;
 import com.swdteam.common.block.tardis.FlightPanelBlock;
-import com.swdteam.common.init.DMDimensions;
-import com.swdteam.common.init.DMFlightMode;
-import com.swdteam.common.init.DMTardis;
-import com.swdteam.common.tardis.TardisData;
-import com.swdteam.util.ChatUtil;
-import com.swdteam.util.TeleportUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
@@ -21,12 +14,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 public class BetterFlightPanel extends FlightPanelBlock implements IBetterPanel {
 	public BetterFlightPanel(Properties properties) {

@@ -6,7 +6,6 @@ import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.CBOpenGUIPacket;
 import com.jdolphin.dmadditions.util.GuiHandler;
-import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.block.AbstractRotateableWaterLoggableBlock;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.util.ChatUtil;

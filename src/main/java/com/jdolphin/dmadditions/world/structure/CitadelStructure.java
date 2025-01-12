@@ -1,7 +1,6 @@
 package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.init.DMABiomes;
 import com.jdolphin.dmadditions.init.DMADimensions;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.mojang.serialization.Codec;
@@ -18,7 +17,6 @@ import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 

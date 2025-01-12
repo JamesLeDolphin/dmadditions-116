@@ -5,7 +5,6 @@ import com.jdolphin.dmadditions.init.DMAFluids;
 import com.jdolphin.dmadditions.init.DMATags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
-import net.minecraft.fluid.Fluid;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.registration.object.FluidObject;

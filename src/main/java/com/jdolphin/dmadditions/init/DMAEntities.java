@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.init;
 
-import com.google.common.base.Supplier;
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.timelord.TimeLordEntity;
 import com.jdolphin.dmadditions.entity.cyber.*;
 import com.jdolphin.dmadditions.util.Helper;
 import net.minecraft.entity.Entity;

@@ -1,25 +1,19 @@
 package com.jdolphin.dmadditions.tileentity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.jdolphin.dmadditions.block.tardis.ConsoleBlock;
-import com.jdolphin.dmadditions.init.DMABlockEntities;
-import org.jetbrains.annotations.NotNull;
-
 import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.init.DMABlockEntities;
 import com.swdteam.common.tileentity.DMTileEntityBase;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ConsoleTileEntity extends DMTileEntityBase implements ITickableTileEntity {

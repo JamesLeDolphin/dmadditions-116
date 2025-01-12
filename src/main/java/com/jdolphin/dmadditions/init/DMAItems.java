@@ -1,12 +1,9 @@
 package com.jdolphin.dmadditions.init;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
-import com.jdolphin.dmadditions.client.model.armor.ScarfModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
 import com.jdolphin.dmadditions.item.*;
-import com.jdolphin.dmadditions.item.SonicShadesItem;
 import com.jdolphin.dmadditions.util.Helper;
 import com.swdteam.common.init.*;
 import com.swdteam.common.item.*;
@@ -25,7 +22,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashSet;
-import java.util.function.Supplier;
 
 @SuppressWarnings({"unchecked", "unused"})
 public class DMAItems {

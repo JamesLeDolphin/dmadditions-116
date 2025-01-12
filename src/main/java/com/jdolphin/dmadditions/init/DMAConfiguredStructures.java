@@ -10,7 +10,6 @@ import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RandomBlockMatchRuleTest;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
-import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
 
 public class DMAConfiguredStructures {

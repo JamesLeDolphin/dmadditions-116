@@ -1,9 +1,5 @@
 package com.jdolphin.dmadditions.entity.control;
 
-import org.apache.logging.log4j.LogManager;
-import org.jetbrains.annotations.NotNull;
-
-import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAPackets;
 import com.jdolphin.dmadditions.network.SBTardisConsoleActionPacket;
 import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
@@ -18,7 +14,6 @@ import com.swdteam.common.tardis.TardisDoor;
 import com.swdteam.common.tardis.actions.TardisActionList;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.util.ChatUtil;
-
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -43,6 +38,8 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.apache.logging.log4j.LogManager;
+import org.jetbrains.annotations.NotNull;
 
 public class TardisControl extends Entity {
 	private static final DataParameter<String> DATA_TYPE = EntityDataManager.defineId(TardisControl.class, DataSerializers.STRING);

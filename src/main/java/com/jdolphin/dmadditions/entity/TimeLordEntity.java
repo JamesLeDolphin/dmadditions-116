@@ -1,11 +1,12 @@
-package com.jdolphin.dmadditions.entity.timelord;
+package com.jdolphin.dmadditions.entity;
 
-import com.jdolphin.dmadditions.entity.RegeneratingEntity;
 import com.jdolphin.dmadditions.init.DMAItems;
 import com.swdteam.common.entity.CybermanEntity;
 import com.swdteam.common.entity.LookAtGoalBetter;
 import com.swdteam.common.entity.dalek.DalekEntity;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IAngerable;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;

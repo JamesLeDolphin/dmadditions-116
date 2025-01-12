@@ -2,7 +2,6 @@ package com.jdolphin.dmadditions.entity;
 
 import com.jdolphin.dmadditions.init.DMASoundEvents;
 import com.jdolphin.dmadditions.util.Helper;
-import net.minecraft.client.particle.SimpleAnimatedParticle;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
@@ -11,15 +10,11 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-
-import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
