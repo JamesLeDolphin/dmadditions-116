@@ -1,0 +1,35 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#PE",
+        "FDF",
+        "TPM"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:nether_wart"
+        },
+        "P": {
+            "item": "dalekmod:zeiton_block"
+        },
+        "E": {
+            "item": "minecraft:golden_apple"
+        },
+        "F": {
+            "item": "dalekmod:artron_cube"
+        },
+        "D": {
+            "item": "dalekmod:dimension_data_card"
+        },
+        "M": {
+            "item": "minecraft:magma_cream"
+        },
+        "T": {
+            "item": "minecraft:ghast_tear"
+        }
+    },
+    "result": {
+        "item": "dmadditions:gallifrey_data_card",
+        "count": 1
+    }
+}

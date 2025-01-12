@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="GPL-3.0"
 [[mods]]
 modId="dmadditions"
-version="1.5.2"
+version="1.5.3"
 displayName="Dalek Mod Additions"
 displayURL="https://modrinth.com/mod/dalek-mod-additions"
 logoFile="logo.png"

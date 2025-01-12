@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 public class BessieModel extends SegmentedModel<VehicleEntity> implements IModelPartReloader {
 
 	protected ModelRenderer wheels;
-	protected ModelRenderer chair;
+	protected ModelRenderer body;
 	public JSONModel model;
 
 	public BessieModel() {
@@ -28,7 +28,7 @@ public class BessieModel extends SegmentedModel<VehicleEntity> implements IModel
 		this.model = ModelLoader.loadModel(Helper.createAdditionsRL("models/entity/bessie.json"));
 		ModelWrapper modelWrapper = this.model.getModelData().getModel();
 		this.wheels = modelWrapper.getPart("wheels");
-		this.chair = modelWrapper.getPart("chair");
+		this.body = modelWrapper.getPart("body");
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class BessieModel extends SegmentedModel<VehicleEntity> implements IModel
 
 	@Override
 	public Iterable<ModelRenderer> parts() {
-		return ImmutableList.of(wheels, chair);
+		return ImmutableList.of(wheels, body);
 	}
 
 	@Override
