@@ -4,6 +4,7 @@ import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.block.*;
 import com.jdolphin.dmadditions.block.christmas.*;
 import com.jdolphin.dmadditions.block.tardis.*;
+import com.jdolphin.dmadditions.tileentity.BrokenTardisTileEntity;
 import com.jdolphin.dmadditions.tileentity.ConsoleTileEntity;
 import com.jdolphin.dmadditions.tileentity.DoorPanelTileEntity;
 import com.jdolphin.dmadditions.world.tree.GallifreyOakTree;
@@ -49,6 +50,18 @@ public class DMABlocks {
 	public static RegistryObject<Block> GOLD_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "gold_bauble");
 	public static RegistryObject<Block> GREEN_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "green_bauble");
 	public static RegistryObject<Block> RED_BAUBLE_BLOCK = registerBlock(BaubleBlock::new, "red_bauble");
+
+	public static RegistryObject<Block> FOOD_MACHINE = registerBlockWithItem("food_machine",
+		() -> new RotateableBlock(AbstractBlock.Properties.of(Material.METAL)), ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> FLOODLIGHT = registerBlockWithItem("dalek_floodlight",
+		() -> new RotateableBlock(AbstractBlock.Properties.of(Material.METAL).noCollission().noOcclusion().lightLevel(state -> 15)), ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> SCHEMATIC_PANEL = registerBlockWithItem("schematic_panel",
+		() -> new RotateableBlock(AbstractBlock.Properties.of(Material.METAL).noCollission().noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
+
+	public static RegistryObject<Block> DALEK_LECTURN = registerBlockWithItem("dalek_lecturn",
+		() -> new RotateableBlock(AbstractBlock.Properties.of(Material.METAL)), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_LOG = registerBlockWithItem("gallifrey_oak_log",
 		() -> new LogBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -129,7 +142,10 @@ public class DMABlocks {
 		() -> new Block(AbstractBlock.Properties.of(Material.STONE)),  ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> CONSOLE = registerBlockWithItem("console",
-		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)),new Item.Properties().tab(DMTabs.DM_TARDIS));
+		() -> new ConsoleBlock(ConsoleTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
+
+	public static RegistryObject<Block> BROKEN_TARDIS = registerBlockWithItem("broken_tardis",
+		() -> new BrokenTardisBlock(BrokenTardisTileEntity::new, AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));
 
 	public static RegistryObject<Block> CHRISTMAS_LIGHTS = registerBlockWithItem("christmas_lights", () ->
 			new ChristmasLightsBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(1F).sound(SoundType.STONE).noOcclusion()), ItemGroup.TAB_DECORATIONS);
@@ -280,7 +296,9 @@ public class DMABlocks {
 			RED_BAUBLE_BLOCK,
 			TITANIC_SNOWGLOBE,
 			MAGPIE_TELEVISION,
-			GALLIFREY_OAK_LEAVES
+			GALLIFREY_OAK_LEAVES,
+			FOOD_MACHINE,
+			DALEK_LECTURN
 		);
 
 		registerRenderTypes(RenderType.translucent(),

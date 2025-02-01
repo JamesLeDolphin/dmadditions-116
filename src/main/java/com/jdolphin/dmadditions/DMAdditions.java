@@ -25,6 +25,7 @@ import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.IRust;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
+import cpw.mods.modlauncher.Launcher;
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
@@ -45,6 +46,8 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -67,6 +70,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
@@ -90,6 +94,10 @@ public class DMAdditions {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 	public static final Random RANDOM = new Random();
+
+	public static boolean isDev() {
+		return FMLLoader.isProduction();
+	}
 
 	public static boolean hasNTM() {
 		return ModList.get().isLoaded("tardis");

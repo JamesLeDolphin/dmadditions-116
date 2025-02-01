@@ -1,6 +1,7 @@
 package com.jdolphin.dmadditions.world.structure;
 
 import com.google.common.collect.ImmutableList;
+import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.init.DMADimensions;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.mojang.serialization.Codec;
@@ -56,14 +57,17 @@ public class CitadelStructure extends Structure<NoFeatureConfig> {
 
 		@ParametersAreNonnullByDefault
 		public void generatePieces(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig config) {
-			this.boundingBox = MutableBoundingBox.createProper(0, 0, 0, 410, 201, 205);
-			BlockPos pos1 = new BlockPos(-4320, 0, -4800);
-			ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
-			BlockPos pos = chunkPos.getWorldPosition();
-			if (Objects.requireNonNull(biomeIn.getRegistryName()).toString().contains("dmadditions:gallifrey")) {
-				if (pos.equals(pos1)) {
-					Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
-					SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.CITADEL, ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), pos, schematic);
+			if (DMACommonConfig.generateCitadel()) {
+				this.boundingBox = MutableBoundingBox.createProper(0, 0, 0, 410, 201, 205);
+				BlockPos pos1 = new BlockPos(-4320, 0, -4800);
+				ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
+				BlockPos pos = chunkPos.getWorldPosition();
+				if (Objects.requireNonNull(biomeIn.getRegistryName()).toString().contains("dmadditions:gallifrey")) {
+					if (pos.equals(pos1)) {
+						Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
+						SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.CITADEL,
+							ServerLifecycleHooks.getCurrentServer().getLevel(DMADimensions.GALLIFREY), pos, schematic);
+					}
 				}
 			}
 		}

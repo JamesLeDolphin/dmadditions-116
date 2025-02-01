@@ -12,6 +12,7 @@ public final class DMACommonConfig {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_cyberdrone_laser;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_explosive_laser;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_boti;
+	public static final ForgeConfigSpec.ConfigValue<Boolean> generate_citadel;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> disable_player_loc;
 
 	public static boolean isBotiEnabled() {
@@ -22,6 +23,10 @@ public final class DMACommonConfig {
 		return !disable_player_loc.get();
 	}
 
+	public static boolean generateCitadel() {
+		return generate_citadel.get();
+	}
+
 	static {
 		BUILDER.push("Dalek Mod: Additions Common Config");
 
@@ -30,7 +35,7 @@ public final class DMACommonConfig {
 		disable_swd_laser = BUILDER.comment("Disable special weapons daleks explosive laser. Default = false").define("disable_swd_laser", false);
 		disable_cyberdrone_laser = BUILDER.comment("Disable cyber drones explosive laser. Default = false").define("disable_cyberdrone_laser", false);
 		disable_explosive_laser = BUILDER.comment("Disable all explosive lasers. Default = false").define("disable_explosive_laser", false);
-
+		generate_citadel = BUILDER.comment("Generate the Citadel on Gallifrey. Warning: May be laggy and memory intensive. Default = true").define("generate_citadel", true);
 		disable_boti = BUILDER.comment("Disable BOTI effect. This only applies if Immersive Portals is installed. Default = false")
 			.define("disable_boti", false);
 		disable_player_loc = BUILDER.comment("Disable player locating. Default = false")

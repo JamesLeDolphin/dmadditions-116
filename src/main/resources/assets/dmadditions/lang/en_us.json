@@ -34,6 +34,11 @@
 	"entity.dmadditions.cyber_piglin": "Cyber Piglin",
 	"entity.dmadditions.netherite_cyberman": "Netherite Cyberman",
 
+	"block.dmadditions.dalek_floodlight": "Dalek Floodlight",
+	"block.dmadditions.schematic_panel": "Schematic Panel",
+	"block.dmadditions.food_machine": "Food Machine",
+	"block.dmadditions.dalek_lecturn": "Dalek Lectern",
+
 	"subtitles.entity.vehicle.bessie.horn": "Bessie Honks",
 	"subtitles.block.handbrake.coral_flight_lever": "Coral Flight Lever Activated",
 	"subtitles.block.handbrake.copper_flight_lever": "Copper Flight Lever Activated",

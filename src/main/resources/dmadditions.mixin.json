@@ -26,8 +26,7 @@
 		"common.SpecialWeaponsMixin",
 		"common.TardisKeyMixin",
 		"common.TardisTileEntityMixin",
-		"compatibility.portals.BotiMixin",
-		"compatibility.tardis.TardisActionListMixin"
+		"compatibility.portals.BotiMixin"
 	],
 	"client": [
 		"client.DMTileRenderRegistryMixin",
