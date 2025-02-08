@@ -3,6 +3,8 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.entity.dalek.types.*;
 import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.entity.dalek.IDalek;
+import com.swdteam.common.entity.dalek.types.Classic;
+import com.swdteam.common.init.DMDalekRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +29,7 @@ public class DMADaleks {
 	public static IDalek GLASS;
 	public static IDalek SESAME_STREET;
 	public static IDalek SUPREME;
+	public static IDalek PROTO_DALEK;
 
 	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
 		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
@@ -46,6 +49,8 @@ public class DMADaleks {
 		SESAME_STREET = addDalek(DMADalekType.SESAME_STREET, new CustomDalekBase("Sesame Street Dalek"), "sesame_street_dalek_red");
 		SESAME_STREET.addChild("sesame_street_dalek_yellow");
 		SESAME_STREET.addChild("sesame_street_dalek_emperor");
+
+		PROTO_DALEK = addDalek(DalekType.CLASSIC, new Classic("Proto Dalek"), "proto_dalek");
 
 		dalekList.addAll(dmaDalekList);
 		daleks.putAll(dmaDaleks);

@@ -19,7 +19,7 @@ public class TimedUnlock {
 	private static final int FAKE_MONTH = Calendar.OCTOBER;
 	private static final int FAKE_DATE = 31;
 
-	protected static void handleFakeStuff(){
+	protected static void handleFakeStuff() {
 		if (IS_DEBUG || FORCE_FAKE_DATE)
 			calendar.set(FAKE_YEAR, FAKE_MONTH, FAKE_DATE);
 	}
