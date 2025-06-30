@@ -6,27 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DMADalekType {
-	public static List<DMADalekType> DMA_DALEK_TYPES = new ArrayList<>();
-	public static DalekType SANTA = new DalekType("santa_dalek");
-	public static DalekType IRONSIDE = new DalekType("ironside_dalek");
-	public static DalekType CANDYCANE = new DalekType("candycane_dalek");
-	public static DalekType PFD = new DalekType("pink_fluffy_dalek");
-	public static DalekType STORM = new DalekType("dalek_storm");
-	public static DalekType SNOW = new DalekType("snow_dalek");
-	public static DalekType SWD = new DalekType("swd_dalek");
-	public static DalekType STEAMPUNK = new DalekType("steampunk_dalek");
-	public static DalekType GLASS = new DalekType("glass_dalek_with_mutant");
-	public static DalekType SESAME_STREET = new DalekType("sesame_street_dalek");
+	public static List<DalekType> DMA_DALEK_TYPES = new ArrayList<>();
 
+	public static DalekType SANTA = register("santa_dalek");
+	public static DalekType IRONSIDE = register("ironside_dalek");
+	public static DalekType CANDYCANE = register("candycane_dalek");
+	public static DalekType SNOW =register("snow_dalek");
+	public static DalekType SWD =register("swd_dalek");
+	public static DalekType STEAMPUNK = register("steampunk_dalek");
+	public static DalekType GLASS = register("glass_dalek_with_mutant");
+	public static DalekType SESAME_STREET =register("sesame_street_dalek");
 
-	public String registryName;
-
-	public DMADalekType(String registryName) {
-		this.registryName = registryName;
-		DMA_DALEK_TYPES.add((DMADalekType) DMADalekType.DMA_DALEK_TYPES);
+	private static DalekType register(String name) {
+		DalekType type = new DalekType(name);
+		DMA_DALEK_TYPES.add(type);
+		return type;
 	}
 
-	public String getRegistryName() {
-		return this.registryName;
-	}
 }

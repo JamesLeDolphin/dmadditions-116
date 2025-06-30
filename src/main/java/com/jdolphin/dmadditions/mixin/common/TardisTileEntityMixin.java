@@ -104,8 +104,6 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 		return ff_active;
 	}
 
-	;
-
 	@Override
 	public void setForcefieldActive(boolean active) {
 		this.ff_active = active;
@@ -122,8 +120,6 @@ public abstract class TardisTileEntityMixin extends ExtraRotationTileEntityBase 
 	public boolean isInvisible() {
 		return invisible;
 	}
-
-	;
 
 
 	@Inject(at = @At("TAIL"), method = "save", cancellable = true)

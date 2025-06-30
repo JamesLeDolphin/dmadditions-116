@@ -43,7 +43,7 @@ minecraft {
         }
 
         server {
-            workingDirectory project.file('run')
+            workingDirectory project.file('run/server')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'mixin.env.remapRefMap', 'true'
@@ -95,13 +95,13 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //Dalek Mod
-    implementation fg.deobf("curse.maven:the-dalek-mod-59654:6024380")
+    implementation fg.deobf("curse.maven:the-dalek-mod-59654:6313175")
 
     //Immersive portals
-    compileOnly fg.deobf("curse.maven:immersiveportals-355440:3562072")
+    implementation fg.deobf("curse.maven:immersiveportals-355440:3562072")
 
     //New Tardis Mod
-    implementation fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
+    compileOnly fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
 
     //Tinkers Construct
     compileOnly fg.deobf("curse.maven:tinkers-construct-74072:3695126")

@@ -1,41 +1,40 @@
 {
-	"required": true,
-	"minVersion": "0.8",
-	"package": "com.jdolphin.dmadditions.mixin",
-	"compatibilityLevel": "JAVA_8",
-	"plugin": "com.jdolphin.dmadditions.mixin.config.DMAMixinConfigPlugin",
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"refmap": "dmadditions.mixin-refmap.json",
-	"mixins": [
-		"common.CarvedPumpkinBlockMixin",
-		"common.CybermanEntityMixin",
-		"common.DalekEntityMixin",
-		"common.DalekRegistryMixin",
-		"common.DataMixin",
-		"common.DMBlocksMixin",
-		"common.DMProjectilesMixin",
-		"common.DMTardisRegistryMixin",
-		"common.DoubleDoorsTileEntityMixin",
-		"common.KerblamItemMixin",
-		"common.KerblamItemReloadListenerMixin",
-		"common.NearestAttackableTargetGoalMixin",
-		"common.RoundelDoorTileEntityMixin",
-		"common.SpawnRegistryMixin",
-		"common.SpecialWeaponsMixin",
-		"common.TardisKeyMixin",
-		"common.TardisTileEntityMixin",
-		"compatibility.portals.BotiMixin"
-	],
-	"client": [
-		"client.DMTileRenderRegistryMixin",
-		"client.ItemRenderingInitMixin",
-		"client.MainMenuScreenMixin",
-		"client.ModelDalekBaseMixin",
-		"client.RenderBlockTardisMixin",
-		"client.RenderCybermanMixin",
-		"client.RenderDalekMixin",
-		"client.SplashesMixin"
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.jdolphin.dmadditions.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "plugin": "com.jdolphin.dmadditions.mixin.config.DMAMixinConfigPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "dmadditions.mixin-refmap.json",
+  "mixins": [
+    "common.CarvedPumpkinBlockMixin",
+    "common.CybermanEntityMixin",
+    "common.DalekEntityMixin",
+    "common.DataMixin",
+    "common.DMBlocksMixin",
+    "common.DMProjectilesMixin",
+    "common.DMTardisRegistryMixin",
+    "common.DoubleDoorsTileEntityMixin",
+    "common.KerblamItemMixin",
+    "common.KerblamItemReloadListenerMixin",
+    "common.NearestAttackableTargetGoalMixin",
+    "common.RoundelDoorTileEntityMixin",
+    "common.SpawnRegistryMixin",
+    "common.SpecialWeaponsMixin",
+    "common.TardisTileEntityMixin",
+    "compatibility.portals.BotiMixin",
+    "compatibility.portals.SotoMixin"
+  ],
+  "client": [
+    "client.DMTileRenderRegistryMixin",
+    "client.ItemRenderingInitMixin",
+    "client.MainMenuScreenMixin",
+    "client.ModelDalekBaseMixin",
+    "client.RenderBlockTardisMixin",
+    "client.RenderCybermanMixin",
+    "client.RenderDalekMixin",
+    "client.SplashesMixin"
 	]
 }

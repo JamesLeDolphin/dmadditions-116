@@ -7,8 +7,8 @@ import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.actions.TardisActionList;
 import com.swdteam.common.tileentity.TardisTileEntity;
+import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
 import com.swdteam.util.TeleportUtil;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -31,6 +31,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +42,7 @@ public class BetterTardisDoorHitbox extends TileEntityBaseBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 
-	public BetterTardisDoorHitbox(Supplier<TileEntity> tileEntitySupplier, AbstractBlock.Properties properties) {
+	public BetterTardisDoorHitbox(Supplier<TileEntity> tileEntitySupplier, Properties properties) {
 		super(tileEntitySupplier, properties);
 	}
 

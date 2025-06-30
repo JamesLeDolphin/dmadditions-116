@@ -1,14 +1,20 @@
 package com.jdolphin.dmadditions.util;
 
+import com.google.gson.stream.JsonWriter;
 import com.jdolphin.dmadditions.DMAdditions;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.common.init.DMDimensions;
 import com.swdteam.main.DalekMod;
+import com.swdteam.util.world.Schematic;
+import com.swdteam.util.world.SchematicUtils;
+import com.swdteam.util.world.TileData;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.entity.Entity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -17,8 +23,17 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.server.ChunkManager;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.FolderName;
+import net.minecraftforge.common.ticket.ChunkTicketManager;
+import net.minecraftforge.common.world.ForgeChunkManager;
 
 import java.awt.*;
+import java.io.*;
+import java.util.Arrays;
 
 public class Helper {
 	public static ResourceLocation BUTTONS_LOCATION = Helper.createAdditionsRL("textures/gui/buttons.png");
@@ -102,4 +117,75 @@ public class Helper {
 			world.addFreshEntity(entity);
 		}
 	}
+
+	public static DMAData getDMAData(MinecraftServer server) {
+		File file = new File(server.getWorldPath(FolderName.ROOT) + "/dma/data.json");
+		if (!file.getParentFile().exists()) {
+			file.getParentFile().mkdirs();
+		}
+		try {
+			file.createNewFile();
+			FileReader reader = new FileReader(file);
+			return DMAdditions.GSON.fromJson(reader, DMAData.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void saveDMAData(MinecraftServer server, DMAData data) {
+		File file = new File(server.getWorldPath(FolderName.ROOT) + "/dma/data.json");
+		if (!file.getParentFile().exists()) {
+			file.getParentFile().mkdirs();
+		}
+		try {
+			file.createNewFile();
+			FileWriter writer = new FileWriter(file);
+			writer.write(DMAdditions.GSON.toJson(data));
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void generateSchematic(SchematicUtils.GenerationQueue queue, ServerWorld world, BlockPos pPos, Schematic schem, BlockState[] blocksToIgnore) {
+		if (schem != null) {
+			int index = 0;
+			SchematicUtils.SchematicChunk chunk = new SchematicUtils.SchematicChunk(world);
+
+			for(int y = 0; y <= schem.getSchemDimY(); ++y) {
+
+				for(int x = 0; x <= schem.getSchemDimX(); ++x) {
+					for(int z = 0; z <= schem.getSchemDimZ(); ++z) {
+						if (index != 0 && index % 4096 == 0) {
+							System.out.println("DID THINGY");
+							queue.getList().add(chunk);
+							chunk = new SchematicUtils.SchematicChunk(world);
+						}
+
+						BlockPos pos = new BlockPos(x, y, z).offset(pPos.getX(), pPos.getY(), pPos.getZ());
+						BlockState block = schem.getStateFromID(schem.blockMap[index]);
+						if (!Arrays.asList(blocksToIgnore).contains(block)) {
+							chunk.getBlocks().add(new SchematicUtils.SchematicChunk.SchematicChunkBlockState(pos, block));
+						}
+							++index;
+					}
+				}
+			}
+
+			queue.getList().add(chunk);
+			chunk = new SchematicUtils.SchematicChunk(world);
+
+			for(int i = 0; i < schem.getTileData().size(); ++i) {
+				TileData tileData = schem.getTileData().get(i);
+				BlockPos pos = new BlockPos(pPos.getX() + tileData.getPos()[0], pPos.getY() + tileData.getPos()[1], pPos.getZ() + tileData.getPos()[2]);
+				chunk.getBlocks().add(new SchematicUtils.SchematicChunk.SchematicChunkBlockState(pos, tileData.getNbtDataString()));
+			}
+
+			queue.getList().add(chunk);
+			SchematicUtils.SchematicChunk cc = new SchematicUtils.SchematicChunk(world);
+			queue.getList().add(cc);
+		}
+	}
+
 }

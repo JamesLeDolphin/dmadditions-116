@@ -188,7 +188,7 @@ public class DoorPanelBlock extends RotatableTileEntityBase.WaterLoggable implem
 		return null;
 	}
 
-	private static enum DoorPanelButtons {
+	private enum DoorPanelButtons {
 		DOOR(12, 4, 2, 9),
 		LOCK(3, 3, 6.5f, 4);
 

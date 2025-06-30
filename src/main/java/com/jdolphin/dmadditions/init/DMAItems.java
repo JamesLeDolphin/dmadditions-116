@@ -3,8 +3,10 @@ package com.jdolphin.dmadditions.init;
 import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.client.model.armor.MattsPinkThongModel;
 import com.jdolphin.dmadditions.client.model.armor.WeddingDressModel;
+import com.jdolphin.dmadditions.entity.dalek.types.DMADalekType;
 import com.jdolphin.dmadditions.item.*;
 import com.jdolphin.dmadditions.util.Helper;
+import com.swdteam.common.entity.dalek.DalekType;
 import com.swdteam.common.init.*;
 import com.swdteam.common.item.*;
 import com.swdteam.common.item.gun.SingleShotGunItem;
@@ -22,9 +24,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashSet;
+import java.util.List;
 
 @SuppressWarnings({"unchecked", "unused"})
 public class DMAItems {
+
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DMAdditions.MODID);
 
 	public static final RegistryObject<Item> DOCS_FLUTE = ITEMS.register("docs_flute", () -> new FluteItem(new Item.Properties().tab(ItemGroup.TAB_MISC)));
@@ -227,7 +231,7 @@ public class DMAItems {
 		DMASoundEvents.PISTOL_SHOOT, (new Item.Properties().durability(100)).tab(ItemGroup.TAB_COMBAT)));
 
 	public static RegistryObject<Item> TARDIS_GOLD_KEY = ITEMS.register("tardis_gold_key",
-		() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS), ""));
+		() -> new TardisRemoteKeyItem((new Item.Properties()).durability(32).tab(DMTabs.DM_TARDIS)));
 
 	public static RegistryObject<Item> DINO_NUGGETS = ITEMS.register("dino_nuggets",
 		() -> new FoodItem((new Item.Properties()).food(DMAFoods.DINO_NUGGETS).tab(ItemGroup.TAB_FOOD)));

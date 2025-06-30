@@ -14,9 +14,6 @@ import java.util.Map;
 import static com.swdteam.common.init.DMDalekRegistry.DALEK_TYPES;
 
 public class DMADaleks {
-	private static List<String> dmaDalekList = new ArrayList<>();
-	private static Map<String, IDalek> dmaDaleks = new HashMap<>();
-
 	public static IDalek DALEK_SANTA;
 	public static IDalek IRONSIDE;
 	public static IDalek CANDYCANE;
@@ -28,52 +25,28 @@ public class DMADaleks {
 	public static IDalek SWD;
 	public static IDalek GLASS;
 	public static IDalek SESAME_STREET;
-	public static IDalek SUPREME;
 	public static IDalek PROTO_DALEK;
 
-	public static void init(List<String> dalekList, Map<String, IDalek> daleks) {
-		CANDYCANE = addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
+	public static void init() {
+		CANDYCANE = DMDalekRegistry.addDalek(DMADalekType.CANDYCANE, new CandycaneDalek("Candy Cane Dalek"), "lime_candycane_dalek");
 		CANDYCANE.addChild("blue_candycane_dalek");
 		CANDYCANE.addChild("red_candycane_dalek");
 		CANDYCANE.addChild("orange_candycane_dalek");
-		IRONSIDE = addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
-		SNOW = addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
-		SWD = addDalek(DMADalekType.SWD, new CustomDalekBase("SWD Team Dalek"), "1wtc_dalek");
-		WAFFLE = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
-		GINGERBREAD = addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
-		STEAMPUNK = addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
+		IRONSIDE = DMDalekRegistry.addDalek(DMADalekType.IRONSIDE, new IronsideDalekBase("Ironside Dalek"), "ironside_dalek");
+		SNOW = DMDalekRegistry.addDalek(DMADalekType.SNOW, new CustomDalekBase("Snow Dalek"), "snow_dalek");
+		SWD = DMDalekRegistry.addDalek(DMADalekType.SWD, new CustomDalekBase("SWD Team Dalek"), "1wtc_dalek");
+		WAFFLE = DMDalekRegistry.addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Waffle Dalek"), "waffle_dalek");
+		GINGERBREAD = DMDalekRegistry.addDalek(DMADalekType.CANDYCANE, new CustomDalekBase("Gingerbread Dalek"), "gingerbread_dalek");
+		STEAMPUNK = DMDalekRegistry.addDalek(DMADalekType.STEAMPUNK, new SteampunkDalekBase("Steampunk Dalek"), "gold_steampunk_dalek");
 		STEAMPUNK.addChild("gray_steampunk_dalek");
-		DALEK_SANTA = addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
-		GLASS = addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
+		DALEK_SANTA = DMDalekRegistry.addDalek(DMADalekType.SANTA, new DalekSantaBase("Dalek Santa"), "dalek_santa");
+		GLASS = DMDalekRegistry.addDalek(DMADalekType.GLASS, new CustomDalekBase("Glass Dalek"), "glass_dalek_with_mutant");
 		GLASS.addChild("glass_dalek_without_mutant");
-		SESAME_STREET = addDalek(DMADalekType.SESAME_STREET, new CustomDalekBase("Sesame Street Dalek"), "sesame_street_dalek_red");
+		SESAME_STREET = DMDalekRegistry.addDalek(DMADalekType.SESAME_STREET, new CustomDalekBase("Sesame Street Dalek"), "sesame_street_dalek_red");
 		SESAME_STREET.addChild("sesame_street_dalek_yellow");
 		SESAME_STREET.addChild("sesame_street_dalek_emperor");
 
-		PROTO_DALEK = addDalek(DalekType.CLASSIC, new Classic("Proto Dalek"), "proto_dalek");
+		PROTO_DALEK = DMDalekRegistry.addDalek(DalekType.CLASSIC, new Classic("Proto Dalek"), "proto_dalek");
 
-		dalekList.addAll(dmaDalekList);
-		daleks.putAll(dmaDaleks);
-	}
-
-	private static IDalek addDalek(DalekType type, IDalek dalek, String registryKey) {
-		try {
-			dalek.setRegistryName(type, registryKey);
-		} catch (Exception var4) {
-			var4.printStackTrace();
-		}
-
-		register(registryKey, dalek);
-		return dalek;
-	}
-
-	private static void register(String registryKey, IDalek dalek) {
-		dmaDaleks.put(registryKey, dalek);
-		dmaDalekList.add(registryKey);
-		if (!DALEK_TYPES.containsKey(dalek.getType())) {
-			DALEK_TYPES.put(dalek.getType(), new ArrayList<>());
-		}
-
-		DALEK_TYPES.get(dalek.getType()).add(dalek.getID());
 	}
 }

@@ -28,8 +28,6 @@ public class DMAStructures {
 	public static final RegistryObject<Structure<NoFeatureConfig>> MONDAS_RUIN = registerStructure("mondas_ruin",
 		() -> new MondasRuin(NoFeatureConfig.CODEC));
 
-	public static final RegistryObject<Structure<NoFeatureConfig>> CITADEL = registerStructure("citadel",
-		() -> new CitadelStructure(NoFeatureConfig.CODEC));
 
 	private static <T extends Structure<?>> RegistryObject<T> registerStructure(String name, Supplier<T> structure) {
 		return DEFERRED_REGISTRY_STRUCTURE.register(name, structure);
@@ -41,8 +39,6 @@ public class DMAStructures {
 		setupMapSpacingAndLand(CYBER_UNDERGROUND.get(), new StructureSeparationSettings(40, 10, 23512), false);
 		setupMapSpacingAndLand(MONDAS_RUIN.get(), new StructureSeparationSettings(20, 11, 514524682), true);
 		setupMapSpacingAndLand(CYBER_MONDAS.get(), new StructureSeparationSettings(20, 10, 5988732), false);
-		setupMapSpacingAndLand(CITADEL.get(), new StructureSeparationSettings(10, 9, 2174531), true);
-
 	}
 
 	public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {

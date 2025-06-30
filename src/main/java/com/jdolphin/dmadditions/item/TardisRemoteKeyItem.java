@@ -9,11 +9,16 @@ import com.swdteam.common.tardis.actions.TardisActionList;
 import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.util.ChatUtil;
+import com.swdteam.util.ItemUtils;
 import com.swdteam.util.WorldUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.DirectionalPlaceContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
@@ -23,13 +28,19 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.List;
 
 
-public class TardisRemoteKeyItem extends TardisKeyItem {
-	public TardisRemoteKeyItem(Properties properties, String tardisLocation) {
-		super(properties, tardisLocation);
+public class TardisRemoteKeyItem extends Item {
+	public TardisRemoteKeyItem(Properties properties) {
+		super(properties);
 	}
 
 	@Override
@@ -116,5 +127,12 @@ public class TardisRemoteKeyItem extends TardisKeyItem {
 		return super.useOn(context);
 	}
 
+	@OnlyIn(Dist.CLIENT)
+	public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		if (Minecraft.getInstance().options.advancedItemTooltips && stack.getTag() != null && stack.getTag().contains(DMNBTKeys.LINKED_ID)) {
+			ItemUtils.addText(tooltip, "ID: " + stack.getTag().getInt(DMNBTKeys.LINKED_ID), TextFormatting.DARK_GRAY);
+		}
 
+	}
 }

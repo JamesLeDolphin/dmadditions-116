@@ -4,39 +4,53 @@ import com.jdolphin.dmadditions.DMAdditions;
 import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
 import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
 import com.jdolphin.dmadditions.commands.HandlesCommands;
+import com.jdolphin.dmadditions.config.DMACommonConfig;
 import com.jdolphin.dmadditions.entity.DalekMutantEntity;
 import com.jdolphin.dmadditions.init.DMAEntities;
 import com.jdolphin.dmadditions.init.DMAItems;
+import com.jdolphin.dmadditions.util.DMAData;
 import com.jdolphin.dmadditions.util.Helper;
 import com.jdolphin.dmadditions.world.dimension.Gravity;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import com.swdteam.common.event.custom.tardis.TardisEvent;
 import com.swdteam.common.tardis.Location;
-import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tardis.TardisFlightData;
 import com.swdteam.common.tardis.actions.TardisActionList;
-import com.swdteam.common.tardis.data.TardisFlightPool;
 import com.swdteam.util.ChatUtil;
+import com.swdteam.util.world.Schematic;
+import com.swdteam.util.world.SchematicUtils;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.tardis.mod.blocks.TransductionBarrierBlock;
+import net.tardis.mod.helper.WorldHelper;
+import net.tardis.mod.tileentities.IAffectTARDISLanding;
+import net.tardis.mod.tileentities.machines.TransductionBarrierTile;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class DMAEventHandlerGeneral {
@@ -77,6 +91,53 @@ public class DMAEventHandlerGeneral {
 	}
 
 	@SubscribeEvent
+	public static void chunkEvent(ChunkEvent.Load event) {
+		IChunk chunk = event.getChunk();
+		IWorld world = event.getWorld();
+
+		if (!world.isClientSide()) {
+			BlockPos pos = chunk.getPos().getWorldPosition();
+			Biome biome = world.getBiome(pos);
+			ResourceLocation regName = biome.getRegistryName();
+				if (DMACommonConfig.generateCitadel()) {
+					ServerWorld serverWorld = (ServerWorld) world;
+					MinecraftServer server = serverWorld.getServer();
+					if (!hasCitadel(server)) {
+					BlockPos pos1 = new BlockPos(-4320, 0, -4800);
+
+					if (Objects.requireNonNull(regName).toString().contains("dmadditions:gallifrey")) {
+						if (pos.equals(pos1)) {
+
+							generateCitadel(pos, serverWorld);
+							setHasCitadel(server);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private static void setHasCitadel(MinecraftServer server) {
+		DMAData data = Helper.getDMAData(server) == null ? new DMAData() : Helper.getDMAData(server);
+		if (data != null) {
+			data.hasCitadel = true;
+		}
+		Helper.saveDMAData(server, data);
+	}
+
+	private static boolean hasCitadel(MinecraftServer server) {
+		DMAData data = Helper.getDMAData(server);
+		return data != null && data.hasCitadel;
+	}
+
+	private static void generateCitadel(BlockPos pos, ServerWorld world) {
+		BlockState[] states = new BlockState[]{Blocks.STRUCTURE_VOID.defaultBlockState()};
+		Schematic schematic = SchematicUtils.loadSchematic("citadel", SchematicUtils.FileLocation.INTERNAL);
+		Helper.generateSchematic(SchematicUtils.GenerationQueue.CITADEL,
+			world, pos, schematic, states);
+	}
+
+	@SubscribeEvent
 	public static void entityDeathEvent(LivingDeathEvent event) {
 		LivingEntity entity = event.getEntityLiving();
 		if (entity instanceof DalekEntity) {
@@ -99,15 +160,15 @@ public class DMAEventHandlerGeneral {
 			TardisFlightData flightData = event.getFlightData();
 			BlockPos pos = event.getBlockPos();
 			if (!world.isClientSide()) {
-				List<TileEntity> possibleHazards = net.tardis.mod.helper.WorldHelper.getTEsInChunks((ServerWorld) world, new ChunkPos(pos), 3);
-				possibleHazards.removeIf((tex) -> !(tex instanceof net.tardis.mod.tileentities.IAffectTARDISLanding));
+				List<TileEntity> possibleHazards = WorldHelper.getTEsInChunks((ServerWorld) world, new ChunkPos(pos), 3);
+				possibleHazards.removeIf((tex) -> !(tex instanceof IAffectTARDISLanding));
 
 				for (TileEntity te : possibleHazards) {
-					net.tardis.mod.tileentities.IAffectTARDISLanding affect = (net.tardis.mod.tileentities.IAffectTARDISLanding) te;
+					IAffectTARDISLanding affect = (IAffectTARDISLanding) te;
 					if (pos.closerThan(te.getBlockPos(), affect.getEffectiveRange())) {
-						if (te instanceof net.tardis.mod.tileentities.machines.TransductionBarrierTile) {
+						if (te instanceof TransductionBarrierTile) {
 							Location coord = affectDMTardis(world,
-								(net.tardis.mod.tileentities.machines.TransductionBarrierTile) te, player, flightData);
+								(TransductionBarrierTile) te, player, flightData);
 							if (coord != null) {
 								event.setCanceled(true);
 
@@ -121,9 +182,9 @@ public class DMAEventHandlerGeneral {
 		}
 	}
 
-	private static Location affectDMTardis(World world, net.tardis.mod.tileentities.machines.TransductionBarrierTile barrierTile, PlayerEntity player, TardisFlightData data) {
+	private static Location affectDMTardis(World world, TransductionBarrierTile barrierTile, PlayerEntity player, TardisFlightData data) {
 		if (!world.isClientSide()) {
-			if (barrierTile.getBlockState().hasProperty(net.tardis.mod.blocks.TransductionBarrierBlock.ACTIVATED) && barrierTile.getBlockState().getValue(net.tardis.mod.blocks.TransductionBarrierBlock.ACTIVATED)) {
+			if (barrierTile.getBlockState().hasProperty(TransductionBarrierBlock.ACTIVATED) && barrierTile.getBlockState().getValue(TransductionBarrierBlock.ACTIVATED)) {
 				Random rand = world.random;
 				if (data != null) {
 					BlockPos pos = data.getPos();

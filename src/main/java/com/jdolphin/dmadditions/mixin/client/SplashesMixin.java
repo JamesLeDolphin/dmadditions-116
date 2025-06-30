@@ -1,5 +1,6 @@
 package com.jdolphin.dmadditions.mixin.client;
 
+import com.google.common.collect.Lists;
 import com.jdolphin.dmadditions.advent.TimedUnlock;
 import com.swdteam.client.data.Splashes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -7,70 +8,65 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Random;
+import java.util.*;
 
 @Mixin(Splashes.class)
 public class SplashesMixin {
 	@Inject(method = "load", at = @At("TAIL"), remap = false)
+
 	private static void load(CallbackInfo ci) {
+		List<String> list = Lists.newArrayList(Splashes.SPLASHES);
 
-		ArrayList<String> splashes = new ArrayList<String>(Arrays.asList(Splashes.SPLASHES)) {
-			{
-				add("I blame James");
-				add("Bloody Torchwood!");
+		list.add("I blame James");
+		list.add("Bloody Torchwood!");
 
-				add("I'll ask Bug");
-				add("I'll ask Json");
+		list.add("I'll ask Bug");
+		list.add("I'll ask Json");
 
-				add("The secret is our public open-source technology!");
+		list.add("The secret is our public open-source technology!");
 
-				add("Sam secretly did all the work");
-				add(":3");
+		list.add("Sam secretly did all the work");
+		list.add(":3");
 
-				add("Not to be confused with DMSubtractions!");
-				add("Also try Wicked!");
+		list.add("Not to be confused with DMSubtractions!");
+		list.add("Also try Wicked!");
 
-				add("java.io.FileNotFoundException");
-				add("java.lang.NullPointerException");
+		list.add("java.io.FileNotFoundException");
+		list.add("java.lang.NullPointerException");
 
-				add("Soon™");
-				add("We do a little hacking");
+		list.add("Soon™");
+		list.add("We do a little hacking");
 
-				add("James was here");
-				add("Don't trust Torchwood");
+		list.add("James was here");
+		list.add("Don't trust Torchwood");
 
-				add("Very dodgily I must add");
-				add("Stop typing everything I say");
-			}
-		};
+		list.add("Very dodgily I must add");
+		list.add("Stop typing everything I say");
+
 
 		if (TimedUnlock.isDecember()) {
-			splashes.add("DM Advent Calendar!?");
+			list.add("DM Advent Calendar!?");
 		}
 
 		if (TimedUnlock.isHalloween()) {
-			splashes.add("Are YOU trick-or-treating!?");
-			splashes.add("Get yourself some sweets!");
-			splashes.add("Is that dalek wearing a pumpkin?");
-			splashes.add("Spoopy");
+			list.add("Are YOU trick-or-treating!?");
+			list.add("Get yourself some sweets!");
+			list.add("Is that dalek wearing a pumpkin?");
+			list.add("Spoopy");
 		}
 
 		if (TimedUnlock.getCalendar().get(Calendar.MONTH) == Calendar.APRIL && TimedUnlock.getDate() == 1) {
 			Random random = new Random();
 
 			if (random.nextBoolean()) {
-				splashes.replaceAll(string -> new StringBuilder(string).reverse().toString());
+				list.replaceAll(string -> new StringBuilder(string).reverse().toString());
 			}
 
 			if (random.nextFloat() < 0.02) {
-				splashes.replaceAll(string -> "§k" + string);
+				list.replaceAll(string -> "§k" + string);
 			}
 		}
 
-		Splashes.SPLASHES = splashes.toArray(new String[0]);
-
+		Splashes.SPLASHES = list.toArray(new String[0]);
 	}
 }

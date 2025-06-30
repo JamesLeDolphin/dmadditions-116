@@ -23,6 +23,7 @@ import com.mojang.serialization.Codec;
 import com.swdteam.client.init.BusClientEvents;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.IRust;
+import com.swdteam.common.init.DMDalekRegistry;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
 import cpw.mods.modlauncher.Launcher;
@@ -124,12 +125,14 @@ public class DMAdditions {
 		//This one line fixes joining servers that don't have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
+		DMADaleks.init();
 		DMABlocks.BLOCKS.register(bus);
 		DMAEntities.ENTITY_TYPES.register(bus);
 		DMAItems.ITEMS.register(bus);
 		DMAStructures.DEFERRED_REGISTRY_STRUCTURE.register(bus);
 		DMABlockEntities.TILE_ENTITY_TYPES.register(bus);
 		DMAWorldCarvers.WORLD_CARVERS.register(bus);
+
 		DMAProjectiles.init();
 		DMALootConditionManager.init();
 		DMASoundEvents.init();
@@ -267,9 +270,6 @@ public class DMAdditions {
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.GALLIFREY_SHED.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.GALLIFREY_SHED.get()));
 
-			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.CITADEL.get(),
-				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.CITADEL.get()));
-
 			chunkSource.generator.getSettings().structureConfig().put(DMAStructures.MONDAS_RUIN.get(),
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
 
@@ -329,8 +329,6 @@ public class DMAdditions {
 			structures.add(() -> DMAConfiguredStructures.CONFIGURED_MONDAS_RUIN);
 		}
 
-			structures.add(() -> DMAConfiguredStructures.CONFIGURED_CITADEL);
-
 
 		if (isBiomeValidForDeadTree(biomeRegistryKey)) {
 			List<Supplier<ConfiguredFeature<?, ?>>> base =
@@ -372,7 +370,6 @@ public class DMAdditions {
 					registryKey.equals("dmadditions:dead_forest");
 			if (structure.equals(DMAConfiguredStructures.CONFIGURED_CYBER_UNDERGROUND))
 				return registryKey.equals("minecraft:snowy_taiga");
-			if (structure.equals(DMAConfiguredStructures.CONFIGURED_SHED) || structure.equals(DMAConfiguredStructures.CONFIGURED_CITADEL)) return registryKey.contains("dmadditions:gallifrey");
 		}
 		return false;
 	}
