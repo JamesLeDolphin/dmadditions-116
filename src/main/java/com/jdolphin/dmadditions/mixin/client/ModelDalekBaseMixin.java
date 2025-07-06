@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.mixin.client;
 
 import com.google.common.base.Function;
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
+import com.jdolphin.dmadditions.common.entity.dalek.IDalekEntityMixin;
 import com.swdteam.client.model.ModelDalekBase;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import com.swdteam.model.javajson.JSONModel;

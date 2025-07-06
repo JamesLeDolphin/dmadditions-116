@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.dimension.sky;
 
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.swdteam.client.init.ModClientEvents.ClientPlayerData;

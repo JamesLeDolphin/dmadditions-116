@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.tileentity.control;
 
 import com.jdolphin.dmadditions.client.model.entity.control.TardisControlModel;
-import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.common.entity.control.TardisControl;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;

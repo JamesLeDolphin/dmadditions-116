@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.ZygonModel;
-import com.jdolphin.dmadditions.entity.ZygonEntity;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.entity.ZygonEntity;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

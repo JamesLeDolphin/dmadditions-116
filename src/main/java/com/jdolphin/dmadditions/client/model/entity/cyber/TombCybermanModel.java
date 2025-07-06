@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity.cyber;
 
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.ModelLoader;
 import com.swdteam.model.javajson.ModelWrapper;

@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.entity.SnowmanEntity;
-import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.common.entity.SnowmanEntity;
+import com.jdolphin.dmadditions.common.init.DMAEntities;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

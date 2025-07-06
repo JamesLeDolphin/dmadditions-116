@@ -3,7 +3,7 @@ package com.jdolphin.dmadditions.client.model.entity;// Made with Blockbench 4.1
 // Paste this class into your mod and generate all required imports
 
 
-import com.jdolphin.dmadditions.entity.EmptyChildEntity;
+import com.jdolphin.dmadditions.common.entity.EmptyChildEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.BipedModel;

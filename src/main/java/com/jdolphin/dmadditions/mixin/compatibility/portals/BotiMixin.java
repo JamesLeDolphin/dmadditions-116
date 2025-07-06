@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.compatibility.portals;
 
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.qouteall.immersive_portals.McHelper;
 import com.qouteall.immersive_portals.portal.Portal;
 import com.qouteall.immersive_portals.portal.PortalManipulation;

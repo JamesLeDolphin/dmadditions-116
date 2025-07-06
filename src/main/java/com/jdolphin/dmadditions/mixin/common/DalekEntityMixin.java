@@ -1,11 +1,11 @@
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.advent.TimedUnlock;
-import com.jdolphin.dmadditions.entity.TimeLordEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.entity.cyber.MondasianEntity;
-import com.jdolphin.dmadditions.entity.cyber.WoodenCybermanEntity;
-import com.jdolphin.dmadditions.entity.dalek.IDalekEntityMixin;
+import com.jdolphin.dmadditions.common.advent.TimedUnlock;
+import com.jdolphin.dmadditions.common.entity.TimeLordEntity;
+import com.jdolphin.dmadditions.common.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.common.entity.cyber.MondasianEntity;
+import com.jdolphin.dmadditions.common.entity.cyber.WoodenCybermanEntity;
+import com.jdolphin.dmadditions.common.entity.dalek.IDalekEntityMixin;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.jdolphin.dmadditions.init.DMABlocks.CARVED_DALEK_PUMPKIN;
+import static com.jdolphin.dmadditions.common.init.DMABlocks.CARVED_DALEK_PUMPKIN;
 
 
 @Mixin(DalekEntity.class)

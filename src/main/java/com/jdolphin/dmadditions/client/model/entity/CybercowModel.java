@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
-import com.jdolphin.dmadditions.entity.cyber.CyberCowEntity;
+import com.jdolphin.dmadditions.common.entity.cyber.CyberCowEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;

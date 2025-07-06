@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity.cyber;
 
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.common.entity.cyber.MondasCybermanEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.BipedModel;

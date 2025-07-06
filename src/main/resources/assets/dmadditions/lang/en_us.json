@@ -421,6 +421,9 @@
 
 	"item.dmadditions.docs_flute": "2nd Doctor's Flute",
 
-	"entity.dmadditions.zygon": "Zygon"
+	"entity.dmadditions.zygon": "Zygon",
+	"dmadditions.gui.lockpicking": "TARDIS Lockpicking",
+	"notice.dmadditions.need_lockpick": "You need a lockpick to open this!",
+	"dmadditions.gui.javajson_model_loader": "JavaJson Model Loader"
 
 }

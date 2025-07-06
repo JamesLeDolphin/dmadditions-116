@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
-import com.jdolphin.dmadditions.block.SpecimenJarBlock;
-import com.jdolphin.dmadditions.tileentity.SpecimenJarTileEntity;
+import com.jdolphin.dmadditions.common.block.SpecimenJarBlock;
+import com.jdolphin.dmadditions.common.tileentity.SpecimenJarTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;

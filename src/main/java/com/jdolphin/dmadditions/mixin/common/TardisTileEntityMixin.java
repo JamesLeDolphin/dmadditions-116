@@ -15,7 +15,7 @@
 
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.block.tardis.ITardisDMAActions;
+import com.jdolphin.dmadditions.common.block.tardis.ITardisDMAActions;
 import com.swdteam.common.tardis.TardisData;
 import com.swdteam.common.tileentity.ExtraRotationTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;

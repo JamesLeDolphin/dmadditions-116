@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.SnowmanModel;
-import com.jdolphin.dmadditions.entity.SnowmanEntity;
+import com.jdolphin.dmadditions.common.entity.SnowmanEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;

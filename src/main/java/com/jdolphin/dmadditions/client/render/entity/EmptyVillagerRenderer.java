@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
-import com.jdolphin.dmadditions.entity.EmptyVillagerEntity;
+import com.jdolphin.dmadditions.common.entity.EmptyVillagerEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

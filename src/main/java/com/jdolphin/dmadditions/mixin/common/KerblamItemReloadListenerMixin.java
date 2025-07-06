@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
 import com.google.gson.JsonElement;
-import com.jdolphin.dmadditions.kerblam.IKerblamItemMixin;
+import com.jdolphin.dmadditions.common.kerblam.IKerblamItemMixin;
 import com.swdteam.common.init.DMKerblamStock;
 import com.swdteam.common.kerblam.KerblamItem;
 import com.swdteam.common.kerblam.KerblamItemReloadListener;

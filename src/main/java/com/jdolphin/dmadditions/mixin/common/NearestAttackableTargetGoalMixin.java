@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.entity.ZygonEntity;
+import com.jdolphin.dmadditions.common.entity.ZygonEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;

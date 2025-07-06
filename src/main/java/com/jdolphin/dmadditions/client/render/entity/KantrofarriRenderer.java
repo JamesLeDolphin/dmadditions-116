@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.KantrofarriModel;
-import com.jdolphin.dmadditions.entity.KantrofarriEntity;
+import com.jdolphin.dmadditions.common.entity.KantrofarriEntity;
 import com.swdteam.model.javajson.JSONModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

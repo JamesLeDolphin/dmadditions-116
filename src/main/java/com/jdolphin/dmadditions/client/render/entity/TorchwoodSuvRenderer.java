@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.client.render.entity;
 
 
 import com.jdolphin.dmadditions.client.model.entity.TorchwoodSuvModel;
-import com.jdolphin.dmadditions.entity.VehicleEntity;
+import com.jdolphin.dmadditions.common.entity.VehicleEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

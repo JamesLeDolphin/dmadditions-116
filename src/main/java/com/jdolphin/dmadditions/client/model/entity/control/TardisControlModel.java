@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity.control;
 
-import com.jdolphin.dmadditions.entity.control.TardisControl;
+import com.jdolphin.dmadditions.common.entity.control.TardisControl;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.RenderType;

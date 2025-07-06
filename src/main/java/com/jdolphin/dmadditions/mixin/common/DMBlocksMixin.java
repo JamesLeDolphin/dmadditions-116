@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.init.MixinBlock;
+import com.jdolphin.dmadditions.common.init.MixinBlock;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.init.DMBlocks;
 import com.swdteam.common.item.BaseBlockItem;

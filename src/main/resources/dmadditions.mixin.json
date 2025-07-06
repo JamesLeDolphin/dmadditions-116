@@ -34,7 +34,6 @@
     "client.ModelDalekBaseMixin",
     "client.RenderBlockTardisMixin",
     "client.RenderCybermanMixin",
-    "client.RenderDalekMixin",
-    "client.SplashesMixin"
+    "client.RenderDalekMixin"
 	]
 }

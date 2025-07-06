@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.IceGovernessModel;
-import com.jdolphin.dmadditions.entity.IceGovernessEntity;
+import com.jdolphin.dmadditions.common.entity.IceGovernessEntity;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

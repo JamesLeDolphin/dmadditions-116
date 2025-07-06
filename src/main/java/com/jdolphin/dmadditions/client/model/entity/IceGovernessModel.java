@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
-import com.jdolphin.dmadditions.entity.IceGovernessEntity;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.entity.IceGovernessEntity;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;

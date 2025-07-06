@@ -2,33 +2,30 @@ package com.jdolphin.dmadditions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jdolphin.dmadditions.cap.IPlayerRegenCap;
-import com.jdolphin.dmadditions.cap.PlayerRegenCapability;
-import com.jdolphin.dmadditions.client.ClientDMBusEvents;
+import com.jdolphin.dmadditions.client.event.ClientDMBusEvents;
 import com.jdolphin.dmadditions.client.gui.overlay.PreRegenOverlay;
 import com.jdolphin.dmadditions.client.init.DMATileRenderRegistry;
-import com.jdolphin.dmadditions.compat.tconstruct.FluidTags;
-import com.jdolphin.dmadditions.compat.tconstruct.TinkersRenderType;
-import com.jdolphin.dmadditions.config.DMAClientConfig;
-import com.jdolphin.dmadditions.config.DMACommonConfig;
-import com.jdolphin.dmadditions.entity.*;
-import com.jdolphin.dmadditions.entity.cyber.*;
-import com.jdolphin.dmadditions.event.DMAEventHandlerGeneral;
-import com.jdolphin.dmadditions.event.RegenEvents;
-import com.jdolphin.dmadditions.init.*;
-import com.jdolphin.dmadditions.sonic.SonicMagpieTelevision;
-import com.jdolphin.dmadditions.util.Helper;
-import com.mojang.brigadier.CommandDispatcher;
+import com.jdolphin.dmadditions.common.cap.IPlayerRegenCap;
+import com.jdolphin.dmadditions.common.cap.PlayerRegenCapability;
+import com.jdolphin.dmadditions.common.compat.tconstruct.FluidTags;
+import com.jdolphin.dmadditions.common.compat.tconstruct.TinkersRenderType;
+import com.jdolphin.dmadditions.common.config.DMAClientConfig;
+import com.jdolphin.dmadditions.common.config.DMACommonConfig;
+import com.jdolphin.dmadditions.common.entity.*;
+import com.jdolphin.dmadditions.common.entity.cyber.*;
+import com.jdolphin.dmadditions.common.event.DMAEventHandlerGeneral;
+import com.jdolphin.dmadditions.common.event.RegenEvents;
+import com.jdolphin.dmadditions.common.init.*;
+import com.jdolphin.dmadditions.common.sonic.SonicMagpieTelevision;
+import com.jdolphin.dmadditions.common.util.DMASplashes;
 import com.mojang.serialization.Codec;
+import com.swdteam.client.data.Splashes;
 import com.swdteam.client.init.BusClientEvents;
 import com.swdteam.common.RegistryHandler;
 import com.swdteam.common.block.IRust;
-import com.swdteam.common.init.DMDalekRegistry;
 import com.swdteam.common.init.DMSonicRegistry;
 import com.swdteam.common.tardis.Data;
-import cpw.mods.modlauncher.Launcher;
 import net.minecraft.block.Block;
-import net.minecraft.command.CommandSource;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -47,12 +44,9 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -66,10 +60,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
@@ -88,7 +79,7 @@ import java.util.function.Supplier;
 @Mod(DMAdditions.MODID)
 public class DMAdditions {
 	public static final String MODID = "dmadditions";
-	public static final String VERSION = "1.3.13";
+	public static final String VERSION = "1.5.3";
 	public static final boolean IS_DEBUG = ManagementFactory.getRuntimeMXBean().
 		getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
@@ -122,6 +113,7 @@ public class DMAdditions {
 		bus.addListener(this::doClientStuff);
 		bus.addListener(this::entityAttributeEvent);
 		bus.addListener(this::runLater);
+		bus.addListener(this::loadComplete);
 		//This one line fixes joining servers that don't have dma
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> false));
 		// Register things
@@ -147,12 +139,6 @@ public class DMAdditions {
 		forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
 		forgeBus.addListener(EventPriority.NORMAL, this::addDimensionalSpacing);
 		if (hasTC()) DMAFluids.FLUIDS.register(bus);
-	}
-
-	@SubscribeEvent
-	public void onRegisterCommandEvent(RegisterCommandsEvent event) {
-		CommandDispatcher<CommandSource> dispatcher = event.getDispatcher();
-		//TardisMailCommand.register(dispatcher);
 	}
 
 	public void entityAttributeEvent(EntityAttributeCreationEvent event) {
@@ -197,41 +183,10 @@ public class DMAdditions {
 		});
 		CapabilityManager.INSTANCE.register(IPlayerRegenCap.class, new IPlayerRegenCap.Storage(), () -> new PlayerRegenCapability(null));
 
-		if (hasNTM()) Helper.info("Enabling New Tardis Mod compatibility features");
-		if (hasTC()) Helper.info("Enabling Tinker's Construct compatibility features");
-		if (hasIMMP()) Helper.info("Enabling Immersive Portals compatibility features");
-		if (hasIMMP() && hasNTM())
-			Helper.warn("New Tardis Mod and Immersive Portals may not work well together! You've been warned!");
-
-//		List<ModFileInfo> files = LoadingModList.get().getModFiles();
-//		for (ModFileInfo fileInfo : files) {
-//
-//			System.out.println("File path: " + fileInfo.getFile().getFilePath().getFileName());
-//			try (JarFile jarFile = new JarFile(fileInfo.getFile().getFilePath().toFile())) {
-//				jarFile.stream()
-//					.filter(entry -> {
-//						String name = entry.getName();
-//						System.out.println("Name: " + name);
-//						System.out.println("Entry: " + entry);
-//						if (name.startsWith("data" + File.separator) && name.contains(File.separator + "tardis_exteriors" + File.separator)
-//							&& entry.getName().contains(".json")) {
-//
-//							return true;
-//						}
-//						return true;
-//					})
-//					.forEach(entry -> {
-//						try (InputStreamReader reader = new InputStreamReader(jarFile.getInputStream(entry))) {
-//							Data myObject = GSON.fromJson(reader, Data.class);
-//							exteriors.add(myObject);
-//						} catch (IOException e) {
-//							LOGGER.warn(e.getLocalizedMessage());
-//						}
-//					});
-//			} catch (IOException e) {
-//				LOGGER.warn(e.getLocalizedMessage());
-//			}
-//		}
+		if (hasNTM()) LOGGER.info("Enabling New Tardis Mod compatibility features");
+		if (hasTC()) LOGGER.info("Enabling Tinker's Construct compatibility features");
+		if (hasIMMP()) LOGGER.info("Enabling Immersive Portals compatibility features");
+		if (hasIMMP() && hasNTM()) LOGGER.warn("New Tardis Mod and Immersive Portals may not work well together! You've been warned!");
 	}
 
 
@@ -251,7 +206,7 @@ public class DMAdditions {
 				ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(chunkSource.generator));
 				if (cgRL != null && cgRL.getNamespace().equals("terraforged")) return;
 			} catch (Exception e) {
-				LOGGER.error("Was unable to check if " + world.dimension().location() + " is using Terraforged's ChunkGenerator.");
+				LOGGER.error("Was unable to check if {} is using Terraforged's ChunkGenerator.", world.dimension().location());
 			}
 
 			if (chunkSource.getGenerator() instanceof FlatChunkGenerator &&
@@ -274,6 +229,11 @@ public class DMAdditions {
 				DimensionStructuresSettings.DEFAULTS.get(DMAStructures.MONDAS_RUIN.get()));
 
 		}
+	}
+
+	private void loadComplete(FMLLoadCompleteEvent event) {
+		List<String> list = DMASplashes.getSplashes();
+		Splashes.SPLASHES = list.toArray(new String[0]);
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {

@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
-import com.jdolphin.dmadditions.entity.TimeLordEntity;
+import com.jdolphin.dmadditions.common.entity.TimeLordEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.BipedModel;
@@ -67,7 +67,7 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> {
 		int regenTicks = entity.getRegenTicks();
 
 		if (regenTicks > 0) {
-			this.head.xRot = (float) MathHelper.lerp((float) regenTicks / 200, -0.2f, 0f);
+			this.head.xRot = MathHelper.lerp((float) regenTicks / 200, -0.2f, 0f);
 			//LogManager.getLogger().debug("regenTicks: {}; {}", regenTicks, (float) regenTicks / 200);
 			this.rightArm.zRot = 10;
 			this.leftArm.zRot = -10;
@@ -77,7 +77,7 @@ public class TimeLordModel extends BipedModel<TimeLordEntity> {
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		rightLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 		leftLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);

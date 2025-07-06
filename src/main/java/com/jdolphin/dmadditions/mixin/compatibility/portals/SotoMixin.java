@@ -1,10 +1,9 @@
 package com.jdolphin.dmadditions.mixin.compatibility.portals;
 
-import com.jdolphin.dmadditions.block.tardis.BetterTardisDoorHitbox;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.block.tardis.BetterTardisDoorHitbox;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.qouteall.immersive_portals.McHelper;
 import com.qouteall.immersive_portals.portal.Portal;
-import com.qouteall.immersive_portals.portal.PortalExtension;
 import com.qouteall.immersive_portals.portal.PortalManipulation;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.common.init.DMBlocks;
@@ -15,7 +14,6 @@ import com.swdteam.common.tardis.TardisState;
 import com.swdteam.common.tileentity.DMTileEntityBase;
 import com.swdteam.common.tileentity.TardisTileEntity;
 import com.swdteam.common.tileentity.tardis.TardisDoorHitboxTileEntity;
-import net.minecraft.block.BlockEventData;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -31,7 +29,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(TardisDoorHitboxTileEntity.class)

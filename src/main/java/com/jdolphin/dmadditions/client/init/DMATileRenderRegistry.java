@@ -1,10 +1,7 @@
 package com.jdolphin.dmadditions.client.init;
 
-import com.jdolphin.dmadditions.client.render.tileentity.ConsoleRenderer;
-import com.jdolphin.dmadditions.client.render.tileentity.CoordPanelRenderer;
-import com.jdolphin.dmadditions.client.render.tileentity.DimensionSelectorPanelRenderer;
-import com.jdolphin.dmadditions.client.render.tileentity.SpecimenJarRenderer;
-import com.jdolphin.dmadditions.init.DMABlockEntities;
+import com.jdolphin.dmadditions.client.render.tileentity.*;
+import com.jdolphin.dmadditions.common.init.DMABlockEntities;
 import com.swdteam.client.render.tileentity.RenderTileEntityBase;
 import com.swdteam.common.init.DMBlockEntities;
 import com.swdteam.model.javajson.JSONModel;
@@ -26,8 +23,9 @@ public class DMATileRenderRegistry {
 	public static void init() {
 		registerModel(DMBlockEntities.TILE_COORD_PANEL.get(), CoordPanelRenderer::new);
 		registerModel(DMBlockEntities.TILE_DIMENSION_SELECTOR.get(), DimensionSelectorPanelRenderer::new);
-		registerModel(DMABlockEntities.TILE_CONSOLE.get(), ConsoleRenderer::new);
+		registerModel(DMABlockEntities.CLASSIC_CONSOLE.get(), ClassicConsoleRenderer::new);
 		registerModel(DMABlockEntities.TILE_SPECIMEN_JAR.get(), SpecimenJarRenderer::new);
+		registerModel(DMABlockEntities.BROKEN_TARDIS_TILE.get(), BrokenTardisRenderer::new);
 	}
 
 	public static final ArrayList<TileEntityType<?>> MIXIN_RENDERERS = new ArrayList<TileEntityType<?>>() {{

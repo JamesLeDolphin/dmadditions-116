@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.gui.panels;
 
-import com.jdolphin.dmadditions.init.DMAPackets;
-import com.jdolphin.dmadditions.network.SBLocatePlayerPacket;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.init.DMAPackets;
+import com.jdolphin.dmadditions.common.network.SBLocatePlayerPacket;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;

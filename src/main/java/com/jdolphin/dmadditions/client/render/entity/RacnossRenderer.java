@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.RacnossModel;
-import com.jdolphin.dmadditions.entity.RacnossEntity;
+import com.jdolphin.dmadditions.common.entity.RacnossEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

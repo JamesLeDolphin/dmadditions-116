@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.render.tileentity;
 
 
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.swdteam.client.model.IModelPartReloader;

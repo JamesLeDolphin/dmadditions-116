@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.config.DMACommonConfig;
-import com.jdolphin.dmadditions.init.DMASpawnerRegistry;
+import com.jdolphin.dmadditions.common.config.DMACommonConfig;
+import com.jdolphin.dmadditions.common.init.DMASpawnerRegistry;
 import com.swdteam.common.init.DMSpawnerRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

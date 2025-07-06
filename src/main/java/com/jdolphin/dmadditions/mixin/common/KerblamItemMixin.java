@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.advent.TimedUnlock;
-import com.jdolphin.dmadditions.kerblam.IKerblamItemMixin;
+import com.jdolphin.dmadditions.common.advent.TimedUnlock;
+import com.jdolphin.dmadditions.common.kerblam.IKerblamItemMixin;
 import com.swdteam.common.kerblam.KerblamItem;
 import org.spongepowered.asm.mixin.Mixin;
 

@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.render.entity.cyber;
 
 import com.jdolphin.dmadditions.client.model.entity.cyber.MondasCybermanModel;
-import com.jdolphin.dmadditions.entity.cyber.MondasCybermanEntity;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.entity.cyber.MondasCybermanEntity;
+import com.jdolphin.dmadditions.common.util.Helper;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

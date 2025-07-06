@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.common;
 
-import com.jdolphin.dmadditions.config.DMACommonConfig;
+import com.jdolphin.dmadditions.common.config.DMACommonConfig;
 import com.swdteam.common.entity.dalek.DalekEntity;
 import com.swdteam.common.entity.dalek.types.SpecialWeapons;
 import com.swdteam.common.init.DMProjectiles;

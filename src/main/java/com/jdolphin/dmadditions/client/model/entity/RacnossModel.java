@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.model.entity;
 
 import com.google.common.collect.ImmutableList;
-import com.jdolphin.dmadditions.entity.RacnossEntity;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.entity.RacnossEntity;
+import com.jdolphin.dmadditions.common.util.Helper;
 import com.swdteam.client.model.IModelPartReloader;
 import com.swdteam.client.model.ModelReloaderRegistry;
 import com.swdteam.model.javajson.JSONModel;

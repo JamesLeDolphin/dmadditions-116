@@ -7,7 +7,8 @@ import com.jdolphin.dmadditions.client.model.entity.cyber.TombControllerCyberman
 import com.jdolphin.dmadditions.client.model.entity.cyber.TombCybermanModel;
 import com.jdolphin.dmadditions.client.render.entity.*;
 import com.jdolphin.dmadditions.client.render.entity.cyber.*;
-import com.jdolphin.dmadditions.init.DMAEntities;
+import com.jdolphin.dmadditions.client.render.tileentity.control.TardisControlRenderer;
+import com.jdolphin.dmadditions.common.init.DMAEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -41,7 +42,7 @@ public class DMAEntityRenderRegistry {
 		registerRender(DMAEntities.DALEK_MUTANT, DalekMutantRenderer::new);
 		registerRender(DMAEntities.NETHERITE_CYBERMAN, NetheriteCybermanRenderer::new);
 		registerRender(DMAEntities.CYBER_PIGLIN, CyberPiglinRenderer::new);
-
+		registerRender(DMAEntities.CONTROL, TardisControlRenderer::new);
 		registerRender(DMAEntities.TOMB_CYBERMAN, (manager) -> new DMACybermanRenderer(manager, new TombCybermanModel()));
 		registerRender(DMAEntities.WARRIOR_CYBERMAN, (manager) -> new DMACybermanRenderer(manager, new CyberWarriorModel()));
 		registerRender(DMAEntities.TOMB_CYBER_CONTROLLER, (manager) -> new DMACybermanRenderer(manager, new TombControllerCybermanModel()));

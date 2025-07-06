@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.render.entity;
 
 import com.jdolphin.dmadditions.client.model.entity.TimeLordModel;
-import com.jdolphin.dmadditions.entity.TimeLordEntity;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.entity.TimeLordEntity;
+import com.jdolphin.dmadditions.common.util.Helper;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;

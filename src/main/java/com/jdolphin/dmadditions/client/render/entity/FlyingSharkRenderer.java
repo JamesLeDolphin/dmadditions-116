@@ -2,7 +2,7 @@ package com.jdolphin.dmadditions.client.render.entity;
 
 
 import com.jdolphin.dmadditions.client.model.entity.FlyingSharkModel;
-import com.jdolphin.dmadditions.entity.FlyingSharkEntity;
+import com.jdolphin.dmadditions.common.entity.FlyingSharkEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

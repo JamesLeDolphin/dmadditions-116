@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.gui.overlay;
 
-import com.jdolphin.dmadditions.init.DMACapabilities;
+import com.jdolphin.dmadditions.common.init.DMACapabilities;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.swdteam.client.overlay.Overlay;

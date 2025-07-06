@@ -1,8 +1,8 @@
 package com.jdolphin.dmadditions.client.render.entity.cyber;
 
 import com.jdolphin.dmadditions.client.model.entity.cyber.CyberPiglinModel;
-import com.jdolphin.dmadditions.entity.cyber.CyberPiglinEntity;
-import com.jdolphin.dmadditions.util.Helper;
+import com.jdolphin.dmadditions.common.entity.cyber.CyberPiglinEntity;
+import com.jdolphin.dmadditions.common.util.Helper;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
