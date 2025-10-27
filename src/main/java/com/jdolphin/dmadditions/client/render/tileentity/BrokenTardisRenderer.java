@@ -3,7 +3,6 @@ package com.jdolphin.dmadditions.client.render.tileentity;
 import com.jdolphin.dmadditions.common.block.tardis.BrokenTardisBlock;
 import com.jdolphin.dmadditions.common.init.DMABrokenTardisTypes;
 import com.jdolphin.dmadditions.common.tileentity.BrokenTardisTileEntity;
-import com.jdolphin.dmadditions.common.util.BrokenTardisType;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.swdteam.client.tardis.data.ExteriorModels;
 import com.swdteam.model.javajson.JSONModel;
@@ -18,15 +17,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class BrokenTardisRenderer extends TileEntityRenderer<BrokenTardisTileEntity> {
-	public static JSONModel MODEL_TARDIS = ModelLoader.loadModel(DMABrokenTardisTypes.DEFAULT.exteriorModel);
+	public static JSONModel MODEL_TARDIS = ModelLoader.loadModel(DMABrokenTardisTypes.DEFAULT_EXT);
 
 	public BrokenTardisRenderer(TileEntityRendererDispatcher dispatcher) {
 		super(dispatcher);
 	}
 
 	private void renderDoors(BrokenTardisTileEntity tile) {
-		BrokenTardisType type = tile.getTardisType();
-		ExteriorModels.DoorAnimations doors = ExteriorModels.getDoorAnimation(type.exteriorModel);
+		ResourceLocation type = tile.getExteriorType();
+		ExteriorModels.DoorAnimations doors = ExteriorModels.getDoorAnimation(type);
 		if (doors != null && doors.getDoorAnimations() != null) {
 			for (ExteriorModels.DoorAnimations.TardisAnimation animation : doors.getDoorAnimations()) {
 				ModelRendererWrapper renderer = MODEL_TARDIS.getModelData().getModel().getPart(animation.getShapeName());
@@ -64,13 +63,10 @@ public class BrokenTardisRenderer extends TileEntityRenderer<BrokenTardisTileEnt
 
 	@Override
 	public void render(BrokenTardisTileEntity tile, float v, MatrixStack stack, IRenderTypeBuffer buffer, int i, int i1) {
-		BrokenTardisType type = tile.getTardisType();
+		ResourceLocation type = tile.getExteriorType();
 
 		if (type != null) {
-			ResourceLocation location = type.exteriorModel;
-			if (location != null) {
-				MODEL_TARDIS = ModelLoader.loadModel(location);
-			}
+			MODEL_TARDIS = ModelLoader.loadModel(type);
 			if (MODEL_TARDIS != null) {
 				stack.pushPose();
 				BlockState state = tile.getBlockState();

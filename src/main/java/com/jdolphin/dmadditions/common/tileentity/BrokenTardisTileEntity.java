@@ -6,8 +6,8 @@ import com.jdolphin.dmadditions.common.init.DMABrokenTardisTypes;
 import com.jdolphin.dmadditions.common.init.DMADimensions;
 import com.jdolphin.dmadditions.common.tardis.BrokenTardisData;
 import com.jdolphin.dmadditions.common.tardis.DMATardis;
-import com.jdolphin.dmadditions.common.util.BrokenTardisType;
 import com.jdolphin.dmadditions.common.util.Helper;
+import com.jdolphin.dmadditions.common.util.tardis.BrokenTardisInterior;
 import com.swdteam.common.init.DMFlightMode;
 import com.swdteam.common.init.DMTardis;
 import com.swdteam.common.tardis.Location;
@@ -30,7 +30,8 @@ import java.util.List;
 
 public class BrokenTardisTileEntity extends ExtraRotationTileEntityBase implements ITickableTileEntity {
 	public BrokenTardisData data = null;
-	private BrokenTardisType type = null;
+	private BrokenTardisInterior interiorType = null;
+	private ResourceLocation exteriorType = null;
 	private boolean loaded = false;
 	private boolean open = false;
 	private int id = -1;
@@ -39,8 +40,12 @@ public class BrokenTardisTileEntity extends ExtraRotationTileEntityBase implemen
 		super(DMABlockEntities.BROKEN_TARDIS_TILE.get());
 	}
 
-	public BrokenTardisType getTardisType() {
-		return type;
+	public BrokenTardisInterior getTardisInteriorType() {
+		return interiorType;
+	}
+
+	public ResourceLocation getExteriorType() {
+		return exteriorType;
 	}
 
 	public boolean isOpen() {
@@ -63,8 +68,12 @@ public class BrokenTardisTileEntity extends ExtraRotationTileEntityBase implemen
 			DMATardis.saveData(data, server);
 			this.sendUpdates();
 		}
-		if (type == null) {
-			this.type = DMABrokenTardisTypes.getRandom();
+		if (exteriorType == null) {
+			this.exteriorType = DMABrokenTardisTypes.getRandomExterior();
+			this.sendUpdates();
+		}
+		if (interiorType == null) {
+			this.interiorType = DMABrokenTardisTypes.getRandomInterior();
 			this.sendUpdates();
 		}
 	}
@@ -73,9 +82,13 @@ public class BrokenTardisTileEntity extends ExtraRotationTileEntityBase implemen
 	public CompoundNBT save(CompoundNBT tag) {
 		tag.putInt("BTId", id);
 		tag.putBoolean("Open", open);
-		ResourceLocation loc = Helper.getKeyByValue(DMABrokenTardisTypes.ALL, type);
-		if (loc != null) {
-			tag.putString("Type", loc.toString());
+		ResourceLocation interiorLoc = Helper.getKeyByValue(DMABrokenTardisTypes.INTERIORS, interiorType);
+		if (interiorLoc != null) {
+			tag.putString("InteriorType", interiorLoc.toString());
+		}
+		ResourceLocation exteriorLoc = Helper.getKeyByValue(DMABrokenTardisTypes.EXTERIORS, exteriorType);
+		if (exteriorLoc != null) {
+			tag.putString("ExteriorType", exteriorLoc.toString());
 		}
 
 
@@ -85,10 +98,13 @@ public class BrokenTardisTileEntity extends ExtraRotationTileEntityBase implemen
 	@Override
 	public void load(BlockState state, CompoundNBT tag) {
 		id = tag.getInt("BTId");
-		if (tag.contains("Type")) {
-			String s = tag.getString("Type");
-			ResourceLocation location = new ResourceLocation(s);
-			this.type = DMABrokenTardisTypes.ALL.get(location);
+		if (tag.contains("InteriorType")) {
+			String s = tag.getString("InteriorType");
+			this.interiorType = DMABrokenTardisTypes.INTERIORS.get(new ResourceLocation(s));
+		}
+		if (tag.contains("ExteriorType")) {
+			String s = tag.getString("ExteriorType");
+			this.exteriorType = DMABrokenTardisTypes.EXTERIORS.get(new ResourceLocation(s));
 		}
 		this.open = tag.getBoolean("Open");
 		this.loaded = true;
@@ -117,7 +133,7 @@ public class BrokenTardisTileEntity extends ExtraRotationTileEntityBase implemen
 						Entity e = entities.get(0);
 						BlockPos pos = DMTardis.getXZForMap(data.id);
 						BlockPos spawnPos = new BlockPos(pos.getX() * 256, 0, pos.getZ() * 256);
-						BlockPos vec = spawnPos.offset(this.type.spawnPos);
+						BlockPos vec = spawnPos.offset(this.interiorType.spawnPos);
 						if (!TeleportUtil.TELEPORT_REQUESTS.containsKey(e)) {
 							Location loc = new Location(new Vector3d(vec.getX(), vec.getY(), vec.getZ()), DMADimensions.BROKEN_TARDIS);
 							loc.setFacing(e.getYHeadRot() - this.rotation);

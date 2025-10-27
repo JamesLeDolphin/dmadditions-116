@@ -1,16 +1,16 @@
 package com.jdolphin.dmadditions.common.network;
 
+import com.jdolphin.dmadditions.common.init.DMADimensions;
 import com.jdolphin.dmadditions.common.tardis.BrokenTardisData;
 import com.jdolphin.dmadditions.common.tardis.DMATardis;
 import com.jdolphin.dmadditions.common.tileentity.BrokenTardisTileEntity;
-import com.jdolphin.dmadditions.common.util.BrokenTardisType;
-import com.jdolphin.dmadditions.common.util.Helper;
+import com.jdolphin.dmadditions.common.util.tardis.BrokenTardisInterior;
 import com.swdteam.common.init.DMTardis;
-import com.swdteam.util.world.Schematic;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
@@ -46,16 +46,22 @@ public class SBGenerateBrokenInteriorPacket {
 			if (tile instanceof BrokenTardisTileEntity) {
 				BrokenTardisTileEntity tardis = (BrokenTardisTileEntity) tile;
 				BrokenTardisData data = tardis.data;
-				BrokenTardisType type = tardis.getTardisType();
+				BrokenTardisInterior type = tardis.getTardisInteriorType();
 				if (type != null) {
-					Schematic schem = type.interiorSchem;
+					ResourceLocation schem = type.interiorSchem;
 					BlockPos idPos = DMTardis.getXZForMap(data.id);
-					BlockPos spawnPos = new BlockPos(idPos.getX() * 256, 0, idPos.getZ() * 256);
-					Template template = world.getStructureManager().get(Helper.createAdditionsRL("tardis/coral_abandoned"));
+					BlockPos spawnPos = new BlockPos(idPos.getX() * 256, 16, idPos.getZ() * 256);
+					System.out.println(schem);
+
+					Template template = world.getStructureManager().get(schem);
 					if (template != null) {
 						System.out.println(spawnPos);
-						data.has_generated = true;
-						template.placeInWorld(world, spawnPos, new PlacementSettings(), world.random);
+						PlacementSettings settings = (new PlacementSettings()).setIgnoreEntities(false);
+						ServerWorld serverWorld = server.getLevel(DMADimensions.BROKEN_TARDIS);
+						if (template.placeInWorld(serverWorld, spawnPos, spawnPos, settings, world.random, 2)) {
+							System.out.println("EEEE");
+							data.has_generated = true;
+						}
 					}
 					//SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.TARDIS, server.getLevel(DMADimensions.BROKEN_TARDIS), spawnPos, schem);
 

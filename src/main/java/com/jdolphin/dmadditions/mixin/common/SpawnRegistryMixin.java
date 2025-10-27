@@ -33,7 +33,7 @@ public class SpawnRegistryMixin {
 			for (Map.Entry<RegistryKey<Biome>, Biome> registryKeyBiomeEntry : ForgeRegistries.BIOMES.getEntries()) {
 				addSpawn(registryKeyBiomeEntry.getKey(), type, weight, min, max, entityType, ci);
 			}
-		}
+		} else ci.cancel();
 	}
 
 	@Inject(method = "addSpawn(Lnet/minecraft/util/RegistryKey;Lnet/minecraft/entity/EntityType;IIILnet/minecraft/entity/EntityClassification;)V",

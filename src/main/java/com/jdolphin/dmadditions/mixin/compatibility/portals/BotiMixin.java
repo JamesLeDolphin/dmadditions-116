@@ -130,12 +130,12 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 
 		Iterator<? extends Entity> var3;
 		if (this.level.getDayTime() % 20L == 0L) {
-			var3 = this.level.getEntitiesOfClass(RiftEntity.class, new AxisAlignedBB((double) (this.worldPosition.getX() - 16), (double) (this.worldPosition.getY() - 4), (double) (this.worldPosition.getZ() - 16), (double) (this.worldPosition.getX() + 16), (double) (this.worldPosition.getY() + 4), (double) (this.worldPosition.getZ() + 16)), Entity::isAlive).iterator();
+			var3 = this.level.getEntitiesOfClass(RiftEntity.class, new AxisAlignedBB(this.worldPosition.getX() - 16, (double) (this.worldPosition.getY() - 4), (double) (this.worldPosition.getZ() - 16), (double) (this.worldPosition.getX() + 16), (double) (this.worldPosition.getY() + 4), (double) (this.worldPosition.getZ() + 16)), Entity::isAlive).iterator();
 
 			while (var3.hasNext()) {
 				RiftEntity rift = (RiftEntity) var3.next();
 				if (rift.getRiftData() != null) {
-					rift.getRiftData().tardisUseRiftTick((((TardisTileEntity) (Object) this)), (PlayerEntity) null, this.tardisData, rift);
+					rift.getRiftData().tardisUseRiftTick((((TardisTileEntity) (Object) this)), null, this.tardisData, rift);
 				}
 			}
 		}
@@ -157,7 +157,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 			}
 
 			if (this.dematTime == 1.0F) {
-				MinecraftForge.EVENT_BUS.post(new TardisEvent.DeMatFinish(this.tardisData, (PlayerEntity) null, this.level, false, (TardisFlightData) null, this.worldPosition));
+				MinecraftForge.EVENT_BUS.post(new TardisEvent.DeMatFinish(this.tardisData, null, this.level, false, (TardisFlightData) null, this.worldPosition));
 				this.removeLight();
 				this.level.setBlockAndUpdate(this.getBlockPos(), Blocks.AIR.defaultBlockState());
 				this.animStartTime = 0L;
@@ -181,7 +181,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 			}
 
 			if (this.dematTime == 0.0F) {
-				MinecraftForge.EVENT_BUS.post(new TardisEvent.MatFinish(this.tardisData, (PlayerEntity) null, this.level, (TardisFlightData) null, this.worldPosition));
+				MinecraftForge.EVENT_BUS.post(new TardisEvent.MatFinish(this.tardisData, null, this.level, (TardisFlightData) null, this.worldPosition));
 				this.tardisData = DMTardis.getTardis(this.globalID);
 				if (this.tardisData != null) {
 					var3 = this.level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(this.worldPosition)).iterator();
@@ -235,7 +235,7 @@ public abstract class BotiMixin extends ExtraRotationTileEntityBase implements I
 						mdl == null ? 0.0 : mdl.y / 200, mdl == null ? -0.14200001192092896 : mdl.z / 200); //These aren't accurate but it somewhat works
 
 					bounds = bounds.move(Math.sin(Math.toRadians(this.rotation)) * 0.05,
-						0.02, -Math.cos(Math.toRadians(this.rotation)) * 0.05);
+						0.03, -Math.cos(Math.toRadians(this.rotation)) * 0.05);
 
 					Direction tDir = Direction.fromYRot(this.rotation);
 

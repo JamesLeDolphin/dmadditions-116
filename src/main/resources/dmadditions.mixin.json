@@ -17,12 +17,9 @@
     "common.DMProjectilesMixin",
     "common.DMTardisRegistryMixin",
     "common.DoubleDoorsTileEntityMixin",
-    "common.KerblamItemMixin",
-    "common.KerblamItemReloadListenerMixin",
     "common.NearestAttackableTargetGoalMixin",
     "common.RoundelDoorTileEntityMixin",
     "common.SpawnRegistryMixin",
-    "common.SpecialWeaponsMixin",
     "common.TardisTileEntityMixin",
     "compatibility.portals.BotiMixin",
     "compatibility.portals.SotoMixin"
@@ -35,5 +32,5 @@
     "client.RenderBlockTardisMixin",
     "client.RenderCybermanMixin",
     "client.RenderDalekMixin"
-	]
+  ]
 }
