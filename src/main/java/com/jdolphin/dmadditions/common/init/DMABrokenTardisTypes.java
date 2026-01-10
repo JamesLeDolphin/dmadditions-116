@@ -15,9 +15,9 @@ public class DMABrokenTardisTypes {
 
 	public static final BrokenTardisInterior DEFAULT = registerInterior("default", new BrokenTardisInterior(new BlockPos(16, 19, 22), 0,
 		getInteriorPath("default")));
-	public static final BrokenTardisInterior INT_2005 = registerInterior("2005", new BrokenTardisInterior(new BlockPos(0, 0, 0), 0,
+	public static final BrokenTardisInterior CORAL = registerInterior("coral", new BrokenTardisInterior(new BlockPos(0, 0, 0), 0,
 		getInteriorPath("coral")));
-	public static final BrokenTardisInterior SIDRAT = registerInterior("2005", new BrokenTardisInterior(new BlockPos(0, 0, 0), 0,
+	public static final BrokenTardisInterior SIDRAT = registerInterior("sidrat", new BrokenTardisInterior(new BlockPos(0, 0, 0), 0,
 		getInteriorPath("sidrat")));
 
 	public static ResourceLocation CORAL_EXT = registerExterior("coral", "2005_police_box");

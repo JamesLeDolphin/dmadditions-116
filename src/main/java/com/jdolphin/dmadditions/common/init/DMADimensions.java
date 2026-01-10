@@ -11,6 +11,7 @@ public class DMADimensions {
 	public static RegistryKey<World> MONDAS = createKey("mondas");
 	public static RegistryKey<World> BROKEN_TARDIS = createKey("broken_tardis");
 	public static RegistryKey<World> GALLIFREY = createKey("gallifrey");
+	public static RegistryKey<World> SPACE = createKey("space");
 
 	private static RegistryKey<World> createKey(String name) {
 		return RegistryKey.create(Registry.DIMENSION_REGISTRY, Helper.createAdditionsRL(name));

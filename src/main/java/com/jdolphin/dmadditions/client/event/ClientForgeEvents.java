@@ -1,9 +1,10 @@
 package com.jdolphin.dmadditions.client.event;
 
 import com.jdolphin.dmadditions.DMAdditions;
-import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
-import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererGallifrey;
-import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMondas;
+import com.jdolphin.dmadditions.client.render.sky.EmptyCloudRenderer;
+import com.jdolphin.dmadditions.client.render.sky.SkyRendererGallifrey;
+import com.jdolphin.dmadditions.client.render.sky.SkyRendererMondas;
+import com.jdolphin.dmadditions.client.render.sky.SkyRendererSpace;
 import com.jdolphin.dmadditions.common.init.DMADimensions;
 import com.jdolphin.dmadditions.common.init.DMAEntities;
 import com.jdolphin.dmadditions.common.init.DMAItems;
@@ -41,12 +42,15 @@ public class ClientForgeEvents {
 		world = minecraft.level;
 		DimensionRenderInfo info = world.effects();
 		if (info.getSkyRenderHandler() == null) {
-			if (minecraft.level.dimension().equals(DMADimensions.MONDAS)) {
+			if (world.dimension().equals(DMADimensions.MONDAS)) {
 				info.setSkyRenderHandler(SkyRendererMondas.INSTANCE);
 				info.setCloudRenderHandler(EmptyCloudRenderer.INSTANCE);
 			}
-			if (minecraft.level.dimension().equals(DMADimensions.GALLIFREY)) {
+			if (world.dimension().equals(DMADimensions.GALLIFREY)) {
 				info.setSkyRenderHandler(SkyRendererGallifrey.INSTANCE);
+			}
+			if (world.dimension().equals(DMADimensions.SPACE)) {
+				info.setSkyRenderHandler(SkyRendererSpace.INSTANCE);
 			}
 		}
 	}

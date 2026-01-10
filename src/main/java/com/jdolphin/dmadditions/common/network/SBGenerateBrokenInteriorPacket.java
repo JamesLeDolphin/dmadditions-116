@@ -51,20 +51,15 @@ public class SBGenerateBrokenInteriorPacket {
 					ResourceLocation schem = type.interiorSchem;
 					BlockPos idPos = DMTardis.getXZForMap(data.id);
 					BlockPos spawnPos = new BlockPos(idPos.getX() * 256, 16, idPos.getZ() * 256);
-					System.out.println(schem);
 
 					Template template = world.getStructureManager().get(schem);
 					if (template != null) {
-						System.out.println(spawnPos);
 						PlacementSettings settings = (new PlacementSettings()).setIgnoreEntities(false);
 						ServerWorld serverWorld = server.getLevel(DMADimensions.BROKEN_TARDIS);
 						if (template.placeInWorld(serverWorld, spawnPos, spawnPos, settings, world.random, 2)) {
-							System.out.println("EEEE");
 							data.has_generated = true;
 						}
 					}
-					//SchematicUtils.generateSchematic(SchematicUtils.GenerationQueue.TARDIS, server.getLevel(DMADimensions.BROKEN_TARDIS), spawnPos, schem);
-
 
 					DMATardis.saveData(data, server);
 				}

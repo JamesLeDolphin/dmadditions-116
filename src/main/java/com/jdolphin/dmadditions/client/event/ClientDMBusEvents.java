@@ -1,7 +1,7 @@
 package com.jdolphin.dmadditions.client.event;
 
-import com.jdolphin.dmadditions.client.dimension.EmptyCloudRenderer;
-import com.jdolphin.dmadditions.client.dimension.sky.SkyRendererMoon;
+import com.jdolphin.dmadditions.client.render.sky.EmptyCloudRenderer;
+import com.jdolphin.dmadditions.client.render.sky.SkyRendererMoon;
 import com.jdolphin.dmadditions.common.init.DMADimensions;
 import com.swdteam.main.DalekMod;
 import net.minecraft.client.Minecraft;
@@ -24,11 +24,10 @@ public class ClientDMBusEvents {
 
 	@SubscribeEvent
 	public static void skyRenderer(RenderWorldLastEvent event) {
-		ClientWorld world;
 		Minecraft minecraft = Minecraft.getInstance();
 		assert minecraft.level != null;
 		if (minecraft.level.dimension().equals(DMADimensions.MOON)) {
-			world = minecraft.level;
+			ClientWorld world = minecraft.level;
 			ISkyRenderHandler handler = world.effects().getSkyRenderHandler();
 			if (handler == null) {
 				world.effects().setSkyRenderHandler(SkyRendererMoon.INSTANCE);

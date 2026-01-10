@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.dimension.sky;
+package com.jdolphin.dmadditions.client.render.sky;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;

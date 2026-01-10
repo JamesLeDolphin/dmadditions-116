@@ -10,7 +10,10 @@
     "sky_color": 15974453,
     "fog_color": 12638463,
     "water_color": 4159204,
-    "water_fog_color": 329011
+    "water_fog_color": 329011,
+    "grass_color": 10757145,
+    "foliage_color": 10248001,
+    "grass_color_modifier": "none"
   },
   "starts": [],
   "spawners": {},

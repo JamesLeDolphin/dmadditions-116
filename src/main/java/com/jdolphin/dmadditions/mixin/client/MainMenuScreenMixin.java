@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.mixin.client;
 
-import com.jdolphin.dmadditions.client.title.MenuBackGround;
+import com.jdolphin.dmadditions.client.title.MenuBackground;
 import com.jdolphin.dmadditions.common.config.DMAClientConfig;
 import com.jdolphin.dmadditions.common.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -41,8 +41,8 @@ public abstract class MainMenuScreenMixin extends Screen {
 	@Inject(method = "init", at = @At(value = "TAIL"))
 	private void init(CallbackInfo ci) {
 		if (DMAClientConfig.dma_classic.get()) {
-			int i = new Random().nextInt(MenuBackGround.values().length);
-			dmadditions_116$getBg(MenuBackGround.values()[i].getName());
+			int i = new Random().nextInt(MenuBackground.values().length);
+			dmadditions_116$getBg(MenuBackground.values()[i].getName());
 		}
 	}
 }

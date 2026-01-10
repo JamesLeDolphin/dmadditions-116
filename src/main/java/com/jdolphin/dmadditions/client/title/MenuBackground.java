@@ -1,6 +1,6 @@
 package com.jdolphin.dmadditions.client.title;
 
-public enum MenuBackGround {
+public enum MenuBackground {
 
 	K9("bg_1"),
 	XMAS("bg_2"),
@@ -12,9 +12,9 @@ public enum MenuBackGround {
 	TARDIS_SHADERS("bg_8"),
 	FOREMAN("bg_9");
 
-	String name;
+	final String name;
 
-	MenuBackGround(String name) {
+	MenuBackground(String name) {
 		this.name = name;
 	}
 

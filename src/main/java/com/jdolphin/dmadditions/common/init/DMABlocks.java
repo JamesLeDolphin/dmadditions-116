@@ -65,7 +65,7 @@ public class DMABlocks {
 		() -> new RotateableBlock(AbstractBlock.Properties.of(Material.METAL)), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_LOG = registerBlockWithItem("gallifrey_oak_log",
-		() -> new LogBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG), ItemGroup.TAB_BUILDING_BLOCKS);
+		() -> new LogBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(2.0f), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_WOOD = registerBlockWithItem("gallifrey_oak_wood",
 		() -> new LogBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_LOG.get()), DMABlocks.STRIPPED_GALLIFREY_OAK_LOG), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -80,7 +80,7 @@ public class DMABlocks {
 		() -> new SandBlock(Color.PINK.getRGB(), AbstractBlock.Properties.of(Material.SAND).harvestTool(ToolType.SHOVEL).strength(0.5f).sound(SoundType.SAND)),ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_SANDSTONE =  registerBlockWithItem("gallifrey_sandstone",
-		() -> new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
+		() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(0.8F).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_SMOOTH_SANDSTONE =  registerBlockWithItem("gallifrey_smooth_sandstone",
 		() -> new Block(AbstractBlock.Properties.copy(GALLIFREY_SANDSTONE.get())), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -116,7 +116,7 @@ public class DMABlocks {
 		() -> log(MaterialColor.COLOR_RED, MaterialColor.COLOR_PINK), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_PLANKS =  registerBlockWithItem("gallifrey_oak_planks",
-		() -> new Block(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD)), ItemGroup.TAB_BUILDING_BLOCKS);
+		() -> new Block(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).strength(2.0F)), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_SLAB =  registerBlockWithItem("gallifrey_oak_slab",
 		() -> new SlabBlock(AbstractBlock.Properties.copy(GALLIFREY_OAK_PLANKS.get())), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -128,10 +128,10 @@ public class DMABlocks {
 		() -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).harvestTool(ToolType.HOE).sound(SoundType.GRASS).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_DOOR = registerBlockWithItem("gallifrey_oak_door",
-		() -> new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
+		() -> new DoorBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_OAK_TRAPDOOR =  registerBlockWithItem("gallifrey_oak_trapdoor",
-		() -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
+		() -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F).harvestTool(ToolType.AXE).sound(SoundType.WOOD).noOcclusion()), ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_STONE = registerBlockWithItem( "gallifrey_stone",
 		() -> new Block(AbstractBlock.Properties.copy(Blocks.STONE)), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -140,7 +140,7 @@ public class DMABlocks {
 		() -> new BetterOreBlock(AbstractBlock.Properties.copy(Blocks.COAL_ORE), 2, 5),  ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> GALLIFREY_COBBLESTONE = registerBlockWithItem("gallifrey_cobblestone",
-		() -> new Block(AbstractBlock.Properties.of(Material.STONE)),  ItemGroup.TAB_BUILDING_BLOCKS);
+		() -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(1.5F, 6.0F)),  ItemGroup.TAB_BUILDING_BLOCKS);
 
 	public static RegistryObject<Block> CLASSIC_CONSOLE = registerBlockWithItem("classic_console",
 		() -> new ClassicConsoleBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL)), new Item.Properties().tab(DMTabs.DM_TARDIS));

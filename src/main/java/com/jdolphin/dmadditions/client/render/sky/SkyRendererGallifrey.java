@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.dimension.sky;
+package com.jdolphin.dmadditions.client.render.sky;
 
 import com.jdolphin.dmadditions.common.util.Helper;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -25,7 +25,7 @@ public class SkyRendererGallifrey implements ISkyRenderHandler {
 	public SkyRendererGallifrey() {
 	}
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({"deprecation"})
 	public void render(int ticks, float partialTicks, MatrixStack matrixStack, ClientWorld world, Minecraft mc) {
 		if (ClientPlayerData.inCustomLava) {
 			RenderSystem.enableFog();

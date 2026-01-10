@@ -1,4 +1,4 @@
-package com.jdolphin.dmadditions.client.dimension;
+package com.jdolphin.dmadditions.client.render.sky;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
